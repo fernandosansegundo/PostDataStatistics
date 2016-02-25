@@ -1,0 +1,235 @@
+% !Mode:: "Tex:UTF-8"
+
+\begin{table}[h]
+   \caption{}
+   \label{tabla:IntervalosConfianzaDiferenciaMedias}
+   \quad\\
+    \begin{center}
+    \fcolorbox{black}{Gris010}{
+    \begin{minipage}{13.5cm}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \begin{center}
+       {\bf Intervalos de confianza para la diferencia de medias $\mu_1-\mu_2$}
+       %\index{intervalo de confianza  para la diferencia de medias}
+        \end{center}
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (a) Poblaciones normales, varianzas conocidas}.
+       \[\displaystyle(\mu_1-\mu_2)=(\bar X_1-\bar X_2)\pm z_{\alpha/2}\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}\]
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (b) Ambas muestras grandes ($>30$), varianzas desconocidas}:
+       \[\displaystyle(\mu_1-\mu_2)=(\bar X_1-\bar X_2)\pm z_{\alpha/2}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}\]
+       %%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (c) Muestras pequeñas, varianzas desconocidas pero iguales}:
+       \[(\mu_1-\mu_2)=(\bar X_1-\bar X_2)\pm{\small {t_{n_1+n_2-2;\alpha/2}}\sqrt{\left(\dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\right)}\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}\]
+       %%%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (d) Muestras pequeñas, varianzas desconocidas y distintas}:
+       \[\displaystyle(\mu_1-\mu_2)=(\bar X_1-\bar X_2)\pm {t_{f;\alpha/2}}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}},\]
+       siendo $f$  la aproximación de Welch, Ecuación \ref{ecu:aproximacionWelch}):
+       \[
+       f=\dfrac{
+       \left(\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}\right)^2}{
+        \left(\dfrac{s_1^4}{(n_1^2\cdot(n_1-1))}\right) +
+        \left(\dfrac{s_2^4}{(n_2^2\cdot(n_2-1))}\right)
+        }
+       \]
+       %\[\dfrac{\left(\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}\right)^2}{\dfrac{1}{n_1+1}\left(\dfrac{s_1^2}{n_1}\right)^2+\dfrac{1}{n_2+1}\left(\dfrac{s_2^2}{n_2}\right)^2}-2.\]
+        \end{minipage}}
+    \end{center}
+\end{table}
+
+\begin{table}[h]
+   \caption{}
+   \label{tabla:ContrastesDiferenciaMedias}
+    \begin{center}
+    \fcolorbox{black}{Gris010}{
+    \begin{minipage}{13.5cm}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \begin{center}
+           {\bf Contrastes de hipótesis, diferencia de medias $\mu_1-\mu_2$}\\
+           %\index{contraste de hipótesis para la diferencia de medias}
+           {\bf Ver Sección \ref{cap09:sec:diferenciaMediasDosPoblaciones}.
+           Resumen de p-valores al final}
+        \end{center}
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (a) Poblaciones normales, varianzas conocidas}.\\
+       (a1) $H_0=\{\mu_1\leq\mu_2\}$. Región de rechazo: $\bar X_1>\bar X_2+\displaystyle z_{\alpha}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$.\\
+       (a2) $H_0=\{\mu_1\geq\mu_2\}$. Intercambiar las poblaciones y usar el anterior.\\
+       (a3) $H_0=\{\mu_1=\mu_2\}$. Región de rechazo: $|\bar X_1-\bar X_2|>\displaystyle{z_{\alpha/2}}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$.\\
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (b) Ambas muestras grandes ($>30$), varianzas desconocidas}:\\
+       (b1) $H_0=\{\mu_1\leq\mu_2\}$. Región de rechazo: $\bar X_1>\bar X_2+\displaystyle{z_{\alpha}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$.\\
+       (b2) $H_0=\{\mu_1\geq\mu_2\}$. Intercambiar las poblaciones y usar el anterior.\\
+       (b3) $H_0=\{\mu_1=\mu_2\}$. Región de rechazo: $|\bar X_1-\bar X_2|>\displaystyle{z_{\alpha/2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$.\\
+       %%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (c) Muestras pequeñas, varianzas desconocidas pero iguales}:\\
+       (c1) $H_0=\{\mu_1\leq\mu_2\}$. Región de rechazo:
+       \[\bar X_1>\bar X_2+\displaystyle{{t_{n_1+n_2-2;\alpha}}}{\sqrt{\left(\dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\right)\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}}.\]
+       (c2) $H_0=\{\mu_1\geq\mu_2\}$. Intercambiar las poblaciones y usar el anterior.\\
+       (c3) $H_0=\{\mu_1=\mu_2\}$. Región de rechazo:
+       \[|\bar X_1-\bar X_2|>\displaystyle{{t_{n_1+n_2-2;\alpha/2}}}{\sqrt{\left(\dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\right)\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}}.\]
+       %%%%%%%%%%%%%%%%%%%%%%%%%
+       {\bf (d) Muestras pequeñas, varianzas desconocidas y distintas}:\\
+       (d1) $H_0=\{\mu_1\leq\mu_2\}$. Región de rechazo: $\bar X_1>\bar X_2+{t_{f;\alpha}}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$.\\
+       (d2) $H_0=\{\mu_1\geq\mu_2\}$. Intercambiar las poblaciones y usar el anterior.\\
+       (d3) $H_0=\{\mu_1=\mu_2\}$. Región de rechazo: $|\bar X_1-\bar X_2|>{t_{f;\alpha/2}}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$.\\
+       siendo $f$ el número que aparece en la aprox. de Welch (ver Tabla \ref{tabla:IntervalosConfianzaDiferenciaMedias} en la pág. \pageref{tabla:IntervalosConfianzaDiferenciaMedias}).\\[3mm]
+       {\bf Para el cálculo de p-valores usar los estadísticos $\Xi$ de la Tabla \ref{tabla:EstadisticosContrastes}.}\\
+       Casos (a1) y (b1), p-valor=$P\left(Z>\Xi\right)$.\\
+       Casos (a3) y (b3), p-valor=$2\cdot P\left(Z>|\Xi|\right)$. Atención al 2 y al valor absoluto.\\
+       En los dos siguientes usar la variable $t$ de Student $T$ que corresponda:\\
+       Casos (c1) y (d1), p-valor=$P\left(T>\Xi\right)$.\\
+       Casos (c3) y (d3), p-valor=$2\cdot P\left(T>|\Xi|\right)$. Atención al 2 y al valor absoluto.\\
+    \end{minipage}}
+    \end{center}
+\end{table}
+
+
+\begin{table}[htb]
+\caption{}
+\label{tabla:EstadisticosContrastes}
+\quad
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{3}{|c|}{\cellcolor[gray]{0.9}{\rule{0cm}{1cm}{\bf Tabla de estadísticos $\Xi$ de contraste.}}}\\
+\multicolumn{3}{|c|}{\cellcolor[gray]{0.9}{\bf {!`}{!`}Para contrastes bilaterales, usar valor absoluto en el numerador!!}}\\[2mm]
+\hline
+{\bf Contraste }&{\bf  Estadístico }&{\bf  Distribución}\\
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}$\mu$, población normal,\\ $\sigma$ conocido. \end{minipage}& $\Xi=\dfrac{\bar X-\mu_0}{\dfrac{\sigma}{\sqrt{n}}}$ & $Z$ (normal $N(0,1)$)\\[8mm]
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}$\mu$, población normal,\\ $\sigma$ desconocido, $n>30$. \end{minipage}& $\Xi=\dfrac{\bar X-\mu_0}{\dfrac{s}{\sqrt{n}}}$ & $Z$ (normal $N(0,1)$)\\[8mm]
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}$\mu$, población normal,\\ $\sigma$ desconocido, $n\leq 30$. \end{minipage}& $\Xi=\dfrac{\bar X-\mu_0}{\dfrac{s}{\sqrt{n}}}$ & $T_k$ ($t$ de Student, $k=n-1$)\\[8mm]
+\hline
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}$\sigma^2$, población normal\\ ({!`}Atención al cuadrado!).\end{minipage}& $\Xi=\dfrac{(n-1) s^2}{\sigma_0^2}$ & $\chi^2_k$ (donde $k=n-1$)\\[8mm]
+\hline
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}proporción $p$,\\ $n>30, np>5, nq>5$. \end{minipage}& $\Xi=\dfrac{\hat p-p_0}{\sqrt{\dfrac{p_0\cdot q_0}{{n}}}}$ & $Z$ (normal $N(0,1)$)\\[8mm]
+\hline
+\multicolumn{3}{|c|}{{\cellcolor[gray]{0.9}{$\downarrow$ DOS POBLACIONES $\downarrow$}}}\\
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}(a) diferencia de medias $\mu_1-\mu_2$,\\ poblaciones normales,\\ $\sigma_1, \sigma_2$ conocidas.\end{minipage}& $\Xi=\dfrac{\bar X_1-\bar X_2}{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}$ & $Z$ (normal $N(0,1)$)\\[8mm]
+\hline
+\end{tabular}
+\quad\\[5mm]
+{\bf\Large (Continúa en la siguiente página)}
+\end{center}
+\end{table}
+
+\begin{landscape}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{3}{|c|}{\cellcolor[gray]{0.9}{\rule{0cm}{1cm}{\bf Tabla resumen de estadísticos de contraste (continuación).}}}\\
+\multicolumn{3}{|c|}{\cellcolor[gray]{0.9}{\bf {!`}{!`}Para contrastes bilaterales, usar valor absoluto en el numerador!!}}\\[2mm]
+\hline
+{\bf Contraste }&{\bf  Estadístico }&{\bf  Distribución}\\
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}(b) diferencia de medias $\mu_1-\mu_2$,\\ poblaciones normales,\\ $\sigma_1, \sigma_2$ desconocidas,\\ muestras grandes $n_1,n_2>30$.\end{minipage}& $\Xi=\dfrac{\bar X_1-\bar X_2}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}}$ & $Z$ (normal $N(0,1)$)\\[8mm]
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}(c) diferencia de medias $\mu_1-\mu_2$,\\ poblaciones normales,\\ muestras pequeñas,\\ $\sigma_1, \sigma_2$ desconocidas pero iguales.\end{minipage}& $\Xi=\dfrac{\bar X_1-\bar X_2}{\sqrt{\scriptsize{\left(\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\right)}\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}}$ & $T_{n_1+n_2-2}$ ($t$ de Student)\\[8mm]
+\hline
+\rule{0cm}{1.2cm}\begin{minipage}{5cm}(d) diferencia de medias $\mu_1-\mu_2$,\\ poblaciones normales,\\ muestras pequeñas,\\ $\sigma_1, \sigma_2$ desconocidas distintas.\end{minipage}& $\Xi=\dfrac{\bar X_1-\bar X_2}{\scriptsize{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}}}$ &\begin{minipage}{5cm} $T_f$ ($t$ de Student,\\ $f$ es el número\\
+    \scriptsize{$\dfrac{
+           \left(\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}\right)^2}{
+            \left(\dfrac{s_1^4}{(n_1^2\cdot(n_1-1))}\right) +
+            \left(\dfrac{s_2^4}{(n_2^2\cdot(n_2-1))}\right)
+            }$}\end{minipage}
+\\[8mm]
+\hline
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}Cociente de varianzas $\dfrac{\sigma_1}{\sigma_2}$,\\ poblaciones normales.\end{minipage}& $\Xi=\dfrac{s_1^2}{s_2^2}$ & $F_{k_1,k_2}$ ($F$ de Fisher, $k_i=n_i-1$).\\[8mm]
+\hline
+\hline
+\rule{0cm}{1cm}\begin{minipage}{5cm}dif.de proporciones $p_1-p_2$,\\ muestras grandes con\\
+$n_1>30, n_2>30$\\$n_1\cdot\hat p_1>5, n_1\cdot\hat q_1>5$,\\ $n_2\cdot\hat p_2>5,n_2\cdot\hat q_2>5$.\end{minipage}& $\Xi=\dfrac{\hat p_1-\hat p_2}{\scriptsize{\sqrt{\hat p\hat q\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}}}$ & \begin{minipage}{5cm}$Z$ (normal $N(0,1)$) con\\ $\hat p=\dfrac{n_1\hat p_1+n_2\hat p_2}{n_1+n_2},\quad \hat q=1-\hat p$ \end{minipage}\\[8mm]
+\hline
+\end{tabular}
+\end{center}
+\end{landscape}
+
+\begin{table}[h]
+   \caption{}
+   \label{tabla:ContrasteHipotesisCocienteVarianzas}
+   \quad\\
+    \begin{center}
+    \fcolorbox{black}{Gris010}{
+    \begin{minipage}{13cm}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \begin{center}
+       {\bf Contraste de hipótesis para el cociente de varianzas $\dfrac{s^2_1}{s^2_2}$, en dos poblaciones normales. Ver Sección \ref{cap09:subsec:ContrasteHipotesisCocienteVarianzas} (pág. \pageref{cap09:subsec:ContrasteHipotesisCocienteVarianzas})}
+       %\index{contraste de hipótesis, cociente de varianzas}
+       %\index{cociente de varianzas, contraste de hipótesis}
+        \end{center}
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \begin{enumerate}
+            \item[(a)] Hipótesis nula: $H_0=\{\sigma_1^2\leq \sigma_2^2\}$.\\
+             Región de rechazo: \[\dfrac{s_1^2}{s_2^2}>f_{k_1,k_2;\alpha}.\]\\
+             p-valor=$P\left(F_{k_1,k_2}>\dfrac{s_1^2}{s_2^2}\right)$ (cola derecha)
+            \item[(b)] Hipótesis nula: $H_0=\{\sigma_1^2\geq \sigma_2^2\}$.\\
+             Región de rechazo: \[\dfrac{s_1^2}{s_2^2}<f_{k_1,k_2;1-\alpha}.\]\\
+             p-valor=$P\left(F_{k_1,k_2}<\dfrac{s_1^2}{s_2^2}\right)$ (cola izquierda).
+            \item[(c)] Hipótesis nula: $H_0=\{\sigma_1^2=\sigma_2^2\}$. Región de rechazo:
+            \[\dfrac{s_1^2}{s_2^2}\mbox{ no pertenece al intervalo:}
+                \left(f_{k_1,k_2;1-\alpha/2},f_{k_1,k_2;\alpha/2}\right).\]
+                p-valor=$2\cdot P\left(F_{k_1,k_2}>\dfrac{s_1^2}{s_2^2}\right)$\\
+                {!`}{!`}siempre que sea $\dfrac{s_1^2}{s_2^2}\geq 1$!! Si se tiene $\dfrac{s_1^2}{s_2^2}<1$, cambiar $s_1$ por $s_2$.
+        \end{enumerate}
+        \end{minipage}}
+    \end{center}
+\end{table}
+
+
+
+
+\begin{table}[h]
+   \caption{}
+   \label{tabla:ContrasteHipotesisDiferenciaProporciones}
+   \quad\\
+    \begin{center}
+    \fcolorbox{black}{Gris010}{
+    \begin{minipage}{13cm}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \begin{center}
+       {\bf Contraste de hipótesis para la diferencia de proporciones.\\
+       Ver Sección \ref{cap09:subsec:ContrasteHipotesisCocienteVarianzas} (pág. \pageref{cap09:subsec:ContrasteHipotesisCocienteVarianzas})}
+       %\index{contraste de hipótesis, diferencia de proporciones}
+       %\index{diferencia de proporciones, contraste de hipótesis}
+        \end{center}
+    \begin{itemize}
+      \item Se suponer que se cumplen estas condiciones:
+          \[
+            \begin{cases}
+            n_1>30,\quad n_2>30,\\
+            n_1\cdot\hat p_1>5,\quad n_1\cdot\hat q_1>5,\\
+            n_2\cdot\hat p_2>5,\quad n_2\cdot\hat q_2>5.
+            \end{cases}
+          \]
+      \item Se define
+            \[\hat p=\dfrac{n_1\hat p_1+n_2\hat p_2}{n_1+n_2}, \quad \hat q=1-\hat p\]
+          y también
+            \[
+                \Xi=\dfrac{\left(\hat p_1-\hat p_2\right)}{\sqrt{\hat p\cdot \hat q \cdot\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}}
+            \]
+    \end{itemize}
+    Entonces los contrastes son:
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \begin{enumerate}
+           \item $H_0=\{p_1\leq p_2\}$.\\
+                Región de rechazo:
+                \[\hat p_1>\hat p_2+z_{\alpha}\sqrt{\hat p\hat q\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}.\]
+                p-valor=$P(Z>\Xi)$ (cola derecha).
+           \item $H_0=\{p_1\geq p_2\}$.\\
+                Región de rechazo (cambiando $p_1$ por $p_2$ en (a)):
+                \[\hat p_2>\hat p_1+z_{\alpha}\sqrt{\hat p\hat q\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}.\]
+                p-valor=$P(Z<\Xi)$. (cola izquierda).
+           \item $H_0=\{p_1=p_2\}$.\\
+                Región de rechazo:
+                \[\left|\hat p_1-\hat p_2\right|>z_{\alpha/2}\sqrt{\hat p\cdot \hat q \cdot\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}.\]
+                p-valor=$2\cdot P(Z>|\Xi|)$.
+    \end{enumerate}
+        \end{minipage}}
+    \end{center}
+\end{table}

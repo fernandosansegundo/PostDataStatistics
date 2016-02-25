@@ -1,0 +1,1433 @@
+% !Mode:: "Tex:UTF-8"
+
+<<setup, echo=FALSE>>=
+## numbers >= 10^5 will be denoted in scientific notation,
+## and rounded to 2 digits
+options(scipen = 2, digits = 5, cache=FALSE)
+@
+
+\documentclass[10pt,a4paper]{article}
+\usepackage{etoolbox}
+\newtoggle{color}
+%\togglefalse{color}
+\toggletrue{color}
+
+\usepackage{makeidx}
+\newcommand{\idioma}{spanish}
+\newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
+\input{../tex/definiciones}
+%\input{sahp}
+\includecomment{com}
+%\excludecomment{com}
+%\usepackage[dvips]{hyperref}
+%\usepackage{pstricks}
+
+
+\newtoggle{distribuir}
+%\togglefalse{distribuir}
+\toggletrue{distribuir}
+\iftoggle{distribuir}{%
+  % color version
+    \includecomment{distribuir}
+    \excludecomment{noDistribuir}
+}{%
+  % b/w version
+    \includecomment{noDistribuir}
+    \excludecomment{distribuir}
+}
+
+
+\usepackage{attachfile}
+
+\textwidth=150mm \textheight=260mm
+\hoffset=-1cm
+\voffset=-25mm
+\parskip=2mm
+%\textwidth=160mm \textheight=240mm \hoffset=-20mm \voffset=-20mm \parskip=0mm \marginparsep=-25mm
+
+\setlength{\parindent}{0pt}
+\newcounter {cont01}
+
+\externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
+\externaldocument[tut01-]{Tutorial-01}
+\externaldocument[tut02-]{Tutorial-02}
+\externaldocument[tut03-]{Tutorial-03}
+\externaldocument[tut04-]{Tutorial-04}
+\externaldocument[tut04-]{Tutorial-05}
+\externaldocument[tut04-]{Tutorial-06}
+\externaldocument[tut04-]{Tutorial-07}
+\externaldocument[tut04-]{Tutorial-08}
+\externaldocument[tut04-]{Tutorial-09}
+
+\begin{document}
+\includecomment{pdf}
+%\excludecomment{pdf}
+%\includecomment{dvi}
+\excludecomment{dvi}
+%\includecomment{com}
+\excludecomment{com}
+
+
+\paragraph{\link{http://www.postdata-statistics.com/}{PostData}\hspace{6.3cm}Curso de Introducción a la Estadística\\[2mm]} \noindent\hrule
+
+\setcounter{section}{0}
+\section*{\hspace{-0.1cm}\fbox{\colorbox{Gris025}{
+\begin{minipage}{14.5cm}
+Tutorial 10: Regresión lineal simple.
+\end{minipage}
+}}} Atención:
+\begin{itemize}
+  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está
+      pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es
+      necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de
+      imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
+  \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si
+      existe una versión más reciente.
+\end{itemize}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section{Diagramas de dispersión y formato de los datos.}
+
+En el Capítulo \ref{curso-cap:RegresionLinealSimple} del libro se plantea el estudio de la relación  entre dos variables cuantitativas $X$ e $Y$. Los datos muestrales en los que se basa ese estudio consisten en una colección de pares de puntos:
+\[(x_1,y_1),(x_2,y_2),(x_3,y_3),\ldots,(x_n,y_n),\]
+Y una de las tareas esenciales en ese estudio es la de representar gráficamente estos puntos, porque esa gráfica contiene mucha información sobre la posible relación que tratamos de analizar. Vamos a empezar el tutorial viendo cómo podemos realizar esos {\sf diagramas de dispersión} usando los programas que conocemos, al menos en los casos más sencillos.
+
+\subsection{En GeoGebra.}
+
+Empecemos con un ejemplo. La Tabla \ref{tut10:tabla:datosPisaPais} muestra los datos que aparecen en una noticia titulada \link{http://elpais.com/elpais/2013/12/06/media/1386359879_944495.html}{\em Relación entre la renta per cápita y los resultados de PISA}, publicada por el periódico EL PAÍS en su edición on-line del 6 de diciembre de 2013. (El \link{http://www.oecd.org/pisa/}{informe PISA} es un análisis del rendimiento de los estudiantes, que la OCDE realiza periódicamente en muchos países del mundo). Los  datos de la columna se refieren a la renta per cápita (rpc) en miles de euros para cada una de las comunidades autónomas que participaron en el estudio en 2012, mientras que la segunda columna (pisa) contiene las puntuaciones (promedio) obtenidas por los estudiantes de esa comunidad autónoma, en la prueba de Matemáticas.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & rpc & pisa \\
+  \hline
+  Extremadura & 15.394 & 461 \\
+  Andalucía & 19.960 & 472 \\
+  Murcia & 18.520 & 462 \\
+  Galicia & 20.723 & 489 \\
+  Asturias & 21.035 & 500 \\
+  Castilla y León & 22.289 & 509 \\
+  Cantabria & 22.341 & 491 \\
+  ESPAÑA & 22.772 & 484 \\
+  Baleares & 24.393 & 475 \\
+  La Rioja & 25.508 & 503 \\
+  Aragón & 25.540 & 496 \\
+  Cataluña & 27.248 & 493 \\
+  Navarra & 29.071 & 517 \\
+  Madrid & 29.385 & 504 \\
+  País Vasco & 30.829 & 505 \\
+   \hline
+\end{tabular}
+\caption{Datos de la noticia \link{http://elpais.com/elpais/2013/12/06/media/1386359879_944495.html}{\em Relación entre la renta per cápita y los resultados de PISA}, publicados por el periódico EL PAÍS en su edición on-line del 6 de diciembre de 2013.}
+\label{tut10:tabla:datosPisaPais}
+\end{table}
+Este ejemplo es bastante sencillo, porque partimos de una cantidad muy moderada de puntos. Pero aún así nos va a servir para hacernos una idea de las dificultades que nos encontraremos en la práctica en este tipo de problemas. Por un lado, cuando pensamos en hacer que una persona pueda leer fácilmente la información de las coordenadas de los puntos, la mejor manera es usar una tabla como la Tabla \ref{tut10:tabla:datosPisaPais}. Por otro lado, la forma más fácil de empezar a trabajar con estos datos en GeoGebra es partiendo de una {\em lista de puntos} como esta:
+\begin{verbatim}
+(15.394,461), (19.96,472), (18.52,462), (20.723,489), (21.035,500), (22.289,509),
+(22.341,491), (22.772,484), (24.393,475), (25.508,503), (25.54,496), (27.248,493),
+(29.071,517), (29.385,504), (30.829,505)
+\end{verbatim}
+Puedes copiar esta lista de puntos y pegarla en la {\em Línea de Entrada} de GeoGebra rodeándola entre llaves así:
+\begin{verbatim}
+  datosPisa = {(15.394,461), (19.96,472), (18.52,462), (20.723,489), (21.035,500),
+  (22.289,509), (22.341,491), (22.772,484), (24.393,475), (25.508,503), (25.54,496),
+  (27.248,493), (29.071,517), (29.385,504), (30.829,505)}
+\end{verbatim}
+como se muestra en esta figura:
+\begin{center}
+    \includegraphics[width=16cm]{../fig/Tut10-11.png}
+\end{center}
+Cuando introduzcas estos datos en GeoGebra los verás aparecer en el panel de la izquierda, la {\em Vista Algebraica}, pero no en la {\em Vista gráfica}. Para hacerlos visibles tienes que pulsar sobre el botón circular situado a la izquierda de los datos en la {\em Vista Algebraica}, como muestra la figura:
+\begin{center}
+    \includegraphics[width=8cm]{../fig/Tut10-12.png}
+\end{center}
+Después de hacer esto lo más probable es que todavía no veas los puntos. Para verlos,haz click con el botón derecho del ratón en algún lugar de la {\em Vista gráfica}, para hacer aparecer el menú contextual de ese panel, y selecciona {\em Mostrar todos los objetos}, como se ve en esta figura:
+\begin{center}
+    \includegraphics[width=5cm]{../fig/Tut10-13.png}
+\end{center}
+Al hacerlo verás aparecer la nube de puntos. Todavía es posible que tengas que hacer zoom o cambiar la escala de los ejes para llegar a una visualización que nos parezca satisfactoria. Por ejemplo, yo he modificado la posición y escala de los ejes, para que el punto de corte ocurra en el valor $400$ del eje vertical.
+\begin{center}
+    \includegraphics[width=11cm]{../fig/Tut10-14.png}
+\end{center}
+Puedes explorar el menú {\em Vista Gráfica} (identificado por la rueda dentada que aparece en el menú contextual que hemos usado antes), en el que puedes modificar estos y muchos otros parámetros de la visualización.
+
+La limitación evidente de esta forma de trabajar es que en la mayoría de los casos partiremos de una tabla, o de un fichero csv con los datos. Por ejemplo, el fichero adjunto
+\begin{center}
+\fichero{../datos/Tut10-DatosPisaPais.csv}{Tut10-DatosPisaPais.csv},
+\end{center}
+cuyo contenido se muestra en la Figura \ref{tut10:fig:FicheroCsvPisaPais} contiene los mismos datos de este ejemplo, en un formato mucho más común en la práctica.
+\begin{figure}[h!]
+\begin{center}
+    \includegraphics[width=8cm]{../fig/Tut10-01.png}
+\end{center}
+\caption{Fichero {\tt csv} con los datos del ejemplo sobre el estudio PISA.}
+\label{tut10:fig:FicheroCsvPisaPais}
+\end{figure}
+Una posibilidad es usar la {\em Hoja de Cálculo} que incorpora GeoGebra, e importar el fichero {\tt csv} como hemos hecho en Calc. GeoGebra ofrece, en sus versiones recientes, muchas menos posibilidades de configuración de ese proceso de importación que, por ejemplo, Calc. Puedes encontrar más información en este enlace:
+\begin{center}
+\link{http://wiki.geogebra.org/en/Spreadsheet_View}{http://wiki.geogebra.org/en/Spreadsheet\_View}
+\end{center}
+Pero para trabajar cómodamente con ficheros de datos más complejos y, en general, para poder exprimir al máximo la información de estos datos,  es sensiblemente mejor recurrir a un programa especializado como R.
+
+\subsection{En R.}
+\label{tut10:subsec:DiagramaDispersionEnR}
+
+Vamos a empezar con un ejemplo muy elemental de cómo se dibuja un diagrama de dispersión en R. Partimos de dos vectores de coordenadas:
+set.seed(2014)
+<<>>=
+x = c(1, 3, 4, 5, 7, 9, 13, 15)
+y = c(-0.888, 3.12, 4.27, 5.6, 8.06, 12.2, 15.9, 17.2)
+@
+Y para obtener el diagrama de dispersión basta con aplicar la función {\sf plot} así:
+<<fig.width=6, fig.height=5>>=
+plot(x, y)
+@
+El diagrama resultante es, desde el punto de vista gráfico, muy básico. Pero, como sucede siempre en R, las posibilidades para modificar este gráfico, adaptándolo a nuestras necesidades y deseos, son casi ilimitadas. Más adelante en este tutorial vamos a adentrarnos, apenas unos pasos, en el universo de los gráficos con R.
+
+Lo que hemos hecho para obtener ese gráfico es el esquema básico. En ejemplos más complicados y realistas, como hemos dicho, el punto de partida será a menudo un fichero de datos. Vamos a usar como ejemplo el fichero {\tt Tut10-DatosPisaPais.csv}, de datos del estudio PISA, que hemos incluido en la sección previa. Nuestro primer paso es leer los datos usando la función {\tt read.table}, que ya hemos usado en otras ocasiones para esto. Fíjate en que usamos la opción \verb#sep = "\t"#, porque las columnas de datos se han separado con tabuladores en el fichero {\tt csv}. ¿Cómo hemos sabido que se había usado el tabulador? Probando a leer los datos con el espacio como separador y descubriendo que se producía un error de lectura. Recuerda además que siempre es bueno comprobar que la lectura ha sido correcta, usando por ejemplo  la función {\tt head}:
+{\small
+<<>>=
+datosPisa = read.table(file="../datos/Tut10-DatosPisaPais.csv", header=TRUE, sep = "\t")
+head(datosPisa)
+@
+}
+A partir de aquí, las cosas son sencillas. Usamos la notación habitual de los {\tt data.frmaes} de R para trabajar con las dos columnas que contienen los datos que vamos a representar y usamos la función {\tt plot} así:
+<<fig.width=6, fig.height=4>>=
+plot(datosPisa$rpc, datosPisa$pisa)
+@
+Puedes probar también a usar
+<<eval=FALSE>>=
+plot(pisa ~ rpc, data=datosPisa)
+@
+para ver que el resultado es el mismo. El símbolo \verb#~#, que ya ha aparecido en algún tutorial previo, es la forma de decir en R que estamos estudiando la relación entre esas dos variables.  En las próximas secciones volveremos a este ejemplo y seguiremos el análisis de regresión de esos datos. Pero antes, vamos a practicar en un ejercicio la lectura de datos a partir de
+ficheros {\tt csv}.
+
+\begin{ejercicio}
+\label{tut10:ejercicio01}
+En todos los casos se trata de leer un fichero {\tt csv} que contiene pares de datos, para
+almacenar los valores de las variables $x$ e $y$ en sendos vectores de R, que llamaremos, claro está, {\tt x} e {\tt y}.  Antes de empezar, guarda los ficheros en la carpeta {\tt datos}  de tu directorio de trabajo, y recuerda que conviene echarle un vistazo al fichero de datos, usando un editor de texto (como el {\em Bloc de Notas} de Windows).
+\begin{enumerate}
+  \item El primer fichero es muy sencillo, no debe suponer
+      problemas:\\
+      \fichero{../datos/tut10-ejercicio01-1.csv}{tut10-ejercicio01-1.csv}
+  \item Una variante del anterior, los mismos datos, con algunos cambios de formato:\\
+      \fichero{../datos/tut10-ejercicio01-2.csv}{tut10-ejercicio01-2.csv}
+  \item Y una tercera versión de los mismos datos:\\
+      \fichero{../datos/tut10-ejercicio01-3.csv}{tut10-ejercicio01-3.csv}
+\end{enumerate}
+Soluciones en la página \pageref{tut10:ejercicio01:sol}.
+\qed
+\end{ejercicio}
+
+
+
+\section{La recta de regresión lineal.}
+
+\subsection{Interpolación en GeoGebra.}
+
+Dado un conjunto de puntos, representados mediante su diagrama de dispersión, nuestro primer paso en la Sección \ref{curso-cap10:subsec:DiagramasDIspersionEleccionFuncionAdecuada} del libro (pág. \pageref{curso-cap10:subsec:DiagramasDIspersionEleccionFuncionAdecuada}) ha sido la búsqueda de una curva que pasara por todos y cada uno de los puntos del diagrama de dispersión. La técnica llamada {\em interpolación} permite construir una curva polinómica con esas propiedades. Para que puedas experimentar con esa idea hemos incluido un fichero GeoGebra:
+\begin{center}
+  \fichero{../ggb/Cap10-ExperimentoInterpolacion.ggb}{Cap10-ExperimentoInterpolacion.ggb}
+\end{center}
+que al abrirlo te mostrará esta imagen:
+\begin{center}
+    \includegraphics[width=14cm]{../fig/Tut10-15.png}
+\end{center}
+Empieza por marcar la casilla {\em Polinopmio por A, B, C, D} para ver aparecer la curva que pasa por esos puntos:
+\begin{center}
+    \includegraphics[width=14cm]{../fig/Tut10-16.png}
+\end{center}
+Si quieres, puedes probar a desplazar alguno de los puntos para ver cómo responde la curva. También puedes marcar la casilla para añadir un punto $E$ adicional que, si no has movido los puntos, inicialmente aparecerá cerca de la curva:
+\begin{center}
+    \includegraphics[width=15cm]{../fig/Tut10-17.png}
+\end{center}
+Finalmente, marca la casilla restante para mostrar la curva de interpolación que pasa por los cinco puntos y prueba a mover el punto $E$. Verás como incluso pequeñas modificaciones de la posición del punto pueden tener una influencia muy importante en la posición de esa curva.
+\begin{center}
+    \includegraphics[width=15cm]{../fig/Tut10-18.png}
+\end{center}
+El  comando de GeoGebra  que nos permite construir la curva que pasa por los puntos $A, B, C$ y $D$ es:
+{\tt   Polinomio[A, B, C, D]}.
+
+\subsection{Recta de regresión en GeoGebra.}
+
+El siguiente paso, como hemos discutido en el libro, es renunciar a buscar una curva que pase por todos los puntos. En su lugar buscamos la mejor recta posible para representar ese conjunto de puntos. En GeoGebra, la recta de regresión lineal se obtiene con la función {\tt AjusteLineal}, aplicada a una {\em lista} de puntos. Si todavía tienes abierto el fichero que hemos usado para la interpolación, puedes ejecutar este comando
+  \begin{verbatim}
+    AjusteLineal[{A, B, C, D}]
+  \end{verbatim}
+para obtener esa recta (si no usas las llaves el comando funcionará igualmente, GeoGebra las añade por ti). Y para los datos del estudio PISA que hemos usado al principio del tutorial, basta con hacer
+\begin{verbatim}
+AjusteLineal[datosPisa]
+\end{verbatim}
+para obtener la recta:
+\begin{center}
+    \includegraphics[width=15cm]{../fig/Tut10-19.png}
+\end{center}
+Hemos destacado la ecuación de la recta en la {\em Vista Algebraica} de GeoGebra, para que veas que ahí aparecen la pendiente y la ordenada en el origen.
+
+\subsubsection*{Ficheros de GeoGebra para visualizar las ideas asociadas a la recta de regresión.}
+
+Vamos a aprovechar este apartado para incluir aquí varios ficheros de GeoGebra que acompañan la discusión de la Sección \ref{curso-cap10:sec:RectaRegresionECCorrelacion} del libro (pág. \pageref{curso-cap10:sec:RectaRegresionECCorrelacion}). Para empezar, el fichero
+\begin{center}
+  \fichero{../ggb/Cap10-EcuacionRectaPendienteOrdenadaOrigen.ggb}{Cap10-EcuacionRectaPendienteOrdenadaOrigen.ggb}
+\end{center}
+permite refrescar el significado de la pendiente $b_1$ y la ordenada en el origen $b_0$ de una recta cuya ecuación es
+\[y = b_0 + b_1 x,\]
+usando un par de deslizadores como se ilustra en la figura
+\begin{center}
+    \includegraphics[width=15.5cm]{../fig/Tut10-20.png}
+\end{center}
+Prueba a mover esos deslizadores hasta asegurarte de que comprendes bien el efecto que cada uno de los coeficientes $b_0$ y $b_1$ tiene sobre la recta.
+
+Una vez entendemos de las herramientas (los valores $b_0, b_1$) que nos van a permitir colocar la recta donde nosotros queramos, llega el momento de elegir la mejor recta para un conjunto dado de puntos. El fichero
+\begin{center}
+  \fichero{../ggb/Cap10-LaRectaDeRegresion.ggb}{Cap10-LaRectaDeRegresion.ggb}
+\end{center}
+te presenta una colección o nube de puntos (de color rojo) y te permite usar los puntos $M$ y $N$ para tratar de colocar la recta azul de la manera que consideres más representativa de la nube de puntos dada.
+\begin{center}
+    \includegraphics[width=15.5cm]{../fig/Tut10-21.png}
+\end{center}
+Una vez hecho esto, usa la casilla para mostrar la recta de regresión calculada por GeoGebra y comprobar si te has acercado a ese objetivo.
+
+El siguiente paso consiste en cuantificar, para medirlo de forma precisa, el error que se comete al usar una recta como representante de la nube de puntos. El criterio que usamos es el error cuadrático, y el fichero Geogebra
+\begin{center}
+  \fichero{../ggb/Cap10-InterpretacionErrorCuadratico.ggb}{Cap10-InterpretacionErrorCuadratico.ggb}
+\end{center}
+trata de ilustrar la noción de error cuadrático. Como en el caso anterior, se muestra una nube de puntos y una recta que podemos tratar de colocar de la mejor manera posible. En este caso además de una casilla para mostrar la recta de regresión disponemos de otra que nos permite ver los cuadrados que determinan ese error {\em cuadrático}. Prueba a mover la recta hacia la posición que ocupa la recta de regresión y observa como la suma total de las áreas de esos cuadrados se reduce a un mínimo en esa posición.
+\begin{center}
+    \includegraphics[width=15.6cm]{../fig/Tut10-22.png}
+\end{center}
+Cuando mueves la recta hasta hacerla coincidir exactamente con la recta de regresión, este fichero también permite visualizar los valores de los {\em residuos}, que son los segmentos verticales que conectan los puntos de la nube inicial de datos (los puntos rojos) con los puntos correspondientes de la recta de regresión (los puntos verdes).
+
+Vamos a cerrar este apartado con dos ficheros GeoGebra, que permiten explorar las ideas que aparecen en las Figuras \ref{curso-cap10:fig:RectaTangenteParabola} y \ref{curso-cap10:fig:RectaComoAproximacionLocal} del libro (págs. \pageref{curso-cap10:fig:RectaTangenteParabola} y \pageref{curso-cap10:fig:RectaComoAproximacionLocal}, respectivamente). Los ficheros son:
+\begin{center}
+\fichero{../ggb/Cap10-ZoomEnParabola.ggb}{Cap10-ZoomEnParabola.ggb}\\
+\fichero{../ggb/Cap10-RectasZoomHaciaFuera.ggb}{Cap10-RectasZoomHaciaFuera.ggb}
+\end{center}
+En ambos casos, se trata de hacer zoom en la figura, hacia dentro en la primera y hacia fuera en la segunda. Puedes usar la rueda del ratón o las teclas {\tt Ctrl +} y {\tt Ctrl -} para hacer esto.
+
+
+\subsection{La recta de regresión en R.}
+
+En esta sección vamos a comenzar el estudio de los comandos de R necesarios para el análisis de regresión lineal. Las posibilidades de R van mucho más lejos de lo que vamos a ver aquí, pero, como siempre, es necesario empezar por lo más básico.
+
+Para empezar a trabajar vamos a usar los datos del informe PISA con los que abríamos este tutorial. Supondremos que los datos están disponibles en el {\tt data.frame} de R llamado {\tt datosPisa} que hemos creado en la Sección \ref{tut10:subsec:DiagramaDispersionEnR} (pág. \pageref{tut10:subsec:DiagramaDispersionEnR}). En primer lugar, vamos a ver como calcular la covarianza de estos dos vectores, cosa que es extremadamente fácil de hacer en R:
+<<>>=
+cov(datosPisa$rpc, datosPisa$pisa)
+@
+Recuerda que en R {\bf se trata siempre de la covarianza muestral}, que usa $n-1$ en el denominador. Si
+deseas la covarianza que usa $n$, debes usar el truco habitual, multiplicando por $n-1$ y dividendo por $n$.
+
+Con la función {\tt cov} estamos listos para calcular la pendiente de la recta de regresión, que de
+acuerdo con la Ecuación \ref{curso-cap10:ecu:RectaRegresionPendienteOrdenadaOrigen} (pág.
+\pageref{curso-cap10:ecu:RectaRegresionPendienteOrdenadaOrigen}) del libro es:
+
+<<>>=
+(b1 = cov(datosPisa$pisa, datosPisa$rpc)/var(datosPisa$rpc))
+@
+Y la ordenada en el origen es, entonces:
+
+<<>>=
+(b0 = mean(datosPisa$pisa) - b1 * mean(datosPisa$rpc))
+@
+Así que la recta de regresión es, aproximadamente,
+\[y = \Sexpr{signif(b0,4)} + \Sexpr{signif(b1,4)}\cdot x\]
+Recuerda que ya habíamos obtenido esta recta en Geogebra, así que es un buen momento para que compruebes que el resultado es el mismo.
+
+\subsubsection*{La función {\tt attach}.}
+
+Si te has cansado de escribir todo el rato
+\begin{center}
+\verb#datosPisa$#,
+\end{center}
+puedes ejecutar
+<<results='hide', warning=FALSE, message=FALSE>>=
+  attach(datosPisa)
+@
+Cuando lo ejecutes puede que veas algún mensaje de advertencia de R. No te preocupes por el momento. Con este comando le decimos a R que queremos acceder a las variables de ese {\tt data.frame} sin necesidad de precederlas con \verb#datosPisa$#. Por ejemplo, en lugar de \verb#datosPisa$rpc# ahora puedes decir simplemente
+<<>>=
+rpc
+@
+y, como ves, R lo entiende sin problemas. El problema de hacer esto es que en ocasiones se crean ambigüedades entre las variables del {\tt data.frame} y otras posibles variables. Especialmente en programas más complicados y cuando se trabaja con varios {\tt data.frames} a la vez. En un programa sencillo que escribimos para un cálculo corto, puede ser la solución más cómoda. Pero el uso generalizado de {\tt attach} no es una práctica muy recomendable y la mayoría de programadores expertos de R lo desaconsejan. Cuando aprendas un poco más de R podrás evitarlo casi siempre, mediante herramientas como la función {\tt with} y la opción {\tt data} de muchas funciones. Además, el uso del tabulador en RStudio aligera mucho el trabajo adicional que esto supone. Nosotros vamos a seguir adelante en el Tutorial sin usar {\tt attach}. La forma de deshacer sus efectos es mediante
+<<>>=
+detach(datosPisa)
+rpc
+@
+y el mensaje de error nos confirma de que hemos vuelto a la situación previa al uso de {\tt attach}.
+
+%tienes dos opciones:
+%\begin{enumerate}
+%  \item La más cómoda, pero que a la vez es la más peligrosa por el riesgo de errores que conlleva, es ejecutar (¡no lo hagas hasta seguir leyendo!)
+%      <<eval=FALSE>>=
+%      attach(datosPisa)
+%      @
+%      Con este comando le decimos a R que queremos acceder a las variables de ese {\tt data.frame} sin necesidad de precederlas con \verb#datosPisa$#. El problema de hacer esto es que en ocasiones se crean ambigüedades entre las variables del {\tt data.frame} y otras posibles variables. Especialmente en programas más complicados y cuando se trabaja con varios {\tt data.frames} a la vez. En un programa sencillo que escribimos para un cálculo corto, puede ser la solución más cómoda. Pero el uso generalizado de {\tt attach} no es una práctica muy recomendable y la mayoría de programadores expertos de R lo desaconsejan.
+%
+%  \item Por otro lado, puedes usar la función {\tt with} para crear una estructura que indica la sentencia (o sentencias, si ocupan varias líneas) de R en las que quieres usar las variables de un {\tt data.frame}. Por ejemplo, el cálculo de la pendiente y ordenada en el origen que hemos hecho antes quedaría así:
+%      <<>>=
+%      coefRecta = with(datosPisa, {
+%        pendiente = cov(pisa, rpc)/var(rpc)
+%        ordOrigen = mean(pisa) - pendiente * mean(rpc)
+%        c(pendiente, ordOrigen)
+%        })
+%      coefRecta
+%      (b1 = coefRecta[1])
+%      (b0 = coefRecya[2])
+%      @
+%      Fíjate en que hemos añadido dos líneas para mostrar los resultados, porque los paréntesis que usamos habitualmente no funcionan correctamente dentro de la estructura {\tt with}.
+%\end{enumerate}
+
+\subsubsection*{Añadir la recta de regresión al diagrama de dispersión.}
+
+Naturalmente, una vez calculada la recta de regresión, queremos verla incluida en el diagrama de dispersión. Para ello, disponemos de la función {\tt abline}, que puede dibujar cualquier recta. El nombre de esa función se debe a que tradicionalmente las rectas se han escrito así:
+\[y = a + b \cdot x\]
+a partir de su pendiente $b$ y ordenada en el origen $a$. Para usarlo en nuestro ejemplo hacemos:
+y el resultado es la gráfica que se muestra en la Figura \ref{tut10:fig:RectaRegresionEnDiagramaDispersionPisaPais}.
+\begin{figure}[h!]
+\begin{center}
+    %\includegraphics[width=12cm]{../fig/Tut10-04.png}
+<<fig.width=6, fig.height=4>>=
+    plot(datosPisa$pisa ~ datosPisa$rpc)
+    abline(a = b0, b = b1)
+@
+\end{center}
+\caption{Recta de regresión en el diagrama de dispersión para el Ejemplo de los datos del informe PISA.}
+\label{tut10:fig:RectaRegresionEnDiagramaDispersionPisaPais}
+\end{figure}
+
+Está claro que, como hemos dicho antes, se trata de un gráfico muy sencillo, aunque suficiente para muchos de nuestros propósitos. Pronto aprenderemos a mejorarlo. Recuerda además que ya obtuvimos este gráfico con GeoGebra, así que es una buena idea que compares las dos versiones.
+
+
+
+\subsection{Coeficiente de correlación, Residuos y error cuadrático medio}
+\label{tut10:subsec:CoeficienteCorrelacionResiduosEC}
+
+El coeficiente de correlación $r$ que aparece en la Ecuación
+\ref{curso-cap10:ecu:CoeficienteRegresionPearson} (pág.
+\pageref{curso-cap10:ecu:CoeficienteRegresionPearson}) del libro, se calcula en R con la función {\tt cor}. Así que, para los datos del estudio PISA  se obtiene
+<<>>=
+cor(datosPisa$pisa, datosPisa$rpc)
+@
+
+\begin{ejercicio}
+\label{tut10:ejercicio02}
+\begin{enumerate}
+  \item[]
+  \item Comprueba que el resultado de {\tt cor} es el mismo que cuando se usa {\tt cov} y la fórmula de la Ecuación \ref{curso-cap10:ecu:CoeficienteRegresionPearson} del libro (pág. \pageref{curso-cap10:ecu:CoeficienteRegresionPearson}). Recuerda que la función {\tt sd} sirve para calcular las cuasidesviaciones típicas que necesitarás para el denominador de esa fórmula.
+  \item Averigua cuál es la función de GeoGebra que te permite calcular el coeficiente de correlación de la lista de puntos {\tt datosPisa} que hemos creado al principio del tutorial. Comprueba que el resultado es el mismo que hemos obtenido en R.
+\end{enumerate}
+Soluciones en la página \pageref{tut10:ejercicio02:sol}.
+\qed
+\end{ejercicio}
+
+
+
+\subsubsection*{Residuos y error cuadrático medio}
+
+Una vez que hemos obtenido la ecuación de la recta de regresión, también podemos usarla para calcular otros valores asociados al análisis de regresión como los residuos, o el error cuadrático, que son relevantes para el análisis de la varianza en el modelo de regresión. En la Sección \ref{tut10:sec:IntroduccionFuncionlm} de este tutorial vamos a aprender a usar la función {\tt lm} de R para hacer esta operación de una manera mucho más sencilla. Pero es bueno empezar por lo más básico, construyendo los resultados paso a paso.
+
+Por ejemplo, para calcular los residuos con los datos del estudio PISA debemos primero calcular la diferencia entre los valores para las pruebas PISA que predice la recta, calculados a partir de {\tt rpc}, y los valores de {\tt pisa} que se han medido en la muestra. Para obtener los valores que predice la recta hacemos
+{\small
+<<>>=
+(pisaRecta = b0 + b1 * datosPisa$rpc)
+@
+}
+que, como se ve, da como resultado el vector de valores predichos ({\em fitted values}, en inglés). Ahora sólo tenemos que restar estos de {\tt pisa} para obtener los residuos:
+{\small
+<<>>=
+(residuos = datosPisa$pisa - pisaRecta)
+ @
+}
+Si lo que queremos es el error cuadrático EC, basta con hacer la suma de los cuadrados de los residuos:
+<<>>=
+(EC = sum(residuos^2))
+@
+Como hemos dicho, en la Sección \ref{tut10:sec:IntroduccionFuncionlm} de
+este tutorial veremos como se pueden obtener muchos de estos valores usando {\tt lm}. Pero antes, y para que puedas hacer fácilmente los siguientes ejercicios, vamos a incluir aquí un fichero de comandos R que sirve para realizar todos los pasos anteriores:
+
+\begin{center}
+\fichero{./code/Tut10-RectaRegresion.R}{Tut10-RectaRegresion.R}
+\end{center}
+
+\begin{ejercicio}
+\label{tut10:ejercicio03}
+Vamos a usar ese fichero de R para comprobar los valores que aparecen en algunos ejemplos del Capítulo \ref{curso-cap:RegresionLinealSimple}. Hemos incluido ficheros {\tt csv} para facilitarte las operaciones. En todos los casos, lo más recomendable es que repitas un análisis completo, ejecutando todos los comandos del fichero para cada conjunto de datos.
+\begin{enumerate}
+    \item Ejemplo \ref{curso-cap10:ejem:Regresion01} (pág \pageref{curso-cap10:ejem:Regresion01}). Datos en el fichero:\\
+        \fichero{../datos/cap10-EjemploRegresion01.csv}{cap10-EjemploRegresion01.csv}
+
+    \item Ejemplo \ref{curso-cap10:ejem:RectaMalaAproximacion01} (pág \pageref{curso-cap10:ejem:RectaMalaAproximacion01}). Datos en el fichero:\\
+        \fichero{../datos/Cap10-EjemploRectaMalaAproximacion01.csv}{Cap10-EjemploRectaMalaAproximacion01.csv}.
+
+    \item Ejemplo \ref{curso-cap10:ejem:RectaMalaAproximacion02} (pág \pageref{curso-cap10:ejem:RectaMalaAproximacion02}). Datos en el fichero:\\
+        \fichero{../datos/Cap10-EjemploRectaMalaAproximacion02.csv}{Cap10-EjemploRectaMalaAproximacion02.csv}.
+
+    \item Ejemplo \ref{curso-cap10:ejem:Anova01} (pág \pageref{curso-cap10:ejem:Anova01}).\\
+        Primero los puntos ``no ruidosos''.  Datos en el fichero:\\
+        \fichero{../datos/Cap10-Ejemplo-Anova01.csv}{Cap10-Ejemplo-Anova01.csv}.
+
+    \item Y del mismo ejemplo \ref{curso-cap10:ejem:Anova01},
+        ahora los puntos ``ruidosos''.  Datos en el fichero:\\
+        \fichero{../datos/Cap10-Ejemplo-Anova02.csv}{Cap10-Ejemplo-Anova02.csv}.
+\end{enumerate}
+\qed
+\end{ejercicio}
+
+
+\subsection{Un gráfico de regresión más expresivo}
+\label{tut10:subsec:MejorandoGraficosR}
+
+\noindent{\bf Opcional:
+esta sección puede omitirse en una primera lectura. }
+
+El gráfico de regresión que hemos mostrado en la Figura es bastante elemental, incluso rudimentario. Aquí vamos a ver algunos comandos y opciones de R que ayudan a conseguir un resultado visualmente más atractivo. Puedes considerar esta sección como una invitación a explorar más en las (muy amplias) capacidades gráficas de R, de las que aquí sólo mostramos una ínfima parte.
+
+Para empezar, hemos cambiado el comando
+<<eval=FALSE>>=
+plot(datosPisa$rpc, datosPisa$pisa)
+@
+por una versión más detallada.  Ocupa varias líneas que, como siempre en estos casos, deben ejecutarse conjuntamente:
+{\small
+<<tut10_DiagramaDispersionPisaPaisMejora01, eval=FALSE>>=
+plot(datosPisa$rpc, datosPisa$pisa,
+    lwd=2, col="red", cex=1.1, cex.lab=1.1, cex.axis=1.1, bty="n",
+    xlab="Renta per capita, año 2012, en miles de euros",
+    ylab="Puntos PISA2012 en Matemáticas")
+@
+}
+y que produce el resultado que aparece en la Figura \ref{tut10:fig:DiagramaDispersionPisaPaisMejora01}.
+\begin{figure}[htb]
+\begin{center}
+%\includegraphics[width=13cm]{../fig/Tut10-05.png}
+<<echo=FALSE, fig.width=6, fig.height=6>>=
+<<tut10_DiagramaDispersionPisaPaisMejora01>>
+@
+\end{center}
+\caption{Primer paso para obtener un diagrama de dispersión mejorado para el ejemplo de los datos PISA.}
+\label{tut10:fig:DiagramaDispersionPisaPaisMejora01}
+\end{figure}
+Vamos a comentar las modificaciones que hemos hecho:
+\begin{itemize}
+  \item La opción {\tt lwd=2} sirve para que los puntos $(x_i,y_i)$ se dibujen con un trazo más grueso (de hecho, {\tt lwd} proviene de {\em line width}, grosor de la línea).
+  \item La opción {\verb#col="red"#} ya ha aparecido antes en los tutoriales, y sirve para cambiar el color de los símbolos que usa R, en este caso para que los puntos $(x_i,y_i)$ sean de color rojo.
+  \item Las opciones que empiezan por {\tt cex} se refieren al tamaño de fuentes tipográficas y de algunos símbolos empleados en el gráfico. El nombre {\tt cex} proviene de {\em character expansion}, y su valor es un factor multiplicativo que nos indica cuántas veces más grande es el tipo de fuente que se usa, tomando como referencia el tipo base por defecto que usaría R. Así pues, {\tt cex=1.5} significa un símbolo 1.5 veces más grande que el valor por defecto, etc. Las variantes de {\tt cex} que aparecen se refieren a distintas partes del gráfico. Así, por ejemplo, {\tt cex.lab} se refiere al tamaño del texto en las frases que se usan como etiquetas de los ejes (en inglés {\em labels}, de ahí el nombre). En cambio {\tt cex.axis} se refiere a los números que aparecen en las escalas de los ejes (en inglés, {\em axis}).
+  \item La opción \verb#bty="n"# (de {\em box type}, tipo de caja) sirve para decirle a R el tipo de marco que queremos que dibuje alrededor del gráfico. En este caso hemos optado por {\tt n}, de {\em none}, ninguno, porque vamos a añadirlo después.
+  \item  Finalmente, los argumentos {\tt xlab} e {\tt ylab} sirven para añadir las etiquetas (de nuevo, {\em labels}) o frases que acompañan al eje $x$ y al eje $y$, respectivamente.
+\end{itemize}
+
+\begin{ejercicio}
+\label{tut10:ejercicio04}
+%\label{tut10:ejercicio03}
+\begin{enumerate}
+  \item[]
+  \item Prueba a usar la opción {\tt main} para añadir un título general al gráfico.
+  \item ¿Qué opción usarías para cambiar el tamaño de ese título?
+  \item Prueba a añadir la opción {\tt pch=18}. ¿Qué ha cambiado? Busca información sobre los posibles valores de {\tt pch} (por ejemplo pidiéndole a R que ejecute {\tt ?pch}).
+\end{enumerate}
+\end{ejercicio}
+\qed
+
+A continuación vamos a rotular cada punto del gráfico con el nombre de la región a la que corresponde. Esos nombres están disponibles en la primera columna del {\tt data.frame datosPisa}. Para usarlos, ejecutamos este código
+%\begin{verbatim}
+%namesPisa=c("Extremadura","Andalucía","Murcia","Galicia","Asturias","CastillaLeón",
+%            "Cantabria","ESPAÑA","Baleares","La Rioja","Aragón","Cataluña",
+%            "Navarra","Madrid","País Vasco")
+%\end{verbatim}
+%Y luego hemos ejecutado el siguiente código
+, que enseguida comentaremos:
+<<tut10_DiagramaDispersionPisaPaisMejora02, eval=FALSE>>=
+par(xpd=TRUE)
+text(datosPisa$rpc, datosPisa$pisa, labels=datosPisa$CA,
+    pos=3, offset=0.6,font=3)
+par(xpd=FALSE)
+@
+Vamos a empezar por el comando {\tt text}. Este comando sirve para colocar texto en cualquier posición del gráfico que estamos dibujando. Como de costumbre, podemos utilizar vectores como argumentos. Así que en la opción {\tt labels} usamos el vector {\tt namesPisa} que contiene las etiquetas que queremos colocar junto a cada punto del gráfico. Los dos primeros argumentos de {\tt text} son dos vectores, con las coordenadas $x$ e $y$, respectivamente, de los puntos en los que se coloca cada una de esas etiquetas; en nuestro caso, se trata de los vectores {\tt rpc} y {\tt pisa}.  El argumento {\tt pos} (de {\em position}) sirve para colocar el texto debajo, a la izquierda, encima o a la derecha del punto, según que {\tt pos} valga 1, 2, 3 o 4. La opción {\tt offset} controla la separación entre el punto y el texto. Por último, la opción {\tt font} permite elegir entre un tipo normal (1), negrita (2), itálica (3) o negrita itálica (4).
+
+¿Para qué sirve el comando {\tt par(xpd=TRUE)}? La función {\tt par} (de {\em parameter}, parámetro) es una de las funciones más importantes cuando se trata de modificar un gráfico de R. En este caso la usamos porque algunos de los nombres del vector {\tt namesPisa} son demasiado largos, y R ``recorta'' esos textos de las etiquetas para que no sobresalgan del marco del gráfico. Nosotros preferimos que los textos se muestren completos, aunque sobresalgan un poco, así que hemos usado la opción {\tt xpd=FALSE} que le dice a R que no haga ese recorte. Una vez colocadas las etiquetas volvemos a activar esa opción con {\tt par(xpd=FALSE)}. El resultado de estas operaciones es el gráfico de la Figura \ref{tut10:fig:DiagramaDispersionPisaPaisMejora02}.
+
+\begin{figure}[htb]
+\begin{center}
+<<tut10_DiagramaDispersionPisaPaisMejora03,ref.label=c("tut10_DiagramaDispersionPisaPaisMejora01", "tut10_DiagramaDispersionPisaPaisMejora02"),echo=FALSE>>=
+@ 
+\end{center}
+\caption{Segundo paso para obtener un diagrama de dispersión mejorado.  }
+\label{tut10:fig:DiagramaDispersionPisaPaisMejora02}
+\end{figure}
+A continuación añadimos la recta con
+<<tut10_DiagramaDispersionPisaPaisMejora04, eval=FALSE>>=
+abline(b0, b1, lwd=3, col="blue")
+@
+Las únicas modificaciones que hemos hecho son sobre el grosor y color del trazo. Ahora, para hacer visible la idea de residuo, vamos a añadir unos segmentos que conecten cada punto $(x_i,y_i)$ de la muestra con el correspondiente punto de la recta, que es $(x_i,\hat y_i)$. Para eso usamos el comando:
+<<tut10_DiagramaDispersionPisaPaisMejora05, eval=FALSE>>=
+segments(datosPisa$rpc, pisaRecta, datosPisa$rpc, datosPisa$pisa,
+     lty=2,lwd=3)
+@
+cuyos dos primeros argumentos son las coordenadas $x$ e $y$ de los puntos iniciales de los segmentos, y cuyos argumentos tercero y cuarto son las coordenadas de los puntos finales de los segmentos. Fíjate en que los valores $\hat y_i$ están en el vector {\tt pisaRecta} que hemos calculando antes. Hemos ajustado además el grosor de la línea con {\tt lwd}, y el tipo de trazo, para que sea discontinuo, mediante la opción {\tt lty} (de {\em line type}).
+
+\begin{ejercicio}
+\label{tut10:ejercicio04}
+Busca qué otros tipos de trazo puedes usar con distintos valores de {\tt lty}.
+\end{ejercicio}
+\qed
+
+Como última modificación hemos dibujado un marco o ``caja'' alrededor del gráfico, usando el comando
+<<tut10_DiagramaDispersionPisaPaisMejora06, eval=FALSE>>=
+box(lwd=3,bty="l")
+@
+La opción {\tt bty} (de {\em box type}, tipo de caja), le indica a R como queremos que sea la forma del marco. Los códigos que se usan en este caso, son curiosos: se usa una letra, cuya forma indica la de la caja. Por ejemplo con \verb#bty="o"# le indicamos a R que queremos una caja con cuatro lados (la letra o es un círculo completo , mientras que con \verb#bty="u"# indicamos una caja a la que le falta el lado de arriba. Ya vimos antes que la opción "n" suprime la caja. Las otras opciones disponibles son:\\
+\verb#"l", "7", "c", "u", "[", "]" #
+\begin{ejercicio}
+\label{tut10:ejercicio05}
+Pruébalas todas para ver el efecto que producen.
+\qed
+\end{ejercicio}
+
+El resultado final es el gráfico de la Figura \ref{tut10:fig:DiagramaDispersionPisaPaisMejora03}.
+\begin{figure}[htb]
+\begin{center}
+%\includegraphics[width=15cm]{../fig/Tut10-07.png}
+<<tut10_DiagramaDispersionPisaPaisMejora07, fig.width=6, fig.height=6, echo=FALSE>>=
+<<tut10_DiagramaDispersionPisaPaisMejora01>>
+<<tut10_DiagramaDispersionPisaPaisMejora02>>
+<<tut10_DiagramaDispersionPisaPaisMejora04>>
+<<tut10_DiagramaDispersionPisaPaisMejora05>>
+<<tut10_DiagramaDispersionPisaPaisMejora06>>
+@
+\end{center}
+\caption{El  diagrama de dispersión mejorado para el Ejemplo \ref{tut10:ejem:DatosPisaPais}.}
+\label{tut10:fig:DiagramaDispersionPisaPaisMejora03}
+\end{figure}
+Como hemos dicho, hay mucho más que aprender sobre los gráficos de R, y aquí apenas hemos esbozado algunas ideas básicas. El lector interesado encontrará mucha información en la red, y en la abundante bibliografía, de la que citamos como ejemplo el libro (¡de más de 400 páginas!) {\em R Graphics Cookbook}, de Winston Chang, editado por O'Reilly (ISBN: 978-1-449-31695-2).
+
+
+\section{Introducción a la función {\tt lm} de R}
+\label{tut10:sec:IntroduccionFuncionlm}
+
+\noindent{\bf Opcional:
+esta sección puede omitirse en una primera lectura. Pero su contenido es muy importante para seguir avanzando en el aprendizaje de R.}
+
+La función {\tt lm}, de {\em linear model} (modelo lineal) es, sin exageración alguna, una de las funciones más importantes de R. Una de las tareas más importantes de la Estadística y el Análisis de Datos es precisamente la construcción de modelos para describir la relación entre variables. Y, dentro de los posibles modelos, la familia de modelos lineales es la más importante. Esos modelos lineales se construyen en R usando la función {\tt lm}, así que podemos decir que esta función abre la puerta a algunas de las posibilidades más avanzadas del uso de R para la modelización estadística.
+
+Pero empecemos por el modelo más sencillo, el modelo de regresión lineal simple que hemos descrito en el Capítulo \ref{curso-cap:RegresionLinealSimple}. Vamos a usar como ejemplo los puntos con ``ruido'' del Ejemplo \ref{curso-cap10:ejem:Anova01} del libro (pág. \pageref{curso-cap10:ejem:Anova01}), que tienes en el fichero {\tt csv} llamada {\tt Cap10-Ejemplo-Anova02.csv}, que ya hemos usado antes en los ejercicios de la página \pageref{tut10:ejercicio03} de este tutorial. De hecho, puedes usar los resultados del ejercicio $5$ de esa página para  compararlos con los que obtendremos aquí.
+
+Empezamos leyendo los puntos de la muestra contenidos en ese fichero:
+<<>>=
+datos = read.table("../datos/Cap10-Ejemplo-Anova02.csv", header=TRUE)
+@
+A continuación para explicarle a R que queremos usar el modelo de regresión lineal correspondiente a esos datos basta con ejecutar este comando:
+<<>>=
+(lmXY = lm(y ~ x, data=datos))
+@
+La sintaxis {\tt y ~ x} es la forma que tiene R de expresar que {\tt x} es la variable explicativa, e {\tt y} la variable respuesta en este modelo. Hemos almacenado el modelo en la variable {\tt lmXY} (el nombre podría ser cualquier otro) porque así será más fácil acceder a las propiedades de este modelo, como vamos a ver enseguida. La salida de este comando contiene, bajo el nombre {\tt coefficients}, los valores de $b_0$ y $b_1$. Concretamente, el valor de $b_1$, la pendiente, aparece bajo {\tt x}, porque $b_0$ es el coeficiente que acompaña a la $x$ en la ecuación
+\[y = b_0 + b_1 \cdot x\]
+de la recta. El valor de $b_0$ aparece bajo {\tt (Intercept)} porque ese es el nombre que se le da, en inglés, a la ordenada en el origen.
+
+A primera vista, parece que no hemos ganado gran cosa, aparte de una forma rápida de llegar a los coeficientes de la recta. Pero en realidad el modelo, creado mediante {\tt lm}, tiene asociadas
+muchas propiedades. Para ver algunas de ellas utiliza este comando:
+<<>>=
+summary(lmXY)
+@
+Como ves, R ha calculado muchas más propiedades de las que parecía. De hecho, insistimos, al usar {\tt summary} sólo estamos viendo una parte de las propiedades disponibles.
+
+La ventaja de haber guardado el modelo en la variable {\tt lmXY} es que ahora podemos usar la notación con \verb#lmXY$# para acceder a esas propiedades. Prueba a escribir precisamente eso, \verb#lmXY$# en RStudio, y pulsa el tabulador. Aparecerá una lista de posibilidades, de la que vamos a ver el valor de la primera opción que R nos ofrece:
+<<>>=
+lmXY$coefficients
+@
+Como ves, \verb#lmXY$coefficients# es un vector cuyos valores son $b_0$ y $b_1$. Así que puedes hacer, por ejemplo
+<<>>=
+b0 = lmXY$coefficients[1]
+@
+para guardar la ordenada en el origen en la variable {\tt b0}.
+
+Con esta notación {\tt lm} es muy fácil acceder, por ejemplo, a los valores predichos y a los residuos del modelo. Basta con usar, respectivamente, los comandos
+<<>>=
+lmXY$fitted.values
+@
+y
+<<>>=
+lmXY$residuals
+@
+Los valores predichos que aparecen aquí corresponden a los valores de la variable $x$ en los puntos de la muestra. Enseguida veremos como usar {\tt lm} para hacer predicciones en valores de $x$ {\em que no aparecen en la muestra}.
+
+Otra ventaja de usar {\tt lm} es que muchas funciones de R reconocen un objeto de tipo {\em modelo lineal}, y responden de forma interesante ante ese tipo de objetos.
+
+\begin{ejercicio}
+\label{tut10:ejercicio06}
+\begin{enumerate}
+  \item[]
+  \item ¿Qué tipo de objeto de R es {\tt lmXY}? Indicación: No es un {\tt vector}, ni un {\tt data.frame}, ni ninguno de los tipos con los que nos hemos encontrado en los tutoriales previos. Recuerda, ¿cuál es la función que se usa en R para preguntar por el tipo de objeto?
+
+  \item Para ver un ejemplo de lo que decimos, prueba a ejecutar estos comandos:
+    <<eval=FALSE>>=
+    plot(x, y)
+    abline(lmXY)
+    @
+    Lo interesante, en este caso, es el segundo comando, que nos permite añadir la recta de regresión al gráfico sin necesidad de especificar los coeficientes.
+\end{enumerate}
+\qed
+\end{ejercicio}
+
+A la vista del segundo apartado de este ejercicio, puede que te hayas preguntado si no se puede hacer, directamente,
+<<eval=FALSE>>=
+plot(lmXY)
+@
+Y la respuesta es que sí se puede, pero el significado es otro. Lo que se obtiene no es lo que seguramente esperabas, sino una {\em serie de gráficos}, que son muy útiles para hacer el diagnóstico del modelo de regresión lineal simple, en el sentido que se discute en la Sección \ref{curso-cap10:subsec:VerificandoCondicionesModeloRegresionLinealSimple} (pág. \pageref{curso-cap10:subsec:VerificandoCondicionesModeloRegresionLinealSimple}) del libro. Los vamos a discutir con más detalle en la Sección
+
+\subsubsection*{Usando {\tt lm} para predecir valores.}
+\label{tut10:subsubsec:UsandoLmPredecirValores}
+
+Otro uso muy frecuente de la función {\tt lm} es la predicción de valores usando el modelo de regresión lineal. Por ejemplo, para predecir el valor correspondiente a $x=0.74$ en el ejemplo que estamos usando haríamos:
+
+<<>>=
+predict(lmXY, newdata = data.frame(x=0.74))
+@
+El resultado es el mismo que si sustituyeras ese valor en la recta de regresión:
+<<>>=
+lmXY$coefficients[1] + lmXY$coefficients[2] * 0.74
+@
+En este caso hemos usado {\tt predict} para predecir un único valor, pero no hay nada que nos impida obtener la predicción para todo un vector de valores de $x$. Por ejemplo, para predecir usando todos los valores de $x$ de $0.7$ a $0.75$, de décima en décima, haríamos:
+<<>>=
+predict(lmXY, newdata = data.frame(x=seq(0.70, 0.75, length.out = 6)))
+@
+
+Y te adelantamos que cuando aprendas más sobre R comprobarás que se puede usar {\tt predict} con muchos otros tipos de modelos estadísticos, más allá del modelo de regresión lineal simple que estamos usando aquí.
+
+\subsubsection*{Anova y {\tt lm}}
+
+
+Para ver otro ejemplo de la función {\tt lm} en acción, podemos usarla, en combinación con la función {\tt anova} de R, para obtener el análisis de la varianza (y varios resultados más, asociados con ese análisis de la varianza, en los que no podemos entrar porque aún no tenemos el lenguaje):
+
+<<>>=
+(anovaLMxy = anova(lmXY))
+@
+
+Como hemos dicho, en esta sección no queremos sino hacer una primera breve visita a la función {\tt lm}. A medida que el lector vaya aprendiendo más Estadística y más sobre R, podemos asegurar que {\tt lm} será un buen compañero de viaje, que iremos usando para operaciones cada vez más sofisticadas.
+
+\subsection{Regresión ortogonal con R.}
+En la Sección \ref{curso-cap10:subsec:RegresionOrtogonal} del libro (pág. \pageref{curso-cap10:subsec:RegresionOrtogonal}) hemos descrito otras posibilidades a la hora de elegir la mejor recta para representar a una colección de puntos $(x_i, y_i)$, distintas de la que proporciona el método de mínimos cuadrados. En particular, hemos hablado de regresión ortogonal y de RMA. En R disponemos de la librería {\tt lmodel2} con la que es muy fácil obtener las rectas de regresión correspondientes a estos modelos. Recuerda que debes instalar la librería antes de poder usarla.
+
+Vamos a ilustrar el uso de esa librería con los datos del Ejemplo \ref{curso-cap10:ejem:regresionMAR} del libro (pág. \pageref{curso-cap10:ejem:regresionMAR}). Esos puntos se han fabricado con este código:
+<<>>=
+set.seed(2014)
+(x = sort(rnorm(10, mean=5, sd=3)))
+(y = x/2 + 1 + rnorm(10, mean=0, sd=3))
+@
+Y podemos usar la librería {\tt lmodel2} para obtener las rectas de regresión correspondientes a los distintos modelos:
+<<>>=
+library(lmodel2)
+(lm2XY = lmodel2(y~x,range.y="relative", range.x="relative" ))
+@
+
+Y una vez obtenidos los modelos vamos a compararlos gráficamente para constatar que, al menos en este ejemplo, los resultado son claramente distintos:
+<<fig.width=8, fig.height=8>>=
+plot(x,y, pch=20, cex=1.5)
+(MinCuad = lm2XY$regression.results[1, ])
+abline(MinCuad$Intercept, MinCuad$Slope, col="red", lwd=2, lty=1)
+(MAR = lm2XY$regression.results[2, ])
+abline(MAR$Intercept, MAR$Slope, col="darkgreen", lwd=2, lty=4)
+(SMA = lm2XY$regression.results[3, ])
+abline(SMA$Intercept, SMA$Slope, col="blue", lwd=2, lty=2)
+(lmXY = lm(x~y))
+(blmXY1 = 1/lmXY$coefficients[2])
+(blmXY0 = -lmXY$coefficients[1]/lmXY$coefficients[2])
+abline(blmXY0, blmXY1, col="magenta", lwd=2, lty=3)
+@
+Desde luego, en ejemplos en los que la correlación es muy alta, la diferencia entre los disitntos modelos no es, ni mucho menos, tan acusada.
+
+\section{Inferencia en la regresión, usando R.}
+\label{tut10:sec:InferenciaRegresionR}
+
+\noindent{\bf Opcional:
+esta sección puede omitirse en una primera lectura.}
+
+
+\subsection{Simulando un modelo de regresión lineal simple en R}
+\label{tut10:subsec:SimulandoModeloRegresionLinealSimple}
+
+Recordemos la Ecuación \ref{curso-cap10:ecu:InterpretacionModeloRegresionLinealSimple}(pág. \pageref{curso-cap10:ecu:InterpretacionModeloRegresionLinealSimple}) del libro, que define el modelo de regresión lineal simple:
+\[y=\beta_0 + \beta_1\cdot x + \epsilon\]
+siendo $\epsilon\sim N(0,\sigma)$. Es fácil hacer una simulación de un modelo como este en R. Para obtener los puntos ruidosos del  Ejemplo \ref{curso-cap10:ejem:Anova01} del libro basta con ejecutar este código, que explicaremos a continuación:
+<<>>=
+rm(list=ls())
+set.seed(2013)
+n = 10
+(x = sort(signif(runif(n, min=0, max=1 ), digits=2) )  )
+beta0 = 1
+beta1 = -1/2
+(y = beta0 + beta1 * x + rnorm(n,sd=0.01))
+@
+Como ya sabemos, las dos primeras líneas sirven, respectivamente, para hacer limpieza de las variables de R, y para hacer que el generador de números pseudoaleatorios de R produzca siempre los mismos valores.
+En las líneas 3 y 4 hemos usado {\tt runif} para generar 10 valores de la variable $x$, usando la distribución uniforme en el intervalo $(0,1)$. La parte más importante del código está en las líneas 5 a 7, en las que hemos fijado los valores de $beta_0$, $\beta_1$ y hemos construido una muestra del modelo de regresión normal simple, por el procedimiento de sumar la parte que corresponde a la recta a una componente aleatoria normal. En el libro los valores  de $y$ aparecen redondeados.
+
+Esquemáticamente, para ver la correspondencia entre la teoría y el código en R:
+\[
+        \underbrace{\phantom{\beta\beta}y\phantom{\beta\beta}}_{\mbox{\tt y}}=
+        \underbrace{\beta_0 +\beta_1\cdot x}_{\mbox{\tt beta0 + beta1 * x }}
+        \quad + \quad
+        \underbrace{\phantom{\beta\beta\beta}\epsilon\phantom{\beta\beta\beta}}_{\mbox{\tt rnorm(n,sd=0.01)}}
+        .
+\]
+Es {\bf muy importante} entender que lo que obtenemos, en el vector {\tt yRuido} de R, es una muestra del modelo teórico. Así que, aunque la recta teórica (poblacional) es
+\[y=\beta_0+\beta_1\cdot x,\]
+y en este ejemplo
+\[\beta_0 = 1,\qquad \beta_1 = \dfrac{-1}{2},\]
+cuando calculemos la recta de regresión a partir de los vectores $x$ e $y$, obtendremos una recta
+\[y=b_0+b_1\cdot x,\]
+en la que, desde luego,
+\[\beta_0 \neq b_0,\qquad \beta_1\neq b_1 .\]
+Concretamente, usando lo que hemos aprendido en las secciones previas de este tutorial, esa recta se obtiene con:
+<<>>=
+(lmXY= lm(y~x) )
+@
+Como ves, los valores son
+\[
+    b_0\approx \Sexpr{signif(lmXY$coefficients[1], 3)},\qquad
+    b_1\approx \Sexpr{signif(lmXY$coefficients[2], 3)},
+\]
+que se parecen, a $\beta_0$ y $\beta_1$, pero ciertamente no coinciden, como queda de manifiesto en la Figura \ref{curso-cap10:fig:Anova02} (pág. \pageref{curso-cap10:fig:Anova02}) del libro.
+
+%\subsection{Otro vistazo a la descomposición Anova}
+%
+%Aunque ya hemos hecho una primera visita en la Sección \ref{tut10:subsec:CoeficienteCorrelacionResiduosEC} de este tutorial, ahora que hemos aprendido algo sobre la función {\tt lm}, y hemos construido un ejemplo de modelo de regresión lineal simple, vamos a volver sobre la descomposición Anova, precisamente para ese ejemplo.
+%
+%Primero vamos a obtener esa descomposición ``a mano'', sin usar {\tt lm}.  El código necesario para el ejemplo que estamos usando es:
+%<<>>=
+%(TOTAL =(n-1)*var(y))
+%(EC=sum((yRecta-y)^2))
+%(RECTA=sum( (yRecta-mean(y))^2 )  )
+%EC+RECTA
+%@
+%Tomando como referencia la notación de la Ecuación \ref{curso-cap10:ecu:versionSSidentidadAnova} (pág. \pageref{curso-cap10:ecu:versionSSidentidadAnova}), hemos llamado
+%{\tt TOTAL} a lo que allí se llama $SST$, {\tt EC} al error cuadrático, que allí se llama $SS_{residual}$ y {\tt RECTA} a lo que en el curso es $SS_{modelo}$. Como puede verse, la suma de los dos últimos coincide con el valor de {\tt TOTAL}.
+%
+%Ahora, usando la función {\tt lm}, podemos obtener estos resultados de otra manera:
+%\begin{verbatim}
+%> (Anova=anova(lmXY))
+%Analysis of Variance Table
+%
+%Response: y
+%          Df   Sum Sq Mean Sq F value    Pr(>F)
+%x          1 0.101651 0.10165  535.76 1.289e-08 ***
+%Residuals  8 0.001518 0.00019
+%---
+%Signif. codes:  0 `***´ 0.001 `**´ 0.01 `*´ 0.05 `.´ 0.1 ` ´ 1
+%\end{verbatim}
+%La respuesta es el segundo ejemplo que vemos en este tutorial de lo que se conoce como una tabla Anova. Como puede verse, en la columna de la tabla de Anova titulada {\tt Sum Sq} aparecen los valores que nosotros hemos llamado {\tt RECTA} y {\tt EC} respectivamente. Los valores de la columna {\tt Mean Sq} son esos mismos valores, pero divididos por los grados de libertad adecuados (los que aparecen en la columna {\tt Df}) (ver el Capítulo \ref{curso-cap:IntroduccionAnova} para más detalles sobre las tablas Anova).
+
+\subsection{Intervalos de confianza para los coeficientes de la recta de regresión}
+\label{tut10:subsec:IntervalosConfianzaCoeficientesRectaRegresion}
+
+Vamos a ver otro ejemplo de una situación en la que la función {\tt lm} nos hace la vida mucho más fácil. En la Sección \ref{curso-cap10:subsec:modeloRegresionLinealSimple}, y concretamente en la Ecuación \ref{curso-cap10:ecu:IntConfPendienteRectaRegresion} (pág. \pageref{curso-cap10:ecu:IntConfPendienteRectaRegresion}) hemos visto como construir un intervalo de confianza para la pendiente $\beta_1$ de la recta poblacional. Si quisiéramos obtener además un intervalo para $\beta_0$, deberíamos usar el estadístico de la Ecuación \ref{curso-cap10:ecu:EstadisticoOrdenadaOrigenRectaRegresion} (pág. \pageref{curso-cap10:ecu:EstadisticoOrdenadaOrigenRectaRegresion}) del libro, y deducir a partir de este estadístico el intervalo. Hacer esos cálculos, aplicando esas fórmulas, y con ayuda de la función {\tt qt}, no es demasiado complicado. Como muestra de lo que decimos, los valores del Ejemplo \ref{curso-cap10:ejem:IntConfianzaPendienteRecta} (pág. \pageref{curso-cap10:ejem:IntConfianzaPendienteRecta}) se pueden obtener así, después de aplicar el fichero {\tt Tut10-RectaRegresion.R} a los datos de este Ejemplo:
+<<echo=FALSE, results='hide'>>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadísitica
+# Tutorial-10.
+#
+# La recta de regresion lineal
+# de dos vectores x e y.
+#
+# El fichero no funcionara si no introduces los
+# dos vectores de datos, o los lees de un fichero.
+#
+################################################################
+
+#rm(list=ls())
+
+# Descomenta estas lineas si las usas.
+#(x = c())
+#(y = c())
+
+
+# Si los vas a leer de un fichero csv con dos columnas,
+# en el que cada vector ocupa una columna, descomenta y
+# completa las opciones de estos 4 comandos.
+# Recuerda que el fichero debe estar en la carpeta datos
+# de tu directorio de trabajo.
+# Si el fichero csv no tiene ese formato tendras que hacer
+# mas cambios en este codigo, de forma manual.
+
+datos = read.table(file="../datos/Cap10-Ejemplo-Anova02.csv", sep=" " ,dec="." ,header=TRUE)
+#x = datos[ ,1]
+#y = datos[ ,2]
+
+# Calculamos la longitud y comprobamos que coincidan
+(n = length(x))
+
+# Calculamos las medias, cuasivarianzas y covarianza
+
+(barX = mean(x))
+(barY = mean(y))
+
+(varX = var(x))
+(varY = var(y))
+
+(covXY = cov(x,y))
+
+# Ahora los coeficientes de la recta de regresion:
+
+(b1 = cov(x,y)/var(x))
+(b0 = mean(y) - mean(x) * b1)
+
+# Calculamos el coeficiente de correlacion
+
+(r = cor(x,y))
+
+# Vamos a calcular los terminos de la descomposicion ANOVA
+
+#Empezamos por los valores que predice la recta
+
+(yRecta = b0 + b1 * x )
+
+# Ahora los residuos
+
+(residuos = y - yRecta)
+
+# Y los terminos de ANOVA son
+
+# SS total
+
+(SSTotal = (n - 1) * var(y))
+
+# EC, el error cuadratico.
+# Tambien se llama SS error, o  residual.
+
+(EC = sum(residuos^2))
+
+# SS del modelo
+# dispersion explicada por la recta
+(SSModelo = sum((yRecta - mean(y))^2))
+
+# Comprobacion de la identidad ANOVA
+SSTotal
+EC + SSModelo
+
+@
+
+
+<<>>=
+(talfamedios = qt(0.975, df=n - 2))
+ECM = EC / (n-1)
+(intConfBeta1 = b1 + c(-1,1) * talfamedios * sqrt(ECM /((n-2) * var(x))))
+@
+Es muy fácil hacer esto, después de calcular los coeficientes de la recta y el error cuadrático medio. Pero es que hay una manera mucho más sencilla, en una sola instrucción y usando las funciones {\tt lm} y {\tt confint} (de {\em confidence interval}). Sería así:
+<<>>=
+confint(lmXY, level=0.95)
+@
+Como ves, el resultado son los dos intervalos de confianza, en la primera línea (identificado por {\tt intercept}) el de la ordenada en el origen $\beta_0$ , y en la segunda el de la pendiente (identificado por {\tt x}).
+
+\subsection{Verificando las condiciones del modelo}
+\label{tut10:subsec:VerificandoCondicionesModelo}
+
+En la Sección \ref{curso-cap10:subsec:VerificandoCondicionesModeloRegresionLinealSimple} (pág. \pageref{curso-cap10:subsec:VerificandoCondicionesModeloRegresionLinealSimple}) del libro hemos visto que el análisis de los residuos era la clave para verificar que se cumplen las condiciones necesarias para que la inferencia basada en la regresión sea válida. Vamos a ver, en esta sección, como usar R para ese análisis de los residuos.
+
+Una de las primeras cosas que hemos mencionado es que en el análisis lo habitual es trabajar con los residuos estudentizados. No queremos entrar en una discusión técnica de las razones que hay detrás de esto, ni de cómo se definen esos residuos estudentizados. Lo que sí queremos hacer es mostrar al lector lo fácil que es obtener estos residuos con R (debes haber instalado la librería {\tt MASS}, que ya hemos usado en algún otro tutorial):
+<<>>=
+library(MASS)
+(residuosSt = stdres(lmXY))
+@
+Y una vez hecho esto, basta con usar las funciones {\tt hist}  y {\tt boxplot} para obtener las partes (a) y (b) de la Figura \ref{curso-cap10:fig:AnalisisGraficoResiduos} (pág. \pageref{curso-cap10:fig:AnalisisGraficoResiduos}) del libro. En la parte (c) de esa figura hemos incluido un gráfico de tipo {\em qq-plot}, que se obtiene en R haciendo, simplemente
+\begin{center}
+<<fig.width=7, fig.height=5.5>>=
+qqnorm(residuosSt)
+qqline(residuosSt)
+@
+\end{center}
+La primera instrucción (con {\tt qqnorm}) dibuja los puntos del {\em qq-plot}, mientras que la segunda (con {\tt qqline}) añade la recta para que sea más fácil comprobar si el gráfico se ajusta a lo que esperamos en caso de una distribución normal de los residuos. En esta, y en otras figuras que se incluyen en el curso, hemos añadido ``decoración'' (colores, etiquetas, etc.) al gráfico, usando instrucciones como las que hemos visto en la Sección \ref{tut10:subsec:MejorandoGraficosR} de este tutorial.
+
+Ya hemos dicho, en esa sección, que aunque estos análisis gráficos son muy útiles, a veces es conveniente complementarlos con un contraste de normalidad más formal. Existe una librería en R, llamada {\tt gvlma} (de {\em Global Validation of Linear Models Assumptions}) que, actuando sobre un modelo producido con {\tt lm}, realiza una serie de contrastes sobre las hipótesis del modelo, y nos resume en la respuesta si esas condiciones se verifican. Recuerda que, para usarla, es necesario primero instalar esa librería. Una vez hecho eso, los resultados se obtienen así:
+<<>>=
+library(gvlma)
+gvlma(lmXY)
+@
+Fíjate, en particular, en que también se ha comprobado la hipótesis de homocedasticidad (homogeneidad de las varianzas). Para comprobar esta condición, pero usando métodos gráficos, se acude a menudo a representar los residuos estudentizados frente a los valores que predice el modelo. Ese gráfico se obtiene simplemente haciendo:
+<<eval=FALSE>>=
+plot(lmXY$fitted.values, residuosSt)
+@
+\vspace{-1.5cm}
+<<echo=FALSE, fig.width=7, fig.height=5>>=
+plot(lmXY$fitted.values, residuosSt)
+@
+y luego le podemos añadir toda la decoración necesaria, claro. Hay que tener en cuenta, en cualquier caso, que el análisis de una muestra tan pequeña siempre resulta difícil.
+
+Siguiendo con el tema de los diagnósticos gráficos del modelo de regresión, en su momento dijimos que la función {\tt plot}, aplicada directamente a un modelo lineal como el objeto {\tt lmXY} no produciría como resultado el diagrama de dispersión de ese modelo, como tal vez esperaríamos. El resultado de {\tt plot(lmXY)} es, no un gráfico, sino la serie de cuatro gráficos que (para el Ejemplo \ref{curso-cap10:ejem:Anova01} del libro que estamos usando) se muestra en la Figura \ref{tut10:fig:GraficosDiagnosticoModeloLinealR} (pág. \pageref{tut10:fig:GraficosDiagnosticoModeloLinealR}), y que tienen como objeto ayudar al diagnóstico de las condiciones de aplicabilidad del modelo de regresión lineal. En RStudio, al ejecutar {\tt plot(lmXY)}, en la consola de comandos aparece este mensaje:
+\begin{verbatim}
+Hit <Return> to see next plot:
+\end{verbatim}
+y debemos situarnos en la consola y pulsar la tecla {\tt Entrar} (o {\tt Return}, o \Return) para avanzar por estos gráficos.
+\begin{figure}[t]
+\begin{center}
+    %\includegraphics[width=16cm]{../fig/Tut10-08.png}
+    <<echo=FALSE, fig.width=5.5, fig.height=5.5>>=
+    par(lwd=2, mfrow=c(2, 2))
+    plot(lmXY)
+    par(lwd=1, mfrow=c(1, 1))
+    @
+\end{center}
+\caption{Serie de gráficos que se obtiene al usar {\tt plot(lmXY)} en R.}
+\label{tut10:fig:GraficosDiagnosticoModeloLinealR}
+\end{figure}
+
+
+El primero de esos gráficos es precisamente una versión más elaborada del diagrama {\em residuos vs. predichos} que acabamos de aprender a construir. El siguiente es el {\em qq-plot} de los residuos estudentizados que también hemos comentado. El tercero es otra versión de {\em residuos vs. predichos}, que no vamos a discutir, y el cuarto tiene que ver con el contenido del próximo apartado. Así que volveremos allí sobre este gráfico.
+
+\subsection{Residuos atípicos y puntos influyentes}
+
+Vamos a empezar por el último de la serie de gráficos que se obtienen con {\tt plot(lmXY)} (ver Figura \ref{tut10:fig:GraficosDiagnosticoModeloLinealR}, pág. \pageref{tut10:fig:GraficosDiagnosticoModeloLinealR}). En este gráfico aparece representado el valor de la denominada {\sf distancia de Cook} para cada uno de los puntos de la muestra. La medida de Cook es una forma habitual de medir la {\em influencia} de un punto sobre el modelo de regresión, en el sentido que hemos discutido en la Sección  \ref{curso-cap10:subsec:ValoresAtipicosPuntosInfluyentesRegresion} del libro (página
+\pageref{curso-cap10:subsec:ValoresAtipicosPuntosInfluyentesRegresion}).  No vamos a entrar en los detalles de cómo se define y calcula esa distancia, y nos limitaremos a decir que se suele utilizar, como referencia, el criterio de que un punto con un valor de la distancia de Cook mayor que uno es un {\em punto influyente}. En nuestro ejemplo, la figura muestra que uno de los puntos de la muestra es influyente. Además, para ayudarnos a localizarlo, R lo ha rotulado con la posición que ocupa dentro de la muestra, que es 1, la primera posición. El punto es $(\Sexpr{x[1]}, \Sexpr{y[1]})$, que es el punto situado más a la izquierda en la Figura \ref{curso-cap10:fig:Anova02} del libro (pág. \pageref{curso-cap10:fig:Anova02}). ¿Puedes explicar, usando esa figura, la razón de que este punto sea influyente?
+
+En cualquier caso, para ayudarte a visualizar en general lo que significa la {\em influencia} hemos preparado un fichero GeoGebra,
+\begin{center}
+\fichero{../ggb/Tut10-InterpretacionPuntoInfluyente.ggb}{Tut10-InterpretacionPuntoInfluyente.ggb}
+\end{center}
+con el que puedes explorar las ideas que ilustra la Figura c (pág. \pageref{curso-cap10:fig:ResiduosAtipicosPuntosInfluyentes}. Cuando abras ese fichero verás una imagen similar a esta:
+\begin{center}
+    \includegraphics[width=15cm]{../fig/Tut10-23.png}
+\end{center}
+Como ves, se trata de un diagrama de dispersión con una nube de puntos (de color verde) y un punto adicional, el punto $A$ (de color rojo), que es el punto que podemos mover para experimentar con la idea de punto influyente. Además, se muestran las rectas de regresión correspondientes a la nube de puntos sin $A$ y también con $A$. La idea de influencia tiene que ver, precisamente, con la diferencia entre esas dos rectas. Para entenderlo lo mejor es que muevas el punto $A$ con el ratón, para ver como cambia la recta que lo tiene en cuenta. Puedes usar los distintos apartados de la Figura \pageref{curso-cap10:fig:ResiduosAtipicosPuntosInfluyentes} del libro como guía para cubrir todas las posibilidades que pueden darse.
+
+En R disponemos de la función {\tt cooks.distance} para obtener esa distancia de Cook. Aplicada al Ejemplo \ref{curso-cap10:ejem:Anova01} de los puntos {\em ruidosos} del libro produce estos valores:
+<<>>=
+cooks.distance(lmXY)
+@
+que confirman lo que vemos en la última gráfica de las cuatro que componen la Figura \ref{tut10:fig:GraficosDiagnosticoModeloLinealR}: el primer punto de la muestra es el único punto influyente de este ejemplo.
+
+Fíjate en que, en este ejemplo, aunque ese punto es influyente su residuo no es atípico (puedes usar de nuevo la Figura \ref{curso-cap10:fig:Anova02} del libro como ayuda para ver esto).  De hecho, para comprobar si existe algún residuo atípico podemos utilizar la función {\tt outlierTest} de la librería {\tt car} de R.  Esta función realiza un tipo de contraste de hipótesis (basado en la $t$ de Student) para analizar la posible existencia de residuos atípicos. El resultado en este ejemplo es:
+<<>>=
+library(car)
+outlierTest(lmXY)
+@
+En este caso, la frase {\tt No Studentized residuals with Bonferonni p < 0.05} nos informa de que no existen residuos atípicos. Si hubiera residuos atípicos, la función nos los devolvería como resultado. En este caso, al no existir residuos atípicos la función se limita a indicar cuál es el punto cuyo residuo tiene el mayor valor (absoluto), sin llegar a ser atípico.
+
+\subsubsection*{La matriz $H$}
+
+Volvamos a la medida de la influencia. En la Sección \ref{curso-cap10:subsec:ValoresAtipicosPuntosInfluyentesRegresion} del libro (pág. \pageref{curso-cap10:subsec:ValoresAtipicosPuntosInfluyentesRegresion}) hemos visto que la matriz $H$, la llamada {\em matriz sombrero}, permite medir fácilmente la influencia de cada punto de la muestra. En particular, nos interesan los valores de la diagonal de esta matriz, que en R se obtienen muy fácilmente así:
+<<>>=
+hatvalues(lmXY)
+@
+Para usar estos valores como medida de la influencia utilizamos el  criterio de comparar los valores sombrero {(\em hatvalues)} con el valor $4/n$:
+<<>>=
+4/n
+hatvalues(lmXY) > (4 / n)
+@
+Como puedes ver, el resultado confirma lo que ya habíamos establecido usando la distancia de Cook: el único punto influyente de esta muestra es el primer punto.
+
+
+%En este caso,
+%
+%tiene que ver con su ``brazo de palanca''. En inglés, palanca (en este sentido) se dice {\em lever}, y por eso existe una medida de la influencia denominada {\sf leverage}. En español no hay, por lo que sé, una traducción universalmente aceptada para este término, aunque he visto utilizar ``efecto palanca'' para referirse a esto (y me parece adecuado).
+%
+%Para medir ese efecto palanca (leverage), se utiliza otro concepto relacionado, que son los (a falta de un nombre mejor) {\sf valores sombrero} (en inglés, {\sf hat values}). Estos valores, forman una matriz $n\cdot n$, la matriz sombrero $H$ ({\sf hat matrix}, en inglés), que se representa así:
+%    \[H=\left(
+%        \begin{array}{ccc}
+%        h_{11}&\cdots&h_{1n}\\
+%        &\ddots&\\
+%        h_{n1}&\cdots&h_{nn}
+%        \end{array}
+%        \right)
+%    \]
+%y que tiene la propiedad de que:
+%\[(\hat y_1,\ldots,\hat y_n) = (y_1,\ldots,y_n)\cdot H,\quad \mbox{(producto matricial).}\]
+%Es decir, que para cualquier $i=1,\ldots,n$ es:
+%\begin{equation}\label{cap10:ecu:valoresPalanca}
+%    \hat y_j = h_{1j}\cdot y_1+h_{2j}\cdot y_2+\cdots+h_{nj}\cdot y_n.
+%\end{equation}
+%Esta relación muestra de donde proviene el nombre de la matriz $H$, y es porque transforma las $y_j$ en las $\hat y_j$ ($H$ le pone el sombrero a las $y_j$).
+%
+%¿Por qué son importantes estos valores sombrero $h_{ij}$ al tratar de medir la influencia? Imagínate que, manteniendo los mismos valores de $x_1,\ldots, x_n$, cambiásemos los valores $y_i$. Esta matriz nos diría cuáles serían los nuevos valores $\hat y_i$. Es decir, que esta matriz construye la recta de regresión. Además, la diagonal de esta matriz tiene una propiedad muy importante. Para cualquier elemento $h_{jj}$ de la diagonal se tiene:
+%\begin{equation}\label{cap10:ecu:valoresPalanca2}
+%    h_{ii}= h_{i1}^2+h_{i2}^2+\cdots+h_{in}^2.
+%\end{equation}
+%Y además, el valor $h_{ii}$ sólo depende de los $x_i$, como queda de manifiesto en esta relación:
+%\[
+%h_i=\dfrac{1}{n}+\dfrac{(x_i-\bar x)^2}{\displaystyle\sum_{j=1}^n(x_j-\bar x)^2}
+%\]
+%
+%Los valores que aparecen elevados al cuadrado aquí (los de la fila $i$-ésima de $H$) son los que, de acuerdo con la Ecuación \ref{cap10:ecu:valoresPalanca}, determinan el peso que tiene el ingrediente $y_i$ a la hora de calcular cada uno de los $\hat y_j$. Es decir, que determinan el peso que tiene el valor $y_i$, asociado con el i-ésimo valor $x_i$ de la muestra. Puesto que además se cumple la Ecuación \ref{cap10:ecu:valoresPalanca2}, cada uno de los valores
+%\[h_{11}, h_{12}, \ldots, h_{nn}\]
+%puede utilizarse como un indicador de la influencia global sobre el modelo (sobre la recta) del valor $x_i$. Eso significa que podemos usar esos valores para medir el efecto palanca de los $x_i$.
+%
+%Afortunadamente, calcular estos valores con $R$ es muy fácil. Para obtenerlos en el ejemplo que estamos usando, basta con ejecutar (se muestra la salida)
+%\begin{verbatim}
+%> hatvalues(lmXY)
+%        1         2         3         4         5
+%0.6438400 0.2770361 0.1001842 0.1010030 0.1038231
+%        6         7         8         9        10
+%0.1084628 0.1149219 0.1665037 0.1829698 0.2012554
+%\end{verbatim}
+%Estos valores confirman que el efecto palanca (leverage), y por tanto la influencia, del primer punto es grande. Como regla práctica se utiliza el criterio de considerar como influyentes aquellos puntos $x_i$ cuya palanca (el valor $h_{ii}$ correspondiente) es mayor que dos veces el {\sf valor palanca medio}, que es sencillo ver que viene dado por:
+%\[
+%\bar h=\dfrac{2}{n}.
+%\]
+%En nuestro ejemplo, eso significa que $\bar h=\dfrac{2}{10}=0.2$. Así que un punto influyente, según este criterio, sería aquel cuyo efecto palanca sea mayor que $0.4$. Como se ve, en este ejemplo obtenemos el mismo resultado que cuando usábamos la distancia de Cook para medir la influencia. El segundo punto de la muestra tiene un valor mayor que la media, pero no llega a ser influyente.
+
+\subsection{Bandas de confianza y predicción en R.}
+
+En la Sección \ref{curso-cap10:subsec:BandasConfianzaPrediccion} del libro (pág. \pageref{curso-cap10:subsec:BandasConfianzaPrediccion}) hemos visto cómo se pueden definir las bandas de confianza y predicción para un modelo de regresión lineal simple que aparecen en la Figura \ref{curso-tut10:fig:BandasPrediccionConfianza} (pág. \pageref{curso-tut10:fig:BandasPrediccionConfianza}. Vamos a usar R para construir esas bandas, concretamente con la función {\tt predict} que ya hemos encontrado en la página \pageref{tut10:subsubsec:UsandoLmPredecirValores} de este tutorial.
+
+Vamos a empezar por fabricar los datos del Ejemplo \ref{curso-cap10:ejem:Anova01} del libro (pág. \pageref{curso-cap10:ejem:Anova01}) y representarlos en un diagrama de dispersión, junto con la recta de regresión que obtenemos con {\tt lm}. También hemos añadido unos segmentos que ilustran los residuos de cada uno de los puntos de la muestra:
+<<tut10_bandasConfianza01, fig.width=4.5, fig.height=4.5>>=
+set.seed(2013)
+n=10
+x = sort(signif(runif(n, min=0, max=1 ), digits=2) )
+y = 1 - (x/2) + rnorm(n,sd=0.01)
+plot(x, y, pch=4, lwd=2, col="black", cex.lab=1.1, cex.axis=1.1)
+box(lwd=2)
+lmXY = lm(y ~ x)
+abline(lmXY, lwd=2, col="blue")
+segments(x,fitted(lmXY), x, y, lwd=2)
+@
+A continuación vamos a crear una sucesión de puntos que cubran todo el recorrido de valores de $x$ en la muestra. Usaremos un total de $50$ puntos, pero puedes usar más para conseguir mayor nivel de detalle.
+<<>>=
+pred.x = seq(min(x), max(x), length.out=50)
+@
+Ahora viene el paso clave. Usamos {\tt predict} para crear los intervalos de confianza y predicción para cada uno de los puntos de {\tt pred.x}. La opción {\tt int} de {\tt predict} nos permite seleccionar el tipo de intervalo que se crea en cada caso. Usaremos un nivel de confianza del 95\%. El resultado son dos data.frames de los que mostramos las primeras líneas:
+
+<<>>=
+predct.intrvl = predict(lmXY, int="p", newdata=data.frame(x = pred.x), level=0.95)
+confd.intrvl = predict(lmXY, int="c", newdata=data.frame(x = pred.x), level=0.95)
+head(predct.intrvl)
+head(confd.intrvl)
+@
+Como ves, en ambos casos se obtiene un {\tt data.frame} con tres columnas que contienen, respectivamente el centro y los extremos inferior y superior del intervalo correspondiente, ya sea de predicción o de confianza.
+
+El trabajo duro ya está hecho, ahora sólo hay que representar gráficamente esas bandas de predicción y confianza. Para eso lo más cómodo es usar la función {\tt matlines} que nos va a permitir dibujar en un mismo gráfico simultáneamente los valores de varias columnas de una matriz. Para que lo entiendas en un ejemplo sencillo, vamos a usar {\tt matlines} para dibujar en un mismo gráfico las curvas $y = \sen(x)$, $y = \cos(x)$ e $y=\sen(3x)$. Lo haremos creando primero una sucesión de $200$ puntos $x$ distribuidos uniformemente de $0$ a $2\pi$:
+<<>>=
+x = seq(0, 2 * pi, length.out=200)
+@
+Y ahora hacemos el gráfico con {\tt matlines}. Primero dibujamos una de las curvas con {\tt plot} y la opción {\verb#type="n"#}. Este comando crea una ventana gráfica de las dimensiones adecuadas, pero no dibuja nada en ella (por el {\verb#tyype="n"#}), en la que luego {\tt matlines} se encargará de añadir las gráficas. Hemos elegido además los colores y tipo de trazo de las curvas:
+{\small
+<<fig.width=6, fig.height=3>>=
+plot(x, sin(x), type="n")
+matlines(x, cbind(sin(x), cos(x), sin(2*x), lwd=3),
+    col=c("red", "blue", "black"), lty=1)
+@
+}
+Volviendo al dibujo de las bandas de confianza y predicción, el límite superior de la banda de predicción es una curva que recorre los extremos superiores de los intervalos de predicción para cada punto del recorrido de la variable $x$ en los puntos de la muestra. Y análogamente para el resto de curvas que definen las bandas de predicción y confianza. Podemos, por tanto, usar {\tt matlines} para añadir esas bandas al gráfico de dispersión anterior, usando las columnas $2$ y $3$ de los {\tt data.frames} que hemos construido para almacenar esas bandas. La única diferencia con el gráfico original está en las dos últimas instrucciones:
+<<tut10_bandasConfianza02, fig.width=6, fig.height=6>>=
+<<tut10_bandasConfianza01>>
+matlines(pred.x, predct.intrvl[ ,2:3], lty=c(1, 1, 1), col="red", lwd=2)
+matlines(pred.x, confd.intrvl[ ,2:3], lty=c(1, 1, 1), col="darkgreen", lwd=2)
+@
+A diferencia de lo que hemos hecho en el libro, aquí hemos usado curvas de trazo continuo para el límite de las gráficas. Puedes cambiar los valores de {\tt lty} para experimentar otras posibilidades.
+
+
+\subsection{El cuarteto de Anscombe en R.}
+
+%Ninguna discusión del modelo de regresión lineal simple estaría completa sin incluir esta colección de ejemplos, ya clásicos, debidos al estadístico inglés Frank Anscombe.
+%\begin{center}
+%\link{http://en.wikipedia.org/wiki/Francis_Anscombe}{http://en.wikipedia.org/wiki/Francis\_Anscombe}
+%\end{center}
+%Se trata de cuatro muestras,  cada una de ellas formada por $11$ puntos $(x_i,y_i)$, que tienen muchas propiedades estadísticas prácticamente iguales. Por ejemplo, las cuatro muestras tienen los mismos valores de
+%\begin{itemize}
+%  \item $\bar x=9$
+%  \item $\bar y\approx 7.50$
+%  \item $s^2_x=11$
+%  \item $s^2_y\approx 4.1$
+%  \item $\Cov(x,y)\approx 5.5$
+%  \item $r\approx 0.816$
+%\end{itemize}
+%y en particular, en los cuatro casos la recta de regresión es aproximadamente (con tres cifras significativas):
+%\[y = 3+5\cdot x.\]
+%Sin embargo, los diagramas de dispersión de los cuatro casos, que aparecen en la Figura \ref{tut10:fig:CuartetoAnscombe} muestran que las cuatro situaciones son claramente distintas.
+%\begin{figure}[b!]
+%\begin{center}
+%    \includegraphics[width=15cm]{../fig/Tut10-Anscombe.png}
+%\end{center}
+%\caption{Diagramas de dispersión de los cuatro casos del {\em Cuarteto de Anscombe}.}
+%\label{tut10:fig:CuartetoAnscombe}
+%\end{figure}
+%
+%\begin{itemize}
+%  \item En el primer caso, la recta de regresión es un  buen modelo del conjunto de puntos.
+%  \item En el segundo caso, la relación entre las variables $X$ e $Y$ es, obviamente, no lineal, y lo que se necesita es un ajuste polinómico. Volveremos sobre este caso en el apartado \ref{tut10:RegresionPolinomicaR} de este tutorial.
+%  \item El tercer caso contiene un punto (concretamente el $(x_3,y_3)$) con un residuo atípico, que además es influyente (su {\em efecto palanca} no es grande, pero su distancia de Cook es mayor que uno).
+%  \item El cuarto caso es, en algún sentido, el más patológico. Todos los valores $x_i$ son iguales excepto uno ($x_8$ para ser precisos). Así que si se elimina el punto $(x_8,y_8)$, los restantes puntos están en una recta vertical (y el modelo de regresión que hemos visto en el Capítulo \ref{curso-cap:RegresionLinealSimple} no sirve, porque no es capaz de producir rectas verticales). Es interesante observar que el punto $(x_8,y_8)$ es, obviamente, influyente, pero que su residuo no es atípico.
+%\end{itemize}
+
+En R, como parte de la instalación básica, disponemos de un {\tt dataframe} llamado {\tt anscombe}, con variables {\tt x1, x2, x3, x4, y1, y2, y3, y4}, y que contiene los valores de estos ejemplos. Para verlos basta con que hagas:
+<<>>=
+anscombe
+@
+Vamos a comprobar lo que hemos dicho sobre los valores comunes a las cuatro muestras. Usaremos {\tt apply} para calcular la media y cuasivarianza por columnas del {\tt data.frame}:
+<<>>=
+apply(anscombe, 2, mean)
+apply(anscombe, 2, var)
+@
+Para calcular la covarianza de cada una de las muestras hacemos un pequeño truco con {\tt sapply} y una función anónima. Es un poco más avanzado que otras cosas que hemos hecho con R, pero si no lo entiendes siempre puedes hacer las cuentas más a mano:
+<<>>=
+sapply(1:4, function(x){cov(anscombe[ ,x], anscombe[ , x + 4])})
+@
+Y para el coeficiente de correlación un truco análogo:
+<<>>=
+sapply(1:4, function(x){cor(anscombe[ ,x], anscombe[ , x + 4])})
+@
+Para dibujar de forma sencilla uno de estos ejemplos puedes hacer:
+<<fig.align='center', fig.width=4, fig.height=4>>=
+(lmA1=lm(anscombe[, 5] ~ anscombe[ , 1]))
+plot(anscombe[ , 1], anscombe[ , 5], col="red", lwd=4, cex=2)
+abline(lmA1, col="blue", lwd=4)
+box(lwd=3,bty="o")
+@
+Si lo que queremos es un diagnóstico sencillo de este modelo de regresión podemos hacer:
+<<>>=
+studres(lmA1)
+outlierTest(lmA1)
+hatvalues(lmA1)
+hatvalues(lmA1) > 2 * mean(hatvalues(lmA1))
+cooks.distance(lmA1)
+gvlma(lmA1)
+@
+Te proponemos unos ejercicios adicionales para completar el estudio del {\em cuarteto de Anscombe}:
+\begin{ejercicio}
+\label{tut10:ejercicio08}
+\begin{enumerate}
+  \item[]
+  \item Interpreta los resultados anteriores en términos de la validez del modelo, presencia de puntos influyentes, etc.
+  \item Usa la función {\tt plot} para hacer un diagnóstico gráfico de este modelo de regresión.
+
+  \item Haz un diagnóstico de los modelos de regresión lineal simples correspondientes a los otros tres integrantes del {\em cuarteto}.
+\end{enumerate}
+\qed
+\end{ejercicio}
+
+La advertencia fundamental que hay que extraer de estos cuatro ejemplos es que el coeficiente de correlación $r$, no puede servir por si mismo como indicador de la calidad de un modelo de regresión lineal. Pero, abundando en esa dirección, también hay que observar que ningún análisis de regresión puede considerarse completo si no se incluye la exploración de los datos (y lo mismo sirve para cualquier análisis estadístico). La exploración gráfica, pero también un análisis minucioso de las condiciones del modelo, son herramientas imprescindibles, sin las cuales corremos el riesgo de que nuestras conclusiones carezcan de fundamento.
+
+
+
+\section{Modelos de regresión, más allá de las rectas.}
+\noindent{\bf Opcional: esta sección puede omitirse en una primera lectura. }
+
+La Sección \ref{curso-cap10:sec:ModelosDeRegresion} del libro (pág. \pageref{curso-cap10:sec:ModelosDeRegresion}) comienza con el Ejemplo \ref{curso-cap10:ejem:RegresionNoLineal}, en el que mediante un cambio de variable reducimos la construcción de un modelo de la forma
+\[  y=a_0\cdot x^{a_1}\]
+a la de un modelo
+\[\tilde y=b_0+b_1\cdot\tilde x.\]
+donde
+\[
+\begin{cases}
+\tilde x=\ln x,\\
+\tilde y=\ln y,\\
+b_0=\ln a_0,\\
+b_1=a_1,
+\end{cases}
+\]
+Los puntos de ese ejemplo se han construido en R con este código
+<<>>=
+set.seed(2014)
+n=20
+x=sort(signif(runif(n,min=10,max=25),digits=3))
+y=round(3e-4 * x^(26/7) * exp(rnorm(n, 0, 0.1)),digits=1)
+@
+¿Puedes ver por qué ese código produce una colección de puntos adecuada para el modelo que nos planteamos en este ejemplo? Fíjate en particular en el término de error {\tt exp(rnorm(n, 0, 0.1)} que nos garantiza que una vez aplicado el cambio de variable podremos aplicar con éxito un modelo lineal simple.
+
+\begin{ejercicio}
+\label{tut10:ejercicio09}
+\begin{enumerate}
+  \item[]
+  \item Usa R para construir los puntos $(\tilde x, \tilde y)$ de este ejemplo. Recuerda que el logaritmo neperiano se obtiene en R con  {\tt log}.
+  \item Construye (usando una plantilla o la función {\tt lm}) el modelo lineal para esa muestra de puntos $(\tilde x, \tilde y)$, y comprueba los resultados del Ejemplo \ref{curso-cap10:ejem:RegresionNoLineal} del libro.
+  \item Adicionalmente, puedes tratar de reproducir la Figura \ref{curso-cap10:fig:EjemploRegresionNoLineal02} del libro (pág. \pageref{cap10:fig:EjemploRegresionNoLineal02}) usando la función {\tt curve} para dibujar la función exponencial.
+\end{enumerate}
+\qed
+\end{ejercicio}
+
+
+\subsection*{Regresión polinómica en R.}
+\label{tut10:subsec:regresionPolinomicaR}
+
+Vamos a aprovechar el segundo miembro del cuarteto de Anscombe para introducirnos en el terreno de la regresión polinómica con R. Ese ejemplo en particular (que aparece en la parte superior derecha de la Figura \ref{curso-tut10:fig:CuartetoAnscombe} del libro, pág. \pageref{curso-tut10:fig:CuartetoAnscombe}) requiere el uso de una parábola en lugar de una recta. La ecuación de esa parábola será de la forma:
+\[y=b_0+b_1\cdot x+b_2\cdot x^2\]
+para ciertos coeficientes $b_0, b_1, b_2$.
+
+¿Cómo podemos usar R para averiguar cuál es la mejor parábola posible? Es decir, para localizar los valores adecuados de $b_0, b_1, b_2$. Pues usando, de nuevo, la función {\tt lm}, pero con una sintaxis ligeramente más complicada. Para ilustrarlo, empezamos por crear dos vectores con las coordenadas $x$ e $y$ de este ejemplo:
+<<>>=
+ (x = anscombe$x2)
+ (y = anscombe$y2)
+@
+Y ahora, para crear ese modelo polinómico de grado dos basta con usar este código:
+<<>>=
+(lmPolXY=lm(y ~ I(x) + I(x^2)))
+@
+La peculiar notación \verb# I(x) + I(x^2)# se debe a que, por defecto, si escribiéramos simplemente:
+<<>>=
+lm(y ~ x + x^2)
+@
+R usaría los denominados {\sf polinomios ortogonales}, un tipo especial de polinomios que tienen propiedades que los hacen muy útiles en este contexto. Como de costumbre, R tiende a proporcionar la mejor solución, pero esa, a menudo, no es la que queremos ver cuando estamos aprendiendo a hacer las cosas por primera vez. El precio que pagaremos, en este caso, es esa notación un poco más complicada con la {\tt I}.
+
+Usando esa notación, en cualquier caso, obtenemos el modelo parabólico que andábamos buscando. En particular, los coeficientes $b_0$, $b_1$ y $b_2$ quedan almacenados en un vector, al que podemos acceder usando la componente {\tt coefficients} del resultado de la función {\tt lm}. Para este ejemplo, y usando {\tt b} como nombre del vector para mantener la notación que nos es familiar, hacemos:
+<<>>=
+(b = lmPolXY$coefficients)
+@
+Pero cuidado al usar este vector, porque hay un desplazamiento en los índices: {\tt b[1], b[2]} y {\tt b[3]} corresponden a $b_0$, $b_1$ y $b_2$ respectivamente.
+
+En la Figura \ref{tut10:fig:RegresionPolinomica} (pág. \pageref{tut10:fig:RegresionPolinomica}) se muestra la parábola que hemos obtenido, que en este caso pasa exactamente por los puntos del segundo ejemplo de Anscombe. Se muestra además la recta de regresión que obtenemos con \verb#lm(y~x)#. Como puedes ver, el modelo que proporciona la recta  no es adecuado. El código R que hemos usado para producir esa figura es este:
+    <<parabolaAnscombe2, eval=FALSE>>=
+    plot(anscombe[ , 2], anscombe[ , 6], col="red", lwd=2, cex=1.1)
+    curve(b[1] + b[2] * x + b[3] * x^2,
+        add = TRUE, from = 3, to = 15, col="blue", lwd=2)
+    abline(lm(anscombe[ , 6] ~ anscombe[ , 2]), lwd=2, lty=2)
+    @
+
+\begin{figure}[b!]
+\begin{center}
+    %\includegraphics[width=8cm]{../fig/Tut10-09.png}
+    <<fig.width=5, fig.height=5, echo=FALSE>>=
+    <<parabolaAnscombe2>>
+    @
+\end{center}
+\caption{Ejemplo de regresión polinómica con R.}
+\label{tut10:fig:RegresionPolinomica}
+\end{figure}
+
+Terminamos este apartado proponiendo al lector un ejercicio:
+\begin{ejercicio}
+\label{tut10:ejercicio10}
+Vamos a buscar una parábola para los datos del Ejemplo \ref{curso-cap10:ejem:RectaMalaAproximacion01} (pág \pageref{curso-cap10:ejem:RectaMalaAproximacion01}) del libro. Los datos están en el fichero:
+\begin{center}
+{\tt Cap10-EjemploRectaMalaAproximacion01.csv}
+\end{center}
+que puedes encontrar en el ejercicio 2(b) de la pág. \pageref{tut10:ejercicio03} de este tutorial. Los valores de ese ejemplo se han generado en R con el código:
+<<eval=FALSE>>=
+set.seed(2013)
+(x = signif(runif(n=30, min=0, max=1 ), digits=3) )
+(y = signif(x-x^2+rnorm(30,sd=0.001),digits=2 ) )
+@
+Eso significa que se basan en un modelo teórico como este:
+\[y=\beta_0+\beta_1\cdot x+\beta_2\cdot x^2+\epsilon=x-x^2+\epsilon\]
+En el que hemos tomado
+\[\beta_0=0, \beta_0=1, \beta_2=-1,\]
+y en el que el término de error cumple
+\[\epsilon\sim N(30,0.001).\]
+Naturalmente, cuando obtengas $b_0$, $b_1$ y $b_2$, sus valores no coincidirán exactamente con los de $\beta_0=0$, $\beta_0=1$ y $\beta_2=-1$, pero deberían ser {\em bastante parecidos}. Para comprobar gráficamente el resultado, dibuja la parábola que obtienes sobre el diagrama de dispersión de los puntos $(x,y)$.
+\qed
+\end{ejercicio}
+
+
+
+
+%La que he obtenido yo se muestra en la Figura \ref{tut10:fig:RegresionPolinomica}.
+%\begin{figure}[h!]
+%\begin{center}
+%    \includegraphics[width=6.5cm]{../fig/Tut10-10.png}
+%\end{center}
+%\caption{Parábola para los datos del Ejemplo \ref{curso-cap10:ejem:RectaMalaAproximacion01} del libro.}
+%\label{tut10:fig:RegresionPolinomica}
+%\end{figure}
+\qed
+
+
+\section{Ejercicios adicionales y soluciones.}
+\label{tut10:sec:EjerciciosAdicionalesYSoluciones}
+
+\subsection*{Ejercicios adicionales.}
+\label{tut10:subsec:EjerciciosAdicionales}
+
+\begin{ejercicio}
+\label{tut10:ejercicio11}
+El Ejemplo \ref{curso-cap10:ejem:AnalisisGraficoResiduos02} del libro (pág. \pageref{curso-cap10:ejem:AnalisisGraficoResiduos02}) incluye una muestra de puntos para l que la condición de homogeneidad de la varianza claramente no se cumple. Esa muestra de puntos se ha fabricado en R con este código:
+<<results='hide'>>=
+set.seed(2013)
+n=100
+(x = sort(signif(runif(n, min=0, max=1 ), digits=2) )  )
+(y = 1 - (x/2) + rnorm(n,sd=0.01*(1+50*x)))
+@
+
+\begin{enumerate}
+  \item Dibuja el diagrama de dispersión de esa muestra de puntos.
+%  <<fig.width=5, fig.height=5>>=
+%  plot(x, y)
+%  @
+  \item Dibuja también el gráfico de los residuos estudentizados frente a los valores predichos que aparece en la parte (b) de la Figura \ref{curso-cap10:fig:AnalisisMedianteResiduosHomogeneidadVarianza} del libro (pág. \pageref{curso-cap10:fig:AnalisisMedianteResiduosHomogeneidadVarianza}). Para facilitarte el trabajo, los residuos estudentizados se pueden obtener con la función {\tt studres} de la librería {\tt MASS}, aplicada al modelo lineal que se obtiene con \verb#lm(y ~ x)#. Y recuerda que los valores predichos son la componente {\tt fitted.values} de la salida de la función {\tt lm}.
+
+  \item Aplica la función {\tt gvlma} (de la librería homónima) al modelo lineal para ver los diagnósticos que proporciona.
+
+  \item Por último, ¿por qué sucede esto? Busca una explicación en la forma en la que se han construido los valores $y$ a partir de los valores $x$.
+\end{enumerate}
+\qed
+\end{ejercicio}
+
+\begin{ejercicio}
+\label{tut10:ejercicio12}
+Comprueba los resultados del Ejemplo \ref{curso-cap10:ejem:RegresionPolinomica} del libro (pág. \pageref{curso-cap10:ejem:RegresionPolinomica}).
+\qed
+\end{ejercicio}
+
+
+
+%%##########################################
+%##########################################
+
+\subsection*{Soluciones de algunos ejercicios.}
+\label{tut10:subsec:SolucionesAlgunosEjercicios}
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut10:ejercicio01}, pág. \pageref{tut10:ejercicio01}}
+\label{tut10:ejercicio01:sol}\quad\\
+
+
+\begin{enumerate}
+  \item
+  Este es el caso más simple:
+  {\small
+  <<>>=
+  (datos = read.table("../datos/tut10-ejercicio01-1.csv", sep=",", header=TRUE))
+  @
+  }
+  \item Basta con modificar la opción {\tt sep}:
+  {\small
+  <<>>=
+  (datos = read.table("../datos/tut10-ejercicio01-2.csv", sep="\t", dec=",", header=TRUE))
+  @
+  }
+  \item En este caso el fichero de datos está organizado de una manera especialmente molesta, con los datos dispuestos en filas en lugar de columnas, separados por punto y coma, y usando comas para los decimales. Pero con R podemos salir del paso sin demasiadas complicaciones. Los siguientes comandos te permitirán leer los datos y guardarlos en un {\tt data.frame} idéntico al de los apartados anteriores:
+      {\small
+    <<>>=
+    datos = read.table("../datos/tut10-ejercicio01-3.csv", sep=";", dec=",")
+    datos = t(as.matrix(datos[ , -1]))
+    datos = data.frame(datos, row.names = NULL)
+    colnames(datos) = c("x", "y")
+    datos
+    @
+    }
+    El paso clave es el segundo, en el que leemos la parte numérica de los datos como una matriz usamos {\tt datos[ , -1]} para {\em excluir} la primera columna), y la trasponemos con la función {\tt t}.
+\end{enumerate}
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut10:ejercicio02}, pág. \pageref{tut10:ejercicio02}}
+\label{tut10:ejercicio02:sol}\quad\\
+
+
+\begin{enumerate}
+  \item La fórmula de la Ecuación \ref{curso-cap10:ecu:CoeficienteRegresionPearson}  del libro se obtiene con:
+  <<eval=FALSE>>=
+  with(datosPisa, {
+    cov(rpc, pisa)/(sd(rpc) * sd(pisa))
+    })
+  @
+  \item Ejecutando
+  \begin{verbatim}
+    CoeficienteCorrelación[datosPisa]
+  \end{verbatim}
+  obtenemos $0.75277$, de acuerdo con lo que se obtiene en R.
+\end{enumerate}
+
+
+%#########################################################################################
+%#########################################################################################
+\vspace{2cm} \hrule
+\quad\\
+Fin del Tutorial10. ¡Gracias por la atención!
+
+%\newpage
+%\addcontentsline{toc}{section}{Guía de trabajo.}
+%\includepdf[pages={1-},scale=0.90]{10-GuiaDeTrabajo.pdf}
+
+
+
+
+
+
+\end{document}
+
+
+

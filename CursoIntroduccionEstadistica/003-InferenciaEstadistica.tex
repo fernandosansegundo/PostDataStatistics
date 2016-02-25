@@ -1,0 +1,28 @@
+% !Mode:: "Tex:UTF-8"
+
+\section*{Introducción a la Inferencia Estadística.}
+\label{part03:intro}
+
+
+En esta parte del curso, y después de nuestra incursión en el mundo de la Probabilidad, vamos a comenzar con la parte central de la Estadística, la \index{inferencia estad\'istica}{\sf Inferencia.} Recordemos que, en resumen, la inferencia Estadística consiste en la predicción de características de una población, a partir del estudio de una muestra tomada de esa población. Naturalmente, puesto que estamos haciendo Ciencia, queremos que nuestras predicciones sean verificables. Más concretamente, queremos poder decir cómo de fiables son nuestras predicciones. Y la Probabilidad nos va a permitir hacer esto, de manera que al final podemos hacer afirmaciones como, por ejemplo, {\em ``el valor que predecimos para la media de la población es $\mu$ {\sf con un margen de error bien definido y además hay una probabilidad del 99\% de que esta predicción sea cierta}''}. Esta es la forma en la que las afirmaciones estadísticas se convierten en predicciones con validez y utilidad para la Ciencia.
+
+Puesto que la inferencia trabaja con muestras, el primer paso, que daremos en el Capítulo \ref{cap:IntervalosConfianza}, es reflexionar sobre el proceso de obtención de las muestras. En este proceso hay que distinguir dos aspectos:
+
+\begin{enumerate}
+\item Un primer aspecto: la propia forma en la que se obtiene una muestra. De hecho, aquí se deben considerar todos los aspectos relacionados con el muestreo, que constituyen la parte de la Estadística que se denomina {\sf Diseño Experimental}\index{diseño experimental}. Este es uno de los pasos fundamentales para garantizar que los métodos producen resultados correctos, y que las predicciones de la Estadística son fiables. En este curso apenas vamos a tener ocasión de hablar de Diseño Experimental, pero trataremos, a través de los tutoriales, y en cualquier caso, a través de la bibliografía recomendada, de proporcionar al lector los recursos necesarios para que una vez completado este curso, pueda continuar aprendiendo sobre ese tema.
+\item El otro aspecto es más teórico. Tenemos que entender cómo es el conjunto de {\em todas las muestras posibles} que se pueden extraer, y que consecuencias estadísticas tienen las propiedades de ese conjunto de muestras. Es decir, tenemos que entender las que llamaremos \index{distribuci\'on muestral}{\sf distribuciones muestrales}. Esta parte todavía es esencialmente Teoría de Probabilidad, y es lo primero a lo que nos vamos a dedicar en ese Capítulo \ref{cap:IntervalosConfianza}. Cuando la acabemos, habremos entrado, por fin, en el mundo de la Inferencia.
+\end{enumerate}
+
+Una vez sentadas las bases, con el estudio de la distribución muestral, estaremos en condiciones de discutir (todavía en el Capítulo \ref{cap:IntervalosConfianza}) los primeros {\sf intervalos de confianza}, que son la forma habitual de estimar un parámetro de la población (como la media, la desviación típica, etc.) a partir de la información de una muestra.
+
+En el Capítulo \ref{cap:ContrasteHipotesis} aprenderemos a usar la técnica del {\sf contraste de hipótesis}, que es un ingrediente básico del lenguaje estadístico que se usa en la información científica. Este capítulo muestra al lector mucho del lenguaje que se necesita para empezar a entender las afirmaciones estadísticas que se incluyen en artículos y textos de investigación. Conoceremos los p-valores, los errores de tipo I y II, el concepto de potencia de un contraste, etc. Y aplicaremos la técnica del contraste de hipótesis a problemas que tienen que ver con la media y la desviación típica, en el contexto de poblaciones normales o aproximadamente normales.
+
+A continuación, en el Capítulo \ref{cap:DistribucionesRelacionadasBinomial}, veremos como extender estas técnicas (intervalos de confianza y contrastes de hipótesis) a problemas distintos de los de medias o desviaciones típicas. En particular, estudiaremos el problema de la estimación de la {\sf proporción} para una variable cualitativa (factor) con sólo dos niveles, un problema que está estrechamente relacionado con la Distribución Binomial. Dentro del ámbito de problemas relacionados con la Binomial, haremos una
+introducción a otra de las grandes distribuciones clásicas, la {\sf Distribución de Poisson}.
+
+El último Capítulo de esta parte, el Capítulo \ref{cap:Inferencia2Poblaciones}, marca la transición hacia la siguiente, con problemas donde empieza a aparecer la relación entre dos variables aleatorias. En ese capítulo la situación todavía se deja entender con las herramientas que desarrollaremos en  esta parte del curso. Concretamente, un mismo problema puede verse como
+\begin{itemize}
+  \item[(a)] el estudio de una cierta variable $X$, la misma variable pero estudiada en dos poblaciones independientes.
+  \item[(b)] el estudio de la relación entre $X$ y una nueva variable cualitativa (factor) $Y=$ ``población'', con dos niveles, que son ``población 1'' y ``población 2''.
+\end{itemize}
+El punto de vista (a) es el propio de esta parte del curso. En cambio, el problema planteado en (b) es característico de la cuarta parte del curso, puesto que allí desarrollaremos los métodos que nos van a permitir abordar problemas más generales. Por ejemplo, cuando la variable $Y=$``población'' tiene más de dos niveles (estudiamos $X$ en más de dos poblaciones). Y en general, allí aprenderemos a tratar el problema de la relación entre dos variables $X$ e $Y$, que podrán ser de  cualquier tipo.  

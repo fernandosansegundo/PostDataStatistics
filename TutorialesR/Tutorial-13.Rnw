@@ -1,0 +1,1528 @@
+% !Mode:: "Tex:UTF-8"
+
+<<purl=FALSE, echo=FALSE>>=
+logistica = FALSE
+clasificador = FALSE
+@
+
+
+<<echo=FALSE, eval=FALSE, purl=FALSE, results='hide'>>=
+# Para extraer los ficheros de codigo, ejecutar este bloque en el entorno global de R.
+
+  library(knitr)
+  logistica = TRUE
+  clasificador = FALSE
+  purl(input = "Tutorial-13.Rnw",
+       output = "../datos/Tut13-RegresionLogistica.R",
+       documentation=0)
+  purl(input = "Tutorial-13.Rnw",
+       output = "../datos/Tut13-ClasificadorLogistico.R",
+       documentation=0)
+@
+
+<<setup, echo=FALSE, purl=FALSE >>=
+## numbers >= 10^5 will be denoted in scientific notation,
+## and rounded to 2 digits
+options(scipen = 2, digits = 5, cache=FALSE)
+@
+
+
+\documentclass[10pt,a4paper]{article}
+\usepackage{etoolbox}
+\newtoggle{color}
+%\togglefalse{color}
+\toggletrue{color}
+
+\usepackage{makeidx}
+\newcommand{\idioma}{spanish}
+\newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
+\input{../tex/definiciones}
+%\input{sahp}
+\includecomment{com}
+%\excludecomment{com}
+%\usepackage[dvips]{hyperref}
+%\usepackage{pstricks}
+
+
+\newtoggle{distribuir}
+%\togglefalse{distribuir}
+\toggletrue{distribuir}
+\iftoggle{distribuir}{%
+  % color version
+    \includecomment{distribuir}
+    \excludecomment{noDistribuir}
+}{%
+  % b/w version
+    \includecomment{noDistribuir}
+    \excludecomment{distribuir}
+}
+
+
+\usepackage{attachfile}
+
+\textwidth=150mm \textheight=260mm
+\hoffset=-1cm
+\voffset=-25mm
+\parskip=2mm
+%\textwidth=160mm \textheight=240mm \hoffset=-20mm \voffset=-20mm \parskip=0mm \marginparsep=-25mm
+
+\setlength{\parindent}{0pt}
+\newcounter {cont01}
+
+\externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
+\externaldocument[tut01-]{Tutorial-01}
+\externaldocument[tut02-]{Tutorial-02}
+\externaldocument[tut03-]{Tutorial-03}
+\externaldocument[tut04-]{Tutorial-04}
+\externaldocument[tut05-]{Tutorial-05}
+\externaldocument[tut06-]{Tutorial-06}
+\externaldocument[tut07-]{Tutorial-07}
+\externaldocument[tut08-]{Tutorial-08}
+\externaldocument[tut08-]{Tutorial-09}
+\externaldocument[tut08-]{Tutorial-10}
+\externaldocument[tut08-]{Tutorial-11}
+\externaldocument[tut08-]{Tutorial-12}
+
+\begin{document}
+\includecomment{pdf}
+%\excludecomment{pdf}
+%\includecomment{dvi}
+\excludecomment{dvi}
+%\includecomment{com}
+\excludecomment{com}
+
+\paragraph{\link{http://www.postdata-statistics.com/}{PostData}\hspace{6.3cm}Curso de Introducción a la Estadística\\[2mm]} \noindent\hrule
+
+\setcounter{section}{0}
+\section*{\hspace{-0.1cm}\fbox{\colorbox{Gris025}{
+\begin{minipage}{14.5cm}
+Tutorial 13: Regresión logística.
+\end{minipage}
+}}} Atención:
+\begin{itemize}
+  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está
+      pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es
+      necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de
+      imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
+  \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si
+      existe una versión más reciente.
+\end{itemize}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section{Construcción de un modelo de regresión logística con R.}
+
+En esta sección vamos a  ver cómo utilizar R para obtener un modelo de regresión logística, partiendo de datos como los del Ejemplo \ref{curso-cap13:ejem:RegresionLogistica00} (pág. \pageref{curso-cap13:ejem:RegresionLogistica00}) del libro. Así que empezaremos por leer esos datos a partir del fichero que los contiene:
+% Como en tutoriales anteriores, vamos a trabajar con un fichero plantilla que contiene  el código necesario para reproducir los resultados más importantes del análisis que vamos a realizar a continuación. El fichero es:
+% \begin{center}
+% \fichero{../datos/Tut13-RegresionLogistica.R}{Tut13-RegresionLogistica.R}
+% \end{center}
+% Te recomendamos
+%cuyo listado puedes ver en la Tabla \ref{Tut13:tabla:FicheroR-RegresionLogistica.R} de la pág. \pageref{Tut13:tabla:FicheroR-RegresionLogistica.R}.
+
+
+<<cabeceraIndependencia, echo=FALSE, purl = logistica >>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadística
+# Tutorial-13.
+#
+# Fichero de instrucciones R para construir un modelo
+# sencillo de regresión logistica, a partir de un fichero
+# de datos (tipo csv). El fichero contiene en su primera columna
+# los valores de la variable explicativa y en la segunda columna
+# los valores de la variable respuesta. Esta variable respuesta
+# deberá necesariamente ser un factor con dos niveles.
+# Si el orden de esas dos columnas es el contrario se pueden
+# intercambiar mediante el valor de la variable colFactor.
+#############################################################
+# INSTRUCCIONES:
+#   Fija el directorio de trabajo (con la subcarpeta datos con el csv.)
+#############################################################
+
+@
+
+
+<<lecturaDatos, eval=FALSE, comment=NULL, echo=FALSE, purl=logistica>>=
+##################################
+## Lectura del fichero de datos.
+## No olvides los parametros de read.table (sep, dec, etc.)
+
+datosFichero = read.table("../datos/", header = TRUE, sep=",")
+head(datosFichero)
+
+@
+
+<<lecturaDatosEjemplo, purl=FALSE>>=
+datosFichero = read.table("../datos/Cap13-DatosVasculopatia.csv",
+                          header = TRUE, sep=",")
+head(datosFichero)
+@
+
+El resultado de la lectura es un {\tt data.frame} de R en el que tenemos dos variables (columnas), llamadas {\tt ITB} y {\tt Vasculopatia}, respectivamente. En lo que sigue vamos a utilizar el nombre $X$ para la variable explicativa e $Y$ para la variable respuesta, que es un factor. Suponemos que $X$ aparece en la primera columna del {\tt data.frame} mientras que {\tt Y} ocupa la segunda columna. Como en el caso del Anova, puede suceder que el orden de columnas en el fichero {\tt csv} no coincida con este. Pero en cualquier caso, podemos ajustar ese comportamiento cambiando a $2$ el valor de la variable {\tt colX}.
+
+<<nombresVariables, echo = -(1:4), purl=logistica>>=
+######################################
+# Fijamos los nombres de las variables
+# y creamos un data.frame con ellos.
+
+colX = 1
+if(colX == 1){
+  X = datosFichero[ , 1]
+  Y = datosFichero[ , 2]
+} else {
+  X = datosFichero[ , 2]
+  Y = datosFichero[ , 1]
+}
+datos = data.frame(X, Y)
+@
+
+Ya tenemos los datos listos para el análisis. El diagrama de dispersión correspondiente se obtiene con:
+
+<<diagramaDispersion, eval=FALSE, comment=NULL, echo=FALSE, purl=logistica>>=
+#################################
+## Diagrama de dispersion.
+
+colores = c()
+colores[datos$Y == 0] = "blue"
+colores[datos$Y == 1] = "orange"
+plot(datos$X, datos$Y, pch = 21, bg = colores, cex=1.3,font=2,
+     xlab = "X", ylab = "Y", font.lab=2)
+legend("left", c("Y = 0", "Y = 1"), pch = 21, pt.bg =  c("blue", "orange"))
+box(lwd=3)
+
+@
+
+
+{\small
+<<diagramaDispersionEjemplo, purl=FALSE, fig.align='center', fig.width=7,fig.height=5>>=
+colores = c()
+colores[datos$Y == 0] = "grey"
+colores[datos$Y == 1] = "black"
+plot(datos$X, datos$Y, pch = 21, bg = colores, cex=1.3,font=2,
+     xlab = "Indice tobillo brazo", ylab = "Vasculopatia", font.lab=2, )
+legend("left", c("No vasculopatía", "Vasculopatía"), pch = 21,
+       pt.bg =  c("grey", "black"))
+box(lwd=3)
+@
+}
+
+En la Sección \ref{curso-cap13:sec:IntroduccionProblemaRegresionLogistica} del libro (pág. \pageref{curso-cap13:sec:IntroduccionProblemaRegresionLogistica})
+hemos visto también un modelo ficticio en el que existe un umbral claramente definido de valores de $X$ (por ejemplo, $X=0.96$) a partir del cual todos los valores de $Y$ son $0$, mientras que antes son $1$. Por si te interesa, esa situación se puede reproducir fácilmente en el código así:
+
+<<modeloSimulado01, purl=FALSE>>=
+Ysimul01 = ifelse(X > 0.96, yes = 0, no = 1)
+datosSimul01 = data.frame(X, Y = Ysimul01)
+@
+Y entonces su diagrama es:
+<<diagramaSimul01, purl=FALSE, echo=-(1:2), fig.align='center', fig.width=6,fig.height=4>>=
+oldmar = par()$mar # 5.1 4.1 4.1 2.1
+par(mar=c(5.1, 4.1, 0.5, 0.5))
+colores = c()
+colores[datosSimul01$Y == 0] = "grey"
+colores[datosSimul01$Y == 1] = "black"
+plot(datosSimul01$X, datosSimul01$Y, pch = 21, bg = colores, cex=1.3,font=2,
+     xlab = "Indice tobillo brazo", ylab = "Vasculopatia", font.lab=2, )
+legend("left", c("No vasculopatía", "Vasculopatía"), pch = 21, pt.bg =  c("grey", "black"))
+box(lwd=3)
+@
+La figura simétrica, cuando $Y=1$ corresponde a valores altos de $X$ se obtiene de forma similar.
+<<diagramaSimul02, purl=FALSE, echo=FALSE, fig.show='hide'>>=
+Ysimul02 = ifelse(X < 0.96, yes = 0, no = 1)
+datosSimul02 = data.frame(X, Y = Ysimul02)
+par(mar=c(5.1, 4.1, 0.5, 0.5))
+colores = c()
+colores[datosSimul02$Y == 0] = "grey"
+colores[datosSimul02$Y == 1] = "black"
+plot(datosSimul02$X, datosSimul02$Y, pch = 21, bg = colores, cex=1.3,font=2,
+     xlab = "Indice tobillo brazo", ylab = "Vasculopatia", font.lab=2, )
+legend("left", c("No vasculopatía", "Vasculopatía"), pch = 21,
+       pt.bg =  c("grey", "black"))
+box(lwd=3)
+@
+Por último, la figura correspondiente al caso ``todo ruido, nada de modelo'' se obtiene simplemente eligiendo al azar los valores de $Y$:
+
+<<diagramaSimul03, purl=FALSE,  fig.align='center', fig.width=5, fig.height=3, echo = -c(1,11)>>=
+par(mar=c(5.1, 4.1, 0.5, 0.5))
+set.seed(2015)
+Ysimul03 = sample(0:1, size = length(X), replace = TRUE)
+datosSimul03 = data.frame(X, Y = Ysimul03)
+colores = c()
+colores[datosSimul03$Y == 0] = "grey"
+colores[datosSimul03$Y == 1] = "black"
+plot(datosSimul03$X, datosSimul03$Y, pch = 21, bg = colores, cex=1.3,font=2,
+     xlab = "Indice tobillo brazo", ylab = "Vasculopatia", font.lab=2, )
+legend("left", c("No vasculopatía", "Vasculopatía"), pch = 21, pt.bg =  c("grey", "black"))
+box(lwd=3)
+par(mar=oldmar)
+@
+
+\subsection{Agrupando valores para estimar las probabilidades.}
+\label{tut13:subsec:ConstruccionDetalladaModelo}
+
+ Vamos ahora a ver ahora detalladamente como usar R para dar los pasos 1 a 4 del Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}). El primer paso es la lectura de los datos desde el fichero, que incluimos aquí por comodidad:
+\begin{center}
+\fichero{../datos/Cap13-ConstruccionModeloLogistico.csv}{Cap13-ConstruccionModeloLogistico.csv}
+\end{center}
+Una vez descargado este fichero en nuestra carpeta {\tt datos},  usamos read.table para leerlo y luego procedemos como con el anterior ejemplo (ten en cuenta que los datos de este fichero están separados con tabuladores, por eso usamos \verb# sep = \t#)
+
+<<lecturaDatosEjemplo2, purl=FALSE>>=
+datosFichero = read.table("../datos/Cap13-ConstruccionModeloLogistico.csv",
+                          header = TRUE, sep="\t")
+head(datosFichero)
+@
+Como antes, fijamos los nombres de las variables y pintamos el diagrama de dispersión:
+<<purl=FALSE, echo=FALSE,  fig.align='center', fig.width=7,fig.height=5>>=
+<<nombresVariables>>
+<<diagramaDispersion>>
+@
+
+Los valores de la variable $X$ están comprendidos completamente en el intervalo $[-10, 10]$:
+<<purl=FALSE>>=
+range(X)
+@
+
+Vamos con los pasos del 1 al 4 del ejemplo:
+\begin{enumerate}
+
+\item Empezamos dividiendo el intervalo $[-10, 10]$ en $40$ clases de anchura $\frac{1}{2}$ y localizando los puntos de corte que marcan las fronteras entre clases, que son los valores $u_0, \ldots, u_{40}$ del ejemplo. Hay que prestar atención al número de valores que generamos: $41$ puntos definen $40$ clases.
+
+<<fronterasClases, purl=FALSE>>=
+a = -10
+b =  10
+numClases = 40
+(u = seq(from=a, to=b, length.out=(numClases + 1))) # Fronteras entre clases
+@
+
+Las marcas de clase, que en el libro hemos llamado $w_i$, son los puntos medios de cada intervalo. Se obtienen fácilmente sumando a cada valor {\tt u} la semianchura de la clase. Hay que tener cuidado de nuevo con el número de marcas de clase que generamos:
+<<marcasClase, purl=FALSE, echo=-1>>=
+# marcas de clase
+(marcasClase =  (u + ((b - a) / (2 * numClases)))[1:numClases])
+@
+
+\item Ahora vamos a hacer un recuento de cuántos de los valores $X$ caen en cada una de esas clases. Afortunadamente, ya sabemos que en R esto es muy fácil de hacer, usando la función {\tt cut} para definir un factor que clasifique los valores de $X$:
+
+<<crearClases, purl=FALSE>>=
+clases = cut(X, breaks=u, include.lowest=TRUE)
+@
+La opción {\tt include.lowest=TRUE} sirve para que el primer intervalo sea cerrado a la izquierda, cubriendo así los posibles valores de $X=-10$ (aunque nuestra muestra, en este ejemplo, no incluye ninguno de esos valores). Veamos los primeros valores del factor; puedes compararlos con los primeros valores de $X$ para ver qué la clasificación es correcta:
+<<purl=FALSE>>=
+head(clases, 10)
+head(X, 10)
+@
+El recuento que nos habíamos propuesto consiste simplemente en hacer una tabla de frecuencias del factor {\tt clases}
+<<purl=FALSE>>=
+table(clases)
+@
+Como se dice en el libro, puedes constatar en esta tabla que hay $27$ puntos de la muestra con
+\[-8<X\leq -7.5.\]
+
+La Tabla \ref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases} del libro (pág. \pageref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases}) contiene, a modo de ejemplo, los valores de $X$ que caen en la clase número 18 y los correspondientes valores de $Y$. Para obtener esos valores en R podemos hacer:
+<<purl=FALSE>>=
+(claseElegida = levels(clases)[18])
+X[clases == claseElegida]
+(cualesSon = which(clases == claseElegida))
+X[cualesSon]
+Y[cualesSon]
+@
+
+\begin{ejercicio}
+\label{tut13:ejercicio01}
+Comprueba que, como se dice en el libro, la clase número $5$ es el intervalo $(-8,-7.5]$. Comprueba también que esa clase contiene $27$ puntos y que los valores $Y$ de esos $27$ puntos muestrales son {\em todos} iguales a $0$. Haz un estudio similar con la clase número $35$.
+%Soluciones en la página \pageref{tut13:ejercicio01:sol}.
+\qed
+\end{ejercicio}
+
+
+\item A continuación, para estimar las probabilidades correspondientes a cada una de esas clases vamos a utilizar la función {\tt tapply}. Esta función nos permite aplicar una función (en este caso  la suma) a todos los elementos de un vector (o matriz, o array) agrupados mediante un cierto factor. En nuestro ejemplo eso se traduce en una frase como:
+
+{\em
+``Calcular la suma (aplicar la función {\tt sum}) de todos los valores del vector {\tt Y}, agrupándolos primero por clases (con la opción {\tt INDEX=clases})''.
+}
+
+Guardaremos los resultados en un vector de R llamado {\tt sumaYporClases}:
+<<sumaYporClases, purl=FALSE>>=
+(sumaYporClases = tapply(Y, INDEX=clases, FUN=sum))
+@
+
+Y ahora nuestras estimaciones de las probabilidades se obtienen dividiendo estas sumas entre el número de elementos que contiene cada clase:
+<<estimarProbabilidades, purl=FALSE>>=
+(probabilidades = sumaYporClases / table(clases))
+@
+El vector probabilidades contiene nuestras estimaciones $\hat p_i$ de las probabilidades correspondientes a cada una de las $40$ clases en las que hemos dividido el recorrido de $X$. Son probabilidades condicionadas, porque hemos agrupado por clases. Puedes comprobar que estas estimaciones coinciden con las que se mencionan en el libro. Además, estos números tienen el aspecto esperado: empiezan valiendo $0$ para las clases situadas muy a la izquierda, luego ascienden progresivamente en la zona de transición y, finalmente, se hacen iguales a $1$ para las clases a la derecha del recorrido de $X$.
+
+\begin{ejercicio}
+\label{tut13:ejercicio02}
+Aunque en nuestra muestra no ha sucedido, hay un posible escenario sobre el que conviene que te preguntes: ¿qué haríamos si alguna de nuestras clases no contiene ninguna observación? Ten en cuenta que en ese caso el denominador que hemos usado para estimar la probabilidad sería igual a $0$.  Y eso no puede ser bueno.... ¿qué crees que deberíamos hacer para afrontar ese problema?
+%Soluciones en la página \pageref{tut13:ejercicio02:sol}.
+\qed
+\end{ejercicio}
+
+
+\item Finalmente, vamos a incluir los puntos $(w_i, p_i)$ en el diagrama de dispersión que obtuvimos antes (recuerda que $w_i$ es las marcas de la clase número $i$). La figura resultante confirma lo que hemos apreciado en la tabla. Esos puntos se disponen aproximadamente a lo largo de una curva sigmoidea, que se intuye claramente. Esa intuición de una curva es la intuición del modelo logístico para estos datos, que ahora tendremos que construir de forma precisa.
+
+<<pintarEstimaciones, echo=-(1:9), purl=FALSE,  fig.align='center', fig.width=7,fig.height=5>>=
+<<diagramaDispersion>>
+points(marcasClase, probabilidades, col="red", pch=2, lwd=2)
+@
+
+\end{enumerate}
+
+
+\begin{ejercicio}
+\label{tut13:ejercicio03}
+Repite los pasos 1 a 4 del análisis anterior con los datos del fichero
+\begin{center}
+  \fichero{../datos/Cap13-ConstruccionModeloLogistico-Inflexiones.csv}{Cap13-ConstruccionModeloLogistico-Inflexiones.csv}
+\end{center}
+que aparece en el Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoVariasInflexiones} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoVariasInflexiones}) y comprueba todos los resultados de ese ejemplo.
+%Soluciones en la página \pageref{tut13:ejercicio03:sol}.
+\qed
+\end{ejercicio}
+<<EjemploInflexiones, purl=FALSE,echo=FALSE, eval=FALSE>>=
+datosFichero = read.table("../datos/Cap13-ConstruccionModeloLogistico-Inflexiones.csv",
+                          header = TRUE, sep="\t")
+head(datosFichero)
+<<nombresVariables>>
+<<diagramaDispersion>>
+<<fronterasClases>>
+<<marcasClase>>
+<<crearClases>>
+<<sumaYporClases>>
+<<estimarProbabilidades>>
+<<pintarEstimaciones>>
+@
+
+\section{Las curvas logísticas.}
+\label{tut13:subsec:CurvasLogisticas}
+
+En la Sección \ref{curso-cap13:sec:CurvaLogistica} del libro (pág. \pageref{curso-cap13:sec:CurvaLogistica}) hemos introducido la familia de curvas logísticas, definidas mediante:
+\[
+  w = \dfrac{e^{b_0+b_1 v}}{1+e^{b_0+b_1 v}}.
+\]
+Para empezar a familiarizarnos con las propiedades de esta familia de curvas hemos preparado un fichero con una construcción GeoGebra en el que puedes manipular los parámetros $b_0$ y $b_1$ y así desarrollar mejor tu intuición sobre el comportamiento de esas curvas. El fichero es este
+\begin{center}
+\fichero{../ggb/Tut13-CurvasLogisticas.ggb}{Tut13-CurvasLogisticas.ggb}
+\end{center}
+Y cuando lo abras te encontrarás con una gráfica similar a esta:
+\begin{center}
+    \includegraphics[width=14cm]{../fig/Tut13-CurvasLogisticasGeoGebra.png}
+\end{center}
+Usa un rato los deslizadores hasta convencerte de que has comprendido el significado de ambos coeficientes.
+
+\section{Estimando los parámetros.}
+\label{tut13:sec:EstimandoParametros}
+
+En esta sección vamos a aprender a usar el ordenador para obtener estimaciones de los parámetros $b_0$ y $b_1$, como hemos visto en la Sección \ref{curso-cap13:sec:EstimacionParametros} (pág. \pageref{curso-cap13:sec:EstimacionParametros}) del libro.
+
+\subsection{Valores de $b_0$ y $b_1$  mediante mínimos cuadrados.}
+\textcolor{red}{\bf\sc ADVERTENCIA:} Aunque lo hemos avisado en el libro, insistimos. El método que vamos a mostrar aquí {\bf NO} es el que se usa en regresión logística y sólo lo incluimos para que el lector tenga ocasión de darse cuenta de que la regresión logística usa un método distinto del que hemos visto en la regresión lineal simple.
+
+Vamos a ver paso a paso como usar el método de mínimos cuadrados para obtener una curva de la familia logística que aproxime a los datos. Los pasos son los mismos que hemos descrito en la Sección \ref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMinimosCuadrados} (pág. \pageref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMinimosCuadrados}) del libro.
+
+\begin{enumerate}
+  \item Aplicar la transformación logit a los valores $\hat p_1,\ldots,\hat p_k$. Llamemos $l_1,\ldots,l_k$ a los valores resultantes. Para hacer esto tenemos qu empezar por asegurarnos de que los valores de las probabilidades están comprendidos entre $0$ y $1$, estrictamente. La razón para hacer esto es que la transformación logit causaría problemas con cualquier valor igual a $0$ o igual a $1$ (ver Ejercicio \ref{tut13:ejercicio02}). Lo conseguimos mediante una selección adecuada  de los elementos del vector {\tt probabilidades}:
+
+<<purl=FALSE>>=
+(probsAcotadas = (probabilidades < 1) & (probabilidades > 0))
+@
+Como ves, los valores de probabilidades entre 0 y 1, que se concentran en lo que hemos llamado la {\em zona de transición}, son los que reciben el valor lógico {\tt TRUE}. Ahora ya podemos aplicar la transformación {\tt logit}:
+
+<<purl=FALSE>>=
+probab2Odds = log(probabilidades[probsAcotadas]/(1-probabilidades[probsAcotadas]))
+@
+
+\item Lo que hacemos es obtener un modelo de regresión lineal simple, ajustado por mínimos cuadrados, del vector {\tt probab2Odds} frente a las marcas de clase correspondientes. En el Tutorial10 aprendimos a usar la función {\tt lm} de R para calcular los coeficientes $\widetilde b_0$ y $\widetilde b_1$ de la recta de regresión
+\[l = \widetilde b_0 +\widetilde b_1\cdot w\]
+
+<<purl=FALSE>>=
+(Oddslm = lm(probab2Odds ~ marcasClase[probsAcotadas]))
+@
+
+para los puntos
+\[(w_1,l_1),\ldots,(w_k,l_k).\]
+Hemos llamado $\widetilde b_0$ y $\widetilde b_1$ a los coeficientes porque, insistimos, el método que estamos exponiendo {\bf no} es el método que aplicaremos en la regresión logística. Y queremos usar símbolos distintos para los valores obtenidos por casa método.
+
+\item Construimos la curva logística correspondiente a esos valores $\widetilde b_0$ y $\widetilde b_1$. Esa curva es, desde luego,
+\[
+  w = \dfrac{e^{\widetilde{b_0} + \widetilde{b_1} v}}{1 + e^{\widetilde{b_0} + \widetilde{b_1} v}}.
+\]
+Para obtenerla en R podemos definir una función así:
+
+<<purl=FALSE>>=
+curvaLogisticaMinCuad = function(x){
+  b0 = Oddslm$coefficients[1]
+  b1 = Oddslm$coefficients[2]
+  return(exp(b0 + b1 * x)/(1 + exp(b0 + b1 * x)))
+}
+@
+
+que añadimos al gráfico de dispersión con este comando (fíjate en las opciones {\tt add=TRUE} para añadir la curva al gráfico preexistentey \verb#lty="dotted"# para dibujar una curva discontinua):
+
+<<pintarCurvaLogisticaMinCuad, echo=-(1:10), purl=FALSE,  fig.align='center', fig.width=7,fig.height=5>>=
+<<pintarEstimaciones>>
+curve(curvaLogisticaMinCuad, from = -10, to = 10,
+      col="blue", lwd="2", add=TRUE, lty="dotted")
+@
+
+\end{enumerate}
+
+Con esto hemos concluido la construcción de este modelo para estimar las probabilidades que, insistimos una vez más, {\bf NO} es el que se usa en regresión logística. En la siguiente sección construiremos finalmente el modelo de regresión logística. Cerramos esta sección con un ejercicio para ayudarte a reflexionar sobre las características del método que hemos descrito.
+
+\begin{ejercicio}
+\label{tut13:ejercicio04}
+¿Qué sucede  si agrupamos los valores de otra manaera? Cambia el número de clases y comprueba qué sucede con los valores estimados $\widetilde b_0$ y $\widetilde b_1$.
+%Soluciones en la página \pageref{tut13:ejercicio04:sol}.
+\qed
+\end{ejercicio}
+
+
+\section{Regresión logística:  $b_0$ y $b_1$  mediante maxima verosimilitud.}
+\label{tut13:section:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud}
+
+En esta sección vamos a ver cómo usar el ordenador para obtener las estimaciones de los coeficientesde la curva logística usando el método de máxima verosimilitud, tal como se describe en la Sección \ref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud} del libro (pág. \pageref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud}). Primero aprenderemos cómo usar la función {\tt glm} de R y luego, en un apartado opcional, veremos un método más detallado, que puede resultar interesante para quienes quieran adentrarse un poco más en las matemáticas subyacentes al método.
+
+\subsection{La función {\tt glm} de R.}
+\label{tut13:subsec:funcionGlm}
+
+En el Tutorial10 conocimos la función {\tt lm} de R, que nos permitía obtener rápida y cómodamente la información relativa a  un modelo de regresión lineal simple. La función {\tt glm} (del inglés, {\em generalized linear model}) juega un papel parecido con respecto a los modelos lineales generalizados, de los que la regresión logística es un ejemplo. Por ejemplo, para obtener los coeficientes del modelo logístico para los datos del Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}), con el que hemos venido trabajando en los apartados anteriores, usaríamos la función {\tt glm} de esta manera:
+
+<<funcionGlm, echo=-(1:3), purl=logistica>>=
+########################################################
+# Funcion glm para la construccion del modelo logistico.
+
+(glmXY = glm(Y ~ X, family = binomial(link = "logit"), data = datos))
+
+@
+
+Como en los modelos lineales, hemos guardado el resultado de {\tt glm} en una variable para facilitar el acceso posterior al modelo. Antes de seguir adelante aplicamos {\tt summary} a ese modelo:
+<<summaryGlm, purl=logistica, echo=-(1:2)>>=
+# Con summary ampliamos la informacion del modelo:
+
+(summGlmXY = summary(glmXY))
+
+@
+Vemos que, como también ocurría con {\tt lm}, al aplicar {\tt summary} al modelo se obtiene mucha más información que con la salida original de {\tt glm}.  La columna {\tt Estimate} de la tabla {\tt Coefficients} contiene los valores estimados de los coeficientes de la curva logística. Y puesto que, {\em ahora sí}, se han obtenido por el método de máxima verosimilitud, podemos llamar $\hat b_0$ y $\hat b_1$ a esas estimaciones.  Y los coeficientes estimados son:
+
+<<coeficientesGlm, purl=logistica, echo = -(1:2)>>=
+# Los coeficientes de la curva logistica del modelo son
+
+(b0glm = summGlmXY$coefficients[1])
+(b1glm = summGlmXY$coefficients[2])
+
+@
+
+como hemos dicho en el Ejemplo \ref{curso-cap13:ejem:CurvaLogisticaPorDosMetodos} (pág. \pageref{curso-cap13:ejem:CurvaLogisticaPorDosMetodos}).
+
+Vamos a añadir la curva logística correspondiente a estos coeficientes al diagrama de dispersión. Esa curva aparece en la siguiente figura en trazos (opción \verb#lty="dashed"#) rojos. El código es muy parecido al que hemos usado antes para la curva que obtuvimos usando mínimos cuadrados:
+
+<<pintarCurvaLogisticasDosModelos, purl=FALSE, echo=-(1:11), fig.align='center', fig.width=13, fig.height=8>>=
+<<pintarCurvaLogisticaMinCuad>>
+curvaLogisticaGLM = function(x){
+  return(exp(b0glm + b1glm * x)/(1 + exp(b0glm + b1glm * x)))
+}
+curve(curvaLogisticaGLM, from = -10, to = 10,
+      col="red", lwd="2", add=TRUE, lty="dashed")
+legend(x="right", legend=c("Máxima verosimilitud", "Mínimos cuadrados"),
+       col = c("red", "blue"), bty=1, lty=c("dashed","dotted"),lwd=3,cex=1.5)
+@
+
+
+<<pintarCurvaLogisticasGLM, purl=FALSE, eval=FALSE, echo=FALSE, comment=NULL, purl=logistica>>=
+##############################################
+# Incorporamos la curva logistica a la grafica
+
+curvaLogisticaGLM = function(x){
+  return(exp(b0glm + b1glm * x)/(1 + exp(b0glm + b1glm * x)))
+}
+
+curve(curvaLogisticaGLM, from = min(X), to = max(X),
+      col="red", lwd="2", add=TRUE, lty="dashed")
+
+@
+
+La figura que hemos obtenido es, esencialmente, la Figura \ref{curso-cap13:fig:CurvaLogisticaPorDosMetodos} del libro (pág. \pageref{curso-cap13:fig:CurvaLogisticaPorDosMetodos}).
+
+Volviendo a los resultados de {\tt glm}, el lector habrá observado sin duda la gran cantidad de información que hemos obtenido. Hay una parte de esa información que va más allá de lo que nosotros vamos a aprender en este curso. Pero en el Capítulo \ref{curso-cap:RegresionLogistica} y en las siguientes seccione de este tutorial vamos a tratar de llegar tan lejos como nos sea posible en el análisis de esa información.
+
+Para cerrar este apartado, recuerda que los coeficientes $\hat b_0$ y $\hat b_1$ que hemos obtenido con {\tt glm} son, aproximadamente, los que producen un valor máximo de la función verosimilitud (no corresponden exactamente al máximo porque se han obtenido por un método numérico). ¿Y cuál es ese valor máximo de la verosimilitud? En R es muy fácil obtenerlo a partir del modelo. De hecho, lo que es inmediato es obtener el logaritmo de la verosimilitud:
+<<purl=FALSE>>=
+(logVerosimilitud = logLik(glmXY))
+@
+El resultado incluye varias {\em decoraciones:} un nombre e información sobre los grados de libertad del modelo (hablaremos de esto más adelante). Para eliminar esa información extra y acceder simplemente al valor del logaritmo de la verosimilitud hacemos un pequeño cambio:
+<<logVerosimilitud, purl=logistica, echo=-(1:2)>>=
+###########################
+# Verosimilitud del modelo
+
+(logVerosimilitud = logLik(glmXY)[1])
+
+@
+
+Y ahora la versosimilitud es simplemente:
+<<verosimilitudLoglik, purl=logistica>>=
+
+(verosimilitud = exp(logVerosimilitud))
+
+@
+
+Por el momento este resultado no parece de mucha utilidad. Al fin y al cabo, lo que nos trajo aquí era el deseo de estimar los coeficientes de la curva logística, mientras que la verosimilitud parecía sólo una herramienta para hacer esa estimación. Pero cuando lleguemos a los apartados sobre inferencia en la regresión logística veremos que este valor de la verosimilitud juega un papel importante.
+
+
+\begin{ejercicio}
+\label{tut13:ejercicio05}
+
+\begin{enumerate}
+\item[]
+
+\item Comprueba los valores de $b_0$ y $b_1$ que aparecen en el Ejemplo \ref{curso-cap13:ejem:coeficientesLogisticaVasculopatia} del libro (pág. \pageref{curso-cap13:ejem:coeficientesLogisticaVasculopatia}) para el modelo que relaciona itb y vasculopatía.
+
+\item Añade la curva logística al diagrama  de dispersión de esos datos y compara con la Figura \ref{curso-cap13:fig:CurvaLogisticaVasculopatia} del libro (pág. \pageref{curso-cap13:fig:CurvaLogisticaVasculopatia}).
+
+\item Calcula la verosimilitud de ese modelo logístico.
+
+\end{enumerate}
+
+%Soluciones en la página \pageref{tut13:ejercicio05:sol}.
+\qed
+\end{ejercicio}
+
+
+\subsection{Predicción con el modelo logístico.}
+\label{tut13:subsec:PrediccionConModeloLogistico}
+
+Desde que introdujimos la idea de modelo en esta parte del curso hemos insistido en varias ocasiones en que una de las finalidades básicas de los modelos son las predicciones. En el caso del modelo de regresión logística las primeras predicciones que podemos obtener del modelo son los {\em valores ajustados} correspondientes  a los datos de la variable explicativa $X$ que hemos usado para construir el modelo. Es decir, que para cada punto $(x_i, y_i)$ de la muestra obtenemos un valor predicho de la probabilidad:
+\[\hat\pi(x)=\dfrac{e^{b_0+b_1\cdot x}}{1+e^{b_0+b_1\cdot x}}.\]
+Después de usar {\tt glm}, esos valores ajustados de las probabilidades están almacenados en un vector de R que es la componente {\tt fitted.values} del modelo. En el ejemplo con el que estamos trabajando, podemos explorar esas predicciones así:
+
+<<purl = FALSE>>=
+head(glmXY$fitted.values)
+tail(glmXY$fitted.values)
+@
+
+En este ejemplo, con una muestra de $n = 1000$ puntos, al representar gráficamente esas predicciones el resultado cubre casi completamente la curva logística que produce el modelo. Para facilitar la visualización hemos pintado la curva logística con un trazo gris grueso, y en su interior puedes ver, en negro, las probabilidades que predice el modelo para cada valor de $X$:
+
+<<dibujarCurvaLogistica, purl=FALSE, echo=FALSE, fig.align='center', fig.width=10, fig.height=6>>=
+<<diagramaDispersion>>
+<<coeficientesGlm>>
+
+curvaLogisticaGLM = function(x){
+  return(exp(b0glm + b1glm * x)/(1 + exp(b0glm + b1glm * x)))
+}
+
+curve(curvaLogisticaGLM, from = min(X), to = max(X),
+      col="gray", lwd="25", add=TRUE, lty=1)
+points(X, glmXY$fitted.values, col="black")
+@
+
+En el Tutorial10, al estudiar el modelo de regresión lineal, también vimos que se podía usar la función {\tt predict} para obtener predicciones del modelo para valores
+de $X$ fuera de la muestra. Por ejemplo, para $x=3$ haríamos:
+
+<<purl=FALSE>>=
+x0 = 3
+predict(glmXY, newdata = data.frame(X=x0))
+@
+
+Pero el valor es mayor que 1... ¿no estábamos prediciendo probabilidades? La respuesta es que, por defecto, lo que devuelve {\tt predict} es el valor del término $b_0 + b_1 x$ para el modelo. Vamos a comprobarlo:
+
+<<purl=FALSE>>=
+b0glm + b1glm * x0
+@
+
+¿Y si lo que queremos es la predicción de la probabilidad? En ese caso usamos el argumento opcional \verb#type = "response"# de {\tt predict}
+
+<<purl=FALSE>>=
+predict(glmXY, newdata = data.frame(X=x0), type = "response")
+@
+
+El valor por defecto es \verb#type = "link"#  y ya hemos visto que produce como resultado predicciones en la escala del término lineal $b_0 + b_1 x$. El valor de la probabilidad que hemos obtenido es, desde luego, el mismo que obtendríamos sustituyendo el valor de $X$ en la curva logística del modelo:
+
+<<purl=FALSE>>=
+exp(b0glm + b1glm * x0) / (1 + exp(b0glm + b1glm * x0))
+@
+
+Y, finalmente, también podemos obtener ese valor usando la función {\tt plogis}, de la que aún no hemos hablado:
+
+<<>>=
+plogis(b0glm + b1glm * x0)
+@
+No vamos a entrar en muchos más detalles sobre {\tt plogis} (el lector interesado puede consultar la ayuda). Nos limitaremos a explicar que el valor de {\tt plogis(u)}, para un número $u$, es
+\[\mbox{\tt plogis(u)} = \dfrac{e^u}{1 + e^u}\]
+
+
+\subsection{Cálculo directo del modelo a partir de la función verosimilitud.}
+\label{tut13:subsec:calculoDirectoFuncionVerosimilitud}
+\noindent{\bf Opcional: esta sección puede omitirse en una primera lectura.}\\
+
+En este apartado, en lugar de recurrir a la función {\tt glm} de R, vamos a construir explícitamente la función verosimilitud y vamos a buscar su valor máximo de otra manera. Recuerda que en la Ecuación \ref{curso-cap13:ecu:FuncionVerosimilitudLogistica} del libro (pág. \ref{curso-cap13:ecu:FuncionVerosimilitudLogistica}) hemos visto que la función verosimilitud se puede expresar así:
+
+\[
+{\cal L}(x_1,x_2,\ldots,x_n, y_1, y_2, \ldots, y_n;b_0, b_1) =\prod_{i:y_i=1}\hat{\pi}(x_i)  \cdot \prod_{i:y_i=0}(1 - \hat{\pi}(x_i))
+\]
+\[
+=\prod_{i:y_i=1} \dfrac{e^{b_0+b_1\cdot x_i}}{1+e^{b_0+b_1\cdot x_i}}
+\cdot \prod_{i:y_i=0}\dfrac{1}{1+e^{b_0+b_1\cdot x_i}}
+\]
+
+Vamos a empezar por traducir esta expresión a R. Recuerda que aquí pensamos en $b_0, b_1$ como variables, mientras que $X$ e $Y$ son parámetros.
+
+<<verosimilitud, purl=FALSE>>=
+verosimilitud = function(b){
+    prod(exp(b[1] + b[2] * X[Y==1]) /(1 + exp(b[1] + b[2] * X[Y==1]))) *
+    prod(1 /(1 + exp(b[1] + b[2] * X[Y==0])))
+}
+@
+
+A continuación vamos a representar gráficamente esta función verosimilitud. Puesto que es una función de dos variables, su gráfica es una superficie en el espacio tridimensional. Ya hemos encontrado alguna de estas gráficas en otros tutoriales. Y no nos vamos a extender mucho sobre los comandos de R que vamos a utilizar. Los mostraremos simplemente para que el lector interesado sepa por dónde empezar a buscar si en el futuro necesita profundizar en esto:
+
+<<graficaVerosimilitud, purl=FALSE, echo=-1, fig.align='center', fig.height=5>>=
+par(mar = c(0.6, 0.1,0.6,0.1))
+# Creamos una malla o reticula de valores de b0, b1 en los que
+# evaluaremos la funcion verosimilitud mediante la funcion outer
+valores_b0 = seq(-0.5, 0.5, length.out = 50)#seq(25, 35, length.out = 60)
+valores_b1 = seq(0.7, 1.5, length.out = 50)#seq(-38, -28, length.out = 60)
+
+# Para la representacion que vamos a hacer necesitamos vectorializar
+# la funcion verosimilitud.
+verosimilitud_vect = Vectorize(function(b0, b1)verosimilitud(c(b0, b1)))
+
+# Usando outer calculamos la verosimilitud para cada
+# combinacion de b0 y b1 en la malla que hemos creado
+zp = outer(valores_b0, valores_b1, verosimilitud_vect)
+
+# Y finalmente persp se encarga de crear el grafico tridimensional
+persp(valores_b0, valores_b1, zp,
+      theta=45, phi=20, # angulos de visualizacion
+      col="lightblue", xlab="b0", ylab="b1", zlab="Verosimilitud")
+@
+
+La figura que hemos obtenido deja claro que la verosimilitud es máxima para los valores de $b_0$ y $b_1$ que proporciona el método. En el anterior apartado hemos obtenido esos valores usando {\tt glm}. Pero el problema de encontrar valores mínimos (o máximos) de una función es un problema muy general y que se presenta muy a menudo en una colección muy variada de situaciones. No es de extrañar, por tanto, que exista una parte de las matemáticas dedicada precisamente a eso. La {\sf Optimización} estudia los métodos para localizar esos valores extremos (máximos o mínimos) de una función bajo una serie de condiciones. En R disponemos de varias herramientas de optimización que en muchas ocasiones son suficientes. Una de esas herramientas es la función {\tt optim}. No podemos extendernos demasiado sobre esta herramienta, porque las posibilidades de configurarla son muy amplias. Nosotros vamos a usar uno de los métodos de optimización disponibles, concretamente el método llamado {\sf BFGS} por sus autores, (Broyden, Fletcher, Goldfarb, Shanno). El lector interesado puede encontrar más información en la ayuda de la función {\tt optim} o en el libro (más información usando el enlace)
+\begin{center}
+\link{https://www.crcpress.com/product/isbn/9781439884485}{{\em Using R for Numerical Analysis in Science and Engineering} de V. Bloomfield}
+\end{center}
+
+Para usar ese método debemos proporcionarle a la función {\tt optim} un método para calcular los valores del {\sf gradiente} de la verosimilitud. El gradiente es el vector formado por las dos derivadas parciales:
+\[
+\operatorname{grad}({\cal L}) = \left(
+\dfrac{\partial {\cal L}}{\partial b_0}, \dfrac{\partial {\cal L}}{\partial b_1}
+\right)
+\]
+
+La función verosimilitud es, como hemos visto, muy complicada. Vamos a simplificar las cosas un poco considerando el logaritmo con signo negativo de la verosimilitud El signo se debe a que {\tt optim}, como la mayoría de las funciones de optimización, localiza siempre los valores {\em mínimos} de la función. Además, en lugar de tratar de encontrar una fórmula para el gradiente, la librería {\tt pracma} de R contiene una función {\tt grad} que permite estimar los valores del gradiente de una función. Así que usaremos esa función para proporcionarle a {\tt optim} los valores del gradiente que requiere el método {\sf BFGS}. Recuerda instalar la llibrería {\tt pracma} antes de usarla:
+
+<<warning=FALSE, message=FALSE, purl=FALSE>>=
+library(pracma)
+
+# Definimos el logaritmo con signo negativo de la funcion verosimilitud
+logVerosmltd = function(b){
+  - log(verosimilitud(b))
+}
+
+# Y usamos grad para estimar su gradiente en un punto b = (b0, b1)
+grad_logVerosmltd = function(b){grad(logVerosmltd, x0 = b)}
+@
+
+Ahora ya estamos listos para usar la función {\tt optim}. Para hacerlo debemos darle un valor inicial aproximado de $b_0$ y $b_1$. Como, en principio, no tenemos ninguna estimación, simplemente tomaremos ambos iguales a $1$. Al tratarse de un método aproximado, otros valores iniciales producirían resultados ligeramente distintos. Puedes experimentar con otros valores. El resultado de {\tt optim} contiene bastante información sobre el proceso de optimización asociado al método {\sf BFGS}:
+
+{\small
+<<purl=FALSE>>=
+(optimizacion =
+   optim(par = c(1, 1), fn = logVerosmltd, gr = grad_logVerosmltd, method="BFGS"))
+@
+}
+
+La componente {\tt par} del resultado contiene la estimación de los valores $b_0$ y $b_1$ que producen el resultado óptimo:
+<<purl=FALSE>>=
+optimizacion$par
+@
+y si comparas con lo que obtuvimos en la sección previa usando {\tt glm} verás que son los mismos valores:
+<<purl=FALSE>>=
+summGlmXY$coefficients
+@
+Insistimos, en cualquier caso, en que los resultados dependen de los valores iniciales de $b_i$ que hemos usado en {\tt optim}. Otros valores podrían producir unas estimaciones menos parecidas a las de {\tt glm}.
+
+\begin{ejercicio}
+\label{tut13:ejercicio06}
+La componente {\tt value} del resultado de {\tt optim}, que es \Sexpr{round(optimizacion$value, 2)}, también tiene una interpretación relacionada con los resultados que obtuvimos con {\tt glm}. ¿Cuál es esa interpretación?
+%Soluciones en la página \pageref{tut13:ejercicio06:sol}.
+\qed
+\end{ejercicio}
+
+
+\section{Inferencia en regresi\'on log\'istica.}
+\label{tut13:sec:inferencia}
+
+\subsection{El estadístico de Wald.}
+
+En la Ecuación \ref{curso-cap13:ecu:EstadisticoWaldRegresionLogistica} del libro (pág. \pageref{curso-cap13:ecu:EstadisticoWaldRegresionLogistica}) hemos visto el {\sf Estadístico de Wald} para el coeficiente $\beta_1$ del modelo de regresión logística:
+\[
+\Xi = \dfrac{b_1}{SE(b_1)}
+\]
+Dijimos entonces que no íbamos a dar una expresión explícita del error estándar $SE(b_1)$, porque usaríamos el ordenador para obtener el valor de ese error. Vamos a empezar esta sección señalando que la función {\tt glm} de R ya nos ha proporcionado ese resultado. En efecto, si recordamos la tabla de coeficientes
+
+<<purl=FALSE>>=
+summGlmXY$coefficients
+@
+
+vemos que el título de la segunda columna es precisamente {\tt Std. Error}, ya que los elementos de esa clumna son los errores estándar de los estadísticos de Wald correspondientes, respectivamente, a $\beta_0$ (en la fila {\tt Intercept}) y $\beta_1$ (en la fila con el nombre {\tt X} de la variable predictora). En particular el valor de $SE(b_1)$ es, entonces:
+
+<<purl=FALSE>>=
+summGlmXY$coefficients[2, 2]
+@
+
+Por lo tanto el estadístico de Wald es:
+
+<<purl=FALSE>>=
+(WaldBeta1 = summGlmXY$coefficients[2, 1] / summGlmXY$coefficients[2, 2])
+@
+
+Puedes comprobar que el valor del estadístico es precisamente el que aparece en la tercera columna de la tabla, titulada {\tt z value}. Y la razón de ese título es que, como hemos visto en el libro, $\Xi$ se distribuye como una normal estándar $Z$. También hemos dicho que actualmente no se considera adecuado usar este estadístico de Wald $\Xi$ para hacer contrastes de hipótesis sobre $\beta_1$, por las razones que hemos expuesto en el libro. Pero por si alguna vez necesitras hacerlo, el p-valor se calcularía como en un contraste bilateral con $Z$ (fíjate en que usamos la cola derecha):
+
+<<purl=FALSE>>=
+(pValorWald = 2 * (pnorm(WaldBeta1, lower.tail = FALSE)))
+@
+Y ahora ya está claro que la última columna de la tabla contiene los p-valores de los contrastes para $\beta_0$ y $\beta_1$, usando los correspondientes estadísticos de Wald.
+
+\subsubsection{Selección de modelos y devianza.}
+\label{cap13:subsubsec:SeleccionModelosDevianza}
+
+En la Ecuación \ref{curso-cap13:ecu:EcuacionGlm} del libro (pág. \pageref{curso-cap13:ecu:EcuacionGlm}) hemos definido la devianza mediante
+\[
+D(modelo) = - 2\ln({\cal L}(modelo)).
+\]
+Y sin duda, el lector atento habrá reparado en que uno de los resultados de {\tt glm} es
+
+<<purl=logistica, echo=-(1:2)>>=
+################################
+# Devianza del modelo logistico
+
+summGlmXY$deviance
+
+@
+
+Vamos a confirmar que este resultado coincide con la anterior definición. Antes hemos aprendido a calcular el logaritmo de la verosimilitud con {\tt logLik}, así que hacemos:
+
+<<purl=FALSE>>=
+- 2 * logLik(glmXY)
+@
+
+e, ignorando las {\em decoraciones} que R añade, vemos que el valor de la devianza que proporciona {\tt glm} es el esperado.
+
+Pero además, {\tt glm} también nos proporciona la devianza del llamado {\em modelo nulo}, el que se obtiene suponiendo que la hipótesis nula $H_0=\{\beta_1= 0\}$ es cierta:
+
+<<purl=logistica, echo=-(1:2)>>=
+############################
+# Devianza del modelo nulo
+
+summGlmXY$null.deviance
+
+@
+
+Y, por lo tanto, el estadístico $G$ de la Ecuación \ref{curso-cap13:ecu:EstadisticoG} del libro (pág. \pageref{curso-cap13:ecu:EstadisticoG}) es muy fácil de obtener:
+
+
+<<purl=logistica, echo=-(1:2)>>=
+############################
+# Estadistico G
+
+(G = summGlmXY$null.deviance - summGlmXY$deviance)
+
+@
+
+Y, puesto que sabemos que $G$ tiene una distribución muestral $\chi^2_1$, obtenemos el p-valor del contraste de $H_0$ así:
+
+<<purl=logistica, echo=-(1:2)>>=
+#######################################
+# p-valor del contraste sobre beta1 = 0
+
+(pValor = pchisq(G, lower.tail = FALSE, df=1))
+
+@
+
+Con un p-valor tan (ridículamente) pequeño, es evidente que la hipótesis nula se rechaza. Eso se interpreta como una evidencia significativa de que el modelo con $\beta_1\neq 0$ explica mejor la relación entre las variables $X$ e $Y$ que el modelo nulo con $\beta_1 = 0$.
+
+\begin{ejercicio}
+\label{tut13:ejercicio07}
+Comprueba los resultados del Ejemplo \ref{curso-cap13:ejem:contrasteBeta1vasculopatia} del libro (pág. \pageref{curso-cap13:ejem:contrasteBeta1vasculopatia}).
+%Soluciones en la página \pageref{tut13:ejercicio07:sol}.
+\qed
+\end{ejercicio}
+
+
+
+\subsubsection{Intervalos de confianza para $\beta_0$ y $\beta_1$}
+
+En la Ecuación \ref{curso-cap13:ecu:IntconfBetaRegresionLogistica} del libro (pág. \pageref{curso-cap13:ecu:IntconfBetaRegresionLogistica}) hemos visto que podemos usar los valores de los errores estándar que intervienen en el Estadístico de Wald para construir intervalos de confianza para $\beta_0$ y $\beta_1$. Y una vez que sabemos que esos errores estándar aparecen en la tabla que hemos obtenido de {\tt glm}, la construcción de dichos intervalos es muy sencilla:
+
+<<purl=FALSE>>=
+nc = 0.95
+alfa = 1 - nc
+alfaMedios = alfa/2
+zAlfaMedios = qnorm(1 - alfaMedios)
+
+(b0 = summGlmXY$coefficients[1, 1])
+
+(b1 = summGlmXY$coefficients[2, 1])
+
+(SE_b0 = summGlmXY$coefficients[1, 2])
+
+(SE_b1 = summGlmXY$coefficients[2, 2])
+
+(intervaloBeta0 = b0 + c(-1, 1) * zAlfaMedios * SE_b0)
+
+(intervaloBeta1 = b1 + c(-1, 1) * zAlfaMedios * SE_b1)
+@
+
+Aunque siempre es bueno aprender la procedencia de los resultados que obtenemos, si queremos obtener cómodamente estos intervalos lo más fácil es usar la función {\tt confint.default} que nos los proporciona directamente:
+
+<<purl=logistica, echo=-(1:4)>>=
+#######################################
+# Intervalos de confianza para beta0 y beta1
+
+nc= 0.95
+
+confint.default(glmXY, level = nc)
+@
+
+{\em Una advertencia:} existe otra función, llamada {\tt confint}, que también proporciona intervalos de confianza, pero que en el caso de la regresión logística son de un tipo distinto a los que hemos construido utilizando el estadístico de Wald.
+
+\begin{ejercicio}
+\label{tut13:ejercicio08}
+Comprueba los resultados del Ejemplo \ref{curso-cap13:ejem:intConfCoeficientesGlmVasculopatia} del libro (pág. \pageref{curso-cap13:ejem:intConfCoeficientesGlmVasculopatia}).
+%Soluciones en la página \pageref{tut13:ejercicio08:sol}.
+\qed
+\end{ejercicio}
+
+
+\section{Problemas de clasificación.}
+\label{tut13:sec:ProblemasClasificacion}
+
+En esta sección vamos a usar el modelo de regresión logística que hemos aprendido a construir para implementar un método clasificador, en el caso en el que $Y$ es una variable dicotómica (un factor con dos niveles) y $X$ es una variable continua. Como ejemplo, vamos a usar los datos sobre la relación entre la vasculopatía (variable $Y$) y el índice itb (variable $X$). Así que de nuevo empezamos por leer los datos:
+
+<<cabeceraClasificador, echo=FALSE, purl = clasificador>>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadística
+# Tutorial-13.
+#
+# Fichero de instrucciones R para construir un METODO
+# CLASIFICADOR basado en regresión logistica, con variable
+# respuesta dicotomica Y y variable explicativa continua X.
+# Se parte de un fichero de datos (tipo csv). El fichero contiene
+# en su primera columna los valores de la variable explicativa y
+# en la segunda columna los valores de la variable respuesta.
+# Esta variable respuesta deberá necesariamente ser un factor
+# con dos niveles. Si el orden de esas dos columnas es el contrario
+# se pueden intercambiar mediante el valor de la variable colFactor.
+#############################################################
+# INSTRUCCIONES:
+#   Fija el directorio de trabajo (con la subcarpeta datos con el csv.)
+#############################################################
+
+@
+
+
+<<lecturaDatosClasificador, eval=FALSE, comment=NULL, echo=FALSE, purl=clasificador>>=
+##################################
+## Lectura del fichero de datos.
+## No olvides los parametros de read.table (sep, dec, etc.)
+
+datosFichero = read.table("../datos/", header = TRUE, sep=",")
+head(datosFichero)
+
+@
+
+<<lecturaDatosEjemploClasificador, purl=FALSE>>=
+#datosFichero = read.table("../datos/Cap13-DatosVasculopatia.csv", header = TRUE, sep=",")
+head(datosFichero)
+@
+
+<<eval=TRUE, echo=TRUE, purl=FALSE>>=
+datosFichero = read.table("../datos/Cap13-ConstruccionModeloLogistico.csv",
+                          header = TRUE, sep="\t")
+@
+
+
+Fijamos los nombres de las variables y creamos un data.frame.
+
+<<nombresVariablesClasificador, echo = -(1:4), purl = clasificador>>=
+######################################
+# Fijamos los nombres de las variables
+# y creamos un data.frame con ellos.
+
+colX = 1
+if(colX == 1){
+  X = datosFichero[ , 1]
+  Y = datosFichero[ , 2]
+} else {
+  X = datosFichero[ , 2]
+  Y = datosFichero[ , 1]
+}
+datos = data.frame(X, Y)
+
+@
+
+A continuación, construimos el modelo logístico correspondiente usando {\tt glm}.
+
+<<funcionGlmClasificador, purl=clasificador, echo=-(1:2)>>=
+########################################################
+# Construccion del modelo logistico.
+
+glmXY = glm(Y ~ X, family = binomial(link = "logit"), data = datos)
+
+(summGlmXY = summary(glmXY))
+
+
+datos$probs = glmXY$fitted.values
+@
+
+Como ves, hemos añadido a los datos el vector {\tt fitted.values} con las predicciones de las probabilidades correspondientes a los $n=\Sexpr{length(X)}$ puntos de la muestra. Veámoslas en forma de matriz, junto con el valor de la variable respuesta para cada punto de la muestra. Además, vamos a ordenar las observaciones según el valor de la variable $X$. Finalmente, hemos guardado en la primera columna el número de cada observación en la muestra original (es una información valiosa, que no conviene perder al crear una tabla como esta). Hemos usado la función {\tt row.names} para gestionar esa información de la tabla de la forma que nos ha parecido más conveniente. Fíjate también en que hemos aprovechado la creación de la tabla para poner nombre a dos de las columnas, {\tt nObs} y {\tt predicProb}.
+
+<<purl=FALSE>>=
+orden = order(X, decreasing = TRUE)
+tabla = cbind(nObs = 1:length(X), X, predicProb = glmXY$fitted.values, Y)[orden, ]
+row.names(tabla) = 1:length(X)
+head(tabla)
+tail(tabla)
+@
+
+Ahora, para clasificar, debemos elegir un punto o umbral de corte. Inicialmente podemos tomar el valor del que hemos llamado el {\em clasificador ingenuo}:
+
+<<purl=clasificador>>=
+cp = 0.5
+@
+
+Y con ese umbral la clasificación se obtiene así:
+
+<<purl=clasificador>>=
+clasificacion = ifelse(glmXY$fitted.values > cp, 1, 0)
+@
+
+Añadimos el resultado de la clasificación a la tabla.
+
+El resultado es la información que aparece en la parte (a) de la Tabla \ref{curso-cap13:tabla:ejemploClasificadorVasculopatia1} del libro (pág. \pageref{curso-cap13:tabla:ejemploClasificadorVasculopatia1}):
+
+<<purl=FALSE, echo=1>>=
+tabla = cbind(tabla, clasificacion = clasificacion[orden])
+head(tabla)
+tail(tabla)
+@
+
+
+<<echo=FALSE, eval=FALSE, purl=FALSE>>=
+library(xtable)
+xtable(tabla[ , -1], digits = c(0, 2, 2, 0, 0))
+@
+
+Para localizar las posiciones de los valores mal clasificados en la tabla usamos la función {\tt which}:
+
+<<purl=FALSE>>=
+errores = which(tabla[ , 4] != tabla[ , 5] )
+@
+
+Así que la tasa de aciertos de la clasificación es:
+
+
+<<purl=FALSE>>=
+(tasaAciertos = 1 - length(errores) / length(X))
+@
+
+En el próximo apartado vamos a calcular este y otros valores de otra manera.
+
+\subsection{Tabla de contingencia. Sensibilidad y especificidad. Precisión.}
+\label{tut13:subsec:TablaContingenciaSensibilidadEspecificidad}
+
+¿Cuál es la tabla de contingencia de los valores de $Y$ frente a los resultados de la clasificación? En R la podemos obtener fácilmente usando {\tt table}. Sólo hay un pequeño problema,  y es que el orden de los valores no coincide con el que deseamos: {\tt table} coloca en la primera fila (y columna) el valor $0$. Así que tenemos que invertir el orden.
+
+<<purl=FALSE>>=
+(tablaContingencia = table(clasif = clasificacion, Y = Y)[2:1, 2:1])
+@
+
+<<echo=FALSE, eval=FALSE, purl=FALSE>>=
+xtable(tablaContingencia)
+@
+
+
+A partir de esa tabla es inmediato calcular la sensibilidad y especificidad. Primero usamos {\tt prop.table} como vimos en el Tutorial12 para dividir cada columna por el total de esa columna:
+
+<<purl=FALSE>>=
+(tablaProporciones = prop.table(tablaContingencia, margin = 2))
+@
+
+Y ahora podemos leer directamente los valores que buscábamos:
+
+<<purl=FALSE>>=
+(sensibilidad = tablaProporciones[1, 1])
+(especificidad = tablaProporciones[2, 2])
+@
+
+La tasa de acierto del método clasificador es, como vimos antes:
+
+<<purl=FALSE>>=
+(tasaAcierto = sum(diag(tablaContingencia)) / sum(tablaContingencia))
+@
+
+\subsubsection*{Punto de indiferencia.}
+
+Antes de seguir adelante, el {\em punto de indiferencia} es:
+
+<<purl=FALSE>>=
+(indiferencia = -glmXY$coefficients[1]/glmXY$coefficients[2])
+@
+
+\begin{ejercicio}
+\label{tut13:ejercicio09}
+Comprueba los resultados del Ejemplo \ref{curso-cap13:ejem:EjemploPuntoIndiferencia} del libro (pág. \pageref{curso-cap13:ejem:EjemploPuntoIndiferencia}).
+%Soluciones en la página \pageref{tut13:ejercicio09:sol}.
+\qed
+\end{ejercicio}
+
+
+\subsection{La librería {\tt caret}.}
+\label{tut13:subsec:LibreriaCaret}
+
+Como hemos visto muchas veces a lo largo de los tutoriales previos, también hay una forma más sencilla, menos {\em ``manual''},  de obtener esta información. De hecho, ontendremos mucha más información. Para conseguirlo, tenemos que instalar la librería {\tt caret} de R. Esta librería, que aquí vamos a usar de forma muy elemental, pone a nuestra disposición una gran colección de recursos propios del campo del {\em Aprendizaje Automático} (en inglés, {\em Machine Learning}). En R existen, literalmente, cientos de librerías para ese tipo de tareas y {\tt caret} tiene, entre otras, la virtud de proporcionar una interfaz de uso común para muchas de esas librerías, ahorrándonos la necesidad de conocer los detalles específicos de cada caso. No te extrañes, por tanto, si la instalación de {\tt caret} es más larga que la de otras librerías más básicas que hemos visto: se trata de una herramienta avanzada.
+
+Pero no temas, para el problema que nos ocupa las cosas son muy fáciles. Después de instalar la librería, la cargamos como de costumbre  (puede que veas algunos mensajes de advertencia; mientras no haya errores no te preocupes)
+
+<<warning=FALSE, message=FALSE, purl=clasificador, echo=-1>>=
+## Cargamos la libreria caret
+
+library(caret)
+
+@
+
+Ahora vamos a usar una de las funciones que {\tt caret} nos proporciona: la función {\tt confusionMatrix}. Si le proporcionamos a esta función un vector con los resultados de una clasificación dicotómica y  un segundo vector con los valores correctos (en nuestro caso, el vector $Y$) la función nos devuelve tanto la tabla de contingencia que hemos creado antes como los valores de la especificidad y sensibilidad del clasificador. Pero cuidado: como dice el refrán, el diablo está en los detalles. Al igual que nos ha sucedido antes, tenemos que vigilar el orden que se utiliza al clasificar. Aunque hemos clasificado usando $1$ y $0$ para representar las clases, la mejor manera de pensar en una clasificación es en términos de un factor con dos niveles. Y es muy importante ordenar esos niveles correctamente, si esperamos obtener valores correctos de la sensibilidad y la especificidad. En una prueba diagnóstica ese trabajo {\em ``nos lo dan hecho''}, porque normalmente asignamos el $1$ a enfermo, el $0$ a sano y, a su vez, $1$ a prueba positiva, $0$ a prueba negativa. Pero en otros casos, como una clasificación en {\em nacional o extranjero}, los niveles no están tan claramente predefinidos. Sirvan estas advertencias para justificar que, en el ejemplo que nos ocupa, vamos a empezar por construir dos factores, en los que además vamos a indicar que queremos que R utilice el valor $1$ como primer nivel de los dos factores y que, por tanto, lo coloque en la primera fila y columna de la tabla de contingencia.
+
+<<purl=FALSE>>=
+clasificacion_f = factor(clasificacion, levels = 1:0)
+Y_f =  factor(Y, levels = 1:0)
+(confMat = confusionMatrix(clasificacion_f, Y_f))
+@
+
+Como ves, la salida de la función incluye mucha información. En primer lugar, la tabla de contingencia, a la que podemos acceder así:
+
+<<purl=FALSE>>=
+confMat$table
+@
+
+Pero también nos proporciona otras dos componentes, ambas vectores con nombre:
+
+<<purl=FALSE>>=
+confMat$byClass
+
+confMat$overall
+
+@
+
+de las que resulta muy fácil extraer la sensibilidad, especificidad y precisión.
+
+
+<<purl=FALSE>>=
+(sensibilidad = confMat$byClass[1])
+
+(especificidad = confMat$byClass[2])
+
+(tasaAcierto = confMat$overall[1])
+
+@
+
+Naturalmente, estos valores coinciden con los que hemos obtenido antes.
+
+\subsubsection{Clasificación logística con umbral arbitrario.}
+
+Para facilitar nuestro trabajo vamos a crear una función en R para medir la calidad de la clasificación dicotómica por umbral basada en la regresión logística. Los argumentos de la función serán el modelo logístico y el umbral o punto de corte. Y la salida de la función será una lista con la sensibilidad, especificidad y  precisión:
+
+<<purl=clasificador>>=
+clasifUmbral = function(glmXY, cp){
+  Y = glmXY$y
+  clasificacion = ifelse(glmXY$fitted.values > cp, 1, 0)
+  clasificacion_f = factor(clasificacion, levels = 1:0)
+  Y_f =  factor(Y, levels = 1:0)
+  confMat = confusionMatrix(clasificacion_f, Y_f)
+  return(c(confMat$byClass[1], confMat$byClass[2], confMat$overall[1]))
+}
+
+@
+
+Veamos como funciona. Para el clasificador ingenuo hacemos:
+
+<<purl=FALSE>>=
+clasifUmbral(glmXY, cp = 0.5)
+@
+
+Pero si se elige otro punto de corte, la sensibilidad, especificidad y tasa de aciertos cambian:
+
+<<purl=FALSE>>=
+clasifUmbral(glmXY, cp = 0.35)
+@
+
+Pronto analizaremos cómo dependen estos valores de la elección del punto de corte. Pero antes, veamos otros clasificadores.
+
+\subsection{Otros clasificadores dicotómicos.}
+
+\subsubsection{El método knn.}
+
+Otra de las ventajas de instalar la librería {\tt caret} es que junto con ella se instalan implementaciones de algunos de los algoritmos básicos del Aprendizaje Automático. Por ejemplo, la función {\tt knn3} nos va a permitir aplicar de forma muy sencilla el algoritmo de clasificación knn que hemos descrito en la Sección
+\ref{curso-cap13:subsec:OtrosEjemplosMetodosClasificadores} del libro (pág. \pageref{curso-cap13:subsec:OtrosEjemplosMetodosClasificadores}).Usaremos $k=5$ para empezar e identificaremos con la letra $A$ el modelo que construimos, porque después vamos a usar otro valor de $k$. Para construir el primer clasificador basta con hacer:
+
+<<clasKnn, purl=FALSE>>=
+knnModeloA = knn3(Y_f ~ X, data = datos, k=5, prob=TRUE)
+@
+
+Para hacer predicciones, como en casos anteriores, usamos {\tt predict}. En este caso predecimos sobre los propios valores de $X$ en la muestra, porque aquí no tenemos la opción {\tt fitted} de los modelos de regresión. La respuesta es una matriz de probabilidades de los dos posibles valores de  $Y$, para cada valor de $X$ en la muestra.
+
+<<purl=FALSE>>=
+probsKnnA = predict(knnModeloA, newdata = data.frame(X))
+head(probsKnnA)
+@
+
+La forma más sencilla de  visualizar el resultado es añadiendo esas probabilidades al diagrama de dispersión.  El resultado es la parte (a) de la Figura \ref{curso-cap13:fig:ClasificadorKnn} del libro (pág. \pageref{curso-cap13:fig:ClasificadorKnn}). Una vez dibujado el diagrama, podemos usar {\tt points} para añadir las probabilidades.
+
+<<purl=FALSE, echo=-(1:9), fig.align='center', fig.height=4>>=
+<<diagramaDispersion>>
+points(X, probsKnnA[ , 1], col="red", pch="·", lwd=1, cex=2)
+@
+
+Si lo que queremos es una predicción en valores de $Y$ en lugar de probabilidades, hacemos
+
+<<purl=FALSE>>=
+YknnA = predict(knnModeloA, newdata = data.frame(X), type="class")
+head(YknnA)
+tail(YknnA)
+@
+
+Y ahora podemos analizar estas predicciones mediante {\tt confusionMatrix}
+<<purl=FALSE>>=
+confusionMatrix(YknnA, reference = Y_f)
+@
+
+Para obtener la parte (b) de la Figura \ref{curso-cap13:fig:ClasificadorKnn} repetimos estos pasos con $k=100$:
+
+<<purl=FALSE>>=
+knnModeloB = knn3(Y_f ~ X, data = datos, k=100, prob=TRUE)
+probsKnnB = predict(knnModeloB, newdata = data.frame(X))
+YknnB = predict(knnModeloB, newdata = data.frame(X), type="class")
+confusionMatrix(YknnB, reference = Y_f)
+@
+
+y la figura que se obtiene es:
+
+<<purl=FALSE, echo=-(1:9), fig.align='center', fig.height=4>>=
+<<diagramaDispersion>>
+points(X, probsKnnB[ , 1], col="red", pch="·", lwd=1, cex=2)
+@
+
+Fíjate en que, a pesar de lo que pudieras haber pensado al ver las figuras, la sensibilidad, especificidas y tasa de errores parecen apuntar a que el clasificador con $k=5$ hace su trabajo mejor que el que usa $k=100$.
+
+\subsection{Comparación de clasificadores. Curvas ROC.}
+\label{tut13:subsection:ComaracionClasificadoresCurvasROC}
+
+En este apartado vamos a ver cómo podemos comparar el rendimiento de los algoritmos clasificadores. Como hemos visto en la Sección \ref{curso-cap13:subsection:seleccionPuntoCorte} del libro (pág. \pageref{curso-cap13:subsection:seleccionPuntoCorte}), el primer paso en esa dirección puede ser el análisis de la forma en que cambian la sensibilidad y especificidad de un clasificador definido mediante un punto de corte $c_p$, cuando se consideran distintos valores de $c_p$. Este análisis, además, es importante por sí mismo cuando de lo que se trata es de seleccionar un valor de $c_p$ con alguna propiedad interesante.
+
+
+En realidad, las herramientas que necesitamos ya están preparadas. Antes hemos definido una función {\tt clasifUmbral} que nos va a permitir representar gráficamente los valores de la sensibilidad y especificidad en función del punto de corte. Para ello creamos un vector de valores del punto de corte y con {\tt sapply} evaluamos la función {\tt clasifUmbral} en cada elemento del vector. Representamos gráficamente la sensibilidad y especificidad en un mismo gráfico:
+
+<<purl=clasificador, fig.align="center", fig.height=4>>=
+
+cp_v = seq(1, 0, by = -0.001)
+
+sens = sapply(cp_v, FUN = function(cp){clasifUmbral(glmXY, cp)[1]})
+
+espec = sapply(cp_v, FUN = function(cp){clasifUmbral(glmXY, cp)[2]})
+
+plot(cp_v, sens, type="l", col="red", lwd=3, lty=1, xlab="punto de corte", ylab="")
+
+points(cp_v, espec, type="l", col="blue", lwd=3, lty=2)
+
+legend(x="bottom", legend=c("sensibilidad", "especificidad"),
+       col = c("red", "blue"), bty=1, lty=c(1,2),lwd=3)
+@
+
+Para la tasa de errores hacemos algo parecido:
+
+<<purl=clasificador, fig.align="center", fig.height=4>>=
+accur = sapply(cp_v, FUN = function(cp){clasifUmbral(glmXY, cp)[3]})
+
+plot(cp_v, accur, type="l", col="black", lwd=3, lty=1,
+     xlab="punto de corte", ylab="Tasa de aciertos")
+
+@
+
+Como estamos trabajando con una muestra grande, las curvas son relativamente suaves, comparadas con las que aparecen en las Figuras \ref{curso-cap13:fig:CurvasSensibilidadEspecificidad} (pág. \pageref{curso-cap13:fig:CurvasSensibilidadEspecificidad}) y \ref{curso-cap13:fig:TasaAciertosVsPuntoCorte} (pág. \pageref{curso-cap13:fig:TasaAciertosVsPuntoCorte}) del libro.
+
+\subsubsection*{Curvas ROC en R. La librería ROCR.}
+
+En la Sección \ref{curso-cap13:subsection:ROC} del libro (pág. \pageref{curso-cap13:subsection:ROC}) hemos visto que las curvas ROC son una herramienta que puede resultar muy útil para comparar el rendimiento de dos clasificadores. En esta sección vamos a aprender a dibujarlas con R. Para empezar, vamos a aprovecharnos de  que antes hemos generado dos vectores de valores de la sensibilidad y especificidad del clasificador logístico para distintos valores del punto de corte $c_p$. A partir de esos valores es muy fácil dibujar la curva ROC.  Hemos usado la opción gráfica {\tt asp=1}  para garantizar que R usa la misma escala en ambos ejes y conseguir así que la región de las curvas ROC sea realmente un cuadrado. Por cierto, {\tt asp} viene del inglés {\em aspect}, ya que se suele llamar {\sf relación de aspecto} al cociente de las escalas que se usan en los ejes de un gráfico. Además, hemos usado {\tt polygon} para dibujar el cuadrado unidad que define la región de las curvas ROC y también hemos usado {\tt segments} para dibujar la diagonal del cuadrado que representa los clasificadores aleatorios.
+
+<<curvaROClogistica1, fig.align='center', fig.height=5, purl=FALSE>>=
+plot(1- espec, sens, type = "l", col="blue", lwd=4,
+     xlab="1 - especificidad", ylab="sensibilidad",
+     xlim=c(0, 1), ylim=c(0, 1), asp=1)
+
+polygon(c(0, 0, 1, 1), c(0, 1, 1, 0), lwd=2)
+
+segments(x0 = 0, y0 = 0, x1 = 1, y1 = 1, col="black", lty=2, lwd=4)
+
+@
+<<curvaROClogistica2, eval=FALSE, echo=FALSE, purl=FALSE >>=
+plot(1- espec, sens, type = "l", col="orange", lwd=9,
+     xlab="1 - especificidad", ylab="sensibilidad",
+     xlim=c(0, 1), ylim=c(0, 1), asp=1)
+polygon(c(0, 0, 1, 1), c(0, 1, 1, 0), lwd=2)
+segments(x0 = 0, y0 = 0, x1 = 1, y1 = 1, col="black", lty=2, lwd=4)
+@
+
+
+Y ahora vamos a ver una segunda manera, en general más cómoda y potente, de dibujar esas mismas curvas. Para ello tendremos que usar la librería {\tt ROCR}, que habrás de instalar si aún no lo has hecho. Cargamos la librería
+
+
+<<ROClogistica, purl=clasificador, warning=FALSE, message=FALSE>>=
+library(ROCR)
+@
+
+y usamos la función {\tt predicition} de la propia librería {\tt ROCR} para construir el tipo de objeto que {\tt ROCR} usa para hacer cálculos. He usado {\tt class} para que veas que {\tt pred} es de tipo {\tt prediction}. Si sigues avanzando en R, o en cualquier otro lenguaje de programamción, tendrás que aprender un poco más sobre los objetos y clases de R.
+
+<<purl=FALSE>>=
+predLogistica = prediction(predictions = glmXY$fitted.values, labels = Y)
+class(predLogistica)
+@
+
+A partir del objeto {\tt predLogistica} podemos pedirle a {\tt ROCR} que calcule toda una serie de medidas de rendimiento (en inglés, {\em performance}) asociadas con ese clasificador. Para ello usamos la función llamada, precisamente, {\tt performance}. Esa función se puede usar, por ejemplo, para obtener un vector con valores de la sensibilidad o la especificidad para disintos valores del punto de corte. Pero si le damos a la vez dos de esos indicadores (por ejemplo, sensibilidad y (1 - especificidad)), entonces el resultado de {\tt performance} puede usarse para dibujar el gráfico de como se relacionan entre sí ambos indicadores Por ejemplo, para obtener el dibujo de la curva ROC hacemos:
+
+<<purl=FALSE>>=
+ROClogistica = performance(predLogistica, measure="sens", x.measure="fpr")
+@
+
+Aquí {\tt sens} es una abreviatura de sensibilidad (en inglés, {\em sensitivity}), mientras que {\tt fpr} viene del inglés, {\em false positive rate}, o tasa de falsos positivos, que es otra manera de referirse a la cantidad que corresponde a (1 - especificidad).  En la ayuda de {\tt performance} tienes una (amplia) lista de todas las medidas de rendimiento del clasificador que se pueden utilizar y de las correspondientes abreviaturas.
+
+Ahora ya podemos dibujar esa curva ROC, que vamos a superponer al dibujo que hicimos antes, para que veas que coinciden. Esto se consigue con la opción {\tt add =TRUE} de {\tt plot}. Además hemos pintado la curva ROC que obtuvimos antes {\em ``a mano''} con un trazo grueso de color naranja, para que veas como coincide con la que obtenemos de {\tt ROCR}, que aparece con un trazo azul más fino.
+
+<<echo=-(1:6), fig.align='center', fig.height=6, purl=FALSE>>=
+<<curvaROClogistica2>>
+plot(ROClogistica, add =TRUE, lwd=3, lty=1, col="blue", asp=1, axes=FALSE, bty="n")
+@
+
+¿Cómo se calcula el área bajo la curva ROC, el valor que hemos llamado AUC? Muy fácilmente, usando de nuevo {\tt performance}:
+
+<<purl=FALSE>>=
+AUClogistica = performance(predLogistica,"auc")
+AUClogistica@y.values
+@
+
+{\em Observación técnica:}  Si eres un observador muy atento te habrás fijado en que hemos usado el símbolo \verb#@# para acceder al valor del área, en lugar de usar \verb#$#, como hemos hecho en tantas otras ocasiones anteriores. La razón es, de nuevo, una cuestión técnica de R, que puedes ignorar si no te interesa demasiado: simplificando, R maneja dos grandes sistemas de objetos o clases, llamados S3 y S4. Los objeto de tipo S4 tienen componentes llamados {\tt slots} y para acceder a un {\tt slot} se usa el símbolo \verb#@# que hemos encontrado aquí.
+
+Para practicar un poco más el uso de ROCR vamos a aplicárselo a los clasificadores de tipo knn que hemos usado antes (con $k=5$ y $k=100$). Primero hacemos la representación conjunta de sus curvas ROC, de forma similar a lo que hemos hecho en la Figura \ref{curso-cap13:fig:curvaROCdosmodelos} del libro (pág. \pageref{curso-cap13:fig:curvaROCdosmodelos}), en aquel caso para la relación entre el itb y las vasculopatía.
+
+Fíjate en que la primera vez usamos {\tt plot} con la opción {\tt add=FALSE}, y la segunda con {\tt add=TRUE} para que las dos curvas aparezcan en la misma figura. Por esa razón sólo hemos necesitado fijar algunos parámetros gráficos en la primera llamada a {\tt plot}.
+
+<<ROCknn, fig.align='center', fig.height=5, purl=FALSE>>=
+predKnnA = prediction(predictions = probsKnnA[, 1], labels = Y)
+predKnnB = prediction(predictions = probsKnnB[, 1], labels = Y)
+
+perfKnnA = performance(predKnnA, measure="tpr", x.measure="fpr")
+perfKnnB = performance(predKnnB, measure="tpr", x.measure="fpr")
+
+plot(perfKnnA, add =FALSE, lwd=4, lty=1, col="blue",
+      xlab = "1 - especificidad (tasa de falsos positivos)",
+      ylab = "sensibilidad (tasa verdaderos positivos)",
+      asp=1, axes=FALSE, bty="n")
+plot(perfKnnB, add =TRUE, lwd=4, lty=3, col="red")
+
+@
+
+Las dos curvas están muy próximas y son ambas muy buenos clasificadores, pero parece que el clasificador A (con $k=5$) tiene mejor comportamiento.  Una forma simple de comparar ambos clasificadores es calculando sus valores de AUC
+
+<<purl=FALSE>>=
+(AUCKnnA = performance(predKnnA,"auc")@y.values[[1]])
+(AUCKnnB = performance(predKnnB,"auc")@y.values[[1]])
+@
+
+Estos valores confirman lo que sospechábamos en la página \pageref{tut13:subsection:ComaracionClasificadoresCurvasROC}, que el calsificador con $k=5$ es ligeramente superior al otro (y es computacionalmente menos costoso).
+
+\section{Bondad del ajuste en la regresión logística.}
+\label{tut13:sec:BondadDelAjuste}
+
+En esta sección vamos a ver como usar R para calcular el estadístico de Hosmer-Lemeshow y usarlo para analizar la bondad del ajuste del modelo de regresión logística. Vamos a empezar  usando los datos del fichero
+{\tt Cap13-ConstruccionModeloLogistico.csv} correspondientes al Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}).
+
+
+\subsubsection*{Clases de riesgo.}
+
+El primer paso, como hemos visto en la página \pageref{curso-cap13:subsubsec:ConstruccionEstadisticoHosmerLemeshowPasoPaso}  del libro consiste en definir las clases de riesgo, o deciles de riesgo en el caso común en el que se usan $10$ clases. Llamaremos $g$ al número de clases y empezamos construyendo los puntos de corte que marcan la frontera entre clases:
+<<>>=
+g = 10
+(puntosCorte = quantile(fitted(glmXY), probs = seq(0, 1, 1/g)))
+@
+
+<<echo=FALSE, purl=FALSE, eval=FALSE>>=
+library(xtable)
+xtable(t(data.frame(names(puntosCorte), puntosCorte)))
+@
+
+
+A continuación usamos estos puntos de corte y la función {\tt cut} de R que ya conocemos para definir un factor, llamado {\tt claseRiesgo}, que identifica la clase de riesgo a la que pertenece cada valor $x_i$ de la muestra. Hemos elegido las opción {\tt  include.lowest = TRUE} de la función {\tt cut} para garantizar que el valor mínimo de la muestra se clasifica en alguna clase de riesgo. Añadimos el resultado al {\tt data.frame datos} porque así es como de hecho sabremos cuál es la clase para cada valor de $X$.
+
+<<>>=
+datos$claseRiesgo = cut(fitted(glmXY), breaks = puntosCorte,
+                        include.lowest = TRUE)
+(n.i = table(datos$claseRiesgo))
+min(n.i)
+@
+
+La tabla de frecuencias del factor nos muestra los valores que en el libro hemos llamado $n_i$. Y como puede verse, una de las virtudes de esta clasificación es que el número de puntos en cada clase es necesariamente muy parecido (aproximadamente el 10\% en cada clase, si usamos deciles). En este punto es importante comprobar que ninguna de las clases contiene un número demasiado bajo de observaciones. Si alguna de las clases contuviera menos de $10$ observaciones, eso debería ponernos en alerta sobre la conveniencia de usar este método para medir la bondad del ajuste. Por eso hemos calculado el mínimo de la tabla, que en este caso muestra que podemos seguir adelante con tranquilidad.
+
+\subsubsection*{Valores observados y esperados.}
+
+Los valores observados $Obs1_i$ (recuerda que $Obs1_i$ es el número de observaciones de la clase $C_i$ para las que $Y=1$) se calculan así:
+<<>>=
+(Obs1 = with(datos, tapply(Y, INDEX = claseRiesgo, FUN = sum)) )
+@
+
+
+<<eval=FALSE, echo=FALSE, purl=FALSE>>=
+xtable(data.frame(names(Obs1), Obs1), digits = 3)
+@
+
+La misma operación, pero aplicada a las probabilidades estimadas por el modelo, nos proporciona los valores esperados $Esp1_i$:
+
+<<>>=
+(Esp1 = with(datos, tapply(probs, INDEX = claseRiesgo, FUN = sum)) )
+@
+
+
+<<eval=FALSE, echo=FALSE, purl=FALSE>>=
+xtable(data.frame(names(Esp1), Esp1), digits = 3)
+@
+
+
+Y puesto que sabemos el total de observaciones, los valores $Obs0$ y $Esp0$ se obtienen simplemente restando:
+
+<<>>=
+(Obs0 = n.i - Obs1)
+
+(Esp0 = n.i -Esp1)
+
+@
+
+<<eval=FALSE, echo=FALSE, purl=FALSE>>=
+xtable(data.frame(Esp0), digits = 3)
+
+tablaDatos = data.frame(
+  Prob = levels(datos$claseRiesgo),
+  Obs1 = as.vector(Obs1),
+  Esp1 = as.vector(Esp1),
+  Obs0 = as.vector(Obs0),
+  Esp0 = as.vector(Esp0),
+  Total = as.vector(table(datos$claseRiesgo) )
+  )
+row.names(tablaDatos) = NULL
+
+xtable(tablaDatos, align = "ccccccc", digits = 2)
+
+
+
+@
+
+
+Naturalmente, si el ajuste es bueno, lo que esperamos es que $Esp1 \sim Obs1$ y que $Esp0\sim Obs0$. Puedes usar las tablas anteriores para tratar de estimar ``a ojo'' la calidad del ajuste.
+
+\subsubsection*{Estadístico de Hosmer-Lemeshow y contraste de la bondad del ajuste.}
+
+Con los valores observados y esperados estamos listos para calcular el valor del estadístico de Hosmer-Lemeshow:
+
+<<>>=
+(HL.estadistico = sum((Obs1 - Esp1)^2/Esp1) + sum((Obs0 - Esp0)^2/Esp0))
+@
+
+Los grados de libertad del contraste son:
+
+<<>>=
+(HL.df = length(Obs1) - 2)
+@
+
+
+y el p-valor se calcula con la cola derecha de la correspondiente distribución $\chi^2_{g - 2}$:
+
+<<>>=
+(HL.pValor =  pchisq(HL.estadistico, df = HL.df, lower.tail = FALSE))
+@
+
+Y, como sabemos, un p-valor cercano a uno nos dice que no debemos rechazar la hipótesis nula $H_0$. Y en el contexto del contraste sobre la bondad del ajuste, significa que las predicciones del modelo se ajustan bien a los datos observado.
+
+
+\subsubsection*{Usando la librería {\tt ResourceSelection}.}
+
+La librería {\tt ResourceSelection} de R (recuerda instalarla antes de tratar de usarla) nos permite disponer de una función {\tt hoslem.test} que sirve para agilizar todo el proceso de contraste de la bondad del ajuste. En nuestro ejemplo basta con hacer:
+
+<<>>=
+library(ResourceSelection)
+(HL.test= hoslem.test(datos$Y, datos$probs, g = 10))
+@
+
+Para ver que el valor del estadístico es el mismo que hemos obtenido antes vamos a pedirle a R que nos lo muestre con más cifras:
+
+<<>>=
+HL.test$statistic
+@
+
+
+Además, aunque no aparezcan en la salida de la función que R nos muestra, la función {\tt hoslem.test} también calcula tablas de valores observados y esperados, a las que podemos acceder así:
+
+<<>>=
+HL.test$observed
+HL.test$expected
+@
+
+que, como se ve, coinciden con los valores que hemos obtenido antes. La función {\tt hoslem.test} nos permite elegir el número de clases con el argumento opcional {\tt g} (por defecto su valor es $10$ para usar deciles). Y una posible ventaja de la construcción manual que hemos hecho antes, frente a la comodidad de usar {\tt hoslem.test}, es que podemos seleccionar el método que queramos para definir los cuantiles de la probabilidad. Recuerda que desde el comienzo del libro sabemos que la definición de los percentiles es un tema delicado. El uso de una definición distinta hace que los cálculos arrojen valores ligeramente distintos. Nunca debería ser una diferencia tan grande como para cambiar el sentido de nuestra conclusión sobre la bondad del ajuste. Pero a veces querremos, por ejemplo, comparar los cálculos de R con los de otro programa estadístico que use una definición distina de cuantiles. En casos como esos (y se dan con más frecuencia de la que cabría esperar) se agradece especialmente la naturaleza fácilmente programable de R.
+
+
+% \pendiente{\Huge AQUI}
+%
+
+
+% \section{Ejercicios adicionales y soluciones.}
+% \label{tut13:sec:EjerciciosAdicionalesYSoluciones}
+%
+% \subsection*{Ejercicios adicionales.}
+% \label{tut13:subsec:EjerciciosAdicionales}
+%
+% \begin{ejercicio}
+% \label{tut13:ejercicio100}
+% aaa
+% \qed
+% \end{ejercicio}
+
+
+%##########################################
+%##########################################
+
+% \subsection*{Soluciones de algunos ejercicios.}
+% \label{tut13:subsec:SolucionesAlgunosEjercicios}
+%
+
+
+% \paragraph{\bf $\bullet$ Ejercicio \ref{tut13:ejercicio01} (pág. \pageref{tut13:ejercicio01}).
+% \label{tut13:ejercicio01:sol}\quad\\
+
+
+
+%#########################################################################################
+%#########################################################################################
+\vspace{2cm} \hrule
+\quad\\
+Fin del Tutorial13. ¡Gracias por la atención!
+
+\newpage
+
+
+%\newpage
+%\addcontentsline{toc}{section}{Guía de trabajo.}
+%\includepdf[pages={1-}, scale=0.90]{13-GuiaDeTrabajo.pdf}
+
+
+
+
+
+\end{document}
+
+Referencias: http://stats.stackexchange.com/questions/105501/understanding-roc-curve/105577#comment268841_105577 

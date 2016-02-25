@@ -1,0 +1,78 @@
+% !Mode:: "Tex:UTF-8"
+% 001-EstadisticaDescriptiva
+
+\section*{Introducción a la Estadística Descriptiva.}
+\label{part01:intro}
+
+Como hemos dicho en la Introducción, la Estadística Descriptiva es la puerta de entrada a la
+Estadística. En nuestro trabajo o, aún más en general, en un nuestra experiencia diaria, las
+personas nos hemos ido convirtiendo, de forma creciente, en recolectores ávidos de datos. Nuestro
+hambre de datos se debe a que hemos ido creando cada vez más formas de usarlos, para iluminar
+nuestra comprensión de algún fenómeno, y para orientar nuestras decisiones.
+
+Pero antes de llegar a ese punto, y poder usar la información para decidir de forma eficaz, tenemos
+que ser capaces de tomar los datos, que son {\em información en bruto} y transformarlos en {\em
+información estructurada}. En particular, tenemos que desarrollar técnicas para describir, resumir,
+y representar esos datos. Por un lado, para poder aplicarles métodos avanzados de análisis. En este
+curso vamos a presentar los más básicos de esos métodos de análisis de datos. Por otro lado,
+queremos poder {\em comunicar} a otros la información que contienen esos datos. Por ejemplo,
+utilizando técnicas gráficas, de visualización.
+
+Todos esos métodos y técnicas, que nos permiten transformar y describir los datos, forman parte de
+la \index{estadística descriptiva} {\sf Estadística Descriptiva}. Así que la Estadística
+Descriptiva se encarga del trabajo directo con los {\em datos, a los que tenemos acceso}, y con los
+que podemos hacer operaciones. Una parte del proceso incluye operaciones matemáticas, con su
+correspondiente dósis de abstracción. Pero, puesto que la Estadística Descriptiva es uno de los
+puntos de contacto de la Estadística con el mundo real, también encontraremos muchos problemas
+prácticos. Y en particular, en la era de la informatización, muchos problemas de índole
+computacional, del tipo ``¿cómo consigo que el ordenador haga eso?''. No queremos, en cualquier caso,
+refugiarnos en las matemáticas, obviando esa parte práctica del trabajo. Procesar los datos requiere de
+nosotros, a menudo, una cierta soltura con las herramientas computacionales, y el dominio de
+algunos trucos del oficio. En la parte más práctica del curso, los Tutoriales, dedicaremos tiempo a
+esta tarea.
+
+En esta parte del libro vamos a conocer a algunos actores, protagonistas de la Estadística, que nos
+acompañarán a lo largo de todo el curso: la media, la varianza, las frecuencias y percentiles, etc.
+Vamos a tocar, siquiera brevemente, el tema de la visualización y representación gráfica de datos.
+Hay tanto que decir en ese terreno, que pedimos disculpas al lector por adelantado por lo elemental
+de las herramientas que vamos a presentar. Entrar con más profundidad en esta materia exigiría un
+espacio del que no disponemos. Como, por  otra parte, nos sucederá más veces a lo largo del curso.
+No obstante, sí hemos incluido una breve visita a las nociones de precisión y exactitud, y a la
+vertiente más práctica del trabajo con cifras significativas, porque, en nuestra experiencia, a
+menudo causa dificultades a los principiantes.
+
+\subsection*{Población y muestra.}
+
+También hemos dicho que todas las partes en que se divide la Estadística están interconectadas
+entre sí. Y no sabríamos cerrar esta introducción a la primera parte del libro, especialmente por
+ser la primera, sin tratar de tender la vista hacia esas otras partes, que nos esperan más
+adelante. Así que vamos a extendernos un poco más aquí, para intentar que el lector tenga un poco
+más de perspectiva.
+
+Como hemos dicho, la Estadística Descriptiva trabaja con datos a los que tenemos acceso. Pero, en
+muchos casos, esos datos corresponden a una \index{muestra} {\sf muestra}, es decir, a un
+subconjunto (más o  menos pequeño), de una \index{población} {\sf población} (más o menos grande),
+que nos gustaría estudiar. El problema es que estudiar toda la población puede ser demasiado
+difícil o indeseable, o directamente imposible. En ese caso surge la pregunta ¿hasta qué punto los
+datos de la muestra son {\em representativos} de la población? Es decir, ¿podemos usar los datos de
+la muestra para {\em inferir}, o {\em predecir} las características de la población completa? La
+\index{inferencia estadística} {\sf Inferencia Estadística}, que comenzaremos en la tercera parte del
+libro, se encarga de dar sentido a estas preguntas, formalizarlas y responderlas. Y es, sin
+discusión, el auténtico núcleo, el alma de la Estadística.
+
+En la Inferencia clásica, por tanto, trataremos de usar la información que la Estadística
+Descriptiva extrae de los datos de la muestra para poder hacer predicciones precisas sobre las
+propiedades de la población. Algunos típicos de la clase de predicciones que queremos hacer son las encuestas electorales, el control de calidad empresarial o los ensayos clínicos, que son prototipos de lo que estamos explicando, y que muestran que la Estadística consigue, a menudo, realizar con éxito esa tarea.
+
+¿Por qué funciona la Inferencia? A lo largo del libro tendremos ocasión de profundizar en esta
+discusión. Pero podemos adelantar una primera respuesta: funciona porque, en muchos casos,
+cualquier muestra {\em bien elegida} (y ya daremos más detalles de lo que significa esto), es
+bastante {\em representativa} de la población. Dicho de otra manera, si pensamos en el conjunto de
+todas las posibles muestras bien elegidas que podríamos tomar, la inmensa mayoría de ellas serán
+coherentes entre sí, y representativas de la población. Un ingrediente clave en este punto, sobre
+el que volveremos, es el enorme tamaño del conjunto de posibles muestras. Así que, si tomamos una
+{\em al azar}, casi con seguridad habremos tomado una muestra representativa. Y puesto que hemos
+mencionado el {\em azar}, parece evidente que la manera de hacer que estas frases imprecisas se
+conviertan en afirmaciones científicas, verificables, es utilizar el lenguaje de la {\sf
+Probabilidad}. Por esa razón, necesitamos hablar en ese lenguaje para poder hacer Estadística
+rigurosa. Y con eso, tenemos trazado el plan de buena parte de este libro y de nuestro curso.

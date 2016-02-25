@@ -1,0 +1,2234 @@
+% !Mode:: "Tex:UTF-8"
+
+<<setup, echo=FALSE>>=
+## numbers >= 10^5 will be denoted in scientific notation,
+## and rounded to 2 digits
+options(scipen = 2, digits = 5, cache=FALSE)
+@
+
+\documentclass[10pt,a4paper]{article}
+\usepackage{etoolbox}
+\newtoggle{color}
+%\togglefalse{color}
+\toggletrue{color}
+
+\usepackage{makeidx}
+\newcommand{\idioma}{spanish}
+\newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
+\input{../tex/definiciones}
+%\input{sahp}
+\includecomment{com}
+%\excludecomment{com}
+%\usepackage[dvips]{hyperref}
+%\usepackage{pstricks}
+
+
+\newtoggle{distribuir}
+%\togglefalse{distribuir}
+\toggletrue{distribuir}
+\iftoggle{distribuir}{%
+  % color version
+    \includecomment{distribuir}
+    \excludecomment{noDistribuir}
+}{%
+  % b/w version
+    \includecomment{noDistribuir}
+    \excludecomment{distribuir}
+}
+
+
+\usepackage{attachfile}
+
+\textwidth=150mm \textheight=260mm
+\hoffset=-1cm
+\voffset=-25mm
+\parskip=2mm
+%\textwidth=160mm \textheight=240mm \hoffset=-20mm \voffset=-20mm \parskip=0mm \marginparsep=-25mm
+
+\setlength{\parindent}{0pt}
+\newcounter {cont01}
+
+\externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
+\externaldocument[tut01-]{Tutorial-01}
+\externaldocument[tut02-]{Tutorial-02}
+\externaldocument[tut03-]{Tutorial-03}
+\externaldocument[tut04-]{Tutorial-04}
+\externaldocument[tut05-]{Tutorial-05}
+\externaldocument[tut06-]{Tutorial-06}
+\externaldocument[tut07-]{Tutorial-07}
+\externaldocument[tut08-]{Tutorial-08}
+
+\begin{document}
+\includecomment{pdf}
+%\excludecomment{pdf}
+%\includecomment{dvi}
+\excludecomment{dvi}
+%\includecomment{com}
+\excludecomment{com}
+
+
+\paragraph{\link{http://www.postdata-statistics.com/}{PostData}\hspace{6.3cm}Curso de Introducción a la Estadística\\[2mm]} \noindent\hrule
+
+\setcounter{section}{0}
+\section*{\hspace{-0.1cm}\fbox{\colorbox{Gris025}{
+\begin{minipage}{14.5cm}
+Tutorial 09: Inferencia sobre dos poblaciones.
+\end{minipage}
+}}} Atención:
+\begin{itemize}
+  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está
+      pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es
+      necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de
+      imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
+  \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si
+      existe una versión más reciente.
+\end{itemize}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section*{Introducción.}
+
+Este tutorial contiene la parte práctica del Capítulo \ref{curso-cap:Inferencia2Poblaciones} del libro. Como hemos dicho en la introducción de ese capítulo, las ideas básicas (intervalos de confianza y contrastes) resultan ya conocidas, y aquí de lo que se trata es de aplicarlas al caso en el que estudiamos una misma variable aleatoria en dos poblaciones independientes. Las operaciones necesarias, en la práctica, son muy parecidas a las que hemos visto en anteriores capítulos y tutoriales para el caso de una población. Para usar el ordenador en estos problemas sólo necesitamos, en principio, ser capaces de resolver problemas de probabilidad (directos e inversos) en las distribuciones correspondientes: la normal $Z$, la $t$ de Student, la $\chi^2$ y, como novedad de este capítulo, la $F$ de Fisher. Cualquiera de las herramientas con las que nos hemos familiarizado podría ser suficiente para este trabajo: R, por supuesto, o GeoGebra, Wolfram Alpha, incluso Calc permita calcular los valores de cualquiera de esas distribuciones. Pero, como ya sabe el lector, algunas herramientas son mucho más cómodas y fiables que otras. En este tutorial se incluye, en la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones} (pág. \pageref{Tut09:tabla:FicherosContrastesDosPoblaciones}), una colección de {\em plantillas} de R que, junto con los de los anteriores tutoriales, cubren todos los casos que aparecen en las Tablas del Apéndice \ref{curso-apendice:Tablas} del libro.  Ilustraremos el uso de cada una de estas plantillas con un ejemplo detallado y aprovecharemos algunos de esos ejemplos para abordar el uso de otras herramientas, como la {\em Calculadora de Probabilidades} de GeoGebra.
+
+\section{Diferencia de proporciones en dos poblaciones.}
+\label{tut09:sec:DifProporcionesDosPoblaciones.}
+
+Ver la Sección \ref{curso-cap09:sec:DiferenciaProporciones2Poblaciones} del libro (pág. \pageref{curso-cap09:sec:DiferenciaProporciones2Poblaciones}).
+
+\subsubsection*{Usando la plantilla de R.}
+
+Vamos a usar las plantillas de R de la la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones} para obtener los resultados que aparecen en el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaProporciones} del libro (pág. \pageref{curso-cap09:ejem:ContrasteDiferenciaProporciones}). Recordemos que en ese ejemplo se trata de contrastar la hipótesis nula:
+\[H_0=\{p_1 = p_2\},\]
+Y que para ello se han obtenido dos muestras independientes de
+tamaños $n_1=456$ y $n_2 = 512$ en las que los respectivos números de {\em ``éxitos''} eran $139$ y $184$, con lo que las proporciones muestrales de éxitos son:
+\[\hat p_1 = \dfrac{139}{456}\approx 0.3048, \quad \hat p_2 = \dfrac{184}{512}\approx 0.3594,\]
+mientras que las proporciones de {\em ``fracasos''} son:
+\[\hat q_1 \approx 0.6952, \quad \hat q_2 \approx 0.6406.\]
+
+El cálculo del p-valor de este contraste se obtiene muy fácilmente con el fichero plantilla:
+\begin{center}
+\fichero{./code/Tut09-Contraste-2Pob-DifProporciones-UsandoZ.R}{Tut09-Contraste-2Pob-DifProporciones-UsandoZ.R}
+\end{center}
+de la la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones}. Incluimos aquí sólo la parte inicial del fichero, en la que hemos introducido los datos de este ejemplo. Fíjate especialmente en que las proporciones muestrales se introducen como cocientes, no mediante el número de éxitos. Esto se ha hecho así por si, en algún caso, el enunciado del problema contiene directamente la proporción sin mencionar explícitamente el número de éxitos:
+
+<<>>=
+# PRIMERA MUESTRA
+# Numero de elementos
+(n1 = 456)
+# proporcion muestral
+(pMuestral1 = 139/456)
+
+# SEGUNDA MUESTRA
+# Numero de elementos
+(n2 =  512)
+# proporcion muestral
+(pMuestral2 = 184/512)
+
+# ¿Que tipo de contraste estamos haciendo?
+# Escribe 1 si la HIP. ALTERNATIVA es p1 > p2, 2 si es p1 < p2, 3 si es bilateral
+TipoContraste = 3
+  #Nivel de significacion
+  (nSig = 0.95)
+@
+
+<<echo=FALSE,  results='hide'>>=
+###############################################
+# NO CAMBIES NADA DE AQUÍ PARA ABAJO
+###############################################
+(alfa=1-nSig)
+
+# Calculo de qMuestral1 y qMuestral2
+
+qMuestral1 = 1 - pMuestral1
+qMuestral2 = 1 - pMuestral2
+
+# Calculo de p y q ponderados
+
+(pMuestral = (n1 * pMuestral1 + n2 * pMuestral2) / (n1 + n2) )
+qMuestral = 1- pMuestral
+
+# Calculo del estadistico del contraste
+(Estadistico=( pMuestral1 - pMuestral2 ) / sqrt( pMuestral * qMuestral * ((1/n1) + (1/n2)) ) )
+# Funcion para el calculo del p-valor
+pValor=function(EstadCon,tipoCon){
+  if(tipoCon==1){
+    (pV=1-pnorm(EstadCon))
+  }
+  if(tipoCon==2){
+    (pV=pnorm(EstadCon))
+  }
+  if(tipoCon==3){
+    pV=2*(1-pnorm(abs(EstadCon)))
+  }
+  return(paste("El p-Valor es ",pV,sep="",collapse=""))
+}
+# Funcion para el calculo del límite de la región de rechazo
+RegionRechazo=function(alfa,tipoCon){
+  if(tipoCon==1){
+    (regionRech=paste("Valores del Estadistico mayores que ",qnorm(1-alfa)) )
+  }
+  if(tipoCon==2){
+    (regionRech=paste("Valores del Estadistico menores que ",qnorm(alfa)) )
+  }
+  if(tipoCon==3){
+    (regionRech=paste("Valores del Estadistico mas alejados del origen que ",qnorm(1-alfa/2)) )
+  }
+  regionRech=paste("La region de rechazo la forman los ",regionRech,sep="",collapse="")
+  return(regionRech)
+}
+
+# Y ahora se aplican ambas funciones para mostrar los resultados
+@
+
+El final del fichero plantilla contiene las instrucciones que producen los resultados del contraste (no incluimos la región de rechazo porque no la vamos a usar):
+<<>>=
+pValor(Estadistico,TipoContraste)
+Estadistico
+@
+
+Como puede verse, el p-valor coincide con lo que aparece en ese ejemplo.
+\subsubsection*{Usando la función {\tt prop.test}}
+\label{tut09:subsubsec:FuncionPropTest}
+
+Esta función, que ya conocimos en el Tutorial08, sirve también para este tipo de contrastes. Para el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaProporciones} del libro que acabamos de calcular, el comando a ejecutar sería:
+
+<<>>=
+prop.test(c(139, 184), c(456, 512), correct=FALSE,
+    alternative="two.sided", conf.level=0.95)
+@
+
+Como ves:
+\begin{itemize}
+  \item Se introducen dos vectores conteniendo cada uno de ellos, respectivamente, los éxitos y los tamaños muestrales. ¡Cuidado con este formato!
+  \item La hipótesis alternativa se indica, como en otros casos, eligiendo entre {\tt less} para $H_a = \{p_1 < p_2\}$, {\tt greater} para $H_a = \{p_1 > p_2\}$ y {\tt two.sided} para $H_a = \{p_1 \neq p_2\}$.
+  \item Es necesario incluir la opción {\tt correct=FALSE} si queremos obtener el mismo resultado que con la plantilla. De lo contrario, R aplica una {\em corrección de continuidad} para mejorar la aproximación de la binomial por la normal.
+  \item Por último, como producto secundario del contraste bilateral obtenemos un intervalo de confianza para $p_1 - p_2$, al nivel de confianza que hayamos indicado.
+\end{itemize}
+
+Vamos a usar ese intervalo de confianza como excusa para proponerte un ejercicio.
+
+\begin{ejercicio}
+\label{tut09:ejercicio01}
+
+\begin{enumerate}
+    \item[]
+    \item Usa el fichero plantilla de R de la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones} (pág. \pageref{Tut09:tabla:FicherosContrastesDosPoblaciones}) para obtener este mismo intervalo de confianza.
+
+    \item Haz lo mismo usando la pestaña {\em Estadísticas} de la {\em Calculadora de Probabilidades de GeoGebra}. La opción que tienes que usar tiene un nombre poco claro: se llama {\em Z estimada, diferencia de proporciones}. Luego usa el comando:
+       \begin{center}
+       {\small
+       \begin{verbatim}
+    IntervaloProporcionesZ[ <Proporción (muestra 1)>, <Tamaño (muestra 1)>,
+    <Proporción (muestra 2)>, <Tamaño (muestra 2)>, <Nivel> ]
+        \end{verbatim}
+        }
+        \end{center}
+        para hacer la misma cuenta directamente.
+
+    \item En Wolfram Alpha puedes teclear {\tt two proportion confidence interval } para llegar a una interfaz web en la que hacer este tipo de cálculos.
+
+\end{enumerate}
+%Soluciones en la página \pageref{tut09:ejercicio01:sol}.
+\qed
+\end{ejercicio}
+
+\section{Diferencia de medias en dos poblaciones, muestras grandes.}
+
+Para ilustrar este tipo de situaciones, vamos a usar un ejemplo relacionado con el que abría el Capítulo \ref{curso-cap:ContrasteHipotesis} del libro.
+
+Los dos laboratorios han seguido trabajando, y ahora tenemos dos tratamientos de segunda generación para aliviar la depresión en los canguros, el {\em Saltaplus Extraforte} y el {\em Pildorín con Ginseng}. Para establecer cuál de los dos tratamientos es superior, los hemos usado para tratar a los canguros deprimidos de dos muestras independientes, midiendo la altura media de sus saltos en metros. Llamando $\mu_1$ a la altura media (en metros) de los canguros tratados con {\em Saltaplus} y $\mu_2$ a la altura media de los tratados con {\em Pildorín}, queremos contrastar la hipótesis (alternativa):
+\[H_a = \{\mu_1 < \mu_2\},\]
+que sostiene que la nueva versión de {\em Pildorín} es mejor que el {\em Saltaplus} renovado. Los datos muestrales son estos (la muestra 1 corresponde a {\em Saltaplus}, la 2 a {\em Pildorín}):
+\[
+\begin{cases}
+n_1 = 245\\
+\bar X_1 = 2.73\\
+s_1 = 0.4
+\end{cases}
+\qquad
+\begin{cases}
+n_2 = 252\\
+\bar X_2 = 2.81\\
+s_2 = 0.3
+\end{cases}
+\]
+
+Como las dos muestras son grandes, para hacer este contraste podemos usar la plantilla
+\begin{center}
+  \fichero{./code/Tut09-Contraste-2Pob-DifMedias-UsandoZ.R}{Tut09-Contraste-2Pob-DifMedias-UsandoZ.R}
+\end{center}
+Incluimos los datos del problema en las primeras líneas de este fichero, como se muestra aquí. Fíjate en que hemos usado, descomentándolas, las líneas de $s_1$ y $s_2$:
+
+{\small
+<<>>=
+# PRIMERA MUESTRA
+# Numero de elementos
+    (n1 = 245)
+# Media muestral
+    (xbar1 = 2.73)
+# Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+    (s1 = 0.4)
+    #(sigma1 = )
+
+
+# SEGUNDA MUESTRA
+# Numero de elementos
+    (n2 = 252)
+# Media muestral
+    (xbar2 = 2.81)
+# Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+    (s2 = 0.3)
+    #(sigma2 = )
+
+# ¿Que tipo de contraste estamos haciendo?
+    # Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2
+    TipoContraste = 2
+#Nivel de significacion
+    (nSig = 0.95)
+@
+
+
+<<echo=FALSE, results='hide'>>=
+###############################################
+# NO CAMBIES NADA DE AQUÍ PARA ABAJO
+###############################################
+
+# Comprobamos si se ha usado sigma como sustituto de s.
+
+if(exists("sigma1")){s1 = sigma1}
+if(exists("sigma2")){s2 = sigma2}
+
+
+# Calculo de alfa
+  (alfa = 1 - nSig)
+
+# Calculo del estadistico del contraste
+    (Estadistico = (xbar1 - xbar2) / sqrt( (s1^2 / n1) + (s2^2 / n2) ) )
+
+# Funcion para el calculo del p-valor
+    pValor = function(EstadCon,tipoCon){
+      if(tipoCon == 1){
+        (pV = 1 - pnorm(EstadCon))
+      }
+      if(tipoCon == 2){
+        (pV = pnorm(EstadCon))
+      }
+      if(tipoCon == 3){
+        pV = 2 * (1 - pnorm(abs(EstadCon)))
+      }
+      return(paste("El p-Valor es ", pV,sep="", collapse=""))
+    }
+# Funcion para el calculo del límite de la región de rechazo
+    RegionRechazo = function(alfa,tipoCon){
+      if(tipoCon == 1){
+        (regionRech = paste("valores del Estadistico mayores que ", qnorm(1 - alfa)) )
+      }
+      if(tipoCon == 2){
+        (regionRech = paste("valores del Estadistico menores que ", qnorm(alfa)) )
+      }
+      if(tipoCon == 3){
+        (regionRech = paste("Valores del Estadistico mas alejados del origen que ", qnorm(1 - alfa/2)) )
+      }
+      regionRech=paste("La region de rechazo la forman los ", regionRech, sep="", collapse="")
+      return(regionRech)
+    }
+
+@
+}
+
+Los resultados de la ejecución del fichero son (de nuevo, excluimos la región de rechazo):
+<<>>=
+    pValor(Estadistico, TipoContraste)
+    Estadistico
+@
+Con ese p-valor, rechazaríamos la hipótesis nula, de forma que no hay base experimental para creer que los canguros tratados con {\em Saltaplus} saltan más que los tratados con {\em Pildorín}.
+
+
+Vamos a aprovechar este ejemplo para explorar otras herramientas con las que puedes hacer este tipo de contrastes y los intervalos de confianza asociados:
+
+\begin{ejercicio}
+\label{tut09:ejercicio02}
+
+\begin{enumerate}
+\item[]
+\item Usa el fichero plantilla de R
+\begin{center}
+  \fichero{./code/Tut09-IntConf-2Pob-DifMedias-UsandoZ.R}{Tut09-IntConf-2Pob-DifMedias-UsandoZ.R}
+\end{center}
+de la la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones} (pág. \pageref{Tut09:tabla:FicherosContrastesDosPoblaciones}) para obtener un intervalo de confianza al $95\%$ para la diferencia $\mu_1 - \mu_2$.
+
+\item Haz lo mismo con la {\em Calculadora de Probabilidades de GeoGebra}. En este caso debes usar
+{\em Z estimada, diferencia de medias}. También puedes hacerlo directamente con el comando:
+\begin{center}
+{\small
+\verb&IntervaloMediasZ[ <Media (muestra 1)>, <&$\sigma$\verb&1>, <Tamaño (muestra 1)>, <Media (muestra 2)>,&\\\verb& <&$\sigma$\verb&2>, <Tamaño (muestra 2)>, <Nivel> ]&
+}
+\end{center}
+
+\item Volviendo al contraste de hipótesis, en Wolfram Alpha puedes teclear {\tt hypothesis test for the difference between two means} para llegar a una interfaz web con la que hacer contrastes de diferencias de medias usando $Z$. Si usas {\tt confidence interval for the difference between two means} podrás calcular intervalos de confianza para $\mu_1 - \mu_2$ usando $Z$.
+
+\item Usa cualquiera de estos métodos (aún mejor, varios de ellos) para comprobar las cuentas del Ejemplo \ref{curso-cap09:ejem:CrateresLunares} del libro (pág. \pageref{curso-cap09:ejem:CrateresLunares}). A pesar de que en ese ejemplo disponemos de los datos, se trata de que uses los valores $n_1, n_2, {\bar X}_1, {\bar X}_2, s_1, s_2$ que aparecen en el texto del ejemplo. Más adelante en el tutorial volveremos sobre el cálculo a partir de los {\em datos en bruto}.
+\end{enumerate}
+Soluciones en la página \pageref{tut09:ejercicio02:sol}.
+\qed
+\end{ejercicio}
+
+\subsubsection*{¿Y el caso de {\em datos en bruto}? Advertencia sobre {\tt data.frames}}
+
+No hemos incluido ficheros plantilla para el caso de datos en bruto. ¿Por qué? Bueno, una posibilidad sería cargar los datos de cada una de las muestras desde un fichero {\tt csv}, uno para cada muestra. Pero eso resultaría muy forzado y artificioso. La práctica habitual (y recomendable) en estadística es usar para esto un único fichero con dos columnas. Cada fila de ese fichero corresponde a una observación. Una de las columnas contiene los valores de la variable $X$. La otra es un factor $F$ con dos niveles que identifica a cuál de las poblaciones pertenece esa observación. Por ejemplo, el comienzo del fichero podría tener un aspecto similar al de esta tabla:
+
+\[
+\begin{tabular}{|c|c|}
+  \hline
+  X & F \\
+  \hline
+  \hline
+  7.35 & A \\
+  \hline
+  8.23 & A \\
+  \hline
+  7.75 & B \\
+  \hline
+  \vdots & \vdots \\
+  \hline
+\end{tabular}
+\]
+La primera columna contiene los valores de $X$, mientras que la segunda permite conocer a cuál de las dos poblaciones pertenece ese valor (en este ejemplo, identificadas respectivamente por los niveles $A$ y $B$ del factor $F$). La estructura de datos natural para trabajar con este tipo de ficheros en R es el {\tt data frame} del que hemos hablado por primera vez en el Tutorial04. Y para gestionar de forma adecuada un {\tt data.frame} que contenga un fichero como el que estamos describiendo, es preciso usar factores de R, de los que hemos hablado en la Sección  \ref{tut08-tut08:sec:FactoresR} del Tutorial08 (pág. \pageref{tut08-tut08:sec:FactoresR}). Por otra parte, en el Capítulo \ref{curso-cap:IntroduccionAnova}, al hablar del Anova unifactorial, nos vamos a encontrar con una generalización natural de los problemas que estamos tratando en este capítulo. Así que podemos posponer parte de la discusión sobre la mejor forma de gestionar esos datos hasta ese capítulo. Pero no es menos cierto que R incluye algunas funciones interesantes para trabajar con datos {\em en bruto}, específicamente dedicadas a los problemas de este capítulo, los de dos poblaciones. Por eso vamos a incluir en la Sección \ref{tut09:sec:DatosEnBrutoconR} de este tutorial (pág. \pageref{tut09:sec:DatosEnBrutoconR}) la discusión de esas funciones. Advertencia: el lector que no haya practicado el uso de {\em data.frames} en los tutoriales anteriores tendrá algunos problemas para entender el código que se usa con esa funciones. En cualquier caso, recuerda que usando un editor de texto (como el {\em Bloc de Notas}) y una hoja de cálculo como {\em Calc}) puedes manipular los ficheros y en la mayoría de los casos extraer así la información necesaria.
+
+\subsection{El caso de datos emparejados.}
+\label{tut09:subsec:DatosEmparejados1}
+
+El caso de datos emparejados se describe en la Sección \ref{curso-cap09:subsec:CasoDatosEmparejados} del libro (pág. \pageref{curso-cap09:subsec:CasoDatosEmparejados}). En este apartado sólo queremos destacar que, como hemos dicho allí, no hay nada nuevo en realidad en esa situación, porque en realidad se trata de un contraste en una única población, como los que hemos aprendido a realizar en el Capítulo \ref{curso-cap:ContrasteHipotesis} y en el tutorial que lo acompaña. Para evidenciar esto vamos a realizar los cálculos necesarios para el Ejemplo \ref{curso-cap09:ejem:DatosEmparejados01} del libro y usaremos una plantilla del Tutorial07. Concretamente, la plantilla titulada
+\begin{center}
+  {\tt Tut07-Contraste-Media-UsandoT-DatosEnBruto.R}
+\end{center}
+en la que únicamente es necesario hacer una pequeña modificación para acomodar el hecho de que ahora tenemos datos antes y después del tratamiento. El código de esa plantilla, con los datos necesarios, aparece a continuación. Fíjate en que hemos añadido dos líneas al bloque inicial para definir los vectores {\tt antes} y {\tt despues}, y que los hemos  usado para obtener los valores del vector $Y$ del libro mediante
+\begin{center}
+  {\tt (muestra = despues - antes)}
+\end{center}
+En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el código será {\tt xbar}. El resto de las adaptaciones del código deberían resultar evidentes. Revisa el código, cotejando los valores que se obtienen con los que aparecen en el libro.
+<<>>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadísitica
+# Tutorial-07.
+#
+# Fichero de instrucciones R para calcular
+# un contraste de hipotesis para la media de una
+# poblacion normal N(mu,sigma), a partir de
+# un fichero con una muestra de esa poblacion.
+#
+# El fichero no funcionara si no introduces todos los datos.
+# Además tendrás que descomentar algunas lineas para elegir
+# la forma en la que lees los datos.
+#
+################################################################
+
+
+#################################################################
+# CASO:  sigma desconocida, muestra pequeña  n<30.
+#################################################################
+
+rm(list = ls())
+
+antes = c(1.80, 2.48, 2.33, 3.28, 1.24, 2.49, 2.44, 2.54, 2.59, 3.90)
+despues = c(3.31, 2.33, 2.65, 2.16, 1.62, 3.15, 2.14, 4.01, 2.42, 2.91)
+
+# Una posibilidad es que tengas la muestra como un vector.
+
+(muestra = despues - antes)
+
+
+# Si lees la muestra de un fichero csv:
+
+# 1. Recuerda seleccionar el directorio de trabajo.
+
+# 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.
+
+#muestra = scan(file="",sep=" ",dec=".")
+
+
+# Valor a contrastar de la media (aparece en la hipotesis nula)
+
+(mu0 = 0)
+
+# ¿Que tipo de contraste estamos haciendo?
+# Escribe 1 si la HIP. ALTERNATIVA es mu > mu0, 2 si es mu < mu0, 3 si es mu distinto de mu0
+
+(TipoContraste = 1)
+
+##Nivel de significacion
+
+(nSig = 0.95)
+
+###############################################
+# NO CAMBIES NADA DE AQUÍ PARA ABAJO
+
+###############################################
+
+
+(alfa = 1 - nSig)
+
+# Numero de elementos en la muestra
+
+(n = length(muestra))
+
+# Grados de libertad
+
+(k = n - 1)
+
+# Media muestral
+
+(xbar = mean(muestra))
+
+# Cuasidesviacion tipica muestral
+
+(s = sd(muestra))
+
+
+# Calculo del estadistico del contraste
+
+(Estadistico = (xbar - mu0) / (s/sqrt(n)))
+
+# Funcion para el calculo del p-valor
+
+ pValor = function(EstadCon, tipoCon){
+      if(tipoCon == 1){
+        (pV = 1 - pt(EstadCon, df=k ))
+      }
+      if(tipoCon == 2){
+        (pV = pt(EstadCon, df=k ))
+      }
+      if(tipoCon == 3){
+        pV = 2 * (1 - pt(abs(EstadCon), df=k ))
+      }
+      return(paste0("El p-Valor es ", pV, collapse=""))
+    }
+
+# Funcion para el calculo del límite de la región de rechazo
+
+    RegionRechazo = function(alfa, tipoCon){
+      if(tipoCon == 1){
+        (regionRech = paste("mayores que ",
+                            qt(1 - alfa, df=k)))
+      }
+      if(tipoCon == 2){
+        (regionRech = paste("menores que ",
+                            qt(alfa, df=k)))
+      }
+      if(tipoCon == 3){
+        (regionRech = paste("mas alejados del origen que ",
+                            qt(1 - (alfa/2), df=k)))
+      }
+      regionRech = paste0("La region de rechazo la forman los valores del Estadistico ",
+                         regionRech, collapse="")
+      return(regionRech)
+    }
+
+# Y ahora se aplican ambas funciones para mostrar los resultados
+
+pValor(Estadistico, TipoContraste)
+
+paste0("El valor del estadístico es ", Estadistico, collapse = "")
+
+RegionRechazo(alfa, TipoContraste)
+
+
+@
+
+
+\section{Cociente de varianzas en dos poblaciones normales. Distribución F de Fisher-Snedecor.}
+
+Como hemos discutido en la Sección \ref{curso-cap09:sec:diferenciaMediasDosPoblaciones} del libro (pág. \pageref{curso-cap09:sec:diferenciaMediasDosPoblaciones}), cuando las muestras son pequeñas (y, como suele ocurrir, las varianzas poblacionales son desconocidas), el contraste de diferencias de las medias nos conduce a un contraste de cociente de varianzas como paso previo para decidir si estamos en el caso (c) o en el caso (d) de los casos que aparecen en esa Sección.
+
+Vamos, por tanto, a aprender primero a hacer un contraste sobre el cociente de varianzas, antes de retornar a los contrastes de diferencia de medias. Y para eso tenemos que aprender más sobre la forma de trabajar con la distribución de Fisher en el ordenador.
+
+\subsection{La distribución $F$ de Fisher.}
+\label{tut09:sec:DistribucionChiCuadrado}
+
+\subsubsection*{En R.}
+
+Muy brevemente: en R disponemos de las funciones $pf$ y $qf$, con el comportamiento esperable.  La única novedad es que para trabajar con la distribución $F_{k_1;k;2}$ debemos indicarlo mediante los argumentos opcionales {\tt df1} y {\tt df2} de esas funciones de R. Por ejemplo, para calcular la probabilidad
+\[P(F_{13;8} > 3)\]
+haríamos
+<<>>=
+1 - pf(3, df1=13, df2=8)
+@
+o también
+<<>>=
+pf(3, df1=13, df2=8, lower.tail=FALSE)
+@
+
+
+Y para calcular el valor $K$ tal que
+\[ P(F_{7;9} < K) = 0.975 \]
+haríamos
+<<>>=
+qf(0.975, df1=7, df2=9)
+@
+
+{\bf ¡Es muy importante recordar que no podemos cambiar el orden de los valores de {\tt df1} y {\tt df2}!} Las distribuciones de Fisher $F_{k1;k2}$ y $F_{k2;k1}$, aunque relacionadas, son distintas.
+
+\subsubsection*{En GeoGebra.}
+\label{tut09:subsec:FenGeoGebra}
+
+Para trabajar con la distribución de Fisher en GeoGebra podemos usar los comandos {\tt DistribuciónF} y {\tt DistribuciónFInversa} que, como sugieren los nombres, permiten resolver, respectivamente, problemas directos e inversos de probabilidad que involucren a la $F$ de Fisher. Por ejemplo, para resolver el problema
+\[P(1 < F_{12; 9} < 2)\]
+basta con ejecutar
+\begin{center}
+  \begin{verbatim}
+    DistribuciónF[12, 9, 2] - DistribuciónF[12, 9, 1]
+  \end{verbatim}
+\end{center}
+y se obtiene, aproximadamente, $0.3601$. Naturalmente, también podemos usar la {\em Calculadora de Probabilidades}, como se muestra en la siguiente
+figura que ilustra ese mismo cálculo de la probabilidad.
+
+    \begin{center}
+    \includegraphics[width=11cm]{../fig/Tut09-04.png}
+    \end{center}
+
+\begin{ejercicio}
+\label{tut09:ejercicio03}
+Repite con GeoGebra los cálculos de probabilidades (directas e inversas) que hemos hecho antes con R.
+%\begin{enumerate}
+%    \item[]
+%    \item
+%\end{enumerate}
+Solución en la página \pageref{tut09:ejercicio03:sol}.
+\qed
+\end{ejercicio}
+
+
+\subsubsection*{En Wolfram Alpha y Calc.}
+
+Para trabajar en Wolfram Alpha puedes usar comandos como los de estos dos ejemplos que, con ligeras modificaciones, cubren todas nuestras necesidades. Para un problema directo usamos algo  como esto:
+\begin{center}
+\verb# P(X > 3) for X ~ F(13,8)#
+\end{center}
+y para un problema inverso, por ejemplo para calcular el valor $K$ tal que
+\[ P( F_{12;16} < K) = 0.975\]
+usaríamos este comando:
+\begin{center}
+  {\tt 97.5th percentile  for F(12, 16)}
+\end{center}
+{\bf ¡Ten en cuenta que la probabilidad se ha traducido en percentiles!}
+
+Y, finalmente, no queremos dejar de mencionar las funciones {\tt DISTR.F} y {\tt DISTR.F.INV} de Calc, que permiten trabajar con esta distribución en la hoja de cálculo.
+
+
+\subsection{Contrastes e intervalos de confianza sobre cocientes de varianzas.}
+
+Ahora que ya sabemos cómo trabajar con la distribución $F$ de Fisher podemos usarla para hacer contrastes de hipótesis e intervalos de confianza relativos al cociente de varianzas. Recuerda que el estadístico adecuado para esos contrastes es:
+\[\Xi = \dfrac{s_1^2}{s_2 ^2},\]
+y que en la Tabla \ref{curso-tabla:ContrasteHipotesisCocienteVarianzas} del libro (pág. \pageref{curso-tabla:ContrasteHipotesisCocienteVarianzas}) tienes la información necesaria para saber cómo usar el valor del estadístico $\Xi^2$ para calcular el p-valor del contraste.
+
+Antes de hacer algunos ejemplos, unas observaciones genéricas sobre las herramientas de las que disponemos:
+
+\begin{itemize}
+  \item A nuestro juicio, y para las versiones actuales del software que usamos, la opción más ventajosa para hacer este tipo de contrastes con la menor cantidad de errores es usar la plantilla de R que hemos incluido en la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones} de este tutorial (pág. \pageref{Tut09:tabla:FicherosContrastesDosPoblaciones}).
+  \item Siguiendo con R, la función {\tt var.test} es especialmente interesante si trabajamos con muestras {\em en bruto}.
+  \item En GeoGebra, la {\em Calculadora de Probabilidades} no permite hacer este tipo de contrastes y tampoco hay un comando que se pueda usar directamente en la {\em Línea de Entrada} o el panel de {\em Cálculo Simbólico}. A fecha de hoy, la única forma de hacer este contraste es calculando directamente el p-valor mediante un problema directo de probabilidad con la $F$ de Fisher. En Wolfram Alpha, hasta donde sabemos, sucede algo similar: no hay una herramienta específica para este tipo de contrastes.
+\end{itemize}
+
+\subsubsection*{Un ejemplo básico de contrastes de cocientes de varianzas.}
+
+Vamos a supone que estamos estudiando una variable $X$ en dos poblaciones normales $N(\mu_1, \sigma_1)$ y $N(\mu_2, \sigma_2)$ y queremos contrastar la hipótesis alternativa bilateral:
+\[H_a = \{\sigma_1 ^2 = \sigma_2^2\}.\]
+Para ello hemos tomado muestras aleatorias independientes en cada una de las poblaciones y hemos obtenido estos valores muestrales:
+
+<<tut09-ejemploContrasteCocienteVarianzas01, echo=FALSE, results='hide'>>=
+ # PRIMERA MUESTRA
+ # Numero de elementos
+ (n1 = 59)
+ # Cuasidesviacion tipica muestral
+ (s1 = 3.1)
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 =  64)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 4.5)
+
+
+ # TIPO DE CONTRASTE:
+ # Escribe 1 si la HIP. ALTERNATIVA es sigma > sigma2,
+ #         2 si es sigma1 < sigma2,
+ #         3 si es bilateral.
+ TipoContraste = 3
+
+ #NIVEL DE SIGNIFICACION:
+ (nSig = 0.95)
+@
+
+\[
+\begin{cases}
+n_1 = \Sexpr{n1}\\[3mm]
+s_1 = \Sexpr{s1}
+\end{cases}
+\qquad
+\begin{cases}
+n_2 = \Sexpr{n2}\\[3mm]
+s_2 = \Sexpr{s2}
+\end{cases}
+\]
+
+
+Para hacer este contraste de la forma más rápida posible, lo más recomendable es usar la plantilla de R de la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones}. Incluimos aquí las primeras líneas de esa plantilla con los datos que debes introducir:
+
+<<>>=
+<<tut09-ejemploContrasteCocienteVarianzas01>>
+@
+
+<<echo=FALSE, results='hide'>>=
+###############################################
+ # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+ ###############################################
+
+
+ # Calculo de alfa
+   (alfa=1-nSig)
+
+ # Calculo del estadistico del contraste
+    (Estadistico=s1^2/s2^2)
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon,tipoCon){
+       if(tipoCon==1){
+         (pV=1-pf(EstadCon,df1=n1-1,df2=n2-1))
+       }
+       if(tipoCon==2){
+         (pV=pf(EstadCon,df1=n1-1,df2=n2-1))
+       }
+       if(tipoCon==3){
+         if(s1>s2)(pV=2*(1-pf(EstadCon,df1=n1-1,df2=n2-1)))
+         else(pV=2*(pf(EstadCon,df1=n1-1,df2=n2-1)))
+       }
+       return(paste("El p-Valor es ",pV,sep="",collapse=""))
+     }
+@
+
+Y los resultados que se obtienen al ejecutar el fichero son:
+<<>>=
+     pValor(Estadistico,TipoContraste)
+     Estadistico
+@
+Así que, por ejemplo, para un nivel de significación del $99\%$ rechazaríamos la hipótesis nula y concluiríamos que los datos no permiten afirmar que las varianzas sean iguales.
+
+\subsubsection*{Y un intervalo de confianza.}
+
+Análogamente, la forma más rápida de obtener elintervalo de confianza es usando la plantilla que aparece al final de este tutorial, en la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones}. Vamos a usarla para calcular un intervalo de confianza al $95\%$ para los mismos datos que acabamos de usar para el contraste. El código de la plantilla para ese ejemplo es este:
+
+<<>>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadísitica
+# Tutorial-09.
+#
+# Fichero de instrucciones R para calcular un
+# INTERVALO DE CONFIANZA PARA EL COCIENTE DE VARIANZAS
+# al nivel (1-alfa)   en dos poblaciones normales.
+#
+# El fichero no funcionara si no introduces todos los datos.
+##############################################################
+
+
+# Introducimos los valores de las desviaciones tipicas muestrales,
+s1 = 3.1
+s2 = 4.5
+
+
+# los tamaños de las muestras,
+n1 = 59
+n2 = 64
+
+# y el nivel de confianza deseado.
+nc = 0.95
+
+## --- NO CAMBIES NADA DE AQUI PARA ABAJO
+
+(alfa = 1 - nc)
+
+# Calculamos los valor criticos necesarios:
+
+(f_alfamedios = qf(alfa/2, df1=n1 - 1, df2=n2 - 1))
+
+(f_unomenosalfamedios = qf(1 - alfa/2, df1=n1 - 1, df2= n2-1))
+
+
+# El intervalo de confianza para el cociente de varianzas es este:
+(intervalo = c( (1/f_unomenosalfamedios), (1/f_alfamedios)) * (s1^2/s2^2))
+@
+
+Podemos aprovechar este cálculo para confirmar las conclusiones del contraste: puesto que el intervalo no contiene al $1$, estamos en condiciones de rechazar $H_0$ al $95\%$.
+
+
+% \subsubsection*{A partir de datos en bruto.}
+%
+% Para nuestro segundo ejemplo vamos a suponer que los datos están en un fichero {\tt csv}.
+%
+% <<tut09-ejemploContrasteCocienteVarianzas02, echo=FALSE, results='hide'>>=
+% <<tut09-ejemploContrasteCocienteVarianzas01>>
+% library(MASS)
+% set.seed(2014)
+% muestra1 = as.vector(mvrnorm(n = n1, mu = 2.5, Sigma = s1^2, empirical = TRUE))
+% muestra2 = as.vector(mvrnorm(n = n2, mu = 3.6, Sigma = s2^2, empirical = TRUE))
+% length(muestra1) <- max(length(muestra1), length(muestra2))
+% length(muestra2) <- max(length(muestra1), length(muestra2))
+%
+% datos = data.frame(muestra1, muestra2)
+% write.table(datos, "../datos/Tut09-EjemCtrsteVarianzas-DatosEnBruto-FichMal.csv", row.names = FALSE, col.names = c("muestra1", "muestra2"))
+% @
+%
+% Claro está, al tratarse de dos muestras, el fichero debe contener los datos de ambas muestras. Y esohace que este fichero sea especial en varios sentidos, comparado con otros ficheros Hay dos formas posibles para el fichero.
+
+
+\section{Diferencia de medias en dos poblaciones, muestras pequeñas.}
+\label{tut09:sec:DiferenciaMedias2PoblacionesPequennas}
+
+
+\subsection{Los contrastes de los ejemplos de la Sección \ref{curso-cap09:subsec:EjemplosContrasteDiferenciaMediasUsandoT} del libro.}
+
+
+Vamos a empezar mostrando como comprobar los datos de esos ejemplos usando R. En todos los casos es necesario realizar un contraste previo de varianzas, para luego pasar al contraste de diferencia de medias. La forma más rápida de proceder es usando las plantillas de R. Concretamente, usaremos la plantilla
+\begin{center}
+  {\tt Tut09-Contraste-2Pob-CocienteVarianzas.R}
+\end{center}
+para los contrastes sobre cocientes de varianzas y después usaremos una de las plantillas
+\begin{center}
+  {\tt Tut09-Contraste-2Pob-DifMedias-UsandoT-VarDistintas.R}\\
+  {\tt Tut09-Contraste-2Pob-DifMedias-UsandoT-VarIguales.R}
+\end{center}
+
+\subsubsection*{Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales}}
+Empezamos por este ejemplo, que aparece en la página \pageref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales} del libro. Allí puedes ver los valores necesarios, así que sólo mostraremos el principio del código de la plantilla que usamos para el contraste de varianzas. Ten en cuenta que puede haber pequeños discrepancias con respecto a los valores del libro debidos al redondeo, porque aquí no estamos tomando como partida los datos en bruto que aparecen en el ejemplo:
+
+<<>>=
+ # PRIMERA MUESTRA
+ # Numero de elementos
+ (n1 = 10)
+ # Cuasidesviacion tipica muestral
+ (s1 = 2.098)
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 = 10)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 2.111)
+
+
+ # TIPO DE CONTRASTE:
+ # Escribe 1 si la HIP. ALTERNATIVA es sigma > sigma2,
+ #         2 si es sigma1 < sigma2,
+ #         3 si es bilateral.
+ TipoContraste = 3
+
+ #NIVEL DE SIGNIFICACION:
+ (nSig = 0.95)
+@
+
+<<echo=FALSE, results='hide'>>=
+# Calculo de alfa
+   (alfa=1-nSig)
+
+ # Calculo del estadistico del contraste
+    (Estadistico=s1^2/s2^2)
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon,tipoCon){
+       if(tipoCon==1){
+         (pV=1-pf(EstadCon,df1=n1-1,df2=n2-1))
+       }
+       if(tipoCon==2){
+         (pV=pf(EstadCon,df1=n1-1,df2=n2-1))
+       }
+       if(tipoCon==3){
+         if(s1>s2)(pV=2*(1-pf(EstadCon,df1=n1-1,df2=n2-1)))
+         else(pV=2*(pf(EstadCon,df1=n1-1,df2=n2-1)))
+       }
+       return(paste("El p-Valor es ",pV,sep="",collapse=""))
+     }
+@
+
+Y los resultados que obtenemos:
+<<>>=
+
+ # Y ahora se aplican ambas funciones para mostrar los resultados
+     pValor(Estadistico,TipoContraste)
+     Estadistico
+
+@
+Como puedes ver y salvo la pequeña discrepancia numérica, confirmamos  la conclusión que aparece en el texto: no tenemos razones para pensar que las varianzas sean distintas. Así que de las dos posibles usamos la plantilla {\tt Tut09-Contraste-2Pob-DifMedias-UsandoT-VarIguales.R}. Vamos a ver la parte inicial del código de esa plantilla, con los datos del problema. Ten en cuenta, insistimos, que puede haber pequeñas discrepancias numéricas con los valores que aparecen en el libro. Además en este ejemplo estamos llamando $\mu_t, \mu_b$ a lo que normalmente llamamos $\{\mu_1, \mu_2\}$. Ten presente esto a la hora de elegir el tipo de contraste.
+
+<<>>=
+ # PRIMERA MUESTRA # Numero de elementos
+ (n1 = 10)
+ # Media muestral
+ (xbar1 = 94.2)
+ # Cuasidesviacion tipica muestral
+ (s1 = 2.098)
+
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 = 10)
+ # Media muestral
+ (xbar2 = 97.7)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 2.111)
+
+
+ # ¿Que tipo de contraste estamos haciendo?
+ # Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2
+     TipoContraste = 2
+ #Nivel de significacion
+     (nSig = 0.95)
+@
+
+
+
+<<echo = FALSE, results='hide'>>=
+ ###############################################
+ # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+ ###############################################
+
+
+
+ # Calculo de alfa
+   (alfa = 1 - nSig)
+
+ # Grados de libertad
+
+ k = n1 + n2 -2
+
+ # Calculo del estadistico del contraste
+   denomEstad=
+   sqrt(((1/n1) + (1/n2)) * ((n1 - 1) * s1^2 + (n2-1) * s2^2) / k)
+
+     (Estadistico=(xbar1 - xbar2) / denomEstad)
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon, tipoCon){
+       if(tipoCon == 1){
+         (pV=1 - pt(EstadCon, df=k))
+       }
+       if(tipoCon == 2){
+         (pV = pt(EstadCon,df=k))
+       }
+       if(tipoCon == 3){
+         pV=2 * (1 - pt(abs(EstadCon), df=k))
+       }
+       return(paste("El p-Valor es ", pV, sep="", collapse=""))
+     }
+ # Funcion para el calculo del límite de la región de rechazo
+     RegionRechazo = function(alfa, tipoCon){
+       if(tipoCon == 1){
+         (regionRech = paste("Valores del Estadistico mayores que ",
+                           qt(1 - alfa, df=k)))
+       }
+       if(tipoCon == 2){
+         (regionRech = paste("Valores del Estadistico menores que ",
+                             qt(alfa, df=k)) )
+       }
+       if(tipoCon == 3){
+         (regionRech = paste("Valores del Estadistico mas alejados del origen que ",
+                             qt(1 - alfa/2, df=k)) )
+       }
+       regionRech=paste("La region de rechazo la forman los ",
+                        regionRech, sep="", collapse="")
+       return(regionRech)
+     }
+@
+
+Los resultados son:
+<<>>=
+
+
+     pValor(Estadistico, TipoContraste)
+     Estadistico
+     RegionRechazo(alfa, TipoContraste)
+
+@
+respaldando las conclusiones que hemos obtenido en este ejemplo.
+
+\subsubsection*{Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales}}
+
+Este ejemplo aparece en la pág. \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasDistintas} del libro. Como en el anterior, empezamos con el código necesario para el contraste de varianzas. El comienzo de la plantilla sería así:
+
+<<>>=
+ # PRIMERA MUESTRA
+ # Numero de elementos
+ (n1 = 12)
+ # Cuasidesviacion tipica muestral
+ (s1 = 0.4216)
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 = 12)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 0.1740)
+
+
+ # TIPO DE CONTRASTE:
+ # Escribe 1 si la HIP. ALTERNATIVA es sigma > sigma2,
+ #         2 si es sigma1 < sigma2,
+ #         3 si es bilateral.
+ TipoContraste = 3
+
+ #NIVEL DE SIGNIFICACION:
+ (nSig = 0.95)
+@
+
+<<echo=FALSE, results='hide'>>=
+# Calculo de alfa
+   (alfa=1-nSig)
+
+ # Calculo del estadistico del contraste
+    (Estadistico=s1^2/s2^2)
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon,tipoCon){
+       if(tipoCon==1){
+         (pV=1-pf(EstadCon,df1=n1-1,df2=n2-1))
+       }
+       if(tipoCon==2){
+         (pV=pf(EstadCon,df1=n1-1,df2=n2-1))
+       }
+       if(tipoCon==3){
+         if(s1>s2)(pV=2*(1-pf(EstadCon,df1=n1-1,df2=n2-1)))
+         else(pV=2*(pf(EstadCon,df1=n1-1,df2=n2-1)))
+       }
+       return(paste("El p-Valor es ",pV,sep="",collapse=""))
+     }
+@
+
+Y los resultados que obtenemos:
+<<>>=
+
+ # Y ahora se aplican ambas funciones para mostrar los resultados
+     pValor(Estadistico,TipoContraste)
+     Estadistico
+
+@
+En este caso, como el punto de partida son los propios valores que se han usado en el libro, no hay errores de redondeo apreciables. La conclusión, como se explica en el libro, es que rechazamos la hipótesis nula de igualdad de varianzas.
+
+Por tanto, de vuelta al contraste de medias, vamos a usar la plantilla de la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones} titulada
+\begin{center}
+{\tt Tut09-Contraste-2Pob-DifMedias-UsandoT-VarIguales.R}
+\end{center}
+Ten en cuenta además la notación $H_a = \{\mu_2 - \mu_3\}$ que se ha usado en este ejemplo, a la hora de seleccionar el tipo de contraste. Con los datos del ejemplo, la primera parte de esa plantilla quedaría así:
+
+{\small
+<<>>=
+ # PRIMERA MUESTRA # Numero de elementos
+ (n1 = 12)
+ # Media muestral
+ (xbar1 = 1.914)
+ # Cuasidesviacion tipica muestral
+ (s1 = 0.4216)
+
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 = 12)
+ # Media muestral
+ (xbar2 = 2.344)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 0.1740)
+
+
+# ¿Que tipo de contraste estamos haciendo?
+# Escribe:    1 si la HIP. ALTERNATIVA es mu1 > mu2,
+#             2 si es mu1 < mu2,
+#             3 si es mu1 distinto de mu2
+TipoContraste = 2
+
+#Nivel de significacion
+(nSig = 0.95)
+
+@
+
+
+<<echo=FALSE, results='hide'>>=
+
+ ###############################################
+ # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+ ###############################################
+
+
+
+ # Calculo de alfa
+   (alfa = 1 - nSig)
+@
+En este caso vamos a mostrar el número de grados de libertad que se obtienen usando la aproximación de Welch:
+
+<<>>=
+ # Grados de libertad, aproximacion de Welch
+ (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+
+@
+
+
+<<echo=FALSE, results='hide'>>=
+ # Calculo del estadistico del contraste
+    (Estadistico = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon, tipoCon){
+       if(tipoCon == 1){
+         (pV = 1 - pt(EstadCon, df=k))
+       }
+       if(tipoCon == 2){
+         (pV = pt(EstadCon, df=k))
+       }
+       if(tipoCon == 3){
+         pV = 2 * (1 - pt(abs(EstadCon), df=k))
+       }
+       return(paste("El p-Valor es ", pV, sep="", collapse=""))
+     }
+ # Funcion para el calculo del límite de la región de rechazo
+     RegionRechazo = function(alfa, tipoCon){
+       if(tipoCon == 1){
+         (regionRech = paste("valores del Estadistico mayores que ", qt(1 - alfa, df=k)))
+       }
+       if(tipoCon == 2){
+         (regionRech = paste("valores del Estadistico menores que ", qt(alfa, df=k)))
+       }
+       if(tipoCon == 3){
+         (regionRech = paste("valores del Estadistico mas alejados del origen que ", qt(1 - alfa/2, df=k)))
+       }
+       regionRech = paste("La region de rechazo la forman los ", regionRech, sep="", collapse="")
+       return(regionRech)
+     }
+@
+}
+
+Los resultados son:
+{\small
+<<>>=
+
+     pValor(Estadistico, TipoContraste)
+     Estadistico
+     RegionRechazo(alfa, TipoContraste)
+
+@
+}
+
+\vspace{-3mm}
+\noindent{\bf Contrastes de diferencia de medias con GeoGebra en el caso de muestras pequeñas.}\\[3mm]
+La {\em Calculadora de Probabilidades} de GeoGebra incluye, en la pestaña titulada {\em Estadísticas}, la opción de calcular estos contrastes de diferencia de medias, introduciendo los valores muestrales en los campos del formulario que se muestra. Para revisar el funcionamiento de esta herramienta vamos a usar los datos de los dos ejemplos que hemos hecho antes con las plantillas de R y luego comentaremos algunos aspectos particulares. En esta primera figura se ilustra la forma de obtener el contraste del Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales} del libro.
+
+\begin{center}
+    \includegraphics[width=10cm]{../fig/Tut09-05.png}
+\end{center}
+
+Mientras que para el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasDistintas} del libro debemos proceder como se muestra en esta figura:
+
+\begin{center}
+    \includegraphics[width=10cm]{../fig/Tut09-06.png}
+\end{center}
+
+Vamos a comentar algunos aspectos reseñables de esta herramienta:
+
+\begin{itemize}
+  \item Aunque GeoGebra es un programa que las más de las veces resulta intuitivo y fácil de usar, esta interfaz no es, tal vez, de las más conseguidas. En la versión actual se ha colado además una errata que hace que en la hipótesis nula aparezca la fórmula $\mu_1 - \mu_1$ donde debería decir $\mu_1 - \mu_2$. Esta diferencia aparece igualada inicialmente a $0$, aunque ese valor puede modificarse, para dar cabida a posibles hipótesis nulas como, por ejemplo (también podría ser con $\geq$ o $=$):
+        \[H_0 = \{(\mu_1-\mu_2)\leq \Delta \mu_0\}\]
+      donde $\Delta \mu_0$ es una cantidad dada, en el mismo sentido que hemos discutido, para el caso de proporciones, en la Sección \ref{curso-cap09:subsec:ContrasteHipotesisDiferenciaProporciones} del libro (pág. \pageref{curso-cap09:subsec:ContrasteHipotesisDiferenciaProporciones}). En particular eso significa que {\bf en la mayoría de las ocasiones queremos mantener el valor $\mu_1 - \mu_2 = 0$}.
+  \item Los programadores de GeoGebra usan descripciones de la hipótesis nula que podemos resumir en la forma:
+        \[H_a = \{\mu_1 - \mu_2 \,\bigstar\, 0\}\]
+        donde $\,\bigstar\,$ es un símbolo que puede ser $<$, $>$ 0 $\neq$. Pero hay que tener en cuenta que, por ejemplo
+        \[H_a = \{\mu_1 - \mu_2 < 0\} = \{\mu_1 < \mu_2\}.\]
+        Así que decir que $\mu_1 - \mu_2 \,\bigstar\, 0$ es lo mismo que decir $\mu_1 \,\bigstar\,  \mu_2 $ {\em sea cual sea la interpretación del símbolo } $\,\bigstar\,$ de entre las tres posibles.
+  \item Para elegir entre el caso en que asumimos varianzas iguales y el caso de varianzas distintas, debemos usar la casilla titulada {\em Agrupado}. Como hemos indicado en las figuras, marcamos esa casilla para el caso de varianzas iguales y la dejamos sin marcar en el caso de varianzas distintas.
+
+\end{itemize}
+
+\subsection{Intervalos de confianza para la diferencia de medias con R.}
+
+Vamos a calcular intervalos de confianza al $95\%$ para la diferencia $\mu_1 - \mu_2$ en los Ejemplos \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales} y \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasDistintas} del libro que estamos usando en estos últimos apartados. Para ello usaremos los dos ficheros plantilla de la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones}.
+
+Para el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales} usamos el fichero {\tt Tut09-IntConf-2Pob-DifMedias-UsandoT-VarianzasIguales.R}. El código con los datos del ejemplo sería así:
+
+<<>>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadísitica
+# Tutorial-09.
+#
+# Fichero de instrucciones R para calcular
+# un intervalo de confianza para la
+# DIFERENCIA DE MEDIAS DE 2 POBLACIONES NORMALES
+# Es el caso de
+# MUESTRAS PEQUEÑAS
+# bajo la hipotesis de
+# VARIANZAS IGUALES.
+##############################################################
+
+# Introducimos los tamaños de las muestras:
+n1 = 10
+n2 = 10
+# Medias muestrales:
+barX1 = 94.2
+barX2 = 97.7
+# Cuasidesviaciones tipicas muestrales:
+s1 = 2.098
+s2 = 2.111
+
+# Nivel de confianza deseado:
+nc = 0.95
+
+################################################
+#NO CAMBIES NADA DE AQUI PARA ABAJO
+################################################
+# Calculamos los grados de libertad:
+(k = n1 + n2 - 2)
+
+# Calculamos el valor critico:
+(alfa = 1 - nc)
+
+(t_alfa2 = qt(1 - alfa/2, df=k))
+
+# La semianchura del intervalo es
+(semianchura = t_alfa2 * sqrt((((n1 - 1) * s1^2 + (n2 - 1) * s2^2) /k) * (1/n1 + 1/n2)))
+
+
+# Intervalo de confianza
+(intervalo = (barX1 - barX2) + c(-1, 1) * semianchura)
+@
+
+Para el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasDistintas} usaremos el fichero {\tt Tut09-IntConf-2Pob-DifMedias-UsandoT-VarianzasDistintas.R}. Con los datos del Ejemplo el código quedaría así:
+
+<<>>=
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadísitica
+# Tutorial-09.
+#
+# Fichero de instrucciones R para calcular
+# un intervalo de confianza para la
+# DIFERENCIA DE MEDIAS DE 2 POBLACIONES NORMALES
+# Es el caso de
+# MUESTRAS PEQUEÑAS
+# bajo la hipotesis de
+# VARIANZAS IGUALES.
+##############################################################
+
+# Introducimos los tamaños de las muestras:
+n1 = 12
+n2 = 12
+# Medias muestrales:
+barX1 = 1.914
+barX2 = 2.344
+# Cuasidesviaciones tipicas muestrales:
+s1 = 0.4216
+s2 = 0.1740
+
+# Nivel de confianza deseado:
+nc = 0.95
+
+################################################
+#NO CAMBIES NADA DE AQUI PARA ABAJO
+################################################
+
+# Calculamos los grados de libertad usando la aprox. de Welch
+(k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+
+# Calculamos el valor critico:
+(alfa = 1 - nc)
+(t_alfa2 = qt(1-alfa/2, df=k))
+
+
+#La semianchura del intervalo es:
+(semianchura = t_alfa2 * sqrt(s1^2/n1 + s2^2/n2))
+
+
+# El intervalo de confianza es:
+(intervalo = (barX1 - barX2) + c(-1, 1) * semianchura  )
+
+@
+
+\subsubsection*{Con GeoGebra.}
+
+En la {\em Calculadora de Probabilidades} de GeoGebra, podemos usar la opción {\em Intervalo T, diferencia de Medias}. Las siguientes figuras muestran el cálculo de los intervalos que hemos obtenido previamente con R.
+
+\begin{center}
+    \includegraphics[width=15cm]{../fig/Tut09-07.png}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Datos {\em en bruto} con R.}
+\label{tut09:sec:DatosEnBrutoconR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\bf Opcional: esta sección puede omitirse en una primera lectura. De hecho, para leer esta sección, es necesario haber aprendido previamente a manejar los {\tt data.frame} de R. Se recomienda en particular la lectura de la Sección \ref{tut04-tut04:sec:FicherosDatosRObjetosDataFrame} (pág. \pageref{tut04-tut04:sec:FicherosDatosRObjetosDataFrame}) del Tutorial04.}
+
+Vamos a dedicar esta sección a profundizar en el uso de varias funciones de R que son especialmente útiles para realizar contrastes entre parámetros de dos poblaciones. Las funciones son:
+\begin{itemize}
+  \item {\tt prop.test}
+  \item {\tt z.test}
+  \item {\tt t.test}
+  \item {\tt var.test}
+\end{itemize}
+Ya hemos discutido la función {\tt prop.test} en la Sección \ref{tut09:subsubsec:FuncionPropTest} (pág. \pageref{tut09:subsubsec:FuncionPropTest}). Y la función {\tt t.test} ha aparecido en Tutoriales previos. La función {\tt var.test} está disponible por defecto en la instalación estándar de R, mientras que la función {\tt z.test} se puede obtener instalando la librería {\tt BSDA}. Esta librería, cuyo autor es Alan T. Arnholt, contiene numerosos conjuntos de datos relacionados con el libro {\em Basic Statistics and Data Analysis} de Larry J. Kitchens\footnote{Kitchens, L. J. (2003)
+Basic Statistics and Data Analysis. Duxbury. ISBN: 978-0534384654}. Puedes encontrar más información en este enlace:
+\begin{center}
+  \link{http://cran.r-project.org/web/packages/BSDA/BSDA.pdf}{cran.r-project.org/web/packages/BSDA/BSDA.pdf}
+\end{center}
+Hemos visto, en el Tutorial07, otra función llamada igualmente {\tt z.test}, incluida en . Puede suceder que librerías distintas, a menudo escritas por diferentes autores, contengan funciones con el mismo nombre. En cualquier caso, si alguna vez necesitas las dos funciones, puedes referirte a ellas sin ambigüedad usando nombres como
+<<eval=FALSE>>=
+BSDA::z.test
+TeachingDemos::z.test
+@
+Como ves, la inclusión del nombre de la librería elimina las posibles confusiones.
+
+Vamos a empezar  instalando la librería {\tt BSDA}. Puedes hacerlo desde RStudio, o también, simplemente, ejecutando este comando en R:
+<<eval=FALSE>>=
+install.package(BSDA)
+@
+
+Una vez instalada la librería, la cargamos mediante
+<<results='hide'>>=
+library(BSDA)
+@
+
+\subsubsection*{Un contraste de igualdad de medias con muestras pequeñas: las funciones {\tt t.test} y {\tt var.test}}
+
+Como hemos dicho, esa librería incluye, además de la función {\tt z.test}, numerosos conjuntos de datos, almacenados en {\tt data.frames} de R. Vamos a usar uno de ellos para empezar nuestro trabajo. Concretamente, vamos a usar un conjunto de datos llamado {\tt Statisti}. Para empezar a trabajar con ese conjunto de datos escribimos:
+<<>>=
+data(Statisti)
+@
+y para verlo, puedes usar este comando, que en RStudio abrirá un nuevo panel en el que puedes inspeccionar los datos:
+<<eval=FALSE>>=
+View(Statisti)
+@
+Cuando se abra esa pestaña, verás que el {\tt data.frame Statisti} contiene una tabla de datos con dos columnas, llamadas  {\tt Class1} y {\tt Class2}. Cada columna representa las puntuaciones obtenidas por los alumnos de dos grupos de un curso de Estadística.  Además, si te desplazas hacia la parte inferior de la tabla, verás que el número de alumnos de los dos grupos es distinto, y que la columna {\tt Class2} contiene varias observaciones cuyo valor es {\tt NA} (recuerda, {\em not available}, no disponible). Esta es la situación más común cuando trabajamos con muestras de tamaños distintos.
+
+Recuerda también que para acceder a los datos de cada uno de los grupos por separado puedes usar una notación matricial, como en:
+<<>>=
+Statisti[ ,1]
+@
+o también la notación \verb#$# combinada con el nombre de la variable (columna), como en:
+<<>>=
+Statisti$Class1
+@
+
+
+Vamos a suponer que las poblaciones muestreadas son normales y que las muestras son independientes. Llamamos $\mu_1$ y $\mu_2$ respectivamente a las puntuaciones medias de ambos grupos y usaremos esas dos muestras para contrastar la hipótesis nula:
+\[H_0 = \{\mu_1 \neq \mu_2\}\]
+Si tratas de usar {\tt length} para hallar los tamaños de ambas muestras
+<<>>=
+length(Statisti$Class1)
+length(Statisti$Class2)
+@
+comprobarás que R incluye los valores {\tt NA} de {\tt Class2} en ese recuento de la longitud. Y es razonable que así sea, porque es la opción menos problemática en la mayoría de los casos. Cuando trabajamos con {\tt data.frames} y queremos saber si hay datos ausentes, una buena opción es usar la función {\tt complete.cases}, que devuelve un vector de valores lógicos, iguales a {\tt TRUE} cuando la fila correspondiente del {\tt data.frame} no contiene valores ausentes e igual a {\tt FALSE} en caso contrario.
+Para nuestro conjunto de datos:
+<<>>=
+(noAusentes = complete.cases(Statisti))
+@
+Usando {\tt complete.cases} junto con {\tt which}  y otros métodos que hemos visto en tutoriales previos (por ejemplo, la suma de valores lógicos) se puede gestionar de forma my eficaz la presencia de valores {\tt NA} en un {\tt data.frame} de R.
+
+Pero para el trabajo que nos ocupa, no es necesario hacer nada complicado. Aunque hemos dicho varias veces a lo largo del curso que las muestras de más de $30$ elementos pueden considerarse grandes, en este caso estamos al filo de ese tamaño y, de hecho, a causa de los datos ausentes, una de las muestras es de un tamaño menor que $30$. Así que vamos a usar la distribución $t$ para este contraste. Eso implica, com ya sabemos, que debemos empezar haciendo el contraste de la hipótesis nula de igualdad de varianzas:
+\[H_0=\{\sigma_1^2 = \sigma_2^2\}.\]
+Para hacer este contraste vamos a recurrir a la función {\tt var.test}. Simplemente escribimos:
+<<>>=
+var.test(Statisti$Class1, Statisti$Class2, alternative = "two.sided", conf.level = 0.95)
+@
+Fíjate en que hemos usado {\tt two.sided} para obtener el contraste bilateral que buscábamos. Como  ves, el p-valor permite rechazar la hipótesis alternativa y, por tanto, seguir trabajando bajo la hipótesis de que las varianzas de ambos grupos son iguales. No queremos dejar pasar sin mencionarlo que además hemos obtenido un intervalo de confianza para el valor del cociente de varianzas.
+
+Teniendo en cuenta este resultado, podemos volver al contraste de diferencia de medias, usando ahora la función {\tt t.test}. Es tan simple como hacer:
+<<>>=
+t.test(Statisti$Class1, Statisti$Class2,
+    alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
+@
+Fíjate en que la opción {\tt var.equal} nos permite ajustar el método que usa {\tt t.test} al resultado del contraste de igualdad de varianzas que hemos hecho antes. Y, como ves, el p-valor permite rechazar $H_a$, para concluir que no hay base empírica para creer que las medias de los dos grupos son distintas.
+
+Como ves, el uso combinado de {\tt var.test} y {\tt t.test} hace que los contrastes de igualdad de medias sean muy fáciles de llevar a cabo.
+
+\subsubsection*{Sobre el formato del {\tt data.frame} de este ejemplo. Datos con {\tt read.table}.}
+
+<<echo=FALSE, results='hide'>>=
+scores = c(Statisti[, 1], Statisti[noAusentes, 2])
+group = rep(1:2, c(length(Statisti[, 1]), length(Statisti[noAusentes, 2])) )
+
+statisti2 = data.frame(scores=scores, group=group)
+write.table(statisti2, "../datos/Tut09-Statisti2.csv")
+@
+
+
+A pesar de la facilidad con la que hemos trabajado en el apartado anterior, no podemos tampoco dejar pasar el hecho de que el formato del conjunto de datos que hemos usado en este ejemplo no es el recomendable. En el Tutorial11 volveremos sobre esto, pero queremos avanzar la idea básica para que el lector se vaya acostumbrando a oírla. Una tabla de datos en el formato correcto debe tener {\bf una variable por columna y una observación por fila}.
+Hemos creado una nueva versión del {\tt data.frame Statisti} en  este formato correcto y la hemos almacenado en el fichero:
+\begin{center}
+  \fichero{../datos/Tut09-Statisti2.csv}{Tut09-Statisti2.csv}
+\end{center}
+Descarga este fichero y guárdalo en tu carpeta {\tt datos}. Antes de continuar, inspecciónalo con un editor de textos, como el {\em Bloc de Notas}. Vamos a aprovechar esta oportunidad para refrescar lo que sabemos del uso de la función {\tt read.table}. Para leer el fichero y almacenarlo en un {\tt data.frame} llamado {\tt Statisti2} hacemos:
+
+<<>>=
+Statisti2 = read.table("../datos/Tut09-Statisti2.csv", header = TRUE, sep = "")
+@
+Y  para ver que todo ha ido bien usamos {\tt head} y {\tt tail} así:
+<<>>=
+head(Statisti2)
+tail(Statisti2)
+@
+
+Como ves, {\tt Statisti2} contiene también dos columnas, pero ahora la primera, llamada {\tt scores} (puntuaciones, en inglés) contiene las puntuaciones de ambos grupos, mientras que la segunda, llamada {\tt group} es un factor que identifica el grupo al que pertenece esa puntuación. Como sucede muchas veces, los factores sirven para clasificar en grupos. Y de esta forma, el {\} respeta el principio de {\em una variable por columna, una observación por fila}.
+
+¿Qué ocurre ahora con los contrastes de hipótesis? Pues que son igual de fáciles, pero debemos cambiar ligeramente la forma en que usamos la función, para explicarle a R que {\tt group} es un factor que agrupa las observaciones de {\tt scores} en grupos o niveles. Primero hacemos el contraste de igualdad de varianzas con {\tt var.test}
+
+<<>>=
+var.test(scores ~ group, data = Statisti2, alternative = "two.sided", conf.level = 0.95)
+@
+El resultado es, desde luego, exactamente el mismo que cuando usábamos el otro formato. Y prácticamente con la misma forma, hacemos el contraste para las medias:
+<<>>=
+t.test(scores ~ group, data = Statisti2,
+    alternative = "two.sided", conf.level = 0.95, var.equal=TRUE)
+@
+que, de nuevo, es idéntico al que hicimos con anterioridad.
+
+Vamos a proponerte un ejercicio para que practiques estas ideas.
+
+\begin{ejercicio}
+\label{tut09:ejercicio04}
+
+El fichero adjunto
+<<echo=FALSE, results='hide'>>=
+library(MASS)
+set.seed(2014)
+n1 = 12
+n2 = 16
+mu1 = 6.7
+mu2 = 2.9
+sigma1 = 2.2
+sigma2 = 9.3
+muestra1 = mvrnorm(n = n1, mu = mu1, Sigma = sigma1^2, empirical = TRUE)
+muestra2 = mvrnorm(n = n2, mu = mu2, Sigma = sigma2^2, empirical = TRUE)
+X = c(muestra1, muestra2)
+T =factor( rep(LETTERS[1:2], c(n1, n2) ))
+datos = data.frame(X, T)
+var.test(X ~ T, data=datos)
+t.test(X ~ T, data=datos, var.equal = FALSE)
+nombreFichero = "Tut09-Ejemplos-ContrasteMedias-01.csv"
+write.table(datos, paste0("../datos/", nombreFichero,collapse = ""), quote = FALSE,
+            sep = " ", row.names = FALSE, )
+@
+\begin{center}
+  \fichero{../datos/\Sexpr{nombreFichero}}{\Sexpr{nombreFichero}}
+\end{center}
+contiene muestras de una variable $X$ en dos poblaciones normales, que llamamos población $A$ y población $B$. Usa esos datos para contrastar la hipótesis nula:
+\[H_0 = \{\mu_A = \mu_B\}.\]
+Asegúrate de explorar primero los datos del fichero.
+Solución en la página \pageref{tut09:ejercicio04:sol}.
+\qed
+\end{ejercicio}
+
+\subsubsection*{La función {\tt z.test} de la librería {BSDA}.}
+
+En el caso de muestras grandes, en lugar de {\tt t.test} podemos usar la función {\tt z.test} de la librería {\tt BSDA} para hacer los contrastes e intervalos de confianza correspondientes a ese tipo de problemas.
+
+Para practicar esto vamos a usar los datos del fichero adjunto:
+<<echo=FALSE, results='hide'>>=
+library(MASS)
+set.seed(2014)
+n1 = 323
+n2 = 286
+mu1 = 23
+mu2 = 26
+sigma1 = 2.2
+sigma2 = 15.6
+muestra1 = mvrnorm(n = n1, mu = mu1, Sigma = sigma1^2, empirical = TRUE)
+muestra2 = mvrnorm(n = n2, mu = mu2, Sigma = sigma2^2, empirical = TRUE)
+X = c(muestra1, muestra2)
+T =factor( rep(LETTERS[1:2], c(n1, n2) ))
+datos = data.frame(X, T)
+n = nrow(datos)
+datos = datos[sample(1:n), ]
+head(datos)
+aggregate(X ~ T, data = datos, FUN = mean )
+aggregate(X ~ T, data = datos, FUN = sd)
+var.test(X ~ T, data=datos)
+t.test(X ~ T, data=datos, var.equal = FALSE)
+t.test(X ~ T, data=datos, var.equal = TRUE)
+
+
+nombreFichero = "Tut09-Ejemplos-ContrasteMedias-02.csv"
+write.table(datos, paste0("../datos/", nombreFichero,collapse = ""), quote = FALSE,
+            sep = " ", row.names = FALSE, )
+@
+\begin{center}
+  \fichero{../datos/\Sexpr{nombreFichero}}{\Sexpr{nombreFichero}}
+\end{center}
+Este fichero contiene, de forma análoga a lo que sucedía en el Ejercicio \ref{tut09:ejercicio04}, muestras de una variable $X$ en dos poblaciones normales, que llamamos población $A$ y población $B$. Y de nuevo, vamos a usar esos datos para contrastar la hipótesis nula:
+\[H_0 = \{\mu_A = \mu_B\}.\]
+La principal diferencia, como vamos a comprobar enseguida, es que ahora las muestras son de tamaño grande. Recuerda que la primera tarea consiste siempre en explorar el fichero de datos. Al abrirlo en un editor de texto verás algo como esto:
+\begin{center}
+    \includegraphics[width=10cm]{../fig/Tut09-08.png}
+\end{center}
+
+Para leer los datos del fichero usamos {\tt read.table} y comprobamos que la lectura ha sido correcta con {\tt head} así:
+<<>>=
+datos = read.table("../datos/Tut09-Ejemplos-ContrasteMedias-02.csv", header = TRUE, sep = "")
+head(datos)
+@
+
+La función {\tt z-test} de la librería {\tt BSDA} no es tan cómoda como las funciones {\tt t.test} o {\tt var.test}. En particular, con esta función no podemos usar una fórmula como \verb#X ~ T# para describir lo que queremos hacer. Así que vamos a hacer algo mucho más {\em ``manual''}. Definimos dos vectores que contienen los valores de $X$ para cada uno de los grupos (niveles) definidos por el factor {\tt T}:
+<<>>=
+XA = datos$X[datos$T=="A"]
+XB = datos$X[datos$T=="B"]
+@
+Y ahora aplicamos así la función:
+<<>>=
+z.test(x = XA, y = XB, alternative = "two.sided", sigma.x = sd(XA), sigma.y = sd(XB))
+@
+Fíjate que además debemos incluir las cuasidesviaciones típicas (calculadas con {\tt sd}), porque de lo contrario se produce un error, ya que la función no las calcula por defecto.
+
+Con esto, hemos obtenido el p-valor del contraste. Es posible que te pregunte qué sucedería si, en lugar de {\tt z.test}, usáramos {\tt t.test} en este caso de muestras grandes. Y si la usamos, ¿debemos usar la opción de varianzas iguales o distintas?
+
+\begin{ejercicio}
+\label{tut09:ejercicio05}
+Usa la función {\tt t.test} para realizar este contraste. Prueba las dos opciones posibles sobre las varianzas. ¿Cuál de ellas produce un resultado más parecido al que hemos obtenido con {\tt z.test}? ¿Qué sucede si, al usar {\tt t.test}, no indicas ninguna opción sobre la igualdad de las varianzas? Es decir, ¿cuál es el comportamiento {\em por defecto} de R?
+Solución en la página \pageref{tut09:ejercicio05:sol}.
+\qed
+\end{ejercicio}
+
+\subsubsection*{La función {\tt t.test} para datos emparejados.}
+
+En la Sección \ref{curso-cap09:subsec:CasoDatosEmparejados} del libro (pág. \pageref{curso-cap09:subsec:CasoDatosEmparejados}) y también en este mismo tutorial, en la Sección \ref{tut09:subsec:DatosEmparejados1} (pág. \pageref{tut09:subsec:DatosEmparejados1}) hemos discutido el caso de los datos emparejados. Este tipo de contrastes, cuando disponemos de los datos {\em en bruto}, se llevan a cabo con mucha comodidad usando {\tt t.test}, con la opción {\tt paired=TRUE}.
+
+Veamos un ejemplo. La librería {\tt BSDA}, que hemos usado antes, contiene un conjunto de datos, llamado {\tt Fitness}. Este conjunto de datos representa el número de un cierto tipo de flexiones que un grupo de sujetos podían hacer antes (en la columna {\em Before}) y después (columna {\em After}) de someterse a un programa de entrenamiento deportivo. Vamos a cargar ese conjunto de datos y a explorar su estructura:
+
+<<>>=
+library(BSDA)
+data(Fitness)
+head(Fitness)
+str(Fitness)
+@
+
+Además de {\tt head} hemos usado la función {\tt str}, que puede ser de mucha utilidad en este tipo de exploraciones preliminares. Como ves, el conjunto de datos contiene $5$ observaciones, dos para cada individuo que se sometió al programa de entrenamiento. Por eso es un ejemplo típico de las situaciones que englobamos bajo esta etiqueta de {\em datos emparejados}. Llamando $\mu_a$ a la media antes del entrenamiento y $\mu_d$ a la media después del entrenamiento, queremos usar los datos para contrastar la hipótesis alternativa unilateral
+\[H_a = \{\mu_a < \mu_d\}.\]
+Y para hacer esto basta con usar {\tt t.test} así:
+
+<<>>=
+t.test(Fitness$Before, Fitness$After,
+    alternative = "less", paired = TRUE, conf.level = 0.95)
+@
+La clave, por supuesto, es la opción {\tt paired=TRUE}. Fíjate, aparte de esto, en que el conjunto de datos no cumple el principio deseable de {\em una variable por columna, una observación por fila}. Por eso hemos usado la notación \verb#$# para acceder a las columnas {\tt Before} y {\tt After}.  La conclusión, es que al $95\%$ rechazamos $H_0$, pero no al $99\%$.
+Con una muestra tan pequeña, eso significaría en la práctica, casi siempre, que los datos no son concluyentes. Se necesitan más datos: más potencia en el contraste, en el sentido que hemos discutido en el Capítulo \ref{curso-cap:ContrasteHipotesis}.
+
+%\noindent{\bf Ejercicios:}
+%\begin{itemize}
+%  \item Interpreta este resultado de {\tt prop.test}. ¿Rechazamos la hipótesis nula?
+%  \item Comprueba las cuentas del Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaProporciones} (pág. \pageref{curso-cap09:ejem:ContrasteDiferenciaProporciones}) del curso. Asegúrate de incluir la opción {\tt correct=FALSE} en la llamada a {\tt prop.test}.
+%\end{itemize}
+%\qed
+
+
+%\section{Riesgo relativo y cociente de posibilidades (odds ratio).}
+%
+%\textcolor{blue}{Próximamente se añadirá esta sección.}
+
+
+\section{Ejercicios adicionales y soluciones.}
+\label{tut09:sec:EjerciciosAdicionalesYSoluciones}
+
+\subsection*{Ejercicios adicionales.}
+\label{tut09:subsec:EjerciciosAdicionales}
+
+Hemos usado R en todos los casos para obtener las soluciones de los siguientes ejercicios. Pero es recomendable que pruebes alguna de las otras herramientas a tu disposición, al menos en alguno de estos ejercicios.
+
+\begin{ejercicio}
+\label{tut09:ejercicio06}
+
+Para hacer un contraste de proporciones en dos poblaciones disponemos de estos datos muestrales, procedentes de dos muestras aleatorias independientes tomadas respectivamente de cada una de esas dos poblaciones:
+\[
+\begin{cases}
+n1=532, \mbox{número de {\em éxitos} en la primera muestra} = 197.\\
+n2=486, \mbox{número de {\em éxitos} en la segunda muestra} = 151.\\
+\end{cases}
+\]
+Usa estos datos para contrastar la hipótesis nula $H_0=\{p_1 = p_2\}$.
+\qed
+\end{ejercicio}
+
+\begin{ejercicio}
+\label{tut09:ejercicio07}
+
+
+<<tut09_ejercicio07_01, echo=FALSE, results='hide'>>=
+  # PRIMERA MUESTRA
+  # Numero de elementos
+      (n1 = 286)
+  # Media muestral
+      (xbar1 = 137.5)
+  # Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+      (s1 = 15.6)
+      #(sigma1 = )
+
+
+  # SEGUNDA MUESTRA
+  # Numero de elementos
+      (n2 = 331)
+  # Media muestral
+      (xbar2 = 142.4)
+  # Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+      (s2 = 19.4)
+      #(sigma2 = )
+
+# ¿Que tipo de contraste estamos haciendo?
+# Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2,
+#         2 si es mu1 < mu2,
+#         3 si es mu1 distinto de mu2
+      TipoContraste = 2
+  #Nivel de significacion
+      (nSig = 0.95)
+@
+<<tut09_ejercicio07_02, echo=FALSE, results='hide'>>=
+
+  ###############################################
+  # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+  ###############################################
+
+  # Comprobamos si se ha usado sigma como sustituto de s.
+
+  if(exists("sigma1")){s1 = sigma1}
+  if(exists("sigma2")){s2 = sigma2}
+
+
+  # Calculo de alfa
+    (alfa = 1 - nSig)
+
+  # Calculo del estadistico del contraste
+      (Estadistico = (xbar1 - xbar2) / sqrt( (s1^2 / n1) + (s2^2 / n2) ) )
+
+  # Funcion para el calculo del p-valor
+      pValor = function(EstadCon,tipoCon){
+        if(tipoCon == 1){
+          (pV = 1 - pnorm(EstadCon))
+        }
+        if(tipoCon == 2){
+          (pV = pnorm(EstadCon))
+        }
+        if(tipoCon == 3){
+          pV = 2 * (1 - pnorm(abs(EstadCon)))
+        }
+        return(paste("El p-Valor es ", pV,sep="", collapse=""))
+      }
+  # Funcion para el calculo del límite de la región de rechazo
+      RegionRechazo = function(alfa,tipoCon){
+        if(tipoCon == 1){
+          (regionRech = paste("valores del Estadistico mayores que ", qnorm(1 - alfa)) )
+        }
+        if(tipoCon == 2){
+          (regionRech = paste("valores del Estadistico menores que ", qnorm(alfa)) )
+        }
+        if(tipoCon == 3){
+          (regionRech = paste("Valores del Estadistico mas alejados del origen que ", qnorm(1 - alfa/2)) )
+        }
+        regionRech=paste("La region de rechazo la forman los ", regionRech, sep="", collapse="")
+        return(regionRech)
+      }
+
+  # Y ahora se aplican ambas funciones para mostrar los resultados
+@
+<<tut09_ejercicio07_03, echo=FALSE, results='hide'>>=
+      pValor(Estadistico, TipoContraste)
+      Estadistico
+@
+
+
+
+Para hacer un contraste de diferencia de medias de la variable $X$ entre dos poblaciones normales disponemos de estos datos muestrales, procedentes de dos muestras aleatorias independientes tomadas respectivamente de cada una de esas dos poblaciones:
+\[
+\begin{cases}
+n_1 = \Sexpr{n1},\\
+{\bar X}_1 = \Sexpr{xbar1}\\
+s_1 = \Sexpr{s1}
+\end{cases}
+\qquad\qquad
+\begin{cases}
+n_2 = \Sexpr{n2},\\
+{\bar X}_2 = \Sexpr{xbar2}\\
+s_2 = \Sexpr{s2}
+\end{cases}
+\]
+Usa estos datos para contrastar la hipótesis nula $H_0=\{\mu_1 \geq \mu_2 \}$.
+Solución en la página \pageref{tut09:ejercicio07:sol}.
+\qed
+\end{ejercicio}
+
+
+\begin{ejercicio}
+\label{tut09:ejercicio08}
+<<tut09_ejercicio08_01, echo=FALSE, results='hide'>>=
+
+ # PRIMERA MUESTRA # Numero de elementos
+ (n1 = 12)
+ # Media muestral
+ (xbar1 = 45.3)
+ # Cuasidesviacion tipica muestral
+ (s1 = 3.7)
+
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 = 14)
+ # Media muestral
+ (xbar2 = 40.4)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 3.9)
+
+
+ # ¿Que tipo de contraste estamos haciendo?
+ # Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2
+   TipoContraste = 1
+ #Nivel de significacion
+   (nSig = 0.95)
+
+@
+<<tut09_ejercicio08_02, echo=FALSE, results='hide'>>=
+ ###############################################
+ # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+ ###############################################
+
+
+
+ # Calculo de alfa
+   (alfa = 1 - nSig)
+
+ # Grados de libertad, aproximacion de Welch
+ (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+
+
+ # Calculo del estadistico del contraste
+    (Estadistico = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon, tipoCon){
+       if(tipoCon == 1){
+         (pV = 1 - pt(EstadCon, df=k))
+       }
+       if(tipoCon == 2){
+         (pV = pt(EstadCon, df=k))
+       }
+       if(tipoCon == 3){
+         pV = 2 * (1 - pt(abs(EstadCon), df=k))
+       }
+       return(paste("El p-Valor es ", pV, sep="", collapse=""))
+     }
+@
+<<tut09_ejercicio08_03, echo=FALSE, results='hide'>>=
+     pValor(Estadistico, TipoContraste)
+     Estadistico
+@
+
+De nuevo, para hacer un contraste de diferencia de medias de la variable $X$ entre dos poblaciones normales disponemos de estos datos muestrales, procedentes de dos muestras aleatorias independientes tomadas respectivamente de cada una de esas dos poblaciones:
+\[
+\begin{cases}
+n_1 = \Sexpr{n1},\\
+{\bar X}_1 = \Sexpr{xbar1}\\
+s_1 = \Sexpr{s1}
+\end{cases}
+\qquad\qquad
+\begin{cases}
+n_2 = \Sexpr{n2},\\
+{\bar X}_2 = \Sexpr{xbar2}\\
+s_2 = \Sexpr{s2}
+\end{cases}
+\]
+Usa estos datos para contrastar la hipótesis nula $H_0=\{\mu_1 \leq \mu_2 \}$.
+Solución en la página \pageref{tut09:ejercicio08:sol}.
+\qed
+\end{ejercicio}
+
+
+\begin{ejercicio}
+\label{tut09:ejercicio09}
+<<tut09_ejercicio09_01, echo=FALSE, results='hide'>>=
+
+ # PRIMERA MUESTRA # Numero de elementos
+ (n1 = 7)
+ # Media muestral
+ (xbar1 = 0.9)
+ # Cuasidesviacion tipica muestral
+ (s1 = 0.96)
+
+
+ # SEGUNDA MUESTRA
+ # Numero de elementos
+ (n2 = 7)
+ # Media muestral
+ (xbar2 = 1.2)
+ # Cuasidesviacion tipica  muestral
+ (s2 = 0.27)
+
+
+ # ¿Que tipo de contraste estamos haciendo?
+ # Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2
+   TipoContraste = 2
+ #Nivel de significacion
+   (nSig = 0.95)
+
+@
+<<tut09_ejercicio09_02, echo=FALSE, results='hide'>>=
+ ###############################################
+ # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+ ###############################################
+
+
+
+ # Calculo de alfa
+   (alfa = 1 - nSig)
+
+ # Grados de libertad, aproximacion de Welch
+ (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+
+
+ # Calculo del estadistico del contraste
+    (Estadistico = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
+ # Funcion para el calculo del p-valor
+     pValor=function(EstadCon, tipoCon){
+       if(tipoCon == 1){
+         (pV = 1 - pt(EstadCon, df=k))
+       }
+       if(tipoCon == 2){
+         (pV = pt(EstadCon, df=k))
+       }
+       if(tipoCon == 3){
+         pV = 2 * (1 - pt(abs(EstadCon), df=k))
+       }
+       return(paste("El p-Valor es ", pV, sep="", collapse=""))
+     }
+@
+<<tut09_ejercicio09_03, echo=FALSE, results='hide'>>=
+     pValor(Estadistico, TipoContraste)
+     Estadistico
+@
+
+Y por último, para hacer un contraste de diferencia de medias de la variable $X$ entre dos poblaciones normales disponemos de estos datos muestrales, procedentes de dos muestras aleatorias independientes tomadas respectivamente de cada una de esas dos poblaciones:
+\[
+\begin{cases}
+n_1 = \Sexpr{n1},\\
+{\bar X}_1 = \Sexpr{xbar1}\\
+s_1 = \Sexpr{s1}
+\end{cases}
+\qquad\qquad
+\begin{cases}
+n_2 = \Sexpr{n2},\\
+{\bar X}_2 = \Sexpr{xbar2}\\
+s_2 = \Sexpr{s2}
+\end{cases}
+\]
+Usa estos datos para contrastar la hipótesis nula $H_0=\{\mu_1 \geq \mu_2 \}$.
+Solución en la página \pageref{tut09:ejercicio09:sol}.
+\qed
+\end{ejercicio}
+
+
+%%##########################################
+%##########################################
+
+\subsection*{Soluciones de algunos ejercicios.}
+\label{tut09:subsec:SolucionesAlgunosEjercicios}
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio02}, pág. \pageref{tut09:ejercicio02}}
+\label{tut09:ejercicio02:sol}\quad\\
+
+\begin{enumerate}
+  \item El código del fichero con los datos de este ejercicio aparece a continuación. Hemos descomentado las líneas donde aparecen los valores de $s_1$ y $s_2$ :
+
+<<t09ej02sol>>=
+    ####################################################
+    # www.postdata-statistics.com
+    # POSTDATA. Introducción a la Estadísitica
+    # Tutorial-09.
+    #
+    # Fichero de instrucciones R para calcular
+    # un intervalo de confianza para la
+    # DIFERENCIA DE MEDIAS DE 2 POBLACIONES NORMALES
+    # usando la distribución Z
+    # Es el caso de MUESTRAS GRANDES o (poco frecuente)
+    # de varianzas poblacionales conocidas.
+    ##############################################################
+
+
+    rm(list=ls())
+
+    # PRIMERA MUESTRA
+    # Numero de elementos
+    (n1 = 245)
+    # Media muestral
+    (xbar1 = 2.73)
+    # Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+    (s1 = 0.4)
+    #(sigma1 = )
+
+
+    # SEGUNDA MUESTRA
+    # Numero de elementos
+    (n2 = 252)
+    # Media muestral
+    (xbar2 = 2.81)
+    # Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+    (s2 = 0.3)
+    #(sigma2 = )
+
+    # Nivel de confianza deseado:
+    nc = 0.95
+
+    ################################################
+    #NO CAMBIES NADA DE AQUI PARA ABAJO
+    ################################################
+
+    (alfa = 1 - nc)
+
+    # Calculamos el valor critico:
+    (z_alfa2 = qnorm( 1 - alfa / 2))
+
+    # La diferencia de las medias muestrales es:
+
+    (xbar1 - xbar2)
+
+    # Comprobamos si se ha usado sigma como sustituto de s.
+
+    if(exists("sigma1")){s1 = sigma1}
+    if(exists("sigma2")){s2 = sigma2}
+
+    # La semianchura del intervalo es:
+    (semianchura = z_alfa2 * sqrt(s1^2/n1 + s2^2/n2))
+
+    # El intervalo de confianza es este:
+
+    (intervalo = xbar1 - xbar2 + c(-1, 1) * semianchura )
+
+
+@
+
+  \item Esta es la forma de usar la {\em Calculadora de Probabilidades}:
+    \begin{center}
+    \includegraphics[width=11cm]{../fig/Tut09-09.png}
+    \end{center}
+
+  \item  En la siguiente figura se muestra como introducir ls datos para este ejercicio. Observa la forma de elegir entre muestras grandes y pequeñas, como indica la flecha roja.
+    \begin{center}
+    \includegraphics[width=14cm]{../fig/Tut09-15.png}
+    \end{center}
+    Y en esta figura puedes ver la salida de Wolfram Alpha:
+    \begin{center}
+    \includegraphics[width=14cm]{../fig/Tut09-16.png}
+    \end{center}
+
+
+  \item Introducimos los datos para el contraste en Wolfram Alpha como se muestra en la figura. Fíjate en las opciones que te permiten trabajar con muestras pequeñas, que hemos destacado con las flechas rojas:
+    \begin{center}
+    \includegraphics[width=14cm]{../fig/Tut09-10.png}
+    \end{center}
+    La respuesta que se obtiene es esta. Fíjate de nuevo en las opciones disponibles para usar contrastes unilaterales o bilaterales.
+    \begin{center}
+    \includegraphics[width=14cm]{../fig/Tut09-11.png}
+    \end{center}
+
+    Para hacer el mismo contraste usando la plantilla de R llamada
+
+     \begin{center}
+     {\tt Tut09-Contraste-2Pob-DifMedias-UsandoZ.R}
+     \end{center}
+     introducimos los datos del ejemplo al principio del código. Recuerda descomentar las líneas de $s_1$ y $s_2$:
+   <<>>=
+
+  # PRIMERA MUESTRA
+  # Numero de elementos
+      (n1 = 2783)
+  # Media muestral
+      (xbar1 = 49.75)
+  # Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+      (s1 = 63.17)
+      #(sigma1 = )
+
+
+  # SEGUNDA MUESTRA
+  # Numero de elementos
+      (n2 = 2402)
+  # Media muestral
+      (xbar2 = 48.13)
+  # Cuasidesviacion tipica muestral o sigma (descomenta el que uses)
+      (s2 = 51.91)
+      #(sigma2 = )
+
+  # ¿Que tipo de contraste estamos haciendo?
+  # Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2,
+  #         2 si es mu1 < mu2,
+  #         3 si es mu1 distinto de mu2
+  TipoContraste = 3
+
+  #Nivel de significacion
+      (nSig = 0.95)
+@
+
+<<echo=FALSE, results='hide'>>=
+  ###############################################
+  # NO CAMBIES NADA DE AQUÍ PARA ABAJO
+  ###############################################
+
+  # Comprobamos si se ha usado sigma como sustituto de s.
+
+  if(exists("sigma1")){s1 = sigma1}
+  if(exists("sigma2")){s2 = sigma2}
+
+
+  # Calculo de alfa
+    (alfa = 1 - nSig)
+
+  # Calculo del estadistico del contraste
+      (Estadistico = (xbar1 - xbar2) / sqrt( (s1^2 / n1) + (s2^2 / n2) ) )
+
+  # Funcion para el calculo del p-valor
+      pValor = function(EstadCon,tipoCon){
+        if(tipoCon == 1){
+          (pV = 1 - pnorm(EstadCon))
+        }
+        if(tipoCon == 2){
+          (pV = pnorm(EstadCon))
+        }
+        if(tipoCon == 3){
+          pV = 2 * (1 - pnorm(abs(EstadCon)))
+        }
+        return(paste("El p-Valor es ", pV,sep="", collapse=""))
+      }
+  # Funcion para el calculo del límite de la región de rechazo
+      RegionRechazo = function(alfa,tipoCon){
+        if(tipoCon == 1){
+          (regionRech = paste("valores del Estadistico mayores que ", qnorm(1 - alfa)) )
+        }
+        if(tipoCon == 2){
+          (regionRech = paste("valores del Estadistico menores que ", qnorm(alfa)) )
+        }
+        if(tipoCon == 3){
+          (regionRech = paste("Valores del Estadistico mas alejados del origen que ", qnorm(1 - alfa/2)) )
+        }
+        regionRech=paste("La region de rechazo la forman los ", regionRech, sep="", collapse="")
+        return(regionRech)
+      }
+
+@
+Y los resultados que se obtienen coinciden, como cabía esperar con  los de Wolfram Alpha.
+<<>>=
+      pValor(Estadistico, TipoContraste)
+      Estadistico
+      RegionRechazo(alfa, TipoContraste)
+
+   @
+
+
+
+\end{enumerate}
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio03}, pág. \pageref{tut09:ejercicio03}}
+\label{tut09:ejercicio03:sol}\quad\\
+
+Las siguientes figuras muestran la solución de ambos problemas de probabilidad:
+
+    \begin{center}
+    \includegraphics[width=16cm]{../fig/Tut09-12.png}
+    \end{center}
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio04}, pág. \pageref{tut09:ejercicio04}}
+\label{tut09:ejercicio04:sol}\quad\\
+
+El código R para leer el fichero es:
+<<>>=
+ datos = read.table("../datos/Tut09-Ejemplos-ContrasteMedias-01.csv", header = TRUE, sep = "")
+ head(datos)
+ tail(datos)
+@
+Ahora podemos hacer el contraste de igualdad de varianzas en una sola línea de código:
+<<>>=
+var.test(X ~ T, data = datos, alternative = "two.sided", conf.level = 0.95)
+@
+El p-valor obtenido nos lleva a rechazar la hipótesis nula de varianzas iguales. Así que podemos hacer el contraste de igualdad de medias, teniendo en cuenta este resultado para elegir el valor de la opción {\tt var.equal} de {\tt t.test}:
+<<>>=
+t.test(X ~ T, data = datos,
+    alternative = "two.sided", conf.level = 0.95, var.equal=FALSE)
+@
+El p-valor que hemos obtenido indica que debemos rechazar la hipótesis alternativa,y concluir que no hay evidencia basada en los datos para creer que las medias de ambas poblaciones sean distintas.
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio05}, pág. \pageref{tut09:ejercicio05}}
+\label{tut09:ejercicio05:sol}\quad\\
+
+Vamos a recordar primero el contraste con $Z$:
+<<>>=
+datos = read.table("../datos/Tut09-Ejemplos-ContrasteMedias-02.csv", header = TRUE, sep = "")
+XA = datos$X[datos$T=="A"]
+XB = datos$X[datos$T=="B"]
+z.test(x = XA, y = XB, alternative = "two.sided", sigma.x = sd(XA), sigma.y = sd(XB))
+@
+Y ahora veamos las tres posibilidades con $t$:
+<<>>=
+t.test(x = XA, y = XB, alternative = "two.sided", var.equal=FALSE)
+t.test(x = XA, y = XB, alternative = "two.sided", var.equal=TRUE)
+t.test(x = XA, y = XB, alternative = "two.sided")
+@
+
+Como ves, la más parecida es aquella en la primera, en la que suponemos que las varianzas son distintas y que es, además, la opción por defecto que usa R.
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio06}, pág. \pageref{tut09:ejercicio06}}
+\label{tut09:ejercicio06:sol}\quad\\
+
+
+Podemos usar así la función {\tt prop.test}:
+<<>>=
+prop.test(c(197,151),n=c(532,486),alternative="two.sided",conf.level=0.95,correct=FALSE)
+@
+Como puedes ver, hemos usado la opción {\tt correct=FALSE}, para evitar que R use una corrección de continuidad en la aproximación normal a la binomial. De esa forma, y aunque perdamos un poco de precisión, tratamos de obtener los resultados a los que conduce el estadístico que aparece en la Ecuación \ref{curso-cap09:ecu:EstadisticoDiferencia2Proporciones}  (pág. \pageref{curso-cap09:ecu:EstadisticoDiferencia2Proporciones}) del Capítulo \ref{curso-cap:Inferencia2Poblaciones} del libro.
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio07}, pág. \pageref{tut09:ejercicio07}}
+\label{tut09:ejercicio07:sol}\quad\\
+
+Este es el código de la plantilla de R con los datos del ejercicio:
+
+<<>>=
+<<tut09_ejercicio07_01>>
+@
+
+<<echo=FALSE, results='hide'>>=
+<<tut09_ejercicio07_02>>
+@
+Y los resultados que se obtienen son:
+<<>>=
+<<tut09_ejercicio07_03>>
+@
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio08}, pág. \pageref{tut09:ejercicio08}}
+\label{tut09:ejercicio08:sol}\quad\\
+
+<<echo=FALSE, results='hide'>>=
+<<tut09_ejercicio08_01>>
+@
+
+Al tratarse de un contraste de diferencia de medias con muestras pequeñas debemos usar la $t$ de Student y, previamente, para ello debemos hacer un contraste de la hipótesis nula de igualdad de varianzas:
+\[H_0 = \{\sigma_1 ^2 = \sigma^2_2\}\]
+El estadístico de este contraste es
+<<>>=
+(EstadisticoVar = s1^2/s2^2)
+@
+Y, puesto que este estadístico es menor que $1$, usamos la cola izquierda de la distribución de Fisher para calcular el p-valor:
+<<>>=
+(pValorVar = pf(EstadisticoVar, df1 = n1 - 1, df2 = n2 - 1))
+@
+Puedes calcularlo igualmente con la {\em Calculadora de Probabilidades} de GeoGebra, como en la figura:
+    \begin{center}
+    \includegraphics[width=9cm]{../fig/Tut09-14.png}
+    \end{center}
+
+Con este p-valor rechazamos la hipótesis alternativa de que las varianzas sean distintas. Teniendo esto en cuenta, volvamos al contraste sobre la diferencia de medias. Esta es la parte inicial del código de la plantilla de R
+\begin{center}
+  {\tt Tut09-Contraste-2Pob-DifMedias-UsandoT-VarIguales.R}
+\end{center}
+con los datos del ejercicio:
+<<>>=
+<<tut09_ejercicio08_01>>
+@
+
+
+<<echo=FALSE, results='hide'>>=
+<<tut09_ejercicio08_02>>
+@
+Y los resultados que se obtienen son:
+<<>>=
+<<tut09_ejercicio08_03>>
+@
+La conclusión es que rechazamos la hipótesis nula: los datos no permiten afirmar que sea $\mu_1\geq \mu_2$
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut09:ejercicio09}, pág. \pageref{tut09:ejercicio09}}
+\label{tut09:ejercicio09:sol}\quad\\
+
+<<echo=FALSE, results='hide'>>=
+<<tut09_ejercicio09_01>>
+@
+
+De nuevo, puesto que las muestras son pequeñas debemos usar la $t$ de Student y eso nos lleva a empezar  con un contraste de la hipótesis nula de igualdad de varianzas:
+\[H_0 = \{\sigma_1 ^2 = \sigma^2_2\}\]
+El estadístico de este contraste vale, en este caso
+<<>>=
+(EstadisticoVar = s1^2/s2^2)
+@
+Y, puesto que este estadístico es mayor que $1$, usamos la cola derecha de la distribución de Fisher para calcular el p-valor:
+<<>>=
+(pValorVar = 1 - pf(EstadisticoVar, df1 = n1 - 1, df2 = n2 - 1))
+@
+También puedes calcularlo con GeoGebra, desde luego:
+    \begin{center}
+    \includegraphics[width=9cm]{../fig/Tut09-13.png}
+    \end{center}
+Con este p-valor rechazamos la hipótesis nula de que las varianzas sean iguales. Usamos esto para decidir lo que hay que hacer en el contraste sobre la diferencia de medias. Este es el código de la plantilla de R
+\begin{center}
+  {\tt Tut09-Contraste-2Pob-DifMedias-UsandoT-VarDistintas.R}
+\end{center}
+con los datos del ejercicio:
+<<>>=
+<<tut09_ejercicio0901>>
+@
+<<echo=FALSE, results='hide'>>=
+<<tut09_ejercicio09_02>>
+@
+Y los resultados que se obtienen son:
+<<>>=
+<<tut09_ejercicio09_03>>
+@
+La conclusión es que rechazamos la hipótesis alternativa: los datos no permiten afirmar que sea $\mu_1<\mu_2$
+
+
+
+\newpage
+
+\section*{Plantillas de R para contrastes e intervalos de confianza.}
+\addcontentsline{toc}{section}{\textcolor{red}{PLANTILLAS DE R PARA CONTRASTES E INTERVALOS DE CONFIANZA.}}
+
+\begin{table}[h!]
+
+\framebox[14cm][l]{
+\hspace{-3mm}
+\begin{minipage}{13.5cm}
+\begin{itemize}
+  \item \textbf{Diferencia medias.}
+        \begin{itemize}
+          \item Usando $Z$.\\
+              \fichero{./code/Tut09-Contraste-2Pob-DifMedias-UsandoZ.R}{Tut09-Contraste-2Pob-DifMedias-UsandoZ.R}\\
+              \fichero{./code/Tut09-IntConf-2Pob-DifMedias-UsandoZ.R}{Tut09-IntConf-2Pob-DifMedias-UsandoZ.R}
+          \item Usando la $t$ de Student.
+              \begin{itemize}
+                \item Varianzas desconocidas pero iguales.\\
+                    \fichero{./code/Tut09-Contraste-2Pob-DifMedias-UsandoT-VarIguales.R}{Tut09-Contraste-2Pob-DifMedias-UsandoT-VarIguales.R}\\
+                    \fichero{./code/Tut09-IntConf-2Pob-DifMedias-UsandoT-VarianzasIguales.R}{Tut09-IntConf-2Pob-DifMedias-UsandoT-VarianzasIguales.R}
+                \item Varianzas desconocidas pero distintas.\\
+                    \fichero{./code/Tut09-Contraste-2Pob-DifMedias-UsandoT-VarDistintas.R}{Tut09-Contraste-2Pob-DifMedias-UsandoT-VarDistintas.R}\\
+                    \fichero{./code/Tut09-IntConf-2Pob-DifMedias-UsandoT-VarianzasDistintas.R}{Tut09-IntConf-2Pob-DifMedias-UsandoT-VarianzasDistintas.R}
+              \end{itemize}
+        \end{itemize}
+
+  \item \textbf{Cociente varianzas.}\\
+        \fichero{./code/Tut09-Contraste-2Pob-CocienteVarianzas.R}{Tut09-Contraste-2Pob-CocienteVarianzas.R}\\
+        \fichero{./code/Tut09-IntConf-2Pob-CocienteVarianzas.R}{Tut09-IntConf-2Pob-CocienteVarianzas.R}
+
+  \item \textbf{Diferencia proporciones.}\\
+        \fichero{./code/Tut09-Contraste-2Pob-DifProporciones-UsandoZ.R}{Tut09-Contraste-2Pob-DifProporciones-UsandoZ.R}\\
+        \fichero{./code/Tut09-IntConf-2Pob-DifProporciones-UsandoZ.R}{Tut09-IntConf-2Pob-DifProporciones-UsandoZ.R}
+\end{itemize}
+\end{minipage}
+}
+\caption{Ficheros para los contrastes de hipótesis e intervalos de confianza en dos poblaciones independientes.}
+\label{Tut09:tabla:FicherosContrastesDosPoblaciones}
+\end{table}
+
+
+%#########################################################################################
+%#########################################################################################
+\vspace{2cm} \hrule
+\quad\\
+Fin del Tutorial09. ¡Gracias por la atención!
+
+
+
+
+
+\end{document}
+
+
+

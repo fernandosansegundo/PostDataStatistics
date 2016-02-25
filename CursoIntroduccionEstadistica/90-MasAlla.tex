@@ -1,0 +1,177 @@
+% !Mode:: "Tex:UTF-8"
+
+\section{Vayamos por partes.}
+
+\noindent En esta sección vamos a comentar, siguiendo el orden de los distintas partes en que hemos dividido del libro, algunos temas que han quedado abiertos en los correspondientes capítulos.
+
+\subsection{Parte I: Estadística Descriptiva.}
+
+La Estadística Descriptiva tiene una continuación natural en las técnicas de Exploración y Visualización de Datos. Las últimas décadas han asistido a una auténtica explosión de métodos de visualización a la que, desde luego, nuestra discusión no hace justicia. Hay disponible una gran cantidad de información en la red y, como sucede con muchos temas tecnológicos, esa información envejece muy rápido. En la página web del libro y en el blog asociado tratamos de hacernos eco de aquellos enfoques que nos parecen novedosos o, simplemente, interesantes. Aquí vamos a mencionar el libro {\em Beautiful Visualization} (ver referencia \cite{steele2010beautiful}) que es, como indica su subtítulo, una mirada a los datos desde el punto de vista de los expertos en visualización. En ese sentido, es una muestra destacada del estado reciente de las técnicas que se utilizan. Y aunque, como hemos dicho, la información tecnológica envejece rápido, no podemos dejar de añadir una recomendación personal que en cualquier caso viene avalada por una trayectoria que supera el siglo de duración: la revista {\em National Geographic} (y su página web), que trata un espectro muy amplio de temas, tiene acreditada una calidad excepcional en las técnicas de visualización de datos. Sirve, además, como archivo histórico de la evolución de esas técnicas a lo largo de más de cien años de historia de la transmisión de información.
+
+\subsection{Parte II: Probabilidad y Variables Aleatorias.}
+
+\subsubsection*{Estadística Matemática.}
+
+Los capítulos sobre Probabilidad forman la parte más puramente matemática de este curso. Profundizar en este terreno supone, por tanto, asumir un salto considerable en el formalismo. Cuando en este libro decimos que la suma de cuadrados de normales independientes es una distribución $\chi^2$, el lector más inclinado al formalismo debe ser consciente de que ese es un resultado matemático; un teorema para el que existe una {\em demostración}. Las recomendaciones que vamos a hacer aquí se dirigen por tanto a quienes sientan la curiosidad y estén dispuestos a asumir el reto de embarcarse en esas demostraciones. Se trata por tanto de libros que se mueven en el territorio que se extiende entre la {\em Teoría de la Probabilidad} y la {\em Estadística Matemática}.
+
+Los dos libros {\em An Intermediate Course in Probability} (referencia \cite{gutIntermediateProbability}) y {\em Probability: A Graduate Course} (referencia \cite{gut2006probability}) de Allan Gut forman conjuntamente (y en ese orden) una buena introducción a la visión matemática de la Probabilidad y sus conexiones con la Estadística. En español el libro {\em Inferencia estad{\'\i}stica y an\'alisis de datos} de Ipiña y Durand (referencia \cite{inferenciaIpinnaDurand}) es una buena referencia para gran parte de los resultados de este libro, desde ese punto de vista más formal.
+
+\subsubsection*{Otras distribuciones.}
+
+En el Ejemplo \ref{cap09:ejem:CrateresLunares} (pág. \pageref{cap09:ejem:CrateresLunares}) sobre la distribución del tamaño de los cráteres lunares hemos dicho que esa distribución era claramente no normal, como mostraba la Figura \ref{cap09:fig:CrateresLuna} (pág. \pageref{cap09:fig:CrateresLuna}). Es un ejemplo interesante, porque ilustra el hecho de que al estudiar fenómenos naturales es frecuente encontrarse con distribuciones como esta, que sólo toman valores positivos, y que son claramente asimétricas, con cola derechas muy largas y colas izquierdas cortas o inexistentes. Los científicos han desarrollado varias distribuciones, como modelos matemáticos de probabilidad para describir teóricamente las propiedades que se observan en esas distribuciones empíricas. Por ejemplo, la {\em distribución log-normal}\index{log-normal, distribución}. Una variable aleatoria $X$ sigue una distribución log-normal con parámetros $\mu$ y $\sigma$ si su logaritmo es normal con esos parámetros; es decir, si $\ln(X)\sim N(\mu, \sigma)$.
+
+Hay muchas otras distribuciones que aparecen en las aplicaciones. Por citar sólo algunas: distribuciones exponenciales, de Pareto, distribuciones Beta, etc. Aunque las referencias que hemos incluido en la bibliografía contienen información sobre muchas de ellas, a menudo lo más sencillo para empezar es buscar información en Internet. Las páginas sobre muchas de estas distribuciones en la versión en inglés de la Wikipedia son en general de buena calidad y bastante completas.
+
+Para cerrar esta ínfima incursión en el tema de los cráteres lunares, remitimos al lector interesado al artículo \cite{neukum1975study}, que es una referencia clásica en la materia. Una búsqueda en Internet de los artículos que lo citan permite obtener información más actualizada sobre el estado de la cuestión.
+
+\subsection{Parte III: Inferencia Estadística.}
+
+\subsubsection*{Estadística no paramétrica.}
+
+En varios capítulos del libro hemos mencionado la existencia de las técnicas denominadas no-paramétricas. En muchos casos, estas técnicas sirven como sustitutos de los métodos que hemos utilizado para realizar contrastes de hipótesis. Hay que tener en cuenta que muchos de nuestros métodos se han basado en la idea de que las variables aleatorias que estábamos estudiando eran normales o al menos muy aproximadamente normales. Y sabemos que en el caso de trabajar con muestras aleatorias grandes a menudo ocurre eso. Pero no siempre tendremos la suerte de poder dar por sentado que la variable es, ni siquiera aproximadamente, normal. En tales casos puede ser conveniente recurrir a estos métodos, que no requieren que la variable sea normal. Vamos a describir muy brevemente uno de estos métodos como ejemplo.
+
+\begin{ejemplo}
+\label{apendiceMasAlla:ejem:contrasteNoParametrico}
+En el Ejemplo \ref{cap09:ejem:DatosEmparejados01} (pág. \pageref{cap09:ejem:DatosEmparejados01}) hemos discutido el caso de un contraste de diferencia de medias para datos emparejados. Allí suponíamos que estaba justificado el uso de la distribución normal. Si no fuera así (o aunque lo sea), podríamos recurrir al {\sf contraste de Wilcoxon de rangos con signos}.\index{Wilcoxon, contraste de rangos con signos}\index{contraste de rangos con signos de Wilcoxon} Vamos a ver cómo aplicarlo a los datos de ese ejemplo. Recordemos que el punto de partida son las dos muestras $X_a$ y $X_b$ que se muestran en las dos primeras filas de la Tabla \ref{cap09:tabla:EjemploContrasteDatosEmparejados02} (pág. \pageref{cap09:tabla:EjemploContrasteDatosEmparejados02}), que reproducimos aquí en las tres primeras filas de la Tabla \ref{apendiceMasAlla:tabla:contrasteNoParametrico}. La hipótesis nula del contraste que vamos a hacer no se refiere a las medias de las dos poblaciones, sino a sus {\em medianas}. Varios de estos contrastes no paramétricos sustituyen la media por la mediana que, como sabemos, es mucho más robusta frente a la existencia de valores atípicos. La hipótesis alternativa que vamos a contrastar se puede expresar por tanto así:
+\[H_a = \{\theta_{\mbox{despu\'es}} > \theta_{\mbox{antes}}\},\]
+Y por tanto la hipótesis nula es:
+\[H_0 = \{\theta_{\mbox{despu\'es}} \leq \theta_{\mbox{antes}}\},\]
+siendo $\theta_{\mbox{despu\'es}}$ y $\theta_{\mbox{antes}}$ respectivamente las medianas de la altura después y antes del tratamiento.
+\begin{table}[htb]
+{\scriptsize
+    \begin{center}
+    \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    Paciente número:&1&2& 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \hline
+    Altura antes& 1.80 & 2.48 & 2.33 & 3.28 & 1.24 & 2.49 & 2.44 & 2.54 & 2.59 & 3.90\\
+    \hline
+    Altura después & 3.31 & 2.33 & 2.65 & 2.16 & 1.62 & 3.15 & 2.14 & 4.01 & 2.42 & 2.91  \\
+    \hline
+    Y= después - antes & 1.51& -0.15& 0.32& -1.12& 0.38& 0.66& -0.30& 1.47& -0.17& -0.99  \\
+    \hline
+    |Y|= |después - antes| & 1.51& 0.15& 0.32& 1.12& 0.38& 0.66& 0.30& 1.47& 0.17& 0.99  \\
+    \hline
+    rango(|Y|) & \cellcolor[gray]{0.9}{10}& 1& \cellcolor[gray]{0.9}{4}& 8& \cellcolor[gray]{0.9}{5}& \cellcolor[gray]{0.9}{6}& 3& \cellcolor[gray]{0.9}{9}& 2& 7\\
+    \hline
+    \end{tabular}
+    \end{center}
+}
+\caption{Tabla para el Ejemplo \ref{apendiceMasAlla:ejem:contrasteNoParametrico}}
+\label{apendiceMasAlla:tabla:contrasteNoParametrico}
+\end{table}
+
+\begin{enumerate}
+  \item El primer paso es igual, y consiste en calcular el vector de diferencias $Y$ que ocupa la última fila de la tabla.
+
+  \item A continuación, tomamos el valor absoluto de las diferencias y calculamos el {\sf rango} de esos valores absolutos. El rango significa la posición que cada valor ocupa al ordenarlos de menor a mayor. Por ejemplo, el valor absoluto más pequeño de $Y$ es $0.15$ y por eso su rango es $1$. Y como el valor absoluto más grande es $1.51$, su rango es $10$ (hay $10$ valores de $Y$).
+
+  \item El estadístico $V$ del contraste de Wilcoxon se obtiene sumando los rangos de aquellas observaciones en las que $Y>0$, que son las que hemos marcado en gris en la Tabla \ref{apendiceMasAlla:tabla:contrasteNoParametrico}. En este ejemplo se obtiene:
+      \[V = 10 + 4 + 5+ 6 + 9 = 34.\]
+
+  \item A partir de este valor del estadístico los programas de ordenador calculan el p-valor de este contraste. No vamos a entrar en detalle en el fundamento teórico del cálculo del p-valor, pero sí queremos dar un par de indicaciones. ¿Qué ocurre si la hipótesis nula es cierta? En ese caso los valores después del tratamiento deberían ser mayoritariamente menores que los valores antes del tratamiento. Por esa razón, en una muestra aleatoria los valores negativos de $Y$ deberían ser mayoritarios. Usando esa intuición, podemos entender un poco mejor el cálculo del p-valor. Tomamos los $10$ valores absolutos de $Y$ en la muestra del ejemplo y les asignamos signos de forma aleatoria. Puesto que son $10$ valores, hay $2^{10} = 1024$ asignaciones de signos posibles, desde todos negativos:
+      \[
+      -1.51, -0.15, -0.32, -1.12, -0.38, -0.66, -0.30, -1.47, -0.17, -0.99
+      \]
+      a todos positivos
+       \[
+       1.51, 0.15, 0.32, 1.12, 0.38, 0.66, 0.30, 1.47, 0.17, 0.99
+       \]
+       pasando por asignaciones como:
+       \[
+       1.51, -0.15, -0.32, 1.12, 0.38, 0.66, -0.30, 1.47, 0.17, -0.99
+       \]
+       Para cada una de esas $1024$ asignaciones posibles podemos calcular un valor de $V$, como hemos hecho en el paso anterior. Debería estar claro que las asignaciones más favorables a la hipótesis alternativa son aquellas en las que predominan los signos positivos y que por tanto son las que producen valores más grandes de $V$. El p-valor del contraste es la fracción del total de asignaciones que son tan  favorables a $H_a$ o más que la muestra. Que es lo mismo que decir que el p-valor es la fracción del total de asignaciones que producen valores de $V$ mayores o iguales que el que hemos obtenido en la muestra. En este ejemplo hay $285$ de esas asignaciones, sobre el total de $1024$, así que el p-valor es:
+       \[p-valor = \dfrac{285}{1024}\approx 0.2783\]
+       Si lo comparas con el p-valor que obtuvimos usando el contraste paramétrico del Ejemplo \ref{cap09:ejem:DatosEmparejados01} (pág. \pageref{cap09:ejem:DatosEmparejados01}), que era $\approx 0.2921$, verás que la conclusión es en ambos casos la misma: no hay evidencia empírica para rechazar la hipótesis nula.
+\end{enumerate}
+Como ves, el contraste es muy sencillo, pero nos lleva a realizar un número elevado de operaciones: incluso en este caso en el que la muestra es pequeña hemos tenido que calcular más de mil valores de $V$ para poder obtener el p-valor. Eso explica por qué el uso de estos métodos ha tenido que esperar al desarrollo de los ordenadores para resultar viable.
+\qed
+\end{ejemplo}
+Y si podemos utilizar estos métodos sin necesidad de preocuparnos de comprobar que la variables sea normal, ¿por qué no los usamos siempre? La razón más importante para no hacerlo es que, cuando pueden aplicarse ambos tipos de métodos, los métodos no paramétricos tienen a menudo menos potencia que los contrastes paramétricos.
+
+Hay varias referencias recomendables para conocer estos métodos no paramétricos. Si lo que se desea es una introducción muy ligera a las ideas básicas, entonces el libro {\em Statistics II for dummies} (referencia \cite{rumsey2009statistics}) proporciona una introducción desenfadada a este y otros muchos temas, incluidos algunos de los que hemos tratado en este libro. Si se desea una introducción más formal a los métodos no paramétricos, es obligado mencionar el libro {\em Nonparametric Statistical Methods} (referencia \cite{hollander2013nonparametric}).
+
+\subsection*{Parte IV: Inferencia sobre la relación entre dos variables.}
+
+En esta parte del libro nos hemos centrado en el caso de aquellos modelos en los que sólo hay una variable respuesta y, lo que es más importante, una variable explicativa. Apenas hemos hecho breves menciones a otros modelos multivariable. Por lo tanto, no hemos tenido ocasión de entrar en los problemas asociados con esas situaciones en las que se usa más de una variable explicativa. Como decíamos en la Introducción, creemos que esto es ventajoso desde el punto de vista pedagógico. Pero el lector debe de ser consciente de que para avanzar en su aprendizaje de la Estadística el siguiente paso es, inevitablemente, el estudio de modelos con varias variables explicativas. La mayoría de los textos que vamos a citar en esta sección abordan el problema de la regresión directamente en ese contexto multivariable. Confiamos en que las ideas que hemos introducido en los capítulos de esta parte del libro sirvan para facilitar el tránsito hacia esos textos.  Para alcanzar ese objetivo hemos tratado de insistir en la idea de {\em modelo estadístico} como hilo conductor de esta parte del libro. En los siguientes apartados vamos a revisar algunos aspectos adicionales relacionados con esta parte del libro que en varios casos tienen que ver con esa idea de modelo estadístico.
+
+\subsubsection*{Regresión ortogonal.}
+
+En el Capítulo \ref{cap:RegresionLinealSimple}, concretamente en la Sección \ref{cap10:subsec:RegresionOrtogonal} (pág. \pageref{cap10:subsec:RegresionOrtogonal}) hemos introducido la idea de regresión ortogonal. El lector interesado en ampliar la discusión puede consultar la Sección 5.3 del libro {\em Experimental Design and Data Analysis for Biologists} (referencia \cite{quinn2002experimental}) y la bibliografía que se cita allí. No obstante, creemos que el contexto natural para esta discusión es el llamado {\em Análisis de Componentes Principales}, sobre el que sí existe una literatura abundante. De hecho, este tema se trata en varios de los textos que, más abajo, citaremos a propósito del {\em Aprendizaje Automático}, a los que remitimos al lector interesado.
+
+\subsubsection*{Diagnosis de modelos estadísticos.}
+
+En el Capítulo \ref{cap:RegresionLinealSimple} hemos iniciado la discusión sobre los {\em diagnósticos} del modelo de regresión lineal simple, que luego ha vuelto a aparecer al hablar del Anova unifactorial y, más brevemente, en los dos últimos capítulos de esta cuarta parte del libro. Desde un puntos de vista general la diagnosis de cualquier modelo estadístico debe abarcar, al menos, estas dos dimensiones:
+
+\begin{itemize}
+
+  \item Por un lado, debemos preguntarnos si el modelo se ajusta bien a los datos. En el lenguaje del Capítulo 12, la discusión es sobre la bondad del ajuste del modelo. Y, a su vez, esta discusión tiene dos niveles: una global, en la que buscamos {\em indicadores resumen}, que proporcionen una percepción general de la calidad del ajuste del modelo. El ejemplo clásico es el coeficiente de correlación lineal de Pearson. Como hemos visto al hablar de ese coeficiente, este tipo de indicadores sirven sobre todo para señalar los casos en los que el ajuste no es bueno. Pero no son suficientes, por si mismos, para garantizar que el ajuste es bueno. Porque el otro nivel de la discusión es el análisis de la {\em calidad individual} de las predicciones del modelo. En este terreno el concepto básico es el de residuo, aunque también debemos pensar en la existencia de puntos influyentes y otros posibles factores que puedan afectar a la bondad del ajuste. Toda esta parte de la discusión es esencialmente, {\em Estadística Descriptiva}.
+
+  \item Por otro lado, si queremos hacer {\em Inferencia}, debemos preguntarnos si los datos muestrales cumplen las condiciones teóricas necesarias para que el modelo sea aplicable y la inferencia esté bien fundada. Las condiciones de normalidad de los residuos y de homogeneidad de las varianzas nos conducen de nuevo al análisis de los residuos, pero con un enfoque distinto.
+
+\end{itemize}
+
+Una referencia clásica, aunque actualizada en sucesivas ediciones, es el libro {\em Applied regression analysis and generalized linear models} (referencia \cite{fox2015applied}), que el lector puede complementar con el texto {\em Regression} (ver \cite{fahrmeir2007regression}). En el caso concreto de la Regresión Logística, la referencia obligada es el libro {\em Applied Logistic Regression} (ver \cite{hosmer2013applied}), que recomendamos encarecidamente. En realidad, el diagnóstico de modelos es una parte tan esencial de la Estadística que nos atrevemos a decir que el lector no encontrará apenas textos en la bibliografía que no traten este asunto de una u otra manera.
+
+Finalmente, al igual que hicimos al hablar de Probabilidad, vamos a mencionar aquí algunos libros que pueden ser interesantes para el lector que desee profundizar en estos temas, pero que pueden resultar más exigentes desde el punto de vista matemático. Por ejemplo, podemos empezar por un libro de título ambicioso: {\em All of Statistics} (ver \cite{wasserman2013all}). Los libros {\em An Introduction to Generalized Linear Models}(ver \cite{dobson2011introduction})  y {\em Log-linear models and logistic regression} (ver \cite{christensen2006log}) pueden ayudar al lector a ampliar el muestrario de modelos estadísticos a su disposición, siempre dentro de un tono marcadamente formal y matemáticamente exigente, como hemos dicho.
+
+\subsubsection{Selección de modelos.}
+
+En el Capítulo \ref{cap:RegresionLogistica} (ver pág. \pageref{cap13:subsubsec:SeleccionModelosDevianza}) hemos tratado muy brevemente otro aspecto muy importante de la construcción de un modelo estadístico: la selección del mejor modelo estadístico entre varios modelos que compiten. Se trata, como hemos dicho, de un tema muy  importante; nos atrevemos a decir que es crucial en el camino hacia técnicas estadísticas más avanzadas que las hemos discutido en este libro. Pero dada nuestra decisión de limitarnos a una variable predictora no hemos tenido ocasión de tratar el tema en este libro, más allá de esa breve discusión del  Capítulo \ref{cap:RegresionLogistica}. Queremos aprovechar estas líneas para destacar un par de nociones que pueden servir de guía al comenzar esa discusión:
+\begin{itemize}
+  \item Por un lado, la selección de modelos pasa por decidir cuáles son las {\em variables relevantes} que debemos incluir en el modelo. Naturalmente, el punto de partida es nuestro conocimiento científico del fenómeno que estamos analizando, que nos permite preseleccionar un conjunto de variables que posiblemente sean relevantes como predictoras. Pero además el {\em Diseño de Experimentos} tiene un papel muy destacado en este problema.
+
+  \item Por otro lado, es igualmente importante decidir la {\em forma del modelo}. El Ejemplo \ref{cap10:ejem:RegresionPolinomica} (pág. \pageref{cap10:ejem:RegresionPolinomica}), en el que estudiábamos la relación entre el diámetro del tronco y el volumen total de árboles de la especie {\em Prunus serotina}, puede servirnos de ilustración. Incluso después de haber decidido que el diámetro es la única variable explicativa que vamos a usar en nuestro modelo (la variable respuesta es el volumen), aún tuvimos que decidir entre un modelo lineal simple, que usa una recta de regresión, y modelos polinómicos de grados más altos, por ejemplo una parábola, que fue el modelo finalmente elegido en aquel caso. En ese ejemplo la competición se establece entre varios modelos de regresión lineal de distintos grados. En otras ocasiones puede suceder que previamente tengamos  que plantearnos si el modelo más adecuado es la regresión lineal o la regresión logística o algún otro tipo de técnicas de modelado de las muchas que actualmente ofrece la Estadística.
+\end{itemize}
+
+Las referencias bibliográficas que hemos mencionado antes, al hablar de diagnosis de modelos, son igualmente válidas aquí.
+
+\subsubsection*{Diseño de experimentos.}
+
+En la Sección \ref{cap11:sec:EstadisticoContrasteTablaAnova} (pág. \pageref{cap11:sec:EstadisticoContrasteTablaAnova}) hemos indicado que la generalización natural de las técnicas descritas en ese capítulo a los casos en los que intervienen varios factores explicativos son los métodos llamados {\em Anova de doble o triple vía}. De hecho, a menudo nos encontraremos trabajando en modelos en los que coexisten variables explicativas cuantitativas (discretas o continuas) con otras que son factores, lo  cual nos lleva al terreno de la denominada {\em Estadística Multivariante}.
+
+Pero sin lanzarnos por ese camino, los Anova de doble o triple vía son a menudo el primer paso en los cursos de introducción al {\em Diseño de Experimentos}. Véase, por  ejemplo, el libro {\em Design and Analysis of Experiments} (referencia \cite{deanVoss1999design}). El Diseño de Experimentos es fundamental también en la aplicación de la Estadística a los procesos industriales, en particular al control de calidad. El libro {\em Introduction to Statistical Quality Control} (ver \cite{montgomery2007introduction}) proporciona la información necesaria sobre ese tipo de aplicaciones.
+
+Por otra parte, podemos distinguir dos grandes bloques en las aplicaciones de la Estadística, atendiendo al grado de control que tenemos sobre la composición de las muestras que se observan. De un lado están los experimentos en el sentido clásico de la palabra, en los que el experimentador dispone de un alto grado de control sobre las condiciones en las que se observan los valores de las variables que intervienen en el modelo. En el extremo opuesto están los datos observacionales, en los que el a menudo no existe ese control del experimentador. En particular, retomando la discusión sobre correlación y causalidad  del Capítulo \ref{cap:RegresionLinealSimple} (ver pág. \pageref{cap10:subsubsec:CorrelacionVsCausalidad}), queremos subrayar el hecho de que {\bf los estudios observacionales no sirven para establecer la causalidad.} Esa tarea requiere del uso de experimentos bien diseñados.
+
+
+\subsubsection*{{\em Big Data} y Aprendizaje Automático (Machine Learning).}
+
+Este libro se ha escrito en el transcurso de lo que se ha denominado, con la ampulosidad que caracteriza a este tipo de cosas, la  {\em era del Big Data,} que se describe a menudo como el inicio de una profunda revolución científica y tecnológica. Nos falta, sin duda, la perspectiva que sólo puede dar el paso del tiempo.  Pero, en cualquier caso, creemos que una de las consecuencias más previsibles de este fenómeno, aunque no  sea de las más relevantes, es que nos obligará a una revisión de la muy esquemática clasificación de tipos de datos que hemos hecho en el primer Capítulo del libro.
+
+El fenómeno del {\em Big Data} no se entendería sin el desarrollo de las técnicas del Aprendizaje Automático (en inglés, {\em Machine Learning}). Podríamos decir que si el Big Data es el problema, una parte sustancial de la solución es el Aprendizaje Automático.
+
+Hay  muchos libros sobre estos dos temas (y habrá, sin duda, más en breve), que cubren todos los niveles de dificultad, desde la divulgación a los aspectos más formales o técnicos. El lector puede localizar sin demasiado esfuerzo muchos de esos títulos usando buscadores de Internet. El libro {\em The Elements of Statistical Learning} (ver \cite{trevor2009elements}) es una de las referencias más citadas, aunque su nivel formal puede resultar elevado para muchos lectores. El mismo grupo de autores ha publicado más recientemente el libro {\em An Introduction to Statistical Learning, with Applications in R} (ver \cite{james2013introduction}) que, según sus propios autores, va dirigido a un público menos técnico. Como el propio título indica, se debe tener en cuenta que muchos detalles de estas técnicas son difícilmente separables de sus implementaciones en el software. Así que el lector debe tener claro que para leer estos libros es necesario utilizar las correspondientes herramientas de programación. En el caso del libro que nos ocupa, el lenguaje de programación R. En cualquier caso, ambos textos son muy recomendables.
+
+Por citar algunos otros títulos recientes, el libro {\em Doing Data Science} (ver \cite{schutt2013doing}) puede servir como guía de introducción al lenguaje que se usa en ese territorio, y creemos que es adecuado al nivel de los lectores de este libro. A un nivel mucho más divulgativo se encuentran libros como {\em Big data: la revoluci{\'o}n de los datos masivos} (ver \cite{schonberger2013big}).
+
+
+\section{Otras lecturas recomendadas según el  perfil del lector.}
+
+Hemos usado el material de este libro en cursos dirigidos a alumnos de distintas titulaciones.  En consecuencia, sin considerarnos ni mucho menos expertos en ninguno de esos terrenos, hemos tenido ocasión de usar algunos textos que sirven para transitar desde la Estadística general que discutimos aquí hacia otros textos más centrados en las técnicas concretas que se usan en una disciplina concreta. Las siguientes secciones contienen simplemente una enumeración de algunas sugerencias, libros que nos han resultado útiles para dar el salto desde este libro a esos temas.
+
+Ya dijimos en la Introducción que íbamos a esforzarnos en tratar de ser neutrales desde el punto de vista del software. En ese sentido, los textos que citamos se ajustan bastante a ese espíritu. En los Tutoriales, desde luego, esa neutralidad debe romperse y en consecuencia irán acompañados por su propia bibliografía, ajustada a las herramientas concretas que se usen.
+
+\subsection{Ecología y Biología.}
+
+\begin{enumerate}
+  \item {\em Experimental design and data analysis for biologists}, de G. Quinn y M. Keough (ver \cite{quinn2002experimental}).
+
+  \item {\em Multivariate analysis of ecological data}, de M. Greenacre y R. Primicerio  (ver \cite{greenacre2014multivariate}).
+
+  \item {\em Experiments In Ecology}, de A.Underwood (ver \cite{underwood1997experiments}).
+\end{enumerate}
+
+
+\subsection{Ciencias de la Salud.}
+
+\begin{enumerate}
+  \item {\em Fundamentals of biostatistics}, de B. Rosner (ver \cite{rosner2011fundamentals}).
+
+  \item {\em Biostatistics: a foundation for analysis in the health sciences} de W. Daniel (ver \cite{daniel1987biostatistics}).
+
+
+\end{enumerate}
+
+

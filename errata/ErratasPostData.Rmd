@@ -1,0 +1,16 @@
+---
+title: "Erratas en el Libro PostData y sus Tutoriales."
+output: html_document
+date: "Lista actualizada en fecha: `r format(Sys.time(), '%d %B, %Y')`"
+---
+
+# En este momento no hay erratas detectadas y no corregidas en la versión publicada.
+
+Agradeceremos mucho que cualquier errata que se detecte se nos haga llegar al correo:  
+postdatastatistics@gmail.com
+
+## Erratas en el libro (ver tutoriales más abajo). ##
+
+
+## Erratas en tutoriales. ##
+

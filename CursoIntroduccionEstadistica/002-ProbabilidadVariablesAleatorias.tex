@@ -1,0 +1,126 @@
+% !Mode:: "Tex:UTF-8"
+
+\section*{Introducción a la Probabilidad.}
+\label{part02:intro}
+
+\subsection*{Modelos. Fenómenos deterministas y aleatorios.}
+
+Para poner todo lo que viene en perspectiva, nos vamos a detener unas líneas en la idea de {\sf
+modelo}\index{modelo}. Básicamente, las ciencias intentan explicar los fen\'omenos que componen la
+realidad, que suelen ser muy complicados, debido a la gran cantidad de elementos, muchas veces a
+escalas muy distintas a las de nuestra experiencia cotidiana, que interactúan para producir el
+resultado que observamos. Por eso resulta necesario hacer simplificaciones y descubrir las reglas
+de funcionamiento elementales a partir de las que explicar el resto. Eso es básicamente un modelo:
+una simplificación de la realidad, en la que conservamos los rasgos que consideramos esenciales,
+para tratar de entender el fenómeno que estamos estudiando. A medida que se va entendiendo un
+modelo, se añaden nuevos elementos que lo asemejan m\'as a la realidad. Desde el punto de vista de
+la modelizaci\'on, hay dos grandes grupos de fen\'omenos:
+\begin{itemize}
+    \item Los {\sf fenómenos deterministas} \index{fen\'omeno determinista} son aquellos en los
+        que, dadas unas condiciones iniciales, su evoluci\'on futura es totalmente predecible
+        (est\'a determinada de antemano). Por ejemplo, cuando lanzamos un proyectil (en un modelo
+        en el que despreciamos el rozamiento del aire, el efecto de la rotaci\'on de la 			
+        tierra,\dots), una vez conocidas la velocidad con la que se lanza el proyectil y la
+        inclinaci\'on respecto de la horizontal, podemos calcular a priori (esto es, predecir)
+        con mucha precisión el alcance (a qu\'e distancia caer\'a), la altura m\'axima que
+        alcanzar\'a,\dots.
+    \item Un {\sf fen\'omeno aleatorio} \index{fen\'omeno aleatorio} 	es aquel que, dadas las
+        condiciones iniciales, sabemos el conjunto de posibles resultados, pero no cu\'al de
+        ellos suceder\'a. El lanzamiento de una moneda, un dado, el sexo de un hijo,\dots, son
+        algunos ejemplos.
+\end{itemize}
+Pronto veremos que obtener una muestra de una poblaci\'on (si se hace bien) es un hecho
+esencialmente aleatorio. Esto conlleva un cierto grado de incertidmyumbre (conocemos los posibles
+resultados, pero no cu\'al de todos se realizar\'a) y la probabilidad es la herramienta adecuada
+para lidiar con ella.
+
+\subsection*{El papel de la Probabilidad en la Estadística.}
+
+Hemos venido diciendo desde el principio del curso que el objetivo más importante de la Estadística
+es realizar inferencias. Recordemos en que consiste esa idea: estamos interesados en estudiar un
+fenómeno que ocurre en una determinada \index{poblaci\'on} {\sf población}. En este contexto,
+población no se refiere sólo a seres vivos. Si queremos estudiar la antigüedad del parque móvil de
+España, la población la forman todos los vehículos a motor del país (cada vehículo es un
+individuo). Si queremos estudiar la dotación tecnológica de los centros de secundaria, la población
+la forman todos los institutos, y cada instituto es un individuo de esa población. En general,
+resulta imposible, indeseable o inviable estudiar uno por uno todos los individuos de la población.
+Por esa razón, lo que hacemos es obtener información sobre una {\sf muestra} de la población. Es
+decir, un subconjunto de individuos de la población original, de los que obtenemos información
+sobre el fenómeno que nos interesa.
+
+Tenemos que distinguir por lo tanto, en todo lo que hagamos a partir de ahora, qué afirmaciones se
+refieren a la población (la colección completa) y cuáles se refieren a la muestra. Los únicos datos
+a los que realmente tendremos acceso son los de la muestra (o muestras) que hayamos obtenido. La
+muestra nos proporcionará datos sobre alguna variable (o variables) relacionadas con el fenómeno
+que estamos estudiando. Es decir, que podemos empezar pensando que en la muestra tenemos, como en
+todo lo que hemos hecho hasta ahora un conjunto de $n$ datos,
+        \[x_1,x_2,\ldots,x_n.\]
+
+En el ejemplo del parque móvil, podríamos haber obtenido las fichas técnicas de 1000 vehículos (la
+población completa consta de cerca de 28 millones de vehículos\footnote{En concreto, 27963880,
+según datos de un informe de Anfac del año 2010 (ver enlace  [\,\ref{enlace0000}\,]\label{enlace0000a}) .}). Y una variable que nos puede interesar
+para estudiar la antigüedad del parque móvil es el año de matriculación. Así que tendríamos 1000
+valores $x_1,\ldots,x_{1000}$, donde cada uno de esos valores representa la antigüedad (en años) de
+un vehículo. Con esos 1000 valores podemos calcular una media, que llamaremos la \index{media
+muestral} {\sf media muestral}:
+    \[\bar x=\dfrac{x_1+x_2+\cdots+x_{1000}}{1000}\]
+Naturalmente, si accediéramos a {\em todos} los datos, nos encontraríamos con una lista {\em mucho}
+más larga, de alrededor de 28 millones de números:
+    \[m_1,m_2,m_3,\ldots,m_{27963880}.\]
+Y podríamos hacer la media de todos estos datos, que llamaremos la \index{media poblacional}{\sf
+media poblacional}:
+    \[\mu=\dfrac{m_1+m_2+m_3+\ldots+m_{27963880}}{27963880}.\]
+Los símbolos que hemos elegido no son casuales. Vamos a utilizar siempre $\bar x$ para referirnos a
+la media muestral y $\mu$ (la letra griega mu) para referirnos a la media poblacional. Este es un
+convenio firmemente asentado entre los usuarios de la Estadística.
+
+Naturalmente, hacer esta media poblacional es mucho más difícil, complicado, caro, etcétera. Y ahí
+es donde aparece la idea de inferencia, que se puede formular aproximadamente así, en un sentido
+intuitivo:
+    \begin{center}
+        \fcolorbox{black}{Gris025}{\begin{minipage}{11cm}
+            {\sf Si hemos seleccionado esos 1000 coches al \colorbox{lightgrey}{\bf azar} de
+            entre los aproximadamente 28 millones posibles, entonces es muy
+            \colorbox{lightgrey}{\bf probable} que la media muestral $\bar x$  se parezca mucho a la
+            media poblacional
+
+            $\mu$.}
+        \end{minipage}}
+    \end{center}
+    Hemos destacado en esta frase las palabras azar y probable, porque son la justificación de lo que
+    vamos a estar haciendo en los próximos capítulos. Para poder usar la Estadística con rigor
+    científico, tenemos que entender qué quiere decir exactamente {\em seleccionar al azar}, y cómo
+    se puede {\em medir la probabilidad} de algo. Para esto necesitamos el lenguaje matemático de la
+    Teoría de la Probabilidad.
+
+\subsection*{El lenguaje de la Probabilidad.}
+
+La probabilidad nació entre juegos de azar, y sus progenitores incluyen una larga estirpe de
+truhanes, fulleros y timadores, junto con algunas de las mentes matemáticas más brillantes de su
+época. De esa mezcla de linajes sólo cabía esperar una teoría llena de sorpresas, paradojas,
+trampas, cosas que parecen lo que no son... la Probabilidad es muy bonita, y no es demasiado fácil.
+De hecho, puede ser muy difícil, y elevarse en grandes abstracciones. Pero le garantizamos al
+lector que, como dijimos en la Introducción del libro, vamos a hacer un esfuerzo para hacerle las cosas tan simples como sea posible (y ni un poco más simples).
+
+Una de las razones que, a nuestro juicio, hacen que la Probabilidad resulte más difícil, es que,
+sea por razones evolutivas o por cualesquiera  otras razones, el hecho es que los humanos tenemos
+una intuición relativamente pobre a la hora de juzgar sobre la probabilidad de distintos
+acontecimientos. Por poner un ejemplo, por comparación, nuestra intuición geométrica es bastante
+mejor. Pero cuando se trata de evaluar probabilidades, especialmente cuando se trata de sucesos
+poco frecuentes, nuestra intuición, en general, nos abandona, y debemos recurrir a las matemáticas
+para pisar tierra firme.
+
+A esa dificultad, se suma el hecho de que el nivel matemático del curso va a elevarse en esta
+parte, en la que vamos a recurrir, en el Capítulo \ref{cap:Probabilidad} a la Combinatoria, y en el
+Capítulo \ref{cap:VariablesAleatorias} al lenguaje de las funciones y del Cálculo. En particular,
+necesitaremos la integración. No suponemos que el lector sepa integrar, así que hemos tratado de
+incluir, en el Capítulo \ref{cap:VariablesAleatorias}, un tratamiento tan autocontenido del tema
+como nos ha sido posible. Afortunadamente, buena parte de la parte más mecánica (y tediosa) de la
+integración se puede dejar ahora en manos de los ordenadores. Así que, de la misma forma que ya
+nadie piensa en aprender a usar una tabla de logaritmos, hemos adoptado la postura de, llegado el
+momento, pedir al lector que use el ordenador para calcular tal o cual integral. Esa delegación de los detalles técnicos en las máquinas nos deja libres para concentrarnos en las ideas, que son siempre la parte importante. Aspiramos a que el lector empiece a entender {\em para que sirve} la integral, aunque no sepa calcular ninguna a mano. Por seguir con la analogía, los logaritmos se calculan con las máquinas, pero eso no nos exime de entender sus propiedades y, sobre todo, cuando y cómo pueden sernos útiles. 
+
+El Capítulo \ref{cap:TeoremaCentralLimite} marca la transición, en la que salimos de la
+Probabilidad, para tomar el camino que lleva a la Inferencia, de vuelta a Estadística. Este
+capítulo, y los dos siguientes, son, como hemos dicho, la parte central del curso, donde se
+establecen las ideas fundamentales de la Estadística clásica.

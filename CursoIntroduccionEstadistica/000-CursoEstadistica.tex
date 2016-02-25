@@ -1,0 +1,210 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[10pt,a4paper]{book}
+
+\usepackage{etoolbox}
+\newtoggle{color}
+%\togglefalse{color}
+\toggletrue{color}	
+\newtoggle{distribuir}
+\togglefalse{distribuir}
+%\toggletrue{distribuir}
+
+\patchcmd{\thebibliography}{\chapter*}{\section*}{}{}
+
+
+\usepackage[paper size={170mm, 235mm},left=20mm,right=20mm,top=15mm,bottom=15mm,nohead]{geometry}
+\sloppy
+\usepackage{makeidx}
+\newcommand{\idioma}{spanish}
+\newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
+\input{../tex/definiciones}
+
+\includecomment{com}
+%\excludecomment{com}
+
+\iftoggle{color}{%
+  % color version
+    \includecomment{enColor}
+    \excludecomment{bn}
+}{%
+  % b/w version
+    \includecomment{bn}
+    \excludecomment{enColor}
+}
+
+\iftoggle{distribuir}{%
+  % color version
+    \includecomment{distribuir}
+    \excludecomment{noDistribuir}
+}{%
+  % b/w version
+    \includecomment{noDistribuir}
+    \excludecomment{distribuir}
+}
+
+%\usepackage[dvips]{hyperref}
+
+\usepackage{attachfile}
+\usepackage{graphicx}
+\usepackage[totoc]{idxlayout}
+
+\definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
+%\setlength{\fboxsep}{2pt}
+
+% \textwidth=150mm \textheight=260mm
+% \hoffset=-1cm
+% \voffset=-25mm
+% %\textwidth=160mm \textheight=240mm \hoffset=-20mm \voffset=-20mm \parskip=0mm \marginparsep=-25mm
+% \setlength{\parindent}{0pt}
+
+\begin{document}
+\author{Fernando San Segundo, Marcos Marvá.}
+\title{
+\textcolor{\iftoggle{color}{blue}{black}}{\Huge POSTDATA 1.0}\\[5mm]
+{\small Un curso de introducción a la Estadística, pensado para principiantes.}
+}
+\date{\small (Versión del \today)}
+%prueba
+
+\VerbatimFootnotes
+
+\pagestyle{plain}
+\maketitle
+\renewcommand{\thepage}{\roman{page}}% Roman numerals for page counter
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+%\setcounter{chapter}{-1}
+\chapter*{Introducción.}
+\addcontentsline{toc}{chapter}{\textbf{Introducción.}}
+\input{00-Introduccion}
+
+
+\pagestyle{empty}
+\newpage
+
+\setcounter{page}{0}% Start page number with 0
+\renewcommand{\thepage}{\arabic{page}}% Arabic numerals for page counter
+
+\part{Estadística descriptiva.}
+\label{parte:EstadisticaDescriptiva}
+
+\pagestyle{plain}
+
+\input{001-EstadisticaDescriptiva}
+
+\chapter{Introducción a la estadística descriptiva.}
+\label{cap:IntroduccionEstadisticaDescriptiva}
+\input{01-EstadisticaDescriptiva}
+
+\chapter{Valores centrales y dispersión.}
+\label{cap:ValoresCentralesDispersion}
+\input{02-ValoresCentralesDispersion}
+
+\part{Probabilidad y variables aleatorias.}
+\label{parte:ProbabilidadVariablesAleatorias}
+\input{002-ProbabilidadVariablesAleatorias}
+
+\chapter{Probabilidad.}
+\label{cap:Probabilidad}
+\input{03-Probabilidad}
+
+\chapter{Variables aleatorias.}
+\label{cap:VariablesAleatorias}
+\input{04-VariablesAleatorias}
+
+\chapter{Teorema central del límite.}
+\label{cap:TeoremaCentralLimite}
+\input{05-TeoremaCentralLimite}
+
+
+\part{Inferencia Estadística.}
+\label{parte:InferenciaEstadistica}
+\input{003-InferenciaEstadistica}
+
+\chapter{Muestreo e intervalos de confianza.}
+\label{cap:IntervalosConfianza}
+\input{06-IntervalosConfianza}
+
+\chapter{Contraste de hipótesis.}
+\label{cap:ContrasteHipotesis}
+\input{07-ContrasteHipotesis}
+
+
+\chapter{Distribuciones relacionadas con la binomial.}
+\label{cap:DistribucionesRelacionadasBinomial}
+\input{08-DistribucionesRelacionadasBinomial}
+
+\chapter{Inferencia sobre dos poblaciones.}
+\label{cap:Inferencia2Poblaciones}
+\input{09-InferenciasSobreDosPoblaciones.tex}
+
+
+\part{Inferencia sobre la relación entre dos variables.}
+\label{parte:InferenciaRelacion2Variables}
+\input{004-Inferencia2variables}
+
+\chapter{Regresión lineal simple.}
+\label{cap:RegresionLinealSimple}
+\input{10-RegresionLinealSimple.tex}
+
+\chapter{Anova unifactorial.}
+\label{cap:IntroduccionAnova}
+\input{11-Anova}
+
+\chapter{Tablas de contingencia y test $\chi^2$.}
+\label{cap:TablasContingenciaTestChi2}
+\input{12-TablasContingencia.tex}
+
+\chapter{Regresión logística.}
+\label{cap:RegresionLogistica}
+\input{13-RegresionLogistica.tex}
+
+
+\newpage
+\part*{Apéndices.}
+\addcontentsline{toc}{part}{\textbf{Apéndices.}}
+\appendix
+
+\chapter{Más allá de este libro.}
+\label{apendice:MasAlla}
+\input{90-MasAlla}
+
+
+\chapter{Formulario.}
+\label{apendice:Tablas}
+\newpage
+\input{91-TablaEstadisticosContrastes}
+
+\newpage
+\chapter{Fuentes de Datos, por capítulos.}
+\label{apendice:FuentesDatos}
+\input{93-FuentesDatos}
+
+\chapter{Bibliografía y enlaces.}\label{apendice:comentarioBibliografia}
+%\chapter{Bibliografía}\label{apendice:comentarioBibliografia}
+\input{95-ComentariosBibliografia}
+
+%\begin{thebibliography}{15}
+%\end{thebibliography}
+%\chapter*{}\label{apendice:comentarioBibliografia}
+%\addcontentsline{toc}{chapter}{\textbf{Bibliografía}}
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{alpha}
+\section{Bibliografía.}\label{bibliografia}
+\bibliography{../bib/bibEstadistica}
+
+\section{Lista de enlaces.}
+\input{99-ListaEnlaces}
+
+
+\printindex
+
+
+\newpage
+
+
+
+\end{document}
