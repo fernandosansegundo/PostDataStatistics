@@ -1,0 +1,34 @@
+%\theoremstyle{definition}% default
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{lema}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposici\'{o}n}
+\newtheorem{proposicion}[thm]{Proposici\'{o}n}
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{corolario}[thm]{Corolario}
+\newtheorem*{KL}{Klein's Lemma}
+%\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definici\'{o}n}
+\newtheorem{definicion}[thm]{Definici\'{o}n}
+\newtheorem{conj}[thm]{Conjetura}
+\newtheorem{conjetura}[thm]{Conjetura}
+\newtheorem{definicionInformal}[thm]{Definici\begingroup \let \relax \relax \endgroup [Pleaseinsert\PrerenderUnicode{ó}intopreamble]n Informal}
+\newtheorem{exmp}[thm]{Ejemplo}
+\newtheorem{ejemplo}[thm]{Ejemplo}
+\newtheorem{Ejemplo}[thm]{Ejemplo}
+\newtheorem{ejem}[thm]{Ejemplo}
+\newtheorem{ejercicio}{Ejercicio}
+%\theoremstyle{remark}
+\newtheorem*{rem}{Observaci\'{o}n}
+\newtheorem{observacion}[thm]{Observaci\'{o}n}
+\newtheorem*{note}{Nota}
+\newtheorem{nota}[thm]{Nota}
+\newtheorem{case}[thm]{Caso}
+\newtheorem{caso}[thm]{Caso}
+\newtheorem{regla}[thm]{Regla}
+
+\theoremstyle{remark}
+\newtheorem{enlace}{$\bullet$ }

@@ -1903,7 +1903,7 @@ edades3pd = pd.DataFrame(edades3)
 Hemos añadido {\tt pd} al final del nombre simplemente como recordatorio de que el resultado es un objeto propio de {\tt pandas}. Ahora usamos el método \verb#to_csv# de ese objeto. Recuerda la sintaxis de objetos y métodos que vimos en el apartado \ref{tut02:subsubsec:ordenacionLista} (pág. \pageref{tut02:subsubsec:ordenacionLista}):
 
 <<eval=FALSE>>=
-datosPandas.to_csv("./datos/Tut02-Edades3.csv", header=False, index=False)
+edades3pd.to_csv("./datos/Tut02py-Edades-3.csv", header=False, index=False)
 @
 Los argumentos {\tt header=False} e {\tt index=False} sirven respectivamente para evitar que {\tt pandas} añada al fichero csv una línea de encabezamiento y que numere cada una de las líneas de datos.
 \begin{ejercicio}
