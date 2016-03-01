@@ -11,8 +11,8 @@ El estudio de la Probabilidad nació, como disciplina científica, en el siglo X
         \item Lanzamiento de monedas: del mismo modo, cuando se lanza una moneda (sin trucar), se observa, al cabo de muchos lanzamientos, que cada uno de los dos posibles resultados aparece aproximadamente la mitad de las veces.
         \item Las loterías, con la extracción de bolas numeradas de una urna o un bombo giratorio; o la ruleta, en la que la bola que se lanza puede acabar en cualquiera de las 36 (o 37) casillas.  Estos juegos y otros similares, ofrecían ejemplos adicionales con elementos comunes a los anteriores.
     \end{enumerate}
-Las apuestas, basadas en esos juegos de azar, y los casinos son, desde antiguo, un entretenimiento muy apreciado. Para hacer más interesante el juego, la humanidad fue construyendo otros juegos combinados más complicados. Por ejemplo, apostamos cada uno un euro y lanzamos dos dados: si la suma de los resultados es par, yo me llevo los dos euros. Si es impar, los ganas tú. La pregunta es evidente ¿Es este un juego {\em justo} para ambos jugadores? En concreto, lo que queremos saber es: si jugamos muchas, muchas veces ¿cuántos euros perderé o ganaré yo en promedio por cada euro invertido? ¿Y cuántos ganarás o perderás tú? Está claro que para que un jugador esté dispuesto a participar, y a arriesgar su fortuna, y desde luego para que alguien considere rentable el casino como negocio, o la lotería como forma de recaudar dinero, es preciso ofrecerle {\sf información precisa sobre cuáles son las ganancias esperadas del juego}. Uno de nuestros objetivos es aprender a responder a esa pregunta: ¿cómo se calculan las ganacias esperadas? No es una pregunta tan específica de los juegos de azar como pueda parecer a primera vista. En general, cuando nos enfrentamos a un fenómeno aleatorio, ¿cuáles son los resultados esperables? ¿Cómo podemos hacer medible nuestra incertidumbre sobre esos resultados?
-
+Las apuestas, basadas en esos juegos de azar, y los casinos son, desde antiguo, un entretenimiento muy apreciado. Para hacer más interesante el juego, la humanidad fue construyendo otros juegos combinados más complicados. Por ejemplo, apostamos cada uno un euro y lanzamos dos dados: si la suma de los resultados es par, yo me llevo los dos euros. Si es impar, los ganas tú. La pregunta es evidente ¿Es este un juego {\em justo} para ambos jugadores? En concreto, lo que queremos saber es: si jugamos muchas, muchas veces ¿cuántos euros perderé o ganaré yo en promedio por cada euro invertido? ¿Y cuántos ganarás o perderás tú? Está claro que para que un jugador esté dispuesto a participar, y a arriesgar su fortuna, y desde luego para que alguien considere rentable el casino como negocio, o la lotería como forma de recaudar dinero, es preciso ofrecerle {\sf información precisa sobre cuáles son las ganancias esperadas del juego}. Uno de nuestros objetivos es aprender a responder a esa pregunta: ¿cómo se calculan las ganancias esperadas? No es una pregunta tan específica de los juegos de azar como pueda parecer a primera vista. En general, cuando nos enfrentamos a un fenómeno aleatorio, ¿cuáles son los resultados esperables? ¿Cómo podemos hacer medible nuestra incertidumbre sobre esos resultados?
+        
 \subsubsection*{}
 Otra cosa que la humanidad constató rápidamente al tratar con los juegos de azar es que, como hemos
 dicho en la introducción a esta parte del curso, nuestra intuición, en este terreno, es
@@ -41,7 +41,8 @@ es más probable?
     \end{itemize}
     Los jugadores que, en aquella época, se planteaban esta pregunta respondían inicialmente así:
     \begin{itemize}
-    \item[(a)] La probabilidad de obtener un seis en cada tirada es $\dfrac{1}{6}$. Por lo tanto, en cuatro tiradas es \[\dfrac{1}{6}+\dfrac{1}{6}+\dfrac{1}{6}+\dfrac{1}{6}=\dfrac{2}{3}.\]
+    \item[(a)] La probabilidad de obtener un seis en cada tirada es $\dfrac{1}{6}$. Por lo tanto, en cuatro tiradas es 
+    \[\dfrac{1}{6}+\dfrac{1}{6} = \dfrac{1}{3}.\]
 
     \item[(b)] La probabilidad de obtener un doble seis en cada tirada de dos dados es $\dfrac{1}{36}$, porque hay 36 resultados distintos, y todos aparecen con la misma frecuencia. Por lo tanto, en veinticuatro tiradas será \[\dfrac{1}{36}+\cdots+\dfrac{1}{36}=\dfrac{24}{36}=\dfrac{2}{3}.\]
     \end{itemize}
@@ -381,9 +382,9 @@ La Figura \ref{Cap03:fig:DiagramaVennSucesosDisjuntos} representa, en un diagram
 \end{center}
 \end{figure}
 
-La forma en la que se asignan o {\sf distribuyen} las probabilidades define el \index{modelo probabilístico}{\sf modelo probabilístico} que utilizamos en cada problema. Por ejemplo, la Regla de Laplace es el modelo probabilístico típico que usamos en situaciones como las de los juegos de azar que hemos descrito, y en general, cuando, basados en nuestra experiencia, podemos suponer la existencia de una familia de sucesos elementales equiprobables. En los problemas de probabilidad geométrica adoptamos, a menudo (pero no siempre),un modelo probabilístico que consiste en suponer que la probabilidad de una región es proporcional a su área. \\
+La forma en la que se asignan o {\sf distribuyen} las probabilidades define el \index{modelo probabilístico}{\sf modelo probabilístico} que utilizamos en cada problema. Por ejemplo, la Regla de Laplace es el modelo probabilístico típico que usamos en situaciones como las de los juegos de azar que hemos descrito, y en general, cuando, basados en nuestra experiencia, podemos suponer la existencia de una familia de sucesos elementales equiprobables. En los problemas de probabilidad geométrica adoptamos, a menudo (pero no siempre), un modelo probabilístico que consiste en suponer que la probabilidad de una región es proporcional a su área. \\
 
-Vamos a ver como se aplican estas ideas al ejemplo del del lanzamiento de una moneda hasta la primera cara que vimos antes.
+Vamos a ver como se aplican estas ideas al ejemplo del lanzamiento de una moneda hasta la primera cara que vimos antes.
 \begin{Ejemplo}[\bf Continuación del Ejemplo \ref{Cap03:ejem:LanzamientoMonedaHastPrimeraCara}, pág. \pageref{Cap03:ejem:LanzamientoMonedaHastPrimeraCara}]\label{cap03:ejem:LanzamientoMonedaHastPrimeraCara:2}
 
 En este caso, podemos definir un modelo de probabilidad así. El espacio muestral $\Omega$ es el conjunto de todas las listas de la forma
@@ -405,7 +406,7 @@ y por lo tanto su probabilidad es:
 \[P(A)=\underbrace{P(a_1)+P(a_3)+P(a_5)+P(a_7)+\cdots}_{\mbox{listas de longitud impar}}=
 \dfrac{1}{2}+\dfrac{1}{2^3}+\dfrac{1}{2^5}+\dfrac{1}{2^7}+\cdots=\dfrac{2}{3}.
 \]
-Esta última suma la hemos calculado usando que se trata de la suma de una {\sf progresión geométrica} de razón $\dfrac{1}{2^2}$. No podemos entretenernos en explicar cómo se hacen este tipo de sumas infinitas (series), pero sí queremos tranquilizar al lector, asegurándole que las progresiones geométricas son las más fáciles de todas. En el Tutorial03 veremos cómo se puede usar el ordenador para calcular algunas sumas como estas.\qed
+Esta última suma la hemos calculado usando el hecho de que se trata de la suma de una {\sf progresión geométrica} de razón $\dfrac{1}{2^2}$. No podemos entretenernos en explicar cómo se hacen este tipo de sumas infinitas (series), pero sí queremos tranquilizar al lector, asegurándole que las progresiones geométricas son las más fáciles de todas. En el Tutorial03 veremos cómo se puede usar el ordenador para calcular algunas sumas como estas.\qed
 \end{Ejemplo}
 
 Este enfoque también sirve para los problemas-ejemplo de probabilidad geométrica que hemos discutido antes. Esencialmente, lo que hay que tener presente es que la definición de Función Probabilidad está relacionada con el área, y el único matiz importante es que un área puede ser arbitrariamente grande o pequeña (por lo tanto, puede ser cualquier número positivo), mientras que una probabilidad viene obligada a ser un número entre 0 y 1. La forma natural de hacer esto es fijar de antemano cierta figura geométrica $\Omega$, que es el espacio muestral, y definir la probabilidad de un  suceso $A$ como
@@ -568,7 +569,7 @@ probabilidades condicionadas.
         \end{equation}
         \end{minipage}}
         \end{center}
-    porque la definición de probabilidad condicionada dice que los dos miembros son dos formas de escribir $P(A\cap B)$. Teniendo esto en cuenta, si se conocen las probabilidades de $A$ y $B$, se pueden obtener fácilmente una probabilidad condicionada a partir de la otra. Este resultado es extremadamente útil para, por ejemplo, descomponer problemas de probabilidad en varias etapas, y usar las probabilidades condicionadas, normalmente más fáciles de calcular.
+porque la definición de probabilidad condicionada dice que los dos miembros son dos formas de escribir $P(A\cap B)$. Teniendo esto en cuenta, si se conocen las probabilidades de $A$ y $B$, se puede obtener fácilmente una probabilidad condicionada a partir de la otra. Este resultado es extremadamente útil para, por ejemplo, descomponer problemas de probabilidad en varias etapas, y usar las probabilidades condicionadas, normalmente más fáciles de calcular.
 
 \subsubsection{Tablas de contingencia y probabilidad condicionada}
 \label{cap03:subsubsec:TablasContingenciaProbabilidadCondicionada}
@@ -611,7 +612,7 @@ probabilidades condicionadas.
         \[P(\mbox{positivo})=\dfrac{350}{10000}=0.035.\]
         De la misma forma (o restando de uno) se tiene:
         \[P(\mbox{negativo})=\dfrac{9650}{10000}=0.965.\]
-        Con esto vemos que los márgenes de la tabla (inferior y derecho) nos permiten obtener las probabilidades de las dos familias de sucesos que intervienen en este ejemplo. ¿Qué significado tienen, en términos de probabilidades, los cuatro valores {\em interiores de la tabla} (los que ocupan las dos primeras filas y columnas)? Por ejemplo, ¿qué representa el valor 4 de la segunda fila, primera columna? Se trata del número de personas que, a la vez,padecen la enfermedad y han dado negativo en el diagnóstico. Por lo tanto ese número se refiere al suceso intersección
+        Con esto vemos que los márgenes de la tabla (inferior y derecho) nos permiten obtener las probabilidades de las dos familias de sucesos que intervienen en este ejemplo. ¿Qué significado tienen, en términos de probabilidades, los cuatro valores {\em interiores de la tabla} (los que ocupan las dos primeras filas y columnas)? Por ejemplo, ¿qué representa el valor 4 de la segunda fila, primera columna? Se trata del número de personas que, a la vez, padecen la enfermedad y han dado negativo en el diagnóstico. Por lo tanto ese número se refiere al suceso intersección
         \[\mbox{enfermo}\cap\mbox{negativo},\]
         y su probabilidad es:
         \[P\left(\mbox{enfermo}\cap\mbox{negativo}\right)=\dfrac{4}{10000}=0.0004\]
@@ -668,7 +669,7 @@ Pero insistimos, la independencia significa que esto debe cumplirse para cualqui
 \[P(A_1\cap A_2\cap A_4)=P(A_1)\cdot P(A_2)\cdot P(A_4),\]
 pero también
 \[P(A_1\cap A_5)=P(A_1)\cdot P(A_5),\]
-entre otras muchas. ¿Cuántas? Es un buen ejercicio de Combinatoria convencerse de que son $2^k$, donde $k$ es el número de sucesos. {!`}Verificar la independencia de una colección de sucesos puede ser muy complicado! Normalmente partiremos de situaciones en las que sabemos {\em a priori} que se cumple la independencias, y entonces usaremos estas propiedades para poder calcular las probabilidades de las intersecciones que nos interesen.
+entre otras muchas. ¿Cuántas? Es un buen ejercicio de Combinatoria convencerse de que son $2^k - k -1$, donde $k$ es el número de sucesos. {!`}Verificar la independencia de una colección de sucesos puede ser muy complicado! Normalmente partiremos de situaciones en las que sabemos {\em a priori} que se cumple la independencias, y entonces usaremos estas propiedades para poder calcular las probabilidades de las intersecciones que nos interesen.
 
 \subsubsection{Sucesos independientes y sucesos disjuntos (incompatibles)}
 
@@ -683,7 +684,8 @@ Así que la información sobre el suceso $A$ nos permite decir algo sobre el suc
         \end{minipage}}
         \end{center}
 
-\section{Probabilidades totales y Teorema de Bayes.}\label{cap03:sec:ProbabilidadesTotalesReglaBayes}
+\section{Probabilidades totales y Teorema de Bayes.}
+\label{cap03:sec:ProbabilidadesTotalesReglaBayes}
 
 
 \subsection{La regla de las probabilidades totales. Problemas de urnas.}
@@ -729,7 +731,7 @@ Este ejemplo, con dados y bolas, puede parecer artificioso, y alejado de las apl
 
 
 
-La regla de las probabilidades totales puede describirse así: si conocemos varios mecanismos posibles (los sucesos $B_1,\ldots,B_k$) que conducen al suceso $A$, y las probabilidades asociadas con esos mecanismos, ¿cuál es la probabilidad de ocurra el suceso $A$? El Teorema de Bayes le da la vuelta a la situación. Ahora suponemos que el suceso $A$ {\em de hecho ha ocurrido}.  Y, puesto que puede haber ocurrido a través de distintos mecanismos, nos podemos preguntar ¿cómo de probable es que el suceso $A$ haya ocurrido a través de, por ejemplo, el primer mecanismo $B_1$? Insistimos, no vamos a preguntarnos por la probabilidad del suceso $A$, puesto que suponemos que ha ocurrido. Nos preguntamos por la probabilidad de cada una de los mecanismos o causas que conducen al resultado $A$. Por eso a veces el Teorema de Bayes se describe como un resultado sobre la probabilidad de las causas.
+La regla de las probabilidades totales puede describirse así: si conocemos varios mecanismos posibles (los sucesos $B_1,\ldots,B_k$) que dan como resultado el suceso $A$, y las probabilidades asociadas con esos mecanismos, ¿cuál es la probabilidad de ocurra el suceso $A$? El Teorema de Bayes le da la vuelta a la situación. Ahora suponemos que el suceso $A$ {\em de hecho ha ocurrido}.  Y, puesto que puede haber ocurrido a través de distintos mecanismos, nos podemos preguntar ¿cómo de probable es que el suceso $A$ haya ocurrido a través de, por ejemplo, el primer mecanismo $B_1$? Insistimos, no vamos a preguntarnos por la probabilidad del suceso $A$, puesto que suponemos que ha ocurrido. Nos preguntamos por la probabilidad de cada una de los mecanismos o causas que conducen al resultado $A$. Por eso a veces el Teorema de Bayes se describe como un resultado sobre la probabilidad de las causas.
 
 ¿Cómo podemos conseguir esto? La pregunta se puede formular así: sabiendo que el suceso $A$ ha ocurrido, ¿cuál es la probabilidad de que haya ocurrido a través del mecanismo $B_i$? De otra manera: sabiendo que el suceso $A$ ha ocurrido, ¿cuál es la probabilidad de que eso se deba a que $B_i$ ha ocurrido? Es decir, queremos averiguar el valor de
     \[P(B_i|A)\mbox{\quad para i=1,\ldots,k}.\]
@@ -738,12 +740,14 @@ Quizá lo más importante es entender que, para calcular este valor, {\em la inf
 Y la forma de conseguir el resultado es esta. Usando que:
     \[P(A|B_k)P(B_k)=P(A\cap B_k)=\colorbox{lightgrey}{$P(B_k|A)$}P(A),\]
 despejamos de aquí lo que queremos, y usamos el teorema de las probabilidades totales de una forma astuta, obteniendo:
-    \begin{center}
+\begin{center}
     \fcolorbox{black}{Gris025}{
-    \begin{minipage}{12cm}
+    \begin{minipage}{13cm}
         {\centering\bf Teorema de Bayes\index{teorema de Bayes}}
-        Si los sucesos $B_1,\ldots,B_K$ cumplen las condiciones (1), (2) y (3) (ver la Sección \ref{cap03:subsec:ProbabilidadesTotales}), entonces:
-        \[P(B_k|A)=\dfrac{P(B_k)P(A|B_k)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+\cdots+P(B_k)P(A|B_k)}.\]
+        Si los sucesos $B_1,\ldots,B_k$ cumplen las condiciones (1), (2) y (3) (ver la Sección \ref{cap03:subsec:ProbabilidadesTotales}), entonces para cualquier $j$ de $1$ a $k$ se tiene:
+        {\small
+        \[P(B_j|A)=\dfrac{P(B_k)P(A|B_k)}{P(A)} = \dfrac{P(B_k)P(A|B_k)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+\cdots+P(B_k)P(A|B_k)}.\]
+        }
     \end{minipage}}
     \end{center}
 Obsérvese que:
@@ -762,7 +766,7 @@ El primero es el ejemplo prototípico, un problema de urnas, que sólo tiene el 
 
     Según nuestra experiencia, los ejercicios del Teorema de Bayes se encuentran entre los que más dificultades causan a los novatos, en cursos como este. Así que vamos a tomarnos este ejemplo con calma, y vamos a detallar minuciosamente, paso a paso, cómo lo abordamos.
 
-    Cuando nos enfentamos a un problema como este, es crucial aprender a procesar la información del enunciado de forma adecuada. En primer lugar, hay que reconocer una situación como la que hemos descrito, con dos familias {\em básicas} $A$ y $B$ de fenómenos (no importa cuál es $A$ y cuál es $B$). En este ejemplo:
+    Cuando nos enfrentamos a un problema como este, es crucial aprender a procesar la información del enunciado de forma adecuada. En primer lugar, hay que reconocer una situación como la que hemos descrito, con dos familias {\em básicas} $A$ y $B$ de fenómenos (no importa cuál es $A$ y cuál es $B$). En este ejemplo:
     \begin{enumerate}
     \item Familia $A$: $A_1$ es ``bola blanca'' y $A_2$ es ``bola negra''.
     \item Familia $B$: $B_1$ es ``urna 1'' y $B_2$ es ``urna 2''. (Es lo mismo que $B_1$ es ``dado de dos para abajo'' y $B_2$ es ``dado de tres para arriba'').
@@ -1072,7 +1076,7 @@ Estamos interesados en este problema. Dado un conjunto de $n$ elementos
 y un número $k$ con $0\leq k\leq n$, ¿cuántos {\sf subconjuntos distintos} de $k$ elementos podemos formar con los elementos de $A$? Es muy importante entender que, como ya hemos anunciado, al usar la palabra \index{subconjunto}{\sf subconjunto}, estamos diciendo que:
     \begin{enumerate}
         \item el {\sf orden de los elementos es irrelevante}. El subconjunto $\{x_1,x_2,x_3\}$ es el mismo que el subconjunto $\{x_3,x_1,x_2\}$.
-        \item los elementos del subconjunto {\sf no se repiten}. El subconjunto $\{x_1,x_2,x_2\}$ es, de hecho, el subconjunto $\{x_1,x_2\}$ (y nunca lo escribiríamos de la primera manera, si estamos hablando de subconjuntos).
+        \item los elementos del subconjunto {\sf no se repiten}. El subconjunto $\{x_1,x_2,x_2\}$ es, de hecho, igual al subconjunto $\{x_1,x_2\}$ (y nunca lo escribiríamos de la primera manera, si estamos hablando de subconjuntos).
     \end{enumerate}
 Vamos a ponerle un nombre a lo queremos calcular: el número de subconjuntos posibles es el número de   \index{combinaciones de $n$ elementos, tomados de $k$ en $k$}{\sf combinaciones de $n$ elementos, tomados de $k$ en $k$} (cada uno de los subconjuntos es una combinación). Para hacer este c\'alculo, volvamos un momento sobre las variaciones de $n$ elementos, tomados de $k$ en $k$.
 Esto no deber\'ia sorprendernos (y no digo que lo haga) porque en ambos casos tenemos un total de $n$ elementos y hacemos subgrupos con $k$ de ellos. Sin embargo
@@ -1853,7 +1857,7 @@ P(\mbox{teoría cierta})}_{\mbox{\tiny antes de los datos}}
 ,\end{equation}
 donde $\mathcal{L}(\mbox{datos, teoría cierta})=P(\mbox{datos}|\mbox{teoría cierta})$ es la {\sf función verosimilitud}\index{función verosimilitud}\index{verosimilitud, función}. Como hemos indicado, el término $P(\mbox{teoría cierta})$ indica nuestro grado de creencia en la teoría antes de ver los datos. Y el término de la izquierda, $P(\mbox{teoría cierta}|\mbox{datos})$ nos dice cómo ha cambiado esa creencia una vez examinados los datos. El cociente que los relaciona es un {\em artefacto estadístico}, es la forma en la que la Estadística nos ayuda a actualizar nuestras creencias sobre esa teoría. En particular, esa actualización pasa por comparar nuestra teoría con las posibles teorías alternativas. Por eso la teoría aparece como una variable de la función de verosimilitud, porque vamos a considerar distintas teorías. En próximos capítulos iremos conociendo esta función en más detalle.
 
-La Ecuación \ref{cap03:ecu:FuncionVerosimilitudBayes} resume (de manera muy simplificada) el proceso por el que el método científico actualiza su confianza en una teoría. Podemos verlo de esta manera: tenemos una teoría que deseamos a obtener a escrutinio, y acabamos de obtener una colección de datos. A la izquierda, de la Ecuación \ref{cap03:ecu:FuncionVerosimilitudBayes} está la pregunta a la que queremos responder: ``¿qué probabilidad hay de que esa teoría sea cierta, a la luz de estos datos?'' La respuesta, tal como nos la proporciona el lado derecho de la Ecuación \ref{cap03:ecu:FuncionVerosimilitudBayes}, tiene tres ingredientes:
+La Ecuación \ref{cap03:ecu:FuncionVerosimilitudBayes} resume (de manera muy simplificada) el proceso por el que el método científico actualiza su confianza en una teoría. Podemos verlo de esta manera: tenemos una teoría que deseamos someter a escrutinio, y acabamos de obtener una colección de datos. A la izquierda, de la Ecuación \ref{cap03:ecu:FuncionVerosimilitudBayes} está la pregunta a la que queremos responder: ``¿qué probabilidad hay de que esa teoría sea cierta, a la luz de estos datos?'' La respuesta, tal como nos la proporciona el lado derecho de la Ecuación \ref{cap03:ecu:FuncionVerosimilitudBayes}, tiene tres ingredientes:
 \begin{itemize}
   \item $P(\mbox{teoría cierta})$, es una medida de nuestra confianza en esa teoría {\em previa} a la aparición de esos datos. A menudo se dice que es la probabilidad {``a priori''}\index{a priori} (en inglés {\em prior probability}) o, simplemente, {\em prior}.
   \item $\mathcal{L}(\mbox{datos, teoría cierta})$ es el valor de la función verosimilitud, cuando la teoría es cierta. Podríamos decir que aquí es donde entra en juego la Estadística, que nos tiene que decir cual es esa función.
