@@ -174,3 +174,7 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~*
+
+# Comment package
+*.cut
+
