@@ -138,7 +138,7 @@ Y hemos visto en el Ejemplo \ref{ejem:VariableAleatoria:RestaDosDados} que la pr
     ¿Podemos calcular este número usando sólo las tablas de probabilidad de $X$ e $Y$, sin utilizar más información sobre el espacio muestral subyacente? La respuesta es que no, que necesitamos algo más de información. Volveremos sobre esta discusión en la Sección \ref{cap04:sec:IndependenciaVariablesAleatoriasDiscretas} (pág. \pageref{cap04:sec:IndependenciaVariablesAleatoriasDiscretas}).
     \qed
 \end{Ejemplo}
-En el siguiente ejemplo vamos a definir una variable aleatoria, cuyo espacio muestral subyacente se define con una variable de tipo cualitativo, un factor. Los factores, como sabemos, son en esencialmente etiquetas, y por lo tanto son realmente arbitrarios.  De la misma forma, al definir una variable aleatoria en un espacio muestral de ese tipo, los valores que asignamos a la variable aleatoria son completamente arbitrarios.
+En el siguiente ejemplo vamos a definir una variable aleatoria, cuyo espacio muestral subyacente se define con una variable de tipo cualitativo, un factor. Los factores, como sabemos, son  esencialmente etiquetas, y por lo tanto son realmente arbitrarios.  De la misma forma, al definir una variable aleatoria en un espacio muestral de ese tipo, los valores que asignamos a la variable aleatoria son completamente arbitrarios.
 \begin{Ejemplo}\label{cap04:ejem:VariablesAleatoriasConFactorSubyacente}
     La baraja española típicamene tiene 48 naipes, o cartas, de los cuales 12 son figuras (sota, caballo y rey). Vamos a definir una variable aleatoria $X$ de la siguiente forma:
     \[
@@ -233,7 +233,7 @@ En el caso de las variables aleatorias continuas, no podemos hacer la asignació
 \label{cap04:subsec:MediaVariableAleatroriaDiscreta}
 
 Hemos visto que las variables aleatorias son modelos teóricos de asignación de probabilidad, entre los resultados distintos de un experimento aleatorio. Y de la misma forma que hemos aprendido a describir un conjunto de datos mediante su media aritmética y su desviación típica, podemos
-caracterizar a una variable aleatoria mediante valores similares. Empecemos por la media, en el caso de una variable aleatoria discreta. El caso de las variables aleatorias continuas requiere, como hemos dicho, la ayuda del Cálculo Integral, y lo veremos un poco más adelante.
+describir a una variable aleatoria mediante valores similares. Empecemos por la media, en el caso de una variable aleatoria discreta. El caso de las variables aleatorias continuas requiere, como hemos dicho, la ayuda del Cálculo Integral, y lo veremos un poco más adelante.
 
 El punto de partida es la fórmula que ya conocemos para calcular la media aritmética de una variable discreta a partir de su tabla de frecuencias, que escribimos de una forma ligeramente diferente, usando las frecuencias relativas:
     \[
@@ -345,7 +345,7 @@ Para que el juego sea justo, el valor medio $\mu_X$ debe ser $0$. Despejando, se
 %    Cada uno de nosotros pone un euro, y lanzamos un dado. Si sale un uno ganas tú y te quedas los dos euros. Si sale cualquier otra cosa gano yo y me quedo los dos euros. ¿Es un juego justo? Parece claro que no. ¿Cuál es el valor esperado del beneficio para cada uno de nosotros?\\
 %    Una pregunta más interesante. Si tú sigues poniendo un euro, ¿cuántos euros tengo que poner yo para que el juego sea justo?\qed
 %\end{Ejemplo}
-Por cierto, esencialmente ninguno de las loterías, sorteos o juegos de azar legales es justo en este sentido (de los ilegales, ni hablemos). Cada uno es libre de creer en su suerte, pero nunca deberíamos confundirla con la esperanza... y menos, con la esperanza matemática.
+Por cierto, esencialmente ninguna de las loterías, sorteos o juegos de azar legales es justa en este sentido (de los ilegales, ni hablemos). Cada uno es libre de creer en su suerte, pero nunca deberíamos confundirla con la esperanza... y menos, con la esperanza matemática.
 
 Esta definición de juego justo está muy relacionada con las reglas de las apuestas que discutimos en la Sección (opcional) \ref{cap03:sec:OddsPruebasDiagnosticas} (pág. \pageref{cap03:sec:OddsPruebasDiagnosticas}). Vamos a verlo en un ejemplo, pero por supuesto, con la advertencia de que si aún no has leído esa sección, debes ignorar este ejemplo y el que le sigue.
 \begin{ejemplo}\label{cap04:ejem:OddsReglasApuestasJuegoJusto}
@@ -376,7 +376,7 @@ El resultado, de nuevo, es $x=7/4$.
 \subsection{Varianza y desviación típica de una variable aleatoria discreta.}
 \label{cap04:subsec:VarianzaDesvTipicaVariableAleatoriaDiscreta}
 
-Ahora que hemos visto la definición de media, y como obtenerla a partir de la noción de frecuencias relativas, parece bastante evidente lo que tenemos que hacer para definir la varianza de una variable aleatoria discreta. Recordemos la fórmula para la varianza poblacional a partir de una tabla de frecuencias, y vamos a escribirla en términos de frecuencias relativas:
+Ahora que hemos visto la definición de media, y cómo obtenerla a partir de la noción de frecuencias relativas, parece bastante evidente lo que tenemos que hacer para definir la varianza de una variable aleatoria discreta. Recordemos la fórmula para la varianza poblacional a partir de una tabla de frecuencias, y vamos a escribirla en términos de frecuencias relativas:
     \[
     \mbox{Var($x$)}=\dfrac{\displaystyle\sum_{i=1}^k{ f_i\cdot}(x_i-\bar x)^2}{{ \displaystyle\sum_{i=1}^k f_i}}=
     \dfrac{\displaystyle\sum_{i=1}^k{ f_i\cdot}(x_i-\bar x)^2}{n}=
@@ -498,7 +498,7 @@ Con la notación de $\mu$ y $\sigma$ se obtienen estas fórmulas, algo menos leg
     \[\mu_{aX+b}=a\cdot\mu_X + b,\quad \sigma^2_{aX+b}=a^2\sigma^2_X\]
 y
 \[\mu_{X_1+X_2}=\mu_{X_1}+\mu_{X_2},\quad \sigma^2_{X_1+X_2}=\sigma^2_{X_1}+\sigma^2_{X_2},\]
-donde la última fórmula, insistimos {\em es válida para variables independientes}.
+donde la última fórmula, insistimos, {\em es válida para variables independientes}.
 
 Veamos un ejemplo:
 \begin{Ejemplo}
@@ -640,9 +640,9 @@ a altura $1$.
 \subsection{Cuantiles de una variable aleatoria discreta.}
 \label{cap04:subsec:CuantilesVariableAleatoriaDiscreta}
 %\noindent{\bf Opcional: puede omitirse en una primera lectura.}\\
-La Figura \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} (pág. \pageref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}) ayuda a entender que, si fijamos una probabilidad $p_0$ cualquiera, la ecuación en $x$:
+La Figura \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} (pág. \pageref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}) ayuda a entender que, si fijamos una probabilidad $p_0$ cualquiera, cuanto tratemos de resolver la siguiente ecuación en $x$:
 \[F(x)=p_0\]
-la mayor parte de las veces no tiene solución. No hay solución, salvo que $p_0$ sea $0$, o uno de los valores $p_1$, $p_1+p_2$, \ldots, $1$, que definen la altura de los peldaños. Mencionamos esto aquí como advertencia,  porque cuando estudiemos las variables aleatorias continuas, veremos que allí la situación es distinta y ese tipo de ecuaciones siempre tienen solución. En el caso que ahora nos ocupa, el de las variables aleatorias discretas, con un número finito de valores como la de la Tabla \ref{cap04:tabla:tablaDistribucionProbabilidadGenericaVariableAleatoriaDiscreta}, tenemos que aprender a ser más cautos cuando trabajamos con la función de distribución $F$. De momento nos conformamos con la advertencia, pero profundizaremos más en las consecuencias de este hecho más adelante. Concretamente, en el Capítulo \ref{cap:TeoremaCentralLimite}, al hacer inferencia para la Distribución Binomial, cuando esta discusión se convertirá en un problema más acuciante.
+la mayor parte de las veces no podremos encontrar una solución. No hay solución, salvo que $p_0$ sea $0$, o uno de los valores $p_1$, $p_1+p_2$, \ldots, $1$, que definen la altura de los peldaños. Mencionamos esto aquí como advertencia,  porque cuando estudiemos las variables aleatorias continuas, veremos que allí la situación es distinta y ese tipo de ecuaciones siempre tienen solución. En el caso que ahora nos ocupa, el de las variables aleatorias discretas, con un número finito de valores como la de la Tabla \ref{cap04:tabla:tablaDistribucionProbabilidadGenericaVariableAleatoriaDiscreta}, tenemos que aprender a ser más cautos cuando trabajamos con la función de distribución $F$. De momento nos conformamos con la advertencia, pero profundizaremos más en las consecuencias de este hecho más adelante. Concretamente, en el Capítulo \ref{cap:TeoremaCentralLimite}, al hacer inferencia para la Distribución Binomial, cuando esta discusión se convertirá en un problema más acuciante.
 %    \begin{figure}[b!]
 %	\centering
 %	\begin{enColor}
@@ -656,7 +656,7 @@ la mayor parte de las veces no tiene solución. No hay solución, salvo que $p_0
 %    \end{figure}
 
 Puesto que la igualdad $F(x)=p_0$ puede no tener solución, lo que haremos, dada una probabilidad  $p_0$, es considerar la desigualdad
-\[F(x)\leq p_0\]
+\[F(x)\geq p_0\]
 La Figura \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} ayuda a entender que, sea cual sea la probabilidad $p_0$ entre $0$ y $1$, esa desigualdad tiene solución. La dificultad, ahora, es que tiene demasiadas, porque $F$ es constante por intervalos. Es decir, $F$ vale lo mismo para todos los $x$ que quedan debajo de cada uno de los peldaños de la Figura \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}. La solución es utilizar el extremo izquierdo de esos intervalos. Concretamente, la definición es esta:
     \begin{center}
     \fcolorbox{black}{Gris025}{
@@ -706,8 +706,8 @@ Esa idea informal está muy bien, pero ya vimos en su momento que cuando tratáb
 Para poder llevar esa misma idea al caso de dos variables aleatorias $X$ e $Y$ vamos a tener que aprender a pensar también en ambas variables {\em conjuntamente}. Esto puede parecer complicado. Pero, de hecho, al igual que sucede con la probabilidad condicionada, a menudo resulta más sencillo trabajar con las propiedades conjuntas de dos variables, que tratar de hacerlo por separado.  {!`}Especialmente cuando son dependientes, claro!
 
 Vamos a pensar entonces en la pareja formada por las variables $X$ e $Y$, y para representar esa pareja usaremos la notación $(X,Y)$. El trabajo que vamos a hacer en este apartado se extiende con relativa facilidad al caso de $k$ variables aleatorias, pensadas conjuntamente, como un objeto que se representa
-\[(X_1,\ldots,X_n).\]
-Esta clase de objetos se llaman a menudo {\sf vectores aleatorios}\index{vector aleatorio} (en inglés, {\em random vector}\index{random vector}). El número de componentes $n$ es la {\sf dimensión} del vector aleatorio; de manera que, por ejemplo, $(X,Y)$ será un vector aleatorio bidimensional. Un vector aleatorio $(X,Y)$ que sólo toma una cantidad finita de valores es un {\sf vector aleatorio discreto}\index{vector aleatorio discreto}.
+\[(X_1,\ldots,X_k).\]
+Esta clase de objetos se llaman a menudo {\sf vectores aleatorios}\index{vector aleatorio} (en inglés, {\em random vector}\index{random vector}). El número de componentes $k$ es la {\sf dimensión} del vector aleatorio; de manera que, por ejemplo, $(X,Y)$ será un vector aleatorio bidimensional. Un vector aleatorio $(X,Y)$ que sólo toma una cantidad finita de valores es un {\sf vector aleatorio discreto}\index{vector aleatorio discreto}.
 
 Ya hemos visto que una variable aleatoria $X$ queda caracterizada por su tabla o función de densidad (ver pág. \pageref{cap04:ecu:funcionDensidadVariableAleatoriaDiscreta}). Esa tabla nos dice, para cada uno de los valores $x_i$ que puede tomar la variable, cuál es la probabilidad $p_i$ de que $X$ tome ese valor. Cuando se trata de una pareja $(X,Y)$ existe un objeto análogo, que es la función de densidad conjunta de $X$ e $Y$.
     \begin{center}
@@ -941,7 +941,7 @@ f(x_0,y_0)=0.
 \]
 Y lo mismo sucede si $y_0$ no es uno de los valores $y_1,\ldots,y_m$. Entonces, sea cual sea $x_0$, la densidad conjunta $f(x_0,y_0)$ es automáticamente nula.
 
-\noindent Por si estás cansado de ejemplos con dados (paciencia, aún no quedan unos cuantos en el curso...), hemos incluido otro ejemplo, que puedes encontrar más interesante.
+\noindent Por si estás cansado de ejemplos con dados (paciencia, aún nos quedan unos cuantos en el curso...), hemos incluido otro ejemplo, que puedes encontrar más interesante.
 \begin{ejemplo}
 \label{cap04:ejem:vectorAleatorioDias2014}
 Imagínate que el departamento de control de calidad de una gran empresa quiere realizar un estudio sobre su servicio de atención al cliente, para saber si los recursos asignados a ese servicio son suficientes. Si la empresa es grande, puede que el servicio haya atendido decenas de miles de peticiones a lo largo de un año. Y puede resultar poco práctico tratar de analizarlas todas. Para hacerse una idea rápida, se podrían seleccionar $30$ días al azar del año, y analizar el funcionamiento del servicio en esos días. Ya volveremos sobre estas ideas más adelante, pero el hecho de seleccionar los días al azar es esencial, para garantizar que el conjunto de días seleccionados  es {\em representativo} y reducir la posible influencia de factores desconocidos (¿qué sucedería si todos los días seleccionados fueran viernes, o si, sin saberlo los autores del estudio, se seleccionan varios días en los que hubo grandes averías del servicio telefónico, por ejemplo?).
@@ -1073,7 +1073,7 @@ La forma en la que se obtienen las densidades marginales a partir de la tabla de
 \label{cap04:ecu:DensidadMarginalXInterpretacionProababilistica}
 f_X(x)=P(X=x).
 \end{equation}
-La probabilidad del miembro derecho debe entenderse, en este contexto como ``la probabilidad de que se cumpla $X=x$, sea cual sea el valor de $Y$''.
+La probabilidad del miembro derecho debe entenderse, en este contexto como ``la probabilidad de que se cumpla $X=x$, sin importar cuál sea el valor de $Y$''.
 
 En el caso $n$-dimensional, la densidad marginal de $X_i$ en el vector aleatorio $(X_1,\ldots, X_n)$ se obtiene sumando sobre todas las componentes, salvo precisamente la $i$.
 
@@ -1156,7 +1156,7 @@ Pero el verdadero valor de la independencia reside en el hecho de que muchas vec
 Hemos dicho que la mayor virtud de la independencia de las variables aleatorias es que facilita  nuestro trabajo. La razón es que nos permite trabajar con ellas por separado, usando sus distribuciones marginales, en lugar de la distribución conjunta, que es un objeto más complicado.
 ¿Qué podemos hacer en el caso en que las variables resulten dependientes? Volviendo a la analogía con la definición de independencia para sucesos, la idea más útil, en aquel caso, era la de probabilidad condicionada. Recuerda, en particular la expresión:
 \[P(A) = P(A|B)\cdot P(B).\]
-Hemos visto que esta expresión permite descomponer el cálculo de $P(A)$ en dos pasos, apoyándose en la noción de probabilidad condicionada. Y, en muchos ejemplos, la información adicional que aporta el hecho de saber que ha ocurrido $B$ hace que sea más fácil calcular $P(B|A)$ que tratar de calcular $P(A)$ directamente.
+Hemos visto que esta expresión permite descomponer el cálculo de $P(A)$ en dos pasos, apoyándose en la noción de probabilidad condicionada. Y, en muchos ejemplos, la información adicional que aporta el hecho de saber que ha ocurrido $B$ hace que sea más fácil calcular $P(A|B)$ que tratar de calcular $P(A)$ directamente.
 
 Con los vectores aleatorios $(X,Y)$ se puede usar un método parecido. La clave es definir lo que vamos a llamar funciones de densidad condicionadas.
     \begin{center}
