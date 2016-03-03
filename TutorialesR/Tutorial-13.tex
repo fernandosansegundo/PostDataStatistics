@@ -2265,9 +2265,9 @@ A continuación usamos estos puntos de corte y la función {\tt cut} de R que ya
 ## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
 ##                   100                   100                   100 
 ##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##                   100                   100                   101 
+##                   100                   100                    99 
 ##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##                    99                   100                   100 
+##                   101                   100                   100 
 ##            (0.9998,1] 
 ##                   100
 \end{verbatim}
@@ -2294,9 +2294,9 @@ Los valores observados $Obs1_i$ (recuerda que $Obs1_i$ es el número de observac
 ## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
 ##                     0                     0                     0 
 ##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##                     6                    35                    76 
+##                     6                    35                    74 
 ##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##                    96                   100                   100 
+##                    98                   100                   100 
 ##            (0.9998,1] 
 ##                   100
 \end{verbatim}
@@ -2317,9 +2317,9 @@ La misma operación, pero aplicada a las probabilidades estimadas por el modelo,
 ## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
 ##             0.0085367             0.0772353             0.6655094 
 ##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##             5.3109641            33.2236573            79.1318414 
+##             5.3109641            33.2236573            77.2846428 
 ##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##            95.2481764            99.4203071            99.9221955 
+##            97.0953750            99.4203071            99.9221955 
 ##            (0.9998,1] 
 ##            99.9915768
 \end{verbatim}
@@ -2356,9 +2356,9 @@ Y puesto que sabemos el total de observaciones, los valores $Obs0$ y $Esp0$ se o
 ## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
 ##            99.9914633            99.9227647            99.3344906 
 ##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##            94.6890359            66.7763427            21.8681586 
+##            94.6890359            66.7763427            21.7153572 
 ##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##             3.7518236             0.5796929             0.0778045 
+##             3.9046250             0.5796929             0.0778045 
 ##            (0.9998,1] 
 ##             0.0084232
 \end{verbatim}
@@ -2380,7 +2380,7 @@ Con los valores observados y esperados estamos listos para calcular el valor del
 \hlstd{(HL.estadistico} \hlkwb{=} \hlkwd{sum}\hlstd{((Obs1} \hlopt{-} \hlstd{Esp1)}\hlopt{^}\hlnum{2}\hlopt{/}\hlstd{Esp1)} \hlopt{+} \hlkwd{sum}\hlstd{((Obs0} \hlopt{-} \hlstd{Esp0)}\hlopt{^}\hlnum{2}\hlopt{/}\hlstd{Esp0))}
 \end{alltt}
 \begin{verbatim}
-## [1] 2.3909
+## [1] 2.5162
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2407,7 +2407,7 @@ y el p-valor se calcula con la cola derecha de la correspondiente distribución 
 \hlstd{(HL.pValor} \hlkwb{=}  \hlkwd{pchisq}\hlstd{(HL.estadistico,} \hlkwc{df} \hlstd{= HL.df,} \hlkwc{lower.tail} \hlstd{=} \hlnum{FALSE}\hlstd{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.96663
+## [1] 0.96097
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2434,7 +2434,7 @@ La librería {\tt ResourceSelection} de R (recuerda instalarla antes de tratar d
 ## 	Hosmer and Lemeshow goodness of fit (GOF) test
 ## 
 ## data:  datos$Y, datos$probs
-## X-squared = 2.39, df = 8, p-value = 0.97
+## X-squared = 2.52, df = 8, p-value = 0.96
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2448,7 +2448,7 @@ Para ver que el valor del estadístico es el mismo que hemos obtenido antes vamo
 \end{alltt}
 \begin{verbatim}
 ## X-squared 
-##    2.3909
+##    2.5162
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2469,8 +2469,8 @@ Además, aunque no aparezcan en la salida de la función que R nos muestra, la f
 ##   (0.001877,0.0158]     100   0
 ##   (0.0158,0.1312]        94   6
 ##   (0.1312,0.581]         65  35
-##   (0.581,0.9236]         25  76
-##   (0.9236,0.9862]         3  96
+##   (0.581,0.9236]         25  74
+##   (0.9236,0.9862]         3  98
 ##   (0.9862,0.9982]         0 100
 ##   (0.9982,0.9998]         0 100
 ##   (0.9998,1]              0 100
@@ -2486,8 +2486,8 @@ Además, aunque no aparezcan en la salida de la función que R nos muestra, la f
 ##   (0.001877,0.0158]     99.3344906  0.6655094
 ##   (0.0158,0.1312]       94.6890359  5.3109641
 ##   (0.1312,0.581]        66.7763427 33.2236573
-##   (0.581,0.9236]        21.8681586 79.1318414
-##   (0.9236,0.9862]        3.7518236 95.2481764
+##   (0.581,0.9236]        21.7153572 77.2846428
+##   (0.9236,0.9862]        3.9046250 97.0953750
 ##   (0.9862,0.9982]        0.5796929 99.4203071
 ##   (0.9982,0.9998]        0.0778045 99.9221955
 ##   (0.9998,1]             0.0084232 99.9915768

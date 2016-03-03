@@ -249,13 +249,13 @@ Lo que hemos hecho para obtener ese gráfico es el esquema básico. En ejemplos 
 \hlkwd{head}\hlstd{(datosPisa)}
 \end{alltt}
 \begin{verbatim}
-##              CA    rpc pisa
-## 1   Extremadura 15.394  461
-## 2     Andalucía 19.960  472
-## 3        Murcia 18.520  462
-## 4       Galicia 20.723  489
-## 5      Asturias 21.035  500
-## 6 Castilla León 22.289  509
+##               CA    rpc pisa
+## 1    Extremadura 15.394  461
+## 2     AndalucÃ­a 19.960  472
+## 3         Murcia 18.520  462
+## 4        Galicia 20.723  489
+## 5       Asturias 21.035  500
+## 6 Castilla LeÃ³n 22.289  509
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -468,7 +468,7 @@ y, como ves, R lo entiende sin problemas. El problema de hacer esto es que en oc
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'rpc' no encontrado}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'rpc' not found}}\end{kframe}
 \end{knitrout}
 y el mensaje de error nos confirma de que hemos vuelto a la situación previa al uso de {\tt attach}.
 
@@ -651,8 +651,8 @@ por una versión más detallada.  Ocupa varias líneas que, como siempre en esto
 \begin{alltt}
 \hlkwd{plot}\hlstd{(datosPisa}\hlopt{$}\hlstd{rpc, datosPisa}\hlopt{$}\hlstd{pisa,}
     \hlkwc{lwd}\hlstd{=}\hlnum{2}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{1.1}\hlstd{,} \hlkwc{cex.lab}\hlstd{=}\hlnum{1.1}\hlstd{,} \hlkwc{cex.axis}\hlstd{=}\hlnum{1.1}\hlstd{,} \hlkwc{bty}\hlstd{=}\hlstr{"n"}\hlstd{,}
-    \hlkwc{xlab}\hlstd{=}\hlstr{"Renta per capita, año 2012, en miles de euros"}\hlstd{,}
-    \hlkwc{ylab}\hlstd{=}\hlstr{"Puntos PISA2012 en Matemáticas"}\hlstd{)}
+    \hlkwc{xlab}\hlstd{=}\hlstr{"Renta per capita, a<U+00F1>o 2012, en miles de euros"}\hlstd{,}
+    \hlkwc{ylab}\hlstd{=}\hlstr{"Puntos PISA2012 en Matem<U+00E1>ticas"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1415,6 +1415,14 @@ Fíjate en que, en este ejemplo, aunque ese punto es influyente su residuo no es
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(car)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'car'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:BSDA':\\\#\# \\\#\#\ \ \ \  Vocab, Wool}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:gtools':\\\#\# \\\#\#\ \ \ \  logit}}\begin{alltt}
 \hlkwd{outlierTest}\hlstd{(lmXY)}
 \end{alltt}
 \begin{verbatim}
