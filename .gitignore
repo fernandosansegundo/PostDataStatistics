@@ -1,3 +1,10 @@
+## Temporal exclusions
+
+TutorialesPython/Tutorial-03-py.*
+
+
+## Exclude folder
+
 exclude/
 
 ## Core latex/pdflatex auxiliary files:

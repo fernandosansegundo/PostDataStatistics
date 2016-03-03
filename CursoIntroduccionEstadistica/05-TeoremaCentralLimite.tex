@@ -315,7 +315,7 @@ Queremos determinar la siguiente probabilidad:
           		\[10\cdot p^2\cdot q^3=10\cdot\left( \dfrac{1}{6}\right)^2\left(\dfrac{5}{6}\right)^3. \]	
           	Est\'a claro que $10$ es el n\'umero de formas distintas en las que se obtienen $2$ seises
           	al hacer $5$ lanzamientos.
-          	Esa respuesta ser\'a de utilidad si razonamos la relaci\'on entre $10$
+          	Esa respuesta ser\'a de utilidad si pensamos en la relaci\'on entre $10$
           	y los datos del problema. Hacemos $5$ lanzamientos, que llamaremos $1,2,3,4,5$,
           	y los eventos $A_i$ 	describen en qu\'e posici\'on han salido los $2$ seises.
           	Por ejemplo, $A_1$ se corresponde con $\left\{1,2\right\}$, $A_3$ con $\left\{1,3\right\}$,
@@ -361,7 +361,7 @@ Un comentario sobre esta definición, para aclarar más la relación entre las v
       \end{itemize}
     Siguiendo estas reglas, extraemos $n=50$ bolas, y considerando que el {\em éxito}, en cada paso, es obtener un seis, definimos
         \[X=\{\mbox{número total de seises obtenidos}\}.\]
-    Los ingredientes más básicos son parecidos: hay un proceso en $n$ pasos, en cada paso hay dos posibles resultados, éxito y fracaso. Pero la hipótesis de que el resultado de cada paso es independiente de los demás, aquí es rotundamente falsa. La urna que usamos, en cada paso, la determina el resultado del paso anterior. Y la probabilidad de éxito o fracaso es distinta en cada urna.\qed
+    Los ingredientes más básicos son parecidos: hay un proceso en $n$ pasos, en cada paso hay dos posibles resultados, éxito y fracaso. Pero la hipótesis de que el resultado de cada paso es independiente de los demás aquí es rotundamente falsa. La urna que usamos, en cada paso, la determina el resultado del paso anterior. Y la probabilidad de éxito o fracaso es distinta en cada urna.\qed
 \end{ejemplo}
 En los Tutoriales usaremos el ordenador para simular este proceso. Y comprobaremos que no se parece a una binomial. Pero para eso, primero tenemos que aprender más sobre la binomial, para saber distinguirla de otras situaciones.
 
@@ -494,7 +494,7 @@ pequeños de la probabilidad. De una distribución como esta diremos que es sesg
 izquierda (en  inglés, {\em left-skewed}). Cuando hablamos del {\sf sesgo} o, mejor, {\sf
 asimetría}\index{sesgo}\index{asimetría} (en inglés, {\em skew}\index{skew}) de una distribución de
 probabilidad, nos referimos precisamente a esta característica, al hecho de que la probabilidad
-esté distribuida de forma más o menos simétrica alrededor de la media de la distribución.
+esté distribuida de forma más o menos simétrica alrededor de la media de la distribución. Recuerda: sesgo a la derecha significa: {\em ``cola derecha más larga''}. 
 
 
   \begin{figure}[p]
@@ -1073,7 +1073,7 @@ Esto, como vamos a ver enseguida, nos permite escribir muchas fórmulas teórica
 \end{center}
 \end{figure}
 
-    Dejamos como ejercicio para el lector (hacerlo tras terminar de leer el ejemplo), comprobar que  que el área total bajo la gráfica de $f$ es 1.  Nosotros vamos a calcular una probabilidad, concretamente:
+    Dejamos como ejercicio para el lector (hacerlo tras terminar de leer el ejemplo), comprobar que el área total bajo la gráfica de $f$ es 1.  Nosotros vamos a calcular una probabilidad, concretamente:
     \[P(1/2<X<3/4),\]
     es decir, el área sombreada de la Figura \ref{cap05:fig:InterpretacionFuncionDensidadSoporteFinito2}.
 
@@ -1253,7 +1253,7 @@ La Tabla \ref{cap05:tablas:MuSigmaFormulasDosTiposVariables} resume la situació
     \begin{center}
     \begin{tabular}{|l|c|c|}
     \hline
-                        & $X$ Var. discreta& $X$ Var. continua                                                                            \\
+                        & $X$ Variable discreta& $X$ Variable continua                                                                            \\
     \hline
     Media $\mu$\rule{0cm}{1cm}& $\displaystyle\sum_{i=1}^k x_iP(X=x_i)$         & $\displaystyle \int_{-\infty}^{\infty} x\cdot f(x)dx$         \\
     &&\\
@@ -1327,7 +1327,7 @@ Y despejando, obtenemos $k=\dfrac{1}{b-a}$. Pongamos todas las piezas juntas:
         En ese caso, la probabilidad de cualquier subintervalo de $(a,b)$ es proporcional a su longitud. Es decir, si el intervalo $(c,d)$ está contenido por completo dentro del $(a,b)$, se cumple que:
         \begin{equation}
         \label{cap05:ecu:ProbabilidadSubintervaloUniforme}
-        P(c < X < d)=\dfrac{(d-c)}{b-a}.
+        P(c < X < d)=\dfrac{d-c}{b-a}.
         \end{equation}
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{minipage}}
@@ -1339,7 +1339,7 @@ Y despejando, obtenemos $k=\dfrac{1}{b-a}$. Pongamos todas las piezas juntas:
 
 En la página \pageref{cap04:ecu:FuncionDistribucionVariableDiscreta} hemos visto la definición de función de distribución de una  variable aleatoria discreta $X$, que era:
 \[F(x)=P(X\leq x),\mbox{ para cualquier número real }x.\]
-Dijimos en aquel momento que si la función (o tabla)de densidad $f(x)$ se corresponde con una tabla de valores de $X$ y sus probabilidades (ver la Tabla \ref{cap04:tabla:tablaDensidadProbabilidadGenericaVariableAleatoriaDiscreta}, pág.
+Dijimos en aquel momento que si la función (o tabla) de densidad $f(x)$ se corresponde con una tabla de valores de $X$ y sus probabilidades (ver la Tabla \ref{cap04:tabla:tablaDensidadProbabilidadGenericaVariableAleatoriaDiscreta}, pág.
 \pageref{cap04:tabla:tablaDensidadProbabilidadGenericaVariableAleatoriaDiscreta}), entonces la función de distribución $F(x)$ se obtiene simplemente acumulando los valores de probabilidad de esa tabla.
 
 Pero si observamos la definición anterior de $F$, veremos que no hay nada en esa definición que obligue a imponer la condición de que $X$ sea discreta. Lo único que dice la definición de $F(X)$ es que tenemos que calcular la probabilidad de que $X$ tome un valor menor que $x$. Así que la extensión a cualquier tipo de variable aleatoria es evidente:
@@ -1435,10 +1435,10 @@ define $b$, menos la cola izquierda que define $a$. En próximos capítulos y tu
 sobradas ocasiones de volver sobre estas ideas, así que aquí no nos vamos a extender mucho más.
 %Sï queremos adelantar algo relacionado con el uso de R, para que el lector se vaya familiarizando con la terminología. En R, las funciones de distribución se reconocen porque sus nombre empiezan con la letra {\tt p}. Por ejemplo, la función de distribución de una variable normal se llama, en R, {\tt pnorm}. La de una variable uniforme, se llama {\tt punif}, etc.
 
-\subsection{Cuantiles para una una variable aleatoria continua.}
+\subsection{Cuantiles para una variable aleatoria continua.}
 \label{cap05:subsec:CuantilesVariableContinua}
 
-Este apartado pretende ser la traducción, al caso continuo, de la discusión que hicimos en el caso discreto, dentro del apartado \ref{cap04:subsec:CuantilesVariableAleatoriaDiscreta} (pág. \pageref{cap04:subsec:CuantilesVariableAleatoriaDiscreta}). Para empezar, vamos a pensar en cuál sería el equivalente de la Figura \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} (pág. \pageref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). Es decir, ¿cuál es el aspecto típico de la función de distribución de una variable aleatoria continua? En general, podemos asumir que la función de densidad $f(x)$ será, al menos, {\em continua a trozos} (eso significa que su gráfica puede incluir algunos ``saltos'', pero no comportamientos más raros). Y, si es así, puesto que $F(k)$ se obtiene integrando $f(x)$, y el proceso de integración siempre hace que las funciones sean más ``regulares'', con gráficas más suaves,  el resultado será una función de distribución $F$ que es continua, y (no estrictamente) creciente, cuyo valor es esencialmente $0$ hacia la izquierda de la gráfica (hacia $-\infty$) y esencialmente $1$ hacia la derecha de la gráfica (hacia $+\infty$).
+Este apartado pretende ser la traducción, al caso continuo, de la discusión que hicimos en el caso discreto, dentro del apartado \ref{cap04:subsec:CuantilesVariableAleatoriaDiscreta} (pág. \pageref{cap04:subsec:CuantilesVariableAleatoriaDiscreta}). Para empezar, vamos a pensar en cuál sería el equivalente de la Figura \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} (pág. \pageref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). Es decir, ¿cuál es el aspecto típico de la función de distribución de una variable aleatoria continua? En general, podemos asumir que la función de densidad $f(x)$ será, al menos, {\em continua a trozos} (eso significa que su gráfica puede incluir algunos ``saltos'', pero no comportamientos más raros). Y, si es así, puesto que $F(k)$ se obtiene integrando $f(x)$, y el proceso de integración siempre hace que las funciones sean más ``regulares'', con gráficas más suaves,  el resultado será una función de distribución $F$ que es continua y creciente (quizá no estrictamente), cuyo valor es esencialmente $0$ hacia la izquierda de la gráfica (hacia $-\infty$) y esencialmente $1$ hacia la derecha de la gráfica (hacia $+\infty$).
 
 \begin{figure}[h!]
 \begin{center}
@@ -1493,15 +1493,15 @@ Este es el resultado que puede parecer más chocante, y una de las razones princ
 
 Una vez que $k$ entra en el intervalo $(2,3)$, la probabilidad vuelve a aumentar. Y tenemos:
 \[F(k)=\int_0^k f(x)dx=\int_0^1 f(x)dx + \int_1^2 f(x)dx+ \int_2^k f(x)dx.\]
-Esta identidad, que puede intimidar al principio, simplemente dice que dividimos la integral (el área bajo la gráfica de $f$), que va desde $0$ hasta $k$,  en tres tramos (tres integrales, o tres áreas), definidos por los intervalos $(0,1)$, $(1,2)$ y $(2,k)$, respectivamente. La primera de las tres integrales es simplemente el área del triángulo de la izquierda, que coincide con $F(1)=\frac{1}{6}$. La segunda integral vale $0$, porque $f$ es $0$ en el intervalo $(1,2)$. Así que:
+Esta identidad, que puede intimidar al principio, simplemente dice que dividimos la integral (el área bajo la gráfica de $f$), que va desde $0$ hasta $k$,  en tres tramos (tres integrales, o tres áreas), definidos por los intervalos $(0,1)$, $(1,2)$ y $(2,k)$, respectivamente. La primera de las tres integrales es simplemente el área del triángulo de la izquierda, que coincide con $F(1)=\frac{1}{3}$. La segunda integral vale $0$, porque $f$ es $0$ en el intervalo $(1,2)$. Así que:
 \[F(k)=\int_0^k f(x)dx=\frac{1}{3} + 0 + \int_2^k f(x)dx.\]
 Y para calcular esta última integral basta sustituir la definición de $f$ en $(2,3)$:
 \[F(k)=\int_0^k f(x)dx=\frac{1}{3} + 0 + \int_2^k \dfrac{4}{3}\cdot(3-x)dx=
 \frac{1}{3} +0-\frac{2}{3}\cdot(k^2-6 k+8).\]
 Hemos mantenido el $1/3$ y el $0$ para que al lector le resulte más fácil identificar de donde proviene cada término de la suma. Simplificando, para $2\leq k\leq 3$ se tiene:
 \[F(k)=-\dfrac{2 k^2}{3}+4 k-5.\]
-En particular, puedes comprobar que $F(3)=1$. Esto refleja el hecho de que, cuando $k$ llega a $3$,
-y hemos acumulado toda la probabilidad posible, y por eso $F$ alcanza el valor $1$. A partir de ese
+En particular, puedes comprobar que $F(3)=1$. Esto refleja el hecho de que, cuando $k$ llega a $3$
+hemos acumulado toda la probabilidad posible y, por eso, $F$ alcanza el valor $1$. A partir de ese
 momento, sea cual sea el valor $k>3$ que se considere, siempre será $F(k)=1$, porque, insistimos,
 $F$ es la probabilidad acumulada, y ya hemos acumulado toda la probabilidad disponible. Si ponemos
 juntas todas las piezas, hemos obtenido:
@@ -1608,7 +1608,7 @@ variable}, que concretaremos en cada caso concreto. El resultado de la suma, por
 de $n$, así que tiene sentido decir que hemos definido una función
 \[S(n)=\sum_{k=1}^n k^2\]
 Por ejemplo
-\[S(3)=\sum_{k=1}^3 k^2 = 1^2 + 2^2+ 3^2 = 13.\]
+\[S(3)=\sum_{k=1}^3 k^2 = 1^2 + 2^2+ 3^2 = 14.\]
 En este ejemplo en particular hay una fórmula alternativa, sin sumatorios, para calcular los
 valores de esa función:
 \[S(n)=\sum_{k=1}^n k^2 = \dfrac{1}{6}n(n+1)(2n+1)\]
@@ -1827,7 +1827,7 @@ y desviación típica
 \label{sec:teoremaCentralLimitePrimeraVersion}
 
 Para cerrar el intenso (al menos, a nuestro juicio) trabajo de este capítulo, queremos volver a la idea de De Moivre, para darle un nombre, aunque previamente vamos a hacer unos retoques para mejorar esa idea. Inicialmente dijimos que, cuando se considera una variable binomial de $X$ de tipo $B(n,p)$ con valores de $n\emph{}$ muy grandes, sus valores se pueden calcular, aproximadamente, utilizando una variable $Y$ con distribución normal $N(\mu,\sigma)$, donde tomábamos:
-    \[\mu=n\cdot p,\sigma=\sqrt{n\cdot p\cdot q}.\]
+    \[\mu=n\cdot p,\qquad \sigma=\sqrt{n\cdot p\cdot q}.\]
 Pero tenemos que tener cuidado, porque estamos cambiando una variables discreta, la binomial, que sólo puede tomar los valores $0,1,2,\ldots,n$, por una continua, la normal, que no tiene esa restricción. En particular, volvamos a la Figura \ref{cap05:fig:HistogramaBinomial05} de la pág. \pageref{cap05:fig:HistogramaBinomial05}. Allí estábamos tratando de calcular
 \[P(5\leq X\leq 9)\]
 para la binomial $B\left(21,\dfrac{1}{3}\right)$. Pero si te fijas bien en esa figura, verás que, en el diagrama tipo histograma que estamos usando, la base de cada columna es un intervalo de anchura uno, centrado en un entero. Por ejemplo, el rectángulo situado sobre el valor 5 cubre todos los valores del intervalo $(4.4,5,5)$. En la parte (a) de la Figura \ref{cap05:fig:correccioncontinuidad} hemos ampliado la base de esos rectángulos para que quede más claro lo que decimos:
@@ -1884,7 +1884,7 @@ Con esto, estamos listos para enunciar el resultado de De Moivre. Para hacerlo m
         \label{cap05:teo:TCL}
        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
        Vamos a usar
-       \[\mu=n\cdot p,\sigma=\sqrt{n\cdot p\cdot q}\]
+       \[\mu=n\cdot p,\qquad \sigma=\sqrt{n\cdot p\cdot q}\]
        Entonces, siempre que se cumpla $n\cdot p>5, n\cdot q>5$ (en caso contrario la aproximación no es muy buena),
        \begin{enumerate}
        \item para calcular $P(k_1\leq X\leq k_2)$, la aproximación por la normal que usamos es $P(k_1-0.5\leq Y\leq k_2+0.5)$.
@@ -1934,7 +1934,7 @@ que, como puede verse, es una aproximación mucho mejor al valor real, incluso p
 \end{center}
 \end{figure}
 
-Esta versión del Teorema Central del Límite es la primera ocasión (pero, desde luego, no será la última) en la que nos encontramos con que, para valores de $n$ grande, una distribución (en este caso la binomial $B(n,p)$) se comporta cada vez más como si fuese una normal. La distribución binomial, recordémoslo, resulta del efecto combinado de $n$ ensayos independientes. Este comportamiento implica que cualquier fenómeno natural que resulte de la acción superpuesta (es decir, de la suma) de un número enorme de procesos independientes, tendrá una distribución aproximadamente normal. Y cuando se combina esta observación con el descubrimiento de la estructura atómica de la materia, o de la estructura celular de los seres vivos, se empieza a percibir el {\sf alcance universal de la distribución normal}, a través del Teorema Central del Límite, como una de las leyes fundamentales de la naturaleza. No encontramos mejor manera de resumirlo que la que Gonick y Smith (\cite{EstadisticaComic}, pág. 83) hacen exclamar al personaje de De Moivre: ``{!`}Mon Dieu! {!`}Esto lo incluye todo!''
+Esta versión del Teorema Central del Límite es la primera ocasión (pero, desde luego, no será la última) en la que nos encontramos con que, para valores de $n$ grandes, una distribución (en este caso la binomial $B(n,p)$) se comporta cada vez más como si fuese una normal. La distribución binomial, recordémoslo, resulta del efecto combinado de $n$ ensayos independientes. Este comportamiento implica que cualquier fenómeno natural que resulte de la acción superpuesta (es decir, de la suma) de un número enorme de procesos independientes, tendrá una distribución aproximadamente normal. Y cuando se combina esta observación con el descubrimiento de la estructura atómica de la materia, o de la estructura celular de los seres vivos, se empieza a percibir el {\sf alcance universal de la distribución normal}, a través del Teorema Central del Límite, como una de las leyes fundamentales de la naturaleza. No encontramos mejor manera de resumirlo que la que Gonick y Smith (\cite{EstadisticaComic}, pág. 83) hacen exclamar al personaje de De Moivre: ``{!`}Mon Dieu! {!`}Esto lo incluye todo!''
 
 \section{Independencia y vectores aleatorios continuos.}
 \label{cap05:sec:VectoresAleatoriosContinuos}
@@ -1944,7 +1944,7 @@ Para entender el contenido de esta sección es necesario que hayas leído la Sec
 
 \subsubsection{Vectores aleatorios continuos}
 
-En la Sección \ref{cap05:sec:MasDetallesSobreDistribucionesContinuas} hemos visto que las variables aleatorias continuas se definen usando una función de densidad. Que es, básicamente, una función positiva con integral igual a $1$. De la misma forma, un vector aleatorio continuo $(X_1,X_2,\ldots, X_n)$ se define a partir de una función de densidad conjunta. La idea es la misma, pero la dificultad técnica añadida es que ahora, al aumentar la dimensión, necesitamos integrales múltiples. En ese sentido, queremos hacer llegar al lector dos mensajes complementarios. Por un lado, no hay que dejarse intimidar por las fórmulas. La intuición que se adquiere en el caso de una variable aleatoria continua nos sirve de guía al trabajar con vectores aleatorios. Por otro lado, y sin perjuicio de lo anterior, para entender bien este apartado, es muy posible que la intuición no sea suficiente, y se hace necesario al menos un conocimiento básico del trabajo con funciones de varias variables y sus integrales. En el Apéndice \ref{apendice:MasAlla} (pág. \pageref{apendice:MasAlla}) daremos algunas indicaciones adicionales. Y, como hemos hecho en casos anteriores, nos vamos a apoyar en el ordenador para aliviar una buena parte del trabajo técnico.
+En la Sección \ref{cap05:sec:MasDetallesSobreDistribucionesContinuas} hemos visto que las variables aleatorias continuas se definen usando una función de densidad que es, básicamente, una función positiva con integral igual a $1$. De la misma forma, un vector aleatorio continuo $(X_1,X_2,\ldots, X_n)$ se define a partir de una función de densidad conjunta. La idea es la misma, pero la dificultad técnica añadida es que ahora, al aumentar la dimensión, necesitamos integrales múltiples. En ese sentido, queremos hacer llegar al lector dos mensajes complementarios. Por un lado, no hay que dejarse intimidar por las fórmulas. La intuición que se adquiere en el caso de una variable aleatoria continua nos sirve de guía al trabajar con vectores aleatorios. Por otro lado, y sin perjuicio de lo anterior, para entender bien este apartado, es muy posible que la intuición no sea suficiente, y se hace necesario al menos un conocimiento básico del trabajo con funciones de varias variables y sus integrales. En el Apéndice \ref{apendice:MasAlla} (pág. \pageref{apendice:MasAlla}) daremos algunas indicaciones adicionales. Y, como hemos hecho en casos anteriores, nos vamos a apoyar en el ordenador para aliviar una buena parte del trabajo técnico.
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
@@ -2062,7 +2062,7 @@ La Figura \ref{cap01:fig:RegionIntegracionEjemploDensidadVectorAleatorio2} ilust
   \end{figure}
 \qed
 \end{ejemplo}
-Como ilustra este ejemplo, en la integral que usamos para calcular $P(A)$ intervienen dos ingredientes: la función de densidad $f$, y el propio conjunto $A$, que determina los límites de la integral. Cuando el conjunto $A$ es más complicado, puede resultar difícil  establecer esos límites de integración. No queremos ni podemos convertir esta sección en un curso acelerado de cálculo de integrales múltiples, pero tampoco podemos dejar de decir que las cosas suelen ser bastante más complicadas de lo que pudiera hacernos creer este ejemplo. Y, además, esa es la parte del trabajo en la que los programas de ordenador actuales todavía nos prestan una ayuda muy limitada.
+Como ilustra este ejemplo, en la integral que usamos para calcular $P(A)$ intervienen dos ingredientes: la función de densidad $f$, y el propio conjunto $A$, que determina los límites de la integral. Cuando el conjunto $A$ es más complicado, puede resultar difícil  establecer esos límites de integración. No queremos ni podemos convertir esta sección en un curso acelerado de cálculo de integrales múltiples, pero tampoco podemos dejar de decir que las cosas suelen ser bastante más complicadas de lo que pudiera hacernos creer este ejemplo. Y, además, el cálculo de integrales múltiples es la parte del trabajo en la que los programas de ordenador actuales todavía nos prestan una ayuda muy limitada.
 
 %
 %\pendiente{Teoría a partir de aquí}
