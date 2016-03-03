@@ -1,11 +1,16 @@
 ## Temporal exclusions
 
 TutorialesPython/Tutorial-03-py.*
-
+TutorialesPython/code/Tutorial03-code.py
 
 ## Exclude folder
 
 exclude/
+
+## Tex files that are output of Rnw files:
+
+TutorialesR/Tutorial*.tex
+TutorialesPython/Tutorial*.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

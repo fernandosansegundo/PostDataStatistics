@@ -2408,17 +2408,17 @@ In [1]: import random as rnd
 
 In [2]: edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22, 20, 19]
 
-In [3]: edadesAzar_Remp = rnd.sample(edades, 7)
+In [3]: edadesAzar_NoRemp = rnd.sample(edades, 7)
 
-In [4]: print(edadesAzar_Remp)
+In [4]: print(edadesAzar_NoRemp)
 [18, 21, 17, 20, 18, 20, 17]
 @
 }
 En cambio, si lo que queremos es extraer elementos con reemplazamiento entonces podemos usar la función {\tt choice}. Esta función permite extraer un único elemento al azar de una lista. Para extraer más de uno la combinamos con la comprensión de listas, de la misma forma que hicimos para las tiradas del dado. Por ejemplo, para extraer 100 edades al azar de la lista dada hacemos esto (necesariamente con reemplazamiento, claro):
 <<eval=FALSE>>=
-In [5]: edadesAzar_NoRemp = [rnd.choice(edades) for _ in range(0, 100)]
+In [5]: edadesAzar_Remp = [rnd.choice(edades) for _ in range(0, 100)]
 
-In [6]: print(edadesAzar_NoRemp)
+In [6]: print(edadesAzar_Remp)
 [17, 20, 19, 17, 20, 18, 19, 19, 19, 17, 18, 18, 19, 18, 20, 19, 17, 22, 19, 17,
 20, 18, 22, 18, 21, 20, 18, 22, 20, 22, 22, 19, 18, 20, 20, 19, 21, 21, 22, 22,
 18, 19, 20, 20, 21, 18, 22, 17, 22, 19, 20, 17, 18, 21, 18, 17, 21, 21, 22, 22,

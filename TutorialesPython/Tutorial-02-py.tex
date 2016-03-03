@@ -3440,9 +3440,9 @@ In [1]: import random as rnd
 
 In [2]: edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22, 20, 19]
 
-In [3]: edadesAzar_Remp = \hlkwd{rnd.sample}(edades, 7)
+In [3]: edadesAzar_NoRemp = \hlkwd{rnd.sample}(edades, 7)
 
-In [4]: \hlkwd{print}(edadesAzar_Remp)
+In [4]: \hlkwd{print}(edadesAzar_NoRemp)
 [18, 21, 17, 20, 18, 20, 17]
 \end{alltt}
 \end{kframe}
@@ -3452,9 +3452,9 @@ En cambio, si lo que queremos es extraer elementos con reemplazamiento entonces 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-In [5]: edadesAzar_NoRemp = [\hlkwd{rnd.choice}(edades) for _ in \hlkwd{range}(0, 100)]
+In [5]: edadesAzar_Remp = [\hlkwd{rnd.choice}(edades) for _ in \hlkwd{range}(0, 100)]
 
-In [6]: \hlkwd{print}(edadesAzar_NoRemp)
+In [6]: \hlkwd{print}(edadesAzar_Remp)
 [17, 20, 19, 17, 20, 18, 19, 19, 19, 17, 18, 18, 19, 18, 20, 19, 17, 22, 19, 17,
 20, 18, 22, 18, 21, 20, 18, 22, 20, 22, 22, 19, 18, 20, 20, 19, 21, 21, 22, 22,
 18, 19, 20, 20, 21, 18, 22, 17, 22, 19, 20, 17, 18, 21, 18, 17, 21, 21, 22, 22,

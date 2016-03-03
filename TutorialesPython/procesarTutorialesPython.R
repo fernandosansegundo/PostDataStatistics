@@ -13,3 +13,6 @@
       fichero = "Tutorial-02-py.Rnw"
       knit2pdf(input=fichero, encoding="UTF-8")
       
+      fichero = "Tutorial-03-py.Rnw"
+      knit2pdf(input=fichero, encoding="UTF-8")
+      
