@@ -2,10 +2,18 @@
 
 TutorialesPython/Tutorial-03-py.*
 TutorialesPython/code/Tutorial03-code.py
+TutorialesPython/code/Tut-03-*.py
 
 ## Exclude folder
 
 exclude/
+
+## Busy files
+*.*(busy)
+
+## R history files
+
+.Rhistory
 
 ## Tex files that are output of Rnw files:
 
@@ -190,3 +198,25 @@ TSWLatexianTemp*
 # Comment package
 *.cut
 
+#########################################################################
+# R excluded files from https://github.com/github/gitignore/blob/master/R.gitignore
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# Example code in package build process
+*-Ex.R
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
