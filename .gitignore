@@ -1,8 +1,8 @@
 ## Temporal exclusions
 
-#TutorialesPython/Tutorial-03-py.*
-#TutorialesPython/code/Tutorial03-code.py
-#TutorialesPython/code/Tut-03-*.py
+TutorialesPython/Tutorial-03-py.*
+TutorialesPython/code/Tutorial03-code.py
+TutorialesPython/code/Tut-03-*.py
 
 ## Exclude folder
 

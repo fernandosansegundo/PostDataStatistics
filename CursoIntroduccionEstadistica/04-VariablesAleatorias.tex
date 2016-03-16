@@ -944,7 +944,7 @@ Y lo mismo sucede si $y_0$ no es uno de los valores $y_1,\ldots,y_m$. Entonces, 
 \noindent Por si estás cansado de ejemplos con dados (paciencia, aún nos quedan unos cuantos en el curso...), hemos incluido otro ejemplo, que puedes encontrar más interesante.
 \begin{ejemplo}
 \label{cap04:ejem:vectorAleatorioDias2014}
-Imagínate que el departamento de control de calidad de una gran empresa quiere realizar un estudio sobre su servicio de atención al cliente, para saber si los recursos asignados a ese servicio son suficientes. Si la empresa es grande, puede que el servicio haya atendido decenas de miles de peticiones a lo largo de un año. Y puede resultar poco práctico tratar de analizarlas todas. Para hacerse una idea rápida, se podrían seleccionar $30$ días al azar del año, y analizar el funcionamiento del servicio en esos días. Ya volveremos sobre estas ideas más adelante, pero el hecho de seleccionar los días al azar es esencial, para garantizar que el conjunto de días seleccionados  es {\em representativo} y reducir la posible influencia de factores desconocidos (¿qué sucedería si todos los días seleccionados fueran viernes, o si, sin saberlo los autores del estudio, se seleccionan varios días en los que hubo grandes averías del servicio telefónico, por ejemplo?).
+Imagínate que el departamento de control de calidad de una gran empresa quiere realizar un estudio sobre su servicio de atención al cliente, para saber si los recursos asignados a ese servicio son suficientes. Si la empresa es grande, puede que el servicio haya atendido decenas de miles de peticiones a lo largo de un año. Y puede resultar poco práctico tratar de analizarlas todas. Para hacerse una idea rápida, se podrían seleccionar  al azar $30$ días del año, y analizar el funcionamiento del servicio en esos días. Ya volveremos sobre estas ideas más adelante, pero el hecho de seleccionar los días al azar es esencial, para garantizar que el conjunto de días seleccionados  es {\em representativo} y reducir la posible influencia de factores desconocidos. Por ejemplo si todos los días seleccionados fueran viernes o si se seleccionan varios días en los que hubo grandes averías del servicio telefónico, la muestra no sería representativa. La selección al azar hace muy improbable elegir una muestra así.   
 
 Para llevar adelante este plan, por tanto, tenemos que seleccionar un día del año al azar. Y después, cuando analicemos los resultados, querremos saber si ese día es laborable, si es viernes o jueves, etc.  Así que vamos a pensar en un experimento en el que elegimos al azar un día del año 2014. Este es el mecanismo básico. Luego bastaría con repetirlo para obtener los 30 días necesarios. Volveremos sobre esto en el Capítulo \ref{cap:IntervalosConfianza}, cuando hablemos de muestreo.
 
@@ -1124,6 +1124,8 @@ En el caso de un vector aleatorio $n$ dimensional, como $(X_1,X_2,\ldots,X_n)$, 
 \label{cap04:ecu:indepedenciaVariablesAleatoriasDiscretasCasoNdimensional}
 f(x_1,x_2,\ldots,x_n) = f_{X_1}(x_1)\cdot f_{X_2}(x_2)\cdot\,\cdots\,\cdot f_{X_n}(x_n)
 \end{equation}
+En este caso, a diferencia de lo que sucedía con la independencia de sucesos, para probar la independencia basta con esto y no es necesario considerar productos dos a dos, tres a tres, etc. Si quieres más detalles tendrás que consultar un libro de Estadística Matemática, como por ejemplo \cite{horra2003estadistica}\pedniente{Cita Shao}. 
+
 
 ¿Cómo se puede comprobar la independencia, a partir de la tabla de densidad conjunta? En dos pasos:
 \begin{enumerate}
