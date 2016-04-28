@@ -561,13 +561,13 @@ Si lo que queremos es ver su función de distribución, podríamos pensar en acu
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-16-1} 
 
 \end{knitrout}
-Pero este gráfico, como ves,  tiene muchas limitaciones y no es especialmente informativo. Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En R hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a limitarnos a incluir, sin demasiadas explicaciones, un fragmento de código que produce ese tipo de gráficos a partir de los vectores de valores y probabilidades. Para mostrar su funcionamiento usamos la misma variable $X$ que venimos utilizando para los anteriores gráficos. Si deseas usar el código con otra variable sólo tienes que cambiar las dos primeras líneas, en las que se definen los valores y probabilidades. El resto no necesita modificación. A medida que aprendamos más sobre R, este código quedará más claro.
+Pero este gráfico, como ves,  tiene muchas limitaciones y no es especialmente informativo. Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En R hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a limitarnos a incluir, sin demasiadas explicaciones, un fragmento de código que produce ese tipo de gráficos a partir de los vectores de valores y probabilidades. Para mostrar su funcionamiento usamos la misma variable $X$ que venimos utilizando para los anteriores gráficos. Si deseas usar el código con otra variable sólo tienes que descomentar y cambiar las dos primeras líneas, en las que se definen los valores y probabilidades. El resto no necesita modificación. A medida que aprendamos más sobre R, este código quedará más claro.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{valoresX} \hlkwb{=} \hlnum{2}\hlopt{:}\hlnum{12}
-\hlstd{probabilidadesX} \hlkwb{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{6}\hlstd{,}\hlnum{5}\hlopt{:}\hlnum{1}\hlstd{)} \hlopt{/} \hlnum{36}
+\hlcom{# valoresX = 2:12}
+\hlcom{# probabilidadesX = c(1:6,5:1) / 36}
 
 \hlcom{##  NO MODIFIQUES EL RESTO DEL CODIGO ##}
 
@@ -842,7 +842,7 @@ En resumen, ya hemos leído el fichero {\tt csv} llamado {\tt Tut01-PracticaConC
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in mean(var3): object 'var3' not found}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in mean(var3): objeto 'var3' no encontrado}}\end{kframe}
 \end{knitrout}
 La respuesta de R, en color rojo, indica que se ha enfadado con nosotros. ¿Por qué? Pues porque las variables de un {\tt data.frame} no viven vidas propias. El nombre correcto de esta variable no es {\tt var3} sino   \verb#datosTutorial01$var3#.
 
@@ -2050,7 +2050,7 @@ Los valores de {\tt cuenta} y {\tt k} se alternan en la salida. Ya aprenderemos 
 \begin{verbatim}
 ## bola
 ##     b     n 
-## 0.250 0.750
+## 0.251 0.750
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

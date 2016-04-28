@@ -347,11 +347,11 @@ Si lo que queremos es ver su función de distribución, podríamos pensar en acu
 <<fig.width=4, fig.height=4>>=
 barplot(cumsum(probabilidades), names.arg=valores, col="lightseagreen")
 @
-Pero este gráfico, como ves,  tiene muchas limitaciones y no es especialmente informativo. Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En R hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a limitarnos a incluir, sin demasiadas explicaciones, un fragmento de código que produce ese tipo de gráficos a partir de los vectores de valores y probabilidades. Para mostrar su funcionamiento usamos la misma variable $X$ que venimos utilizando para los anteriores gráficos. Si deseas usar el código con otra variable sólo tienes que cambiar las dos primeras líneas, en las que se definen los valores y probabilidades. El resto no necesita modificación. A medida que aprendamos más sobre R, este código quedará más claro.
+Pero este gráfico, como ves,  tiene muchas limitaciones y no es especialmente informativo. Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En R hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a limitarnos a incluir, sin demasiadas explicaciones, un fragmento de código que produce ese tipo de gráficos a partir de los vectores de valores y probabilidades. Para mostrar su funcionamiento usamos la misma variable $X$ que venimos utilizando para los anteriores gráficos. Si deseas usar el código con otra variable sólo tienes que descomentar y cambiar las dos primeras líneas, en las que se definen los valores y probabilidades. El resto no necesita modificación. A medida que aprendamos más sobre R, este código quedará más claro.
 
 <<fig.width=6, fig.height=4>>=
-valoresX = 2:12
-probabilidadesX = c(1:6,5:1) / 36
+# valoresX = 2:12
+# probabilidadesX = c(1:6,5:1) / 36
 
 ##  NO MODIFIQUES EL RESTO DEL CODIGO ##
 
@@ -368,7 +368,7 @@ graficoEscalera = function(valores, probabilidades ){
   axis(1, at=xA,   labels=xA)
   segments(valores, yA[-length(yA)] , valores, yA[-1], lty=2, col="blue", lwd=4)
 }
-graficoEscalera(valores, probabilidades)
+graficoEscalera(valoresX, probabilidadesX)
 @
 El resultado, como ves, es bastante más satisfactorio.
 

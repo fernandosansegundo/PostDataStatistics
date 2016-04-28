@@ -1,0 +1,830 @@
+% !Mode:: "Tex:UTF-8"
+
+<<setup, echo=FALSE, cache=FALSE, purl=FALSE, purl=FALSE>>=
+## numbers >= 10^5 will be denoted in scientific notation,
+## and rounded to 2 digits
+options(scipen = 2, digits = 3, cache=FALSE)
+@
+
+\documentclass[10pt,a4paper]{article}
+\usepackage{etoolbox}
+\newtoggle{color}
+%\togglefalse{color}
+\toggletrue{color}
+
+\usepackage{makeidx}
+\newcommand{\idioma}{spanish}
+\newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
+\input{../tex/definiciones}
+%\input{sahp}
+\includecomment{com}
+%\excludecomment{com}
+%\usepackage[dvips]{hyperref}
+%\usepackage{pstricks}
+
+
+\newtoggle{distribuir}
+%\togglefalse{distribuir}
+\toggletrue{distribuir}
+\iftoggle{distribuir}{%
+  % color version
+    \includecomment{distribuir}
+    \excludecomment{noDistribuir}
+}{%
+  % b/w version
+    \includecomment{noDistribuir}
+    \excludecomment{distribuir}
+}
+
+
+\usepackage{attachfile}
+
+\textwidth=150mm \textheight=260mm
+\hoffset=-1cm
+\voffset=-25mm
+\parskip=2mm
+%\textwidth=160mm \textheight=240mm \hoffset=-20mm \voffset=-20mm \parskip=0mm \marginparsep=-25mm
+
+\setlength{\parindent}{0pt}
+\newcounter {cont01}
+
+\externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
+\externaldocument[tut01-]{../TutorialesR/Tutorial-01}
+\externaldocument[tut02-]{Tutorial-02-py}
+\externaldocument[tut03-]{Tutorial-03-py}
+
+<<echo=FALSE, eval=FALSE, purl=FALSE>>=
+python01=TRUE
+purl("Tutorial-04-py.Rnw", output="./code/Tut04-VariableAleatoriaDiscreta.py", documentation = 0)
+@
+
+<<echo=FALSE, eval=FALSE, results='hide', message=FALSE, error=TRUE, warning=FALSE, purl=FALSE>>=
+# jupyterCol = "#ffffe6"
+# codeColor = "#e6f7ff"
+# library(knitr)
+# setwd("~/Dropbox/PostDataFernando/TutorialesPython")
+# source("~/Dropbox/Code/R/raptor/raptor.R")
+raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
+@
+
+<<eval=FALSE, echo=FALSE, purl=python01, comment=NULL>>=
+## ---- Tut04-VariableAleatoriaDiscreta
+########################################################
+# www.postdata-statistics.com
+# POSTDATA. Introducción a la Estadística
+# Tutorial 04.  
+# Plantilla de comandos Python para el estudio de 
+# una variable aleatoria discreta.
+########################################################
+
+## Importacion de Modulos
+
+import numpy as np 
+import matplotlib.pyplot as plt
+import math as m 
+
+@
+
+
+
+\begin{document}
+\includecomment{pdf}
+%\excludecomment{pdf}
+%\includecomment{dvi}
+\excludecomment{dvi}
+%\includecomment{com}
+\excludecomment{com}
+
+
+\paragraph{\link{http://www.postdata-statistics.com/}{PostData}\hspace{6.3cm}Curso de Introducción a la Estadística\\[2mm]} \noindent\hrule
+
+\setcounter{section}{0}
+\section*{\hspace{-0.1cm}\fbox{\colorbox{Gris025}{
+\begin{minipage}{14.5cm}
+Tutorial 04 (versión Python): Variables aleatorias.
+\end{minipage}
+}}}
+{
+Atención:
+\begin{itemize}
+  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
+  \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si existe una versión más reciente.
+\end{itemize}
+}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section{Variables aleatorias discretas con Python.}
+\label{tut04:sec:VariablesAleatoriasDiscretas}
+
+\subsection{Tabla (función) de densidad de una variable aleatoria discreta.}
+\label{tut04:subsec:TablaDensidadVariableAleatoriaDiscreta}
+
+Una variable aleatoria discreta $X$ que toma los valores
+\[x_1, x_2, \ldots, x_k\]
+se define mediante su tabla de densidad de probabilidad:
+    \begin{center}
+    \begin{tabular}[t]{|c|c|c|c|c|c|}
+    \hline
+    \rule{0cm}{0.5cm}{\em Valor:}&$x_1$&$x_2$&$x_3$&$\cdots$&$x_k$\\
+    \hline
+    \rule{0cm}{0.7cm}{\em Probabilidad:}&$p_1$&$p_2$&$p_3$&$\cdots$&$p_k$\\
+    \hline
+    \end{tabular}
+    \end{center}
+Como ya hemos dicho, las probabilidades se pueden entender, en muchos casos, como una versión teórica de las frecuencias relativas. Así que esta tabla se parece mucho a una tabla de frecuencias relativas, y parte de las operaciones que vamos a hacer nos recordarán mucho a las que hicimos en la primera parte del curso usando tablas de frecuencias.
+
+La primera variable aleatoria que vamos a estudiar va a ser, como en el Ejemplo \ref{curso-cap04:ejem:VariableAleatoriaSumaDosDados} del libro (pág. \pageref{curso-cap04:ejem:VariableAleatoriaSumaDosDados}), la variable $X$ cuyo valor es el resultado de sumar los puntos obtenidos al lanzar dos dados. Para estudiarla, vamos a recordar algunas de las técnicas de simulación que aprendimos en el Tutorial03. Usaremos matrices de R para reproducir los resultados de ese Ejemplo \ref{curso-cap04:ejem:VariableAleatoriaSumaDosDados}. Concretamente, empezamos usando una matriz para representar, por columnas, los resultados posibles al tirar el primer dado:
+<<raptor="python", purl=FALSE, purl=FALSE>>=
+dado1 = range(1,7)
+print(list(dado1))
+@
+Ahora hacemos lo mismo para el segundo dado, pero en este caso por filas:
+<<raptor="python", purl=FALSE, purl=FALSE>>=
+dado2 = range(1,7)
+@
+La lista con las sumas posibles se obtiene entonces así:
+<<raptor="python", purl=FALSE, purl=FALSE>>=
+suma = [d1 + d2 for d1 in dado1 for d2 in dado2]
+print(suma)
+@
+Para hacer el recuento de las veces que aparece cada uno de los valores posibles de la suma podemos usar los métodos que aprendimos en el Tutorial02 y hacer una tabla de frecuencias:
+<<raptor="python", purl=FALSE, purl=FALSE>>=
+import collections as cl
+sumaCounter = cl.Counter(suma)
+recuentoValoresSuma = sumaCounter.most_common()
+recuentoValoresSuma.sort()
+print(recuentoValoresSuma)
+@
+Para convertir estos recuentos en probabilidades tenemos que dividirlos por el número de resultados posibles, que son $36$. Recuerda que el resultado de la división en Python nos va a proporcionar respuestas numéricas (no {\em simbólicas}) y por lo tanto, aproximadas:
+<<raptor="python", purl=FALSE, purl=FALSE>>=
+n = len(suma)
+print("n=", n)
+probabilidadesSuma = [[item[0], item[1]/n] for item in recuentoValoresSuma]
+print("probabilidadesSuma=", probabilidadesSuma)
+@
+Estos resultados son (las versiones numéricas de) los mismos que aparecen en la Tabla \ref{curso-cap04:tabla:probabilidadSumaDados} del libro (pág. \pageref{curso-cap04:tabla:probabilidadSumaDados}). Por ejemplo, la probabilidad correspondiente al valor $5$ es $\dfrac{4}{36}$ que es, aproximadamente:
+<<raptor="python", purl=FALSE>>=
+print(4/36)
+@
+Y es muy importante no perder de vista que, en tanto que probabilidades, se trata de valores teóricos. Lo que vamos a hacer a continuación es una simulación del experimento que consiste en lanzar dos dados y sumarlos, para comparar las frecuencias (empíricas o experimentales) que obtenemos con esas probabilidades (teóricas) que predice la variable $X$.
+
+\begin{ejercicio}
+\label{tut04:ejercicio01}
+\quad\\
+Este ejercicio debería resultar sencillo, después del trabajo de los tutoriales previos. Lo que queremos es simular $n=1000000$ tiradas de dos dados, y calcular la tabla de frecuencias relativas de la variable \[X=\{\mbox{suma de los dos dados}\}.\]
+Solución en la página \pageref{tut04:ejercicio01:sol}.
+\qed
+\end{ejercicio}
+
+%\subsection{Función (tabla) de densidad de una variable aleatoria discreta. }
+%\label{tut04:subsec:TablaDensidad}
+%
+%Puesto que estamos trabajando con
+
+\subsection{Media, varianza y desviación típica.}
+\label{tut04:subsec:MediaVarianzaDesviacionTipica}
+
+En este apartado vamos a ocuparnos de los cálculos necesarios para trabajar con una
+variable aleatoria discreta $X$, dada mediante una tabla de valores y probabilidades (la tabla de densidad de probabilidad) como esta:
+\[
+\begin{array}{c|c|c|c|c|}
+    \mbox{Valor}&x_1&x_2&\cdots&x_k \\
+    \hline
+    \mbox{Probabilidad}&p_1&p_2&\cdots&p_k
+\end{array}
+\]
+La teoría correspondiente se encuentra en  el Capitulo \ref{curso-cap:VariablesAleatorias} del libro. A partir de la información de esta tabla, queremos calcular la media $\mu_X$ de $X$ y la varianza $\sigma^2_X$ de $X$. Vamos a aprender a utilizar Python para calcularlos.
+
+Para fijar ideas vamos a pensar en un ejemplo concreto. Supongamos que la densidad de probabilidad de la variable $X$ es esta:
+\[
+\begin{array}{c|c|c|c|c|c|}
+    \mbox{Valor}&2&4&7&8&11\\
+    \hline
+    \mbox{Probabilidad}&1/5&1/10&1/10&2/5&1/5
+\end{array}
+\]
+Vamos a almacenar los valores y las probabilidades, en una lista de pares (en Python, tuplas). El primer elemento de cada par es el valor y el segundo la probabilidad de ese valor:
+<<echo=FALSE, eval=FALSE, comment=NULL, purl=python01>>=
+
+# Definicion de X a partir de valores y probabilidades.
+
+valoresX = [2, 4, 7, 8, 11]
+probabilidadesX = [1/5, 1/10, 1/10, 2/5, 1/5]
+X = [[valoresX[_], probabilidadesX[_]] for _ in range(0, len(valoresX))]
+
+# Alternativamente, definicion de la variable X como lista de pares [valor, probabilidad].
+# Descomentar la siguiente linea para usarla.
+
+# X = [[2, 1/5], [4, 1/10], [7, 1/10], [8, 2/5], [11, 1/5]]
+
+# En cualquier caso:
+
+valoresX = [x[0] for x in X]
+probabilidadesX = [x[1] for x in X]
+
+@
+<<raptor="python", purl=FALSE>>=
+# Definicion de la variable X.
+X = [[2, 1/5], [4, 1/10], [7, 1/10], [8, 2/5], [11, 1/5]]
+@
+Y ahora, para calcular la media, haremos:
+<<raptor= "python", purl=python01, echo=-1>>=
+# Calculo de la media.
+
+media = sum([x[0] * x[1] for x in X])
+print("Media de X = {0:0.4f}".format(media))
+
+@
+mientras que la varianza y desviación típica se obtienen importando el módulo {\tt math}:
+<<raptor= "python", purl=FALSE>>=
+import math as m
+@
+haciendo
+<<raptor= "python", purl=python01, echo=-1>>=
+# Calculo de la varianza y desviacion tipica.
+
+varianza = sum([(x[0] - media)**2 * x[1] for x in X])
+print("varianza = {0:0.4f}".format(varianza))
+@
+y después:
+<<raptor= "python", purl=python01>>=
+
+sigma = m.sqrt(varianza)
+print("desviacion tipica = {0:0.4f}".format(sigma))
+
+@
+
+
+\begin{ejercicio}
+\label{tut04:ejercicio02}
+\quad\\
+\begin{enumerate}
+  \item Comprueba, usando Python, los resultados de los Ejemplos \ref{curso-ejem:Cap04:VariableAleatoriaSumaDosDadosMedia} y \ref{curso-cap04:ejem:varianzaVariableAleatoriaDiscreta} del libro (págs. \pageref{curso-ejem:Cap04:VariableAleatoriaSumaDosDadosMedia} y \pageref{curso-cap04:ejem:varianzaVariableAleatoriaDiscreta}, respectivamente), en lo que se refiere a la variable $X$, suma de dos dados.
+
+  \item En el apartado anterior habrás obtenido un valor numérico (aproximado) de la varianza de $X$. Usa un programa simbólico (Wiris o Wolfram Alpha, por ejemplo) para calcular el valor exacto de la varianza.
+
+  \item  Repite los apartados anteriores para la variable $Y$, la diferencia (en valor absoluto) de los dos dados.
+
+
+\end{enumerate}
+
+Solución en la página \pageref{tut04:ejercicio02:sol}.
+\qed
+\end{ejercicio}
+
+\subsection{Operaciones con variables aleatorias.}
+\label{tut04:subsec:OperacionesVariablesAleatorias}
+
+En el Ejercicio \ref{tut04:ejercicio02} acabamos de calcular la media y varianza de las variables $X$ e $Y$, que representan la suma y diferencia de los resultados al lanzar dos dados, respectivamente. Vamos a usar estas dos variables para experimentar con los resultados teóricos que aparecen en la Sección \ref{curso-sec:OperacionesVariablesAleatorias} del libro (pág. \pageref{curso-sec:OperacionesVariablesAleatorias}).
+
+Es importante recordar siempre que las variables aleatorias son modelos {\em teóricos} de las asignaciones de probabilidad. La media $\mu_X$ de la variable aleatoria $X$ representa el valor medio esperado en una serie muy larga de repeticiones del suceso aleatorio que representa la variable $X$.  Por tanto, la media sirve para hacer predicciones {\em teóricas} y, en cada casos concreto, los valores que obtendremos serán {\em parecidos, pero no idénticos} al valor que predice la media.
+
+Para ilustrar esto, vamos a tomar como punto de partida la variable $X$ (suma al lanzar dos dados), y definiremos una nueva variable:
+\[ W = 3\cdot X - 4.\]
+La teoría predice que ha de ser:
+\[ E(W) = E(3\cdot X - 4)= 3\cdot E(X) -4\]
+y, usando los resultados del Ejercicio \ref{tut04:ejercicio02} de este tutorial, tenemos
+\[ E(W) = 3\cdot E(X) - 4 = 3\cdot 7 - 4 =17.\]
+Para {\em ``comprobar experimentalmente''} esta predicción teórica vamos a fabricar una serie muy larga ($n = 10000$) de valores aleatorios de $W$, y calcularemos su media. Los valores de $W$ se obtienen de los de $X$ con este código Python (la primera parte es muy parecida al comienzo de la solución del Ejercicio \ref{tut04:ejercicio01}):
+<<raptor="python", purl=FALSE>>=
+import random as rnd
+rnd.seed(2016)
+n = 10000
+dado1 = [rnd.randrange(1, 7) for _ in range(0, n)]
+dado2 = [rnd.randrange(1, 7) for _ in range(0, n)]
+X = [dado1[_] + dado2[_] for _ in range(0, n)]
+W = [3 * x - 4 for x in X]
+@
+La novedad, naturalmente, es esa última línea, en la que calculamos los valores de $W$ a partir de los de $X$. La media de esos $10000$ valores de $W$ es:
+<<raptor="python", purl=FALSE>>=
+import numpy as np
+mediaW = np.mean(W)
+print("media de W= {0:0.4f}".format(mediaW))
+@
+Hemos usado la función {\tt mean} de {\tt numpy} para obtener el resultado. Y, como puedes ver, el resultado del experimento se parece mucho a nuestra predicción teórica.
+
+Vamos a aprovechar, también, para comprobar que las cosas no siempre son tan sencillas. En particular, vamos a usar la variable
+\[V = X^2\]
+para comprobar que:
+\[E(V) = E(X^2) \neq (E(X))^2 = 7^2 = 49.\]
+Aquí, de nuevo, $X$ es la variable suma al lanzar dos dados. Para comprobar {\em experimentalmente} esto procedemos de forma muy parecida a lo que acabamos de hacer con $W$. Generamos una lista de valores de $V$, y calculamos su media:
+<<raptor= "python", purl=FALSE>>=
+V = [x**2 for x in X]
+mediaV = np.mean(V)
+print("media de V= {0:0.4f}".format(mediaV))
+@
+¿Cuál es el cálculo teórico correspondiente? Para calcular la media de $V = X^2$ empezamos por hacer la tabla de densidad de esta variable. Esa tabla se obtiene fácilmente de la Tabla \ref{curso-ejem:Cap04:VariableAleatoriaSumaDosDadosMedia} del libro (pág. \pageref{curso-ejem:Cap04:VariableAleatoriaSumaDosDadosMedia}), elevando los valores al cuadrado (las probabilidades se mantienen):
+
+\begin{center}
+    {\small
+    \begin{tabular}[t]{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    Valor\rule{0cm}{0.5cm}
+    &4&9&16&25&36&49&64&81&100&121&144\\
+    \hline
+    Probabilidad\rule{0cm}{0.7cm}
+    &$\dfrac{1}{36}$&$\dfrac{2}{36}$&$\dfrac{3}{36}$&$\dfrac{4}{36}$&$\dfrac{5}{36}$&$\dfrac{6}{36}$&$\dfrac{5}{36}$&$\dfrac{4}{36}$&$\dfrac{3}{36}$&$\dfrac{2}{36}$&$\dfrac{1}{36}$\\
+    &&&&&&&&&&&\\
+    \hline
+    \end{tabular}
+    }
+\end{center}
+Y ahora puedes usar cualquier programa (Wolfram Alpha, o el propio R) para comprobar que:
+\[\mu_V = \dfrac{1974}{36} \approx 54.83.\]
+Fíjate en que este valor se parece mucho más al que hemos obtenido en la versión experimental del cálculo.
+
+Los resultados que acabamos de obtener confirman que la media no se lleva bien con el cuadrado: la media del cuadrado no es el {\em ``cuadrado de la media''}. De hecho, la diferencia entre esas dos cantidades es, precisamente, la varianza:
+\[\operatorname{Var}(X) = E(X^2) - \left(E(X)\right)^2.\]
+Sin entrar a dar una demostración teórica de este hecho, vamos a comprobarlo usando la variable $X$. Empezamos repitiendo los mismos cálculos que aparecen en la solución del Ejercicio \ref{tut04:ejercicio02} (ver página \pageref{tut04:ejercicio02:sol}).
+<<raptor="python", purl=FALSE>>=
+valoresX = range(2, 13)
+probabilidadesX = list(range(1,7)) + list(range(5, 0, -1))
+probabilidadesX = [p/36 for p in probabilidadesX]
+muX = sum([valoresX[i] * probabilidadesX[i] for i in range(0, len(valoresX))])
+print("Media de X = {0:0.4f}".format(muX))
+varX = sum( [(valoresX[i] - muX)**2 * probabilidadesX[i] for i in range(0, len(valoresX))])
+print("Varianza de X = {0:0.4f}".format(varX))
+@
+Recuerda que el cálculo que estamos haciendo aquí es teórico (no es un ``experimento''). Ahora vamos a calcular la media de $V=X^2$:
+<<raptor="python", purl=FALSE>>=
+valoresV = [x**2 for x in valoresX]
+probabilidadesV = probabilidadesX
+muV = sum([valoresV[i] * probabilidadesV[i] for i in range(0, len(valoresV))])
+print("Media de V = {0:0.4f}".format(muV))
+@
+Y ahora podemos comprobar, en este ejemplo, la identidad $\operatorname{Var}(X) = E(X^2) - \left(E(X)\right)^2$. Se tiene:
+<<raptor="python", purl=FALSE>>=
+print("varX ={0:0.4f}".format(varX))
+print("muV - (muX)^2 ={0:0.4f}".format(muV - (muX)**2))
+@
+como esperábamos. Naturalmente, este resultado teórico también se puede comprobar experimentalmente. Y es interesante hacerlo, así que lo exploraremos en los ejercicios adicionales.
+
+
+\subsection{Función de distribución (probabilidad acumulada)}
+\label{tut04:subsec:FuncionDistribucion}
+
+
+La función de distribución de la variable aleatoria $X$ es, recordémoslo:
+\[F(k)=P(X\leq k)\]
+Es decir, que dado el valor de $k$, debemos sumar todos los valores de la densidad de probabilidad para valores menores o iguales que $k$. En el ejemplo de la variable $X$ que aparece al comienzo de la Sección \ref{tut04:subsec:MediaVarianzaDesviacionTipica} (pág. \pageref{tut04:subsec:MediaVarianzaDesviacionTipica}), si queremos calcular $F(7)$, debemos hacer:
+\[F(7)=P(X=2)+P(X=4)+P(X=7)=\frac{1}{5}+\frac{1}{10}+\frac{1}{10}.\]
+Se trata de sumas acumuladas, como las que vimos en el caso de las tabla de frecuencias acumuladas. Así que usaremos lo que aprendimos en el Tutorial02 (Sección \ref{tut02-tut02:subsec:PorFinHagamosEstadisticaDescriptiva}). Vamos a empezar por extraer las probabilidades de  la variable $X$:
+<<raptor="python", purl=FALSE>>=
+X = [[2, 1/5], [4, 1/10], [7, 1/10], [8, 2/5], [11, 1/5]]
+valoresX = [item[0] for item in X]
+probabilidadesX = [item[1] for item in X]
+print(probabilidadesX)
+@
+Y ahora aplicamos la función {\tt cumsum} de {\tt numpy} así:
+<<eval=FALSE, echo=FALSE, comment=NULL, purl=python01>>=
+# Funcion de distribucion.
+
+FdistX = np.cumsum(probabilidadesX).tolist()
+
+@
+<<raptor= "python", purl=FALSE, echo=-1>>=
+FdistX = np.cumsum(probabilidadesX).tolist()
+print(FdistX)
+@
+que, como ves, produce un vector con los valores de $F(k)$ para cada $k$. Seguramente preferiremos ver estos resultados en forma de tabla, para poder localizar fácilmente el valor de $F$ que corresponde a cada valor de $k$. Con lo que hemos aprendido sobre la función {\tt print}, es fácil conseguirlo. Pondríamos:
+<<eval=FALSE, echo=FALSE, comment=NULL, purl=python01>>=
+# y su tabla:
+
+k = len(valoresX)
+print("\nTabla de la variable aleatoria X:\n")
+linea = "_" * 49
+print(linea)
+print("| Valor x | Probabilidad p | Fun. de dist. F(x) |")
+print(linea)
+for i in range(0, k):
+    print("| {0: 7d} | {1: 14.2f} | {2: 18.2f} |".format(valoresX[i],\
+          probabilidadesX[i], FdistX[i]))
+print(linea)
+
+@
+<<eval=FALSE, comment=NULL, background='#99ccff', purl=FALSE>>=
+k = len(valoresX)
+print("\nTabla de la variable aleatoria X:\n")
+linea = "_" * 49
+print(linea)
+print("| Valor x | Probabilidad p | Fun. de dist. F(x) |")
+print(linea)
+for i in range(0, k):
+    print("| {0: 7d} | {1: 14.2f} | {2: 18.2f} |".format(valoresX[i],\
+          probabilidadesX[i], FdistX[i]))
+print(linea)
+@
+\vspace{-4mm}
+<<eval=FALSE, comment=NULL, background='#cce6ff', purl=FALSE>>=
+Tabla de la variable aleatoria X:
+
+_________________________________________________
+| Valor x | Probabilidad p | Fun. de dist. F(x) |
+_________________________________________________
+|       2 |           0.20 |               0.20 |
+|       4 |           0.10 |               0.30 |
+|       7 |           0.10 |               0.40 |
+|       8 |           0.40 |               0.80 |
+|      11 |           0.20 |               1.00 |
+_________________________________________________
+@
+Aunque en esta tabla sólo aparecen los valores $2, 4, 7, 8$ y $11$, es bueno recordar que la función de distribución $F(x)$ está definida {\em sea cual sea el valor de $x$}. Es decir, que tiene prefecto sentido preguntar, por ejemplo, cuánto vale $F(\frac{8}{3})$. Más adelante vermeos la forma de conseguir que Python conteste esta pregunta automáticamente, pero todavía tenemos que aprender algunas cosas más sobre el lenguaje antes de ver cómo podemos conseguir eso.
+
+\begin{ejercicio}
+\label{tut04:ejercicio03}
+\quad\\
+¿Cuánto vale $F(\frac{8}{3})$? Aunque no forme parte del ejercicio, trata de ir pensando en un procedimiento que te permita, dado un valor $x$ cualquiera, obtener el valor $F(x)$.
+Solución en la página \pageref{tut04:ejercicio03:sol}.
+\qed
+\end{ejercicio}
+
+\subsection{Representación gráfica de las variables aleatorias.}
+\label{tut04:subsec:RepresentacionGraficaDistribuciones}
+
+Dada una variable aleatoria $X$, por ejemplo la que venimos usando desde el comienzo de la Sección \ref{tut04:subsec:MediaVarianzaDesviacionTipica}, podemos representar gráficamente su tabla de densidad de probabilidad, en un diagrama de columnas, usando la función {\tt bar} de {\tt matplotlib} (que ya encontramos en el Tutorial02). Empezamos importando el módulo:
+<<raptor = "python", purl=FALSE>>=
+import matplotlib.pyplot as plt
+@
+Y luego usaremos estos comandos:
+<<raptor = "python", purl=python01, echo =-(1:2), results='hide'>>=
+# Grafico de barras de la funcion de densidad.
+
+plt.suptitle("Grafico de barras de la funcion de densidad:")
+plt.xticks(valoresX)
+plt.axis([min(valoresX) - 1,max(valoresX) + 1, 0, 1])
+plt.bar(valoresX, probabilidadesX, color='tan', align='center')
+
+@
+<<raptor="python", echo=FALSE, eval=FALSE, purl=FALSE>>=
+plt.savefig('../fig/Tut-04-py-01.png')
+@
+El resultado es esta figura:
+\begin{center}
+\includegraphics[height=10cm]{../fig/Tut-04-py-01.png}
+\end{center}
+Algunos comentarios: 
+\begin{itemize}
+  \item La función {\tt suptitle} añade un título al gráfico.
+  \item La función {\tt xticks} nos sirve para indicarle a Python donde queremos que vayan situadas las etiquetas del eje $x$. En relación con esto, en la función {\tt bar} hemos usado la opción {\tt align='center'} para situar las etiquetas en el centro de cada columna (y no al principio). Esta era una tarea que habíamos dejado pendiente en el Tutorial02.
+  \item La función {\tt axis} sirva para fijar la {\tt em ventana gráfica} que Python usará en la figura. Lo hacemos mediante una lista de cuatro valores que definen los valores mínimo y máximo, primero del eje $x$ y luego del eje $y$. Para este ejemplo concreto nos hemos asegurado de que el eje $x$ cubra todo el rango de valores de la variable $X$, con un margen de una unidad extra por cada lado, y que el eje $y$ recorra los valores del $0$ al $1$, puesto que se trata de probabilidades.
+\end{itemize}
+<<raptor = "python", purl=python01, echo=FALSE, eval=FALSE, comment=NULL>>=
+#   Reset grafico.
+
+plt.figure()
+
+@
+
+
+Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En Python hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a ver una bastante sencilla, que usa la función {\tt step} (en el sentido inglés de {\em peldaño}). Como verás, en esa función hemos hecho algunos retoques, añadiendo en el eje $x$ un valor a la izquierda del recorrido de $X$ y uno a su derecha, que se corresponden con los valores $0$ y $1.00001$ del eje $y$. Lo hemos hecho para obligar a Python a crear una perspectiva algo más amplia de la función de distribución. 
+
+<<raptor = "python", purl=python01, echo =-(1:2)>>=
+# Grafico de escalera de la funcion de distribucion.
+
+plt.suptitle("Grafico de escalera de la funcion de distribucion:")
+plt.xticks(valoresX)
+plt.step([min(valoresX) - 2] + valoresX + [max(valoresX) + 1],
+         [0] + FdistX + [1.00001], where='post', linewidth=4.0, color='red')
+@
+
+<<raptor="python", echo=FALSE, eval=FALSE, purl=FALSE>>=
+plt.savefig('../fig/Tut-04-py-02.png')
+@
+
+El resultado es esta figura:
+\begin{center}
+\includegraphics[height=10cm]{../fig/Tut-04-py-02.png}
+\end{center}
+
+
+\subsection{Un fichero de comandos Python para estudiar una variable discreta.}
+\label{tut04:subsec:FicheroComandosRParaVaraiableDiscreta}
+
+Al igual que hicimos en el Tutorial02, en el que incluimos un fichero que resumía muchos comandos de Estadística Descriptiva, vamos a incluir aquí un {\em fichero plantilla} que reúne los comandos que hemos ido viendo en este Tutorial para trabajar con una variable aleatoria discreta (con un número finito de valores) definida mediante su tabla de densidad:
+\begin{center}
+\fichero{./code/Tut04-VariableAleatoriaDiscreta.py}{Tut04-VariableAleatoriaDiscreta.py}
+\end{center}
+cuyo listado es:
+<<echo=FALSE, purl=FALSE>>=
+read_chunk("./code/Tut04-VariableAleatoriaDiscreta.py")
+@
+<<eval=FALSE, comment=NULL, purl=FALSE>>=
+<<Tut04-VariableAleatoriaDiscreta>>
+@
+
+
+\subsection*{Soluciones de algunos ejercicios}
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio01}, pág. \pageref{tut04:ejercicio01}}
+\label{tut04:ejercicio01:sol}\quad\\
+
+
+<<raptor="python", purl=FALSE>>=
+import random as rnd
+rnd.seed(2016)
+n = 10000
+dado1 = [rnd.randrange(1, 7) for _ in range(0, n)]
+dado2 = [rnd.randrange(1, 7) for _ in range(0, n)]
+suma = [dado1[_] + dado2[_] for _ in range(0, n)]
+import collections as cl
+sumaCounter = cl.Counter(suma)
+freqAbsolutaSuma = sumaCounter.most_common()
+freqAbsolutaSuma.sort()
+print(freqAbsolutaSuma)
+freqRelativaSuma = [[item[0], item[1]/n] for item in freqAbsolutaSuma]
+print("frecuencias relativas de la suma=")
+print(freqRelativaSuma)
+@
+Recuerda comparar estas frecuencias relativas (experimentales) con las probabilidades (teóricas):
+
+
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio02}, pág. \pageref{tut04:ejercicio02}}
+%' \label{tut04:ejercicio02:sol}\quad\\
+%' 
+%' \begin{enumerate}
+%'   \item Los valores y probabilidades son:
+%'     <<ejercicio02sola, purl=FALSE>>=
+%'     valores = 2:12
+%'     probabilidades = c(1:6,5:1)/36
+%'     @
+%'     Así que la media, varianza y desviación típica son:
+%'     <<ejercicio02solb, purl=FALSE>>=
+%'     (mu=sum(valores*probabilidades) )
+%'     (varianza=sum((valores-mu)^2*probabilidades) )
+%'     (sigma=sqrt(varianza) )
+%'     @
+%' 
+%'   \item Para obtener un valor simbólico en Wolfram Alpha evalúa este comando (corta y pega):
+%'   \begin{center}
+%'     {\tt\small (1/36)*(2-7)\verb/^/2 + (2/36)*(3-7)\verb/^/2 + (3/36)*(4-7)\verb/^/2 + (4/36)*(5-7)\verb/^/2 + (5/36)*(6-7)\verb/^/2 + (6/36)*(7-7)\verb/^/2 + (5/36)*(8-7)\verb/^/2 + (4/36)*(9-7)\verb/^/2 + (3/36)*(10-7)\verb/^/2 + (2/36)*(11-7)\verb/^/2 + (1/36)*(12-7)\verb/^/2}
+%'   \end{center}
+%'   ¿Cómo se puede obtener una expresión como esta sin que nos asalten el tedio y/o la melancolía? Pues aprendiendo a usar la función {\tt paste} de R, de la que hablaremos próximamente en otro tutorial.
+%' %  De momento, para ir abriendo el apetito, vamos a mostrarte la forma (que no es seguramente óptima) en la que nosotros hemos fabricado esa expresión:
+%' %  <<ejercicio02solc, eval=c(1:3), purl=FALSE>>=
+%' %    valores = 2:12
+%' %    (numProb=as.character(c(1:6,5:1)))
+%' %    (probTexto = paste(rep("(",11), numProb, rep("/36)",11),sep=""))
+%' %    paste(probTexto, rep("*(",11), valores,rep("-",11 ),rep(7,11),rep(")^2",11), collapse=" + ",sep="")
+%' %  @
+%' %  El resultado de este fragmento de código es la expresión que aparece más arriba, pero hemos cortado el resultado porque, sin formatearlo, es demasiado ancho para esta página.
+%' %
+%' %  Lo bueno de este método es que se adapta muy fácilmente a cualquier otro problema parecido en el que quieras calcular simbólicamente la media de una varianza aleatoria discreta, sea cual sea el número de valores. La función {\tt paste} permite fabricar fácilmente expresiones como esta, y otras mucho más complicadas.
+%' 
+%'   Para explicar cómo hacer esta cuenta con Wiris (de manera no manual) tendríamos que adentrarnos más de lo que queremos en la sintaxis de ese programa. Una posibilidad, sin salir de R, es usar la función fractions de la librería {\tt MASS}, de este modo:
+%'   <<ejercicio02solc, purl=FALSE>>=
+%'     library(MASS)
+%'     valores = 2:12
+%'     (probabilidades= fractions(c(1:6,5:1)/36))
+%'     sum((valores-7)^2*probabilidades)
+%'   @
+%' 
+%'   \item El código en R es:
+%'   <<ejercicio02sold, purl=FALSE>>=
+%'   library(MASS)
+%'   valores = 0:5
+%'   probabilidades = fractions(c(6,10,8,6,4,2)/36)
+%'   (mu = sum(valores * probabilidades))
+%'   (varianza=sum((valores-mu)^2*probabilidades) )
+%'   (sigma=sqrt(varianza))
+%'   @
+%'   Para convertirlos en valores numéricos podemos usar {\tt as.numeric}:
+%'   <<ejercicio02sole, purl=FALSE>>=
+%'   as.numeric(mu)
+%'   as.numeric(varianza)
+%'   as.numeric(sigma)
+%'   @
+%' \end{enumerate}
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio03}, pág. \pageref{tut04:ejercicio03}}
+%' \label{tut04:ejercicio03:sol}\quad\\
+%' 
+%' El valor es $F(\frac{8}{3})=0.2$, porque se tiene $2<\frac{8}{3}<4$, así que
+%' \[F(\frac{8}{3}) = P(X \leq \frac{8}{3}) = P(X\leq 2)=F(2).\]
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio04}, pág. \pageref{tut04:ejercicio04}}
+%' \label{tut04:ejercicio04:sol}\quad\\
+%' 
+%' <<, purl=FALSE>>=
+%' (satelitesGalileanos[ ,2] > 4000)
+%' @
+%' El resultado es un vector de cuatro valores lógicos ({\tt TRUE/FALSE})que nos dicen, para cada fila del {\tt data.frame} si la condición se cumple. Es decir si el valor en la segunda columna de esa fila es, o no, mayor que $4000$.
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio05}, pág. \pageref{tut04:ejercicio05}}
+%' \label{tut04:ejercicio05:sol}\quad\\
+%' \begin{enumerate}
+%'   \item
+%'   Código para la primera parte:
+%'   <<, purl=FALSE>>=
+%'   set.seed(2014)
+%'   vector1 = rep(c("A", "B", "C"), rep(100, 3))
+%'   vector2 = sample(-100:100, 300, replace=TRUE)
+%'   vector3 = rnorm(300)
+%' 
+%'   Tut04WriteTable = data.frame(vector1, vector2, vector3)
+%'   head(Tut04WriteTable)
+%'   tail(Tut04WriteTable)
+%'   @
+%' 
+%'   \item Tras ejecutar
+%'   <<, purl=FALSE>>=
+%'     write.table(Tut04WriteTable, file="../datos/Tut04WriteTable.csv")
+%'   @
+%'   el {\em Bloc de Notas} muestra que el contenido del fichero  {\tt Tut04WriteTable.csv} tiene este aspecto:
+%'   \begin{center}
+%'   \includegraphics[width=8cm]{../fig/Tut04-18.png}
+%'   \end{center}
+%' 
+%' 
+%'   \item La primera dificultad es que R ha añadido una primera columna adicional con los números de las filas, que en Calc aparecen en la columna {\tt A} (eso, además, hace que los nombres de las variables queden descolocados), como se ve en esta figura.
+%'   \begin{center}
+%'   \includegraphics[width=10cm]{../fig/Tut04-19.png}
+%'   \end{center}
+%'   Pero, además, los elementos de la tercera columna usan puntos (en lugar de comas) como separadores decimales. A Calc, en su versión en español, eso le hace pensar que no se trata de números. Y si intentas calcular la media (recuerda usar la función {\tt PROMEDIO}) aparecerá un mensaje de error.
+%' 
+%'   \item El fichero {\tt Tut04WriteTable2.csv}, tras abrirlo con Calc y calcular la media de la tercera columna (en la celda {\tt E3}), muestra este aspecto:
+%'   \begin{center}
+%'   \includegraphics[width=10cm]{../fig/Tut04-20.png}
+%'   \end{center}
+%'   La media, calculada por Calc, se puede comprobar con R de cualquiera de estas dos formas (una usa el vector {\tt vector3} y la otra la tercera columna del {\tt data.frame}):
+%'   <<, purl=FALSE>>=
+%'   mean(vector3)
+%'   mean(Tut04WriteTable[,3])
+%'   @
+%' 
+%' 
+%' %%####################################################
+%' %% Adicionales
+%' 
+%' <<adicional2, echo=FALSE, eval=FALSE, purl=FALSE>>=
+%' rm(list=ls())
+%' 
+%' 
+%' valoresX = 0:5
+%' probabilidadesX = c(1/6,1/12,1/4,1/4,1/12,1/6)
+%' (mediaX = sum(valoresX * probabilidadesX))
+%' (varX = sum((valoresX - mediaX)^2 * probabilidadesX))
+%' 
+%' 
+%' (valoresY  = 5 * valoresX +1 )
+%' 
+%' probabilidadesY = probabilidadesX
+%' (mediaY = sum(valoresY * probabilidadesY))
+%' 
+%' 5 * mediaX + 1
+%' 
+%' 
+%' valoresW = valoresX ^2
+%' probabilidadesW = probabilidadesX
+%' (mediaW = sum(valoresW * probabilidadesW))
+%' mediaX^2
+%' mediaW - mediaX^2
+%' @
+%' 
+%' \end{enumerate}
+%' 
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio06}, pág. \pageref{tut04:ejercicio06}}
+%' \label{tut04:ejercicio06:sol}\quad\\
+%' 
+%' <<, purl=FALSE>>=
+%' colnames(satelitesGalileanos) = c("nombres", "diametrosKm", "periodoOrbital")
+%' head(satelitesGalileanos)
+%' @
+%' El resultado de {\tt dim} es:
+%' <<, purl=FALSE>>=
+%' dim(satelitesGalileanos)
+%' @
+%' Es decir, un vector con el número de filas y columnas del {\tt data.frame}.
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio07}, pág. \pageref{tut04:ejercicio07}}
+%' \label{tut04:ejercicio07:sol}\quad\\
+%' 
+%' \begin{enumerate}
+%'   \item El código para la primera parte es:
+%'     <<, purl=FALSE>>=
+%'     traspuesta = t(matrizDatos)
+%'     write.table(traspuesta, file="../datos/Traspuesta.csv",
+%'         row.names = FALSE, col.names=FALSE, sep=" ")
+%'     @
+%'     Hemos dividido la función {\tt write.table} en dos líneas, para ajustarla al ancho de página.
+%' 
+%'   \item Para la segunda parte empezamos por leer el fichero en un data.frame, que vamos a llamar igual que el fichero (es una costumbre que a menudo resulta útil), salvo por el cambio de {\tt -} a {\tt \_}, porque el guión alto {\tt -} representa la resta en R, y no se puede usar en nombres de objetos:
+%'   <<eval=FALSE, purl=FALSE>>=
+%'   Tut04_3000datos = read.table(file="../datos/Tut04-3000datos.csv", header=FALSE, sep=" ")
+%'   @
+%'   <<echo=FALSE, purl=FALSE>>=
+%'   Tut04_3000datos = read.table(file="../datos/Tut04-3000datos.csv", header=FALSE, sep=" ")
+%'   @
+%'   Una vez hecho esto, convertimos el {\tt data.frame} en una matriz:
+%'   <<, purl=FALSE>>=
+%'   matriz3000Datos = as.matrix(Tut04_3000datos)
+%'   head(matriz3000Datos, 10)
+%'   @
+%'   Para convertirlo en un vector, recorriendo la matriz por filas, vamos a usar lo que aprendimos en la Sección \ref{tut03-tut03:subsec:CaminoVueltaMatricesVectores} (pág. \pageref{tut03-tut03:subsec:CaminoVueltaMatricesVectores}) del Tutorial03. Mostramos sólo los primeros $20$ elementos del vector resultante:
+%'   <<, purl=FALSE>>=
+%'   head(as.vector(t(matriz3000Datos)), 20)
+%'   @
+%'   Finalmente para guardarlo en un fichero {\tt csv} puedes usar {\tt cat} (que ya conoces de anteriores tutoriales) o puedes usar {\tt write.table} así:
+%'   <<, purl=FALSE>>=
+%'   write.table(as.vector(t(matriz3000Datos)), file="../datos/Tut04-3000datos-solucion.csv",
+%'           row.names=FALSE, col.names=FALSE)
+%'   @
+%' 
+%' \end{enumerate}
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio08}, pág. \pageref{tut04:ejercicio08}}
+%' \label{tut04:ejercicio08:sol}\quad\\
+%' 
+%' <<, purl=FALSE>>=
+%' (bolaUrna2 = sample( c("blanca","negra"), 1, prob=c(4,3) ))
+%' @
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio09}, pág. \pageref{tut04:ejercicio09}}
+%' \label{tut04:ejercicio09:sol}\quad\\
+%' 
+%' Los valores de {\tt cuenta} y {\tt k} se alternan en la salida. Ya aprenderemos a presentarlos un poco mejor.
+%' <<, purl=FALSE>>=
+%'     cuenta=0
+%'     for(k in 1:10){
+%'         # Cuerpo del bucle (entre las dos llaves)
+%'         cuenta = cuenta + 3
+%'         print(cuenta)
+%'         print(k)
+%'     }
+%'     cuenta
+%' @
+%' 
+%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio10}, pág. \pageref{tut04:ejercicio10}}
+%' \label{tut04:ejercicio10:sol}\quad\\
+%' 
+%' \begin{enumerate}
+%'   \item Aquí puedes ver el resultado de tres ejecuciones del código, todas con $n=10000$:
+%'         <<echo=FALSE, purl=FALSE>>=
+%'         <<Tut04ProbabilidadesTotales>>
+%'         @
+%'         <<echo=FALSE, purl=FALSE>>=
+%'         <<Tut04ProbabilidadesTotales>>
+%'         @
+%'         <<echo=FALSE, purl=FALSE>>=
+%'         <<Tut04ProbabilidadesTotales>>
+%'         @
+%' 
+%'       \item El código modificado es este:
+%'     <<Tut04ProbabilidadesTotales2, eval=FALSE, purl=FALSE>>=
+%'     # Empezamos lanzando un dado n veces.
+%'     n = 10
+%'     dado = sample(1:6, n, replace=TRUE)
+%' 
+%'     # El proceso ahora depende de si el dado es o no menor que 5
+%'     bola=c()
+%'     for(k in 1:n){
+%'       if(dado[k] < 5){
+%'           #Se ha elegido la urna 1.
+%'           #Estas instrucciones (hasta la linea con else) se usan si dado<5
+%'           #print("Usamos una urna con 3 bolas blancas y 5 negras")
+%'           bola = c(bola, sample(c("b","n"), 1, prob=c(1,9)) )
+%'       } else {
+%'         #Se ha elegido la urna 2.
+%'         #Estas instrucciones (hasta la llave) se usan si dado>=5
+%'         #print("Usamos una urna con 7 bolas blancas y 3 negras")
+%'           bola = c(bola, sample(c("b","n"), 1, prob=c(4,3)) )
+%'       }
+%'       print("-----------------------------------------")
+%'       print(c(" dado =", dado[k]) )
+%'       print(c("k = ", k))
+%'       print(bola)
+%'     }
+%'     # Y al final, miramos la tabla de frecuencias relativas.
+%'     table(bola) / length(bola)
+%'     @
+%'     Puedes ver que hemos cambiado $n=10$, y que hemos añadido un grupo de sentencias con la función {\tt print}, dentro del bucle {\tt for} pero fuera del condicional {\tt if/else}. El resultado de esas modificaciones es este:
+%'     <<Tut04ProbabilidadesTotales2, echo=FALSE, purl=FALSE>>=
+%'     @
+%'     Hemos usado un par de veces un ``truco'' para indicar cual es la variable que se muestra. Por ejemplo, en la línea de código:
+%'     <<eval=FALSE, purl=FALSE>>=
+%'     print(c("k = ", k))
+%'     @
+%'     Al usar {\tt c("k = ", k)} estamos construyendo un vector que contiene una mezcla de números y texto. Es muy posible que no lo recuerdes, pero en la Sección \ref{tut02-tut02:subsec:Vectores} del Tutorial02 hemos comentado brevemente que en estos casos, R convierte todos los elementos del vector en cadenas alfanuméricas. El resultado dista todavía mucho de lo que se puede conseguir (¡todas esas comillas!), pero es un primer paso.
+%' 
+%'     Naturalmente, en este caso, con $n$ tan pequeño, las frecuencias se parecen bastante menos a las que predice la teoría.
+%' 
+%' \end{enumerate}
+
+
+
+
+
+
+%#########################################################################################
+%#########################################################################################
+\vspace{2cm} \hrule
+\quad\\
+Fin del Tutorial-04. ¡Gracias por la atención!
+
+%\newpage
+%\addcontentsline{toc}{section}{Guía de trabajo.}
+%\includepdf[pages={1-},scale=0.90]{04-GuiaDeTrabajo.pdf}
+
+\end{document}

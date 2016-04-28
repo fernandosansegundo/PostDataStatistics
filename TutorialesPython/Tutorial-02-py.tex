@@ -48,6 +48,7 @@
 \definecolor{errorcolor}{rgb}{1, 0, 0}
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
+\let\hlesc\hlstd \let\hlpps\hlstd \let\hllin\hlstd \let\hlslc\hlcom \let\hlppc\hlcom
 \usepackage{alltt}
 \usepackage{etoolbox}
 \newtoggle{color}
@@ -267,7 +268,7 @@ cuyo resultado es:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-## 0.7071067811865476
+## 0.7071067811865475
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2455,9 +2456,9 @@ que hemos escrito antes. Compara la versión original del programa con esta otra
 \begin{alltt}
 \hlcom{########################################################}
 \hlcom{# www.postdata -statistics.com}
-\hlcom{# POSTDATA. IntroducciÃ³n a la EstadÃ­stica}
-\hlcom{# Tutorial 02 (versiÃ³n Python).}
-\hlcom{# Ejemplo de cÃ¡lculo de media, varianza y desv. tÃ­pica}
+\hlcom{# POSTDATA. Introducción a la Estadística}
+\hlcom{# Tutorial 02 (versión Python).}
+\hlcom{# Ejemplo de cálculo de media, varianza y desv. típica}
 \hlcom{# para una variable cuantitativa, datos no agrupados.}
 \hlcom{########################################################}
 
@@ -2471,23 +2472,23 @@ edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22
 \hlkwd{print}(\hlstr{"La lista de edades es:"})
 \hlkwd{print}(edades)
 
-\hlcom{# Media aritmÃ©tica de la lista:}
+\hlcom{# Media aritmética de la lista:}
 mediaAritmetica = \hlkwd{sum}(edades) / \hlkwd{len}(edades)
-\hlkwd{print}(\hlstr{"La media aritmÃ©tica es:"})
+\hlkwd{print}(\hlstr{"La media aritmética es:"})
 \hlkwd{print}(mediaAritmetica)
 
 \hlcom{# Varianza poblacional de la lista}
 terminosVarianza = []
 for edad in edades:
 \hlcom{  # Terminos varianza acumula resultados parciales del numerador de la }
-\hlcom{  # varianza en cada iteraciÃ³n del bucle for.}
+\hlcom{  # varianza en cada iteración del bucle for.}
   terminosVarianza = terminosVarianza + [(edad - mediaAritmetica)**2] 
 varianzaPob = \hlkwd{sum}(terminosVarianza) / \hlkwd{len}(edades)
 \hlkwd{print}(\hlstr{"La varianza poblacional es:"})
 \hlkwd{print}(varianzaPob)
 
-\hlcom{# DesviaciÃ³n tÃ­pica poblacional.}
-\hlkwd{print}(\hlstr{"La desviaciÃ³n tÃ­pica poblacional es:"})
+\hlcom{# Desviación típica poblacional.}
+\hlkwd{print}(\hlstr{"La desviación típica poblacional es:"})
 \hlkwd{print}(\hlkwd{m.sqrt}(varianzaPob))
 \end{alltt}
 \end{kframe}
@@ -2720,9 +2721,9 @@ Lo primero que verás en el fichero es un bloque inicial de comentarios que sirv
 \begin{alltt}
 \hlcom{########################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. IntroducciÃ³n a la EstadÃ­stica}
+\hlcom{# POSTDATA. Introducción a la Estadística}
 \hlcom{# Tutorial 02.  }
-\hlcom{# Plantilla de comandos Python para EstadÃ­stica Descriptiva}
+\hlcom{# Plantilla de comandos Python para Estadística Descriptiva}
 \hlcom{# Una variable cuantitativa discreta, datos no agrupados.}
 \hlcom{########################################################}
 
@@ -2770,8 +2771,8 @@ A continuación se incluye un bloque que puede servir para definir algunas varia
 \hlkwd{print}\hlstd{(linea)}
 \hlkwd{print}\hlstd{(linea)}
 \hlkwd{print}\hlstd{(}\hlstr{"www.postdata-statistics.com"}\hlstd{)}
-\hlkwd{print}\hlstd{(}\hlstr{"Curso de introducciÃ³n a la EstadÃ­stica. Tutorial02 (versiÃ³n Python)."}\hlstd{)}
-\hlkwd{print}\hlstd{(}\hlstr{"EstadÃ­stica descriptiva. Una variable cuantitativa discreta,\textbackslash{}n datos no agrupados."}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Curso de introducción a la Estadística. Tutorial02 (versión Python)."}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Estadística descriptiva. Una variable cuantitativa discreta,\textbackslash{}n datos no agrupados."}\hlstd{)}
 \hlkwd{print}\hlstd{(linea)}
 \hlkwd{print}\hlstd{(linea)}
 \end{alltt}
@@ -2800,12 +2801,12 @@ datos = datos[\hlstr{"v"}]\hlkwd{.tolist}()
 \hlkwd{print}(nombreFichero)
 
 n = \hlkwd{len}(datos)
-\hlkwd{print}(\hlstr{"El nÃºmero de datos leÃ­dos es:"})
+\hlkwd{print}(\hlstr{"El número de datos leídos es:"})
 \hlkwd{print}(n)
 
 \hlkwd{print}(\hlstr{"Los primeros 10 datos son:"})
 \hlkwd{print}(datos[:10])
-\hlkwd{print}(\hlstr{"Los Ãºltimos 10 datos son:"})
+\hlkwd{print}(\hlstr{"Los últimos 10 datos son:"})
 \hlkwd{print}(datos[-10:])
 
 \hlkwd{print}(linea)
@@ -2850,13 +2851,13 @@ A continuación vamos a determinar el máximo y mínimo de los datos, que conjun
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## Recorrido de una lista de nÃºmeros.  }
+\hlcom{## Recorrido de una lista de números.  }
 
-\hlkwd{print}\hlstd{(}\hlstr{"El mÃ­nimo y mÃ¡ximo de los datos determinan el recorrido:"}\hlstd{)}
-\hlkwd{print}\hlstd{(}\hlstr{"MÃ­nimo:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"El mínimo y máximo de los datos determinan el recorrido:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Mínimo:"}\hlstd{)}
 \hlkwd{print}\hlstd{(}\hlkwd{min}\hlstd{(datos))}
 
-\hlkwd{print}\hlstd{(}\hlstr{"MÃ¡ximo:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Máximo:"}\hlstd{)}
 \hlkwd{print}\hlstd{(}\hlkwd{max}\hlstd{(datos))}
 
 \hlkwd{print}\hlstd{(}\hlstr{"La anchura del recorrido (max - min) es:"}\hlstd{)}
@@ -3144,7 +3145,7 @@ Vamos a ocuparnos ahora de las medidas de posición: mediana, cuartiles, percent
 \hlkwd{print}(\hlstr{"Percentiles 0, 25, 50, 75, 100:"})
 \hlkwd{print}(\hlkwd{list}(\hlkwd{np.percentile}(datos, [0, 25, 50, 75, 100])))
 IQR = \hlkwd{np.percentile}(datos, 75) - \hlkwd{np.percentile}(datos, 25)
-\hlkwd{print}(\hlstr{"Recorrido intercuartÃ­lico:"})
+\hlkwd{print}(\hlstr{"Recorrido intercuartílico:"})
 \hlkwd{print}(IQR)
 
 \hlkwd{print}(linea)
@@ -3216,6 +3217,7 @@ El diagrama de barras que se obtiene es este:
 \begin{center}
 \includegraphics[height=8cm]{../fig/Tut-02-py-04-diagBarras.png}
 \end{center}
+Si te fijas bien, verás que los valores del eje no están correctamente centrados en las columnas del gráfico. Por el momento lo dejamos pasar. Más adelante nos iremos ocupando de este y otros detalles, para mejorar la calidad de los gráficos.
 
 El último gráfico que vamos a construir es un histograma. Puesto que estamos tratando con una variable cuantitativa discreta, el histograma no es nuestra elección prioritaria para representar estos datos: el diagrama de barras es mejor para esta situación. Pero hecha esa advertencia, queremos aprovechar para mostra la facilidad con la que Python permite construir histogramas. El código es este:
 \begin{knitrout}
@@ -3244,7 +3246,7 @@ En este apartado vamos a usar funciones de {\tt numpy} para calcular rápidament
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{print}\hlstd{(}\hlstr{"Media aritmÃ©tica:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Media aritmética:"}\hlstd{)}
 \hlstd{mediaAritmetica} \hlkwb{=} \hlkwd{np.mean}\hlstd{(datos)}
 \hlkwd{print}\hlstd{(mediaAritmetica)}
 \end{alltt}
@@ -3277,10 +3279,10 @@ Con la desviación típìca poblacional y la cuasivarianza muestral las cosas so
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{print}\hlstd{(}\hlstr{"DesviaciÃ³n tÃ­pica poblacional"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Desviación típica poblacional"}\hlstd{)}
 \hlstd{desvestPoblacional} \hlkwb{=} \hlkwd{np.std}\hlstd{(datos,} \hlkwc{ddof}\hlstd{=}\hlnum{0}\hlstd{)}
 \hlkwd{print}\hlstd{(desvestPoblacional)}
-\hlkwd{print}\hlstd{(}\hlstr{"CuasidesviaciÃ³n tÃ­pica muestral"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Cuasidesviación típica muestral"}\hlstd{)}
 \hlstd{cuasidesvestMuestral} \hlkwb{=} \hlkwd{np.std}\hlstd{(datos,} \hlkwc{ddof}\hlstd{=}\hlnum{1}\hlstd{)}
 \hlkwd{print}\hlstd{(cuasidesvestMuestral)}
 
@@ -3767,12 +3769,14 @@ Como ves, el orden de escritura de izquierda a derecha de los bucles en esta ver
 Vamos a comentar muy brevemente algunas funciones del módulo {\tt string} que nos resultarán útiles en algunos ejemplos y ejercicios. Este módulo contiene varios objetos que son simplemente cadenas de caracteres con las letras del alfabeto (las que usa el idioma inglés, no incluye acentos ni la ñ) en mayúsculas, minúsculas o ambas conjuntamente:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-import string
-print(string.ascii_lowercase)
-print(string.ascii_uppercase)
-print(string.ascii_letters)
-\end{alltt}
+\noindent
+\ttfamily
+\hlstd{}\hlkwa{import\ }\hlstd{string}\hspace*{\fill}\\
+\hlkwa{print}\hlstd{}\hlopt{(}\hlstd{string}\hlopt{.}\hlstd{ascii\textunderscore lowercase}\hlopt{)}\hspace*{\fill}\\
+\hlstd{}\hlkwa{print}\hlstd{}\hlopt{(}\hlstd{string}\hlopt{.}\hlstd{ascii\textunderscore uppercase}\hlopt{)}\hspace*{\fill}\\
+\hlstd{}\hlkwa{print}\hlstd{}\hlopt{(}\hlstd{string}\hlopt{.}\hlstd{ascii\textunderscore letters}\hlopt{)}\hlstd{}\hspace*{\fill}
+\mbox{}
+\normalfont
 
 \begin{verbatim}
 ## abcdefghijklmnopqrstuvwxyz

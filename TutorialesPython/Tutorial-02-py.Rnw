@@ -2252,6 +2252,7 @@ El diagrama de barras que se obtiene es este:
 \begin{center}
 \includegraphics[height=8cm]{../fig/Tut-02-py-04-diagBarras.png}
 \end{center}
+Si te fijas bien, verás que los valores del eje no están correctamente centrados en las columnas del gráfico. Por el momento lo dejamos pasar. Más adelante nos iremos ocupando de este y otros detalles, para mejorar la calidad de los gráficos.
 
 El último gráfico que vamos a construir es un histograma. Puesto que estamos tratando con una variable cuantitativa discreta, el histograma no es nuestra elección prioritaria para representar estos datos: el diagrama de barras es mejor para esta situación. Pero hecha esa advertencia, queremos aprovechar para mostra la facilidad con la que Python permite construir histogramas. El código es este:
 <<eval=FALSE>>=
