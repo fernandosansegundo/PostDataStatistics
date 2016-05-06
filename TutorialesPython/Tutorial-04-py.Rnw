@@ -4,6 +4,7 @@
 ## numbers >= 10^5 will be denoted in scientific notation,
 ## and rounded to 2 digits
 options(scipen = 2, digits = 3, cache=FALSE)
+ opts_chunk$set(purl=FALSE) 
 @
 
 \documentclass[10pt,a4paper]{article}
@@ -54,8 +55,12 @@ options(scipen = 2, digits = 3, cache=FALSE)
 \externaldocument[tut03-]{Tutorial-03-py}
 
 <<echo=FALSE, eval=FALSE, purl=FALSE>>=
+setwd("~/Dropbox/PostDataFernando/TutorialesPython")
+source("~/Dropbox/Code/R/raptor/raptor.R")
+library(knitr)
 python01=TRUE
 purl("Tutorial-04-py.Rnw", output="./code/Tut04-VariableAleatoriaDiscreta.py", documentation = 0)
+raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
 @
 
 <<echo=FALSE, eval=FALSE, results='hide', message=FALSE, error=TRUE, warning=FALSE, purl=FALSE>>=
@@ -64,7 +69,7 @@ purl("Tutorial-04-py.Rnw", output="./code/Tut04-VariableAleatoriaDiscreta.py", d
 # library(knitr)
 # setwd("~/Dropbox/PostDataFernando/TutorialesPython")
 # source("~/Dropbox/Code/R/raptor/raptor.R")
-raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
+# raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
 @
 
 <<eval=FALSE, echo=FALSE, purl=python01, comment=NULL>>=
@@ -461,7 +466,7 @@ plt.savefig('../fig/Tut-04-py-01.png')
 @
 El resultado es esta figura:
 \begin{center}
-\includegraphics[height=10cm]{../fig/Tut-04-py-01.png}
+\includegraphics[height=12cm]{../fig/Tut-04-py-01.png}
 \end{center}
 Algunos comentarios: 
 \begin{itemize}
@@ -494,7 +499,7 @@ plt.savefig('../fig/Tut-04-py-02.png')
 
 El resultado es esta figura:
 \begin{center}
-\includegraphics[height=10cm]{../fig/Tut-04-py-02.png}
+\includegraphics[height=12cm]{../fig/Tut-04-py-02.png}
 \end{center}
 
 
@@ -512,6 +517,116 @@ read_chunk("./code/Tut04-VariableAleatoriaDiscreta.py")
 <<eval=FALSE, comment=NULL, purl=FALSE>>=
 <<Tut04-VariableAleatoriaDiscreta>>
 @
+
+
+\section{Funciones definidas por el usuario en Python.}
+\label{tut04:sec:funcionesUsuarioPython}
+\noindent{\bf Opcional: aunque esta sección puede omitirse en una primera lectura, pronto se hará necesaria.}\\
+
+En esta sección vamos a aprender a escribir nuestras propias funciones Python. Antes de discutir más a fondo sobre el uso de las funciones empezaremos por ver  algunos ejemplos muy sencillos. De esa forma confíamos en que te resulte más fácil entender la discusión sobre la necesidad y conveniencia de las funciones.
+
+Vamos por tanto con el primero de esos ejemplos, que va a ser sencillo porque de momento queremos centrarnos en la forma de escribir una función. En concreto, vamos a escribir una función de Python, a la que llamaremos {esCuadrado} y que, dado un número entero $n$, nos diga si ese número es un cuadrado perfecto. La respuesta será un valor booleano, {\tt True} or {\tt False}, según que el número sea o no un cuadrado perfecto. Por ejemplo, queremos que al ejecutar:
+<<eval=FALSE, purl=FALSE>>=
+esCuadrado(9)
+@
+la respuesta sea {\tt True}, porque $9 = 3^2$, mientras que al ejecutar  
+<<eval=FALSE, purl=FALSE>>=
+esCuadrado(7)
+@
+queremos que la respuesta sea {\tt False}. 
+
+Una función es, un cierto sentido, como un programa dentro de nuestro programa. Así que para diseñar la función empezamos usando pseudocódigo, como hacíamos con los programas. En este caso, por ejemplo, el plan es este:
+<<eval=FALSE, comment=NULL, purl=FALSE>>=
+1. Calcular la raíz cuadrada de n.
+2. Redondearla al entero más cercano.
+3. Elevar ese entero al cuadrado y comprobar si coincide con $n$.
+4. Si coincide responder True, en caso contrario responder False.
+@
+Usando ese pseudocódigo como referencia, crear la función es muy sencillo. Primero nos aseguramos de haber importado el módulo {\tt math}:
+<<raptor="python", purl=FALSE>>=
+import math as m
+@
+y ahora vamos con la función propiamente dicha:
+<<raptor="python", purl=FALSE>>=
+def esCuadrado(n):
+  """
+  Devuelve True si el entero n es un cuadrado perfecto y False en caso contrario.  
+  """
+  raiz = m.sqrt(n)
+  raizRedondeada = round(raiz)
+  if(raizRedondeada**2 == n):
+    return(True)
+  else:
+    return(False)
+@
+Enseguida vamos a analizar detenidamente este código. Pero antes, veamos cómo funciona en el par de casos que antes hemos propuesto:
+<<raptor="python", purl=FALSE>>=
+print(esCuadrado(9))
+@
+Y de modo análogo:
+<<raptor="python", purl=FALSE>>=
+print(esCuadrado(7))
+@
+Como ves, la función que hemos creado se usa como cualquier otra función de Python. Vamos con el análisis del código de la función.
+
+\begin{enumerate}
+  \item La primera línea, la {\sf cabecera} de la función, comienza con la palabra clave {\tt def}. Esa palabra sirve para avisar a Python de que comienza la definición de una función. A continuación escribimos el nombre de la función {\tt esCuadrado} y, entre paréntesis, el argumento (o argumentos, como veremos pronto) de la función, que en este caso es el número {\tt n}. La línea de cabecera termina con dos puntos que, como ya vamos reconociendo, es la forma de indicar en Python que comienza un {\em bloque} de instrucciones.
+  
+  \item Las siguientes líneas indentadas forman lo que denominamos el {\sf cuerpo} de la función. Python detecta el final de la función cuando desaparece esa indentación y volvemos al nivel de la línea de cabecera. Si escribes funciones en un buen editor de texto, que reconozca la sintaxis de Python, te resultará más fácil adaptarte a esta escritura de las funciones, porque el editor se encargará de forma automática de dar formato a lo que escribas.
+  
+  \item Las primeras líneas del cuerpo de la función, delimitadas por las dos líneas que continenen tres comillas dobles \verb&"""& forman un {\sf bloque de documentación inicial} de la función. Al igual que sucede con los comentarios que ya conocemos (y que usan \verb&#&), cuando Python encuentra estas líneas al principio del código de una función simplemente las ignora. De esa forma disponemos de un espacio en el que explicar qué es lo que hace la función. Como ocurr casi siempre con la documentación del código, no es en absoluto necesario que exista este bloque para que la función haga su trabajo correctamente. Pero hemos querido desde el primer ejemplo incluir la documentación como parte esencial de la escritura de la función, porque como repetiremos varias veces a lo largo del curso, {\bf el código mal documentado es una mala práctica}. Más adelante volveremos sobre estas líneas iniciales de la función y sobre las diferencias entre usar \verb&"""& y usar \verb&#&.
+  
+  \item Como puedes ver, las restantes líneas del cuerpo de la función son simplemente instrucciones Python que ya conocemos y que traducen los pasos que hemos enumerado antes en el pseudocódigo. El cuerpo de la función incluye, al final, un bloque {\tt if/else}. Hemos elegido este ejemplo para ilustrar el hecho  de que el cuerpo de una función puede contener muchos de los elementos que hemos ido conociendo del lenguaje Python: asignaciones, bucles {\tt for}, sentencias {\tt if/else}, como en este ejemplo. Además  la sentencia sentencias {\tt if/else} de nuestro ejemplo contiene otro ingrediente fundamental de una función en Python: la función {\tt return}.
+  
+  \item Toda función Python debería incluir al menos una llamada a la función {\tt return}. El argumento de esa función define el valor que la función devuelve cuando la invocamos. En este ejemplo, como ves, tenemos dos apariciones de {\tt return}. En la primera el valor que devuelve la función {\tt esCuadrado} es {\tt True}, y en la segunda es {\tt False}. Fijate en que podríamos haber escrito la función de manera que sólo hubiera una aparición de {\tt return}. Por ejemplo, así: 
+<<raptor="python", purl=FALSE>>=
+def esCuadrado(n):
+  """
+  Devuelve True si el entero n es un cuadrado perfecto y False en caso contrario.  
+  """
+  raiz = m.sqrt(n)
+  raizRedondeada = round(raiz)
+  if(raizRedondeada**2 == n):
+    respuesta = True
+  else:
+    respuesta = False
+  return(respuesta)
+@  
+Pero a veces es más natural usar varias veces {\tt return}. En algunas ocasiones nos encontraremos con funciones en las que no es necesario definir un resultado de salida. Por ejemplo, funciones que producen un objeto externo como un fichero de datos o una figura. En esos casos se puede usar la función return sin argumentos, así:
+<<eval=FALSE, purl=FALSE, comment=NULL>>=
+return()
+@
+De esa forma simplemente le indicamos a Python que la ejecución de la función ha terminado. Cuando aprendas más sobre Python descubirás que, en cualquier caso, siempre suele ser buena idea que la función produzca algún valor de salida. Por ejemplo, si la función crea un fichero de datos, el valor de salida puede ser un código que nos permita saber si el proceso de creación del fichero ha tenido éxito o si, por el contrario, se ha producido un problema y de qué tipo.
+
+\end{enumerate}
+
+En cualquier caso, es importante saber que, tras ejecutar {\tt return}, Python considera terminada la ejecución de la función y devuelve el control al punto de nuestro programa desde el que se invocó a la función.  También es necesario saber que el valor que devuelve la función puede ser cualquiera de los objetos Python que hemos ido encontrando: números, booleanos o cadenas de caracteres, desde luego. Pero también listas, tuplas, etc. Incluso podemos tener funciones que produzcan como resultado otra función. En estos tutoriales tendremos ocasión de encontrarnos con algunas funciones más complejas.  
+
+
+
+
+Imagínate que estás escribiendo un programa para calcular el coste (en euros) de producción de un producto. Supongamos que varios componentes de ese producto se pagan en dólares. Eso significa que para calcular el coste tendrás que convertir los precios en dólares a precios en euros. Es una operación muy sencilla, claro. Por ejemplo, hoy la tasa de cambio es 1 US = 0.8813€. Así que en nuestro programa {\em cada vez que tengamos que convertir dólares en euros} basta con usar una línea parecida a esta:
+<<eval=FALSE, purl=FALSE, background=lngConfig[["python"]]$inColor>>=
+precioEuros = 0.8813 * precioDolares
+@
+Pero el problema es, precisamente como hemos destacado, que tenemos que hacer esto cada vez que aparezca una conversión de moneda en nuestro programa. Además las tasas de cambio entre monedas fluctúan. Para mantener el programa actualizado tendremos que modificar el programa, cambiando cada línea en la que se efectúe un cambio de moneda. 
+
+
+
+Desde el comienzo de nuestro trabajo ocn Python hemos ido aumentando la colección de funciones del lenguaje que conocemos. Las funciones son un ingrediente esencial de cualquier lenguaje de programación moderno.  Pyhton cuenta con una colección extensísima de funciones, especialmente gracias a la enorme cantidad de módulos que podemos importar. Y en esta sección vamos a aprender a escribir nuestras propias funciones.  
+\begin{itemize}
+  \item Escribir una función  n
+  \item En estos primeros tutoriales y en los que veremos a lo largo del resto del curso irás descubriendo nuevas funciones que realizan toda clase de tareas. Desde algunas muy sencillas, hasta otras mucho más complejas. Pero incluo teniendo en cuenta todas esas funciones, pronto descubrirás que a menudo las funciones disponibles  
+\end{itemize}
+
+
+
+
+En esta sección vamos a aprender 
+
+
+
+
 
 
 \subsection*{Soluciones de algunos ejercicios}
