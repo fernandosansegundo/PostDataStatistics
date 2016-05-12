@@ -15,6 +15,15 @@
 %\usepackage{pstricks}
 \usepackage{attachfile}
 
+<<echo=FALSE, eval=FALSE, purl=FALSE>>=
+setwd("~/Dropbox/PostDataFernando/TutorialesPython")
+source("~/Dropbox/Code/R/raptor/raptor.R")
+library(knitr)
+raptor(filename = "Tutorial-00-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
+@
+
+
+
 \textwidth=150mm \textheight=260mm
 \hoffset=-1cm
 \voffset=-25mm
@@ -69,7 +78,7 @@ Tutorial-00 (versión Python):\\ Instalación del software y primeros pasos.
 \subsubsection*{}
 
 En este primer tutorial vamos a limitarnos a preparar las herramientas que necesitamos para el
-trabajo del curso, que vamos a hacer a partir del Tutorial-01. Instalaremos casi todos los
+trabajo del curso, que comenzará realmente a partir del Tutorial-01. Instalaremos casi todos los
 programas que vamos a utilizar, y repasaremos algunas cuestiones de índole práctica que conviene
 discutir al principio, antes de que nos causen problemas más adelante. Es posible que, dependiendo
 de tu experiencia previa con ordenadores, todas o algunas de esas cuestiones te resulten muy
@@ -255,14 +264,6 @@ y usa el enlace {\em Quiero descargar  OpenOffice}:
     \begin{center}
     \includegraphics[height=9cm]{../fig/Tut00-WebOpenOffice-01-201605.png}
     \end{center}
-% El resto de las instrucciones de esta sección describen el proceso de instalación en Windows. Si
-% usas Linux, utiliza el instalador de paquetes de tu distribución ({\tt apt-get, yum,
-% Synaptic,...}). Si usas Mac, usa el enlace llamado:
-% \begin{center}
-% \link{http://www.openoffice.org/download/other.html}{Todas las plataformas, fuentes, idiomas,
-% paquetes de idiomas}
-% \end{center}
-% para descargar una versión apropiada para tu sistema.
 
 Usando ese enlace, se abrirá la ventana que aparece en la siguiente figura, en la que debes hacer
 click en el enlace indicado por la flecha. ¡Asegurate de que seleccionas tu sistema operativo y el idoma español! El número de versión habrá cambiado, desde luego. En la
@@ -554,7 +555,7 @@ Esa página contiene la documentación oficial de Python y la visitaremos varias
 Lo primero que debes saber es que las versiones 2 y 3 de Python no son compatibles al 100\%. Algunos programas escritos usando Python 2 no funcionarán con Python 3 y viceversa. Por esa razón la primera decisión que debemos tomar es cuál es la versión de Python que vamos a usar:
 
     \begin{center}
-        \fcolorbox{black}{Gris025}{\begin{minipage}{11cm}
+        \fcolorbox{black}{Gris025}{\begin{minipage}{10cm}
             {\sf En estos tutoriales vamos a usar siempre la versión 3 de Python.}
         \end{minipage}}
     \end{center}
@@ -570,13 +571,32 @@ Pasando a las cuestiones prácticas, para instalar Anaconda debes usar el  naveg
 \begin{center}
   \link{https://www.continuum.io/downloads}{https://www.continuum.io/downloads}
 \end{center}
-Verás algo similar a lo que muestra la Figura \ref{cap01:fig:Tut-00-py-01-Anaconda}. En el resto de esta sección vamos a describir la instalación de Anaconda en un sistema Windows, versiones 7/8/10. Si tu sistema es Mac OS X o Linux no te preocupes, la instalación es bastante parecida, pero en ese caso lo primero que debes hacer es elegir tu sistema operativo en el enlace que hemos destacado en la parte superior de la Figura \ref{cap01:fig:Tut-00-py-01-Anaconda}. Ese enlace te llevará a las instrucciones de instalación adecuadas para tu sistema. Si es un Mac, te recomiendo que uses la instalación gráfica. Si usas Linux,  seguramente ya sabes como usar la terminal.
+Verás algo similar a lo que muestra la Figura \ref{cap01:fig:Tut-00-py-01-Anaconda}. En el resto de esta sección vamos a describir la instalación de Anaconda en un sistema Windows, versiones 7/8/10. Si ese es tu caso, puedes pasar a los {\em Consejos generales}. Pero si usas Mac o Linux, te conviene leer el párrafo correspondiente aquí debajo, antes de seguir.
 
-Pero, en cualquier caso, si tienes problemas lo mejor es:
+\subsubsection*{Mac OS X.}
+
+Si tu sistema es Mac OS X no te preocupes, la instalación es bastante parecida, pero en ese caso lo primero que debes hacer es elegir tu sistema operativo en el enlace que hemos destacado en la parte superior de la Figura \ref{cap01:fig:Tut-00-py-01-Anaconda}. Ese enlace te llevará a las instrucciones de instalación adecuadas para tu sistema. Si es un Mac, te recomiendo que uses la instalación gráfica. 
+
+\subsubsection*{Linux.}
+
+Si usas Linux, puedes también instalar Anaconda, eligiendo el paquete de instalación adecuado para tu sistema. Pero para usuarios de distribuciones Linux basadas en Debian (como Ubuntu, Mint y otras distribuciones populares), existe otra opción, que pasa por utilizar  paquetes nativos de la distribución. En la mayoria de los casos, basta con ejecutar
+<<eval=FALSE, comment=NULL>>=
+sudo apt-get install spyder3
+@
+Lo cual instalará todo el software necesario (después de pedir tu clave de administrador y siempre que tengas conexión a internet, claro). Si decides seguir este camino, una vez concluida la instalación puedes buscar el icono para arrancar Spyder3 en tu sistema (asegúrate de que se trata de {\em Spyder3} y no {\em Spyder} sin el 3). También puedes abrir una terminal y ejecutar:
+<<eval=FALSE, comment=NULL>>=
+spyder3 &
+@
+Si usas otra distribución de Linux te recomiendo que busques información reciente en Internet, por ejemplo escribiendo en el buscador el nombre de tu distribución junto con la palabra {\tt spyder3}. 
+
+
+\paragraph{Consejos generales sobre la instalación (todos los sistemas).}
+
+En cualquier caso, si tienes problemas lo mejor es:
 \begin{itemize}
   \item Leer las instrucciones para Windows que aparecen a continuación, por si te sirven para aclarar tus dudas.
   \item Usar un buscador de Internet. Busca algo como {\em ``Instalar Anaconda Python en ...''} y añade detalles de tu sistema. Asegúrate de que usas documentos recientes, de no más de un año de antigüedad a ser posible.
-  \item \ninja{Acude a tu ninja informático}. En particular, si tu profesor te ha pedido que leas este tutorial en algún curso universitario, pídele que te ayude con la instalación.
+  \item \ninja{Acude a tu ninja informático}. En particular, si tu profesor te ha dicho que leas este tutorial en algún curso universitario, pídele que te ayude con la instalación.
 \end{itemize}
 
 Asegúrate también, antes de comenzar, de que tu equipo {\bf dispone de espacio en disco suficiente para la instalación.} Anaconda Python es un programa relativamente grande, que ocupará más de 300Mb de espacio en tu disco en la versión Windows. Posiblemente más a medida que añadas módulos.
@@ -601,7 +621,8 @@ El programa instalado se llama algo parecido a {\sf Anaconda3-2.5.0-Windows-x86\
   \item Tras pulsar {\em Next} una vez más comenzará el proceso de instalación propiamente dicho (Figura \ref{cap01:fig:Tut-00-py-03-Anaconda}(f)), en el que una barra de progreso te mostrará como se van copiando los ficheros de instalación de Anaconda Python. Esperamos a que se complete ese proceso (Figura \ref{cap01:fig:Tut-00-py-03-Anaconda}(g)) y hacemos clic en {\em Next}.
   \item La última ventana (Figura \ref{cap01:fig:Tut-00-py-03-Anaconda}(h)) nos informa de que Anaconda Python ya está instalado hacemos clic en {\em Finish} para salir de la instalación.
 \end{itemize}
-% Pero nuestro trabajo se va a concentrar en la aplicación que aparece con el nombre {\em Jupyter QTConsole}. Abre esa aplicación y verás una ventana como la que aparece en la Figura
+% Pero nuestro trabajo se va a concentrar en la aplicación que aparece con el nombre {\em Jupyter QTConsole}. Abre esa aplicación y verás una ventana como la que aparece en la Figura\begin{figure}[p]
+
 \begin{figure}[p]
 \begin{center}
 (a)\\[1cm]
@@ -643,26 +664,25 @@ El programa instalado se llama algo parecido a {\sf Anaconda3-2.5.0-Windows-x86\
 \end{center}
 \end{figure}
 
-
-\begin{figure}[tbh]
-\begin{center}
-(a)\\[1cm]
-\includegraphics[width=7cm]{../fig/Tut-00-py-03-Anaconda.png}\\[1cm]
-(b)\\[1cm]
-\includegraphics[width=7cm]{../fig/Tut-00-py-04-Anaconda.png}\\[1cm]
-(c)\\[1cm]
-\includegraphics[width=7cm]{../fig/Tut-00-py-05-Anaconda.png}\\[1cm]
-\caption{Primeras etapas de la instalación de Anaconda Python.}
-\label{cap01:fig:Tut-00-py-03-Anaconda}
-\end{center}
-\end{figure}
+% \begin{figure}[tbh]
+% \begin{center}
+% (a)\\[1cm]
+% \includegraphics[width=7cm]{../fig/Tut-00-py-03-Anaconda.png}\\[1cm]
+% (b)\\[1cm]
+% \includegraphics[width=7cm]{../fig/Tut-00-py-04-Anaconda.png}\\[1cm]
+% (c)\\[1cm]
+% \includegraphics[width=7cm]{../fig/Tut-00-py-05-Anaconda.png}\\[1cm]
+% \caption{Primeras etapas de la instalación de Anaconda Python.}
+% \label{cap01:fig:Tut-00-py-03-Anaconda}
+% \end{center}
+% \end{figure}
 
 \newpage
 
 \subsection{Iniciando Spyder.}
 \label{tut02py:subsec:iniciandoConsolaJupyter}
 
-En Windows esta instalación creará un grupo de programas llamado {\em Anaconda3} en tu equipo, que puedes localizar en la lista de {\em Aplicaciones}. La ubicación de esa lista es distinta en cada una de las útlimas versiones de {\em Windows}. Si tienes problemas para localizarla pide ayuda a alguien con más experiencia. Una vez localizado el grupo de programas {\em Anaconda3}, verás los iconos de varios programas, algunos de los cuales  exploraremos en futuros tutoriales. Pero una de las ventajas de usar Anaconda es que disponemos de una especie de {\em centro de control} de esos programas, llamado {\em Launcher}, que nos permite, entre otras cosas, mantenerlos actualizados fácilmente. Puedes iniciar {\em Launcher} mediante el icono:
+En Windows esta instalación creará un grupo de programas llamado {\em Anaconda3} en tu equipo, que puedes localizar en la lista de {\em Aplicaciones}. La ubicación de esa lista es distinta en cada una de las últimas versiones de {\em Windows}. Si tienes problemas para localizarla pide ayuda a alguien con más experiencia. Una vez localizado el grupo de programas {\em Anaconda3}, verás los iconos de varios programas, algunos de los cuales  exploraremos en futuros tutoriales. Pero una de las ventajas de usar Anaconda es que disponemos de una especie de {\em centro de control} de esos programas, llamado {\em Launcher}, que nos permite, entre otras cosas, mantenerlos actualizados fácilmente. Puedes iniciar {\em Launcher} mediante el icono:
 \begin{center}
 \includegraphics[width=2cm]{../fig/Tut-00-py-15-AnacondaIcon.png}\\[1cm]
 \end{center}
@@ -672,9 +692,14 @@ En cualquier caso, al iniciar  {\em Launcher} verás una ventana parecida a esta
 \begin{center}
 \includegraphics[width=12cm]{../fig/Tut-00-py-16-Launcher.png}\\[1cm]
 \end{center}
-en la que aparecen los iconos de algunos componentes de Anaconda que puedes iniciar desde esta ventana. Más adelante, cuando llegues a convertirte en un usuario experimentado de Python, es posible que quieras utilizar algunas características más avanzadas. Por ejemplo, para poder usar Python2 y Python3 simultáneamnete en el mismo ordenador. En ese momento te aconsejamos que dediques algún tiempo a estudiar la documentación de Anaconda, pouque Launcher puede simplificar mucho tu trabajo. 
+en la que aparecen los iconos de algunos componentes de Anaconda que puedes iniciar desde esta ventana. Más adelante, cuando llegues a convertirte en un usuario experimentado de Python, es posible que quieras utilizar algunas características más avanzadas. Por ejemplo, para poder usar Python2 y Python3 simultáneamnete en el mismo ordenador. En ese momento te aconsejamos que dediques algún tiempo a estudiar la documentación de Anaconda, porque Launcher puede simplificar mucho tu trabajo. 
 
-Nosotros vamos a usar esta ventana para acceder a {\em Spyder}. Si esta es la primera vez que inicias {\em Launcher} es muy posible que tengas que instalar el programa {\em Spyder} (necesitarás estar conectado a Internet). Si es así, a la derecha del icono de Spyder aparecerá un botón verde con el texto {\em Install}. Pulsa ese botón y espera a que termine la instalación de Spyder. Una vez instalado, el botón cambiará al color azul con el texto {\tt Launch}. Como hemos dicho antes, una de las ventajas que aporta {\em Launcher} es que facilita la tarea de mantener actualizada nuestra instalación de Python. Anaconda comprobará periódicamente si existen actualizaciones de Spyder y otros componentes. Si es así, verás aparecer un botón adicional con el texto {\em Update}, que al pulsarlo actualizará ese programa. Te aconsejamos que mantengas actualizado tu instalación de Python (y en general todo tu sistema).
+Nosotros vamos a usar esta ventana para acceder a {\em Spyder}. Si tu sistema operativo es Linux (Debian/Ubuntu/Mint) y optaste por instalar paquetes nativos, tú no dispondrás de Launcher. Pero recuerda que puedes iniciar el programa ejecutando en una terminal el comando: 
+<<eval=FALSE, comment=NULL>>=
+spyder3 & 
+@
+
+Volviendo a los usuario de {\em Launcher} en Anaconda, si esta es la primera vez que lo inicias es muy posible que tengas que instalar el programa {\em Spyder} (necesitarás estar conectado a Internet). Si es así, a la derecha del icono de Spyder aparecerá un botón verde con el texto {\em Install}. Pulsa ese botón y espera a que termine la instalación de Spyder. Una vez instalado, el botón cambiará al color azul con el texto {\tt Launch}. Como hemos dicho antes, una de las ventajas que aporta {\em Launcher} es que facilita la tarea de mantener actualizada nuestra instalación de Python. Anaconda comprobará periódicamente si existen actualizaciones de Spyder y otros componentes. Si es así, verás aparecer un botón adicional con el texto {\em Update}, que al pulsarlo actualizará ese programa. Te aconsejamos que mantengas actualizado tu instalación de Python (y en general todo tu sistema).
 
 Cuando {\em Spyder} esté instalado, arráncalo haciendo click sobre el botón azul {\em Launch}. Ten un poco de paciencia: puede tardar un poco, especialmente la primera vez. La ventana inicial de Spyder, en cualquier caso, será parecida a esta:
 
@@ -682,21 +707,15 @@ Cuando {\em Spyder} esté instalado, arráncalo haciendo click sobre el botón a
 \includegraphics[width=14.5cm]{../fig/Tut-00-py-17-Spyder.png}\\[1cm]
 \end{center}
 
-Hemos indicado en la figura los dos dos paneles de la ventana de Spyder en los que se va a desarrollar de manera fundamental nuestro trabajo, el {\sf editor de codigo} y la {\sf Terminal de IPython}
+Hemos indicado en la figura los dos paneles de la ventana de Spyder en los que se va a desarrollar de manera fundamental nuestro trabajo, el {\sf Editor de Código} y la {\sf Terminal de IPython}. Comprueba además la versión de Python en la barra superior de la ventana de Spyder, como se indica en la figura.
 
 \subsubsection*{¿Qué es Spyder?}
 
-En los próximos tutoriales tendremos ocasión de conocer a fondo el programa.  Por el momento nos vamos a tener que conformar con una brevísima introducción. El nombre Spyder es un acrónimo de {\sf Scientific PYthon Development EnviRonment.} Es decir, un {\em entorno de desarrollo integrado} para Python con una orientación científica. En la página web 
+En los próximos tutoriales tendremos ocasión de conocer a fondo el programa.  Por el momento nos vamos a tener que conformar con una brevísima introducción. El nombre Spyder es un acrónimo de {\sf {\bf S}cientific {\bf PY}thon {\bf D}evelopment {\bf E}nvi{\bf R}onment.} Es decir, un {\em entorno de desarrollo integrado} para Python con una orientación científica. En la página web 
 \begin{center}
 \href{https://pythonhosted.org/spyder/}{https://pythonhosted.org/spyder/} 
 \end{center}
-puedes encontrar más documentación sobre Spyder.
-
-¿Qué es un entorno de desarrollo integrado? Es una herramienta típica del trabajo de programación. Al principio los programadores usaban varias herramientas separadas para su trabajo: un editor de texto, un compilador, un sistema de control de versiones, etc.  Los entornos de desarrollo integrado surgieron de modo natural como una manera de reunir, en un único lugar, casi todas las herramientas que el programador necesitaba para su trabajo, aprovechando además las sinergias que se crean al coordinar de esa forma el trabajo. Dicho eso, conviene añadir enseguida que muchos programadores prefieren todavía trabajar {\em al modo clásico}, con herramientas separadas para cada parte del trabajo. Es cuestión de gustos y del análisis que cada programador hace de las herramientas que le hacen más productivo. En este curso aprenderemos a usar Python mediante Spyder, pero la decisión final sobre la forma en la que usas el lenguaje será tuya.
-
-
-\textcolor{red}{\Huge AQUI}
-
+puedes encontrar más documentación sobre Spyder. ¿Y qué es un entorno de desarrollo integrado? Es una herramienta típica del trabajo de programación. Al principio los programadores usaban varias herramientas separadas para su trabajo: un editor de texto, un compilador, un sistema de control de versiones, etc.  Los entornos de desarrollo integrado surgieron de modo natural como una manera de reunir, en un único lugar, casi todas las herramientas que el programador necesitaba para su trabajo, aprovechando además las sinergias que se crean al coordinar de esa forma el trabajo. Dicho eso, conviene añadir enseguida que muchos programadores prefieren todavía trabajar {\em al modo clásico}, con herramientas separadas para cada parte del trabajo. Es cuestión de gustos y del análisis que cada programador hace de las herramientas que le hacen más productivo. En este curso aprenderemos a usar Python mediante Spyder, pero la decisión final sobre la forma en la que usas el lenguaje será tuya.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -769,7 +788,7 @@ Tras instalar todo este software, hay que ponerlo a trabajar. En general, como h
 En el resto del curso, cada pareja Capítulo/Tutorial vendrá acompañada de una {\em Guía de Trabajo}, un documento breve que esencialmente explica como se coordina el trabajo teórico del capítulo con los contenidos prácticos del tutorial. De nuevo, los dos primeros capítulos y tutoriales son un caso especial, porque en este caso existe una única {\em Guía de Trabajo} conjunta para ambos. Y ese es el siguiente paso: debes abrir ese documento y seguir sus instrucciones. El documento estará disponible en la página web del libro, o de la forma que te indique tu profesor. Las {\em Guías de Trabajo} constituirán el guión que ordene nuestro trabajo en el curso.
 
 
-
+\textcolor{red}{\Huge AQUI}
 
 \vspace{2cm} \hrule
 \quad\\

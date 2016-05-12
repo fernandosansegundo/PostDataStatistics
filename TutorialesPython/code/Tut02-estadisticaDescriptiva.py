@@ -14,10 +14,10 @@
 
 ## ---- Importacion de Modulos
 
-import pandas as pd # read_csv, 
-import numpy as np # cumsum, ptp, mean, var, std, median, percentile
-import matplotlib.pyplot as plt # boxplot, setp, show, bar, hist
-import collections as cl # Counter
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt 
+import collections as cl 
 
 
 ## ---- Preliminares

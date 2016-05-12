@@ -584,7 +584,7 @@ Pero este gráfico, como ves,  tiene muchas limitaciones y no es especialmente i
   \hlkwd{axis}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{at}\hlstd{=xA,}   \hlkwc{labels}\hlstd{=xA)}
   \hlkwd{segments}\hlstd{(valores, yA[}\hlopt{-}\hlkwd{length}\hlstd{(yA)] , valores, yA[}\hlopt{-}\hlnum{1}\hlstd{],} \hlkwc{lty}\hlstd{=}\hlnum{2}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"blue"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{4}\hlstd{)}
 \hlstd{\}}
-\hlkwd{graficoEscalera}\hlstd{(valores, probabilidades)}
+\hlkwd{graficoEscalera}\hlstd{(valoresX, probabilidadesX)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-17-1} 
@@ -842,7 +842,7 @@ En resumen, ya hemos leído el fichero {\tt csv} llamado {\tt Tut01-PracticaConC
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in mean(var3): objeto 'var3' no encontrado}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in mean(var3): object 'var3' not found}}\end{kframe}
 \end{knitrout}
 La respuesta de R, en color rojo, indica que se ha enfadado con nosotros. ¿Por qué? Pues porque las variables de un {\tt data.frame} no viven vidas propias. El nombre correcto de esta variable no es {\tt var3} sino   \verb#datosTutorial01$var3#.
 
@@ -2050,7 +2050,7 @@ Los valores de {\tt cuenta} y {\tt k} se alternan en la salida. Ya aprenderemos 
 \begin{verbatim}
 ## bola
 ##     b     n 
-## 0.251 0.750
+## 0.250 0.750
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

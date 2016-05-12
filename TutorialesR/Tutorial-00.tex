@@ -114,7 +114,7 @@ Tutorial-00: Instalación del software y primeros pasos.
 \subsubsection*{}
 
 En este primer tutorial vamos a limitarnos a preparar las herramientas que necesitamos para el
-trabajo del curso, que vamos a hacer a partir del Tutorial-01. Instalaremos casi todos los
+trabajo del curso, que comenzará realmente a partir del Tutorial-01. Instalaremos casi todos los
 programas que vamos a utilizar, y repasaremos algunas cuestiones de índole práctica que conviene
 discutir al principio, antes de que nos causen problemas más adelante. Es posible que, dependiendo
 de tu experiencia previa con ordenadores, todas o algunas de esas cuestiones te resulten muy
@@ -251,28 +251,37 @@ informático} a mano.
 \section{Navegador de internet.}
 \label{tut00:sec:NavegadorInternet}
 
-Para muchas de las tareas asociadas a este curso, la elección de uno u otro navegador de internet
-es irrelevante, siempre que se trate de versiones recientes. Pero en el tema concreto de los
-cuestionarios de Moodle, de los que hablaremos más adelante, es muy recomendable que utilices el
-navegador Firefox, que puedes descargar desde  este enlace:
+Para muchas de las tareas asociadas a este curso, la elección de uno u otro navegador de Internet
+es irrelevante, siempre que se trate de versiones recientes. Pero para algunos temas concretos del curso es 
+recomendable que utilices el navegador Firefox, que puedes descargar desde  este enlace:
 \begin{center}
 \link{http://www.mozilla.org/es-ES/firefox/new/}{http://www.mozilla.org/es-ES/firefox/new/}
 \end{center}
 Hay versiones disponibles para Windows, Mac y Linux. La razón por la que te recomendamos Firefox es
-porque este navegador permite visualizar correctamente las fórmulas matemáticas que usamos en
-bastantes cuestionarios, mientras que otros navegadores no son capaces de hacer esto\footnote{
-Desdichadamente, aunque hace más de una década que existe un lenguaje estándar para las fórmulas
-matemáticas en internet y el intercambio de contenido matemático entre programas, llamado MathML
-(\link{http://en.wikipedia.org/wiki/MathML}{http://en.wikipedia.org/wiki/MathML}) y creado por el
-consorcio W3C (\link{http://en.wikipedia.org/wiki/W3C}{http://en.wikipedia.org/wiki/W3C}, los
-navegadores siguen ignorando esta realidad, y complicando la creación de contenidos educativos
-accesibles para todos...) } Para que te hagas una idea del problema que esto representa, en esta
-figura aparece una misma fórmula de uno de nuestros cuestionarios,
+porque este navegador permite visualizar correctamente las fórmulas matemáticas, mientras que otros 
+navegadores nos han causado más problemas al hacer esto
+% \footnote{
+% Desdichadamente, aunque hace más de una década que existe un lenguaje estándar para las fórmulas
+% matemáticas en internet y el intercambio de contenido matemático entre programas, llamado MathML
+% (\link{http://en.wikipedia.org/wiki/MathML}{http://en.wikipedia.org/wiki/MathML}) y creado por el
+% consorcio W3C (\link{http://en.wikipedia.org/wiki/W3C}{http://en.wikipedia.org/wiki/W3C}, los
+% navegadores han ignorado esta realidad durante mucho tiempo, complicando la creación de contenidos educativos
+% accesibles para todos... La situación ha mejorado algo en las versiones más recientes.) } 
+% Para que te hagas una idea del problema que esto puede representar, en esta
+% figura aparece una misma fórmula de uno de nuestros cuestionarios,
+%     \begin{center}
+%     \includegraphics[height=2cm]{../fig/Tut00-SoporteMathMLNavegadores.png}
+%     \end{center}
+% Y como puedes ver, la fórmula que Chrome mostraba en esa versión tiene serios problemas de legibilidad, porque se
+% llegan a perder incluso las barras de fracción. 
+En cualquier caso, aparecen nuevas versiones de los navegadores muy a menudo. Y esas nuevas versiones pueden corregir algunos de esos problemas (desdichadamente, hemos tenido también experiencia con el proceso contrario, en el qu enua nueva versión estropeaba algo que ya estaba funcionando). Así que si quieres comprobar si tu navegador funciona correctamente puedes visitar esta pagina web: 
+\begin{center}
+\href{https://www.tuhh.de/MathJax/test/sample.html}{https://www.tuhh.de/MathJax/test/sample.html}
+\end{center}
+Espera unos segundos y asegúrate de que en tu navegador aparecen las fórmulas matemáticas como en esta figura:
     \begin{center}
-    \includegraphics[height=2cm]{../fig/Tut00-SoporteMathMLNavegadores.png}
+    \includegraphics[width=12cm]{../fig/Tut00-18-MathJaxTest.png}
     \end{center}
-Y como puedes ver, la fórmula que Chrome muestra tiene serios problemas de legibilidad, porque se
-llegan a perder incluso las barras de fracción.
 
 
 \section{Instalación de la hoja de cálculo Calc.}
@@ -288,23 +297,14 @@ ello dirígete a
 \end{center}
 y usa el enlace {\em Quiero descargar  OpenOffice}:
     \begin{center}
-    \includegraphics[height=9cm]{../fig/Tut00-WebOpenOffice.png}
+    \includegraphics[height=9cm]{../fig/Tut00-WebOpenOffice-01-201605.png}
     \end{center}
-El resto de las instrucciones de esta sección describen el proceso de instalación en Windows. Si
-usas Linux, utiliza el instalador de paquetes de tu distribución ({\tt apt-get, yum,
-Synaptic,...}). Si usas Mac, usa el enlace llamado:
-\begin{center}
-\link{http://www.openoffice.org/download/other.html}{Todas las plataformas, fuentes, idiomas,
-paquetes de idiomas}
-\end{center}
-para descargar una versión apropiada para tu sistema.
 
 Usando ese enlace, se abrirá la ventana que aparece en la siguiente figura, en la que debes hacer
-click en el enlace indicado por la flecha. El número de versión habrá cambiado, desde luego. En la
-Figura aparece la versión {\tt 3.4.1}, pero en el momento en que escribo esto la versión es la {\tt
-4.0.1} y, cuando tú la descargues, seguramente habrá avanzado:
+click en el enlace indicado por la flecha. ¡Asegurate de que seleccionas tu sistema operativo y el idoma español! El número de versión habrá cambiado, desde luego. En la
+Figura aparece la versión {\tt 4.1.2}, pero en el momento en que tú la descargues, posiblemente habrá avanzado:
     \begin{center}
-    \includegraphics[height=7cm]{../fig/Tut00-WebOpenOffice-01.png}
+    \includegraphics[height=9cm]{../fig/Tut00-WebOpenOffice-02-201605.png}
     \end{center}
 
 Con eso llegamos a la página de descarga (alojada en el dominio {\tt sourceforge.net} a fecha de
@@ -320,7 +320,7 @@ que sepas en qué carpeta se guarda ese fichero, pero eso depende de tu configur
 El fichero que has descargado se llamará (en Windows) algo parecido a:
 \begin{center}
 {\tt
-Apache{\textunderscore}OpenOffice{\textunderscore}incubating{\textunderscore}4.0.1{\textunderscore}Winx{\textunderscore}86{\textunderscore}install{\textunderscore}es.exe}
+Apache{\textunderscore}OpenOffice{\textunderscore}incubating{\textunderscore}4.1.2{\textunderscore}Winx{\textunderscore}86{\textunderscore}install{\textunderscore}es.exe}
 \end{center}
 (aunque puede que no veas la extensión {\tt .exe} en el Explorador de Windows). Ahora tienes que
 abrir ese fichero, para instalar el programa (usa el botón derecho otra vez).  Para este paso, es
@@ -329,20 +329,20 @@ cuadro de diálogo que pregunta {\em ¿Desea permitir que este programa realice 
 pulsar en {\tt Sí} para continuar la instalación (insistimos, en las próximas figuras el número de
 versión que aparecerá será otro, pero el proceso será esencialmente el mismo).
     \begin{center}
-    \includegraphics[height=4cm]{../fig/Tut00-WebOpenOffice-03.png}
+    \includegraphics[height=4cm]{../fig/Tut00-OpenOffice-03-201605.png}
     \end{center}
 Empieza la instalación:
     \begin{center}
-    \includegraphics[width=7cm]{../fig/Tut00-WebOpenOffice-04.png}
+    \includegraphics[width=7cm]{../fig/Tut00-OpenOffice-04-201605.png}
     \end{center}
 La siguiente ventana te preguntará dónde quieres guardar una carpeta con los ficheros {\em
 temporales} de instalación. Es importante, de nuevo, que recuerdes donde los guardas. Cuando
 termine la instalación puedes borrar esa carpeta, sólo es necesaria durante la instalación.
     \begin{center}
-    \includegraphics[height=5cm]{../fig/Tut00-WebOpenOffice-05.png}
+    \includegraphics[height=5cm]{../fig/Tut00-OpenOffice-05-201605.png}
     \end{center}
-A continuación el programa va pasando por todas estas pantallas, en las que puedes, sin riesgos,
-aceptar todas las opciones por defecto (en la segunda, si escribes tu nombre de usuario, se
+A continuación el programa va pasando por pantallas similares a estas (son de una versión anterior), en las que puedes, 
+sin riesgos, aceptar todas las opciones por defecto (en la segunda, si escribes tu nombre de usuario, se
 incorporará a todos los documentos que crees con OpenOffice; puedes omitir esa información sin
 problemas):
     \begin{center}
@@ -357,7 +357,7 @@ OpenOffice}, y abrir el que se llama {\em OpenOffice.org Calc}. Tras una ventana
 unos momentos, te encontrarás con esta pantalla (puedes verlo más o menos grande, según tu
 resolución de pantalla):
     \begin{center}
-    \includegraphics[height=10cm]{../fig/Tut00-WebOpenOffice-10.png}
+    \includegraphics[height=10cm]{../fig/Tut00-OpenOffice-10-201605.png}
     \end{center}
 que indica que todo ha ido bien. Ya estamos listos para pasar al segundo apartado de este tutorial.
 
@@ -684,64 +684,51 @@ operaciones básicas de la Estadística. En este curso vamos a usar  GeoGebra  s
 mostrar algunas construcciones dinámicas, en las que podrás interactuar con algunos elementos de la
 construcción, para experimentar lo que sucede cuando se modifican.
 
-%El principal requisito para ejecutar GeoGebra  es tener instalado Java. Puedes descargarte la última versión de Java (que, en el momento de escribir esto es la Version 7, Update 51), desde la página
-%    \begin{center}
-%    \link{http://www.java.com/}{www.java.com}
-%    \end{center}
-%En esa página encontrarás instrucciones detalladas de instalación, que dependen del sistema operativo de tu ordenador (Windows, Mac, Linux,...).  Tal vez no sepas si tienes Java ya instalado. En cualquier caso, siempre es una buena idea asegurarse de que la versión está actualizada (por razones de seguridad, entre otras). Puedes comprobarlo en este enlace:
-%    \begin{center}
-%    \link{http://www.java.com/es/download/installed.jsp}{www.java.com/es/download/installed.jsp}
-%    \end{center}
-%En lo que sigue, supondremos que tienes instalado Java.
-
 La página principal del proyecto GeoGebra, en la que puedes encontrar mucha información sobre el
 programa es:
 \begin{center}
 \link{http://www.geogebra.org}{www.geogebra.org}
 \end{center}
     \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga01.png}
+    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga01-201605.png}
     \end{center}
-En esa página, pulsa sobre el enlace {\tt Software Libre} que hemos destacado en la anterior
+En esa página, pulsa sobre el enlace {\tt Descargas} que hemos destacado en la anterior
 figura.
     \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga01.png}
+    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga02-201605.png}
     \end{center}
 y elige tu sistema en la ventana que se abre. La descarga del instalado debería comenzar en ese
 momento. A partir de aquí, las instrucciones de instalación que incluimos son para el sistema
 Windows. Tras ejecutar el instalador pasarás por estas pantallas:
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup01.png}
+    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup01-201605.png}
     \end{center}
 Pulsamos en {\tt Siguiente}
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup02.png}
+    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup02-201605.png}
     \end{center}
 Pulsamos en {\tt Acepto}
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup03.png}
+    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup03-201605.png}
     \end{center}
 Puedes dejar la instalación {\tt Standard} seleccionada, y pulsar en {\tt Instalar}:
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup04.png}
+    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup04-201605.png}
     \end{center}
 Esperamos unos momentos mientras se instala el programa \ldots
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup05.png}
+    \includegraphics[width=14cm]{../fig/Tut00-GeoGebraSetup05-201605.png}
     \end{center}
 \ldots y la instalación concluye correctamente. Para comprobar que ha sido así, deja marcada la
 casilla {\tt Ejecutar GeoGebra} y pulsa en {\tt Terminar}. Al cabo de unos instantes aparecerá la
 interfaz de GeoGebra, que se muestra en esta figura:
     \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-GeoGebraSetup06.png}
+    \includegraphics[width=15cm]{../fig/Tut00-GeoGebraSetup06-201605.png}
     \end{center}
 Como ves, la mayor parte la ocupa la {\tt Vista Gráfica}, en la que aparecen los ejes de un plano
-de coordenadas cartesianas.  Justo debajo aparece la {\em Línea de Entrada}, que usaremos para teclear comandos. En este curso no vamos a profundizar en el uso de GeoGebra. Nos vamos a
-limitar a usarlo para visualizar construcciones que te entregaremos adjuntas en los capítulos de
+de coordenadas cartesianas.  Justo debajo aparece la {\em Línea de Entrada}, que usaremos para teclear comandos. En este curso no vamos a profundizar en el uso de GeoGebra. Vamos a usarlo para visualizar construcciones que te entregaremos adjuntas en los capítulos de
 teoría o en los tutoriales. Así que podrás usarlas directamente, y ya verás que resultan muy
-intuitivas. En cualquier caso, si quieres aprender más sobre GeoGebra (que es un gran programa para
-la enseñanza y la visualización de las Matemáticas), te recomendamos que explores su página web.
-
+intuitivas. También usaremos la {\em Calculadora de Probabilidades} y la {\em Ventana de Cálculo Simbólico}, dos herramientas de GeoGebra que facilitarán mucho nuestro trabajo. Pero no vamos a explorar, ni mucho menos, todas las posibilidades que ofrece el programa. En cualquier caso, si quieres aprender más sobre GeoGebra (que es un gran programa para la enseñanza y la visualización de las Matemáticas), te recomendamos que explores su página web.
 \section{Siguiente paso. ¿Dónde vamos ahora?}
 
 Tras instalar todo este software, hay que ponerlo a trabajar. En general, como hemos dicho en la Introducción del libro, cada capítulo del libro se corresponde con un tutorial, y la numeración de capítulos y tutoriales coincide. Sin embargo, los Tutoriales 1 y 2, que corresponden a la Parte \ref{curso-parte:EstadisticaDescriptiva} del curso, son especiales. Cada uno de ellos cubre el contenido conjunto de los Capítulos \ref{curso-cap:IntroduccionEstadisticaDescriptiva} y \ref{curso-cap:ValoresCentralesDispersion} de esa parte del curso. Pero en el Tutorial01 se utiliza la hoja de cálculo Calc de OpenOffice, mientras que en el Tutorial02 se usa R.
