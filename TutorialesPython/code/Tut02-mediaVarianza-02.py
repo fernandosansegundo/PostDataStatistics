@@ -1,11 +1,10 @@
-## ---- Tut02-mediaVarianza-02
-########################################################
-# www.postdata -statistics.com
-# POSTDATA. Introducción a la Estadística
-# Tutorial 02 (versión Python).
-# Ejemplo de cálculo de media, varianza y desv. típica
-# para una variable cuantitativa, datos no agrupados.
-########################################################
+"""
+www.postdata -statistics.com
+POSTDATA. Introducción a la Estadística.
+Tutorial 02 (versión Python).
+Ejemplo de cálculo de media, varianza y desv. típica
+para una variable cuantitativa, datos no agrupados.
+"""
 
 import math as m
 
@@ -18,17 +17,19 @@ print("La lista de edades es:")
 print(edades)
 
 # Media aritmética de la lista:
-mediaAritmetica = sum(edades) / len(edades)
+mediaEdad = sum(edades) / len(edades)
 print("La media aritmética es:")
-print(mediaAritmetica)
+print(mediaEdad)
 
 # Varianza poblacional de la lista
-terminosVarianza = []
+diferenciasCuad = []
+# diferenciasCuad acumula resultados parciales del numerador de la 
+# varianza en cada iteración del siguiente bucle for.
 for edad in edades:
-  # Terminos varianza acumula resultados parciales del numerador de la 
-  # varianza en cada iteración del bucle for.
-  terminosVarianza = terminosVarianza + [(edad - mediaAritmetica)**2] 
-varianzaPob = sum(terminosVarianza) / len(edades)
+  diferencia = edad - mediaEdad
+  cuadradoDif = diferencia**2
+  diferenciasCuad = diferenciasCuad + [cuadradoDif]
+varianzaPob = sum(diferenciasCuad) / len(edades)
 print("La varianza poblacional es:")
 print(varianzaPob)
 

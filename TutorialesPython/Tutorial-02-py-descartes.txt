@@ -1,0 +1,251 @@
+El código correspondiente a esos dos pasos es este:
+
+  Y para calcular el numerador de esa fórmula empezaremos calculando esta lista de valores (los cuadrados de las desviaciones):
+  \[
+    (x_1 - \bar x)^2, (x_2 - \bar x)^2, \ldots , (x_n - \bar x)^2
+    \]
+Después de obtener esa lista, tendremos que calcular su suma y dividir por $n$. Pero estos últimos dos pasos ya hemos aprendido a hacerlos en Python usando las funciones {\tt sum} y {\tt len}. Así que el paso clave es la construcción de la lista de cuadrados de las desviaciones. 
+
+En esta sección vamos a aprender cuál es la solución de Python para este tipo de {\sf problemas iterativos}. Insistimos: problemas en los que se trata de ir recorriendo uno tras otro los elementos de una lista (o de algún otro tipo de conjunto o estructura de datos), aplicando una cierta operación en cada posición de la lista. Este tipo de problemas son uno de los ingredientes básicos de la Computación. Por eso, todos los lenguajes de programación incluyen instrucciones para realizar esas tareas iterativas. La buena noticia es que si no conoces ningún otro lenguaje de programación, lo que aprendas aquí para Python te facilitará en el futuro el aprendizaje de ese tipo de instrucciones en otros lenguajes. La noticia menos buena es que para aprender a hacer esto vamos a tener que dar un pequeño salto de nivel en esta sección y subir un peldaño en la escalera de la abstracción. Pero no te asustes, es un peldaño bajito y vamos hacia arriba. La situación presenta analogías con el aprendizaje de un idioma extranjero. Al principio aprendemos palabras sueltas: casa, árbol,  subir. En las secciones previas hemos aprendido palabras sueltas de Python. Pero si queremos hablar Python tenemos que aprender a construir {\em frases} y para eso es necesario aprender un poco de sintaxis, nuestro pequeño peldaño de abstracción.
+
+Siguiendo con la analogía del idioma, vamos a empezar viendo cómo podemos traducir al lenguaje Python la solución para el paso clave del problema del cálculo de la varianza.   
+
+
+Para ponernos las cosas sencillas desde el principio, vamos a empezar con un problema muy simple. Dada la siguiente lista {\tt datos} de números del 1 al 10:
+  <<eval=FALSE, purl=FALSE>>=
+  datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+@
+  queremos obtener una lista de cuadrados de estos números, a la que llamaremos {\tt datos2}:
+  <<eval=FALSE, purl=FALSE>>=
+  datos2 = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+@
+  ¿Cómo hacemos esto en Python? Usamos este código:
+  
+pero que contiene el ingrediente clave que necesitaremos para resolver después el problema del cálculo la varianza. El problema es este:
+  \begin{quote}
+{\em Tenemos los números del 1 al 10 y queremos calcular el cuadrado de cada uno de esos números.}
+\end{quote}
+La frase que acabamos de escribir es una descripción del problema en lenguaje natural, el que hablamos las personas. Y para nosotros es, seguramente suficiente. Especialmente en un problema de ese tamaño, que podríamos resolver a mano. Sin embargo, para resolverlo usando Python tenemos que ser mucho más precisos, porque Python es, como todos los lenguajes de programación, un lenguaje formal que no admite ambigüedades. A los ordenadores, en su estado actual, no les gustan las ambigüedades. Por eso, seguramente, carecen todavía de sentido del humor. Esa labor de eliminar las ambigüedades es, en cierto sentido, una labor de {\em traducción}. Por ejemplo, ¿qué quiere decir que {\em tenemos los números del 1 al 10}? Para que Python pueda manejar esos números podemos empezar con una lista que contenga esos números:
+  <<eval=FALSE, purl=FALSE>>=
+  datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+@
+  Así eliminamos la ambigüedad: el punto de partida está claro. Fíjate en que podríamos haber empezado de otra manera. Por ejemplo, podríamos haber usado {\tt range} así:
+  <<eval=FALSE, purl=FALSE>>=
+  datos = range(1:10)
+@
+  Y ya sabemos que para Python un objeto de tipo {\tt range} es distinto de una lista (aunque se pueda {\em traducir} en una lista fácilmente). También podríamos haber usado como punto de partida un fichero {\tt csv} que contuviera esos números. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+En palabras podemos describir lo que queremos hacer así:
+  
+  <<eval=FALSE, purl=FALSE, background="#ffd9b3">>=
+  Suponemos que partimos de una lista llamada edades y que 
+la variable mediaEdad contiene su media.
+
+Creamos una lista vacía llamada cuadradosDesviaciones.
+Para cada edad de la lista edades:
+  Restamos mediaEdad de esa edad, elevamos el resultado (desviacion) al cuadrado 
+y añadimos ese cuadrado a la lista cuadradosDesviaciones.
+
+Una vez hecho esto, dividimos la suma de lista cuadradosDesviaciones 
+entre n (la longitud de la lista edades) y guardamos el resultado en 
+la variable varianzaEdades.
+@
+  Esta descripción en palabras de lo que vamos a hacer es un ejemplo de {\sf pseudocódigo}. El pseudocódigo es un lenguaje especial, a medio camino entre el lenguaje natural que hablamos y los lenguajes formales de programación como Python. El pseudocódigo muestra la estructura del algoritmo (método) que vamos a usar, pero en general nos ahorra los detalles más técnicos del lenguaje de programación concreto (Python en este caso). Las ventajas de usar pseudocódigo son, entre otras:
+  \begin{enumerate}
+\item  El programador puede usar el pseudocódigo cuando está diseñando un programa, para concentrarse en la estructura del programa. Los detalles se ajustan después. Para un programador experimentado, el paso del pseudocódigo al código es una labor de {\em traducción} relativamente sencilla.
+
+\item Por esa misma capacidad de abstracción, el pseudocódigo puede utilizarse para traducir un algoritmo a distintos lenguajes de programación.
+
+\item Para otros programadores, distintos del autor del programa, el pseudocódigo sirve como guía para facilitar la comprensión del código. Y por la parte que nos toca como programadores, podemos asegurarte que, pasado un cierto tiempo no muy largo, el propio autor del programa se alegrará enormemente de haber dejado escrito el pseudocódigo que guió el diseño del programa. Todos hemos pasado por la experiencia frustrante de no entender el código que nosotros mismos hemos escrito hace un tiempo. 
+\end{enumerate}
+
+En el caso que nos ocupa, hemos dividido el pseudocódigo en tres bloques, separados por líneas en blanco. El primer y último bloques describen operaciones que ya sabemos hacer en Python. El bloque central es que incluye la novedad de una operación que debemos repetir para cada elemento de la lista {\tt edades}. Esta es la parte que vamos a aprender a traducir a Python mediante una construcción llmada {\sf bucle for} (en inglés, {\em for loop})). Primero veamos esa traducción a Python que, como verás, se corresponde muy fáilmente con el pseudocódigo que hemos escrito. El programa adjunto contiene esta traducción, y su código se muestra a continuación:
+  <<eval=FALSE, echo=FALSE, comment=NULL, purl=Tut02_py_VarianzaEdades>>=
+    edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22, 
+              20, 19, 22, 18, 20, 21, 20]
+    mediaEdad = sum(edades) / len(edades)
+    
+    cuadradosDesviaciones = []
+    for edad in edades:
+      cuadradosDesviaciones = cuadradosDesviaciones + [(edad - mediaEdad)**2]
+    
+    varianzaEdades = sum(cuadradosDesviaciones) / len(edades)
+    print(varianzaEdades)
+    @
+      \begin{center}
+    \fichero{./code/Tut02-py-VarianzaEdades.py}{Tut02-py-VarianzaEdades.py}
+    \end{center}
+    <<echo=FALSE, comment=NULL, results="markup", purl=FALSE>>=
+      pythonFile="./code/Tut02-py-VarianzaEdades.py"
+    pyCode = readLines(pythonFile)
+    for(line in pyCode){
+      cat(paste0(line, "\n"))
+    }
+    @
+      Hemos insertado líneas en blanco en el código del programa, para dividirlo en tres bloques que coinciden con las tres partes de nuesgro pseudocódigo. Antes de analizar la estructura del programa y el funcionamiento del bucle for vamos a ejecutarlo para comprobar que funciona. Como de costumbre, al comenzar una nueva sesión de trabajo es recomendable que cierres y vuelvas a abrir Spyder o al menos que uses \verb&%reset& y \verb&%clear&
+      en la terminal. Después descarga y guarda ese fichero en tu directorio de trabajo para a continuación abrirlo en el {\em Editor de Código} de Spyder. Deberías ver algo así (se muestra la versión para Mac OS de Spyder):
+      \begin{center}
+    \includegraphics[width=16cm]{../fig/Tut-02-py-31-programaVarEdades.png}
+    \end{center}
+    Una vez hecho esto, basta con que ejecutes el programa en Spyder pulsando {\tt F5}. El resultado que deberías ver aparecer en la {\em Terminal} es:
+      <<eval=FALSE, purl=FALSE>>=
+      2.646400000000001
+    @
+      El resultado exacto es $2.6464$, pero el redondeo en las operaciones hace que Python lo muestre así.  Te recomiendo que antes de seguir compruebes este resultado, por ejemplo usando la hoja de cálculo Calc como aprendimos a hacer en el Tutorial01 (recuerda usar {\tt VARP}, no {\tt VAR}).
+    
+    Una vez visto que el código hace lo que esperábamos vamos a analizarlo en detalle. El bloque inicial en el que calculamos la media es ya conocido, así que vamos a fijarnos en las tres líneas del segudo bloque, que contienen el bucle for.
+    <<echo=FALSE, comment=NULL, results="markup", purl=FALSE>>=
+      for(line in pyCode[5:7]){
+        cat(paste0(line, "\n"))
+      }
+    @
+      Vamos con el análisis línea a línea de este bloque:
+      \begin{enumerate}
+    \item En la primera línea simplemente hemos creado una lista vacía, llamada {\tt cuadradosDesviaciones}. Esta línea en realidad no forma parte del bucle for, que empieza en la segunda línea. Pero es muy frecuente que antes del bucle necesitemos una o más {\sf líneas de inicialización}, como esta, en las que creamos los objetos que vamos a necesitar en el bucle o asignamos valores a algunas variables.
+    
+    \item La segunda línea
+    <<echo=FALSE, comment=NULL, results="markup", purl=FALSE>>=
+      cat(pyCode[6])
+    @
+      es la {\sf línea de cabecera del bucle for}. La variable {\tt edad} que aparece aquí es una {\sf variable auxiliar}, cuyo papel consiste en ir recorriendo uno a uno los valores de la lista {\tt edades}. Podríamos haber usado cualquier otro nombre para esa variable auxiliar (volveremos sobre esto enseguida). Un {\bf detalle muy importante} es que esa línea termina con dos puntos. Si los olvidas, Python señalará un error en esa línea.
+    
+    \item La tercera línea de código
+    <<echo=FALSE, comment=NULL, results="markup", purl=FALSE>>=
+      cat(pyCode[7])
+    @
+      forma el {\sf cuerpo del bucle for}. En este caso es una única línea, pero en general el cuerpo del bucle lo formarán varias líneas (veremos ejemplos pronto). Esta línea se ejecuta una vez para cada uno de los elementos de {\tt edades}. Cada una de esas ejecuciones se denomina una {\sf iteración} del bucle. En la primera iteración del bucle, la variable auxiliar {\tt edad} toma el primer valor de la lista {\tt edades} (es decir, 22). En la segunda iteración, {\tt edad} toma el segundo valor de la lista {\tt edades} (que es 21), etc. Y la operación que hacemos en cada iteración con el valor {\tt edad} es la que hemos descrito en el pseudocódigo: restamos la media a la edad, elevamos al cuadrado y concatenamos el resultado al final de la lista {\tt cuadradosDesviaciones}. Un detalle técnico: fíjate en que hemos rodeado esa operación con corchetes para convertir el resultado en una lista (de un único elemento) y así poder usar {\tt +} para concatenarla.
+    
+    Fíjate en {\bf otro detalle muy importante}. Esa línea de código está {\sf indentada}; es decir, que hemos usado espacios en blanco al principio de la línea para desplazarla a la derecha con respecto a la línea anterior. En Python todas las líneas que forman el cuerpo de un bucle for deben estar indentadas con respecto a la línea de cabecera. De hecho esa indentación es la forma que usa Python para saber donde empieza y donde termina el cuerpo del código (en otros lenguajes el cuerpo del bucle se encierra entre llaves).
+    
+    \end{enumerate}
+    
+    El tercer bloque de código del programa:
+      <<echo=FALSE, comment=NULL, results="markup", purl=FALSE>>=
+      for(line in pyCode[9:10]){
+        cat(paste0(line, "\n"))
+      }
+    @
+      ya no forma parte del cuerpo del bucle for y por esa razón las líneas que lo forman no están indentadas. Estas líneas se ejecutan tras terminar la iteraciones del bucle o, como diremos a menudo, {\em al salir del bucle}. En ellas simplemente sumamos la lista {\tt cuadradosDesviaciones}, dividimos la suma entre {\tt n}, asignamos el resultado a la variable {\tt varianzaEdades} y usamos {\tt print} para mostrar el resultado.
+    
+    
+    
+\section{Ficheros de comandos Python.}
+\label{tut02:sec:ficherosComandosPython}
+
+A medida que vamos empezando a escribir código más complejo en Python es muy probable que te estés empezando a dar cuenta de que la consola de IPython tiene ciertas limitaciones. Es una gran herramienta para hacer experimentos, para {\em explorar} datos e ideas y para cálculos rápidos. Pero si queremos desarrollar un proyecto más complejo y compartir nuestro trabajo con otras personas necesitamos otro tipo de soporte. Pero no te preocupes, es muy sencillo. Simplemente vamos a combinar nuestro trabajo en IPython con un editor de texto.  Aunque puedes usar cualquier editor, como el Bloc de Notas de Windows, es especialmente recomendable que uses un editor pensado para programar. Recuerda los ejemplos del Tutorial-00 (allí hay instrucciones de instalación): Notepad++ en Windows, Textwrangler en Mac y gedit en Linux.
+
+Lo que vamos a hacer es trabajar con dos ventanas abiertas a la vez (tres, si cuentas el visor de pdf en el que lees este tutorial): en una tenemos nuestra terminal de IPython y en otra el editor de texto. La siguiente figura muestra el montaje en Windows 8.1:
+\begin{center}
+\includegraphics[height=8cm]{../fig/Tut02-py-06-EditorTextoJupyter.png}
+\end{center}
+
+Resumiendo el trabajo de los apartados anteriores vamos a crear un pequeño programa que a partir de una lista de números, como la lista {\tt edades} calcula la media aritmética, la varianza pobalacional y la desviación típica de esa lista. El código del programa es este:
+
+<<eval=FALSE, purl=FALSE>>=
+edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22,
+20, 19, 22, 18, 20, 21, 20]
+print("La lista de edades es:")
+print(edades)
+mediaAritmetica = sum(edades) / len(eedades)
+print("La media aritmética es:")
+print(mediaAritmetica)
+terminosVarianza = []
+for edad in edades:
+  terminosVarianza = terminosVarianza + [(edad - mediaAritmetica)**2]
+varianzaPob = sum(terminosVarianza) / len(edades)
+print("La varianza poblacional es:")
+print(varianzaPob)
+import math as m
+print("La desviación típica poblacional es:")
+print(m.sqrt(varianzaPob))
+@
+Selecciona y copia todo este código y pégalo en el editor de texto. En el Tutorial-00 hemos creado una carpeta llamada {\tt code} dentro de tu directorio de trabajo. Desde el editor de texto guarda el programa en esa carpeta {\tt code} usando el nombre:
+<<eval=FALSE, purl=FALSE>>=
+Tut02-mediaVarianza-01.py
+@
+El nombre podría ser cualquiera, pero es importante que la extensión sea {\tt py}. De esa forma el sistema reconoce este fichero como un fichero de texto que contiene código Python. De hecho, cuando lo guardes con esa extensión verás que el aspecto del texto cambia, de forma similar a lo que se ve en esta figura:
+\begin{center}
+\includegraphics[width=15cm]{../fig/Tut02-py-07-EditorTextoSintaxis.png}
+\end{center}
+La razón es que los editores de texto orientados a la programación disponen de lo que se llama {\sf reconocimiento de sintaxis} para Python (y para muchos otros lenguajes de programación) y usan colores, tipos de letra, etc. para destacar la estructura del programa y ayudarnos así en nuestro trabajo. Aunque sólo fuera por eso, merece la pena hacer que el editor de texto forme parte de nuestras herramientas de programación en Python.
+
+Ahora vamos a pasar a la ventana de IPython. Lo primero que tenemos que aprender a hacer es explicarle a IPython dónde está nuestro directorio de trabajo. En mi caso la carpeta de trabajo es una carpeta del {\em Escritorio} llamada {\em PostData}. Dentro de mi carpeta personal el {\em Escritorio} es la carpeta {\em Desktop}\footnote{Nota técnica sobre el {\em Escritorio para usuarios de Linux:} La carpeta {\em Desktop} del directorio de ususario representa al {\em Escritorio} tanto en sistemas Windows modernos como en Mac OS. En algunas versiones de Linux, por un afán de adaptación a mi juicio errado, esa carpeta se llama de hecho {\em Escritorio}. Si es tu caso, pero quieres poner la carpeta de trabajo en el Escritorio puedes abrir una consola de comandos, ir a tu carpeta ejecutando simplemente {\tt cd} y después ejecutar\\ {\tt ln -s Escritorio Desktop}\\ Eso creará un {\sf enlace simbólico} a tu escritorio llamado {\tt Desktop}, de manera que podrás usar ambos nombres indistintamente, sin duplicar ficheros.}. Para indicarle dónde está el fichero voya autilizar una nueva {\em función mágica} de IPython llamada \verb#%cd#
+(del inglés {\em change directory}):
+<<eval=FALSE, purl=FALSE>>=
+%cd ~/Desktop/PostData/code
+@
+Una aclaración: el símbolo \verb#~# que aparece aquí es una abreviatura que IPython interpreta como {\em la carpeta personal del usuario}. Tiene la ventaja de que funciona igual en los sistemas operativos Windows, Mac y Linux. Para obtener ese símbolo con el teclado usa AltGr + 4 en Windows/Linux y Alt+Ñ en Mac OS (sí, es una ñ mayúscula).
+
+Si ejecuto la función mágica en mi terminal de IPython obtengo:
+<<eval=FALSE, purl=FALSE>>=
+In [1]: %cd ~/Desktop/PostData/code
+/Users/fernando/Desktop/PostData/code
+@
+donde como ves IPython ha sustituido \verb#~# por mi carpeta personal, que en esta máquina Windows se representa con {\tt /Users/fernando} (la primera barra inclinada {\tt /} representa aquí el {\sf directorio raíz} del sistema de ficheros de tu ordenador, la carpeta que contiene todas las demás carpetas).
+
+Para comprobar que hemos llegado a la carpeta que contiene el fichero {\tt Tut02-mediaVarianza-01.py} vamos a usar otra {\em función mágica} de IPython. La función \verb#%ls#
+sirve para mostrar el contenido de la carpeta activa, la que hemos seleccionado con \verb#%cd#.
+Como sólo me interesan los ficheros de código Python usaré \verb#%ls *.py#
+Así que si la ejecuto en IPython obtengo:
+
+<<eval=FALSE, purl=FALSE>>=
+In [2]: %ls *.py
+Tut02-estadisticaDescriptiva.py  Tut02-mediaVarianza-02.py
+Tut02-mediaVarianza-01.py
+@
+Los detalles desde luego dependen de tu ordenador, sistema operativo y de la ubicación de tu carpeta de trabajo. Pero lo importante es que, en efecto, ahí aparece (entre otros) el fichero con nuestro código. Con eso estamos listos para usar la última de las funciones mágicas que vamos a necesitar en este apartado. La función \verb#%run#
+ejecuta el programa contenido en un fichero de código Python que le proporcionamos como argumento (en Computación se suele traducir el inglés {\em run} por ejecutar, aunque también hemos oído una traducción más literal, {\em correr} el programa). En IPython sería:
+<<eval=FALSE, purl=FALSE>>=
+In [3]: %run Tut02-mediaVarianza-01.py
+La lista de edades es:
+[22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22,
+ 20, 19, 22, 18, 20, 21, 20]
+La media aritmética es:
+19.44
+La varianza poblacional es:
+2.646400000000001
+La desviación típica poblacional es:
+1.6267759526130208
+@
+Comprueba que esos valores son los que esperábamos. Fíjate en que al usar \verb#%run#
+en IPython no aparecen las líneas de código Python del fichero {\tt Tut02-mediaVarianza-01.py} que estamos ejecutando, tan sólo aparece aquello que explícitamente hemos querido mostrar usando la función {\tt print}. Aunque de momento vamos a trabajar dentro de la consola de IPython, ese es el primer paso para que podamos escribir programas en Python que podrán utilizar usuarios que no sepan nada de programación. Al fin y al cabo todos nosotros usamos en nuestros ordenadores una gran cantidad de programas escritos en lenguajes de los que la mayoría de nosotros no sabemos nada.
+Las ventajas de esta forma de trabajar a la vez con IPython y un editor de texto son múltiples: por un lado, el editor de texto ofrece un entorno mucho más cómodo que IPython a la hora de escribir nuestro código. No sólo
+por el reconocimiento de sintaxis del que ya hemos hablado, sino porque proporcionan herramientas avanzadas para hacer manipulaciones en el texto del programa. Por ejemplo, podemos buscar y renombrar automáticamente todas las apariciones de una variable en el texto. Algunos editores van un paso más allá y nos avisan de algunos de los errores más comunes que se pueden cometer al escribir código Python (como olvidarse los dos puntos al final de la línea de cabecera de un bucle for, o dejarse un paréntesis sin cerrar, etc.) Y a la hora de ejecutar el código basta con usar \verb#%run#
+en IPython. Por cierto, conviene aclarar que al ejecutar el código de esta forma el resultado es el mismo que si hubieras copiado y pegado las líneas del programa en la consola de IPython y las hubieras ejecutado todas. En particular, IPython reconoce las variables que aparecen en el programa y sus valores serán los que tomen en el momento en que termina de ejecutarse el programa. Por ejemplo en la la terminal de IPython en la que he hecho
+<<eval=FALSE, purl=FALSE>>=
+%run Tut02-mediaVarianza-01.py
+@
+si a continuación hago:
+<<eval=FALSE, purl=FALSE>>=
+In [4]: mediaAritmetica
+Out[4]: 19.44
+@
+la salida demuestra que las variabes del programa {\tt Tut02-mediaVarianza-01.py} son ahora conocidas para IPython.
+
+Por otra parte, ese programa es simplemente un fichero de texto, que puedes compartir fácilmente con cualquier otro usuario de Python para que lo ejecute en su ordenador. De hecho, en estos tutoriales te vamos a proporcionar bastantes ejemplos de estos ficheros de código Python diseñados para llevar a cabo las operaciones Estadísticas que aprenderemos a lo largo del curso. Podrás usarlos directamente o mediante pequeñas modificaciones para adaptarlos a tus necesidades.
+
+\subsection{Spyder. Entornos de desarrollo integrados. }
+\label{tut02:subsec:SpyderIDEs}
+
+Existen herramientas más especializadas aún que la combinación de IPython + editor de texto que hemos presentado en la anterior sección. Los entornos de desarrollo integrados, que se conocen como IDE (del inglés {\em integrated development environment})  combinan en un sólo programa un editor de texto, una o varias sesiones simultáneas de IPython y otra serie de herramientas útiles para programadores más avanzados: gestión de proyectos, integración con sistemas de control de versiones, depuración del código (en inglés, {\em debugging}). La distribución Anaconda de Python que hemos instalado incorpora uno de estos IDE, llamado Spyder. En la siguiente figura puedes ver el aspecto de la ventana de trabajo de Spyder con el código del programa que hemos escrito (es la versión en Mac OS, pero en Windows o Linux es muy similar).
+\begin{center}
+\includegraphics[width=15cm]{../fig/Tut02-py-08-SpyderCapturaPantalla.png}
+\end{center}
+En estos tutoriales no vamos a entrar en detalles sobre el uso de Spyder o de cualquier otro IDE. Muchos programadores trabajan siempre con la combinación de editor de texto + consola IPython que hemos descrito antes (y un tercer ingrediente que no hemos detallado, la consola de comandos para otras herramientas de desarrollo). Lo que queremos decir con esto es que no hay un entorno de trabajo único para programar en Python. Con el tiempo y la experiencia podrás seleccionar las herramientas que te resulten más cómodas y productivas.
+    

@@ -89,6 +89,21 @@ Vamos a describir paso a paso, y con capturas de pantalla, la instalación de va
 aconsejamos que vayas {\em un paso por delante} en la lectura, en lugar de ir ejecutando las cosas
 a la vez que lees las instrucciones, para evitarte sorpresas o errores.
 
+
+\section*{Estructura de directorios para los ficheros del curso.}
+\label{tut00:sec:estructuraFicherosCurso}
+
+
+A lo largo del curso vamos a manejar distintos tipos de ficheros. Para empezar, los propios ficheros pdf del libro y de estos tutoriales. Pero también usaremos ficheros de datos, ficheros con código Python,  etc. Y además algunos de esos ficheros dependen, para su correcto funcionamiento, de que los ficheros del curso se encuentren {\em en el lugar esperado}. Podríamos haber optado por pedirte que crearas una carpeta\footnote{En lo que sigue usarmeos indistintamente las palabras {\sf directorio} (inglés, {\em directory}) o {\sf carpeta} (inglés, {\em folder}).} en tu ordenador en la que guardar, entremezclados, todos los ficheros del curso. Pero la experiencia ha demostrado que esa es una mala forma de trabajar, que resulta poco eficiente. Por esa razón vamos a pedirte que empieces el trabajo con una pequeña tarea de organización. 
+
+\begin{enumerate}
+  \item Empieza por elegir o crear un directorio en tu ordenador, al que de ahora en adelante nos referiremos como el {\sf directorio de trabajo}. No es estrictamente necesario, pero lo más sencillo es que sea una carpeta nueva y puedes darle el nombre que quieras (te sugerimos {\tt PostData} como nombre). Este directorio puede rservirte, por ejemplo, para almacenar los ficheros pdf del libro y de estos tutoriales. Pero el papel más importante de esa carpeta será servir como contenedor de las carpetas que indicamos a continuación.
+  \item Ahora vamos a crear una carpeta llamada {\em datos} (exactamente así, en minúsculas) que {\bf debe} estar situada dentro de tu {\em directorio de trabajo}.  
+  \item De la misma forma, vamos a crear otra subcarpeta de tu {\em directorio de trabajo} llamada {\em codigo} (exactamente así, en minúsculas y sin acento).
+\end{enumerate}
+
+En cada momento, cuando sea necesario a lo largo de estos tutoriales, te iremos indicando en cuál de estas carpetas debes colocar cada fichero del curso para que todo fucnione correctamente.   
+
 \section{Lectores de documentos en formato pdf.}
 \label{tut00:sec:LectoresPdf}
 
@@ -383,16 +398,16 @@ fichero (que también usaremos en el Tutorial-01)
 \begin{center}
 \fichero{../datos/Tut01-PracticaConCalc.csv}{Tut01-PracticaConCalc.csv}.
 \end{center}
-Te aconsejamos que {\em guardes} el fichero, en lugar de {\em abrirlo} directamente (y no olvides
-dónde lo has guardado; el {\em Escritorio} puede servir, para empezar). Recuerda lo que hemos
-visto en la Sección \ref{tut00:sec:InstalacionGeoGebra}: el fichero de datos va {\em adjunto} a
+Te aconsejamos que {\em guardes} el fichero, en lugar de {\em abrirlo} directamente. Recuerda lo que hemos
+visto en la Sección \ref{tut00:sec:LectoresPdf}: el fichero de datos va {\em adjunto} a
 este documento pdf y, para guardar los datos en tu ordenador, debes hacer click (aquí mismo, en el
 documento pdf) sobre el nombre del fichero. ¿Click derecho o izquierdo? Depende del lector de pdfs
 que estés usando. ¡Recuerda que en muchos casos es mejor usar primero el botón derecho del ratón!
-Si no sabes bien lo que haces, este es otro paso en el que es posible que te pierdas. Si eso
+El lugar adecuado para guardar este fichero es la subcarpeta {\tt datos} de tu {\em Directorio de trabajo} (recuerda la estructura de carpetas que 
+hemos creado al principio del tutorial), porque esa es la carpeta donde guardaremos todos los ficheros 
+{\tt csv} que vamos a usar en el curso. Si no estás muy seguro de haberlo hecho bien, este es otro paso en el que es posible que te pierdas. Si eso
 sucede, será un buen momento para acudir a \ninja{nuestro amigo.} Y, en cualquier caso, recuerda
-que también puedes descargar todos los ficheros adjuntos del curso (teoría o tutoriales) desde la
-página web del curso, a la que se llega mediante este enlace:
+que también puedes descargar todos los ficheros adjuntos del curso desde la página web del curso, a la que se llega mediante este enlace:
 \begin{center}
 \link{http://www.postdata-statistics.com/}{http://www.postdata-statistics.com/}.
 \end{center}
@@ -425,8 +440,8 @@ llamada también {\em Análisis Exploratorio de Datos}.
 
 Si no lo has hecho, cierra el editor de texto en el que hemos abierto el fichero {\tt csv}. Para
 seguir avanzado, vamos a abrirlo con la hoja de cálculo Calc. Una vez iniciado Calc, usa el menú
-{\tt Archivo $\to$ Abrir} y navega hasta la carpeta en la que has guardado el fichero {\tt
-Tut01-PracticaConCalc.csv}. Cuando lo selecciones para abrir se debería abrir un cuadro de diálogo
+{\tt Archivo $\to$ Abrir} y navega hasta la carpeta {\tt datos} de tu {\em Directorio de Trabajo} en 
+la que has guardado el fichero {\tt Tut01-PracticaConCalc.csv}. Cuando lo selecciones para abrir se debería abrir un cuadro de diálogo
 como el de la siguiente figura, que vamos a analizar:
         \begin{center}
         \includegraphics[height=8cm]{../fig/Tut00-Calc-csv-01.png}
@@ -788,7 +803,7 @@ Tras instalar todo este software, hay que ponerlo a trabajar. En general, como h
 En el resto del curso, cada pareja Capítulo/Tutorial vendrá acompañada de una {\em Guía de Trabajo}, un documento breve que esencialmente explica como se coordina el trabajo teórico del capítulo con los contenidos prácticos del tutorial. De nuevo, los dos primeros capítulos y tutoriales son un caso especial, porque en este caso existe una única {\em Guía de Trabajo} conjunta para ambos. Y ese es el siguiente paso: debes abrir ese documento y seguir sus instrucciones. El documento estará disponible en la página web del libro, o de la forma que te indique tu profesor. Las {\em Guías de Trabajo} constituirán el guión que ordene nuestro trabajo en el curso.
 
 
-\textcolor{red}{\Huge AQUI}
+%\textcolor{red}{\Huge AQUI}
 
 \vspace{2cm} \hrule
 \quad\\

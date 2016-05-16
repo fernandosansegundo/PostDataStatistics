@@ -1,16 +1,16 @@
 ## ---- Tut02-estadisticaDescriptiva
-########################################################
-# www.postdata-statistics.com
-# POSTDATA. Introducción a la Estadística
-# Tutorial 02.  
-# Plantilla de comandos Python para Estadística Descriptiva
-# Una variable cuantitativa discreta, datos no agrupados.
-########################################################
+"""
+www.postdata-statistics.com
+POSTDATA. Introducción a la Estadística
+Tutorial 02.  
+Plantilla de comandos Python para Estadística Descriptiva
+Una variable cuantitativa discreta, datos no agrupados.
+"""
 
 
 # ATENCION: para que este fichero funcione es NECESARIO: 
-# (1) tener en cuenta la estructura de directorios como se explica en el tutorial. 
-# (2) introducir el nombre del fichero de datos como argumento de read_csv.
+# (1) Tener en cuenta la estructura de directorios como se explica en el tutorial. 
+# (2) Introducir el nombre del fichero de datos como argumento de read_csv.
 
 ## ---- Importacion de Modulos
 
@@ -38,7 +38,7 @@ print(linea)
 # INTRODUCIR EL NOMBRE DEL FICHERO DE DATOS EN LA SIGUIENTE LINEA:
 # EL FICHERO DEBE RESIDIR EN LA CARPETA DATOS DEL DIR. DE TRABAJO
 nombreFichero = "Tut02-var3.csv"
-datos = pd.read_csv("../../datos/" + nombreFichero, names=["v"])
+datos = pd.read_csv("./datos/" + nombreFichero, names=["v"])
 datos = datos["v"].tolist()
 
 print("El fichero de datos es:")
@@ -133,7 +133,7 @@ print(linea)
 
 ## ---- Graficos
 
-#get_ipython().magic('matplotlib inline')
+get_ipython().magic('matplotlib inline')
 
 ## ---- Boxplot
 

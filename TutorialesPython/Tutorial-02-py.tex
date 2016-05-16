@@ -77,7 +77,7 @@
 \newcounter{EjercicioI}
 
 \externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
-\externaldocument[tut01-]{Tutorial-01-py}
+\externaldocument[tut01-]{../TutorialesR/Tutorial-01}
 
 
 
@@ -133,7 +133,7 @@ In [1]:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El símbolo {\tt In [1]:} es el {\tt prompt} de IPython. La palabra {\tt In} indica que Python está esperando que teclees un comando ({\em entrada de comandos}) y el {\tt [1]} indica que este será el primer comando de nuestra sesión de trabajo en IPython. Haz click con el ratón a la derecha de esa línea, hasta que veas el cursor parpadeando. En ese momento Python está esperando para empezar a dialogar con nosotros. Empecemos: rueba a teclear {\tt 2 + 3} y pulsar {\em Enter}. El resultado será el que se muestra en el rectángulo gris justo aquí debajo:
+El símbolo {\tt In [1]:} es el {\tt prompt} de Python. La palabra {\tt In} indica que Python está esperando que teclees un comando ({\em entrada de comandos}) y el {\tt [1]} indica que este será el primer comando de nuestra sesión de trabajo en Python. Haz click con el ratón a la derecha de esa línea, hasta que veas el cursor parpadeando. En ese momento Python está esperando para empezar a dialogar con nosotros. Empecemos: prueba a teclear {\tt 2 + 3} y pulsar {\em Enter}. El resultado será el que se muestra en el rectángulo gris justo aquí debajo:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -153,7 +153,7 @@ Como ves, Python ha contestado inmediatamente debajo de la primera línea de ent
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-con el resultado de la suma y el mismo número entre corchetes. Más adelante aprenderemos la utilidad de estos números. Además, y para que podamos seguir trabajando, IPython muestra la siguiente línea de entrada 
+con el resultado de la suma y el mismo número entre corchetes. Más adelante aprenderemos la utilidad de estos números. Además, y para que podamos seguir trabajando, la {\em Terminal} de Python muestra la siguiente línea de entrada 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -165,7 +165,7 @@ en la que el cursor parpadea, a la espera de nuestra siguiente instrucción.
 
 Por cierto, los espacios en blanco entre los números y el símbolo de operación {\tt +} son irrelevantes. Se obtiene lo mismo si usas {\tt 2+3} en lugar de {\tt 2 + 3}.  Una de las ventajas de  esta propiedad de los espacios es que podemos usarla para hacer más legible el código que escribimos. Más adelante veremos otros casos en  los que, por contra, los espacios son fundamentales. Pero no te preocupes, es fácil aprender a distinguir esos casos.
 
-Aparte de sumas podemos hacer, naturalmente, multiplicaciones y divisiones. Prueba a ejecutar la instrucción del siguiente rectángulo gris. Puedes copiar y pegar directamente desde aquí a la consola de IPython:
+Aparte de sumas podemos hacer, naturalmente, multiplicaciones y divisiones. Prueba a ejecutar la instrucción del siguiente rectángulo gris. Puedes copiar y pegar directamente desde aquí a la {\em Terminal} de Python:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -181,7 +181,7 @@ Python usa el asterisco para representar la multiplicación, así que el resulta
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El resultado {\tt 3.2} de la división muestra la forma en la que Python escribe los decimales, con punto separando la parte entera y la parte decimal. Puesto que estamos usando la versión 3 de Python, el resultado de una divsión hecha con {\tt /} es siempre un número decimal. Prueba la siguiente operación:
+El resultado {\tt 3.2} de la división muestra la forma en la que Python escribe los decimales, con punto separando la parte entera y la parte decimal. Puesto que estamos usando la versión 3 de Python, el resultado de una división hecha con {\tt /} es siempre un número decimal. Prueba la siguiente operación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -233,7 +233,7 @@ en el fragmento anterior de código. Si has ido ejecutando cada uno de los fragm
 
 \subsubsection*{Detalles adicionales sobre la terminal de Python en Spyder.}
 
-En raras ocasiones la terminal no responde, o se queda en blanco sin que veamos el prompt, etc. En esos casos te recomiendo que abras una nueva terminal, pulsando {\tt Ctrl + T} (en Mac OS X, usa \includegraphics[height=0.3cm]{../fig/Tuts-SimboloComandoMac.png} {\tt + T}) o haciendo click con el botón derecho del ratón en la parte superior de la pestaña de la terminal, como ilustra esta figura, y seleccionando la ocpión correspondiente. No olvides cerrar la antigua terminal antes de seguir trabajando. 
+En raras ocasiones la terminal no responde, o se queda en blanco sin que veamos el prompt, etc. En esos casos te recomiendo que abras una nueva terminal, pulsando {\tt Ctrl + T} (en Mac OS X, usa \includegraphics[height=0.3cm]{../fig/Tuts-SimboloComandoMac.png} {\tt + T}) o haciendo click con el botón derecho del ratón en la parte superior de la pestaña de la terminal, como ilustra esta figura, y seleccionando la opción correspondiente. No olvides cerrar la antigua terminal antes de seguir trabajando. 
 \begin{center}
 \includegraphics[height=3cm]{../fig/Tut-02-py-26-SpyderAbrirNuevaTerminal.png}
 \end{center}
@@ -267,7 +267,7 @@ from math import sqrt
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Cuando lo ejecutes aparentemente no pasará nada, verás algo como lo que se muestra a continuación. Recuerda que los números entre corchetes pueden ser distintos en la terminal de IPython (y que esta observación vale para todos los fragmentos de código que aparezcan a partir de ahora en los tutoriales):
+Cuando lo ejecutes aparentemente no pasará nada, verás algo como lo que se muestra a continuación. Recuerda que los números entre corchetes pueden ser distintos en la {\em Terminal} de Python (y que esta observación vale para todos los fragmentos de código que aparezcan a partir de ahora en los tutoriales):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -277,7 +277,7 @@ In [6]:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Hemos incluido la sugiente línea de entrada para que veas que debajo de {\tt In[5]} no hay un {\tt Out[5]},  no existe la correspondiente línea de salida. Pero aún así la instrucción ha hecho efecto: esa instrucción es nuestra forma de decir, en lenguaje Python, {\em ``saca la herramienta {\tt sqrt} de la caja {\tt math}''}. Una vez hecho esto, podemos usar la herramienta para, por ejemplo, calcular la ráiz cuadrada de 9 o cualquier otra. Compruébalo ejecutando esta operación:
+Hemos incluido la siguiente línea de entrada para que veas que debajo de {\tt In[5]} no hay un {\tt Out[5]},  no existe la correspondiente línea de salida. Pero aún así la instrucción ha hecho efecto: esa instrucción es nuestra forma de decir, en lenguaje Python, {\em ``saca la herramienta {\tt sqrt} de la caja {\tt math}''}. Una vez hecho esto, podemos usar la herramienta para, por ejemplo, calcular la raíz cuadrada de 9 o cualquier otra. Compruébalo ejecutando esta operación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -433,7 +433,7 @@ En cualquier caso, el exponente {\tt -16} nos indica que se trata de un número 
 \subsubsection*{Errores en Python.}
 \label{tut02:subsubsec:ErroresPython}
 
-Al trabajar con Python, como con cualquier otro lenguaje de programacion, la aparición de errores es inevitable. Así que es conveniente saber lo que ocurre cuando le pedimos a Python una operación para la que no tiene respuesta. Por ejemplo, mira lo que sucede al ejecutar el siguiente código, que trata de dividir por cero:
+Al trabajar con Python, como con cualquier otro lenguaje de programación, la aparición de errores es inevitable. Así que es conveniente saber lo que ocurre cuando le pedimos a Python una operación para la que no tiene respuesta. Por ejemplo, mira lo que sucede al ejecutar el siguiente código, que trata de dividir por cero:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -675,7 +675,7 @@ y ahora podemos calcular con:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Esto no afecta a la otra función {\tt sqrt}, la de {\tt math}, que sigue funcionando sin problemas. Veámoslo en una secuencia de comandos de IPython:
+Esto no afecta a la otra función {\tt sqrt}, la de {\tt math}, que sigue funcionando sin problemas. Veámoslo en una secuencia de comandos:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -704,7 +704,7 @@ import matplotlib as mp
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-y entonces en lugar de usar {\tt matplotlib} como prefijo para las funciones de ese módulo basta con usar {\tt mp}. Aunque {\tt math} y {\tt cmath} son nombres de módulo relativamente cortos, vamos a usar alias aún más cortos para que nos sirvan de ejemplo de cómo funciona esta idea. LA secuencia anterior de comandos de IPython quedaría así:
+y entonces en lugar de usar {\tt matplotlib} como prefijo para las funciones de ese módulo basta con usar {\tt mp}. Aunque {\tt math} y {\tt cmath} son nombres de módulo relativamente cortos, vamos a usar alias aún más cortos para que nos sirvan de ejemplo de cómo funciona esta idea. La secuencia anterior de comandos quedaría así:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -725,7 +725,7 @@ Out[27]: 3.0
 \end{knitrout}
 Como ves, de esta forma el esfuerzo necesario para evitar conflictos es considerablemente menor.
 
-\subsection{Algunos detalles adicionales sobre IPython.}
+\subsection{Algunos detalles adicionales sobre Python. IPython.}
 \label{tut02:subsec:AlgunosDetallesAdicionalesIPython}
 
 Ya hemos dicho antes que Python es un lenguaje con una comunidad de usuarios muy amplia y que se usa de modos muy diversos, para tareas muy distintas. Eso se traduce en la existencia de multitud de herramientas distintas, cada una con sus pros y sus contras, adaptadas a esa gran diversidad del ecosistema Python. Y en particular, existen varias terminales posibles para trabajar con Python (en inglés se usa {\em shell} para referirse a la terminal). Nuestro contacto con la terminal hasta ahora se reduce a pensar en ella como un panel de Spyder que usamos para hablar con Python. Esa idea es en general correcta, pero queremos añadirle dos matices:
@@ -735,7 +735,7 @@ Ya hemos dicho antes que Python es un lenguaje con una comunidad de usuarios muy
 \end{itemize}
 La terminal de comandos que estamos usando es un tipo especial de terminal, llamada {\sf IPython}. Este tipo de terminal añade algunas herramientas muy útiles al lenguaje Python básico. En este apartado vamos a empezar a ver algunas de ellas.
 
-Si al llegar a este punto sentes una cierta confusión entre Python, IPython, Spyder, etc., no te preocupes. Es normal cuando te encuentras de golpe con muchos términos nuevos. Sigue adelante con las instrucciones que te proporcionamos y con la práctica todo irá quedando más claro.
+Si al llegar a este punto sientes una cierta confusión entre Python, IPython, Spyder, etc., no te preocupes. Es normal cuando te encuentras de golpe con muchos términos nuevos. Sigue adelante con las instrucciones que te proporcionamos y con la práctica todo irá quedando más claro.
 
 \subsubsection*{Limpiando la memoria de Python.}
 \label{tut02:subsubsec:limpiandoMemoriaPython}
@@ -823,7 +823,7 @@ Usa las flechas del teclado hasta localizar los comandos que usamos y modifícal
 \end{ejercicio}
 
 Esta forma de navegar por el historial de comandos es muy cómoda cuando tienes que repetir un comando varias veces (quizá con pequeñas variaciones) o cuando se produce un error y debemos hacer correcciones. Además, Spyder nos proporciona una herramienta de seguridad adicional que complementa al historial de comandos de IPython y que nos puede sacar de más de un apuro. Si devuelves el panel de la terminal a su tamaño original (recuerda, con el icono \includegraphics[height=0.25cm]{../fig/Tut-02-py-19-IconoMaximizarPanel.png} de la barra superior de Spyder) verás que debajo de ese panel aparece una pestaña denominada 
-{\sf History Log}. Haz click con el ratón sobre ella y verás que un nuevo panel ocupa el espacio de la terminal (a la qu epeudes volver con la pestaña denominada {\sf IPython console}). El panel  History Log muestra nuestro {\em historial de comandos} de esta y otras sesiones previas (las fechas y horas de comienzo de cada sesión aparecen como comentarios). La siguiente figura muestra el panel History Log de Spyder (la versión para Mac en este caso) en el que puedes ver algunos de los últimos comandos que han ejecutado en esa sesión (terminando con un \verb&%reset&).
+{\sf History Log}. Haz click con el ratón sobre ella y verás que un nuevo panel ocupa el espacio de la terminal (a la que puedes volver con la pestaña denominada {\sf IPython console}). El panel {\em History Log} muestra nuestro {\em historial de comandos} de esta y otras sesiones previas (las fechas y horas de comienzo de cada sesión aparecen como comentarios). La siguiente figura muestra el panel History Log de Spyder (la versión para Mac en este caso) en el que puedes ver algunos de los últimos comandos que han ejecutado en esa sesión (terminando con un \verb&%reset&).
 
 \begin{center}
 \includegraphics[width=14cm]{../fig/Tut-02-py-21-PanelHistoryLog.png}
@@ -913,9 +913,9 @@ Pero también podemos usar la función {\tt print} así:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-En este caso no hay diferencia y eso puede llevarte a pensar que el primer método nos ahorra trabajo. Y en efecto así es, siempre que busquemos una respuesta rápida, en casos sencillos y mientras estamos trabajando en IPython. Pero a medida que avancemos por los tutoriales pronto tendras ocasión de aprender más sobre {\tt print} y verás que en muchos casos es una opción mejor y en otros, sencillamente, es la única forma de llegar a la información que queremos. Un comentario más, antes de que se nos olvide: no hemos necesitado importar {\tt print} desde ningún  módulo porque es una de las funciones básicas de Python, que están disponibles {\em siempre} en cualquier sesión de trabajo.
+En este caso no hay diferencia y eso puede llevarte a pensar que el primer método nos ahorra trabajo. Y en efecto así es, siempre que busquemos una respuesta rápida, en casos sencillos y mientras estamos trabajando en IPython. Pero a medida que avancemos por los tutoriales pronto tendrás ocasión de aprender más sobre {\tt print} y verás que en muchos casos es una opción mejor y en otros, sencillamente, es la única forma de llegar a la información que queremos. Un comentario más, antes de que se nos olvide: no hemos necesitado importar {\tt print} desde ningún  módulo porque es una de las funciones básicas de Python, que están disponibles {\em siempre} en cualquier sesión de trabajo.
 
-\paragraph{Advertencia sobre Python 2:} ya dijimos en el Tutorial-00 que avisaríamos al lector cuando nos encontráramos con diferencas importantes entre Python 2 y Python 3. Pues bien, el funcionamiento de la función {\tt print} en Python 2 es distinto del que estamos mostrando aquí. Por ejemplo, en Python 2 la función no usa paréntesis. Así que es correcto escribir:
+\paragraph{Advertencia sobre Python 2:} ya dijimos en el Tutorial-00 que avisaríamos al lector cuando nos encontráramos con diferencias importantes entre Python 2 y Python 3. Pues bien, el funcionamiento de la función {\tt print} en Python 2 es distinto del que estamos mostrando aquí. Por ejemplo, en Python 2 la función no usa paréntesis. Así que es correcto escribir:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -994,7 +994,7 @@ Como has podido ver, al ejecutar esas asignaciones Python no produce ningún val
 \subsubsection*{Copiando bloques de código a IPython.}
 \label{tut02:subsubsec:copiandoBloquesCodigoIPython}
 
-Hasta ahora se supone que para trabjar en la consola de IPython has ido o copiando y pegando uno a uno o tecleando los comandos de Python que te sugeríamos. Pero cuando aparezcan fragmentos de código más largos en estos tutoriales en algún momento esa operación de copiar y pegar una a una las líneas de código resultará molesta. Hay una forma más rápida de trabajar que te permite copiar bloques enteros de código. Para practicarlo, selecciona estas cuatro líneas de código (asegúrate de que las tienes seleccionadas todas)
+Hasta ahora se supone que para trabajar en la consola de IPython has ido o copiando y pegando uno a uno o tecleando los comandos de Python que te sugeríamos. Pero cuando aparezcan fragmentos de código más largos en estos tutoriales en algún momento esa operación de copiar y pegar una a una las líneas de código resultará molesta. Hay una forma más rápida de trabajar que te permite copiar bloques enteros de código. Para practicarlo, selecciona estas cuatro líneas de código (asegúrate de que las tienes seleccionadas todas)
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1304,7 +1304,7 @@ Vamos a hacer algunas operaciones con la lista de edades de alumnos que hemos cr
 \begin{center}
 22, 18, 20, 21, 20
 \end{center}
-a nuestra lista de datos. Naturalmente, podríamos empezar de nuevo, creando una lista completa desde cero. Pero es preferible reutilizar la lsita {\tt edades} que ya habíamos creado. Vamos a ver esto como primer ejemplo, para empezar a aprender cómo se manipulan listas en Python. Una forma de añadir los nuevos datos es empezar creando una segunda lista que los contiene:
+a nuestra lista de datos. Naturalmente, podríamos empezar de nuevo, creando una lista completa desde cero. Pero es preferible reutilizar la lista {\tt edades} que ya habíamos creado. Vamos a ver esto como primer ejemplo, para empezar a aprender cómo se manipulan listas en Python. Una forma de añadir los nuevos datos es empezar creando una segunda lista que los contiene:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1346,7 +1346,7 @@ Vamos a analizar paso a paso lo que ha ocurrido:
 
   \item En la línea de entrada {\tt In [14]} se muestra (usando {\tt print}) lo que ocurre al concatenar ambas listas con {\tt +}. Como ves el resultado es la lista que esperábamos, con los elementos de {\tt edades2} situados tras los de {\tt edades}. Hemos añadido esta línea para que veas el resultado de esa operación. Pero puesto que no hemos asignado ese resultado a ninguna variable, el resultado {\em se ha perdido}.
 
-  \item Por eso en la línea {\tt In [15]} repetimos la operación, pero esta vez asignamos el resultado a la variable {\tt edades}. Al ser una asignación no hay mensaje de salida. Es muy importante que comprendas que al hacer esto hemos hecho una {\bf reasignación.} Y por tanto el contenido original de la lista {\tt edades} se ha perdido. En este caso lo hemos hecho a conciencia, porque queríamos {\em actualizar} el valor de esa variable después de concatenar la segunda lista de edades. Pero en otros casos podríamos estar interesados en conservar la lista original. En esos casos esta reasignación habría sido un grave error.
+  \item Por eso en la línea {\tt In [15]} repetimos la operación, pero esta vez asignamos el resultado a la variable {\tt edades}. Al ser una asignación no hay mensaje de salida. Es muy importante que comprendas que al hacer esto hemos hecho una {\bf resignación.} Y por tanto el contenido original de la lista {\tt edades} se ha perdido. En este caso lo hemos hecho a conciencia, porque queríamos {\em actualizar} el valor de esa variable después de concatenar la segunda lista de edades. Pero en otros casos podríamos estar interesados en conservar la lista original. En esos casos esta reasignación habría sido un grave error.
 
   \item Y para comprobar lo que decíamos en el paso anterior, en la línea {\tt In [16]} hemos usado {\tt print} para que veas el contenido de la lista {\tt edades} tras ejecutar el código anterior.
 \end{itemize}
@@ -1468,7 +1468,7 @@ Out[29]: [21, 18, 20, 17, 18]
 Y la lógica pythonesca detrás de {\tt [5:10]} es esta:
 \begin{itemize}
 \item Empezamos en $5$ porque al contar desde $0$ el $5$ en realidad ocupa la sexta posición.
-\item Terminamos en $10$ porque al contar desde $0$ el $10$ ocupa la úndecima posición, {\em pero en realidad este último elemento no se incluye}, con lo que realmente la última posición incluida es la décima.
+\item Terminamos en $10$ porque al contar desde $0$ el $10$ ocupa la undécima posición, {\em pero en realidad este último elemento no se incluye}, con lo que realmente la última posición incluida es la décima.
 \end{itemize}
 Sí, lo sabemos: las primeras veces esto resulta bastante embrollado. Y como decíamos, salvo que llegues a ser un programador experimentado de Python, es muy posible que tengas que pensar con atención cada operación similar a estas.
 
@@ -1616,7 +1616,7 @@ Como tendremos ocasión de ver a lo largo del curso, este tipo de listas son el 
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Y de hecho, puesto que no hemos asignado ese objeto a nua variable, es como si no hubiéramos hecho nada. Volvamos a intentarlo asignándolo a una variable. La asignación no produce salisa, como sabes, así que usarmeos {\tt print} a continuación:
+Y de hecho, puesto que no hemos asignado ese objeto a una variable, es como si no hubiéramos hecho nada. Volvamos a intentarlo asignándolo a una variable. La asignación no produce salida, como sabes, así que usaremos {\tt print} a continuación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1720,9 +1720,9 @@ Con eso tenemos todos los ingredientes para calcular la edad media:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{In [}\hlnum{19}\hlstd{]}\hlopt{:} \hlstd{edadMedia} \hlkwb{=} \hlkwd{sum}\hlstd{(edades)} \hlopt{/} \hlkwd{len}\hlstd{(edades)}
+\hlstd{In [}\hlnum{19}\hlstd{]}\hlopt{:} \hlstd{mediaEdad} \hlkwb{=} \hlkwd{sum}\hlstd{(edades)} \hlopt{/} \hlkwd{len}\hlstd{(edades)}
 
-\hlstd{In [}\hlnum{20}\hlstd{]}\hlopt{:} \hlkwd{print}\hlstd{(edadMedia)}
+\hlstd{In [}\hlnum{20}\hlstd{]}\hlopt{:} \hlkwd{print}\hlstd{(mediaEdad)}
 \hlnum{19.44}
 \end{alltt}
 \end{kframe}
@@ -1781,7 +1781,7 @@ Cuando empieces a teclear esta línea, justo después de teclear el punto que co
   \item Spyder ha visto la primera línea y sabe que vamos a usar {\tt m} como alias del módulo {\tt math}.
   \item Por lo tanto, al escribir {\tt m.} Spyder sabe que nos vamos a referir a una función de ese módulo, y nos muestra una lista con todas las funciones que contiene (lo cuál puede ser muy útil si sólo recuerdas aproximadamente el nombre de la función). 
 \end{itemize}
-En cualquier caso no te preocupes, sigue escribiendo esa línea de código hasta el final. Cuando escribas el primer paréntesis verás que Spyder añade el segundo paréntesis (para que no nos olvidemos, como sucede a menudo con expresiones complejas con paréntesis anidados) y retorcede una posición para que podamos seguir escribiendo cómodamente dentro de ese par de paréntesis. Añade el 2 hasta obtener:
+En cualquier caso no te preocupes, sigue escribiendo esa línea de código hasta el final. Cuando escribas el primer paréntesis verás que Spyder añade el segundo paréntesis (para que no nos olvidemos, como sucede a menudo con expresiones complejas con paréntesis anidados) y retrocede una posición para que podamos seguir escribiendo cómodamente dentro de ese par de paréntesis. Añade el 2 hasta obtener:
 \begin{center}
 \includegraphics[width=12cm]{../fig/Tut-02-py-24-EditorSpyder03.png}
 \end{center}
@@ -1813,7 +1813,7 @@ Un experimento más. Añade una nueva línea al {\em Editor de Código}, con est
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-y ejecúta esa línea usando {\tt F9}. Como era de esperar, la línea se ejecuta en la terminal (y no hay línea de salida). Ahora haz clic con el ratón {\bf en la terminal} y ejecuta:
+y ejecuta esa línea usando {\tt F9}. Como era de esperar, la línea se ejecuta en la terminal (y no hay línea de salida). Ahora haz clic con el ratón {\bf en la terminal} y ejecuta:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1853,11 +1853,11 @@ print("y su superficie es ", S)
 \end{knitrout}
 Como ves, hemos dejado líneas en blanco entre cada dos líneas de código. No es necesario hacer esto y en cualquier caso al ejecutar el programa Python va a ignorar esas líneas vacías. Pero a menudo puede ser útil como recurso visual, para hacer más legible el programa. Ya veremos más recomendaciones de estilo, necesarias para convertirnos en programadores con buenas prácticas del oficio.
 
-Vamos a abrir este fichero en el {\em Editor de Código} de Spyder. Empieza por guardar ese fichero (recuerda usar el botón derecho del ratón para descargarlo del pdf) en tu directorio de trabajo. Es recomendable, una vez más, que cierres y vuelvas a abrir Spyder antes de continuar, para empezar el trabajo en un entorno limpio. Una vez hecho eso, usa el menú {\em Archivo} y la opción {\em Abrir} de Spyder. En la ventana que se abre (y que depende de tu sistema, Windows, Mac o Linux) navega hasta tu directorio de trabajo y selecciona el fichero {\tt Tut02-py-VolAreaEsfera.py} que contiene nuestro programa. Spyder lo abrirá en una pestaña del {\tt Editor de código} , y verás algo como lo que se muestra en esta figura:
+Vamos a abrir este fichero en el {\em Editor de Código} de Spyder. Empieza por guardar ese fichero (recuerda usar el botón derecho del ratón para descargarlo del pdf) en la carpeta {\tt codigo} de tu {\em Directorio de Trabajo}. Esta es la carpeta en la que vamos a guardar todos los ficheros de código Python del curso y algunos no funcionarán si no están en esa carpeta, así que es {\bf importante} que te acostumbres a esa organización desde el principio. Es recomendable, una vez más, que cierres y vuelvas a abrir Spyder antes de continuar, para empezar el trabajo en un entorno limpio. Una vez hecho eso, usa el menú {\em Archivo} y la opción {\em Abrir} de Spyder. En la ventana que se abre (y que depende de tu sistema, Windows, Mac o Linux) navega hasta tu directorio de trabajo y selecciona el fichero {\tt Tut02-py-VolAreaEsfera.py} que contiene nuestro programa. Spyder lo abrirá en una pestaña del {\tt Editor de código} , y verás algo como lo que se muestra en esta figura:
 \begin{center}
 \includegraphics[width=13cm]{../fig/Tut-02-py-25-FicheroEnEditorSpyder.png}
 \end{center}
-Como puedes ver, Spyder está aplicando reconocimiento de sintaxis Python al fichero y usando colores para ayudarnos a identificar los componentes de ese programa. Una observación antes de seguir: la primera pestaña normalmente contendrá el fichero temporal {\tt temp.py} que Spyder crea siempre al comensar para almacenar el código que aún no hemos guardado en un fichero. Puedes hacer click en ella para revisar su contenido. Es posible que esa primera pestaña contenga aún código de nuestra sesión de trabajo previa. No te preocupes, no interferirá con lo que vamos a hacer. Vuelve a la pestaña que contiene el programa {\tt Tut02-py-VolAreaEsfera.py}.
+Como puedes ver, Spyder está aplicando reconocimiento de sintaxis Python al fichero y usando colores para ayudarnos a identificar los componentes de ese programa. Una observación antes de seguir: la primera pestaña normalmente contendrá el fichero temporal {\tt temp.py} que Spyder crea siempre al comenzar para almacenar el código que aún no hemos guardado en un fichero. Puedes hacer click en ella para revisar su contenido. Es posible que esa primera pestaña contenga aún código de nuestra sesión de trabajo previa. No te preocupes, no interferirá con lo que vamos a hacer. Vuelve a la pestaña que contiene el programa {\tt Tut02-py-VolAreaEsfera.py}.
 
 Ya hemos visto antes que puedes ir ejecutando una por una las líneas de código que aparecen en el {\em Editor} (recuerda, basta con usar {\tt F9} con el cursor situado en la línea que quieres ejecutar). Pero en el caso de un programa completo como este, podemos ejecutar todo el código de una vez pulsando {\tt F5}. Al ser la primera vez que ejecutamos código, aparecerá un cuadro de diálogo como este:
 \begin{center}
@@ -1869,7 +1869,7 @@ Podemos aceptar todas las opciones por defecto, así que haz click en {\em Ejecu
 \end{center}
 Verás  una clara diferencia con lo que sucedía cuando ejecutábamos el código línea a línea. Ahora, para ejecutar nuestro código Python ha usado una función llamada {\tt runfile} (con dos opciones, que corresponden al nombre del fichero de código y al nombre del directorio de trabajo). Y en la terminal no vemos las líneas de código que componen el programa, sino solamente la salida que produce ese código (mediante {\tt print}). 
 
-Para ver más clara la diferencia, vamos a añadir una líne más al código en la que calculamos la relación entre el volumen y el área de la esfera. Es decir, añadimos esta línea de código justo al final del fichero:
+Para ver más clara la diferencia, vamos a añadir una línea más al código en la que calculamos la relación entre el volumen y el área de la esfera. Es decir, añadimos esta línea de código justo al final del fichero:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1904,11 +1904,11 @@ y vuelve a usar {\tt F5}. Como antes, no hay efecto {\em visible} de esa última
 \begin{center}
 \includegraphics[width=15cm]{../fig/Tut-02-py-30-EditorVsTerminal}
 \end{center}
-Como sucede con todas las novedades que estamos aprendiendo en este tutorial, al principio te puede costar acostumbrarte al vínculo entre la {\em Terminal} y el {\em Editor de Código} de Spyder. Pero con la práctica y a medida que avancemos por estos tutoriales, todo irá quedando más claro y llegarás a dominar estas herramientas. A partir de ahora verás que nuestra atención se desplaza cada vez más hacia el {\em Editor de Código}, com olugar natural en el que escribir con comodidad el código Python. 
+Como sucede con todas las novedades que estamos aprendiendo en este tutorial, al principio te puede costar acostumbrarte al vínculo entre la {\em Terminal} y el {\em Editor de Código} de Spyder. Pero con la práctica y a medida que avancemos por estos tutoriales, todo irá quedando más claro y llegarás a dominar estas herramientas. A partir de ahora verás que nuestra atención se desplaza cada vez más hacia el {\em Editor de Código}, como lugar natural en el que escribir con comodidad el código Python. 
 
 \subsubsection*{Un comentario sobre otros editores de texto.}
 
-Hemos repetido varias veces que muchos programadores prefieren trabajar con otras herramientas, en lugar de usar un entorno de desarrollo integrado como Spyder.  ¿Por qué? Una de las posibles razones es que a menudo un programador utiliza más de un lenguaje de programación en su trabajo. Es común usar una combinación de Python con R, o con C++, JavaScript, etc. Y los entronos de desarrollo como Spyder a menudo son especialistas en un lenguaje, pero no se llevan igual de bien con los otros. Por esa razón a veces los programadores prefieren trabajar directamente con editores de texto, similares al {\em Bloc de Notas} pero más potentes, que reconocen la sintaxis de muchos lenguajes de programación. En el Tutorial00 hemos mencionado varios de ellos. Por ejemplo: Notepad++ en Windows, TextWrangler en Mac OS X, gedit en Linux. En cualquier caso los ficheros de texto simple son una parte esencial del trabajo en Computación y un buen editor de texto simple es un aliado importante para cualquier programador o científico. Así que, aunque sigas usando Spyder para 
+Hemos repetido varias veces que muchos programadores prefieren trabajar con otras herramientas, en lugar de usar un entorno de desarrollo integrado como Spyder.  ¿Por qué? Una de las posibles razones es que a menudo un programador utiliza más de un lenguaje de programación en su trabajo. Es común usar una combinación de Python con R, o con C++, JavaScript, etc. Y los entornos de desarrollo como Spyder a menudo son especialistas en un lenguaje, pero no se llevan igual de bien con los otros. Por esa razón a veces los programadores prefieren trabajar directamente con editores de texto, similares al {\em Bloc de Notas} pero más potentes, que reconocen la sintaxis de muchos lenguajes de programación. En el Tutorial00 hemos mencionado varios de ellos. Por ejemplo: Notepad++ en Windows, TextWrangler en Mac OS X, gedit en Linux. En cualquier caso los ficheros de texto simple son una parte esencial del trabajo en Computación y un buen editor de texto simple es un aliado importante para cualquier programador o científico. Así que, aunque sigas usando Spyder para 
 programar en Python, te recomendamos que te familiarices con uno de ellos. 
 
 
@@ -1922,123 +1922,236 @@ Como hemos dicho, una de las operaciones básicas en computación consiste en ap
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19,
-18, 22, 20, 19, 22, 18, 20, 21, 20
+edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19,
+18, 22, 20, 19, 22, 18, 20, 21, 20]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 }
-y que ya hemos calculado su media, que es $\frac{486}{25}$. La definción de la varianza poblacional de una lista $x_1, x_2, \ldots, x_n$ es:
+y que ya hemos calculado su media, que es $\frac{486}{25} = 19.44$. El cálculo se hacía con
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{mediaEdad} \hlkwb{=} \hlkwd{sum}\hlstd{(edades)} \hlopt{/} \hlkwd{len}\hlstd{(edades)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+La definición de la varianza poblacional de una lista $x_1, x_2, \ldots, x_n$ es:
 \[
 Var(x) = \dfrac{(x_1 - \bar x)^2 + (x_2 - \bar x)^2 + \cdots + (x_n - \bar x)^2}{n}
 \]
-Y para calcular el numerador de esa fórmula empezaremos calculando esta lista de valores (los cuadrados de las desviaciones):
-\[
-(x_1 - \bar x)^2, (x_2 - \bar x)^2, \ldots , (x_n - \bar x)^2
-\]
-Después de obtener esa lista, tendremos que calcular su suma y dividir por $n$. Pero estos últimos dos pasos ya hemos aprendido a hacerlos en Python usando las funciones {\tt sum} y {\tt len}. Así que el paso clave es la construcción de la lista de cuadrados de las desviaciones. 
+En la Sección \ref{tut01-tut01:sec:Varianza} (pág. \pageref{tut01-tut01:sec:Varianza}) del Tutorial01 hemos hecho esto con la hoja de cálculo. Allí vimos una descripción de esa fórmula en forma de receta o {\sf algoritmo} para realizar el cálculo en varios pasos:
+\begin{enumerate}
+  \item Como hemos dicho, se presupone que hemos calculado la media $\bar x$.
+  \item Debemos restarle esa media $\bar x$ {\sf a cada uno} de los valores $x_i$.
+    \[(x_1-\bar x), (x_2-\bar x),\ldots, (x_n-\bar x).\]
+  \item Después elevamos cada diferencia al cuadrado, para obtener los $n$ valores
+  \[(x_1-\bar x)^2, (x_2-\bar x)^2,\ldots, (x_n-\bar x)^2.\]
+  \item Sumamos los cuadrados y
+  \item Dividimos por $n$.
+\end{enumerate}
+Al utilizar la hoja de cálculo hemos ido traduciendo estos pasos de forma visual, de manera que cada uno de los pasos segundo y tercero suponían añadir una  columna adicional a la hoja de cálculo. Aquí vamos a aprender cómo se hace la traducción de esos pasos al lenguaje de Python. Para empezar vamos a tratar de ilustrar la idea de una forma que recuerde a la construcción tan visual que hacíamos en la hoja de cálculo. Y al principio sólo queremos que leas: creemos que es mejor que no empieces a ejecutar código en Spyder hasta que te lo digamos.
 
-En esta sección vamos a aprender cuál es la solución de Python para este tipo de {\sf problemas iterativos}. Insistimos: problemas en los que se trata de ir recorriendo uno tras otro los elementos de una lista (o de algún otro tipo de conjunto o estructura de datos), aplicando una cierta operación en cada posición de la lista. Este tipo de problemas son uno de los ingredientes básicos de la Computación. Por eso, todos los lenguajes de programación incluyen instrucciones para realizar esas tareas iterativas. Y si no conoces ningún otro lenguaje de programación, lo que aprendas aquí para Python te facilitará en el futuro el aprendizaje de ese tipo de instrucciones en otros lenguajes. 
+Es bueno comenzar pensando en el objetivo que queremos alcanzar. Lo que queremos es obtener (a partir de la lista {\tt edades} y el valor {\tt mediaEdad}) una nueva lista, a la que vamos a llamar {\tt diferenciasCuad} (por {\em ``diferencias al cuadrado''}) que contenga todos los valores $(x_i-\bar x)^2$ cuando $x_1,\ldots,x_n$ es la lista de edades.
 
-Para ponernos las cosas más sencillas desde el principio, vamos a empezar con un problema más sencillo, pero que contiene el ingrediente clave que necesitaremos para resolver el problema del cálculo la varianza. El problema es este:
-\begin{quote}
-Imagínate que tenemos la lista de números del 1 al 10 y queremos calcular el cuadrado de cada uno de esos números.
-\end{quote}
-La frase que acabamos de escribir es una descripción del 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-En palabras podemos describir lo que queremos hacer así:
-
+Inicialmente esa lista estará vacía, esperando a que la vayamos llenando de contenido.  En Python se obtiene una lista vacía con dos corchetes sin nada entre ellos (o con espacios entre ellos, por razones de estilo):
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{1, 0.851, 0.702}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-Suponemos que partimos de una lista llamada edades y que 
-la variable edadMedia contiene su media.
-
-Creamos una lista vacía llamada cuadradosDesviaciones.
-Para cada edad de la lista edades:
-    Restamos edadMedia de esa edad, elevamos el \hlkwd{resultado} (desviacion) al cuadrado 
-    y añadimos ese cuadrado a la lista cuadradosDesviaciones.
-
-Una vez hecho esto, dividimos la suma de lista cuadradosDesviaciones 
-entre \hlkwd{n} (la longitud de la lista edades) y guardamos el resultado en 
-la variable varianzaEdades.
+diferenciasCuad = [ ]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Esta descripción en palabras de lo que vamos a hacer es un ejemplo de {\sf pseudocódigo}. El pseudocódigo es un lenguaje especial, a medio camino entre el lenguaje natural que hablamos y los lenguajes formales de programación como Python. El pseudocódigo muestra la estructura del algoritmo (método) que vamos a usar, pero en general nos ahorra los detalles más técnicos del lenguaje de programación concreto (Python en este caso). Las ventajas de usar pseudocódigo son, entre otras:
+Ahora empieza el trabajo de verdad:
 \begin{enumerate}
-  \item  El programador puede usar el pseudocódigo cuando está diseñando un programa, para concentrarse en la estructura del programa. Los detalles se ajustan después. Para un programador experimentado, el paso del pseudocódigo al código es una labor de {\em traducción} relativamente sencilla.
-
-  \item Por esa misma capacidad de abstracción, el pseudocódigo puede utilizarse para traducir un algoritmo a distintos lenguajes de programación.
+  \item Tomamos el primer valor de la lista {\tt edades}. Para poder referirnos con comodidad a ese valor lo llamamos {\tt edad}. Así que al usar el primer valor de la lista {\tt edad} toma el valor 22. En Python es como si hiciéramos:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{edad} \hlkwb{=}  \hlnum{22}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
   
-  \item Para otros programadores, distintos del autor del programa, el pseudocódigo sirve como guía para facilitar la comprensión del código. Y por la parte que nos toca como programadores, podemos asegurarte que, pasado un cierto tiempo no muy largo, el propio autor del programa se alegrará enormemente de haber dejado escrito el pseudocódigo que guió el diseño del programa. Todos hemos pasado por la experiencia frustrante de no entender el código que nosotros mismos hemos escrito hace un tiempo. 
-\end{enumerate}
-
-En el caso que nos ocupa, hemos dividido el pseudocódigo en tres bloques, separados por líneas en blanco. El primer y último bloques describen operaciones que ya sabemos hacer en Python. El bloque central es que incluye la novedad de una operación que debemos repetir para cada elemento de la lista {\tt edades}. Esta es la parte que vamos a aprender a traducir a Python mediante una construcción llmada {\sf bucle for} (en inglés, {\em for loop})). Primero veamos esa traducción a Python que, como verás, se corresponde muy fáilmente con el pseudocódigo que hemos escrito. El programa adjunto contiene esta traducción, y su código se muestra a continuación:
-
-\begin{center}
-\fichero{./code/Tut02-py-VarianzaEdades.py}{Tut02-py-VarianzaEdades.py}
-\end{center}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22, 
-          20, 19, 22, 18, 20, 21, 20]
-edadMedia = sum(edades) / len(edades)
-
-cuadradosDesviaciones = []
-for edad in edades:
-  cuadradosDesviaciones = cuadradosDesviaciones + [(edad - edadMedia)**2]
-
-varianzaEdades = sum(cuadradosDesviaciones) / len(cuadradosDesviaciones)
-print(varianzaEdades)
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-Hemos insertado líneas en blanco en el código del programa, para dividirlo en tres bloques que coinciden con las tres partes de nuesgro pseudocódigo. Antes de analizar la estructura del programa y el funcionamiento del bucle for vamos a ejecutarlo para comprobar que funciona. Como de costumbre, al comenzar una nueva sesión de trabajo es recomendable que cierres y vuelvas a abrir Spyder o al menos que uses \verb&%reset& y \verb&%clear&
-en la terminal. Después descarga y guarda ese fichero en tu directorio de trabajo para a continuación abrirlo en el {\em Editor de Código} de Spyder. Deberías ver algo así (se muestra la versión para Mac OS de Spyder):
-\begin{center}
-\includegraphics[width=16cm]{../fig/Tut-02-py-31-programaVarEdades.png}
-\end{center}
-Una vez hecho esto, basta con que ejecutes el programa en Spyder pulsando {\tt F5}. El resultado que deberías ver aparecer en la {\em Terminal} es:
+  \item Calculamos la diferencia:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlnum{2.646400000000001}
+\hlstd{diferencia} \hlkwb{=} \hlstd{edad} \hlopt{-} \hlstd{mediaEdad}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El resultado exacto es $2.6464$, pero el redondeo en las operaciones hace que Python lo muestre así.  Te recomiendo que antes de seguir compruebes este resultado, por ejemplo usando la hoja de cálculo Calc como aprendimos a hacer en el Tutorial01 (recuerda usar {\tt VARP}, no {\tt VAR}).
+Puesto que {\tt edad} es 22 y {\tt mediaEdad} es $19.44$ el resultado es que {\tt diferencia} ahora vale $2.56$.
+  \item Elevamos al cuadrado la diferencia:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cuadradoDif} \hlkwb{=} \hlstd{diferencia}\hlopt{**}\hlnum{2}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+El resultado es que [\tt cuadradoDif] vale $6.5536$. 
+  \item Ahora añadimos ese valor a la lista {\tt diferenciasCuad}, que ahora es:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+diferenciasCuad = [cuadradoDif]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+¿Y ahora qué? Ahora nos toca pasar al siguiente valor de la lista edades, que es $21$. Puedes comprobar que el siguiente fragmento de código describe los tres primeros pasos de los cuatro que hemos descrito:  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{edad} \hlkwb{=}  \hlnum{21}
+\hlstd{diferencia} \hlkwb{=} \hlstd{edad} \hlopt{-} \hlstd{mediaEdad}
+\hlstd{cuadradoDif} \hlkwb{=} \hlstd{diferencia}\hlopt{**}\hlnum{2}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Para el último paso tenemos que ser más cautos. Si hiciéramos 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+diferenciasCuad = [cuadradoDif]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+entonces estaríamos sobrescribiendo (y por tanto perdiendo) el valor anterior de la lista {\tt diferenciasCuad}. Lo que necesitamos es concatenar el nuevo valor con la lista que ya tenemos calculada. Eso se consigue con:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+diferenciasCuad = diferenciasCuad + [cuadradoDif]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+De hecho, y es importante que entiendas bien este paso, puesto que inicialmente la lista {\tt diferenciasCuad} está vacía, podríamos haber usado esta misma línea de código para el primer elemento de la lista y el resultado habría sido el mismo.
 
-Una vez visto que el código hace lo que esperábamos vamos a analizarlo en detalle. El bloque inicial en el que calculamos la media es ya conocido, así que vamos a fijarnos en las tres líneas del segudo bloque, que contienen el bucle for.
+
+Así, el código que describe esos cuatro pasos para el segundo valor de la lista queda de este modo:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+edad =  22
+diferencia = edad - mediaEdad
+cuadradoDif = diferencia**2
+diferenciasCuad = diferenciasCuad + [cuadradoDif]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Y tras ejecutarlo la lista {\tt diferenciasCuad} vale {\tt [6.5536, 2.4336]}.  
+
+Ahora pasaríamos al siguiente valor de la lista. Pero a estas alturas ya te habrás dado cuenta de que esto es muy repetitivo. Basta con cambiar el valor de {\tt edad} en la primera línea de ese bloque de instrucciones y tras ejecutarlas habremos añadido el siguiente valor a la lista {\tt diferenciasCuad}. Ha llegado el momento de pasar a Spyder y poner a prueba estas ideas. Para facilitar tu trabajo, hemos incluido aquí un fichero de código Python que contiene el código necesario:
+
+\begin{center}
+\fichero{./code/Tut02-py-BuclesFor01.py}{Tut02-py-BuclesFor01.py}
+\end{center}
+cuyo contenido se muestra a continuación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-cuadradosDesviaciones = []
-for edad in edades:
-  cuadradosDesviaciones = cuadradosDesviaciones + [(edad - edadMedia)**2]
+edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19,
+18, 22, 20, 19, 22, 18, 20, 21, 20]
+
+mediaEdad = sum(edades) / len(edades)
+
+diferenciasCuad = [ ]
+
+
+edad =  22
+diferencia = edad - mediaEdad
+cuadradoDif = diferencia**2
+diferenciasCuad = diferenciasCuad + [cuadradoDif]
+
+print(diferenciasCuad)
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Vamos con el análisis línea a línea de este bloque:
+Como verás, la lista de edades no cabía en una línea, así que la hemos repartido entre las dos primeras líneas del fichero. Pero eso no causará ningún problema. En la Sección \ref{tut02:sec:ficherosComandosPython} has aprendido como abrir este fichero en el {\em Editor de Código} de Spyder. Hazlo ahora, deberías ver algo así (se muestra la versión en Mac OS de Spyder):
+\begin{center}
+\includegraphics[width=16cm]{../fig/Tut-02-py-32-programaBucles01.png}
+\end{center}
+Recuerda que puedes ir ejecutando las líneas de código una tras otra situando el cursor sobre ellas y pulsando {\tt F9}. {\bf ¡Pero cuidado!} Como la lista no cabe en una línea, para ejecutarla tendrás que seleccionar (con el ratón o teclado) las dos líneas que ocupa antes de pulsar {\tt F9)}.  Ve ejecutando una tras otra todas las líneas del fichero. Al terminar, tras ejecutar la línea final con {\tt print} en la terminal debes ver este último resultado:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+In [8]: \hlkwd{print}(diferenciasCuad)
+[6.553599999999993]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Que es el valor inicial que esperábamos, salvo por el redondeo. Ahora cambia, en la línea 9 del código, el valor 22 por 21, que es el siguiente de la lista. A continuación selecciona las líneas de la 9 a la 12 (ambas inclusive), como muestra la figura:
+\begin{center}
+\includegraphics[width=8cm]{../fig/Tut-02-py-33-SeleccionBloqueCodigo.png}
+\end{center}
+y pulsa otra vez {\tt F9}. En la {\em Terminal} de Spyder verás que se ha ejecutado ese bloque de código, pero no aparece ninguna salida. Para ver el resultado sitúate en la línea 14 del {\em Editor}, la que contiene la función {\tt print}, y pulsa {\tt F9}. El resultado que verás en la {\em Terminal} es:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+In [10]: \hlkwd{print}(diferenciasCuad)
+[6.553599999999993, 2.433599999999996]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Una última vez: cambia el valor 21 por 18 en la línea 9 y y repite los pasos anteriores hasta llegar a 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+In [12]: \hlkwd{print}(diferenciasCuad)
+[6.553599999999993, 2.433599999999996, 2.073600000000004]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+¿Va quedando claro? Naturalmente, podrías seguir así cambiando cada vez la línea 9 por el siguiente elemento de la lista {\tt edades}. Pero hacer eso a mano es una tarea muy repetitiva y aburrida. Que, además, se convertiría en inviable si la lista tuviera cientos de valores. Sería mucho mejor que hubiera una forma de pedirle a Python que se encargara de esta tarea: {\em ``Oye, Python: ve asignando a la variable {\tt edad} cada uno de los valores de {\tt edades} y para cada una de esas asignaciones, ejecuta las líneas de la 10 a la 12.''} Pues estamos de enhorabuena, porque eso es exactamente lo que hace el bucle {\tt for}. Y el código es muy parecido a lo que ya tenemos. Concretamente, el código está en el fichero adjunto:
+
+\begin{center}
+\fichero{./code/Tut02-py-BuclesFor02.py}{Tut02-py-BuclesFor02.py}
+\end{center}
+cuyo contenido se muestra a continuación:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19,
+18, 22, 20, 19, 22, 18, 20, 21, 20]
+
+mediaEdad = sum(edades) / len(edades)
+
+diferenciasCuad = [ ]
+
+
+for edad in edades:
+  diferencia = edad - mediaEdad
+  cuadradoDif = diferencia**2
+  diferenciasCuad = diferenciasCuad + [cuadradoDif]
+
+print(diferenciasCuad)
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Abre este fichero en el {\em Editor de Código} de Spyder (puedes cerrar el anterior si quieres y no hace falta que guardes los cambios que hemos hecho). Asegúrate además de hacer limpieza en la {\em Terminal} ejecutando \verb&%reset&
+y después \verb&%clear&. 
+Una vez hecho esto, sitúate en el {\em Editor de Código} (en cualquier punto) y pulsa {\tt F5} para ejecutar todo el programa a la vez. Al hacerlo verá aparecer la salida en la {\em Terminal}. Como ya sabes, Python ha usado la función {\tt runfile} para ejecutar nuestro código y el resultado es esta lista de números:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+[6.553599999999993, 2.433599999999996, 2.073600000000004, 0.19360000000000113,
+ 5.953600000000006, 2.433599999999996, 2.073600000000004, 0.31359999999999855,
+ 5.953600000000006, 2.073600000000004, 5.953600000000006, 6.553599999999993, 
+ 0.31359999999999855, 0.19360000000000113, 2.073600000000004, 0.19360000000000113, 
+ 2.073600000000004, 6.553599999999993, 0.31359999999999855, 0.19360000000000113, 
+ 6.553599999999993, 2.073600000000004, 0.31359999999999855, 2.433599999999996, 
+ 0.31359999999999855]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+que son los 25 valores que contiene la lista {\em diferenciasCuad} al terminar de ejecutarse el código. Reconocerás algunos de los primeros valores porque son los que obtuvimos con el anterior programa. Como ves, este código hace lo que queríamos y construye la lista de diferencias cuadráticas con respecto a la media para la lista {\tt edades}. 
+
+Vamos con el análisis del código propiamente dicho. La diferencia con el anterior fichero está en las líneas de la 9 a la 12, que ahora forman el bucle {\tt for}. Fíjate en estos detalles sobre la estructura de ese bloque:  
+
 \begin{enumerate}
-\item En la primera línea simplemente hemos creado una lista vacía, llamada {\tt cuadradosDesviaciones}. Esta línea en realidad no forma parte del bucle for, que empieza en la segunda línea. Pero es muy frecuente que antes del bucle necesitemos una o más {\sf líneas de inicialización}, como esta, en las que creamos los objetos que vamos a necesitar en el bucle o asignamos valores a algunas variables.
 
-\item La segunda línea
+\item La primera línea del bucle, que es
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
@@ -2046,99 +2159,109 @@ for edad in edades:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-es la {\sf línea de cabecera del bucle for}. La variable {\tt edad} que aparece aquí es una {\sf variable auxiliar}, cuyo papel consiste en ir recorriendo uno a uno los valores de la lista {\tt edades}. Podríamos haber usado cualquier otro nombre para esa variable auxiliar (volveremos sobre esto enseguida). Un {\bf detalle muy importante} es que esa línea termina con dos puntos. Si los olvidas, Python señalará un error en esa línea.
+es la {\sf línea de cabecera del bucle for}. La variable {\tt edad} que aparece aquí es la {\sf variable índice} del bucle, cuyo papel consiste en ir recorriendo uno a uno los valores de la lista {\tt edades}. Podríamos haber usado cualquier otro nombre para esa variable índice (volveremos sobre esto enseguida). Un {\bf detalle muy importante} es que esa línea termina con dos puntos. Si los olvidas, Python señalará un error en esa línea. 
 
-\item La tercera línea de código
+\item Las tres siguientes líneas de código
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-  cuadradosDesviaciones = cuadradosDesviaciones + [(edad - edadMedia)**2]
+  diferencia = edad - mediaEdad
+  cuadradoDif = diferencia**2
+  diferenciasCuad = diferenciasCuad + [cuadradoDif]
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-forma el {\sf cuerpo del bucle for}. En este caso es una única línea, pero en general el cuerpo del bucle lo formarán varias líneas (veremos ejemplos pronto). Esta línea se ejecuta una vez para cada uno de los elementos de {\tt edades}. Cada una de esas ejecuciones se denomina una {\sf iteración} del bucle. En la primera iteración del bucle, la variable auxiliar {\tt edad} toma el primer valor de la lista {\tt edades} (es decir, 22). En la segunda iteración, {\tt edad} toma el segundo valor de la lista {\tt edades} (que es 21), etc. Y la operación que hacemos en cada iteración con el valor {\tt edad} es la que hemos descrito en el pseudocódigo: restamos la media a la edad, elevamos al cuadrado y concatenamos el resultado al final de la lista {\tt cuadradosDesviaciones}. Un detalle técnico: fíjate en que hemos rodeado esa operación con corchetes para convertir el resultado en una lista (de un único elemento) y así poder usar {\tt +} para concatenarla.
+forman el {\sf cuerpo del bucle for}. Estas línea se ejecutan una vez para cada valor que toma la variable índice del bucle. Es decir, una vez para cada uno de los elementos de la lista {\tt edades}. Cada una de esas ejecuciones se denomina una {\sf iteración} del bucle. En la primera iteración del bucle, la variable auxiliar {\tt edad} toma el primer valor de la lista {\tt edades} (es decir, 22). En la segunda iteración, {\tt edad} toma el segundo valor de la lista {\tt edades} (que es 21), etc. 
 
-Fíjate en {\bf otro detalle muy importante}. Esa línea de código está {\sf indentada}; es decir, que hemos usado espacios en blanco al principio de la línea para desplazarla a la derecha con respecto a la línea anterior. En Python todas las líneas que forman el cuerpo de un bucle for deben estar indentadas con respecto a la línea de cabecera. De hecho esa indentación es la forma que usa Python para saber donde empieza y donde termina el cuerpo del código (en otros lenguajes el cuerpo del bucle se encierra entre llaves).
+Fíjate en {\bf otro detalle muy importante}. Esas líneas de código están {\sf indentadas}; es decir, que hemos usado espacios en blanco al principio de la líneas para desplazarlas a la derecha con respecto a la línea de cabecera del bucle. En Python todas las líneas que forman el cuerpo de un bucle {\tt for} {\bf deben} estar indentadas con respecto a la línea de cabecera. De hecho esa indentación es la forma (la {\em única} forma) que usa Python para saber donde empieza y donde termina el cuerpo del código (en otros lenguajes el cuerpo del bucle se encierra, por ejemplo, entre llaves).
+
+\item La última línea del programa:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+print(diferenciasCuad)
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+no está indentada, de manera que ya no forma parte del bucle {\tt for}. Eso significa que esa línea de código se ejecuta sólo una vez, cuando han terminado todas las iteraciones del bucle {\tt for}. Por esa razón la salida del programa sólo muestra la lista {\tt diferenciasCuad} completa. 
 
 \end{enumerate}
 
-El tercer bloque de código del programa:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-varianzaEdades = sum(cuadradosDesviaciones) / len(cuadradosDesviaciones)
-print(varianzaEdades)
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-ya no forma parte del cuerpo del bucle for y por esa razón las líneas que lo forman no están indentadas. Estas líneas se ejecutan tras terminar la iteraciones del bucle o, como diremos a menudo, {\em al salir del bucle}. En ellas simplemente sumamos la lista {\tt cuadradosDesviaciones}, dividimos la suma entre {\tt n}, asignamos el resultado a la variable {\tt varianzaEdades} y usamos {\tt print} para mostrar el resultado.
-
-Para mejorar nuestra comprensión del funcionamiento del bucle for vamos a hacer un ejercicio:
+Para tratar de entender un poco mejor algunos aspectos del funcionamiento del bucle {\tt for} vamos a hacer un ejercicio.
 \begin{ejercicio}
 \label{tut02:ejercicio15}
 \quad
 \begin{enumerate}
 \item Prueba a eliminar los dos puntos del final de la línea de cabecera del bucle y ejecuta otra vez todo el bloque de código. ¿Cuál es el mensaje de error?
 
-\item Vamos a ejecutar otra vez el bucle for, pero cambiando el nombre de la variable auxiliar {\tt edad} así:
+\item Vamos a ejecutar otra vez el bucle for, pero cambiando el nombre de la variable auxiliar {\tt edad} por {\tt x}. Las líneas de la 9 a la 12 (las del bucle) deben quedar así:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-cuadradosDesviaciones = []
 for x in edades:
-  cuadradosDesviaciones = cuadradosDesviaciones + [(x - edadMedia)**2]
+  diferencia = x - mediaEdad
+  cuadradoDif = diferencia**2
+  diferenciasCuad = diferenciasCuad + [cuadradoDif]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Fíjate en que hemos cambiado por {\tt x} las dos apariciones de {\tt edad}. ¿Hay algún cambio en el resultado final? Prueba a usar otro nombre cualquiera y repite este apartado con ese nombre. Aunque este ejercicio muestra que puedes usar cualquier nombre (que no hayas usado para otra cosa, claro) siemrpe es conveniente que el nombre sea descriptivo del papel qu ejuega la variable.
+Hemos cambiado por {\tt x} las dos apariciones de {\tt edad}. ¿Hay algún cambio en el resultado final? Prueba a usar otro nombre cualquiera y repite este apartado con ese nombre. En cualquier caso, a pesar de la tentación de usar nombres cortos como {\tt x} para escribir menos, recuerda que es conveniente que el nombre sea descriptivo del papel que juega la variable.
 
-\item {\bf Importante:} Prueba a indentar la dos últimas líneas del programa y elimina la línea en blanco para hacerlas parte del cuerpo del bucle. Es decir, convierte el programa en este otro:
+\item  Vamos a modificar otra vez el programa. Volvemos a usar {\tt edad} para la variable índice del bucle, pero ahora además cortamos y pegamos la línea de la función {\tt print} para que la parte final del programa quede así (se muestran las líneas de la 9 en adelante; no hay más código por debajo):
 
-¿Qué sucede ahora al ejecutar el código? ¿Cuántos valores aparecen? ¿Reconoces el último de ellos? 
+¿Qué sucede ahora al ejecutar el código? 
 \end{enumerate}
 \quad\\
 %Solución en la página \pageref{tut02:ejercicio15:sol}.
 \qed
 \end{ejercicio}
 
-\subsubsection*{Otra forma de hacerlo: comprensión de listas.}
+\subsubsection*{Otra forma de expresar un bucle: comprensión de listas.}
 \label{tut02:subsubsec:comprensionListas}
 
-Los bucles for como los que hemos visto en el apartado anterior existen en muchos otros lenguajes de programación, con prácticamente la misma estructura. Sólo varían los detalles de formato propios de cada lenguaje. Pero Python dispone además de una forma alternativa dehacer esto; es decir, de ejecutar la misma colección de operaciones sobre los elementos de una lista. El cálculo de las desviaciones al cuadrado de cada elemento de {\tt edades} se puede obtener de esta forma alternativa así:
+Los bucles {\tt for} como los que hemos visto en el apartado anterior existen en muchos otros lenguajes de programación, con prácticamente la misma estructura. Sólo varían los detalles de formato propios de cada lenguaje. Pero Python dispone además de una forma alternativa de expresar bucles; es decir, de ejecutar la misma colección de operaciones sobre los elementos de una lista. Esta segunda manera de construir los bucles propia de Python puede resultarte un poco más difícil de entender al principio, porque toda la estructura del bucle se condensa en una única línea de código. Por ejemplo, el cálculo de las desviaciones al cuadrado de cada elemento de {\tt edades} se puede obtener de esta forma alternativa así:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-edadesCuadrado = [(edad - **2 for edad in edades]
-\hlkwd{print}(edadesCuadrado)
+diferenciasCuad = [(edad - mediaEdad)**2 for edad in edades]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-En la terminal de IPython el resultado es:
+Enseguida vamos a entrar en detalles sobre esta nueva forma de expresar el bucle. Pero antes vamos a comprobar que esta línea tiene el mismo efecto que el bucle for que vimos en el programa {\tt Tut02-py-BuclesFor02.py} de la anterior sección. Para ello en el siguiente programa adjunto hemos sustituido todo el bucle {\tt for} (incluida la línea en la que creábamos una lista vacía) con esa única línea. 
+
+
+\begin{center}
+\fichero{./code/Tut02-py-BuclesFor02.py}{Tut02-py-ComprensionLista01.py}
+\end{center}
+El contenido del fichero se muestra a continuación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-In [5]: edadesCuadrado = [edad**2 for edad in edades]
+\begin{verbatim}
+edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19,
+18, 22, 20, 19, 22, 18, 20, 21, 20]
 
-In [6]: \hlkwd{print}(edadesCuadrado)
-[484, 441, 324, 361, 289, 441, 324, 400, 289, 324, 289, 484, 400, 361,
-324, 361, 324, 484, 400, 361, 484, 324, 400, 441, 400]
-\end{alltt}
+mediaEdad = sum(edades) / len(edades)
+
+diferenciasCuad = [(edad - mediaEdad)**2 for edad in edades]
+
+print(diferenciasCuad)
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
-
-Como ves no hay ninguna diferencia con el resultado del bucle for.
-
-Esta segunda forma de trabajar se denomina {\sf comprensión de listas}, una traducción decepcionantemente literal del nombre en inglés {\em list comprehension} (que ya es, en sí mismo, desafortunado).
+Como hemos hecho otras veces, abre este fichero en el {\em Editor de Código} de Spyder, asegurándote de que estás en una sesión limpia  (recuerda
+\verb&%reset&
+y \verb&%clear&).
+Ejecútalo (recuerda que {\tt F5} ejecuta todo el programa) y podrás comprobar que el resultado es el mismo que al  usar el bucle {\tt for}. Esta segunda forma de trabajar se denomina {\sf comprensión de listas}, una traducción decepcionantemente literal del nombre en inglés {\em list comprehension} (que ya es, en sí mismo, desafortunado).
 
 La comprensión de lista en nuestro ejemplo se refiere concretamente a la expresión entre corchetes:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-[edad**2 for edad in edades]
+[(edad - mediaEdad)**2 for edad in edades]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Esta expresión se puede ver como una receta para fabricar una lista: es como si le dijeramos a Python:
+Esta expresión se puede ver como una receta para fabricar una lista: es como si le dijéramos a Python:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2146,11 +2269,11 @@ Esta expresión se puede ver como una receta para fabricar una lista: es como si
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Y de nuevo, como sucedía en el bucle for, la variable auxiliar puede recibir cualquier nombre y el resultado es el mismo:
+Y de nuevo, como sucedía en el bucle for, la variable auxiliar puede recibir cualquier nombre y el resultado es el mismo. Pruebas a reemplazar la comprensión de listas del programa con esta otra:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-[item**2 for item in edades]
+[(item - mediaEdad)**2 for item in edades]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -2160,29 +2283,31 @@ Puesto que en inglés {\em un elemento de la lista} se suele escribir {\em an it
 \label{tut02:ejercicio16}
 \quad
 \begin{enumerate}
-\item Ejecuta este código para comprobar que en efecto produce el mismo resultado.
-\item Escribe una comprensión de lista que reste a cada elemento de {\tt edades} la media aritmética y eleve al cuadrado la cantidad resultante y úsala para calcular la varianza poblacional. Comparala con la que hemos obtenido antes.
+\item Si no lo has hecho ya, ejecuta este código con {\tt item} para comprobar que en efecto produce el mismo resultado.
+\item Ya tenemos dos versiones del bucle (la versión {\tt for} y la {\tt comprensión de listas}) pero en realidad no hemos terminado el cálculo de la  varianza poblacional de {\tt edades}. Completa el cálculo usando la versión del bucle que prefieras (da igual, claro).
 \end{enumerate}
 \quad\\
 %Solución en la página \pageref{tut02:ejercicio16:sol}.
 \qed
 \end{ejercicio}
 
-%' \subsubsection*{Y todavía una forma más: Numpy y aritmética vectorial.}
-%' \label{tut02:subsubsec:numpyAritmeticaVectorial}
-%'
-%' <<eval=FALSE, purl=FALSE>>=
-%' import numpy as np
-%' edades_np = np.array(edades)
-%' edades_np
-%' edades_np + 1
-%' edades_np**2
-%' @
+La principal ventaja de la comprensión de listas frente al bucle {\tt for} es su concisión. Su principal inconveniente es la pérdida de claridad del código que puede llevar aparejada esa misma concisión. En este y en los próximos Tutoriales tendrás ocasión de ver muchos ejemplos de comprensión de listas. Así que si ahora no acabas de entender su funcionamiento, ten un poco de paciencia. Irá quedando más y más claro con la práctica. 
 
-\subsubsection*{Ordenación de una lista: in situ vs externa.}
+%\textcolor{red}{\Huge AQUÍ}
+
+\section{Recursos para facilitar el trabajo: ordenación y {\tt print} con formato.}
+\label{tut02:sec:recursosOrdenacionPrint}
+
+Los temas que hemos agrupado en esta sección del tutorial no tienen un hilo temático claro, como sucede en otras secciones. Pero son recursos que van a hacer mucho más sencillo parte del trabajo que tenemos por delante y los vamos a necesitar pronto. Sirven, en cualquier caso, para incluir algunos ejemplos que aumentan nuestra experiencia con el código en Python. 
+
+\subsection{Ordenación de una lista: in situ vs externa.}
 \label{tut02:subsubsec:ordenacionLista}
 
-Cerramos esta primera visita a las listas de Python analizando una operación que también vamos a usar con frecuencia: la ordenación de los elementos de una lista. El caso más habitual es el de la ordenación de una lista de números. Por ejemplo, dada esta lista no ordenada de números:
+\paragraph{Advertencia previa:} En las secciones previas hemos ido mostrando como trabajar en el {\em Editor de Código} y la {\em Terminal} de Spyder. Pero a partir de este apartado, vamos a ser menos específicos en las instrucciones. A menudo diremos cosas como {\em ``Ejecuta este código''} y mencionaremos (o no) la {\em Terminal} o el {\em Editor}. En muchos casos, eso significa que estamos haciendo experimentos con alguna idea nueva. Y la decisión sobre la forma que te resulta más cómoda de trabajar es tuya. A veces preferirás copiar el código en el {\tt Editor} para que te sea más cómodo hacer cambios y ejecutarlo con {\tt F5} o {\tt F9}. Otras veces irás directamente a la {\em Terminal}. Y, eso sí, cuando sea necesario te daremos instrucciones explícitas sobre la forma en la que debes ejecutar el código. En cualquier caso, el mejor consejo que podemos darte es que hagas pruebas y pruebas (nosotros también seguimos buscando cada día formas mejores de trabajar). Recuerda, eso sí, que si quieres evitar interferencias del trabajo que has hecho en sesiones previas, debes asegurarte de trabajar en una {\em sesión limpia}.
+\hrule
+\quad\\
+
+Vamos a empezar con el trabajo de esta sección. El primer problema que queremos abordar es el de la ordenación de una lista. Y el caso más habitual es el de una lista de números. Por ejemplo, dada esta lista no ordenada:
 
 
 
@@ -2194,8 +2319,8 @@ numeros = [10, 8, 43, 7, 24, 7, 31, 45, 1, 3, 20, 14, 12, 44, 13, 20, 33, 7, 29,
 \end{kframe}
 \end{knitrout}
 
-podemos ordenarla fácilmente con la función {\tt sorted}. En IPython:
-
+podemos ordenarla fácilmente con la función {\tt sorted}. Esto es lo que obtenemos en la {\em Terminal} de Spyder:
+{\small
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2206,7 +2331,7 @@ In [2]: \hlkwd{print}(\hlkwd{sorted}(numeros))
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
+}
 Si lo que queremos es ordenarlos de mayor a menor basta con añadir un argumento a la función:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -2235,7 +2360,7 @@ Por eso decimos que la función {\tt sorted} hace una ordenación {\sf externa}.
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Pero no vamos a hacer esto, porque queremos aprovechar para mostrarte el segundo procedimiento y de paso aprender un poco más de Python. El segundo método consiste en ejecutar el comando:
+Pero no vamos a hacer esto, porque queremos aprovechar para mostrarte el segundo procedimiento y de paso aprender un poco más de Python. El segundo método consiste en ejecutar el siguiente comando (el paréntesis vacío es imprescindible):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2243,7 +2368,7 @@ Pero no vamos a hacer esto, porque queremos aprovechar para mostrarte el segundo
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Vamos a hacer esto en IPython, mostrando la lista {\tt numeros} antes y después de ejecutar ese comando:
+Vamos a hacer esto en la {\em Terminal}, mostrando la lista {\tt numeros} antes y después de ejecutar ese comando:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2259,7 +2384,7 @@ In [7]: \hlkwd{print}(numeros)
 \end{knitrout}
 El resultado es el que queríamos: la lista ordenada remplaza a la original. Esto es lo que se conoce como ordenación {\em in situ}. En general usamos ese término cuando una modificación de un objeto ocupa el lugar del objeto original.
 
-Pero el otro aspecto interesante de este segunda manera de ordenar la lista  es el propio formato del comando que hemos usado. Python es un lenguaje {\sf orientado a objetos}. Aunque no vamos a entrar en la discusión técnica de lo que eso significa en Computación, sí queremos que conozcas algo del lenguaje. Todas las construcciones que vamos viendo: variables, listas, funciones y muchas otras que veremos son {\sf objetos}. Y cada objeto de Python tiene un serie de {\sf métodos} asociados. Los métodos representan acciones que podemos llevar a cabo usando ese objeto. Por ejemplo, cualquier objeto de clase {\em lista} (como  {\tt numeros}) tiene asociado el método {\tt sort} que permite ordenar {\em in situ} ese objeto. La forma general de invocar un método en Python es un comando de la forma:
+Pero el otro aspecto interesante de este segunda manera de ordenar la lista  es el propio formato del comando que hemos usado. Python es un lenguaje {\sf orientado a objetos}. Aunque no vamos a entrar en la discusión técnica de lo que eso significa en Computación, sí queremos que te familiarices con algunos consecuencias prácticas de esa característica de Python. Todas las construcciones que vamos viendo: variables, listas, funciones y muchas otras que veremos son {\sf objetos}. Y cada objeto de Python tiene un serie de {\sf métodos} asociados. Los métodos representan acciones que podemos llevar a cabo usando ese objeto. Por ejemplo, cualquier objeto de clase {\em lista} (como  {\tt numeros}) tiene asociado el método {\tt sort} que permite ordenar {\em in situ} ese objeto. La forma general de invocar un método en Python es un comando de la forma:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2267,7 +2392,7 @@ Pero el otro aspecto interesante de este segunda manera de ordenar la lista  es 
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El comando {\tt numeros.sort()} que hemos visto es un ejemplo de esta construcción, aunque en ese caso el método {\tt sort} se invoca sin argumentos. También podíamos haber hecho ordenación {\em in situ} descendente:
+El comando {\tt numeros.sort()} que hemos visto es un ejemplo de esta construcción, aunque en ese caso el método {\tt sort} se invoca sin argumentos (de ahí el paréntesis vacío; prueba a eliminarlo y mira lo que sucede). También podíamos haber hecho ordenación {\em in situ} descendente:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2294,14 +2419,33 @@ y la que estamos presentando ahora, que es:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Ambas son comunes a casi todos los lenguajes de programación modernos. En el próximo apartado vamos a ver otro ejemplo.
+Ambas son comunes a casi todos los lenguajes de programación modernos. 
 
-\subsubsection*{De nuevo la función {\tt print}. Textos con formato.}
-\label{tut02:subsubsec:funcionPrintTextosFormato}
+Antes de cerrar este apartado queremos señalar que también podemos usar estos métodos para la ordenación alfabética de una lista de cadenas de caracteres. Por ejemplo partiendo de esta lista:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+meses = [\hlstr{"enero"}, \hlstr{"febrero"}, \hlstr{"marzo"}, \hlstr{"abril"}, \hlstr{"mayo"}, \hlstr{"junio"}, \hlstr{"julio"}, \hlstr{"agosto"}, 
+         \hlstr{"septiembre"}, \hlstr{"octubre"}, \hlstr{"noviembre"}, \hlstr{"diciembre"}]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+¿qué sucede si ejecutas el siguiente código?
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{mesesOrd} \hlkwb{=} \hlkwd{sorted}\hlstd{(mesesOrd)}
+\hlkwd{print}\hlstd{(mesesOrd)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
-Ya dijimos al presentarla que la función {\tt print} nos proporciona un mecanismo de control mucho más fino sobre la forma de mostrar los resultados de nuestro código. En este apartado vamos a ver como combinar la función {\tt print} con las variables de tipo cadena y los bucles y rangos para dar un salto cualitativo en nuestra capacidad de expresarnos mediante Python.
+\subsection{De nuevo la función {\tt print}. Textos con formato.}
+\label{tut02:subsec:funcionPrintTextosFormato}
 
-Empezamos con un ejemplo sencillo. Fíjate en lo que sucede al ejecutar este código en IPython:
+Ya dijimos al presentarla que la función {\tt print} nos proporciona un mecanismo de control mucho más fino sobre la forma de mostrar los resultados de nuestro código. En este apartado vamos a ver como combinar la función {\tt print} con las variables de tipo cadena y los bucles y rangos para dar un salto cualitativo en nuestra capacidad de expresarnos mediante Python.\\
+
+Empezamos con un ejemplo sencillo. Fíjate en lo que sucede al ejecutar este código en la {\em Terminal}:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2314,6 +2458,7 @@ El valor de la variable a es  7
 \end{knitrout}
 El resultado es que la función {\tt print} produce como salida la cadena de caracteres, pero al hacerlo sustituye la parte {\tt\{0\}} de esa cadena  con el valor de la variable {\tt a}. ¿Y cómo sabe Python cuál es la variable que debe usar como sustituto de {\tt\{0\}}? Se lo hemos indicado mediante el método {\tt format} aplicado a esa cadena de caracteres.
 El mecanismo puede resultar un poco lioso al principio, pero con la práctica resulta más natural y es en cualquier caso una herramienta de presentación muy potente, como tendremos ocasión de comprobar en estos tutoriales. Veamos otros dos ejemplos que introducen novedades interesantes:
+{\small
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2331,9 +2476,11 @@ Por lo tanto la velocidad ha sido igual a 17.57 m/s
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+}
 El primer uso de la función {\tt print} es muy parecido al ejemplo anterior. La novedad es que aparecen dos variables en vez de una, y por tanto hemos usado {\tt\{0\}} y {\tt\{1\}} para indicarle a {\tt print} cuál es la variable que debe sustituir en cada posición (recuerda siempre que Python cuenta desde 0). Después el método {\tt format} le proporciona a {\tt print} esas variables, que se usan en el orden en el que aparecen como argumentos de {\tt format}.
 
 Todas las variables que hemos usado en los ejemplos previos eran de tipo {\tt int}. En cambio, la  segunda llamada a {\tt print} de este ejemplo utiliza sólo una variable, pero esa variable es de tipo {\tt float}.  Además, las instrucciones que usamos para pedirle a Python que sustituya el valor de esa variable son más complicadas: hemos usado {\tt\{0:5.2f\}}. ¿Qué significa esto? La expresión entre llaves tiene dos partes, separadas por los dos puntos. La primera parte es simplemente el número de orden de la variable para el caso en que haya más de una y se corresponde, como hemos visto, con el orden en el que aparecerán enumeradas las variables en la llamada a {\tt format}. En este caso aparece un $0$, porque sólo hay que sustituir la variable {\tt velocidad}. La parte que sigue a los dos puntos {\tt 5.2f} es nueva. Empecemos por lo más fácil: la letra {\tt f} le indica a Python que se trata de sustituir una variable de tipo {\tt float}. Una vez aclarado eso, el símbolo {\tt 5.2} significa: {\em ``usa 5 espacios, y muestra dos decimales después de la coma''}. Vamos a hacer una modificación en esos valores para ver el efecto:
+{\small
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2342,6 +2489,7 @@ Por lo tanto la velocidad ha sido igual a         17.5714 m/s
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+}
 Fíjate en que al usar {\tt 15.4f} ahora aparecen cuatro cifras decimales después de la coma. Además ese espacio en blanco que ha aparecido antes del valor de la variable se debe a que le hemos pedido a Python que use 15 espacios para mostrar el valor de la variable. Y puesto que no necesitaba tantos, una parte de ellos están en blanco. Más adelante veremos que esto puede ser muy útil para dar un formato visual conveniente a nuestros resultados; por ejemplo al imprimir una tabla de valores, en la que queremos controlar la anchura de cada columna. Lo veremos a continuación.
 
 \subsubsection*{Cómo imprimir una tabla de valores.}
@@ -2391,7 +2539,7 @@ for i in \hlkwd{range}(0, 20):
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El resultado de ejecutar este código en la terminal de IPython aparece en la
+El resultado de ejecutar este código en la {\em Terminal} aparece en la
 Tabla \ref{tut02:tabla:cambioLibrasEuros} (pág. \pageref{tut02:tabla:cambioLibrasEuros}).
 \begin{table}[p]
 \begin{center}
@@ -2449,7 +2597,7 @@ Libras |  Euros
 \caption{Un ejemplo de tabla (cambio de libras esterlinas a euros).}
 \label{tut02:tabla:cambioLibrasEuros}
 \end{table}
-El resultado es, desde luego, una tabla mucho más fácil de usar. Para conseguir ajustar el formato de esa tabla hemos tenido que hacer algo de ensayo y error con los espacios y el número de cifras decimales, pero son manipulaciones sencillas que tú mismo podrás experimentar en futuros ejemplos. Es cierto que ese formato no es impresionante, pero a partir de aquí, cualquier programador con unos conocimientos básicos de lenguajes para la Web (basta con los rudimentos de HTML y CSS) podría fácilmente escribir un programa que fabricaría una página web con esta tabla y el estilo que se desee (tipografías, colores, fondos, etc.) Es más, con apenas un poco más de aprendizaje de Python sería fácil diseñar un programa que cada cierto tiempo obtuviera la tasa de cambio libras/euros desde un servidor de internet y la usara para actualizar una página web con una tabla de cambios como esta. Tú mismo puedes imaginarte muchas otras aplicaciones similares. La presentación automatizada de resultados de análisis estadísticos mediante tablas o gráficos (a menudo el resultado se diseña en formato web) es una parte fundamental de la visualización que sirve de base a la comunicación científico-técnica actual.
+El resultado es, desde luego, una tabla mucho más fácil de usar. Para conseguir ajustar el formato de esa tabla hemos tenido que hacer algo de ensayo y error con los espacios y el número de cifras decimales, pero son manipulaciones sencillas que tú mismo podrás experimentar en futuros ejemplos. Es cierto que ese formato no es impresionante, pero a partir de aquí, cualquier programador con unos conocimientos básicos de lenguajes para la Web (basta con los rudimentos de HTML y CSS) podría fácilmente escribir un programa que fabricaría una página web con esta tabla y el estilo que se desee (tipografías, colores, fondos, etc.) Es más, con apenas un poco más de aprendizaje de Python sería fácil diseñar un programa que cada cierto tiempo obtuviera la tasa de cambio libras/euros desde un servidor de Internet y la usara para actualizar una página web con una tabla de cambios como esta. Tú mismo puedes imaginarte muchas otras aplicaciones similares. La presentación automatizada de resultados de análisis estadísticos mediante tablas o gráficos (a menudo el resultado se diseña en formato web) es una parte fundamental de la visualización que sirve de base a la comunicación científico-técnica actual.
 
 \begin{ejercicio}
 \label{tut02:ejercicio17}
@@ -2518,7 +2666,7 @@ In [2]: \hlkwd{print}(\hlstr{"\{0:.4g\}"}\hlkwd{.format}(a))
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-y se obtiene el resultado. Fíjate en que no es necesario indicar el número de espacios, Python lo asigan automáticamente si no lo incluimos. Siguiendo con el ejemplo más complicado de esa sección, para mostrar el número
+y se obtiene el resultado. Fíjate en que no es necesario indicar el número de espacios, Python lo asignan automáticamente si no lo incluimos. Siguiendo con el ejemplo más complicado de esa sección, para mostrar el número
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -2537,144 +2685,9 @@ In [121]: \hlkwd{print}(\hlstr{"\{0:.5g\}"}\hlkwd{.format}(b))
 \end{knitrout}
 En este caso conviene observar que Python, al igual que otros lenguajes, desgraciadamente no incluye ceros a la izquierda en este tipo de redondeos.
 
-\section{Ficheros de comandos Python.}
-\label{tut02:sec:ficherosComandosPython}
 
-A medida que vamos empezando a escribir código más complejo en Python es muy probable que te estés empezando a dar cuenta de que la consola de IPython tiene ciertas limitaciones. Es una gran herramienta para hacer experimentos, para {\em explorar} datos e ideas y para cálculos rápidos. Pero si queremos desarrollar un proyecto más complejo y compartir nuestro trabajo con otras personas necesitamos otro tipo de soporte. Pero no te preocupes, es muy sencillo. Simplemente vamos a combinar nuestro trabajo en IPython con un editor de texto.  Aunque puedes usar cualquier editor, como el Bloc de Notas de Windows, es especialmente recomendable que uses un editor pensado para programar. Recuerda los ejemplos del Tutorial-00 (allí hay instrucciones de instalación): Notepad++ en Windows, Textwrangler en Mac y gedit en Linux.
-
-Lo que vamos a hacer es trabajar con dos ventanas abiertas a la vez (tres, si cuentas el visor de pdf en el que lees este tutorial): en una tenemos nuestra terminal de IPython y en otra el editor de texto. La siguiente figura muestra el montaje en Windows 8.1:
-\begin{center}
-\includegraphics[height=8cm]{../fig/Tut02-py-06-EditorTextoJupyter.png}
-\end{center}
-
-Resumiendo el trabajo de los apartados anteriores vamos a crear un pequeño programa que a partir de una lista de números, como la lista {\tt edades} calcula la media aritmética, la varianza pobalacional y la desviación típica de esa lista. El código del programa es este:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22,
-20, 19, 22, 18, 20, 21, 20]
-\hlkwd{print}(\hlstr{"La lista de edades es:"})
-\hlkwd{print}(edades)
-mediaAritmetica = \hlkwd{sum}(edades) / \hlkwd{len}(eedades)
-\hlkwd{print}(\hlstr{"La media aritmética es:"})
-\hlkwd{print}(mediaAritmetica)
-terminosVarianza = []
-for edad in edades:
-  terminosVarianza = terminosVarianza + [(edad - mediaAritmetica)**2]
-varianzaPob = \hlkwd{sum}(terminosVarianza) / \hlkwd{len}(edades)
-\hlkwd{print}(\hlstr{"La varianza poblacional es:"})
-\hlkwd{print}(varianzaPob)
-import math as m
-\hlkwd{print}(\hlstr{"La desviación típica poblacional es:"})
-\hlkwd{print}(\hlkwd{m.sqrt}(varianzaPob))
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-Selecciona y copia todo este código y pégalo en el editor de texto. En el Tutorial-00 hemos creado una carpeta llamada {\tt code} dentro de tu directorio de trabajo. Desde el editor de texto guarda el programa en esa carpeta {\tt code} usando el nombre:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-Tut02-mediaVarianza-01.py
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-El nombre podría ser cualquiera, pero es importante que la extensión sea {\tt py}. De esa forma el sistema reconoce este fichero como un fichero de texto que contiene código Python. De hecho, cuando lo guardes con esa extensión verás que el aspecto del texto cambia, de forma similar a lo que se ve en esta figura:
-\begin{center}
-\includegraphics[width=15cm]{../fig/Tut02-py-07-EditorTextoSintaxis.png}
-\end{center}
-La razón es que los editores de texto orientados a la programación disponen de lo que se llama {\sf reconocimiento de sintaxis} para Python (y para muchos otros lenguajes de programación) y usan colores, tipos de letra, etc. para destacar la estructura del programa y ayudarnos así en nuestro trabajo. Aunque sólo fuera por eso, merece la pena hacer que el editor de texto forme parte de nuestras herramientas de programación en Python.
-
-Ahora vamos a pasar a la ventana de IPython. Lo primero que tenemos que aprender a hacer es explicarle a IPython dónde está nuestro directorio de trabajo. En mi caso la carpeta de trabajo es una carpeta del {\em Escritorio} llamada {\em PostData}. Dentro de mi carpeta personal el {\em Escritorio} es la carpeta {\em Desktop}\footnote{Nota técnica sobre el {\em Escritorio para usuarios de Linux:} La carpeta {\em Desktop} del directorio de ususario representa al {\em Escritorio} tanto en sistemas Windows modernos como en Mac OS. En algunas versiones de Linux, por un afán de adaptación a mi juicio errado, esa carpeta se llama de hecho {\em Escritorio}. Si es tu caso, pero quieres poner la carpeta de trabajo en el Escritorio puedes abrir una consola de comandos, ir a tu carpeta ejecutando simplemente {\tt cd} y después ejecutar\\ {\tt ln -s Escritorio Desktop}\\ Eso creará un {\sf enlace simbólico} a tu escritorio llamado {\tt Desktop}, de manera que podrás usar ambos nombres indistintamente, sin duplicar ficheros.}. Para indicarle dónde está el fichero voya autilizar una nueva {\em función mágica} de IPython llamada \verb#%cd#
-(del inglés {\em change directory}):
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-%cd ~/Desktop/PostData/code
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-Una aclaración: el símbolo \verb#~# que aparece aquí es una abreviatura que IPython interpreta como {\em la carpeta personal del usuario}. Tiene la ventaja de que funciona igual en los sistemas operativos Windows, Mac y Linux. Para obtener ese símbolo con el teclado usa AltGr + 4 en Windows/Linux y Alt+Ñ en Mac OS (sí, es una ñ mayúscula).
-
-Si ejecuto la función mágica en mi terminal de IPython obtengo:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-In [1]: %cd ~/Desktop/PostData/code
-/Users/fernando/Desktop/PostData/code
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-donde como ves IPython ha sustituido \verb#~# por mi carpeta personal, que en esta máquina Windows se representa con {\tt /Users/fernando} (la primera barra inclinada {\tt /} representa aquí el {\sf directorio raíz} del sistema de ficheros de tu ordenador, la carpeta que contiene todas las demás carpetas).
-
-Para comprobar que hemos llegado a la carpeta que contiene el fichero {\tt Tut02-mediaVarianza-01.py} vamos a usar otra {\em función mágica} de IPython. La función \verb#%ls#
-sirve para mostrar el contenido de la carpeta activa, la que hemos seleccionado con \verb#%cd#.
-Como sólo me interesan los ficheros de código Python usaré \verb#%ls *.py#
-Así que si la ejecuto en IPython obtengo:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-In [2]: %ls *.py
-Tut02-estadisticaDescriptiva.py  Tut02-mediaVarianza-02.py
-Tut02-mediaVarianza-01.py
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-Los detalles desde luego dependen de tu ordenador, sistema operativo y de la ubicación de tu carpeta de trabajo. Pero lo importante es que, en efecto, ahí aparece (entre otros) el fichero con nuestro código. Con eso estamos listos para usar la última de las funciones mágicas que vamos a necesitar en este apartado. La función \verb#%run#
-ejecuta el programa contenido en un fichero de código Python que le proporcionamos como argumento (en Computación se suele traducir el inglés {\em run} por ejecutar, aunque también hemos oído una traducción más literal, {\em correr} el programa). En IPython sería:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-In [3]: %run Tut02-mediaVarianza-01.py
-La lista de edades es:
-[22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22,
- 20, 19, 22, 18, 20, 21, 20]
-La media aritmética es:
-19.44
-La varianza poblacional es:
-2.646400000000001
-La desviación típica poblacional es:
-1.6267759526130208
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-Comprueba que esos valores son los que esperábamos. Fíjate en que al usar \verb#%run#
-en IPython no aparecen las líneas de código Python del fichero {\tt Tut02-mediaVarianza-01.py} que estamos ejecutando, tan sólo aparece aquello que explícitamente hemos querido mostrar usando la función {\tt print}. Aunque de momento vamos a trabajar dentro de la consola de IPython, ese es el primer paso para que podamos escribir programas en Python que podrán utilizar usuarios que no sepan nada de programación. Al fin y al cabo todos nosotros usamos en nuestros ordenadores una gran cantidad de programas escritos en lenguajes de los que la mayoría de nosotros no sabemos nada.
-Las ventajas de esta forma de trabajar a la vez con IPython y un editor de texto son múltiples: por un lado, el editor de texto ofrece un entorno mucho más cómodo que IPython a la hora de escribir nuestro código. No sólo
-por el reconocimiento de sintaxis del que ya hemos hablado, sino porque proporcionan herramientas avanzadas para hacer manipulaciones en el texto del programa. Por ejemplo, podemos buscar y renombrar automáticamente todas las apariciones de una variable en el texto. Algunos editores van un paso más allá y nos avisan de algunos de los errores más comunes que se pueden cometer al escribir código Python (como olvidarse los dos puntos al final de la línea de cabecera de un bucle for, o dejarse un paréntesis sin cerrar, etc.) Y a la hora de ejecutar el código basta con usar \verb#%run#
-en IPython. Por cierto, conviene aclarar que al ejecutar el código de esta forma el resultado es el mismo que si hubieras copiado y pegado las líneas del programa en la consola de IPython y las hubieras ejecutado todas. En particular, IPython reconoce las variables que aparecen en el programa y sus valores serán los que tomen en el momento en que termina de ejecutarse el programa. Por ejemplo en la la terminal de IPython en la que he hecho
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-%run Tut02-mediaVarianza-01.py
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-si a continuación hago:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{In [}\hlnum{4}\hlstd{]}\hlopt{:} \hlstd{mediaAritmetica}
-\hlstd{Out[}\hlnum{4}\hlstd{]}\hlopt{:} \hlnum{19.44}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-la salida demuestra que las variabes del programa {\tt Tut02-mediaVarianza-01.py} son ahora conocidas para IPython.
-
-Por otra parte, ese programa es simplemente un fichero de texto, que puedes compartir fácilmente con cualquier otro usuario de Python para que lo ejecute en su ordenador. De hecho, en estos tutoriales te vamos a proporcionar bastantes ejemplos de estos ficheros de código Python diseñados para llevar a cabo las operaciones Estadísticas que aprenderemos a lo largo del curso. Podrás usarlos directamente o mediante pequeñas modificaciones para adaptarlos a tus necesidades.
-
-\subsection{Spyder. Entornos de desarrollo integrados. }
-\label{tut02:subsec:SpyderIDEs}
-
-Existen herramientas más especializadas aún que la combinación de IPython + editor de texto que hemos presentado en la anterior sección. Los entornos de desarrollo integrados, que se conocen como IDE (del inglés {\em integrated development environment})  combinan en un sólo programa un editor de texto, una o varias sesiones simultáneas de IPython y otra serie de herramientas útiles para programadores más avanzados: gestión de proyectos, integración con sistemas de control de versiones, depuración del código (en inglés, {\em debugging}). La distribución Anaconda de Python que hemos instalado incorpora uno de estos IDE, llamado Spyder. En la siguiente figura puedes ver el aspecto de la ventana de trabajo de Spyder con el código del programa que hemos escrito (es la versión en Mac OS, pero en Windows o Linux es muy similar).
-\begin{center}
-\includegraphics[width=15cm]{../fig/Tut02-py-08-SpyderCapturaPantalla.png}
-\end{center}
-En estos tutoriales no vamos a entrar en detalles sobre el uso de Spyder o de cualquier otro IDE. Muchos programadores trabajan siempre con la combinación de editor de texto + consola IPython que hemos descrito antes (y un tercer ingrediente que no hemos detallado, la consola de comandos para otras herramientas de desarrollo). Lo que queremos decir con esto es que no hay un entorno de trabajo único para programar en Python. Con el tiempo y la experiencia podrás seleccionar las herramientas que te resulten más cómodas y productivas.
-
-\subsection{Comentarios. }
-\label{tut02:subsec:comentarios}
+\section{Comentarios. }
+\label{tut02:sec:comentarios}
 
 Hemos insistido ya varias veces en que la legibilidad del código es crucial y debe ser una preocupación constante de cualquier programador. Es algo que se debe aprender desde el principio, para incorporarlo a tu conjunto de buenas prácticas científicas.  En el trabajo científico la colaboración entre investigadores y la difusión del conocimiento juegan un papel crucial. Y puesto que la computación es en la actualidad una parte insoslayable de de ese trabajo, es cada vez más común y necesario compartir con otras personas el código que escribimos. A la vez que naturalmente nos convertimos en receptores y usuarios de código escrito por otros.  Con esa idea en mente, la legibilidad del código resulta ser una necesidad imperiosa. Y la elección de nombres adecuados para las variables es sólo el primer paso. Lo que realmente se necesita es una buena {\sf documentación} del código.
 
@@ -2756,73 +2769,106 @@ a = a  + 2 \hlcom{# Este caso es interesante.}
 %Solución en la página \pageref{tut02:ejercicio18:sol}.
 \qed
 \end{ejercicio}
-El último caso de este ejercicio es, en efecto, interesante. Ese ejemplo muestra como podemos utilizar el símbolo \verb&#& para introducir comentarios en medio del código Python. Esas líneas de comentario son extremadamente útiles para explicar lo que está sucediendo en el código, el papel que juegan las variables o para dar al usuario instrucciones precisas sobre el funcionamiento del programa. Imagínate que quieres compartir con alguien el fichero
-\paragraph{}\label{fichero:Tut02-mediaVarianza-01}\quad
+El último caso de este ejercicio es, en efecto, interesante. Ese ejemplo muestra como podemos utilizar el símbolo \verb&#& para introducir comentarios en medio del código Python. Esas líneas de comentario son extremadamente útiles para explicar lo que está sucediendo en el código, el papel que juegan las variables o para dar al usuario instrucciones precisas sobre el funcionamiento del programa. Para insistir en esta idea vamos a mostrarte dos versiones de un programa, que simplemente calcula la varianza y desviación típica poblaciones de la lista de edades que hemos usado de ejemplo en secciones previas. La primera versión no sigue ninguna de nuestras recomendaciones en cuanto a estilo y documentación. Puedes encontrarla en el fichero adjunto:
+
+\begin{center}
+\fichero{./code/Tut02-mediaVarianza-01.py}{Tut02-mediaVarianza-01.py}
+\end{center}
+cuyo contenido se muestra a continuación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-Tut02-mediaVarianza-01.py
-\end{alltt}
+\begin{verbatim}
+edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22, 
+20, 19, 22, 18, 20, 21, 20]
+m = sum(edades) / len(edades)
+print(m)
+nV = []
+for edad in edades:
+  nV = nV + [(edad - m)**2] 
+v = sum(nV) / len(edades)
+print(v)
+import math as m
+print(m.sqrt(v))
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
-que hemos escrito antes. Compara la versión original del programa con esta otra en la que hemos usado bastantes comentarios y hemos dejado líneas en blanco:
+Abre este fichero en el {\em Editor de Código} de Spyder y ejecútalo. Como podrás comprobar, el código funciona correctamente y muestra como resultados los valores que queríamos obtener. Por orden, la media, varianza y desviación típica poblacionales. Ahora veamos la segunda versión, que está en el fichero adjunto:
 
-
+\begin{center}
+\fichero{./code/Tut02-mediaVarianza-02.py}{Tut02-mediaVarianza-02.py}
+\end{center}
+y que se muestra a continuación:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{########################################################}
-\hlcom{# www.postdata -statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadística}
-\hlcom{# Tutorial 02 (versión Python).}
-\hlcom{# Ejemplo de cálculo de media, varianza y desv. típica}
-\hlcom{# para una variable cuantitativa, datos no agrupados.}
-\hlcom{########################################################}
+\begin{verbatim}
+"""
+www.postdata -statistics.com
+POSTDATA. Introducción a la Estadística.
+Tutorial 02 (versión Python).
+Ejemplo de cálculo de media, varianza y desv. típica
+para una variable cuantitativa, datos no agrupados.
+"""
 
 import math as m
 
-\hlcom{# Esta es la lista de datos sobre la que vamos a trabajar:}
+# Esta es la lista de datos sobre la que vamos a trabajar:
 edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22, 
 20, 19, 22, 18, 20, 21, 20]
 
-\hlcom{# La lista se muestra en pantalla:}
-\hlkwd{print}(\hlstr{"La lista de edades es:"})
-\hlkwd{print}(edades)
+# La lista se muestra en pantalla:
+print("La lista de edades es:")
+print(edades)
 
-\hlcom{# Media aritmética de la lista:}
-mediaAritmetica = \hlkwd{sum}(edades) / \hlkwd{len}(edades)
-\hlkwd{print}(\hlstr{"La media aritmética es:"})
-\hlkwd{print}(mediaAritmetica)
+# Media aritmética de la lista:
+mediaEdad = sum(edades) / len(edades)
+print("La media aritmética es:")
+print(mediaEdad)
 
-\hlcom{# Varianza poblacional de la lista}
-terminosVarianza = []
+# Varianza poblacional de la lista
+diferenciasCuad = []
+# diferenciasCuad acumula resultados parciales del numerador de la 
+# varianza en cada iteración del siguiente bucle for.
 for edad in edades:
-\hlcom{  # Terminos varianza acumula resultados parciales del numerador de la }
-\hlcom{  # varianza en cada iteración del bucle for.}
-  terminosVarianza = terminosVarianza + [(edad - mediaAritmetica)**2] 
-varianzaPob = \hlkwd{sum}(terminosVarianza) / \hlkwd{len}(edades)
-\hlkwd{print}(\hlstr{"La varianza poblacional es:"})
-\hlkwd{print}(varianzaPob)
+  diferencia = edad - mediaEdad
+  cuadradoDif = diferencia**2
+  diferenciasCuad = diferenciasCuad + [cuadradoDif]
+varianzaPob = sum(diferenciasCuad) / len(edades)
+print("La varianza poblacional es:")
+print(varianzaPob)
 
-\hlcom{# Desviación típica poblacional.}
-\hlkwd{print}(\hlstr{"La desviación típica poblacional es:"})
-\hlkwd{print}(\hlkwd{m.sqrt}(varianzaPob))
-\end{alltt}
+# Desviación típica poblacional.
+print("La desviación típica poblacional es:")
+print(m.sqrt(varianzaPob))
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
-Las primeras líneas del programa son un bloque de comentarios que proporciona información sobre el programa, su procedencia, autoría y el objetivo del código. Es bueno incluir ese tipo de información en nuestros programas. A continuación hemos importado el módulo math con el alias {\tt m}. Una de las {\sf recomendaciones de estilo} que forman parte de las buenas prácticas recomendadas al escribir código Python consiste en colocar todas importaciones de módulos al principio del código, para que sean fáciles de loclaizar. Además, como ves, hemos usado líneas en blanco para dividir el programa en bloques lógicos, donde cada bloque de código persigue una finalidad concreta y diferenciada del resto del programa. Esas líneas en blanco no tienen ningún efecto a la hora de ejecutar el programa, pero ayudan a la legibilidad. Y cada bloque comienza con una línea o más de comentarios \verb&#& que describe lo que sucede en ese bloque. En algunos casos se añaden líneas de comentario adicionales dentro del bloque de código, como hemos hecho en el caso del bucle {\tt for} de cálculo de la varianza poblacional, si creemos que eso es necesario para ayudar al lector del programa. El resultado , con la ayuda de colores y tipos de letra adecuados, es un programa del que resulta mucho más fácil entender la estructura y finalidad, un programa más legible. Es importante incorporar esa disciplina a nuestro método de trabajo y pensar siempre que escribimos nuestros programas para que los pueda leer un lector humano. Al principio, especialmente al escribir programas cortos, es posible que pienses que es una pérdida de tiempo introducir tantos comentarios y prestar tanta atención a la documentación del código. Créenos: la forma más segura de perder el tiempo es no hacerlo.
+Es un fichero más largo. Como antes, abre el fichero en Spyder y ejecútalo. Los resultados numéricos son, desde luego, los mismos. Pero ahora además hemos usado varias sentencias {\tt print} para indicar cuál es la relación de cada uno de esos valores con los datos. Desde el punto de vista de un {\em usuario} del programa, la diferencia es enorme. Ahora vuelve a examinar comparándolos el código de ambos programas. Para motivarte en esa comparación, imagínate que te han enviado el programa por correo electrónico, sin más explicaciones, y quieres entender lo que hace el programa. En la primera versión no hay más ayuda que tus conocimientos de Python y Estadística. Ni siquiera los nombres de las variables ayudan demasiado a entender que está ocurriendo; hemos usado {\tt v} por varianza y {\tt nV} por {\em numerador de la varianza}, pero el destinatario del código tendría que adivinar eso. En la segunda versión nos han puesto las cosas mucho más fáciles mediante una serie de recursos de documentación:
+\begin{itemize}
+  \item Las primeras líneas del programa son un bloque de comentarios, delimitado por dos líneas que contienen tres comillas dobles \verb&"""&. Este tipo de bloques de comentario,que no habíamos visto hasta ahora, se utilizan en Python para introducir comentarios que ocupan más de una línea y son típicos de estas labores de documentación del código.   En este bloque proporcionamos información sobre el programa, su procedencia, autoría (con algún tipo de información de contacto, para poder resolver dudas por ejemplo) y el objetivo del código. Es bueno acostumbrarse a incluir ese tipo de información en nuestros programas. 
+  
+  \item A continuación hemos importado el módulo math con el alias {\tt m}. Una de las {\sf recomendaciones de estilo} que forman parte de las buenas prácticas recomendadas al escribir código Python consiste en colocar todas importaciones de módulos al principio del código, para que sean fáciles de localizar.
+  
+  \item Además, como ves, hemos usado líneas en blanco para dividir el programa en bloques lógicos, donde cada bloque de código persigue una finalidad concreta y diferenciada del resto del programa. Cada bloque comienza con una línea o más de comentarios \verb&#& que describe lo que sucede en ese bloque. Esas líneas en blanco y comentarios no tienen ningún efecto a la hora de ejecutar el programa, pero ayudan a la legibilidad y a hacer explícita la estructura lógica del programa.
+  
+  \item En algunos casos se añaden líneas de comentario adicionales dentro del bloque de código, como hemos hecho en el caso del bucle {\tt for} de cálculo de la varianza poblacional, si creemos que eso es necesario para ayudar al lector del programa a entender un punto concreto.
+  
+  \item Y desde luego, los nombres de las variables se han elegido de manera que puedan resultar informativos del papel que juegan en el programa. 
+
+\end{itemize}
+
+El resultado, si además contamos con la ayuda de reconocimiento de sintaxis que nos presta un programa como Spyder, es un programa del que resulta mucho más fácil entender la estructura y finalidad, un programa más legible. Es importante incorporar esa disciplina a nuestro método de trabajo y pensar {\em siempre} que escribimos nuestros programas para que los pueda leer un lector humano. Que a menudo seremos nosotros mismos, al cabo de un cierto tiempo, esforzándonos para entender cómo funcionaba ese programa del que somos autores y que ahora nos parece ajeno. Al principio, especialmente al escribir programas cortos, es posible que pienses que es una pérdida de tiempo introducir tantos comentarios y prestar tanta atención a la documentación del código. Créenos: la forma más segura de perder el tiempo es no hacerlo.
 
 Hemos hablado en el párrafo anterior sobre las recomendaciones de estilo en programas Python. Es un poco prematuro profundizar en esas normas cuando hemos avanzado tan poco todavía, pero para que nos sirva de referencia aquí tienes un enlace a un documento en el que se explicitan algunas de esas recomendaciones de estilo:
 \begin{center}
 \link{https://www.python.org/dev/peps/pep-0008}{https://www.python.org/dev/peps/pep-0008}
 \end{center}
 
-A lo largo del curso iremos comentando otros aspectos relacionados con las buenas prácticas en la documentación del código.
+A lo largo del curso iremos comentando otros aspectos relacionados con las buenas prácticas en programación en general y en la documentación del código en particular.
 
 \section{Ficheros {\tt csv} en Python.}
 \label{tut02:sec:ficherosCsvPython}
 
-En esta sección vamos a aprender a utilizar ficheros {\tt csv} con Python.  En el Tutorial-01 hemos visto algunos ejemplos de ese tipo de ficheros, y el manejo básico con una hoja de cálculo, como Calc. Como vimos allí, un fichero {\tt csv} típico contiene una tabla de datos, con varias columnas. Esa estructura de tabla se hará imprescindible más adelante. Pero durante una buena parte del curso, nosotros nos vamos a limitar a problemas en los que interviene una única variable. En tal caso, para almacenar los datos de esa variable nos podemos a limitar a considerar un tipo de ficheros {\tt csv} muy básico, como el fichero adjunto:
+En esta sección vamos a aprender a utilizar ficheros {\tt csv} con Python.  En el Tutorial-01 hemos visto algunos ejemplos de ese tipo de ficheros y su manejo básico con una hoja de cálculo como Calc. Como vimos allí, un fichero {\tt csv} típico contiene una tabla de datos, con varias columnas. Esa estructura de tabla se hará imprescindible más adelante. Pero durante una buena parte del curso, nosotros nos vamos a limitar a problemas en los que interviene una única variable. En tal caso, para almacenar los datos de esa variable nos podemos a limitar a considerar un tipo de ficheros {\tt csv} muy básico, como el fichero adjunto:
 \begin{center}
 \fichero{../datos/Tut02-Edades.csv}{Tut02-Edades.csv}
 \end{center}
@@ -2842,16 +2888,40 @@ que el fichero contiene  sólo una columna de datos, que en este ejemplo corresp
 \subsubsection*{Leyendo datos de un fichero csv.}
 \label{tut02:subsubsec:leyendoDatosFicheroCsv}
 
-Queremos utilizar los datos de ese fichero en Python, y para eso vamos a
+Queremos utilizar los datos de ese fichero en Python, y para eso vamos a tener que dar los siguientes pasos:
 \begin{enumerate}
-\item leerlos desde el fichero y
-\item guardarlos en un vector. El resultado será como si nosotros hubiéramos creado ese vector tecleándo sus elementos directamente.
+\item Indicarle a Python cuál es nuestro {\em Directorio de Trabajo} para que, tomándolo como referencia, pueda saber llegar hasta el fichero de datos.
+\item Leerlos desde el fichero. 
+\item Y guardarlos en una lista. El resultado será como si nosotros hubiéramos creado ese vector tecleando sus elementos directamente.
 \end{enumerate}
-El código que vamos a utilizar para esto hace uso de la función \verb#read_csv# que debemos importar desde el módulo {\tt pandas}. A lo largo del curso nos vamos a encontrar en varias ocasiones con este módulo que contiene muchas funciones orientadas a la Estadística  y el Análisis de Datos. Los comandos necesarios para las operaciones que hemos descrito aparecen aquí debajo. Los comentaremos uno a uno a continuación:
+
+Para dar el primer paso vamos a aprender a usar otro componente de Spyder. La siguiente figura ilustra la forma de localizar y activar el panel denominado {\em Explorador de Archivos} o {\em File Explorer} si tu versión de Spyder está en inglés. 
+\begin{center}
+\includegraphics[width=12cm]{../fig/Tut-02-py-34-ExploradorFicherosSpyder01.png}
+\end{center}
+En ese panel puedes usar el ratón para seleccionar tu {\em Directorio de Trabajo}. Si necesitas ascender por la estructura de carpetas de tu sistema puedes usar las flechas de color verde que aparecen encima del panel. Navega por las carpetas hasta que el contenido de tu {\em Directorio de Trabajo} sea visible en el {\em Explorador de Archivos}. En esta figura se ilustra esa situación:
+\begin{center}
+\includegraphics[width=10cm]{../fig/Tut-02-py-35-ExploradorFicherosSpyder02.png}
+\end{center}
+{\bf ¡Cuidado!} No te confundas y selecciones la carpeta {\tt datos} en lugar del {\em Directorio de Trabajo}. Como indica la flecha roja, cuando hayas hecho esto, haz click sobre el icono \includegraphics[width=0.5cm]{../fig/Tut-02-py-36-IconoSeleccionWorkDir.png}
+que aparece encima del panel del {\em Explorador de Archivos}. Con esto hemos completado la primera de las tres tareas. Pero para comprobar que todo ha ido bien, vamos a ir a la {\em Terminal} de Spyder y vamos a usar una nueva {\em función mágica} (como \verb&%clear& 
+y \verb&%reset&). 
+En este caso debes ejecutar:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-%cd ~/Desktop/PostData/
+%ls
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Al hacerlo verás aparecer en la {\em Terminal} un listado, parecido al de esta figura, que debe reflejar el contenido de tu {\em Directorio de Trabajo}.
+\begin{center}
+\includegraphics[width=10cm]{../fig/Tut-02-py-37-FuncionMagicaLs.png}
+\end{center}
+Ahora estamos listos para leer el fichero. El código que vamos a utilizar para esto hace uso de la función \verb#read_csv# que debemos importar desde el módulo {\tt pandas}. A lo largo del curso nos vamos a encontrar en varias ocasiones con este módulo que contiene muchas funciones orientadas a la Estadística y el Análisis de Datos. Los comandos necesarios para las operaciones que hemos descrito aparecen aquí debajo. Ejecutar este código para ver el resultado. Más abajo comentaremos uno a uno los comandos:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
 import pandas as pd
 listaEdades = \hlkwd{pd.read_csv}(\hlstr{"./datos/Tut02-Edades.csv"}, names=[\hlstr{"edades"}])
 listaEdades = listaEdades[\hlstr{"edades"}]\hlkwd{.tolist}()
@@ -2859,38 +2929,18 @@ listaEdades = listaEdades[\hlstr{"edades"}]\hlkwd{.tolist}()
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Al ejecutar este código en IPython esto es lo que sucede:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-In [1]: %cd ~/Desktop/PostData/
-/Users/fernando/Desktop/PostData
-
-In [2]: import pandas as pd
-
-In [3]: listaEdades = \hlkwd{pd.read_csv}(\hlstr{"./datos/Tut02-Edades.csv"}, names=[\hlstr{"v"}])
-
-In [4]: listaEdades = listaEdades[\hlstr{"v"}]\hlkwd{.tolist}()
-
-In [5]: \hlkwd{print}(listaEdades)
-[6, 7, 8, 8, 8, 9, 9, 5, 8, 7, 8, 7, 7, 6, 6, 7, 5, 8, 9, 4, 7, 5, 7, 7, 5, 9, 4,
-7, 7, 7, 8, 5, 8, 9, 7, 4, 6, 6, 6, 9, 8, 6, 7, 6, 7, 6, 6, 8, 6, 5, 5, 6, 6, 8,
-5, 8, 5, 9, 7, 6, 9, 5, 7, 8, 8, 7, 10, 7, 8, 7, 5, 6, 8, 8, 7, 3, 5, 6, 7, 5, 7,
-7, 5, 8, 4, 8, 8, 8, 6, 7, 6, 6, 8, 5, 6, 5, 8, 6, 9, 7]
-\end{alltt}
-\end{kframe}
-\end{knitrout}
 Vamos a ver paso a paso cómo se  ha leído el contenido de ese fichero de datos y se ha convertido en la lista {\tt listaEdades}. No es necesario que en este momento entiendas todos los detalles que vamos a presentar (y la misma observación sirve para el resto de métodos de lectura/escritura que vamos a ver en esta sección). Basta con una comprensión somera del método para que puedas aplicarlo a la lectura de otros ficheros de datos similares. Más adelante, cuando hayas ganado confianza con Python, podrás volver aquí y tratar de entender en detalle cómo funciona la lectura de datos.
 \begin{itemize}
 
-\item La primera línea usa la {\tt función mágica} {\tt cd} que ya conocemos para decirle a Python cuál es nuestro directorio de trabajo. En mi caso es la carpeta {\em PostData} dentro del {\em Escritorio (Desktop)}, pero tú tendrás que ajustarla a tu situación particular.
+\item La primera línea simplemente importa el módulo {\tt pandas} con el alias {\tt pd}, que es el que la mayoría de programadores de Python usan habitualmente para este módulo.
 
-\item La segunda línea simplemente importa el módulo {\tt pandas} con el alias {\tt pd}, que es el que la mayoría de programadores de Python usan habitualmente para este módulo.
+\item La segunda línea es la más importante: aquí es donde usamos la función \verb&read_csv& para leer los datos del fichero. Pero {\tt pandas} es una librería sofisticada, diseñada para tratar problemas avanzados. Así que la función \verb&read_csv& es capaz de leer ficheros de datos bastante más complejos que el que estamos usando como ejemplo. En particular, el resultado de \verb&read_csv& {\bf no es una lista}, sino un objeto propio de {\tt pandas} llamado {\tt DataFrame} y pensado para almacenar una tabla con varias columnas. En nuestro caso se trata de una tabla con una única columna, pero aún así {\tt pandas} sigue pensando en este objeto como una tabla. En la cuarta línea lo convertiremos en una lista. Pero para eso, por razones técnicas, tenemos que darle un nombre a la  columna (única) que contiene los datos. Por eso aparece el argumento opcional \verb&names=["edades"]& en la función \verb&read_csv&.\\
 
-\item La tercera línea es la más iportante: aquí es donde usamos la función \verb#read_csv# para leer los datos del fichero. Pero {\tt pandas} es una librería sofisticada, diseñada para problemas complejos. Así que la función \verb#read_csv# es capaz de leer ficheros de datos bastante más complejos que el que estamos usando como ejemplo. En particular, el resultado de \verb#read_csv# {\bf no es una lista}, sino un objeto propio de {\tt pandas} llamado {\tt DataFrame} y pensado para almacenar una tabla con varias columnas. En nuestro caso se trata de una tabla con una única columna, pero aún así {\tt pandas} sigue pensando en este objeto como una tabla. En la cuarta línea lo convertiremos en una lista. Pero para eso, por razones técnicas, tenemos que darle un nombre a la  columna (única) que contiene los datos. Por eso aparece el argumento opcional \verb#names=["edades"]# en la función \verb#read_csv#.
+\item Todavía en esa línea, fíjate en cómo hemos indicado la ubicación del fichero, con la cadena de caracteres \verb&"./datos/Tut02-Edades.csv"&. El punto inicial representa para Python (y para muchos otros programas) su {\em Directorio de  Trabajo}. Así que esta es nuestra forma de decirle a Python (a {\tt pandas} en particular) que vamos a usar concretamente el fichero {\tt Tut02-Edades.csv} situado en la subcarpeta {\tt datos} dentro de su {\em Directorio de  Trabajo}, que ya hemos establecido con anterioridad.
 
-\item En la cuarta línea de código llevamos a cabo la conversión de la columna del {\tt DataFrame} que hemos llamado {\tt edades} en una lista. Para ello seleccionamos esa columna mediante \verb#listaEdades["edades"]#. Fíjate en que esa forma de seleccionar con corchetes es parecida a la selección de elementos de listas, aunque aquí seleccionamos por nombre y no por posición. Después de seleccionar la columna invocamos el método {\tt tolist} que convierte esa columna en una lista.
+\item En la tercera línea de código llevamos a cabo la conversión de la columna del {\tt DataFrame} que hemos llamado {\tt edades} en una lista. Para ello seleccionamos esa columna mediante \verb#listaEdades["edades"]#. Fíjate en que esa forma de seleccionar con corchetes es parecida a la selección de elementos de listas, aunque aquí seleccionamos por nombre y no por posición. Después de seleccionar la columna invocamos el método {\tt tolist} que convierte esa columna en una lista.
 \end{itemize}
+
 En el siguiente ejercicio vas a tener ocasión de practicar la lectura de este tipo de ficheros {\tt csv}.
 \begin{ejercicio}
 \label{tut02:ejercicio20}
@@ -2900,7 +2950,7 @@ Guarda el fichero de datos adjunto:
 \begin{center}
 \fichero{../datos/Tut02-ejercicioLecturaCsv.csv}{Tut02-ejercicioLecturaCsv.csv}
 \end{center}
-en tu carpeta datos. Ábrelo primero con un editor de texto para hacer una exploración preliminar del fichero. {\bf ¡Acostúmbrate a hacer siempre esto!} Después usa el método que hemos visto para leer los datos del fichero con Python y calcula la media aritmética de esos datos.
+en tu carpeta {\tt datos}. Ábrelo primero con un editor de texto para hacer una exploración preliminar del fichero. {\bf ¡Acostúmbrate a hacer siempre esto!} Después usa el método que hemos visto con la función {\tt read\_csv} de {\tt pandas} para leer los datos del fichero con Python y calcula la media aritmética de esos datos.
 %Solución en la página \pageref{tut02:ejercicio20:sol}.
 \qed
 \end{ejercicio}
@@ -2937,20 +2987,16 @@ contiene los mismos datos que {\tt Tut02-Edades.csv}, pero ahora los datos del v
     \begin{center}
     \includegraphics[width=12cm]{../fig/Tut02-07a.png}
     \end{center}
-Desde luego, no nos podemos plantear transformar a mano este vector en uno como el del apartado anterior. Podríamos buscar soluciones pasando por la hoja de cálculo (por ejemplo: lo leeríamos en una fila de la hoja, y luego habría que usar el {\tt Pegado especial} para trasponerlo -es decir, girarlo- para finalmente volver a guardarlo). Afortunadamente, hay una solución, sin salir de Python, bastante menos embrollada. Tenemos que usar un argumento opcional de la función \verb#read_csv#, concretamente el argumento {\tt lineterminator} que como su nombre indica sirve para indicarle a {\tt pandas} cuál es el carácter que usamos para separar en líneas nuestro fichero. En la terminal de IPython usamos esta variante del método para leer el fichero (se asume que ya hemos importado {\tt pandas} y que has fijado el directorio de trabajo con \verb#cd#):
+Desde luego, no nos podemos plantear transformar a mano este vector en uno como el del apartado anterior. Podríamos buscar soluciones pasando por la hoja de cálculo (por ejemplo: lo leeríamos en una fila de la hoja, y luego habría que usar el {\tt Pegado especial} para trasponerlo -es decir, girarlo- para finalmente volver a guardarlo). Afortunadamente, hay una solución, sin salir de Python, bastante menos embrollada. Tenemos que usar un argumento opcional de la función \verb#read_csv#, concretamente el argumento {\tt lineterminator} que como su nombre indica sirve para indicarle a {\tt pandas} cuál es el carácter que usamos para separar en líneas nuestro fichero. Ejecuta  este código en Spyder para leer el fichero (se asume que ya hemos importado {\tt pandas} y que has fijado el directorio de trabajo):
 {\small
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-In [12]: listaEdades2 = \hlkwd{pd.read_csv}(\hlstr{"./datos/Tut02-Edades2.csv"}, names=[\hlstr{"edades"}], lineterminator=\hlstr{","})
+listaEdades2 = \hlkwd{pd.read_csv}(\hlstr{"./datos/Tut02-Edades2.csv"}, names=[\hlstr{"edades"}], lineterminator=\hlstr{","})
 
-In [13]: listaEdades2 = listaEdades2[\hlstr{"edades"}]\hlkwd{.tolist}()
+listaEdades2 = listaEdades2[\hlstr{"edades"}]\hlkwd{.tolist}()
 
-In [14]: \hlkwd{print}(listaEdades2)
-[6, 7, 8, 8, 8, 9, 9, 5, 8, 7, 8, 7, 7, 6, 6, 7, 5, 8, 9, 4, 7, 5, 7, 7, 5, 9, 4, 7, 7, 7,
-8, 5, 8, 9, 7, 4, 6, 6, 6, 9, 8, 6, 7, 6, 7, 6, 6, 8, 6, 5, 5, 6, 6, 8, 5, 8, 5, 9, 7, 6,
-9, 5, 7, 8, 8, 7, 10, 7, 8, 7, 5, 6, 8, 8, 7, 3, 5, 6, 7, 5, 7, 7, 5, 8, 4, 8, 8, 8, 6, 7,
-6, 6, 8, 5, 6, 5, 8, 6, 9, 7]
+\hlkwd{print}(listaEdades2)
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -2961,7 +3007,7 @@ Como en el apartado anterior, el resultado es una lista de Python que contiene l
 \label{Tut02:subsubsec:escribiendoDatosFicheroCsv}
 Para completar nuestra primera visita al manejo de ficheros {\tt csv} desde Python vamos a recorrer el camino inverso. Porque muchas veces, después de hacer operaciones en Python, obtendremos como resultados listas de datos interesantes (y, más adelante en el curso, otro tipo de objetos, como tablas). Lo natural, entonces, es aprender a guardar esos datos en un fichero de tipo csv, como el fichero con el que empezamos. De esa forma, por ejemplo, puedes compartir tus resultados con otras personas, incluso aunque no utilicen Python.
 
-Vamos a practicar esto escribiendo a un fichero csv la siguiente lista de datos:
+Vamos a practicar esto escribiendo a un fichero {\tt csv} la siguiente lista de datos:
 % Para ello, si antes usábamos la función \verb#read_csv# de {\tt pandas}, ahora vamos a usar la función  de R.
 
 \begin{knitrout}
@@ -3023,9 +3069,9 @@ Para analizar estos datos vamos a utilizar un fichero de código Python, el prim
 \begin{center}
 \fichero{./code/Tut02-estadisticaDescriptiva.py}{Tut02-estadisticaDescriptiva.py}
 \end{center}
-Abre el fichero en un editor de texto para ir recorriendo el código a medida que lo comentamos. Lo mejor es que sea un editor con reconocimiento de sintaxis.
+Para que este fichero funcione correctamente es necesario respetar la estructura de directorios que hemos creado en el Tutorial-00. Así que recuerda que debes guardarlo en la subcarpeta llamada {\tt codigo} dentro de tu {\em Directorio de trabajo}. Abre el fichero en el {\em Editor de Código} de Spyder para ir recorriéndolo con nosotros a medida que lo comentamos. 
 
-Antes de seguir queremos aclarar un detalle técnico. Cuando abras el fichero verás que incluye unas cuantas líneas de comentario que empiezan con \verb&## ----&. La razón por la que hacemos esto tiene que ver con la herramienta de documentación que usamos para escribir estos tutoriales, y no es una característica de Python. Recuerda que lo que caracteriza a un comentario en Python es la presencia del símbolo \verb&#&.
+Antes de seguir queremos aclarar un detalle técnico. Cuando abras el fichero verás que incluye unas cuantas líneas de comentario especiales que empiezan con \verb&## ----&. La razón por la que hacemos esto es puramente técnica y tiene que ver con la herramienta de documentación que usamos para escribir estos tutoriales, y no es una característica de Python. Recuerda que lo que caracteriza a un comentario en Python es la presencia del símbolo \verb&#&. 
 
 
 
@@ -3036,28 +3082,21 @@ Lo primero que verás en el fichero es un bloque inicial de comentarios que sirv
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{########################################################}
-\hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadística}
-\hlcom{# Tutorial 02.  }
-\hlcom{# Plantilla de comandos Python para Estadística Descriptiva}
-\hlcom{# Una variable cuantitativa discreta, datos no agrupados.}
-\hlcom{########################################################}
+\hlstr{""}"
+www.postdata-statistics.com
+POSTDATA. Introducción a la Estadística
+Tutorial 02.  
+Plantilla de comandos Python para Estadística Descriptiva
+Una variable cuantitativa discreta, datos no agrupados.
+\hlstr{""}"
 
 
 \hlcom{# ATENCION: para que este fichero funcione es NECESARIO: }
-\hlcom{# (1) tener en cuenta la estructura de directorios como se explica en el tutorial. }
-\hlcom{# (2) introducir el nombre del fichero de datos como argumento de read_csv.}
+\hlcom{# (1) Tener en cuenta la estructura de directorios como se explica en el tutorial. }
+\hlcom{# (2) Introducir el nombre del fichero de datos como argumento de read_csv.}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Para que el fichero funcione correctamente es necesario respetar la estructura de directorios que hemos creado en el Tutorial-00. Recordemos:
-\begin{itemize}
-\item En tu ordenador existe una carpeta a la que nos referiremos siempre como {\em Directorio de trabajo} del curso.
-\item El {\em Directorio de trabajo} contiene una subcarpeta llamada {\em datos}, en la que están situados los ficheros {\tt csv} que vamos a utilizar.
-\item El {\em Directorio de trabajo} contiene además otra subcarpeta lllamada {\tt code} en la que están situados los ficheros de código Python para ejecutar con IPython (con extensión {\tt ipy}).
-\end{itemize}
-Más abajo veremos como ejecutar el fichero en la terminal de IPython. Pero para que todo funcione correctamente es esencial respetar esta estructura de directorios. Daremos más detalles sobre la segunda de esas instrucciones, al llegar a la línea pertinente del código.
 
 \subsubsection*{Importando módulos.}
 \label{tut02:subsubsec:importandoModulos}
@@ -3073,13 +3112,14 @@ import collections as cl
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Las recomendaciones de estilo de Python especifican que todos los módulos deben importarse al comienzo del programa y que cada módulo debe importarse en una línea propia. Hemos aprovechado esa circunstancia para colocar, junto a cada módulo, un comentario que enumera las funciones de ese módulo que vamos a usar. Fíjate además en que hemos usado alias para los nombres de todos los módulos (de hecho algunos de estos alias son un estándar {\em de facto} entre los programadores de Python). Ya conoces el módulo {\tt pandas}. Vamos a usar también el módulo {\tt numpy} que contiene muchos objetos y funciones para el Cálculo Numérico. Más adelante en el curso tendremos ocasión de discutir sobre los aspectos numérico y simbólico de las Matemáticas. Por el momento nos conformamos con señalar que {\tt numpy} es uno de los pilares básicos del cálculo científico con Python. Por su parte {\tt matplotlib} es un módulo especializado en gráficas matemáticas, que vamos a usar para dibujar diagramas de barras, de cajas, histogramas, etc. Finalmente, el módulo {\tt collections} aparecerá varias veces en estos tutoriales, pero aquí concretamente lo usaremos para fabricar fácilmente las tablas de frecuencias de nuestros datos.
+Las recomendaciones de estilo de Python especifican que todos los módulos deben importarse al comienzo del programa y que cada módulo debe importarse en una línea propia. Fíjate además en que hemos usado alias para los nombres de todos los módulos (de hecho algunos de estos alias son un estándar {\em de facto} entre los programadores de Python). Ya conoces el módulo {\tt pandas}. Vamos a usar también el módulo {\tt numpy} que contiene muchos objetos y funciones útiles para el Cálculo Numérico. Más adelante en el curso tendremos ocasión de discutir sobre los aspectos numérico y simbólico de las Matemáticas. Por el momento nos conformamos con señalar que {\tt numpy} es uno de los pilares básicos del cálculo científico con Python. Por su parte {\tt matplotlib} es un módulo especializado en gráficas matemáticas, que vamos a usar para dibujar diagramas de barras, de cajas, histogramas, etc. Finalmente, el módulo {\tt collections} aparecerá varias veces en estos tutoriales, pero aquí concretamente lo usaremos para fabricar fácilmente las tablas de frecuencias de nuestros datos.
 
 
 \subsubsection*{Preliminares.}
 \label{tut02:subsubsec:preliminares}
 
 A continuación se incluye un bloque que puede servir para definir algunas variables que se usarán a lo largo del resto del programa.
+{\small
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3095,10 +3135,10 @@ A continuación se incluye un bloque que puede servir para definir algunas varia
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
+}
 La variable definida mediante \verb&linea = "_"*75& se usa simplemente para dibujar una línea horizontal, y separar así la salida del programa en bloques temáticos. Cada vez que queramos imprimir esa línea separadora usaremos el comando {\tt print(linea)}.
 
-Además, usando {\tt print}, se incluyen en este bloque algunos mensajes que se mostrarán al ejecutar este programa. Siempre es necesario proporcionar al menos esa información básica al usuario.
+Además, usando {\tt print}, se incluyen en este bloque algunos mensajes que se mostrarán al ejecutar este programa. Siempre es adecuado proporcionar al menos esa información básica al usuario.
 
 \subsubsection*{Lectura del fichero de datos. Ejecución del código.}
 \label{tut02:subsubsec:lecturaDatos}
@@ -3111,7 +3151,7 @@ A continuación tenemos el bloque en el que se lee el fichero {\tt csv} que cont
 \hlcom{# INTRODUCIR EL NOMBRE DEL FICHERO DE DATOS EN LA SIGUIENTE LINEA:}
 \hlcom{# EL FICHERO DEBE RESIDIR EN LA CARPETA DATOS DEL DIR. DE TRABAJO}
 nombreFichero = \hlstr{"Tut02-var3.csv"}
-datos = \hlkwd{pd.read_csv}(\hlstr{"../../datos/"} + nombreFichero, names=[\hlstr{"v"}])
+datos = \hlkwd{pd.read_csv}(\hlstr{"./datos/"} + nombreFichero, names=[\hlstr{"v"}])
 datos = datos[\hlstr{"v"}]\hlkwd{.tolist}()
 
 \hlkwd{print}(\hlstr{"El fichero de datos es:"})
@@ -3132,21 +3172,7 @@ n = \hlkwd{len}(datos)
 \end{knitrout}
 Como ves, para leer los datos se usa la función \verb&read_csv& de {\tt pandas} que ya conocemos. Para un uso correcto del código {\bf es esencial} introducir el nombre del fichero {\tt csv} en la línea adecuada. Después se usa la concatenación (suma) de cadenas de caracteres para obtener como argumento de la función \verb&read_csv& el nombre completo del fichero (incluida la carpeta en la que se encuentra) .
 
-Una vez que hemos introducido el nombre del fichero de datos, nos aseguramos de grabar el fichero de código con esa modificación y ya podemos ejecutarlo. Ve a la terminal de IPython y usa las funciones mágicas \verb&%cd&
-y \verb&%run&
-como hemos visto para ejecutar este fichero de código. Es decir:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-In [1]: %cd ~/Desktop/PostData
-/Users/fernando/Desktop/PostData
-
-In [2]: %run ./code/Tut02-estadisticaDescriptiva.py
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-Si todo va bien cuando ejecutes la función \verb&%run&
-verás aparecer los resultados que produce el programa. En los párrafos que siguen vamos a ir ostrando esos resultados inmediatamente detrás del correspondiente fragmento de código. Por ejemplo, lo primero que hace el código, para comprobar que la lectura de datos ha sido correcta, es mostrar cuántos son los datos leídos (el número se alamcena en la variable {\tt n}). Además se muestran los primeros 10 y los últimos 10 valores de la lista de datos. En IPython eso se traduce en:
+Una vez que hemos introducido el nombre del fichero de datos, nos aseguramos de grabar el fichero de código con esa modificación y ya podemos ejecutarlo, como un bloque usando {\tt F5} o línea a línea pulsando {\tt F9}. Si usas la tecla {\tt F5} y todo va bien, cuando lo ejecutes verás aparecer en la {\em Terminal} todos los resultados que produce el programa. En los párrafos que siguen vamos a ir mostrando esos resultados inmediatamente detrás del correspondiente fragmento de código. Si has optado por usar {\tt F9} y avanzar línea a línea, los resultados irán apareciendo poco a poco, al ejecutar las líneas que producen salida como texto o gráficos. Por ejemplo, lo primero que hace el código, para comprobar que la lectura de datos ha sido correcta, es mostrar cuántos son los datos leídos (el número se almacena en la variable {\tt n}). Además se muestran los primeros 10 y los últimos 10 valores de la lista de datos. En la {\em Terminal} eso se traduce en:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3218,7 +3244,7 @@ Empezamos con la tabla de frecuencias absolutas. Para fabricarla vamos a crear u
 \end{kframe}
 \end{knitrout}
 
-En la primera línea creamos el objeto de tipo {\tt Counter} a partir de la lista {\tt datos}. Estos objetos sirven en Python para obtener tablas de frecuencia, pero también para manipularlas. Para hacer esas operaciones el objeto {\tt Counter} disponde de una serie de métodos. Aquí vamos a usar el método \verb&most_common&, que devuelve como resultado una representación de la tabla de frecuencias como lista de pares. El resultado se almacena en la variable {\tt tablaFreqAbs}. Aunque nuestro código no lo hace, vamos a ver el resultado  después de ejecutar el método \verb&most_common& en la terminal de IPython:
+En la primera línea creamos el objeto de tipo {\tt Counter} a partir de la lista {\tt datos}. Estos objetos sirven en Python para obtener tablas de frecuencia, pero también para manipularlas. Para hacer esas operaciones el objeto {\tt Counter} dispone de una serie de métodos. Aquí vamos a usar el método \verb&most_common&, que devuelve como resultado una representación de la tabla de frecuencias como lista de pares. El resultado se almacena en la variable {\tt tablaFreqAbs}. Aunque nuestro código no lo hace, vamos a ver el resultado  después de ejecutar el método \verb&most_common& en la {\em Terminal} :
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -3281,7 +3307,7 @@ freqAbs = [ item[1] for item in tablaFreqAbs]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El resultado son estas dos listas que mostramos en la terminal de IPython (el programa no las muestra por separado). Aprovecharemos para comprobar que la suma de las frecuencias absolutas es la esperada:
+El resultado son estas dos listas que mostramos en la {\em Terminal} (el programa no las muestra como salida, las hemos obtenido después de ejecutarlo directamente escribiendo sus nombres en la {\em Terminal}). Aprovecharemos para comprobar que la suma de las frecuencias absolutas es la esperada:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3305,7 +3331,7 @@ freqRel = [ item/n for item in freqAbs]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Como ya hemos anunciado, más abajo usaremos {\tt print} para mostrar todas las frecuencias (absolutas, relativas, etc.) en una misma tabla y con el formato adecuado. Pero podemos mostrar el valor de {\tt freqRel} en la terminal de IPython:
+Como ya hemos anunciado, más abajo usaremos {\tt print} para mostrar todas las frecuencias (absolutas, relativas, etc.) en una misma tabla y con el formato adecuado. Pero podemos mostrar el valor de {\tt freqRel} en la {\em Terminal} (tras ejecutar el programa):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -3320,7 +3346,7 @@ In [35]: \hlkwd{print}(freqRel)
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Cuando usemos {\tt print} para mostrar estos valores los redondearemos a una cantidad adecuada de cifras significativas. De momento podemos usar la terminal de IPython para comprobar que la suma de las frecuencias relativas es $1$, dentro de la precisión que permite el redondeo cuando se trabaja con valores en coma flotante:
+Cuando usemos {\tt print} para mostrar estos valores los redondearemos a una cantidad adecuada de cifras significativas. De momento podemos usar la {\em Terminal} para comprobar que la suma de las frecuencias relativas es $1$, dentro de la precisión que permite el redondeo cuando se trabaja con valores en coma flotante:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3337,7 +3363,7 @@ freqAcu = \hlkwd{np.cumsum}(freqAbs)\hlkwd{.tolist}()
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Como en los casos anteriores, vamos a usar la consola de IPython para explorar estos objetos. Primero usamos {\tt type} para confirmar qué clase de objeto se obtiene con {\tt np-cumsum} y luego usamos {\tt print} para ver el aspecto de ese objeto (antes de convertirlo en lista):
+Como en los casos anteriores, vamos a usar la {\em Terminal} para explorar estos objetos. Primero usamos {\tt type} para confirmar qué clase de objeto se obtiene con {\tt np-cumsum} y luego usamos {\tt print} para ver el aspecto de ese objeto (antes de convertirlo en lista):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3410,7 +3436,7 @@ for i in \hlkwd{range}(0,k):
 \end{kframe}
 \end{knitrout}
 Se trata de un código bastante sencillo. Los parámetros de formato, como el \verb&{3:16.3g}& de la cuarta columna, se han ajustado por ensayo y error tras inspeccionar una ejecución preliminar del código. El resultado al ejecutar el código aparece en la Tabla \ref{tabla:frecuenciasDatos} (pág. \pageref{tabla:frecuenciasDatos}).
-\begin{table}[t]
+\begin{table}[h!]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3435,6 +3461,7 @@ ___________________________________________________________________________
    13 |              2 |          0.002 |         1.3e+03 |          0.998 |
    14 |              2 |          0.002 |         1.3e+03 |          0.999 |
    16 |              1 |          0.001 |         1.3e+03 |              1 |
+  ___________________________________________________________________________
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3491,11 +3518,11 @@ El siguiente paso en el código es la representación gráfica de los datos. Pyt
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{#get_ipython().magic('matplotlib inline')}
+\hlkwd{get_ipython}()\hlkwd{.magic}(\hlstr{'matplotlib inline'})
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Esta es la forma de invocar una {\em función mágica} de IPython (que se llamaba IPython en versiones anteriores) desde un archivo de código Python. La funcíon mágica en este caso es {\tt matplotlib inline}. El objetivo es que al ejecutar este fichero desde una función de IPython (usando para ello otra función mágica, la función {\tt run}) las gráficas aprezcan intercaladas en la salida del programa, junto con el resto de valores que producimos usando {\tt print}. Si no usáramos esta función, al ejecutar el código en la terminal de IPython cada gráfico se abriría en su propia ventana. Eso tiene algunas ventajas, porque esas ventanas gráficas permiten desplazar el gráfico, hacer zoom  y otras manipulaciones que pueden resultar interesantes para explorar gráficas complejas. Pero en estos ejemplos sencillos nos conformamos con algo más sencillo. Más adelante volveremos sobre este asunto de las ventanas gráficas.
+Esta es la forma de invocar una {\em función mágica} de IPython desde un archivo de código Python. La función mágica en este caso es {\tt matplotlib inline}. El objetivo es que al ejecutar este fichero las gráficas aparezcan intercaladas en la salida del programa, junto con el resto de valores que producimos usando {\tt print}. Si no usáramos esta función, al ejecutar el código en la {\em Terminal} cada gráfico se abriría en su propia ventana. Eso tiene algunas ventajas, porque esas ventanas gráficas permiten desplazar el gráfico, hacer zoom  y otras manipulaciones que pueden resultar interesantes para explorar gráficas complejas. Pero en estos ejemplos sencillos nos conformamos con algo más simple. Más adelante volveremos sobre este asunto de las ventanas gráficas.
 
 Empecemos a dibujar, pues. Para enlazar con la información que proporcionan las medidas de posición primero dibujaremos un diagrama de cajas (boxplot).
 \begin{knitrout}
@@ -3516,7 +3543,7 @@ Como vamos a ver, dibujar un gráfico con {\tt matplotlib} es un proceso en dos 
 \item Para {\em construir} el gráfico usamos la función {\tt boxplot} del módulo {\tt matplotlib} (por eso el prefijo {\tt plt}).
 \item Para {\em mostrar} el gráfico usamos la función {\tt show}, también de {\tt matplotlib}.
 \end{enumerate}
-Aunque al principio pueda parecer complicado, esto nos permitirá más adelante utilizar varios comandos para construir gráficos complicados combinando los resultados de esos comandos en una sóla gráfica que finalmente mostraremos con {\tt show}.
+Aunque al principio pueda parecer complicado, esto nos permitirá más adelante utilizar varios comandos para construir gráficos complicados combinando los resultados de esos comandos en una sola gráfica que finalmente mostraremos con {\tt show}.
 
 El siguiente gráfico que vamos a construir es un diagrama de barras (o columnas), que representa gráficamente la información de nuestra tabla de frecuencias. La posición sobre el eje horizontal de cada barra corresponde con uno de los valores de la primera columna de esa tabla (los valores distintos que aparecen en los datos), mientras que la altura de cada una de las barras queda determinada por la frecuencia absoluta de ese valor. Así que el código empieza identificando esas listas de valores con los nombres {\tt posiciones} y {\tt alturas}. Esto no era, desde luego, necesario, pero ayuda a mejorar la legibilidad del código. Para construir el gráfico usamos la función {\tt bar} de {\tt matplotlib} a la que, aparte de {\tt posiciones} y {\tt alturas}, hemos añadido el argumento opcional {\tt color='tan'} para modificar el color de relleno de las barras del diagrama (el color por defecto es azul oscuro). Como antes, usamos {\tt show} para mostrar el gráfico resultante.
 \begin{knitrout}
@@ -3536,7 +3563,7 @@ El diagrama de barras que se obtiene es este:
 \end{center}
 Si te fijas bien, verás que los valores del eje no están correctamente centrados en las columnas del gráfico. Por el momento lo dejamos pasar. Más adelante nos iremos ocupando de este y otros detalles, para mejorar la calidad de los gráficos.
 
-El último gráfico que vamos a construir es un histograma. Puesto que estamos tratando con una variable cuantitativa discreta, el histograma no es nuestra elección prioritaria para representar estos datos: el diagrama de barras es mejor para esta situación. Pero hecha esa advertencia, queremos aprovechar para mostra la facilidad con la que Python permite construir histogramas. El código es este:
+El último gráfico que vamos a construir es un histograma. Puesto que estamos tratando con una variable cuantitativa discreta, el histograma no es nuestra elección prioritaria para representar estos datos: el diagrama de barras es mejor para esta situación. Pero hecha esa advertencia, queremos aprovechar para mostrar la facilidad con la que Python permite construir histogramas. El código es este:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3552,9 +3579,9 @@ Como ves, la función de {\tt matplotlib} responsable de construir el histograma
 \begin{center}
 \includegraphics[height=8cm]{../fig/Tut-02-py-05-histograma.png}
 \end{center}
-Fijate en las diferencias y similitudes entre el diagrama de barras y el histograma.
+Fíjate en las diferencias y similitudes entre el diagrama de barras y el histograma.
 
-\subsubsection*{Media aritmetica y medidas de dispersión.}
+\subsubsection*{Media aritmética y medidas de dispersión.}
 \label{tut02:subsubsec:mediaAritmeticaDispersion}
 
 
@@ -3592,7 +3619,7 @@ El módulo {\tt numpy} incluye dos funciones para calcular las medidas de disper
 \end{kframe}
 \end{knitrout}
 
-Con la desviación típìca poblacional y la cuasivarianza muestral las cosas son muy parecidas, cambiando {\tt var} por {\tt std} (de {\em standard deviation}):
+Con la desviación típica poblacional y la cuasivarianza muestral las cosas son muy parecidas, cambiando {\tt var} por {\tt std} (de {\em standard deviation}):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3628,13 +3655,17 @@ Vamos a explorar algunas de las ideas que aparecen en ese programa a través de 
 \label{tut02:ejercicio26}
 \quad\\
 \begin{enumerate}
-\item Para empezar, ejecuta el programa en la terminal de IPython utilizando la función mágica \verb&%run&.
-Recuerda que debes en primer lugar asegurarte de que tanto el fichero de código {\tt py} como el fichero de datos {\tt csv} están situados en las carpetas adecuadas. Además debes incluir el nombre del fichero de datos en el fichero de código Python para que la función \verb&read_csv& pueda hacer su trabajo.  Tras ejecutar el código y ver aparecer los resultados conseguirás que todas las variables que se definen en el código sean accesibles en esa sesión IPython. En particular la variable {\tt datos} contiene la lista de datos procedente del fichero {\tt csv}.
+
+\item Para empezar, si aún no lo has hecho, ejecuta el programa en la {\em Terminal} utilizando {\tt F5} o {\tt F9}.
+Recuerda que debes en primer lugar asegurarte de que tanto el fichero de código {\tt py} como el fichero de datos {\tt csv} están situados en las carpetas adecuadas. Además debes incluir el nombre del fichero de datos en el fichero de código Python para que la función \verb&read_csv& pueda hacer su trabajo.  Tras ejecutar el código y ver aparecer los resultados conseguirás que todas las variables que se definen en el código sean accesibles en la {\em Terminal}. En particular la variable {\tt datos} contiene la lista de datos procedente del fichero {\tt csv}.
+
 \item Calcula el percentil $20$ de los datos.
+
 \item Comprueba que el valor de la media aritmética que produce el programa (y que está almacenado en la variable {\tt mediaAritmetica}) coincide con lo que obtienes dividiendo la suma de datos por {\tt n}.
+
 \item Usa código como el del fichero {\tt Tut02-mediaVarianza-01.py} (ver pág. \pageref{fichero:Tut02-mediaVarianza-01}) para calcular la varianza y la desviación típica poblacionales y comprueba que coinciden con los resultados de {\tt numpy} (puede haber una pequeña diferencia debida al redondeo). Haz lo mismo con la cuasivarianza y la cuasidesviación típica muestrales.
-\item Ejecuta de nuevo el programa (usando \verb&%run&),
-pero antes de hacerlo comenta la línea
+
+\item Ejecuta de nuevo el programa con {\tt F5}, pero antes de hacerlo comenta la línea
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3651,7 +3682,9 @@ Es decir, cámbiala a:
 \end{kframe}
 \end{knitrout}
 Acuérdate de grabar el programa con ese cambio antes de volver a ejecutarlo (y de deshacer el cambio cuando acabes este ejercicio). ¿Qué sucede ahora al ejecutar el programa? Si todo va como se espera verás aparecer una ventana gráfica con el diagrama de cajas. Para seguir avanzando debes cerrar esta ventana. Cuando lo hagas aparecerá otra ventana con el siguiente gráfico, el de barras. Al cerrar esta aparecerá el histograma y finalmente, al cerrar esta concluirá la ejecución del resto del programa. Este es el comportamiento típico de IPython cuando no se usa la orden \verb& get_ipython().magic('matplotlib inline')&. En programas que muestran un gran número de gráficos eso puede resultar molesto, así que es bueno que conozcas las opciones de las que dispones.
+
 \item Dibuja un gráfico de barras en el que la altura de las barras corresponda a las  frecuencias acumuladas en lugar de las absolutas. Más adelante en el curso volveremos sobre las diferencias entre estos dos tipos de gráficos.
+
 \end{enumerate}
 %Solución en la página \pageref{tut02:ejercicio26:sol}.
 \qed
@@ -3673,7 +3706,7 @@ import random as rnd
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-La primera de las funciones de este módulo que vamos a examinar es la función {\tt randrange}, que nos permitirá simular situaciones sencillas como el lanzamiento de un dado. Vamos a verla en acción en la terminal de IPython. Ten en cuenta que cuando tú ejecutes este código obtendrás valores distintos de los que aparecen aquí:
+La primera de las funciones de este módulo que vamos a examinar es la función {\tt randrange}, que nos permitirá simular situaciones sencillas como el lanzamiento de un dado. Vamos a verla en acción en la {\em Terminal}. Ten en cuenta que cuando tú ejecutes este código obtendrás valores distintos de los que aparecen aquí:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3699,7 +3732,7 @@ Out[7]: 1
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Como ves, cada vez que ejecutamos la función se obtiene un número entero del 1 al 6. Como en otros casos que hemos visto en Python, usamos {\tt (1, 7)} pero el último número entero de ese intervalo (el 7) se excluye. En general, al escribir {\tt rnd.randrange(a, b)} obtenemos números entre {\tt a} y {\tt b-1}. Por ejemplo, si en lugar de lanzar un dado queremos sacar cartas (sin reemplazamiento) de una baraja de 48 cartas, entonces podemos representar las cartas de la baraja con los números del $1$ al $48$ y bastaría con usar {\tt randrange} así:
+Como ves, cada vez que ejecutamos la función se obtiene un número entero del 1 al 6. Como en otros casos que hemos visto en Python, usamos {\tt (1, 7)} pero el último número entero de ese intervalo (el 7) se excluye. En general, al escribir {\tt rnd.randrange(a, b)} obtenemos números entre {\tt a} y {\tt b-1}. Por ejemplo, si en lugar de lanzar un dado queremos sacar cartas (sin remplazamiento) de una baraja de 48 cartas, entonces podemos representar las cartas de la baraja con los números del $1$ al $48$ y bastaría con usar {\tt randrange} así:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3722,7 +3755,7 @@ Out[6]: 6
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Aunque podemos usar la función así para fabricar unos pocos valores, lo que de verdad vamos a vecesitar es la capacidad de hacer simulaciones en las que un experimento se repita cientos o miles de veces. Vamos a combinar la función {\tt randrange} con la comprensión de listas para simular 100 tiradas de un dado:
+Aunque podemos usar la función así para fabricar unos pocos valores, lo que de verdad vamos a necesitar es la capacidad de hacer simulaciones en las que un experimento se repita cientos o miles de veces. Vamos a combinar la función {\tt randrange} con la comprensión de listas para simular 100 tiradas de un dado:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3750,7 +3783,7 @@ edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22
 \end{kframe}
 \end{knitrout}
 }
-y lo que queremos es extraer algunos  de estos valores al azar; pongamos por ejemplo, que queremos extraer $7$ elementos. Para hacer eso, si queremos muestreo sin reemplazamiento podemos usar la función {\tt sample} del módulo {\tt random}. Veamos como:
+y lo que queremos es extraer algunos  de estos valores al azar; pongamos por ejemplo, que queremos extraer $7$ elementos. Para hacer eso, si queremos muestreo sin remplazamiento podemos usar la función {\tt sample} del módulo {\tt random}. Veamos como:
 {\small
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -3767,7 +3800,7 @@ In [4]: \hlkwd{print}(edadesAzar_NoRemp)
 \end{kframe}
 \end{knitrout}
 }
-En cambio, si lo que queremos es extraer elementos con reemplazamiento entonces podemos usar la función {\tt choice}. Esta función permite extraer un único elemento al azar de una lista. Para extraer más de uno la combinamos con la comprensión de listas, de la misma forma que hicimos para las tiradas del dado. Por ejemplo, para extraer 100 edades al azar de la lista dada hacemos esto (necesariamente con reemplazamiento, claro):
+En cambio, si lo que queremos es extraer elementos con remplazamiento entonces podemos usar la función {\tt choice}. Esta función permite extraer un único elemento al azar de una lista. Para extraer más de uno la combinamos con la comprensión de listas, de la misma forma que hicimos para las tiradas del dado. Por ejemplo, para extraer 100 edades al azar de la lista dada hacemos esto (necesariamente con remplazamiento, claro):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3782,7 +3815,7 @@ In [6]: \hlkwd{print}(edadesAzar_Remp)
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Fíjate en que, en este caso, la lista original ya contiene elementos repetidos. Así que, independientemente de que el muestreo sea con reemplazamiento o sin él, siempre podemos obtener valores repetidos. Tanto {\tt sample} como {\tt choice} eligen al azar {\em posiciones} dentro de la lista {\tt edades}, y no los {\em valores} que ocupan esas posiciones.  Para entender esto un poco mejor, mira lo que sucede al ejecutar este código, en el que usamos {\tt choice} para extraer 100 valores aleatorios de una lista que tiene el número $1$ repetido $9$ veces y un único $2$:
+Fíjate en que, en este caso, la lista original ya contiene elementos repetidos. Así que, independientemente de que el muestreo sea con remplazamiento o sin él, siempre podemos obtener valores repetidos. Tanto {\tt sample} como {\tt choice} eligen al azar {\em posiciones} dentro de la lista {\tt edades}, y no los {\em valores} que ocupan esas posiciones.  Para entender esto un poco mejor, mira lo que sucede al ejecutar este código, en el que usamos {\tt choice} para extraer 100 valores aleatorios de una lista que tiene el número $1$ repetido $9$ veces y un único $2$:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3874,12 +3907,12 @@ Out[18]:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El resultado es similar a lo que obteníamos antes combinando la función {\tt choice} del módulo {\tt random} con la comprensión de listas. Se obtiene una muestra aleatoria con reemplazamiento de los elementos de la lista original. Hemos dejado la salida tal cual para que puedas observar que el resultado no es una lista, sino un objeto {\tt ndarray} de {\tt numpy}.
+El resultado es similar a lo que obteníamos antes combinando la función {\tt choice} del módulo {\tt random} con la comprensión de listas. Se obtiene una muestra aleatoria con remplazamiento de los elementos de la lista original. Hemos dejado la salida tal cual para que puedas observar que el resultado no es una lista, sino un objeto {\tt ndarray} de {\tt numpy}.
 
 \subsection{Conjuntos.}
 \label{tut02:subsec:conjuntos}
 
-Aunque las listas han tenido en este tutorial un papel protagonista, ya hemos anunciado que a lo largo del curso irán apareciendo otras estructuras de datos que resultan necesarias para facilitar nuestro trabajo. En particular, al estudiar la probabilidad necesitaremos trabajar con {\sf conjuntos}. La mayor diferencia entre un conjunto y una lista es que el conjunto no puede contener elementos repetidos. Para definir un conjunto podemos enumerar sus elementos entre llaves. Usamos la terminal de IPython definimos y mostramos un conjunto {\tt A}:
+Aunque las listas han tenido en este tutorial un papel protagonista, ya hemos anunciado que a lo largo del curso irán apareciendo otras estructuras de datos que resultan necesarias para facilitar nuestro trabajo. En particular, al estudiar la probabilidad necesitaremos trabajar con {\sf conjuntos}. La mayor diferencia entre un conjunto y una lista es que el conjunto no puede contener elementos repetidos. Para definir un conjunto podemos enumerar sus elementos entre llaves. Usamos la {\em Terminal} definimos y mostramos un conjunto {\tt A}:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -3926,7 +3959,7 @@ for item in A:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Al ejecutar este código en la terminal  de IPython se obtiene:
+Al ejecutar este código en la {\em Terminal} se obtiene:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4008,7 +4041,7 @@ Nos hemos asomado apenas a las posibilidades que ofrece el trabajo con conjuntos
 
 A veces nos encontramos con esta situación: tenemos una tabla de frecuencias absolutas de un conjunto de datos, pero no tenemos la lista original con los datos. No es una situación infrecuente: a veces al leer un artículo los datos aparecen resumidos en forma de tabla de frecuencias. Y sin embargo, muchas de las operaciones que vamos a realizar asumen que el punto de partida es una lista de datos, repetidos tantas veces como corresponda a su frecuencia. Si antes aprendimos a fabricar la tabla de frecuencias absolutas de una lista de datos, lo que necesitamos ahora es la operación inversa: pasar de la tabla de frecuencias a la lista de datos. Es importante darse cuenta de que en realidad la tabla de frecuencias, por si misma, no permite recuperar por completo la lista original: el orden de los elementos se habrá perdido. Pero no es menos cierto que el orden no juega ningún papel en muchas operaciones estadísticas, como el cálculo de medias, medianas, varianzas, etc.
 
-Para empezar vamos a suponer que los disintos valores y sus frecuencias están disponibles en dos listas:
+Para empezar vamos a suponer que los distintos valores y sus frecuencias están disponibles en dos listas:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4042,7 +4075,7 @@ for i in \hlkwd{range}(0, \hlkwd{len}(valores)):
 \end{knitrout}
 Como ves, tenemos dos bucles {\tt for} anidados: hay que hacer algo para cada posición de la lista valor, así que en el primer bucle o {\sf bucle exterior}  usamos un contador {\tt i} para recorrer la lista de valores. Pero es que además lo que hay que hacer para cada posición también es un bucle: tenemos que repetir ese valor las veces que nos indica la frecuencia correspondiente. Por eso hay un {segundo bucle, o bucle interno} en el que hacemos algo una cierta cantidad de veces. El contador de este bucle no se usa para ninguna otra operación aparte de llevar la cuenta del número veces: por eso lo llamamos simplemente \verb&_&.  Fíjate además en que el número de iteraciones del bucle interno no es constante: depende del valor de {\tt i}; es decir, depende de en qué iteración del bucle exterior nos encontramos.
 
-Veamos cómo funciona esto en la terminal de IPython (hemos copiado los bucles {\tt for} anidados como un bloque de código, como ya aprendimos a hacer):
+Veamos cómo funciona esto en la {\em Terminal} (hemos ejecutado los bucles {\tt for} anidados como un bloque de código, seleccionándolos en el {\em Editor de Código} y pulsando {\tt F9}):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4079,7 +4112,7 @@ In [7]: \hlkwd{print}(datos)
 \end{kframe}
 \end{knitrout}
 }
-Como ves, el orden de escritura de izquierda a derecha de los bucles en esta versión se corresponde con el orden de arriba hacia abajo en los bucles {\tt for} anidados. En cualquier caso, el resultado es el mismo. A menudo la elección entre las dos formas de proceder es una cuestión de preferencias personales. Muchos programadores opinan que los bucles {\tt for} anidados son en general más legibles, pero otros muchos sostienen que la comprensión anidada de listas es la opción {\em más pythonica}. No vamos a discutir por esto, desde luego. Recuerda en cualquier caso la directriz general que hemos visto anteriormente: las comprensiones pueden ser la forma natural de {\em fabricar objetos} (como en el caso que nos ocupa), mientras que los bucles {\em for} son la forma natural de describir {\em acciones}.
+Como ves, el orden de escritura de izquierda a derecha de los bucles en esta versión se corresponde con el orden de arriba hacia abajo en los bucles {\tt for} anidados. En cualquier caso, el resultado es el mismo. A menudo la elección entre las dos formas de proceder es una cuestión de preferencias personales. Muchos programadores opinan que los bucles {\tt for} anidados son en general más legibles, pero otros muchos sostienen que la comprensión anidada de listas es la opción {\em más pythónica}. No vamos a discutir por esto, desde luego. Recuerda en cualquier caso la directriz general que hemos visto anteriormente: las comprensiones pueden ser la forma natural de {\em fabricar objetos} (como en el caso que nos ocupa), mientras que los bucles {\em for} son la forma natural de describir {\em acciones}.
 
 \subsection{Listas de cadenas de texto. }
 
@@ -4107,8 +4140,8 @@ Como decíamos estos objetos resultan interesantes en algunos ejemplos, cuando s
 \label{tut02:ejercicio27}
 \quad\\
 \begin{enumerate}
-\item Vamos a fabricar un generador de contraseñas aleatorias. Usa las cadenas de caracteres para escribir un programa que genere contraseñas aleatorias de longitud 20 formadas por letras mayusculas, minúsculas y digitos del 0 al 9.
-\item ¿Puedes modificar ese programa para garantizar que las contraseñas contienen al menos: una mayúscula, una minñuscula y un dígito?
+\item Vamos a fabricar un generador de contraseñas aleatorias. Usa las cadenas de caracteres para escribir un programa que genere contraseñas aleatorias de longitud 20 formadas por letras mayúsculas, minúsculas y dígitos del 0 al 9.
+\item ¿Puedes modificar ese programa para garantizar que las contraseñas contienen al menos: una mayúscula, una minúscula y un dígito?
 \end{enumerate}
 %Solución en la página \pageref{tut02:ejercicio27:sol}.
 \qed
@@ -4117,7 +4150,7 @@ Como decíamos estos objetos resultan interesantes en algunos ejemplos, cuando s
 \subsection{Números pseudoaleatorios, pero ``reproducibles'': la función {\tt seed}.}
 \label{tut02:subsec:numerosAleatoriosReproduciblesSeed}
 
-En la  Sección \ref{tut02:subsec:numerosAleatorios} (pág. \pageref{tut02:subsec:numerosAleatorios}) hemos lanzado 100 veces un dado,  ejecutando este código en IPython (recuerda que hemos importado {\tt random} con el alias {\tt rnd}):
+En la  Sección \ref{tut02:subsec:numerosAleatorios} (pág. \pageref{tut02:subsec:numerosAleatorios}) hemos lanzado 100 veces un dado,  ejecutando este código en la {\em Terminal} (recuerda que hemos importado {\tt random} con el alias {\tt rnd}):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4130,7 +4163,7 @@ Un inconveniente de trabajar con números aleatorios es que los resultados del l
   \item Que los números sean aleatorios, en el sentido de que nosotros no los hemos elegido, sino que son el resultado de un {\em sorteo}.
   \item Pero que los resultados del sorteo queden registrados de alguna manera, para que otros puedan reproducirlos.
 \end{itemize}
-Afortunadamente (en este caso), como ya dijimos, los números que produce un ordenador no son aleatorios, sino pseudoaleatorios. Y para lo que aquí nos ocupa, eso es una ventaja. Hay una función del módulo {\tt random}, llamada {\sf seed}, que permite decirle a Python que queremos hacer exactamente esto: generar números aleatorios reproducibles. Concretamente, para ver funciona como esto, probemos a ejecutar varias veces el código anterior en IPython:
+Afortunadamente (en este caso), como ya dijimos, los números que produce un ordenador no son aleatorios, sino pseudoaleatorios. Y para lo que aquí nos ocupa, eso es una ventaja. Hay una función del módulo {\tt random}, llamada {\sf seed}, que permite decirle a Python que queremos hacer exactamente esto: generar números aleatorios reproducibles. Concretamente, para ver funciona como esto, probemos a ejecutar varias veces el código anterior:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4192,7 +4225,7 @@ Una vez visto lo fundamental, no queremos entretenernos mucho más en esto. Pero
 Ahora que ya hemos aprendido a usar listas aleatorias reproducibles podemos empezar a hacer ejercicios como este.
 \begin{enumerate}
 \item Obtén la tabla de frecuencias  (absoluta, relativa, etc.) y calcula la media aritmética y la cuasidesviación típica (muestral) de los valores que hay en la lista {\tt dado100}. Usa {\tt rnd.seed(2016)} para generar la lista.
-\item Para ir preparando el terreno: si eleiges un número al azar de esa lista ¿cuál crees que es la probabilidad de que sea un 4? ¿Cuál es la frecuencia relativa de 4 en esa lista?
+\item Para ir preparando el terreno: si eliges un número al azar de esa lista ¿cuál crees que es la probabilidad de que sea un 4? ¿Cuál es la frecuencia relativa de 4 en esa lista?
 \end{enumerate}
 %Solución en la página \pageref{tut02:ejercicio28:sol}.
 \qed
@@ -4201,7 +4234,7 @@ Ahora que ya hemos aprendido a usar listas aleatorias reproducibles podemos empe
 \section{Instrucción {\tt if} y valores booleanos.}
 \label{tut02:sec:instruccionIfValoresBooleanos}
 
-Para que nuestros programas puedan empezar a ser interesantes les falta aún un ingrediente esencial. Tienen que ser capaces de tomar decisiones dependiendo del valor de alguna variables. Queremos dotar a nuestros programas de la capacidad de ejecutar instrucciones como esta: {\em si la variable {\tt a} es par hacemos una cosa y si es impar hacemos otra distinta}. En esta sección vamos a aprender a traducir ese tipo de instrucciones al lenguaje Python.
+Para que nuestros programas puedan empezar a ser interesantes les falta aún un ingrediente esencial. Tienen que ser capaces de tomar decisiones dependiendo del valor de alguna variables. Queremos dotar a nuestros programas de la capacidad de ejecutar instrucciones como esta: {\em si la variable {\tt a} es par hacemos una cosa y si {\tt a} es impar hacemos otra distinta}. En esta sección vamos a aprender a traducir ese tipo de instrucciones al lenguaje Python.
 
 \subsection{La instrucción {\tt if}.}
 \label{tut02:subsec:instruccionIf}
@@ -4243,7 +4276,7 @@ In [6]: \hlkwd{print}(mayorQue2)
 \end{knitrout}
 La parte nueva del código es {\tt if valor > 2}. Python utiliza {\tt if} para introducir condiciones. En este caso la condición {\tt valor > 2}. Y como ves, el resultado es una lista que contiene precisamente eso: los valores de {\tt dado100} que son mayores que 2 (fíjate en que se respeta el orden de aparición de los valores).
 
-Como siempre, también es posible hacer esto usando un bucle {\tt for}. Y de hecho es interesante hacerlo para ver las diferencias entre ambos enfoques. Hemos pegado un bloque de código completo en IPython para obtener esto:
+Como siempre, también es posible hacer esto usando un bucle {\tt for}. Y de hecho es interesante hacerlo para ver las diferencias entre ambos enfoques. Hemos pegado un bloque de código completo en la {\em Terminal} para obtener esto:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4274,7 +4307,7 @@ Esta estructura es el primer ejemplo que encontramos de una {\sf instrucción} {
 \item Hay una primera línea de cabecera en la que aparece la condición.
 \item Debajo de esta línea aparece un bloque de código indentado; es decir, desplazado hacia la derecha con respecto a la línea de cabecera, al igual que sucedía con el bucle {\tt for}.
 \end{enumerate}
-Y el funcionamiento de esta instrucción {\tt if} es sencillo: si la condición se cumple, se ejecuya el bloque indentado de código. Si no se cumple, ese bloque se ignora y el programa continúa en la primera línea después del código.
+Y el funcionamiento de esta instrucción {\tt if} es sencillo: si la condición se cumple, se ejecuta el bloque indentado de código. Si no se cumple, ese bloque se ignora y el programa continúa en la primera línea después del código.
 
 \begin{ejercicio}
 \label{tut02:ejercicio29}
@@ -4302,7 +4335,7 @@ if a < 3:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-\item Ejecuta ambos bloques en la terminal de IPython y comprueba los resultados.
+\item Ejecuta ambos bloques en la {\em Terminal} y comprueba los resultados.
 \end{enumerate}
 %Solución en la página \pageref{tut02:ejercicio29:sol}.
 \qed
@@ -4311,7 +4344,7 @@ if a < 3:
 \subsection{Condiciones.}
 \label{tut02:subsec:Condiciones}
 
-En el ejercicio \ref{tut02:ejercicio29} hemos usado la condición {\tt a < 3}  para controlar el comportamiento de la instrucción {\tt if}. Ahora queremos fijarnos en esa condición en si misma. Después de asignar el valor {\tt a = 2} escribimos la condición en la terminal de IPython y la ejecutamos:
+En el ejercicio \ref{tut02:ejercicio29} hemos usado la condición {\tt a < 3}  para controlar el comportamiento de la instrucción {\tt if}. Ahora queremos fijarnos en esa condición en si misma. Después de asignar el valor {\tt a = 2} escribimos la condición en la {\em Terminal} y la ejecutamos:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4333,7 +4366,7 @@ La respuesta de Python es que la condición es cierta, {\tt True} en inglés. Po
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-En este caso la condición es falsa y Python le asigna el valor {\tt False}. Tenemos que aprender a pensar en la condición como si fuera una pregunta: ``¿Es la variable {\tt a} menor que $3$?''. La respuesta sólo puede ser ``sí'' o ``no'', o dicho de otra manera ``cierto'' o ``falso''. En Python (y en muchos otros lenguajes de programación), las respuestas a ese tipo de preguntas se representan con un tipo especial de variables, las {\sf variables  booleanas} (por el matemático G. Boole\footnote{Más información en  \link{http://es.wikipedia.org/wiki/George\_Boole}{http://es.wikipedia.org/wiki/George\_Boole}}). Una variable de tipo booleano, por tanto, sólo puede tomar dos valores, que son {\tt True} (cierto) o {\tt False} (falso). Como habrás imaginado, las variables de tipo booleano son esenciales en programación, porque son la clave para que los programas puedan tomar  decisiones mediante instrucciones {\tt if} y otas instrucciones similares.
+En este caso la condición es falsa y Python le asigna el valor {\tt False}. Tenemos que aprender a pensar en la condición como si fuera una pregunta: ``¿Es la variable {\tt a} menor que $3$?''. La respuesta sólo puede ser ``sí'' o ``no'', o dicho de otra manera ``cierto'' o ``falso''. En Python (y en muchos otros lenguajes de programación), las respuestas a ese tipo de preguntas se representan con un tipo especial de variables, las {\sf variables  booleanas} (por el matemático G. Boole\footnote{Más información en  \link{http://es.wikipedia.org/wiki/George\_Boole}{http://es.wikipedia.org/wiki/George\_Boole}}). Una variable de tipo booleano, por tanto, sólo puede tomar dos valores, que son {\tt True} (cierto) o {\tt False} (falso). Como habrás imaginado, las variables de tipo booleano son esenciales en programación, porque son la clave para que los programas puedan tomar  decisiones mediante instrucciones {\tt if} y otras instrucciones similares.
 
 % Hemos dicho que podemos pensar en {\tt a < 3} como una pregunta. Pero también podemos verlo como una {\tt operación}. De la misma forma que {\tt 2 + 5} es una operación con 2 y 5 como operandos y 7 como resultado, podemos pensar que {\tt 1 < 3} es una  operación con 1 y 3 como operandos y con resultado {\tt True}.
 
@@ -4398,7 +4431,7 @@ Ya hemos dicho que los valores booleanos {\tt True} y {\tt False} son la base so
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-El operador {\tt and} es, en Python, el {\sf Y booleano}. En otros lenguajes de programación se escribe de diferentes maneras (a menudo se usa \verb#&#). Hemos ejecutado varios comandos en la terminal de IPython para ilustrar el funcionamiento del operador {\tt and}. Asignamos distintos valores a la variable {\tt a} y para cada uno de ellos evaluamos la condición que hemos escrito más arriba:
+El operador {\tt and} es, en Python, el {\sf Y booleano}. En otros lenguajes de programación se escribe de diferentes maneras (a menudo se usa \verb#&#). Hemos ejecutado varios comandos en la {\em Terminal} para ilustrar el funcionamiento del operador {\tt and}. Asignamos distintos valores a la variable {\tt a} y para cada uno de ellos evaluamos la condición que hemos escrito más arriba:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4431,7 +4464,7 @@ True and True
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-es (da como resultado) {\tt True}. De hecho {\em la tabla completa} del operador {\tt and} es esta (en la terminal de IPython):
+es (da como resultado) {\tt True}. De hecho {\em la tabla completa} del operador {\tt and} es esta (en la {\em Terminal}):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4565,7 +4598,7 @@ Out[33]: \hlstr{''}
 \end{knitrout}
 En efecto: Python interpreta cualquier cadena de texto como {\tt True}, salvo la {\sf cadena vacía} \verb&""&, que se interpreta como {\tt False}. Una vez entendido eso, el resto es igual que en el caso de los enteros.
 
-Creemos que es bueno que conozcas estas conversiones de valores a booleanos, porque  algunos programadores las utilizan como {\em truco mágico} en algunos programas. Nosotros {\em desaconsejamos con énfasis} su uso: el resultado suele ser código difícil de interpretar y eso es siempre una mala idea (salvo que sea eso precisamente lo que se busca). Además otros lenguajes de programamción pueden utilizar otras reglas. Hay, no obstante, otro tipo de conversiones mucho más interesantes y que si pueden ser de utilidad en Estadística. Y, de hecho, este segundo tipo de conversiones sí se hace igual en otros lenguajes de programamción (como R). En algún sentido se trata del camino inverso. Si antes empezamos convirtiendo enteros a booleanos, debes saber que Python también puede interpretar los booleanos como enteros. Por ejemplo:
+Creemos que es bueno que conozcas estas conversiones de valores a booleanos, porque  algunos programadores las utilizan como {\em truco mágico} en algunos programas. Nosotros {\em desaconsejamos con énfasis} su uso: el resultado suele ser código difícil de interpretar y eso es siempre una mala idea (salvo que sea eso precisamente lo que se busca). Además otros lenguajes de programación pueden utilizar otras reglas. Hay, no obstante, otro tipo de conversiones mucho más interesantes y que si pueden ser de utilidad en Estadística. Y, de hecho, este segundo tipo de conversiones sí se hace igual en otros lenguajes de programación (como R). En algún sentido se trata del camino inverso. Si antes empezamos convirtiendo enteros a booleanos, debes saber que Python también puede interpretar los booleanos como enteros. Por ejemplo:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}

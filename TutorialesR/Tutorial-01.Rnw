@@ -125,7 +125,7 @@ Aparecerá un cuadro de diálogo, como el que se ve en la siguiente figura,
     \end{center}
 en el que debemos:
     \begin{enumerate}
-    \item Elegir (y recordar) la carpeta en la que guardaremos el fichero.
+    \item Elegir (y recordar) la carpeta en la que guardaremos el fichero. Recuerda que para los ficheros {\tt csv} usamos la subcarpeta {\tt datos} del {\em Directorio de Trabajo}.
     \item Elegir un nombre para el fichero. Vamos a usar
     \begin{center}
         {\tt Tut01-PracticaConCalc.ods}
