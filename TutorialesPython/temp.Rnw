@@ -10,11 +10,6 @@
 <<eval=FALSE, purl=FALSE, echo=FALSE>>=
 setwd("~/Dropbox/PostDataFernando/TutorialesPython")
 source('~/Dropbox/Code/R/raptor/raptor.R')
-setwd("C:/Dropbox/PostDataFernando/TutorialesPython")
-source('C:/Dropbox/Code/R/raptor/raptor.R')
-
-
-
 # defaultExecOrder=Inf
 # filename = "Tutorial-03-py.Rnw"
 # language = c("python")
@@ -24,33 +19,6 @@ raptor(filename = "Tutorial-03-py.Rnw", language = c("python"), fileOverwrite = 
 @
 
 
-<<echo=FALSE, purl=FALSE>>=
-library(knitr)
-# Este tutorial contiene el código de varios ficheros, que se extrae 
-# descomentando y ejecutando los siguientes bloques.
-deMere01 = FALSE
-deMere02 = FALSE
-reglaLaplace = FALSE
-deMereExacto = FALSE
-probGeom1 = FALSE
-#####################################
-# deMere01 = TRUE
-# purl("Tutorial-03-py.Rnw", output="./code/Tut03-deMere01.py", documentation = 0)
-# deMere01 = FALSE
-#####################################
-# deMere02 = TRUE
-# purl("Tutorial-03-py.Rnw", output="./code/Tut03-deMere02.py", documentation = 0)
-# deMere02 = FALSE
-#####################################
-# reglaLaplace = TRUE
-# purl("Tutorial-03-py.Rnw", output="./code/Tut03-ejercicioReglaLaplace.py", documentation = 0)
-# reglaLaplace = FALSE
-#####################################
-# deMereExacto = TRUE
-# purl("Tutorial-03-py.Rnw", output="./code/Tut03-ejercicioDeMereExacto.py", documentation = 0)
-# deMereExacto = FALSE
-#####################################
-@
 
 
 \usepackage{makeidx}
@@ -99,7 +67,7 @@ codeColor = "#e6f7ff"
 @
 
 <<echo=FALSE, purl=FALSE, results='hide', message=FALSE, error=TRUE, warning=FALSE>>=
-#library(knitr)
+library(knitr)
 DeMere1 = FALSE
 read_chunk("./code/Tut-03-DeMere01.out")
 probGeom1 = FALSE
@@ -107,7 +75,18 @@ read_chunk("./code/Tut-03-probGeom1.out")
 @
 
 
+
+
+
+
+
+
+
 \begin{document}
+<<echo=FALSE>>=
+library(knitr)
+read_chunk('rptAux/Tutorial-03-py-gz0yx4iho-generic-python.out')
+@
 %\SweaveOpts{concordance=TRUE}
 \includecomment{pdf}
 %\excludecomment{pdf}
@@ -199,16 +178,10 @@ En la página \pageref{curso-cap03:subsubsec:JuegosDeMereCombinatoria} del Capí
 
 \subsection{Probabilidades y la función {\tt sample} de Python.}
 
-\paragraph{Advertencia sobre la forma de mostrar el código en los tutoriales:} 
-Para tratar de facilitar tu trabajo, verás que a partir de ahora el código Python aparece sombreado en color azul oscuro y que, justo debajo, se muestra la salida que produce la ejecución de ese código, sombreada en azul más claro. Por ejemplo:
-<<raptor="python", purl=FALSE>>=
-a = 7
-print(a**2)
-@
-Recuerda, en lo que sigue, que cuando hablemos de {\em ejecutar} un fragmento de código en Python estamos indicando que puedes usar directamente la {\em Terminal} de Spyder o copiar ese fragmento en el {\em Editor de Código} y ejecutarlo desde allí con las teclas de función. Es decir que si copias y pegas el bloque de código de color azul oscuro en el {\em Editor de Código} de Spyder y pulsas {\tt F5} deberías obtener el resultado que mostramos en azul claro (salvo las diferencias que puedan causar los números pseudoaleatorios si no se usa {\tt seed}).
+\paragraph{Recordatorio a modo de advertencia:} Recuerda, en lo que sigue, que cuando hablemos de {\em ejecutar} un fragmento de código en Python estamos indicando que puedes usar directamente la {\em Terminal} de Spyder o copiar ese fragmento en el {\em Editor de Código} y ejecutarlo desde allí con las teclas de función. 
 
-Vamos a empezar recordando algo de lo que hemos aprendido sobre la forma de generar números pseudoaleatorios con las funciones del módulo {\tt random}. Si queremos fabricar $100$ números pseudoaleatorios entre $20$ y $80$, usaríamos (como hemos visto en la Sección \ref{tut02-tut02:subsec:numerosAleatorios} del Tutorial-02) un código similar a este:
-<<raptor="python", purl=FALSE>>=
+Vamos a empezar recordando algo de lo que hemos aprendido sobre la forma de generar números pseudoaleatorios con las funciones del módulo {\tt random}. Si queremos fabricar $100$ números pseudoaleatorios entre $20$ y $80$, usaríamos (como hemos visto en la Sección \ref{tut02-tut02:subsec:numerosAleatorios} del Tutorial-02) un código similar a este que ejecutamos en Jupyter:
+<<raptor="python", purl=FALSE, eval=FALSE, background= '#99ccff'>>=
 import random as rnd
 
 rnd.seed(2016)
@@ -222,30 +195,49 @@ n = 100
 datos = [rnd.randrange(a, b + 1) for _ in range(0, n)]
 
 print(datos)
-import random as rnd
 
-rnd.seed(2016)
-
-n = 1000
-
-partidas = []
-for i in range(0, n):
-  partida = []
-  for j in range(0, 4):
-    partida.append(rnd.randrange(1, 7))
-  partidas.append(partida)
-
-print(partidas[0:5])
 @
-Hemos usado la función {\tt seed}  para que cuando ejecutes el código obtengas los mismos resultados que nosotros. Es recomendable  experimentar ejecutando el código sin usar esa función para comprobar qué es lo que cambia. En cualquier caso, al ejecutar este código los resultados quedan guardados en la lista {\tt datos}.
+\vspace{-3mm}
+<<eval=FALSE, background='#cce6ff'>>=
+<<generic-python-chunk-0001>>
+@
+\noindent
+
+
+
+<<chnk1020, eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: import random as rnd
+
+In [2]: rnd.seed(2016)
+
+In [3]: a = 20
+
+In [4]: b = 80
+
+In [5]: n = 100
+
+In [6]: datos = [rnd.randrange(a, b + 1) for _ in range(0, n)]
+
+In [7]: print(datos)
+[67, 75, 48, 77, 55, 76, 73, 36, 76, 63, 79, 65, 25, 72, 38, 28, 24, 51, 78, 50,
+26, 39, 28, 29, 40, 33, 42, 33, 35, 30, 51, 48, 79, 65, 40, 25, 66, 60, 55, 35,
+37, 58, 75, 72, 69, 62, 22, 39, 56, 76, 32, 47, 40, 21, 60, 44, 24, 39, 68, 48,
+26, 31, 53, 57, 22, 44, 57, 32, 75, 80, 42, 70, 62, 34, 42, 23, 44, 53, 23, 36,
+51, 65, 65, 43, 63, 69, 43, 31, 60, 39, 64, 23, 59, 66, 56, 22, 57, 78, 67, 75]
+@
+Hemos usado la función {\tt seed}  para que cuando ejecutes el código obtengas los mismos resultados que nosotros. Si lo deseas, después puedes experimentar ejecutando el código sin usar esa función para comprobar qué es lo que cambia. En cualquier caso, al ejecutar este código los resultados quedan guardados en la lista {\tt datos}.
 
 Al construirlos así todos los números entre $20$ y $80$ son equiprobables. Y, puesto que estamos hablando de Probabilidad, es natural que nos preguntemos: ¿cómo podemos fabricar valores que no sean equiprobables? En el Tutorial-02 nos las ingeniamos para conseguirlo por el procedimiento de aplicar la función {\tt rnd.choice} a vectores en los que había elementos repetidos. Recuerda el ejemplo que veíamos entonces (aquí los resultados concretos son otros, pero no importa):
-<<raptor="python", purl=FALSE>>=
+<<chunk1021, eval=FALSE,  purl=FALSE>>=
 muchosUnos = [1,1,1,1,1,1,1,1,1,2]
 
 muestra = [rnd.choice(muchosUnos) for _ in range(0, 100)]
 
 print(muestra)
+[1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 @
 Este método, nos podría servir para conseguir lo que queremos. Pero no resulta una forma cómoda de trabajar, en cuanto las cosas sean un poco más complicadas.
 \begin{ejercicio}
@@ -273,55 +265,42 @@ Más adelante se nos planteará una pregunta relacionada con esta, pero ligerame
 
 Para cerrar este apartado y preparar la discusión del siguiente, vamos a pedirle al lector que vuelva un momento a pensar en la Figura \ref{tut03:fig:Tut03-DeMere1.ods} (pág. \pageref{tut03:fig:Tut03-DeMere1.ods}). La tabla del fichero {\tt Tut03-DeMere1.ods} de Calc representa el resultado de $1000$ partidas del primer juego del Caballero de Méré. En ese juego, nosotros agrupamos cuatro tiradas del dado y las llamamos {\em una partida} del juego. Para representar esto en Python vamos a crear una lista para cada partida y guardaremos todas las partidas en una lista de listas. Y de hecho vamos a hacer esto de dos formas: primero usaremos un enfoque clásico de la programación con dos bucles for anidados (recuerda la Sección \ref{tut02-tut02:subsec:buclesForAnidados} del Tutorial02). Este método tiene la ventaja de que resulta sencillo apreciar su estructura. Después usaremos un método que muchos programadores calificarían de {\em más Pythónico:} una comprensión de listas anidada (que ya vimos en esa misma Sección \ref{tut02-tut02:subsec:buclesForAnidados} del Tutorial02).
 
-Vamos con el primer método. El código, que puedes copiar y ejecutar es:
-<<eval=FALSE, echo=FALSE, purl=deMere01>>=
-# -*- coding: utf-8 -*-
-"""
-www.postdata-statistics.com
-POSTDATA. Introducción a la Estadística
-Tutorial 03.  
-Fichero de comandos Python para simular el primer
-juego del Caballero de Mere.
-"""
-
-@
-<<raptor="python", purl=deMere01, program="deMere01">>=
-
-# Importamos el módulo random y usamos seed
+Vamos con el primer método. El código, que puedes copiar y ejecutar en una sesión de Jupyter es:
+<<purl=DeMere1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- deMere01ch001")
 import random as rnd
 
 rnd.seed(2016)
 
-# Fijamos el número n de partidas.
 n = 1000
 
-# Generamos la lista de partidas. 
-# Cada partida es una lista de cuatro numeros de 1 a 6.
 partidas = []
 for i in range(0, n):
   partida = []
   for j in range(0, 4):
     partida.append(rnd.randrange(1, 7))
   partidas.append(partida)
-
-# Mostramos las primeras 5 partidas.
 print(partidas[0:5])
-
+@
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<deMere01ch001>>
 @
 Recuerda que hemos usado {\tt rnd.seed}, así que tus resultados deben coincidir con estos. Fíjate también en que los {\em contadores} {\tt i, j} de los dos bucles {\tt for} no intervienen en ninguna operación y sólo sirven para llevar la cuenta del número de partida (en el caso de {\tt i}) y de la tirada dentro de esa partida (en el caso de {\tt j}).  Otro detalle destacable es que inicializamos la lista {\tt partidas} como una lista vacía antes de comenzar los bucles, e iniciamos una nueva lista {\tt partida} en cada iteración del bucle for externo: la lista {\tt partida} se {\em vacía} así en cada iteración para reutilizarla, guardando en ella los cuatro resultados de una nueva partida.
 
 Como decíamos, la estructura del método es explícita en esta versión con bucles {\tt for} anidados. Frente a estos, el siguiente código con comprensión de listas anidadas resulta indiscutiblemente  más conciso:
-<<raptor="python", purl=deMere01, program="deMere01">>=
-# Generamos las mismas partidas con comprensión de listas.
-# Empezamos reiniciando el generador pseudoaleatorio con seed.
+<<purl=DeMere1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- deMere01ch002")
+
 rnd.seed(2016)
 
-# Comprensión de listas:
 partidas = [[rnd.randrange(1, 7) for _ in range(0, 4)] for _ in range(0, n) ]
 
-# Y mostramos las 5 primeras para comprobar que coinciden:
 print(partidas[0:5])
-
+@
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<deMere01ch002>>
 @
 La razón por la que los resultados son los mismos es que al ejecutar otra vez {\tt rnd.seed(2016)} hemos reiniciado el generador de números aleatorios de Python y {\em lo hemos colocado en el mismo punto}. Así que a medida que le pedimos números aleatorios a Python, obtenemos las mismas respuestas que antes. Fíjate en que las seis líneas de los bucles for anidados se han reducido a una única línea de código. Fíjate también en que al usar el símbolo {\tt\_} hemos indicado que los contadores no juegan ningún papel adicional. 
 
@@ -332,14 +311,14 @@ En la  Sección \ref{tut02-tut02:subsec:buclesForAnidados} del Tutorial02 vimos 
 \qed
 \end{ejercicio}
 
-Vamos a analizar los resultados de esas 1000 partidas. Para saber si ha ganado en una partida concreta, el Caballero de Méré tiene que preguntarse si alguno de los cuatro números de esa partida es un 6. La descripción en pseudocódigo de lo que tenemos que hacer es muy sencilla:
-<<chunk1005, eval=FALSE,   purl=FALSE>>=
-Crear una lista vacía llamada partidaGanadora.
-Para cada partida de la lista partidas:
-    Si la lista contiene al menos un 6:
-        Añadir True a partidaGanadora.
-    En caso contrario:
-        Añadir False a partidaGanadora.
+Vamos a analizar los resultados de esas 1000 partidas. Para saber si ha ganado en una partida concreta, el Caballero de Méré tiene que preguntarse si alguno de los cuatro números de esa partida es un 6. La descripción en pseudocódigo de lo que tenemos que hacer es muy sencillo:
+<<chunk1005, eval=FALSE,   purl=FALSE, background="#ffe6cc">>=
+crear una lista vacía llamada partidaGanadora
+para cada partida de la lista partidas:
+    si la lista contiene al menos un 6:
+        añadir True a partidaGanadora
+    en caso contrario
+        añadir False a partidaGanadora
 @
 Seguramente ya te imaginas como traducir casi todo esto a código Python. Sólo hay un detalle que nos falta, pero es el detalle esencial: ¿cómo vamos a decidir si la partida contiene al menos un 6? Hay varias maneras de hacerlo. Antes de seguir es bueno que lo intentes.
 
@@ -358,23 +337,24 @@ Busca una forma de usar Python para decidir si una lista contiene al menos un $6
 
 \newpage
 
-En el Tutorial02 hemos aprendido las ideas básicas sobre valores booleanos y su uso en sentencias del tipo {\tt if}. Allí aprendimos a usar condiciones como {\tt 3 < 5} o como {\tt a == 4}. Pero iremos viendo en este tutorial y a lo largo del curso que hay muchas otras operaciones de Python que dan como resultado un valor booleano {\tt True} o {\tt False}. Concretamente hay una, la operación {\tt in}, que nos permite hacer exactamente la pregunta que necesitamos. Para ver cómo funciona hemos ejecutado varios ejemplos de uso de esta operación:
+En el Tutorial02 hemos aprendido las ideas básicas sobre valores booleanos y su uso en sentencias del tipo {\tt if}. Allí aprendimos a usar condiciones como {\tt 3 < 5} o como {\tt a == 4}. Pero iremos viendo en este tutorial y a lo largo del curso que hay muchas otras operaciones de Python que dan como resultado un valor booleano {\tt True} o {\tt False}. Concretamente hay una, la operación {\tt in}, que nos permite hacer exactamente la pregunta que necesitamos. Para ver cómo funciona hemos ejecutado dos ejemplos en una sesión de Jupyter:
 
-<<raptor="python", purl=FALSE>>=
-print(6 in [3, 6, 1, 2])
+<<chunk1006, eval=FALSE,   purl=FALSE, background=jupyterCol>>=
+In [1]: 6 in [3, 6, 1, 2]
+Out[1]: True
+
+In [2]: 6 in [3, 3, 1, 2]
+Out[2]: False
+
+In [3]: 6 in [3, 6, 6, 2]
+Out[3]: True
 @
-\vspace{-10mm}
-<<raptor="python", purl=FALSE>>=
-print(6 in [3, 3, 1, 2])
-@
-\vspace{-10mm}
-<<raptor="python", purl=FALSE>>=
-print(6 in [3, 6, 6, 2])
-@
-%\vspace{-10mm}
+
 Usando ese operador {\tt in} la traducción del pseudocódigo para fabricar la lista que identifica las partidas ganadoras es muy sencilla:
 
-<<raptor="python", purl=deMere01, program="deMere01">>=
+<<purl=DeMere1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- deMere01ch003")
+
 # Obtenemos una lista de booleanos que caracteriza a las partidas ganadoras
 # que son las que contienen al menos un 6.
  
@@ -390,6 +370,9 @@ for partida in partidas:
 print(partidasGanadoras[0:5])
 
 @
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<deMere01ch003>>
+@
 Compara estos resultados con el contenido de cada una de esas 10 primeras listas para comprobar que está funcionando como esperamos.
 
 \begin{ejercicio}
@@ -402,7 +385,9 @@ Solución en la página \pageref{tut03:ejercicio04:sol}.
 
 Una vez obtenida la lista {\tt partidaGanadora} el siguiente paso es preguntarnos cuántas partidas ganadoras hay en ella. Es decir, cuántas veces aparece el valor {\tt True} en esa lista. Y como sucede a menudo, hay muchas formas de hacerlo. Una de las formas que se te puede ocurrir es hacer una tabla de frecuencia de los valores {\tt True} y {\tt False}:
 
-<<raptor="python", purl=deMere01, program="deMere01">>=
+<<purl=DeMere1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- deMere01ch004")
+
 # Tabla de frecuencia
 
 import collections as cl
@@ -411,49 +396,61 @@ freqGanadoras = ganadorasCounter.most_common()
 print(freqGanadoras)
 
 @
-Otra forma de hacerlo consiste en aprovechar un truco que vimos en la Sección opcional \ref{tut02-tut02:subsubsec:evaluacionOperacionesBooleanas} (pág. \pageref{tut02-tut02:subsubsec:evaluacionOperacionesBooleanas}) del Tutorial02. Allí mostramos que si sumamos o multiplicamos valores booleanos, Python convierte {\tt True} en 1 y {\tt False} en 0. De esa forma, al sumar una lista de valores booleanos el número que obtenemos es el número de valores {\tt True} en esa lista. Algunos ejemplos:
-<<raptor="python", purl=FALSE>>=
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<deMere01ch004>>
+@
+Otra forma de hacerlo consiste en aprovechar un truco que vimos en la Sección opcional \ref{tut02-tut02:subsubsec:evaluacionOperacionesBooleanas} (pág. \pageref{tut02-tut02:subsubsec:evaluacionOperacionesBooleanas}) del Tutorial02. Allí mostramos que si sumamos o multiplicamos valores booleanos, Python convierte {\tt True} en 1 y {\tt False} en 0. De esa forma, al sumar una lista de valores booleanos el número que obtenemos es el número de valores {\tt True} en esa lista. Algunos ejemplos en Jupyter:
+<<eval=FALSE,   purl=FALSE, background=jupyterCol>>=
 lista = [True, False, True, True, False, False, True]
 
-print(sum(lista))
+sum(lista)
+Out[2]: 4
 
 lista = [True, True, True, True, True, False, True]
 
-print(sum(lista))
-
+sum(lista)
+Out[4]: 6
 
 lista = [False, False, False, False, False, False, False]
 
-print(sum(lista))
+sum(lista)
+Out[6]: 0
 @
 Así que para saber cuantas partidas ganadoras hemos obtenido basta con hacer:
-<<raptor="python", purl=deMere01, program="deMere01">>=
-# El mismo resultado sumando booleanos:
+<<purl=DeMere1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- deMere01ch005")
 
 print(sum(partidasGanadoras))
 
 @
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<deMere01ch005>>
+@
 Y el resultado coincide con lo que hemos obtenido usando tablas de frecuencia. A partir de ahí es muy fácil calcular la proporción de partidas ganadoras:
-<<raptor="python", purl=deMere01, program="deMere01">>=
+<<purl=DeMere1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- deMere01ch006")
+
 # Proporcion de partidas ganadoras
 
 proporcionGanadoras = sum(partidasGanadoras) / n
 print(proporcionGanadoras)
 
 @
-
-En el libro hemos adelantado que el verdadero valor de la probabilidad de ganar es aproximadamente $0.52$, así que el resultado de esta simulación es una estimación razonablemente buena de esa probabilidad.  Naturalmente, esto es sólo un ejemplo. Pero basta con volver a ejecutar el código (sin usar {\tt rnd.seed}, desde luego) para obtener otro conjunto de partidas y seguir el  experimento, constatando, como hicimos con Calc, que la probabilidad estimada por el Caballero de Méré era errónea. Para facilitar esa tarea, hemos agrupado el código en el fichero adjunto \fichero{./code/Tut03-deMere01.py}{Tut03-deMere01.py}. 
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<deMere01ch006>>
+@
+En el libro hemos adelantado que el verdadero valor de la probabilidad de ganar es aproximadamente $0.52$, así que el resultado de esta simulación es una estimación razonablemente buena de esa probabilidad.  Naturalmente, esto es sólo un ejemplo. Pero basta con volver a ejecutar el código (sin usar {\tt rnd.seed}, desde luego) para obtener otro conjunto de partidas y seguir el  experimento, constatando, como hicimos con Calc, que la probabilidad estimada por el Caballero de Méré era errónea. Para facilitar esa tarea, hemos agrupado el código en el fichero adjunto \fichero{./code/Tut-03-DeMere1.py}{Tut-03-DeMere1.py}. Para ejecutarlo en una sesión de Jupyter recuerda usar la {\em función mágica} {\tt run} que vimos en el Tutorial02.
 
 \begin{ejercicio}
 \label{tut03:ejercicio05}
 \quad
 \begin{enumerate}
-  \item Abre el fichero en el {\em Editor de Código} de Spyder, busca las líneas en las que se ejecuta {\tt rnd.seed} (hay dos) y comenta esas líneas. Recuerda que eso significa que debes añadir el símbolo \verb&#& al principio de cada una de esas líneas. A continuación ejecuta varias veces el programa para ver los resultados que obtienes.
-  
+  \item Abre el fichero en un editor de texto, busca las líneas en las que se ejecuta {\tt rnd.seed} (hay dos) y comenta esas líneas. Recuerda que eso significa que debes añadir el símbolo \verb&#& al principio de cada una de esas líneas. A continuación ejecuta varias veces el programa para ver los resultados que obtienes.
   \item Cambia el valor de $n$ que inicialmente es $1000$ por un valor más grande. Por ejemplo, prueba $n = 10000$. Vuelve a ejecutarlo varias veces y observa los valores que obtienes ahora. ¿Ves alguna diferencia con los del caso anterior?
-  
-  \item ¿A partir de qué valor de $n$ la respuesta deja de parecerte instantánea?
-
+  \item ¿A partir de qué valor la respuesta deja de parecerte instantánea?
 \end{enumerate}
 Solución en la página \pageref{tut03:ejercicio05:sol}.
 \qed
@@ -470,7 +467,7 @@ En lugar de hacer una descripción igual de detallada del segundo juego, vamos a
 \label{tut03:ejercicio06}
 \quad
 \begin{enumerate}
-  \item Construye una lista {\tt deMere02} con $1000$ partidas, cada una formada por $24$ tiradas de un ``dado'' de 36 caras. El número $36$ corresponde al $6$ doble.
+  \item Construye una lista {\tt dosDados24000} con $24\cdot 1000$ tiradas de un ``dado'' de 36 caras. El número $36$ corresponde al $6$ doble.
   \item Identifica las partidas ganadoras, aquellas que contienen al menos un seis doble.
   \item Calcula la proporción de partidas ganadoras sobre el total de $1000$ partidas.
 \end{enumerate}
@@ -505,7 +502,7 @@ Solución en la página \pageref{tut03:ejercicio07:sol}.
 \section{Ejemplos de Probabilidad Geométrica.}
 \label{tut03:sec:EjemplosProbabilidadGeometricaGeoGebra}
 
-En la Sección \ref{curso-cap03:sec:ProbabilidadMasAllaReglaLaplace} (pág. \pageref{curso-cap03:sec:ProbabilidadMasAllaReglaLaplace}) hemos incluido varios ejemplos de un tipo de problemas que se denominan de Probabilidad Geométrica. Para visualizar esos problemas, además de Python ahora vamos a utilizar los primeros ficheros GeoGebra del curso.
+En la Sección \ref{curso-cap03:sec:ProbabilidadMasAllaReglaLaplace} (pág. \pageref{curso-cap03:sec:ProbabilidadMasAllaReglaLaplace}) hemos incluido varios ejemplos de un tipo de problemas que se denominan de Probabilidad Geométrica. Para visualizar esos problemas, ahora vamos a utilizar los primeros ficheros GeoGebra del curso.
 
 \subsection{Probabilidad geométrica. Método de Montecarlo.}
 
@@ -515,7 +512,8 @@ Vamos a usar Python para tratar de ilustrar las ideas que han aparecido en el Ej
 %Los últimos están tan cerca de $1$ que  los redondea a $1$ (al mostrarlos, pero no en las operaciones internas; ejecuta si quieres {\tt puntos[n0-1]==1} para comprobarlo):
 
 
-<<raptor="python", purl=FALSE>>=
+<<purl=probGeom1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- probGeom1ch001")
 # n0 es el numero de subintervalos (puntos menos uno)
 
 n0 = 100000
@@ -525,12 +523,16 @@ puntos = [ numero / n0 for  numero in range(0, n0 + 1)]
 # imprimimos los primeros y los últimos puntos
 print(puntos[0:5])
 print(puntos[-5:])
-
+@
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<probGeom1ch001>>
 @
 
 Ahora vamos a elegir {\tt k} de esos puntos. Se trata de muestreo con reemplazamiento:
 
-<<raptor="python", purl=FALSE>>=
+<<purl=probGeom1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- probGeom1ch002")
 
 # k es el numero de puntos elegidos
 
@@ -550,24 +552,39 @@ elegidos = [rnd.choice(puntos) for _ in range(0, k)]
 print(elegidos[0:10])
 
 @
-
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<probGeom1ch002>>
+@
 Vamos a ver que proporción de ellos pertenece al intervalo $A = [2/3, 1]$. 
+%Usaremos ideas que ya conocemos, como la equivalencia de {\tt TRUE} y {\tt FALSE} con {\tt 1} y {\tt 0}, respectivamente.
 
-<<raptor="python", purl=FALSE>>=
+<<purl=probGeom1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- probGeom1ch003")
+
 enA = [punto for punto in elegidos if ((punto >= 2/3) and (punto<= 1))]
 
 # comprobemos que funciona
 
 print(enA[0:10])
 @
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<probGeom1ch003>>
+@
 Todos los puntos de la lista {\tt enA} son mayores que $2/3\approx 0.66\ldots$.
-<<raptor="python", purl=FALSE>>=
+<<purl=probGeom1, eval=FALSE, comment=NULL, echo=-1, engine='python'>>=
+print("## ---- probGeom1ch004")
 
-# Ahora calculamos la proporción de puntos elegidos que pertenecen al intervalo:
+# Ahora ya podemos calcular la proporción de puntos elegidos que pertenecen al intervalo:
 
 proporcion = len(enA) / k
 print(proporcion)
 
+@
+\vspace{-5mm}
+<<purl=FALSE, eval=FALSE, background=codeColor>>=
+<<probGeom1ch004>>
 @
 La proporción, como ves, es cercana al valor $\frac{1}{3}=$\Sexpr{1/3} que pronosticábamos.
 
@@ -632,29 +649,32 @@ Recuerda que lo esencial de estos experimentos es observar el vínculo que exist
 \section{Operaciones simbólicas. Wiris, Wolfram Alpha.}
 \label{tut03:sec:OperacionesSimbolicas}
 
-Cuando empezamos a trabajar con probabilidades, usando al principio la Regla de Laplace, y luego con la Combinatoria, a menudo nos surge la necesidad de operar con fracciones,  como en el cálculo de esta fracción (que procede del Ejemplo \ref{curso-cap03:ejem:EjemploUrnasBayes}, pág. \pageref{curso-cap03:ejem:EjemploUrnasBayes} del libro):
+Cuando empezamos a trabajar con probabilidades, usando al principio la Regla de Laplace, y luego con la Combinatoria, a menudo nos surge la necesidad de operar con fracciones,  como en el cálculo de esta fracción (que procede del Ejemplo \ref{curso-cap03:ejem:EjemploUrnasBayes}, pág. \pageref{curso-cap03:ejem:EjemploUrnasBayes}, de nuestro curso):
 \[
 \dfrac{\dfrac{3}{5}\cdot \dfrac{2}{6}}{\dfrac{3}{5}\cdot \dfrac{2}{6}+\dfrac{4}{5}\cdot\dfrac{4}{6}}=\dfrac{3}{11}
 \]
-Si intentas hacer esta cuenta en Python, para empezar tienes que ser cuidadoso con los paréntesis (se aplica la regla de ``más vale que sobren''), y escribir:
-<<raptor="python", purl=FALSE>>=
-print( ( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) ) )
+Si intentas hacer esta cuenta en Python, para empezar tienes que ser cuidadoso con los paréntesis (se aplica la regla de ``más vale que sobren''), y escribir (mostramos una sesión de Jupyter):
+<<chunk31, eval=FALSE, purl=FALSE, background=jupyterCol>>=
+In [1]: ( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) )
+Out[1]: 0.2727272727272727    
 @
-Fíjate en los espacios que hemos dejado para hacer esta expresión complicada  más legible. La respuesta no es exactamente lo que queríamos. Para un problema como este, es muy posible que queramos ver el resultado en forma de fracción. El problema es que Python nos ha dado una respuesta {\sf numérico}, usando la representación de los números en forma decimal. Podríamos usar algunos módulos de Python para trabajar con fracciones. Hay varias alternativas y la más sencilla seguramente sea utilizar el módulo {\tt fractions}. Este módulo contiene una función llamada {\tt Fraction} con la que podemos definir fracciones utilizando código como {\tt Fraction(7, 12)} para representar la fracción $\frac{7}{12}$. Además una vez definidas esas fracciones podemos operar con ellas, en sumas, restas, productos y cocientes. Veamos cómo realizar la operación del ejemplo anterior con ese módulo {\tt fractions}:
-<<raptor="python", purl=FALSE>>=
-import fractions as fr
+Fíjate en los espacios que hemos dejado para hacer la expresión más legible. La respuesta no es exactamente lo que queríamos. Para un problema como este, es muy posible que queramos ver el resultado en forma de fracción. El problema es que Python nos ha dado una respuesta {\sf numérico}, usando la representación de los números en forma decimal. Podríamos usar algunos módulos de Python para trabajar con fracciones. Hay varias alternativas y la más sencilla seguramente sea utilizar el módulo {\tt fractions}. Este módulo contiene una función llamada {\tt Fraction} con la que podemos definir fracciones utilizando código como {\tt Fraction(7, 12)} para representar la fracción $\frac{7}{12}$. Además una vez definidas esas fracciones podemos operar con ellas, en sumas, restas, productos y cocientes. Veamos cómo realizar la operación del ejemplo anterior con ese módulo {\tt fractions}:
+<<eval=FALSE, purl=FALSE, background=jupyterCol>>=
+In [1]: import fractions as fr
 
-numerador = fr.Fraction(3, 5) * fr.Fraction(2, 6)
-denominador = fr.Fraction(3, 5) * fr.Fraction(2, 6) + fr.Fraction(4, 5) * fr.Fraction(4, 6) 
-fraccion = numerador / denominador
-
-print(fraccion)
+In [2]: ( fr.Fraction(3, 5) * fr.Fraction(2, 6) ) /( fr.Fraction(3, 5) *
+fr.Fraction(2, 6) + fr.Fraction(4, 5) * fr.Fraction(4, 6) )
+Out[2]: Fraction(3, 11)
 @ 
-Aunque no es necesario, hemos calculado por separado el numerador y denominador para hacer más legible el código. La respuesta es, como ves, la fracción
+La respuesta es la fracción
 \[
 \dfrac{3}{11}.
 \]
-Así pues, podemos trabajar con fracciones, al menos en algunas operaciones sencillas. Pero no resulta demamasiado cómodo. A lo largo del curso nos vamos a encontrar varias veces con esta situación, en la que tenemos que trabajar con dos representaciones de un número: po un lado \Sexpr{ signif(( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) ), digits=10) } es una versión {\sf numérica} de la respuesta, en el sentido de {\em redondeada a unas cuantas cifras significativas} y, por lo tanto, es una respuesta aproximada. En cambio la respuesta en forma de fracción $\frac{3}{11}$ es una respuesta {\sf simbólica}, y es absolutamente exacta: {\bf no hay ninguna pérdida de precisión}. Usamos la dualidad {\em numerico/simbólico} en el sentido habitual en las matemáticas contemporáneas. En ese sentido, las cantidades
+Como ves, podemos trabajar con fracciones, pero no resulta demamasiado cómodo. A lo largo del curso nos vamos a encontrar varias veces con esta situación, en la que tenemos que trabajar con dos representaciones de un número: po un lado \Sexpr{ signif(( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) ), digits=10) } es una versión {\sf numérica} de la respuesta, en el sentido de {\em redondeada a unas cuantas cifras significativas} y, por lo tanto, es una respuesta aproximada. En cambio la respuesta en forma de fracción
+\[
+\dfrac{3}{11}
+\]
+es una respuesta {\sf simbólica}, y es absolutamente exacta: no hay ninguna pérdida de precisión. Usamos la dualidad {\em numerico/simbólico} en el sentido habitual en las matemáticas contemporáneas. En ese sentido, las cantidades
 \[\sqrt{2},\qquad \pi\]
 son cantidades simbólicas, mientras que sus contrapartes numéricas (con cinco cifras significativas) son:
 \[1.4142,\qquad 3.1416\]
@@ -708,11 +728,11 @@ Se trata también de una herramienta sólo accesible a través de la Web, en est
 \end{center}
 Wolfram Alpha te recibe con una pantalla como esta:
     \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut03-15-WolframAlpha.png}
+    \includegraphics[width=15.5cm]{../fig/Tut04-15.png}
     \end{center}
 Debemos introducir lo que queremos calcular en el campo de entrada del centro de la ventana, usando en este caso la misma sintaxis que en Python:
     \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut03-16-WolframAlpha.png}
+    \includegraphics[width=15.5cm]{../fig/Tut04-16.png}
     \end{center}
 En este caso, como ves, en cuanto hemos tecleado la operación, Wolfram Alpha nos ha mostrado la respuesta. Pero para hacer el ejemplo más completo, pulsa sobre el símbolo igual que hay al final del campo de entrada. Verás una pantalla parecida a esta,
     \begin{center}
@@ -787,21 +807,24 @@ por el contrario, aunque se hagan pequeños, lo hacen despacio, entonces la suma
 \subsubsection*{El factorial en Python.}
 
 Python nos proporciona numerosas herramientas para hacer cálculos en Combinatoria, desde las más básicas a algunas realmente sofisticadas. Para empezar, la función {\tt factorial}, que se usa como muestra este ejemplo de código ejectudo en Jupyter:
-<<raptor="python", purl=FALSE>>=
-import math as m
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: import math as m
 
-print(m.factorial(6))
+In [2]: m.factorial(6)
+Out[2]: 720
 @
 El factorial de un número entero $n\geq 1$ da como resultado el producto de todos los números desde $1$ hasta $n$. Otra manera de obtener ese mismo resultado, sin usar el módulo {\tt math}, consiste en usar un bucle {\tt for} para multiplicar esos números, como hemos hecho aquí: 
-<<raptor="python", purl=FALSE>>=
-fact = 1
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: fact = 1
 
-n = 6
+In [2]: n = 6
 
-for i in range(1, n + 1):
-  fact = fact * i
+In [3]: for i in range(1, n + 1):
+   ...:   fact = fact * i
+   ...:   
 
-print(fact)
+In [4]: print(fact)
+720
 @
 Nos hemos detenido en esto porque el factorial es sólo un caso especial del problema general de calcular el producto de una lista de números. Puesto que ya hemos visto varios casos en los que calculábamos la suma de todos los elementos de una lista de números (por ejemplo, al calcular la media aritmética) tal vez hayas pensado si no podríamos hacer algo parecido. Lamentablemente,  Python no dispone de una función tan sencilla como la función {\tt sum} que sirva para esto. Existen funciones que hacen eso, desde luego, pero siempre es necesario importarlas desde algún módulo.
 
@@ -813,20 +836,21 @@ Solución en la página \pageref{tut03:ejercicio08:sol}.
 \qed
 \end{ejercicio}
 
-Puesto que casi todos los cálculos de Combinatoria que vamos a usar en el curso se pueden expresar usando el factorial, podríamos parar aquí. Pero el factorial es una forma extremadamente poco eficiente de hacer cálculos, que nos causará problemas en cuanto los números involucrados sean moderadamente grandes. Para trabajar de una forma más sensata tendremos que usar métodos que eviten los factoriales. A menudo usaremos funciones importadas de un módulo, que se han diseñado específicamente para hacer ese trabajo. 
+Puesto que casi todos los cálculos de Combinatoria que vamos a usar en el curso se pueden expresar usando el factorial, podríamos parar aquí. Pero el factorial es una forma extremadamente poco eficiente de hacer cálculos, que nos causrá problemas en cuanto los números involucrados sean moderadamente grandes. Para trabajar de una forma más sensata tendremos que usar métodos que eviten los factoriales. A menudo usaremos funciones importadas de un módulo, que se han diseñado específicamente para hacer ese trabajo. 
 
 Vamos a aprovechar la ocasión para concoer a otro de los protagonistas habituales de la computación científica en Python, el módulo {\tt scipy}. Puedes encontrar información sobre {\tt Scipy} en:
 \begin{center}
 \link{http://www.scipy.org/docs.html}{http://www.scipy.org/docs.html}
 \end{center}
 
-Este módulo se basa en {\tt numpy} pero lo extiende añadiéndole una colección más amplia de objetos, funciones y algoritmos matemáticos. Por ejemplo, para calcular números combinatorios, el módulo {\tt scipy} de Python nos ofrece la función {\tt comb}. ¡Pero espera un poco antes de lanzarte! Este es el primer caso en el que nos vamos a encontrar con un módulo organizado en {\sf submódulos}. La función {\tt comb} pertenece al submódulo {\tt misc} (de {\em miscelaneous}) dentro del módulo {\tt scipy}. La forma de utilizar esta función para calcular el número combinatorio
+Este módulo se basa en {\tt numpy} pero lo extiende añadiéndole una colección más amplia de objetos, funciones y algoritmos matemáticos. Por ejemplo, para calcular números combinatorios, el módulo {\tt scipy} de Python nos ofrece la función {\tt choose}. ¡Pero espera un poco antes de lanzarte! Este es el primer caso en el que nos vamos a encontrar con un módulo organizado en {\sf submódulos}. La función {\tt comb} pertenece al submódulo {\tt misc} (de {\em miscelaneous}) dentro del módulo {\tt scipy}. La forma de utilizar esta función para calcular el número combinatorio
 \[\binom{22}{7}\]
 es esta:
-<<raptor="python", purl=FALSE>>=
-import scipy.misc as spm
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: import scipy.misc as spm
 
-print(spm.comb(22, 7, exact=True))
+In [2]: spm.comb(22, 7, exact=True)
+Out[2]: 170544
 @
 
 \subsubsection{Construyendo una lista de permutaciones y combinaciones con Python.}
@@ -839,39 +863,47 @@ Con las funciones que hemos visto hasta ahora podemos calcular el número de per
 Entre otras funciones útiles este módulo incluye las funciones {\tt permutations} y {\tt combinations}. Por ejemplo, vamos a ver cómo utilizar utilizarlas para fabricar todas las listas posibles de tres elementos, elegidos de entre cuatro posibles. Para empezar, no admitimos repeticiones de los elementos. Entonces, si el orden no importa, estamos formando las combinaciones de cuatro elementos tomados de tres en tres. Y si el orden importa, entonces se trata de las variaciones (un inglés diría permutaciones) de cuatro elementos tomados de tres en tres (recuerda que en España, como hemos visto en el curso, distinguimos entre variaciones y permutaciones, pero la tradición anglosajona engloba dentro del término {\em permutations} tanto las variaciones como las permutaciones).
 
 Los correspondientes comandos son estos. Para las combinaciones:
-<<raptor="python", purl=FALSE>>=
-import itertools as it
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: import itertools as it
 
-n = 4
+In [2]: n = 4
 
-k = 3
+In [3]: k = 3
 
-combinaciones = it.combinations(range(1, n + 1), k)
+In [4]: combinaciones = it.combinations(range(1, n + 1), k)
 
-print(combinaciones)
+In [5]: print(combinaciones)
+<itertools.combinations object at 0x110006368>
+
+In [6]: print(list(combinaciones))
+[(1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4)]
 @
-Fíjate en que el resultado de usar {\tt combinations} no es una lista, sino un objeto de tipo {\tt itertools.combinations}. Lo convertimos en una lsta usando {\tt list} para poder manipular y mostrar el resultado cómodamente.
-<<raptor="python", purl=FALSE>>=
-print(list(combinaciones))
-@
+Fíjate en que el resultado de usar {\tt combinations} no es una lsita, sino un objeto de tipo {\tt itertools.combinations}. Lo hemos convertido en una lsta usando {\tt list} para poder manipular y mostrar el resultado cómodamente.
 
 Para las variaciones/permutaciones hacemos a continuación:
-<<raptor="python", purl=FALSE>>=
-permutaciones = it.permutations(range(1, n + 1), k)
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [7]: permutaciones = it.permutations(range(1, n + 1), k)
 
-print(list(permutaciones))
+In [8]: print(list(permutaciones))
+[(1, 2, 3), (1, 2, 4), (1, 3, 2), (1, 3, 4), (1, 4, 2), (1, 4, 3), (2, 1, 3), 
+(2, 1, 4), (2, 3, 1), (2, 3, 4), (2, 4, 1), (2, 4, 3), (3, 1, 2), (3, 1, 4), 
+(3, 2, 1), (3, 2, 4), (3, 4, 1), (3, 4, 2), (4, 1, 2), (4, 1, 3), (4, 2, 1),
+(4, 2, 3), (4, 3, 1), (4, 3, 2)]
 @
 Como cabía esperar, al considerar el orden hay muchas más permutaciones que combinaciones. Concretamente seis veces más (¿por qué?)
 
 No hay nada en las funciones {\tt permutations} y {\tt combinations} que nos obligue a trabajar con listas de números. Podemos igualmente usar cadenas de caracteres, como en este ejemplo en el que construimos las seis permutaciones posibles de tres palabras:
-<<raptor="python", purl=FALSE>>=
-import itertools as it
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: import itertools as it
 
-palabras = ["tres", "tristes", "tigres"]
+In [2]: palabras = ["tres", "tristes", "tigres"]
 
-permutaciones = list(it.permutations(palabras, 3))
+In [3]: permutaciones = list(it.permutations(palabras, 3))
 
-print(permutaciones)
+In [4]: print(permutaciones)
+[('tres', 'tristes', 'tigres'), ('tres', 'tigres', 'tristes'), 
+('tristes', 'tres', 'tigres'), ('tristes', 'tigres', 'tres'), 
+('tigres', 'tres', 'tristes'), ('tigres', 'tristes', 'tres')]
 @
 En este caso hemos convertido el resultado de {\tt permutations} directamente en una lista.
 
@@ -879,7 +911,7 @@ En este caso hemos convertido el resultado de {\tt permutations} directamente en
 \label{tut03:ejercicio09}
 \quad
 ¿Qué ocurre con {\tt combinations} y {\tt permutations} si la lista original contiene elementos repetidos? Prueba con la lista:
-<<eval=FALSE, purl=FALSE>>=
+<<eval=FALSE>>=
 dadoCargado = [1, 2, 3, 4, 5, 6, 6, 6]
 @
 y construye las combinaciones de los elementos de esta lista tomados de tres en tres. ¿Cuántos elementos tiene la lista que se obtiene como resultado? Y lo más importante ¿son todos distintos? Haz lo mismo para las permutaciones (advertencia: son muchas más, claro).
@@ -891,16 +923,24 @@ Solución en la página \pageref{tut03:ejercicio09:sol}.
 \subsubsection*{Construyendo todas las posibles tiradas de un par de dados.}
 
 Un problema relacionado con estos consiste en usar Python para construir la lista completa de tiradas de dos dados. Es decir, una lista que contenga los 36 pares posibles desde (1, 1), (1,2), hasta (6, 6). Fíjate que aquí se permiten repeticiones (así que no son variaciones) y además el orden es importante (no son combinaciones). De hecho se trata de construir lo que en el libro hemos llamado variaciones con repetición de $6$ elementos tomados de dos en dos (ver pág. \pageref{curso-cap03:ecu:VariacionesConRepeticion}). El objeto resultante coincide con lo que en Matemáticas se denomina el {\sf producto cartesiano} del conjunto $\{1, 2, 3, 4, 5, 6\}$ consigo mismo. Por eso no es extraño que la función del módulo {\tt itertools} que vamos a usar en este caso se llame {\tt product}. La usamos así (fíjate en que hemos convertido el resultado de {\tt product} directamente en una lista):
-<<raptor="python", purl=FALSE>>=
-import itertools as it
+<<eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [1]: import itertools as it
 
-tiradas = list(it.product(range(1, 7), repeat=2))
+In [2]: tiradas = list(it.product(range(1, 7), repeat=2))
 
-print(tiradas)
+In [3]: print(tiradas)
+[(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
+ (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), 
+ (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), 
+ (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), 
+ (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6),
+ (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]
 
-len(tiradas)
-
+In [4]: len(tiradas)
+Out[4]: 36
 @
+Advertencia: hemos editado el resultado de Python para hacer más visualmente sencillo reconocer la estructura del resultado. 
+
 ¿Qué papel juega el argumento {\tt repeat=2} de la función? Descúbrelo haciendo este ejercicio:
 
 \begin{ejercicio}
@@ -930,7 +970,7 @@ De nuevo en Wiris,  en la pestaña de Combinatoria, encontrarás los iconos de e
 Los significados son evidentes, así que nos limitamos a invitarte  a que uses Wiris para calcular
 el resultado de estos ejercicios:
 \begin{ejercicio}
-\label{tut03:ejercicio11}
+\label{tut03:ejercicio14}
 \quad
 \begin{enumerate}
   \item Permutaciones de 6 elementos.
@@ -940,7 +980,7 @@ el resultado de estos ejercicios:
   \item Variaciones con repetición de 8 elementos, tomados de 13 en 13.
   \item Combinaciones con repetición de 4 elementos tomados de 6 en 6.
 \end{enumerate}
-Soluciones en la pág. \pageref{tut03:ejercicio11:sol}.
+Soluciones en la pág. \pageref{tut03:ejercicio14:sol}.
 \qed
 \end{ejercicio}
 Aparte de calcular estos números, puedes usar Wiris para enumerar (es decir, hacer la lista, explícitamente) las variaciones o combinaciones. La forma de hacer esto es darle a Wiris como primer argumento una lista de los valores entre los que tiene que hacer la selección. Por ejemplo, para obtener la lista de variaciones de las 5 letras
@@ -971,7 +1011,7 @@ Si quieres copiar el resultado para poder pegarlo en otro programa, sitúa el ra
     \end{center}
 Para ver más ejemplos de como usar Wolfram Alpha en Combinatoria, teclea {\tt Combinatorics} en la línea de entrada. Ten en cuenta, en cualquier caso, que muchos de los ejemplos que verás no son relevantes para nuestro curso. Así que asegúrate de, al menos, hacer el siguiente
 \begin{ejercicio}
-\label{tut03:ejercicio12}
+\label{tut03:ejercicio15}
 \quad
 Teclea en el campo de entrada de Wolfram Alpha los siguientes comandos y, para practicar, copia el resultado como texto en un editor de texto, como el Bloc de Notas.
 \begin{enumerate}
@@ -979,9 +1019,9 @@ Teclea en el campo de entrada de Wolfram Alpha los siguientes comandos y, para p
   \item {\tt permutations(100,30)}
   \item {\tt combinations(22,7)}
   \item {\tt number of permutations of {a,a,b,b,c,c,c,d,d,d}}
-  \item Aunque no hay una sintaxis directa (al menos, yo no la conozco), usa Wolfram Alpha para calcular el número de variaciones con repetición de 8 elementos, tomados de 13 en 13, y el de combinaciones con repetición de 4 elementos tomados de 6 en 6.
+  \item Aunque no hay una sintaxis directa (al menos, yo no la conozco), usa Wolpram Alpha para calcular el número de variaciones con repetición de 8 elementos, tomados de 13 en 13, y el de combinaciones con repetición de 4 elementos tomados de 6 en 6.
 \end{enumerate}
-Soluciones en la pág. \pageref{tut03:ejercicio12:sol}.
+Soluciones en la pág. \pageref{tut03:ejercicio15:sol}.
 \qed
 \end{ejercicio}
 
@@ -991,8 +1031,6 @@ Soluciones en la pág. \pageref{tut03:ejercicio12:sol}.
 
 \subsection*{Ejercicios adicionales}
 \label{tut03:subsec:EjerciciosAdicionales}
-
-La mayor parte de los ejercicios adicionales de este tutorial no son {\em ejercicios de programación}, sino que están pensados para trabajar primordialmente pensando sobre el papel. Eso no significa que el ordenador no pueda servir de ayuda al pensamiento y, desde luego, como calculadora en muchos de esos ejercicios. Pero el énfasis está en la reflexión. Creemos que esta colección de ejercicios reune un cierto equilibrio, sin adentrarse excesivamente en la Combinatoria más intrincada, pero la vez mostrando los casos particulares que más a menudo nos encontraremos en lo que resta del curso.
 
 \begin{enumerate}
   \addtocounter{enumi}{16}
@@ -1086,18 +1124,18 @@ La mayor parte de los ejercicios adicionales de este tutorial no son {\em ejerci
 
 
 
-  \item Usa Python para simular el experimento que se describe en el Ejemplo \ref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados} del libro (pág. \pageref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados}). Por si te sirve de guía visual, en la hoja de cálculo (del programa Calc):
+  \item Usa R para simular el experimento que se describe en el Ejemplo \ref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados} del libro (pág. \pageref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados}). Por si te sirve de guía visual, en la hoja de cálculo (del programa Calc):
 \begin{center} \fichero{../ods/Cap03-Lanzamientos2Dados-ProbabilidadCondicionada.ods}{Cap03-Lanzamientos2Dados-ProbabilidadCondicionada.ods}
 \end{center}
 se ha realizado una simulación para comprobar estos resultados.\\
 Una extensión natural de este ejemplo es tratar de calcular $P(S|D)$. ¿Puedes modificar la hoja de cálculo para simular este otro caso?
 
-  \item  Usa Python para simular el experimento que se describe en el Ejemplo \ref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas} del libro (pág. \pageref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas}), y que ilustramos con el fichero  Calc
+  \item  Usa R para simular el experimento que se describe en el Ejemplo \ref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas} del libro (pág. \pageref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas}), y que ilustramos con el fichero  Calc
       \begin{center}
         \fichero{../ods/Cap03-ProbabilidadesTotales-Urnas.ods}{Cap03-ProbabilidadesTotales-Urnas.ods}
       \end{center}
 
-  \item Usa Python para simular los experimentos de los Ejemplos \ref{curso-cap03:ejem:BombillasDefectuosas} y \ref{curso-cap03:ejem:probabilidadLanzamientoMonedas} del libro (pág. \pageref{curso-cap03:ejem:BombillasDefectuosas})
+  \item Usa R para simular los experimentos de los Ejemplos \ref{curso-cap03:ejem:BombillasDefectuosas} y \ref{curso-cap03:ejem:probabilidadLanzamientoMonedas} del libro (pág. \pageref{curso-cap03:ejem:BombillasDefectuosas})
 
 
 
@@ -1132,286 +1170,106 @@ Una extensión natural de este ejemplo es tratar de calcular $P(S|D)$. ¿Puedes 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio01}, pág. \pageref{tut03:ejercicio01}}
 \label{tut03:ejercicio01:sol}\quad\\
 
-<<raptor="python", purl=FALSE, program="ejercicio01">>=
-import random as rnd
-rnd.seed(2016)
-
-valores = range(1, 6)
-veces = [35, 15, 10, 10, 30]
-
-caja = []
-for i in range(0, len(valores)):
-    caja = caja + [valores[i]] * veces[i]
-print(caja)
-@
-<<raptor="python", purl=FALSE, program="ejercicio01">>=
-conRemp = [rnd.choice(caja) for _ in range(20)]
-print(conRemp)
-@
-<<raptor="python", purl=FALSE, program="ejercicio01">>=
-sinRemp = rnd.sample(caja, 20)
-print(sinRemp)
-@
-<<raptor="python", purl=FALSE, program="ejercicio01">>=
-import collections as cl
-
-freqConRemp = cl.Counter(conRemp).most_common()
-print(sorted(freqConRemp))
-@
-<<raptor="python", purl=FALSE, program="ejercicio01">>=
-freqSinRemp = cl.Counter(sinRemp).most_common()
-print(sorted(freqSinRemp))
+<<ejercicio01sol, purl=FALSE>>=
+set.seed(2014)
+(caja=rep( 1:5, c(35, 15, 10, 10, 30) ))
+(sorteo1 = sample(caja, 20, replace = TRUE))
+(sorteo2 = sample(caja, 20, replace = FALSE))
+(tabFrecAbs1  = table(sorteo1))
+(tabFrecRel1  = table(sorteo1) / length(sorteo1) )
+(tabFrecAbs2  = table(sorteo2))
+(tabFrecRel2  = table(sorteo2) / length(sorteo2) )
 @
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio02}, pág. \pageref{tut03:ejercicio02}}
 \label{tut03:ejercicio02:sol}\quad\\
 
-Tenemos que incluir los corchetes para evitar que todos los elementos (4000 en total) terminen en una misma lista, sin separar las partidas. Eso es lo que ilustra el siguiente fragmento de código:
-<<raptor="python", purl=FALSE, program="ejercicio02">>=
-import random as rnd
-rnd.seed(2016)
+Cuando {\tt byrow=FALSE} (que es la opción por defecto), los elementos se colocan por columnas.
+<<ejercicio02sol, purl=FALSE>>=
+(dosPartidas = matrix(head(dado4000, 8), ncol = 4, byrow = FALSE))
 
-n = 1000
-
-partidas2 = [rnd.randrange(1, 7) for _ in range(0, 4) for _ in range(0, n) ]
-
-print(partidas2[0:10])
+(dosPartidas = matrix(head(dado4000, 8), ncol = 4))
 @
 
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio03}, pág. \pageref{tut03:ejercicio03}}
 \label{tut03:ejercicio03:sol}\quad\\
 
-Vamos a seguir trabajando con la misma lista {\tt partidas}, generadas con una comprensión de listas: 
-<<raptor="python", purl=FALSE, program="ejercicio03">>=
-import random as rnd
-rnd.seed(2016)
-
-n = 1000
-
-partidas = [[rnd.randrange(1, 7) for _ in range(0, 4)] for _ in range(0, n) ]
-
-print(partidas[0:5])
-
-# Creamos una lista vacía en la que iremos
-# guardando booleanos que para cada partida 
-# nos digan si contiene al menos un 6.
-partidasGanadoras=[]
-
-for partida in partidas:
-    # Empezamos suponiendo que no hay un 6
-    hayUn6 = False
-    # Recorremos los resultados de la partida
-    for resultado in partida:
-        # Y si hay al menos un 6 cambiamos de opinión.
-        if resultado == 6:
-            hayUn6 = True
-    # Al final añadimos la decisión a la lista.
-    partidasGanadoras.append(hayUn6)
-
-print(partidasGanadoras[0:5])
+<<ejercicio03sol, purl=FALSE>>=
+(M = matrix(1:36, nrow=4, byrow=TRUE) )
 @
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio04}, pág. \pageref{tut03:ejercicio04}}
 \label{tut03:ejercicio04:sol}\quad\\
 
-Una manera de hacerlo es esta:
-<<raptor="python", purl=FALSE, program="ejercicio03">>=
-# Vamos a buscar las partidas que contienen frecBuscada aparciciones de cierto valor. 
-valor = 6
-frecBuscada = 2
-# Usamos la variable "coinciden" para llevar la cuenta del número de partidas
-# en las que valor aparece frecBuscada veces.
-coinciden = 0
-# Ahora recorremos las partidas:
-for partida in partidas:
-  # Usamos comprensión de listas para ver la frec. del valor en esa partida.
-  frecValor = len([item for item in partida if item == valor])
-  # Y si aparece el número de veces deseado aumentamos el contador.
-  if(frecValor == 2):
-    coinciden = coinciden + 1
-
-print(coinciden)
+<<ejercicio04sol, purl=FALSE>>=
+dim(M)= c(4, 9)
+M
 @
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio05}, pág. \pageref{tut03:ejercicio05}}
 \label{tut03:ejercicio05:sol}\quad\\
 
-\begin{enumerate}
-  \item En las primeras 10 ejecuciones con las dos apariciones de {\tt set.seed} comentadas yo he obtenido estos valores:
-<<eval=FALSE, purl=FALSE>>=
-0.512, 0.51, 0.516, 0.537, 0526, 0.498, 0.532, 0.488, 0.523, 0.507
+Los vectores {\em puros} de R no tienen dimensión cuando son creados. La adquieren al convertirlos en matrices.
+<<ejercicio05sol, purl=FALSE>>=
+unVector = 1:10
+dim(unVector)
+class(unVector)
+M = matrix(unVector, nrow=1)
+dim(M)
+class(M)
+a=letters[1:12]
+(Ma = matrix(a, nrow=3))
 @
-  \item Y tras cambiar {\tt n} por 10000 y ejecutar otras 10 veces he obtenido estos valores:
-<<eval=FALSE, purl=FALSE>>=
-0.514, 0.5215,0.5116, 0.5153, 0.5156, 0.5108, 0.5208, 0.519, 0.5054, 0.5217
-@
-Tus valores serán, desde luego, distintos de estos. Pero lo que deberías constatar, en cualquier caso, es que la {\em dispersión} de los valores ha disminuido mucho al aumnetar {\tt n}.
-  \item La respuesta a esta pregunta depende de muchas características de tu equipo, así que no podemos dar una respuesta general. Pero por si te sirve de referencia, en la máquina más potente a la que tenemos acceso el retraso entre el momento de la ejecución y el momento en el que aparece el resultado ocurre entre {\tt n=30000} y {\tt n=50000}.        
-  
-\end{enumerate}
 
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio06}, pág. \pageref{tut03:ejercicio06}}
 \label{tut03:ejercicio06:sol}\quad\\
 
-<<eval=FALSE, echo=FALSE, comment=NULL, purl=deMere02>>=
-# -*- coding: utf-8 -*-
-"""
-www.postdata-statistics.com
-POSTDATA. Introducción a la Estadística
-Tutorial 03.
-Fichero de comandos Python para simular el segundo
-juego del Caballero de Mere.
-"""
-
-
-# Importamos el módulo random y usamos seed
-import random as rnd
-
-rnd.seed(2016)
-
-# Fijamos el número n de partidas.
-n = 1000
-
-# Generamos la lista de partidas. 
-# Cada partida es una lista de 24 numeros de 1 a 36.
-partidas = []
-for i in range(0, n):
-  partida = []
-  for j in range(0, 24):
-    partida.append(rnd.randrange(1, 37))
-  partidas.append(partida)
-
-# Mostramos las primeras 5 partidas.
-print("Estas son las cinco primeras partidas:")
-print(partidas[0:5])
-
-# Obtenemos una lista de booleanos que caracteriza a las partidas ganadoras
-# que son las que contienen al menos un 6.
- 
-partidasGanadoras = []
-for partida in partidas:
-    if 36 in partida:
-        partidasGanadoras.append(True)
-    else:
-        partidasGanadoras.append(False)
-
-# Se muestran las 5 primeras para comprobar.
-print("Y esta indica cuáles de esas cinco primeras partidas son ganadoras:")
-print(partidasGanadoras[0:5])
-
-# Tabla de frecuencia
-
-import collections as cl
-ganadorasCounter = cl.Counter(partidasGanadoras)
-freqGanadoras = ganadorasCounter.most_common()
-#print(freqGanadoras)
-
-# El mismo resultado sumando booleanos:
-print("El número de partidas ganadoras es:")
-print(sum(partidasGanadoras))
-
-# Proporcion de partidas ganadoras
-print("Y supone una frecuencia relativa de partidas ganadoras igual a:")
-proporcionGanadoras = sum(partidasGanadoras) / n
-print(proporcionGanadoras)
-
+<<ejercicio06sol, purl=FALSE>>=
+(letras = matrix(letters[1:12], nrow=4, byrow=TRUE))
+dim(letras)
+dim(letras)=c(3,4)
+letras
 @
-Hemos incluido el código de una posible solución en el fichero adjunto \fichero{./code/Tut03-deMere02.py}{Tut03-deMere02.py}. 
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio07}, pág. \pageref{tut03:ejercicio07}}
 \label{tut03:ejercicio07:sol}\quad\\
 
-El código de una posible solución, que es muy parecido al de los anteriores ejercicios, está en el fichero adjunto \fichero{./code/Tut03-ejercicioReglaLaplace.py}{Tut03-ejercicioReglaLaplace.py}. El resultado de ejecutarlo es:
-<<eval=FALSE, purl=FALSE, comment=NULL>>=
-Estas son las cinco primeras partidas:
-[[6, 4], [5, 3], [6, 6], [1, 3], [2, 1]]
-Y esta indica cuáles de esas cinco primeras partidas son ganadoras:
-[True, False, True, False, False]
-El número de partidas ganadoras es:
-3071
-Y supone una frecuencia relativa de partidas ganadoras igual a:
-0.3071
-El valor predicho por la reglad de Laplace es 11/36, que es aproximadamente =
-0.3055555555555556
-mientras la probabilidad ingenua  predice 1/3, que es 0.333333.
+<<ejercicio07sol_a, echo=FALSE, results='hide', purl=FALSE>>=
+    (W = matrix(1:15, nrow=3, byrow=TRUE))
 @
-Te aconsejo que tras ejecutarlo la primera vez y comprobar que obtienes lo mismo, comentes la línea de {\tt set.seed} y ejecutes el código varias veces, con distintos valores de {\tt n}. Yo he llegado hasta {\tt n=500000} sin demasiadas dificultades.
-
-<<eval=FALSE, echo=FALSE, comment=NULL, purl=reglaLaplace>>=
-# -*- coding: utf-8 -*-
-"""
-www.postdata-statistics.com
-POSTDATA. Introducción a la Estadística
-Tutorial 03.
-Fichero de comandos Python para comprobar la
-regla de Laplace en un juego en el que tiramos dos
-veces un dado y queremos calcular la probabilidad del suceso
-A =obtener al menos un seis en las dos tiradas..
-"""
-
-# Importamos el módulo random y usamos seed
-import random as rnd
-
-rnd.seed(2016)
-
-# Fijamos el número n de partidas.
-n = 10000
-
-# Generamos la lista de partidas. 
-# Cada partida es una lista de 2 numeros de 1 a 6.
-partidas = []
-for i in range(0, n):
-  partida = []
-  for j in range(0, 2):
-    partida.append(rnd.randrange(1, 7))
-  partidas.append(partida)
-
-# Mostramos las primeras 5 partidas.
-print("Estas son las cinco primeras partidas:")
-print(partidas[0:5])
-
-# Obtenemos una lista de booleanos que caracteriza a las partidas ganadoras
-# que son las que contienen al menos un 6.
- 
-partidasGanadoras = []
-for partida in partidas:
-    if 6 in partida:
-        partidasGanadoras.append(True)
-    else:
-        partidasGanadoras.append(False)
-
-# Se muestran las 5 primeras para comprobar.
-print("Y esta indica cuáles de esas cinco primeras partidas son ganadoras:")
-print(partidasGanadoras[0:5])
-
-# Tabla de frecuencia
-
-import collections as cl
-ganadorasCounter = cl.Counter(partidasGanadoras)
-freqGanadoras = ganadorasCounter.most_common()
-#print(freqGanadoras)
-
-# El mismo resultado sumando booleanos:
-print("El número de partidas ganadoras es:")
-print(sum(partidasGanadoras))
-
-# Proporcion de partidas ganadoras
-print("Y supone una frecuencia relativa de partidas ganadoras igual a:")
-proporcionGanadoras = sum(partidasGanadoras) / n
-print(proporcionGanadoras)
-print("El valor predicho por la reglad de Laplace es 11/36, que es aproximadamente =")
-print(11/36)
-print("mientras la probabilidad ingenua  predice 1/3, que es 0.333333.")
+La comprobación es:
+<<ejercicio07sol_b, purl=FALSE>>=
+    t(W)
+    dim(W) = c(5,3)
+    W
 @
+
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio07a}, pág. \pageref{tut03:ejercicio07a}}
+\label{tut03:ejercicio07a:sol}\quad\\
+
+<<ejercicio07asol_a, echo=FALSE, results='hide', purl=FALSE>>=
+    (M = matrix(1:36, nrow = 4, byrow=TRUE))
+@
+<<ejercicio07asol_b, purl=FALSE>>=
+    apply(M, 1, sd)
+    apply(M, 2, median)
+    apply(M, 2, summary)
+    class(apply(M, 2, summary))
+@
+
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio08}, pág. \pageref{tut03:ejercicio08}}
 \label{tut03:ejercicio08:sol}\quad\\
 
-<<raptor="python", purl=FALSE, program="ejercicio08">>=
-import numpy as np
-print(np.prod(range(1, 7)))
+<<chunk08sola, eval=FALSE,  purl=FALSE, background=jupyterCol>>=
+In [14]: import numpy as np
+
+In [15]: np.prod(range(1, 7))
+Out[15]: 720
 @
 
 
@@ -1419,114 +1277,59 @@ print(np.prod(range(1, 7)))
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio09}, pág. \pageref{tut03:ejercicio09}}
 \label{tut03:ejercicio09:sol}\quad\\
 
-Empezamos con las combinaciones:
-<<raptor="python", purl=FALSE, program="ejercicio09">>=
-import itertools as it
-
-dadoCargado = [1, 2, 3, 4, 5, 6, 6, 6]
-
-combinaciones = list(it.combinations(dadoCargado, 3))
-print("Lista de completa de combinaciones:")
-print(list(combinaciones))
-print("En total hay (¡no todas distintas!):")
-print(len(combinaciones))
+<<ejercicio09sol_a, echo=FALSE, results='hide', purl=FALSE>>=
+    B = matrix(1:100, nrow=10)
 @
-Para las permutaciones obtenemos:
-<<raptor="python", purl=FALSE, program="ejercicio09">>=
-permutaciones = list(it.permutations(dadoCargado, 3))
-print("Las primeras 10 permutaciones (fíjate en las repeticiones)")
-print(permutaciones[0:10])
-print("Las 10 últimas:")
-print(permutaciones[-10:])
-print("Y contando repeticiones hay:")
-print(len(permutaciones))
+<<ejercicio09sol_b, purl=FALSE>>=
+    (B = cbind(A, A[, 1]^2))
 @
-Modifica el código para mostrarlas todas. Aquí sólo mostramos algunas por razones de espacio.
+
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio10}, pág. \pageref{tut03:ejercicio10}}
 \label{tut03:ejercicio10:sol}\quad\\
 
-Para el primer apartado:
-<<raptor="python", purl=FALSE, program="ejercicio10a">>=
-import itertools as it
-tiradas = list(it.product(range(1, 7), repeat=3))
-print(tiradas)
-len(tiradas)
-@
-Para el segundo apartado, el código de una posible solución está en el fichero adjunto \fichero{./code/Tut03-ejercicioDeMereExacto.py}{Tut03-ejercicioDeMereExacto.py}. El resultado de ejecutarlo es:
-<<eval=FALSE, purl=FALSE, comment=NULL>>=
-Primeras 10 tiradas:
-[(1, 1, 1, 1), (1, 1, 1, 2), (1, 1, 1, 3), (1, 1, 1, 4), (1, 1, 1, 5), (1, 1, 1, 6),
- (1, 1, 2, 1), (1, 1, 2, 2), (1, 1, 2, 3), (1, 1, 2, 4)]
-y las 10 últimas:
-[(6, 6, 5, 3), (6, 6, 5, 4), (6, 6, 5, 5), (6, 6, 5, 6), (6, 6, 6, 1), (6, 6, 6, 2), 
- (6, 6, 6, 3), (6, 6, 6, 4), (6, 6, 6, 5), (6, 6, 6, 6)]
-El número de tiradas posibles es
-1296
-que coincide con el valor teórico 6**4
-1296
-El número de partidas ganadoras es:
-671
-Así que la probabilidad calculada por la regla de Lpalace es la fracción:
-671/1296
-que es aproximadamente igual a 
-0.5177469135802469
-@
-<<eval=FALSE, echo=FALSE, comment=NULL, purl=deMereExacto>>=
-# -*- coding: utf-8 -*-
-"""
-www.postdata-statistics.com
-POSTDATA. Introducción a la Estadística
-Tutorial 03.
-Fichero de comandos Python para obtener
-el resultado exacto del primer juego
-del caballero de Mere.
-"""
-
-# Importamos el módulo itertools.
-import itertools as it
-
-# Generamos la lista de tiradas posibles.
-tiradas = list(it.product(range(1, 7), repeat=4))
-
-
-# Mostramos las primeras 10 y las últimas 10:
-print("Primeras 10 tiradas:")
-print(tiradas[0:10])
-print("y las 10 últimas:")
-print(tiradas[-10:])
-
-print("El número de tiradas posibles es")
-posibles = len(tiradas)
-print(posibles)
-print("que coincide con el valor teórico 6**4")
-print(6**4)
-
-
-# Obtenemos una lista de booleanos que caracteriza a las partidas ganadoras
-# que son las que contienen al menos un 6.
- 
-tiradasGanadoras = []
-for tirada in tiradas:
-    if 6 in tirada:
-        tiradasGanadoras.append(True)
-    else:
-        tiradasGanadoras.append(False)
-
-# Número de partidas ganadoras:
-print("El número de partidas ganadoras es:")
-favorables = sum(tiradasGanadoras)
-print(favorables)
-
-# Proporcion de partidas ganadoras
-print("Así que la probabilidad calculada por la regla de Laplace es la fracción:")
-print("{0}/{1}".format(favorables, posibles))
-print("que es aproximadamente igual a ")
-print(favorables/posibles)
+<<ejercicio10sol, purl=FALSE>>=
+    which(rowSums(esSeis) == max(rowSums(esSeis)))
 @
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio11}, pág. \pageref{tut03:ejercicio11}}
 \label{tut03:ejercicio11:sol}\quad\\
+
+Puedes ejecutar varias veces este código (que puedes abrir en el fichero adjunto \fichero{../TutorialesR/code/Tut03-DeMere2.R}{Tut03-DeMere2.R}) para experimentar.
+
+<<ejercicio11solExternalCode, cache=FALSE, echo=FALSE, purl=FALSE>>=
+read_chunk('../TutorialesR/code/Tut03-DeMere2.R')
+@
+
+<<ejercicio11sol, purl=FALSE>>=
+@
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio12}, pág. \pageref{tut03:ejercicio12}}
+\label{tut03:ejercicio12:sol}\quad\\
+
+El código (que puedes abrir en el fichero adjunto \fichero{../TutorialesR/code/Tut03-DeMere1a.R}{Tut03-DeMere1a.R}) es una adaptación sencilla del que corresponde al primer juego del Caballero de Méré. Puedes ejecutarlo varias veces para comprobar que el resultado se parece más a $\frac{11}{36}\approx\Sexpr{11/36}$ que a $\frac{12}{36}\approx\Sexpr{1/3}$.
+<<ejercicio12solExternalCode, cache=FALSE, echo=FALSE, purl=FALSE>>=
+read_chunk('../TutorialesR/code/Tut03-DeMere1a.R')
+@
+
+
+<<ejercicio12sol, purl=FALSE>>=
+@
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio13}, pág. \pageref{tut03:ejercicio13}}
+\label{tut03:ejercicio13:sol}\quad\\
+
+Puedes averiguarlo preguntando a R de esta forma:
+<<ejercicio13sol, purl=FALSE>>=
+class(permutations(4,3) )
+class(combinations(4,3) )
+@
+Como puedes ver, lo que hemos obtenido es un objeto de tipo {\tt matrix}.
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio14}, pág. \pageref{tut03:ejercicio14}}
+\label{tut03:ejercicio14:sol}\quad\\
 
 \begin{enumerate}
   \item $720$.
@@ -1538,25 +1341,52 @@ print(favorables/posibles)
   \item $84$.
 \end{enumerate}
 
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio15}, pág. \pageref{tut03:ejercicio15}}
+\label{tut03:ejercicio15:sol}\quad\\
 
-\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio12}, pág. \pageref{tut03:ejercicio12}}
-\label{tut03:ejercicio12:sol}\quad\\
+Todas las preguntas aparecen en el Ejercicio \ref{tut03:ejercicio14}; consulta las respuesta a ese ejercicio.
 
-Todas las preguntas aparecen en el Ejercicio \ref{tut03:ejercicio11}; consulta las respuesta a ese ejercicio.
+\paragraph{\bf $\bullet$ Ejercicio 23.}
+\label{tut03:ejercicio23:sol}\quad\\
 
-% \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio13}, pág. \pageref{tut03:ejercicio13}}
-% \label{tut03:ejercicio13:sol}\quad\\
-% 
-% 
-% \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio14}, pág. \pageref{tut03:ejercicio14}}
-% \label{tut03:ejercicio14:sol}\quad\\
-% 
-% \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio15}, pág. \pageref{tut03:ejercicio15}}
-% \label{tut03:ejercicio15:sol}\quad\\
+Código R para comprobar experimentalmente el resultado:
+<<ejercicio23sol, purl=FALSE>>=
+#set.seed(2014)
+n = 10000
 
-% \paragraph{\bf $\bullet$ Ejercicio 23.}
-% \label{tut03:ejercicio23:sol}\quad\\
+# Creo una matriz vacía de n filas y tres columnas
+ensayos = matrix(nrow = n, ncol = 3)
 
+# Ahora para cada número i desde 1 hasta n,
+for(i in 1:n){
+  # hago una elección al azar de tres lamparas ¡¡sin reemplazamiento!!:
+  tresLamparas = sample(1:15, 3)
+  # y la guardo en la fila número i de la matriz
+  ensayos[i, ] = tresLamparas
+}
+# La matriz ensayos contiene n repeticiones del experimento
+head(ensayos, 10)
+
+# supongamos que las defectuosas corresponden a los numeros del 1 al 5
+# miramos si cada elemento de la matriz es una lampara defectuosa
+
+esDefectuosa = (ensayos<= 5)
+
+# El aspecto de esDefectuosa es este:
+head(esDefectuosa, 10)
+
+# Para que en un experimento (fila de la matriz) no haya ninguna defectuosa
+# la suma de esa fila tiene que ser cero
+
+sinDefecto = (rowSums(esDefectuosa) == 0)
+
+# Podemos ver cuantas filas hay con y sin defecto:
+table(sinDefecto)
+
+# Y para estimar la probabilidad (mediante la frecuencia relativa) basta con hacer:
+
+table(sinDefecto) / n
+@
 
 
 

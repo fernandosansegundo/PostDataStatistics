@@ -2991,7 +2991,7 @@ se obtiene:
 @
 Nos hemos asomado apenas a las posibilidades que ofrece el trabajo con conjuntos en Python. Tendremos ocasión más adelante de ver cómo se pueden realizar muchas de las operaciones típicas: uniones, intersecciones, diferencias de conjuntos, etc.
 
-\subsection{Bucles for anidados.}
+\subsection{Bucles for anidados y pseudocódigo.}
 \label{tut02:subsec:buclesForAnidados}
 
 A veces nos encontramos con esta situación: tenemos una tabla de frecuencias absolutas de un conjunto de datos, pero no tenemos la lista original con los datos. No es una situación infrecuente: a veces al leer un artículo los datos aparecen resumidos en forma de tabla de frecuencias. Y sin embargo, muchas de las operaciones que vamos a realizar asumen que el punto de partida es una lista de datos, repetidos tantas veces como corresponda a su frecuencia. Si antes aprendimos a fabricar la tabla de frecuencias absolutas de una lista de datos, lo que necesitamos ahora es la operación inversa: pasar de la tabla de frecuencias a la lista de datos. Es importante darse cuenta de que en realidad la tabla de frecuencias, por si misma, no permite recuperar por completo la lista original: el orden de los elementos se habrá perdido. Pero no es menos cierto que el orden no juega ningún papel en muchas operaciones estadísticas, como el cálculo de medias, medianas, varianzas, etc.
@@ -3001,14 +3001,25 @@ Para empezar vamos a suponer que los distintos valores y sus frecuencias están 
 valores = [2,3,5,8,13]
 frecuencias = [5,7,12,2,14]
 @
-Así pues, por ejemplo el valor $5$ aparece $12$ en los datos originales. Para reconstruir la lista de datos con repeticiones podemos aplicar esta receta en pseudocódigo:
+Así pues, por ejemplo el valor $5$ aparece $12$ en los datos originales. Para reconstruir la lista de datos con repeticiones podemos aplicar esta receta, escrita en lo que vamos a llamar {\sf pseudocódigo}, y que comentaremos debajo:
 <<eval=FALSE, purl=FALSE>>=
 Crear una lista datos, inicialmente vacía.
 Repetir esto para cada posición pos de la lista de valores:
   Repetir esto un número de veces igual a frecuencias[pos]:
     Anadir valores[pos] a la lista datos.
 @
-Y la traducción en código es esta:
+Esta descripción en palabras de lo que vamos a hacer es, como decíamos, un ejemplo de  pseudocódigo. El pseudocódigo es un lenguaje especial, a medio camino entre el lenguaje natural que hablamos y los lenguajes formales de programación como Python. El pseudocódigo muestra la estructura del algoritmo (método) que vamos a usar, pero en general nos ahorra los detalles más técnicos del lenguaje de programación concreto (Python en este caso). Las ventajas de usar pseudocódigo son, entre otras:
+  \begin{enumerate}
+\item  El programador puede usar el pseudocódigo cuando está diseñando un programa, para concentrarse en la estructura del programa. Los detalles se ajustan después. Para un programador experimentado, el paso del pseudocódigo al código es una labor de {\em traducción} relativamente sencilla.
+
+\item Por esa misma capacidad de abstracción, el pseudocódigo puede utilizarse para traducir un algoritmo a distintos lenguajes de programación. 
+
+\item Para otros programadores, distintos del autor del programa, el pseudocódigo sirve como guía para facilitar la comprensión del código. Y por la parte que nos toca como programadores, podemos asegurarte que, pasado un cierto tiempo no muy largo, el propio autor del programa se alegrará enormemente de haber dejado escrito el pseudocódigo que guió el diseño del programa. Todos hemos pasado por la experiencia frustrante de no entender el código que nosotros mismos hemos escrito hace un tiempo. 
+\end{enumerate}
+
+Al principio, si no tienes mucha experiencia escribiendo programas, puede parecer que el pseudocódigo es una pérdida de tiempo. ¿Por qué no ir directamente al programa, al fin y al cabo? Con la práctica comprobarás que las ventajas que hemos descrito compensan {\em con mucho} la inversión de tiempo que se necesita para trabajar usando pseudocódigo.
+
+En el caso que nos ocupa, como ves, el pseudocódigo usa indentación para indicar la estructura de los bucles, de forma similar a lo que hacemos en Python. De hecho, la traducción en código es esta:
 <<eval=FALSE, purl=FALSE>>=
 datos = []
 for i in range(0, len(valores)):
@@ -3016,9 +3027,9 @@ for i in range(0, len(valores)):
     datos.append(valores[i])
 print(datos)
 @
-Como ves, tenemos dos bucles {\tt for} anidados: hay que hacer algo para cada posición de la lista valor, así que en el primer bucle o {\sf bucle exterior}  usamos un contador {\tt i} para recorrer la lista de valores. Pero es que además lo que hay que hacer para cada posición también es un bucle: tenemos que repetir ese valor las veces que nos indica la frecuencia correspondiente. Por eso hay un {segundo bucle, o bucle interno} en el que hacemos algo una cierta cantidad de veces. El contador de este bucle no se usa para ninguna otra operación aparte de llevar la cuenta del número veces: por eso lo llamamos simplemente \verb&_&.  Fíjate además en que el número de iteraciones del bucle interno no es constante: depende del valor de {\tt i}; es decir, depende de en qué iteración del bucle exterior nos encontramos.
+Como ves, la estructura del código se corresponde muy fielmente con la del pseudocódigo: tenemos dos bucles {\tt for} anidados: hay que hacer algo para cada posición de la lista valor, así que en el primer bucle o {\sf bucle exterior}  usamos un contador {\tt i} para recorrer la lista de valores. Pero es que además lo que hay que hacer para cada posición también es un bucle: tenemos que repetir ese valor las veces que nos indica la frecuencia correspondiente. Por eso hay un {segundo bucle, o bucle interno} en el que hacemos algo una cierta cantidad de veces. El contador de este bucle no se usa para ninguna otra operación aparte de llevar la cuenta del número veces: por eso lo llamamos simplemente \verb&_&.  Fíjate además en que el número de iteraciones del bucle interno no es constante: depende del valor de {\tt i}; es decir, depende de en qué iteración del bucle exterior nos encontramos.
 
-Veamos cómo funciona esto en la {\em Terminal} (hemos ejecutado los bucles {\tt for} anidados como un bloque de código, seleccionándolos en el {\em Editor de Código} y pulsando {\tt F9}):
+Veamos cómo funciona esto en la {\em Terminal} (hemos ejecutado los bucles {\tt for} anidados como un bloque de código, seleccionándolos todos a la vez en el {\em Editor de Código} y pulsando {\tt F9}):
 <<eval=FALSE, purl=FALSE>>=
 In [1]: valores = [2,3,5,8,13]
 

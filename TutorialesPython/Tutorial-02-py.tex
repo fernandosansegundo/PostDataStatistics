@@ -48,7 +48,6 @@
 \definecolor{errorcolor}{rgb}{1, 0, 0}
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
-\let\hlesc\hlstd \let\hlpps\hlstd \let\hllin\hlstd \let\hlslc\hlcom \let\hlppc\hlcom
 \usepackage{alltt}
 \usepackage{etoolbox}
 \newtoggle{color}
@@ -319,7 +318,7 @@ cuyo resultado es:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-0.7071067811865475
+0.7071067811865476
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2803,9 +2802,9 @@ y que se muestra a continuación:
 \begin{verbatim}
 """
 www.postdata -statistics.com
-POSTDATA. Introducción a la Estadística.
-Tutorial 02 (versión Python).
-Ejemplo de cálculo de media, varianza y desv. típica
+POSTDATA. IntroducciÃ³n a la EstadÃ­stica.
+Tutorial 02 (versiÃ³n Python).
+Ejemplo de cÃ¡lculo de media, varianza y desv. tÃ­pica
 para una variable cuantitativa, datos no agrupados.
 """
 
@@ -2819,15 +2818,15 @@ edades = [22, 21, 18, 19, 17, 21, 18, 20, 17, 18, 17, 22, 20, 19, 18, 19, 18, 22
 print("La lista de edades es:")
 print(edades)
 
-# Media aritmética de la lista:
+# Media aritmÃ©tica de la lista:
 mediaEdad = sum(edades) / len(edades)
-print("La media aritmética es:")
+print("La media aritmÃ©tica es:")
 print(mediaEdad)
 
 # Varianza poblacional de la lista
 diferenciasCuad = []
 # diferenciasCuad acumula resultados parciales del numerador de la 
-# varianza en cada iteración del siguiente bucle for.
+# varianza en cada iteraciÃ³n del siguiente bucle for.
 for edad in edades:
   diferencia = edad - mediaEdad
   cuadradoDif = diferencia**2
@@ -2836,8 +2835,8 @@ varianzaPob = sum(diferenciasCuad) / len(edades)
 print("La varianza poblacional es:")
 print(varianzaPob)
 
-# Desviación típica poblacional.
-print("La desviación típica poblacional es:")
+# DesviaciÃ³n tÃ­pica poblacional.
+print("La desviaciÃ³n tÃ­pica poblacional es:")
 print(m.sqrt(varianzaPob))
 \end{verbatim}
 \end{kframe}
@@ -3084,9 +3083,9 @@ Lo primero que verás en el fichero es un bloque inicial de comentarios que sirv
 \begin{alltt}
 \hlstr{""}"
 www.postdata-statistics.com
-POSTDATA. Introducción a la Estadística
+POSTDATA. IntroducciÃ³n a la EstadÃ­stica
 Tutorial 02.  
-Plantilla de comandos Python para Estadística Descriptiva
+Plantilla de comandos Python para EstadÃ­stica Descriptiva
 Una variable cuantitativa discreta, datos no agrupados.
 \hlstr{""}"
 
@@ -3128,8 +3127,8 @@ A continuación se incluye un bloque que puede servir para definir algunas varia
 \hlkwd{print}\hlstd{(linea)}
 \hlkwd{print}\hlstd{(linea)}
 \hlkwd{print}\hlstd{(}\hlstr{"www.postdata-statistics.com"}\hlstd{)}
-\hlkwd{print}\hlstd{(}\hlstr{"Curso de introducción a la Estadística. Tutorial02 (versión Python)."}\hlstd{)}
-\hlkwd{print}\hlstd{(}\hlstr{"Estadística descriptiva. Una variable cuantitativa discreta,\textbackslash{}n datos no agrupados."}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Curso de introducciÃ³n a la EstadÃ­stica. Tutorial02 (versiÃ³n Python)."}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"EstadÃ­stica descriptiva. Una variable cuantitativa discreta,\textbackslash{}n datos no agrupados."}\hlstd{)}
 \hlkwd{print}\hlstd{(linea)}
 \hlkwd{print}\hlstd{(linea)}
 \end{alltt}
@@ -3158,12 +3157,12 @@ datos = datos[\hlstr{"v"}]\hlkwd{.tolist}()
 \hlkwd{print}(nombreFichero)
 
 n = \hlkwd{len}(datos)
-\hlkwd{print}(\hlstr{"El número de datos leídos es:"})
+\hlkwd{print}(\hlstr{"El nÃºmero de datos leÃ­dos es:"})
 \hlkwd{print}(n)
 
 \hlkwd{print}(\hlstr{"Los primeros 10 datos son:"})
 \hlkwd{print}(datos[:10])
-\hlkwd{print}(\hlstr{"Los últimos 10 datos son:"})
+\hlkwd{print}(\hlstr{"Los Ãºltimos 10 datos son:"})
 \hlkwd{print}(datos[-10:])
 
 \hlkwd{print}(linea)
@@ -3194,13 +3193,13 @@ A continuación vamos a determinar el máximo y mínimo de los datos, que conjun
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## Recorrido de una lista de números.  }
+\hlcom{## Recorrido de una lista de nÃºmeros.  }
 
-\hlkwd{print}\hlstd{(}\hlstr{"El mínimo y máximo de los datos determinan el recorrido:"}\hlstd{)}
-\hlkwd{print}\hlstd{(}\hlstr{"Mínimo:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"El mÃ­nimo y mÃ¡ximo de los datos determinan el recorrido:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"MÃ­nimo:"}\hlstd{)}
 \hlkwd{print}\hlstd{(}\hlkwd{min}\hlstd{(datos))}
 
-\hlkwd{print}\hlstd{(}\hlstr{"Máximo:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"MÃ¡ximo:"}\hlstd{)}
 \hlkwd{print}\hlstd{(}\hlkwd{max}\hlstd{(datos))}
 
 \hlkwd{print}\hlstd{(}\hlstr{"La anchura del recorrido (max - min) es:"}\hlstd{)}
@@ -3489,7 +3488,7 @@ Vamos a ocuparnos ahora de las medidas de posición: mediana, cuartiles, percent
 \hlkwd{print}(\hlstr{"Percentiles 0, 25, 50, 75, 100:"})
 \hlkwd{print}(\hlkwd{list}(\hlkwd{np.percentile}(datos, [0, 25, 50, 75, 100])))
 IQR = \hlkwd{np.percentile}(datos, 75) - \hlkwd{np.percentile}(datos, 25)
-\hlkwd{print}(\hlstr{"Recorrido intercuartílico:"})
+\hlkwd{print}(\hlstr{"Recorrido intercuartÃ­lico:"})
 \hlkwd{print}(IQR)
 
 \hlkwd{print}(linea)
@@ -3590,7 +3589,7 @@ En este apartado vamos a usar funciones de {\tt numpy} para calcular rápidament
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{print}\hlstd{(}\hlstr{"Media aritmética:"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"Media aritmÃ©tica:"}\hlstd{)}
 \hlstd{mediaAritmetica} \hlkwb{=} \hlkwd{np.mean}\hlstd{(datos)}
 \hlkwd{print}\hlstd{(mediaAritmetica)}
 \end{alltt}
@@ -3623,10 +3622,10 @@ Con la desviación típica poblacional y la cuasivarianza muestral las cosas son
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{print}\hlstd{(}\hlstr{"Desviación típica poblacional"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"DesviaciÃ³n tÃ­pica poblacional"}\hlstd{)}
 \hlstd{desvestPoblacional} \hlkwb{=} \hlkwd{np.std}\hlstd{(datos,} \hlkwc{ddof}\hlstd{=}\hlnum{0}\hlstd{)}
 \hlkwd{print}\hlstd{(desvestPoblacional)}
-\hlkwd{print}\hlstd{(}\hlstr{"Cuasidesviación típica muestral"}\hlstd{)}
+\hlkwd{print}\hlstd{(}\hlstr{"CuasidesviaciÃ³n tÃ­pica muestral"}\hlstd{)}
 \hlstd{cuasidesvestMuestral} \hlkwb{=} \hlkwd{np.std}\hlstd{(datos,} \hlkwc{ddof}\hlstd{=}\hlnum{1}\hlstd{)}
 \hlkwd{print}\hlstd{(cuasidesvestMuestral)}
 
@@ -4036,7 +4035,7 @@ se obtiene:
 \end{knitrout}
 Nos hemos asomado apenas a las posibilidades que ofrece el trabajo con conjuntos en Python. Tendremos ocasión más adelante de ver cómo se pueden realizar muchas de las operaciones típicas: uniones, intersecciones, diferencias de conjuntos, etc.
 
-\subsection{Bucles for anidados.}
+\subsection{Bucles for anidados y pseudocódigo.}
 \label{tut02:subsec:buclesForAnidados}
 
 A veces nos encontramos con esta situación: tenemos una tabla de frecuencias absolutas de un conjunto de datos, pero no tenemos la lista original con los datos. No es una situación infrecuente: a veces al leer un artículo los datos aparecen resumidos en forma de tabla de frecuencias. Y sin embargo, muchas de las operaciones que vamos a realizar asumen que el punto de partida es una lista de datos, repetidos tantas veces como corresponda a su frecuencia. Si antes aprendimos a fabricar la tabla de frecuencias absolutas de una lista de datos, lo que necesitamos ahora es la operación inversa: pasar de la tabla de frecuencias a la lista de datos. Es importante darse cuenta de que en realidad la tabla de frecuencias, por si misma, no permite recuperar por completo la lista original: el orden de los elementos se habrá perdido. Pero no es menos cierto que el orden no juega ningún papel en muchas operaciones estadísticas, como el cálculo de medias, medianas, varianzas, etc.
@@ -4050,7 +4049,7 @@ frecuencias = [5,7,12,2,14]
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Así pues, por ejemplo el valor $5$ aparece $12$ en los datos originales. Para reconstruir la lista de datos con repeticiones podemos aplicar esta receta en pseudocódigo:
+Así pues, por ejemplo el valor $5$ aparece $12$ en los datos originales. Para reconstruir la lista de datos con repeticiones podemos aplicar esta receta, escrita en lo que vamos a llamar {\sf pseudocódigo}, y que comentaremos debajo:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4061,7 +4060,18 @@ Repetir esto para cada posición pos de la lista de valores:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Y la traducción en código es esta:
+Esta descripción en palabras de lo que vamos a hacer es, como decíamos, un ejemplo de  pseudocódigo. El pseudocódigo es un lenguaje especial, a medio camino entre el lenguaje natural que hablamos y los lenguajes formales de programación como Python. El pseudocódigo muestra la estructura del algoritmo (método) que vamos a usar, pero en general nos ahorra los detalles más técnicos del lenguaje de programación concreto (Python en este caso). Las ventajas de usar pseudocódigo son, entre otras:
+  \begin{enumerate}
+\item  El programador puede usar el pseudocódigo cuando está diseñando un programa, para concentrarse en la estructura del programa. Los detalles se ajustan después. Para un programador experimentado, el paso del pseudocódigo al código es una labor de {\em traducción} relativamente sencilla.
+
+\item Por esa misma capacidad de abstracción, el pseudocódigo puede utilizarse para traducir un algoritmo a distintos lenguajes de programación. 
+
+\item Para otros programadores, distintos del autor del programa, el pseudocódigo sirve como guía para facilitar la comprensión del código. Y por la parte que nos toca como programadores, podemos asegurarte que, pasado un cierto tiempo no muy largo, el propio autor del programa se alegrará enormemente de haber dejado escrito el pseudocódigo que guió el diseño del programa. Todos hemos pasado por la experiencia frustrante de no entender el código que nosotros mismos hemos escrito hace un tiempo. 
+\end{enumerate}
+
+Al principio, si no tienes mucha experiencia escribiendo programas, puede parecer que el pseudocódigo es una pérdida de tiempo. ¿Por qué no ir directamente al programa, al fin y al cabo? Con la práctica comprobarás que las ventajas que hemos descrito compensan {\em con mucho} la inversión de tiempo que se necesita para trabajar usando pseudocódigo.
+
+En el caso que nos ocupa, como ves, el pseudocódigo usa indentación para indicar la estructura de los bucles, de forma similar a lo que hacemos en Python. De hecho, la traducción en código es esta:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4073,9 +4083,9 @@ for i in \hlkwd{range}(0, \hlkwd{len}(valores)):
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-Como ves, tenemos dos bucles {\tt for} anidados: hay que hacer algo para cada posición de la lista valor, así que en el primer bucle o {\sf bucle exterior}  usamos un contador {\tt i} para recorrer la lista de valores. Pero es que además lo que hay que hacer para cada posición también es un bucle: tenemos que repetir ese valor las veces que nos indica la frecuencia correspondiente. Por eso hay un {segundo bucle, o bucle interno} en el que hacemos algo una cierta cantidad de veces. El contador de este bucle no se usa para ninguna otra operación aparte de llevar la cuenta del número veces: por eso lo llamamos simplemente \verb&_&.  Fíjate además en que el número de iteraciones del bucle interno no es constante: depende del valor de {\tt i}; es decir, depende de en qué iteración del bucle exterior nos encontramos.
+Como ves, la estructura del código se corresponde muy fielmente con la del pseudocódigo: tenemos dos bucles {\tt for} anidados: hay que hacer algo para cada posición de la lista valor, así que en el primer bucle o {\sf bucle exterior}  usamos un contador {\tt i} para recorrer la lista de valores. Pero es que además lo que hay que hacer para cada posición también es un bucle: tenemos que repetir ese valor las veces que nos indica la frecuencia correspondiente. Por eso hay un {segundo bucle, o bucle interno} en el que hacemos algo una cierta cantidad de veces. El contador de este bucle no se usa para ninguna otra operación aparte de llevar la cuenta del número veces: por eso lo llamamos simplemente \verb&_&.  Fíjate además en que el número de iteraciones del bucle interno no es constante: depende del valor de {\tt i}; es decir, depende de en qué iteración del bucle exterior nos encontramos.
 
-Veamos cómo funciona esto en la {\em Terminal} (hemos ejecutado los bucles {\tt for} anidados como un bloque de código, seleccionándolos en el {\em Editor de Código} y pulsando {\tt F9}):
+Veamos cómo funciona esto en la {\em Terminal} (hemos ejecutado los bucles {\tt for} anidados como un bloque de código, seleccionándolos todos a la vez en el {\em Editor de Código} y pulsando {\tt F9}):
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -4119,14 +4129,12 @@ Como ves, el orden de escritura de izquierda a derecha de los bucles en esta ver
 Vamos a comentar muy brevemente algunas funciones del módulo {\tt string} que nos resultarán útiles en algunos ejemplos y ejercicios. Este módulo contiene varios objetos que son simplemente cadenas de caracteres con las letras del alfabeto (las que usa el idioma inglés, no incluye acentos ni la ñ) en mayúsculas, minúsculas o ambas conjuntamente:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\noindent
-\ttfamily
-\hlstd{}\hlkwa{import\ }\hlstd{string}\hspace*{\fill}\\
-\hlkwa{print}\hlstd{}\hlopt{(}\hlstd{string}\hlopt{.}\hlstd{ascii\textunderscore lowercase}\hlopt{)}\hspace*{\fill}\\
-\hlstd{}\hlkwa{print}\hlstd{}\hlopt{(}\hlstd{string}\hlopt{.}\hlstd{ascii\textunderscore uppercase}\hlopt{)}\hspace*{\fill}\\
-\hlstd{}\hlkwa{print}\hlstd{}\hlopt{(}\hlstd{string}\hlopt{.}\hlstd{ascii\textunderscore letters}\hlopt{)}\hlstd{}\hspace*{\fill}
-\mbox{}
-\normalfont
+\begin{alltt}
+import string
+print(string.ascii_lowercase)
+print(string.ascii_uppercase)
+print(string.ascii_letters)
+\end{alltt}
 
 \begin{verbatim}
 ## abcdefghijklmnopqrstuvwxyz
@@ -4276,7 +4284,7 @@ In [6]: \hlkwd{print}(mayorQue2)
 \end{knitrout}
 La parte nueva del código es {\tt if valor > 2}. Python utiliza {\tt if} para introducir condiciones. En este caso la condición {\tt valor > 2}. Y como ves, el resultado es una lista que contiene precisamente eso: los valores de {\tt dado100} que son mayores que 2 (fíjate en que se respeta el orden de aparición de los valores).
 
-Como siempre, también es posible hacer esto usando un bucle {\tt for}. Y de hecho es interesante hacerlo para ver las diferencias entre ambos enfoques. Hemos pegado un bloque de código completo en la {\em Terminal} para obtener esto:
+Como siempre, también es posible hacer esto usando un bucle {\tt for}. Y de hecho es interesante hacerlo para ver las diferencias entre ambos enfoques. Hemos seleccionado y ejecutado el siguiente bloque de código en la {\em Terminal} para obtener esto:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
