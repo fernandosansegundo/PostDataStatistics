@@ -1,54 +1,5 @@
 % !Mode:: "Tex:UTF-8"
-\documentclass[10pt,a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
-%% maxwidth is the original width if it is less than linewidth
-%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
-\makeatletter
-\def\maxwidth{ %
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-
-\usepackage{framed}
-\makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
-
-\definecolor{shadecolor}{rgb}{.97, .97, .97}
-\definecolor{messagecolor}{rgb}{0, 0, 0}
-\definecolor{warningcolor}{rgb}{1, 0, 1}
-\definecolor{errorcolor}{rgb}{1, 0, 0}
-\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
-
-\usepackage{alltt}
+\documentclass[10pt,a4paper]{article}
 \usepackage{etoolbox}
 \newtoggle{color}
 %\togglefalse{color}
@@ -74,8 +25,10 @@
 
 
 \externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\usepackage{Sweave}
 \begin{document}
+\input{Tutorial-00-concordance}
 \includecomment{pdf}
 %\excludecomment{pdf}
 %\includecomment{dvi}
@@ -583,7 +536,7 @@ Usando ese mismo fichero,
 En los tutoriales del curso vamos a utilizar, de forma prioritaria, el programa R. La hoja de
 cálculo Calc seguirá acompañándonos, y aprenderemos a hacer con ella muchas otras cosas, pero el
 protagonista será R. Por esa razón, vamos a presentar aquí las instrucciones de instalación de R,
-en su versión {\tt 3.0.3}. Las instalaciones se refieren a una máquina en la que R {\sf no está
+en su versión {\tt 3.3.0}. Las instalaciones se refieren a una máquina en la que R {\sf no está
 instalado}.
 Si ya tienes una versión anterior de R instalado, al final de esta sección encontrarás información sobre la forma de actualizar tu versión de R. \quad\\
 La página principal de R (oficialmente R-project), es
@@ -605,25 +558,22 @@ Aquí veremos las instrucciones para Windows. Al hacer clic sobre el enlace lleg
     \begin{center}
     \includegraphics[width=15cm]{../fig/Tut00-37.png}
     \end{center}
-Donde seguimos el enlace para instalar Windows por primera vez (indicado con la flecha roja).
+Donde seguimos el enlace para instalar Windows por primera vez (recuadrado en rojo).
 Finalmente, llegamos a la página desde la que descargaremos el instalador de la última versión, la
-3.0.3 en el momento de escribir esto (aunque en la figura aparece la 3.0.1). El instalador es el
-mismo, con independencia de que uses Windows Xp/Windows 7/Windows 8 (de 32 o 64 bits).
-    \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-38.png}
-    \end{center}
+3.3.0 en el momento de escribir esto. El instalador es el
+mismo, con independencia de que uses Windows Xp/Windows 7/Windows 8 / Windows 10 (de 32 o 64 bits). 
 Descárgalo, y ejecuta el instalador. Puedes aceptar todas las opciones por defecto. La única que te
 puede hacer dudar es una en la que se pregunta {\tt ¿Desea utilizar las opciones de
 configuración?}. Responde que no, y pulsa en {\tt Siguiente}. Una vez acabada la instalación, en el
 {\em Escritorio} o en el menú {\tt Inicio} de Windows, busca un icono como este:
     \begin{center}
-    \includegraphics[width=1cm]{../fig/Tut00-39.png}
+    \includegraphics[width=1cm]{../fig/Tut00-38.png}
     \end{center}
-Puedes tener varios de ellos agrupados en un grupo de programas, si por ejemplo estás en Windows de
+Puedes tener varios de ellos agrupados en un grupo de programas si, por ejemplo, trabajas en Windows de
 64 bits. Haz clic en uno cuyo nombre empiece por {\tt R i386} o por {\tt R x64}. En cualquier caso,
 si todo va bien, te encontrarás con una ventana muy parecida a esta:
     \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-40.png}
+    \includegraphics[width=15cm]{../fig/Tut00-39.png}
     \end{center}
 En el futuro, como veremos a continuación, usaremos otra forma, más cómoda, de arrancar R.
 
@@ -645,29 +595,29 @@ lo hagas te preguntará {\tt Save workspace image?} y puedes responder tranquila
 Para instalar {\em RStudio} nos dirigimos a su página web oficial, en
 \link{http://www.rstudio.com/}{www.rstudio.com}.
     \begin{center}
-    \includegraphics[width=11cm]{../fig/Tut00-41.png}
+    \includegraphics[width=15cm]{../fig/Tut00-41.png}
     \end{center}
 y hacemos clic en el enlace que indica la flecha roja. En el siguiente paso elegimos {\tt Download
-RStudio Desktop} (la versión actual es la {\tt 0.98}):
+RStudio Desktop}
     \begin{center}
-    \includegraphics[width=11cm]{../fig/Tut00-42.png}
+    \includegraphics[width=15cm]{../fig/Tut00-42.png}
     \end{center}
-y finalmente llegamos a la ventana en la que debemos elegir el instalador adecuado para nuestros
-sistema.
+y, finalmente, llegamos a la ventana en la que debemos elegir el instalador adecuado para nuestro 
+sistema
 %:
 %    \begin{center}
 %    \includegraphics[width=12cm]{../fig/Tut00-42.png}
 %    \end{center}
-En mi caso, puesto que he accedido desde una máquina Windows, ese es el sistema que aparece como
-recomendado.
+% En mi caso, puesto que he accedido desde una máquina Windows, ese es el sistema que aparece como
+% recomendado.
     \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut00-43.png}
+    \includegraphics[width=15cm]{../fig/Tut00-43.png}
     \end{center}
 Descarga el instalador que corresponda, y ejecútalo. La instalación no presenta ninguna dificultad,
 y una vez terminada, puedes iniciar el programa desde el menu Inicio. El programa, al arrancar,
 tiene un aspecto similar a este:
     \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut00-44.png}
+    \includegraphics[width=15cm]{../fig/Tut00-44.png}
     \end{center}
 Puedes cerrar el programa en este punto. Pronto aprenderemos a usarlo.
 
