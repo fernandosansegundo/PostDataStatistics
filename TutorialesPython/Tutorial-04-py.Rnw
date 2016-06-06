@@ -1,10 +1,10 @@
 % !Mode:: "Tex:UTF-8"
 
-<<setup, echo=FALSE, cache=FALSE, purl=FALSE, purl=FALSE>>=
+<<setup, echo=FALSE, cache=FALSE, purl=FALSE>>=
 ## numbers >= 10^5 will be denoted in scientific notation,
 ## and rounded to 2 digits
 options(scipen = 2, digits = 3, cache=FALSE)
- opts_chunk$set(purl=FALSE) 
+opts_chunk$set(purl=FALSE) 
 @
 
 \documentclass[10pt,a4paper]{article}
@@ -58,30 +58,34 @@ options(scipen = 2, digits = 3, cache=FALSE)
 setwd("~/Dropbox/PostDataFernando/TutorialesPython")
 source("~/Dropbox/Code/R/raptor/raptor.R")
 library(knitr)
-python01=TRUE
 purl("Tutorial-04-py.Rnw", output="./code/Tut04-VariableAleatoriaDiscreta.py", documentation = 0)
 raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
 @
 
-<<echo=FALSE, eval=FALSE, results='hide', message=FALSE, error=TRUE, warning=FALSE, purl=FALSE>>=
-# jupyterCol = "#ffffe6"
-# codeColor = "#e6f7ff"
-# library(knitr)
-# setwd("~/Dropbox/PostDataFernando/TutorialesPython")
-# source("~/Dropbox/Code/R/raptor/raptor.R")
-# raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
+
+<<echo=FALSE, purl=FALSE>>=
+library(knitr)
+# Este tutorial contiene el código de varios ficheros, que se extrae 
+# descomentando y ejecutando los siguientes bloques.
+Tut04_VariableAleatoriaDiscreta = FALSE
+#####################################
+# Tut04_VariableAleatoriaDiscreta = TRUE
+# purl("Tutorial-04-py.Rnw", output="./code/Tut04-VariableAleatoriaDiscreta.py", documentation = 0)
+# Tut04_VariableAleatoriaDiscreta = FALSE
+#####################################
 @
 
-<<eval=FALSE, echo=FALSE, purl=python01, comment=NULL>>=
-## ---- Tut04-VariableAleatoriaDiscreta
-########################################################
-# www.postdata-statistics.com
-# POSTDATA. Introducción a la Estadística
-# Tutorial 04.  
-# Plantilla de comandos Python para el estudio de 
-# una variable aleatoria discreta.
-########################################################
 
+<<eval=FALSE, echo=FALSE, putl=Tut04_VariableAleatoriaDiscreta, comment=NULL>>=
+# -*- coding: utf-8 -*-
+## ---- Tut04-VariableAleatoriaDiscreta
+"""
+www.postdata-statistics.com
+POSTDATA. Introducción a la Estadística
+Tutorial 04.  
+Fichero de comandos Python para el estudio de 
+una variable aleatoria discreta.
+"""
 ## Importacion de Modulos
 
 import numpy as np 
@@ -139,22 +143,24 @@ se define mediante su tabla de densidad de probabilidad:
     \end{center}
 Como ya hemos dicho, las probabilidades se pueden entender, en muchos casos, como una versión teórica de las frecuencias relativas. Así que esta tabla se parece mucho a una tabla de frecuencias relativas, y parte de las operaciones que vamos a hacer nos recordarán mucho a las que hicimos en la primera parte del curso usando tablas de frecuencias.
 
-La primera variable aleatoria que vamos a estudiar va a ser, como en el Ejemplo \ref{curso-cap04:ejem:VariableAleatoriaSumaDosDados} del libro (pág. \pageref{curso-cap04:ejem:VariableAleatoriaSumaDosDados}), la variable $X$ cuyo valor es el resultado de sumar los puntos obtenidos al lanzar dos dados. Para estudiarla, vamos a recordar algunas de las técnicas de simulación que aprendimos en el Tutorial03. Usaremos matrices de R para reproducir los resultados de ese Ejemplo \ref{curso-cap04:ejem:VariableAleatoriaSumaDosDados}. Concretamente, empezamos usando una matriz para representar, por columnas, los resultados posibles al tirar el primer dado:
-<<raptor="python", purl=FALSE, purl=FALSE>>=
+La primera variable aleatoria que vamos a estudiar va a ser, como en el Ejemplo \ref{curso-cap04:ejem:VariableAleatoriaSumaDosDados} del libro (pág. \pageref{curso-cap04:ejem:VariableAleatoriaSumaDosDados}), la variable $X$ cuyo valor es el resultado de sumar los puntos obtenidos al lanzar dos dados. Para estudiarla, vamos a recordar algunas de las técnicas de simulación que aprendimos en el Tutorial03. Usaremos listas de Python para reproducir los resultados de ese Ejemplo \ref{curso-cap04:ejem:VariableAleatoriaSumaDosDados}. Concretamente, los resultados posibles al tirar el primer dado son:
+<<raptor="python", purl=FALSE, program="dosDados">>=
 dado1 = range(1,7)
 print(list(dado1))
 @
-Ahora hacemos lo mismo para el segundo dado, pero en este caso por filas:
-<<raptor="python", purl=FALSE, purl=FALSE>>=
+
+\newpage
+Ahora hacemos lo mismo para el segundo dado:
+<<raptor="python", purl=FALSE, program="dosDados">>=
 dado2 = range(1,7)
 @
-La lista con las sumas posibles se obtiene entonces así:
-<<raptor="python", purl=FALSE, purl=FALSE>>=
+Las sumas posibles se obtienen entonces así usando una comprensión de listas:
+<<raptor="python", purl=FALSE, program="dosDados">>=
 suma = [d1 + d2 for d1 in dado1 for d2 in dado2]
 print(suma)
 @
 Para hacer el recuento de las veces que aparece cada uno de los valores posibles de la suma podemos usar los métodos que aprendimos en el Tutorial02 y hacer una tabla de frecuencias:
-<<raptor="python", purl=FALSE, purl=FALSE>>=
+<<raptor="python", purl=FALSE, program="dosDados">>=
 import collections as cl
 sumaCounter = cl.Counter(suma)
 recuentoValoresSuma = sumaCounter.most_common()
@@ -162,7 +168,7 @@ recuentoValoresSuma.sort()
 print(recuentoValoresSuma)
 @
 Para convertir estos recuentos en probabilidades tenemos que dividirlos por el número de resultados posibles, que son $36$. Recuerda que el resultado de la división en Python nos va a proporcionar respuestas numéricas (no {\em simbólicas}) y por lo tanto, aproximadas:
-<<raptor="python", purl=FALSE, purl=FALSE>>=
+<<raptor="python", purl=FALSE, program="dosDados">>=
 n = len(suma)
 print("n=", n)
 probabilidadesSuma = [[item[0], item[1]/n] for item in recuentoValoresSuma]
@@ -209,8 +215,8 @@ Para fijar ideas vamos a pensar en un ejemplo concreto. Supongamos que la densid
     \mbox{Probabilidad}&1/5&1/10&1/10&2/5&1/5
 \end{array}
 \]
-Vamos a almacenar los valores y las probabilidades, en una lista de pares (en Python, tuplas). El primer elemento de cada par es el valor y el segundo la probabilidad de ese valor:
-<<echo=FALSE, eval=FALSE, comment=NULL, purl=python01>>=
+Vamos a almacenar los valores y las probabilidades, en una lista de pares. El primer elemento de cada par es el valor y el segundo la probabilidad de ese valor:
+<<echo=FALSE, eval=FALSE, comment=NULL, putl=Tut04_VariableAleatoriaDiscreta>>=
 
 # Definicion de X a partir de valores y probabilidades.
 
@@ -234,7 +240,7 @@ probabilidadesX = [x[1] for x in X]
 X = [[2, 1/5], [4, 1/10], [7, 1/10], [8, 2/5], [11, 1/5]]
 @
 Y ahora, para calcular la media, haremos:
-<<raptor= "python", purl=python01, echo=-1>>=
+<<raptor= "python", putl=Tut04_VariableAleatoriaDiscreta, echo=-1>>=
 # Calculo de la media.
 
 media = sum([x[0] * x[1] for x in X])
@@ -246,14 +252,14 @@ mientras que la varianza y desviación típica se obtienen importando el módulo
 import math as m
 @
 haciendo
-<<raptor= "python", purl=python01, echo=-1>>=
+<<raptor= "python", putl=Tut04_VariableAleatoriaDiscreta, echo=-1>>=
 # Calculo de la varianza y desviacion tipica.
 
 varianza = sum([(x[0] - media)**2 * x[1] for x in X])
 print("varianza = {0:0.4f}".format(varianza))
 @
 y después:
-<<raptor= "python", purl=python01>>=
+<<raptor= "python", putl=Tut04_VariableAleatoriaDiscreta>>=
 
 sigma = m.sqrt(varianza)
 print("desviacion tipica = {0:0.4f}".format(sigma))
@@ -382,8 +388,8 @@ probabilidadesX = [item[1] for item in X]
 print(probabilidadesX)
 @
 Y ahora aplicamos la función {\tt cumsum} de {\tt numpy} así:
-<<eval=FALSE, echo=FALSE, comment=NULL, purl=python01>>=
-# Funcion de distribucion.
+<<eval=FALSE, echo=FALSE, comment=NULL, putl=Tut04_VariableAleatoriaDiscreta>>=
+# Función de distribucion.
 
 FdistX = np.cumsum(probabilidadesX).tolist()
 
@@ -393,11 +399,11 @@ FdistX = np.cumsum(probabilidadesX).tolist()
 print(FdistX)
 @
 que, como ves, produce un vector con los valores de $F(k)$ para cada $k$. Seguramente preferiremos ver estos resultados en forma de tabla, para poder localizar fácilmente el valor de $F$ que corresponde a cada valor de $k$. Con lo que hemos aprendido sobre la función {\tt print}, es fácil conseguirlo. Pondríamos:
-<<eval=FALSE, echo=FALSE, comment=NULL, purl=python01>>=
+<<eval=FALSE, echo=FALSE, comment=NULL, putl=Tut04_VariableAleatoriaDiscreta>>=
 # y su tabla:
 
 k = len(valoresX)
-print("\nTabla de la variable aleatoria X:\n")
+print("\nTabla de densidad de la variable aleatoria X:\n")
 linea = "_" * 49
 print(linea)
 print("| Valor x | Probabilidad p | Fun. de dist. F(x) |")
@@ -452,10 +458,10 @@ Dada una variable aleatoria $X$, por ejemplo la que venimos usando desde el comi
 import matplotlib.pyplot as plt
 @
 Y luego usaremos estos comandos:
-<<raptor = "python", purl=python01, echo =-(1:2), results='hide'>>=
-# Grafico de barras de la funcion de densidad.
+<<raptor = "python", putl=Tut04_VariableAleatoriaDiscreta, echo =-(1:2), results='hide'>>=
+# Gráfico de barras de la función de densidad.
 
-plt.suptitle("Grafico de barras de la funcion de densidad:")
+plt.suptitle("Gráfico de barras de la función de densidad:")
 plt.xticks(valoresX)
 plt.axis([min(valoresX) - 1,max(valoresX) + 1, 0, 1])
 plt.bar(valoresX, probabilidadesX, color='tan', align='center')
@@ -474,20 +480,22 @@ Algunos comentarios:
   \item La función {\tt xticks} nos sirve para indicarle a Python donde queremos que vayan situadas las etiquetas del eje $x$. En relación con esto, en la función {\tt bar} hemos usado la opción {\tt align='center'} para situar las etiquetas en el centro de cada columna (y no al principio). Esta era una tarea que habíamos dejado pendiente en el Tutorial02.
   \item La función {\tt axis} sirva para fijar la {\tt em ventana gráfica} que Python usará en la figura. Lo hacemos mediante una lista de cuatro valores que definen los valores mínimo y máximo, primero del eje $x$ y luego del eje $y$. Para este ejemplo concreto nos hemos asegurado de que el eje $x$ cubra todo el rango de valores de la variable $X$, con un margen de una unidad extra por cada lado, y que el eje $y$ recorra los valores del $0$ al $1$, puesto que se trata de probabilidades.
 \end{itemize}
-<<raptor = "python", purl=python01, echo=FALSE, eval=FALSE, comment=NULL>>=
-#   Reset grafico.
+<<raptor = "python", putl=Tut04_VariableAleatoriaDiscreta, echo=FALSE, eval=FALSE, comment=NULL>>=
+#   Reset gráfico.
 
 plt.figure()
 
 @
 
 
-Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En Python hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a ver una bastante sencilla, que usa la función {\tt step} (en el sentido inglés de {\em peldaño}). Como verás, en esa función hemos hecho algunos retoques, añadiendo en el eje $x$ un valor a la izquierda del recorrido de $X$ y uno a su derecha, que se corresponden con los valores $0$ y $1.00001$ del eje $y$. Lo hemos hecho para obligar a Python a crear una perspectiva algo más amplia de la función de distribución. 
+\paragraph{}\label{tut04:fig:graficoFuncionDistribucion} Para representar la función de distribución es más común utilizar {\em gráficos de escalera} como el que aparece en la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (página \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}). En Python hay varias maneras de hacerlo, más o menos complicadas. Aquí vamos a ver una bastante sencilla, que usa la función {\tt step} (en el sentido inglés de {\em peldaño}). Como verás, en esa función hemos hecho algunos retoques, añadiendo en el eje $x$ un valor a la izquierda del recorrido de $X$ y uno a su derecha, que se corresponden con los valores $0$ y $1.00001$ del eje $y$. Lo hemos hecho para obligar a Python a crear una perspectiva algo más amplia de la función de distribución. 
 
-<<raptor = "python", purl=python01, echo =-(1:2)>>=
-# Grafico de escalera de la funcion de distribucion.
 
-plt.suptitle("Grafico de escalera de la funcion de distribucion:")
+
+<<raptor = "python", putl=Tut04_VariableAleatoriaDiscreta, echo =-(1:2)>>=
+# Gráfico de escalera de la función de distribucion.
+
+plt.suptitle("Gráfico de escalera de la función de distribucion:")
 plt.xticks(valoresX)
 plt.step([min(valoresX) - 2] + valoresX + [max(valoresX) + 1],
          [0] + FdistX + [1.00001], where='post', linewidth=4.0, color='red')
@@ -501,7 +509,7 @@ El resultado es esta figura:
 \begin{center}
 \includegraphics[height=12cm]{../fig/Tut-04-py-02.png}
 \end{center}
-
+que, si bien dista de ser perfecta, es suficiente mientras recuerdes que las funciones de distribución son {\em continuas por la derecha}; en términos más sencillos, que los puntos gordos de la Figura \ref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} del libro (pág. \pageref{curso-cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}) están en el extremo izquierdo de los peldaños.
 
 \subsection{Un fichero de comandos Python para estudiar una variable discreta.}
 \label{tut04:subsec:FicheroComandosRParaVaraiableDiscreta}
@@ -537,7 +545,7 @@ queremos que la respuesta sea {\tt False}.
 
 Una función es, un cierto sentido, como un programa dentro de nuestro programa. Así que para diseñar la función empezamos usando pseudocódigo, como hacíamos con los programas. En este caso, por ejemplo, el plan es este:
 <<eval=FALSE, comment=NULL, purl=FALSE>>=
-1. Calcular la raíz cuadrada de n.
+1. Calcular la raíz cuadrada de n (que será un número real, no necesariamente entero).
 2. Redondearla al entero más cercano.
 3. Elevar ese entero al cuadrado y comprobar si coincide con $n$.
 4. Si coincide responder True, en caso contrario responder False.
@@ -574,7 +582,7 @@ Como ves, la función que hemos creado se usa como cualquier otra función de Py
   
   \item Las siguientes líneas indentadas forman lo que denominamos el {\sf cuerpo} de la función. Python detecta el final de la función cuando desaparece esa indentación y volvemos al nivel de la línea de cabecera. Si escribes funciones en un buen editor de texto, que reconozca la sintaxis de Python, te resultará más fácil adaptarte a esta escritura de las funciones, porque el editor se encargará de forma automática de dar formato a lo que escribas.
   
-  \item Las primeras líneas del cuerpo de la función, delimitadas por las dos líneas que continenen tres comillas dobles \verb&"""& forman un {\sf bloque de documentación inicial} de la función. Al igual que sucede con los comentarios que ya conocemos (y que usan \verb&#&), cuando Python encuentra estas líneas al principio del código de una función simplemente las ignora. De esa forma disponemos de un espacio en el que explicar qué es lo que hace la función. Como ocurr casi siempre con la documentación del código, no es en absoluto necesario que exista este bloque para que la función haga su trabajo correctamente. Pero hemos querido desde el primer ejemplo incluir la documentación como parte esencial de la escritura de la función, porque como repetiremos varias veces a lo largo del curso, {\bf el código mal documentado es una mala práctica}. Más adelante volveremos sobre estas líneas iniciales de la función y sobre las diferencias entre usar \verb&"""& y usar \verb&#&.
+  \item Las primeras líneas del cuerpo de la función, delimitadas por las dos líneas que continenen tres comillas dobles \verb&"""& forman un {\sf bloque de documentación inicial} de la función. Nos hemos encontrado ya con este tipo de bloques de comentarios que ocupan varias líneas en las cabeceras de nuestros ficheros plantilla. Y al igual que sucede con el otro tipo de comentarios que ya conocemos (y que usan \verb&#&), cuando Python encuentra estas líneas al principio del código de una función simplemente las ignora. De esa forma disponemos de un espacio en el que explicar qué es lo que hace la función. Como ocurre casi siempre con la documentación del código, no es en absoluto necesario que exista este bloque para que la función haga su trabajo correctamente. Pero hemos querido desde el primer ejemplo incluir la documentación como parte esencial de la escritura de la función, porque como repetiremos varias veces a lo largo del curso, {\bf el código mal documentado es una mala práctica}. Más adelante volveremos sobre estas líneas iniciales de la función y sobre las diferencias entre usar \verb&"""& y usar \verb&#&.
   
   \item Como puedes ver, las restantes líneas del cuerpo de la función son simplemente instrucciones Python que ya conocemos y que traducen los pasos que hemos enumerado antes en el pseudocódigo. El cuerpo de la función incluye, al final, un bloque {\tt if/else}. Hemos elegido este ejemplo para ilustrar el hecho  de que el cuerpo de una función puede contener muchos de los elementos que hemos ido conociendo del lenguaje Python: asignaciones, bucles {\tt for}, sentencias {\tt if/else}, como en este ejemplo. Además  la sentencia sentencias {\tt if/else} de nuestro ejemplo contiene otro ingrediente fundamental de una función en Python: la función {\tt return}.
   
@@ -602,31 +610,33 @@ De esa forma simplemente le indicamos a Python que la ejecución de la función 
 
 En cualquier caso, es importante saber que, tras ejecutar {\tt return}, Python considera terminada la ejecución de la función y devuelve el control al punto de nuestro programa desde el que se invocó a la función.  También es necesario saber que el valor que devuelve la función puede ser cualquiera de los objetos Python que hemos ido encontrando: números, booleanos o cadenas de caracteres, desde luego. Pero también listas, tuplas, etc. Incluso podemos tener funciones que produzcan como resultado otra función. En estos tutoriales tendremos ocasión de encontrarnos con algunas funciones más complejas.  
 
+\subsubsection*{¿Para qué sirve escribir nuestras propias funciones?}
 
-
-
-Imagínate que estás escribiendo un programa para calcular el coste (en euros) de producción de un producto. Supongamos que varios componentes de ese producto se pagan en dólares. Eso significa que para calcular el coste tendrás que convertir los precios en dólares a precios en euros. Es una operación muy sencilla, claro. Por ejemplo, hoy la tasa de cambio es 1 US = 0.8813€. Así que en nuestro programa {\em cada vez que tengamos que convertir dólares en euros} basta con usar una línea parecida a esta:
-<<eval=FALSE, purl=FALSE, background=lngConfig[["python"]]$inColor>>=
-precioEuros = 0.8813 * precioDolares
-@
-Pero el problema es, precisamente como hemos destacado, que tenemos que hacer esto cada vez que aparezca una conversión de moneda en nuestro programa. Además las tasas de cambio entre monedas fluctúan. Para mantener el programa actualizado tendremos que modificar el programa, cambiando cada línea en la que se efectúe un cambio de moneda. 
-
-
-
-Desde el comienzo de nuestro trabajo ocn Python hemos ido aumentando la colección de funciones del lenguaje que conocemos. Las funciones son un ingrediente esencial de cualquier lenguaje de programación moderno.  Pyhton cuenta con una colección extensísima de funciones, especialmente gracias a la enorme cantidad de módulos que podemos importar. Y en esta sección vamos a aprender a escribir nuestras propias funciones.  
+Desde el comienzo de nuestro trabajo con Python hemos ido aumentando la colección de funciones del lenguaje que conocemos. Las funciones son un ingrediente esencial de cualquier lenguaje de programación moderno.  Y Python cuenta con una colección extensísima de funciones, especialmente gracias a la enorme cantidad de módulos que podemos importar. ¿Por qué son tan importantes las funciones en Programación? En su libro {\em Think Python} (ver la referencia \cite{downey2015thinkPython} al final del tutorial), Allen B. Downey cita varias razones, que en esencia son estas: 
 \begin{itemize}
-  \item Escribir una función  n
-  \item En estos primeros tutoriales y en los que veremos a lo largo del resto del curso irás descubriendo nuevas funciones que realizan toda clase de tareas. Desde algunas muy sencillas, hasta otras mucho más complejas. Pero incluo teniendo en cuenta todas esas funciones, pronto descubrirás que a menudo las funciones disponibles  
+   \item Escribir una función hace que nuestro código sea más fácil de escribir y leer. Sólo por eso ya merecerían la pena.
+   
+   \item Relacionado con lo anterior, las funciones simplifican enormemente el mantenimiento del código. Una máxima que conviene recordar es que el tiempo más valioso no es normalmente el tiempo que el ordenador pasa ejecutando el programa, sino el tiempo que el programador pasa escribiéndolo y corrigiéndolo. 
+   
+   \item Desde el punto de vista metodológico, estructurar un programa usando funciones nos permita aplicar una estrategia {\em divide y vencerás} al desarrollo de los programas.
+   
+   \item A menudo descubriremos que una misma función se puede utilizar en muchos programas. Ya has visto ejemplos: todas las funciones que importamos desde los módulos {\tt math} o {\tt random}, etc. han sido escritas (y son actualizadas) por programadores del equipo de desarrollo de Python, pero todos los demás usuarios nos beneficiamos de ellas. De esa forma, el código agrupado en una función puede reciclarse y compartirse.
+   
 \end{itemize}
+Nos gustaría detenernos en este último punto. Es conveniente recordar, cada vez que usamos las funciones de Python, que nuestro trabajo depende y se beneficia del esfuerzo previo de muchos otros programadores. Tal vez dentro de un tiempo llegues a escribir funciones tan interesantes que puedas compartirlas con la comunidad de programadores y de esa forma contribuir a esta tarea colectiva. 
 
 
-
-
-En esta sección vamos a aprender 
-
-
-
-
+%' Imagínate que estás escribiendo un programa para calcular el coste (en euros) de producción de un producto. Supongamos que varios componentes de ese producto se pagan en dólares. Eso significa que para calcular el coste tendrás que convertir los precios en dólares a precios en euros. Es una operación muy sencilla, claro. Por ejemplo, hoy la tasa de cambio es 1 US = 0.8813€. Así que en nuestro programa {\em cada vez que tengamos que convertir dólares en euros} basta con usar una línea parecida a esta:
+%' <<eval=FALSE, purl=FALSE, background=lngConfig[["python"]]$inColor>>=
+%' precioEuros = 0.8813 * precioDolares
+%' @
+%' Pero el problema es, precisamente como hemos destacado, que tenemos que hacer esto cada vez que aparezca una conversión de moneda en nuestro programa. Además las tasas de cambio entre monedas fluctúan. Para mantener el programa actualizado tendremos que modificar el programa, cambiando cada línea en la que se efectúe un cambio de moneda. 
+%' 
+%' Desde el comienzo de nuestro trabajo con Python hemos ido aumentando la colección de funciones del lenguaje que conocemos. Las funciones son un ingrediente esencial de cualquier lenguaje de programación moderno.  Pyhton cuenta con una colección extensísima de funciones, especialmente gracias a la enorme cantidad de módulos que podemos importar. Y en esta sección vamos a aprender a escribir nuestras propias funciones.  
+%' \begin{itemize}
+%'   \item Escribir una función  n
+%'   \item En estos primeros tutoriales y en los que veremos a lo largo del resto del curso irás descubriendo nuevas funciones que realizan toda clase de tareas. Desde algunas muy sencillas, hasta otras mucho más complejas. Pero incluo teniendo en cuenta todas esas funciones, pronto descubrirás que a menudo las funciones disponibles  
+%' \end{itemize}
 
 
 \subsection*{Soluciones de algunos ejercicios}
@@ -637,17 +647,24 @@ En esta sección vamos a aprender
 
 
 <<raptor="python", purl=FALSE>>=
+# Importamos el módulo random e inicializamos el generador
+# de números pseudoaleatorios.
 import random as rnd
 rnd.seed(2016)
+# Elegimos el número de tiradas.
 n = 10000
+# Generamos los resultados de los dados.
 dado1 = [rnd.randrange(1, 7) for _ in range(0, n)]
 dado2 = [rnd.randrange(1, 7) for _ in range(0, n)]
+# Las correspondientes sumas.
 suma = [dado1[_] + dado2[_] for _ in range(0, n)]
+# Ahora hacemos la tabla de frecuencias absolutas de las sumas.
 import collections as cl
 sumaCounter = cl.Counter(suma)
 freqAbsolutaSuma = sumaCounter.most_common()
 freqAbsolutaSuma.sort()
 print(freqAbsolutaSuma)
+# Y la tabla de frecuencias relativas:
 freqRelativaSuma = [[item[0], item[1]/n] for item in freqAbsolutaSuma]
 print("frecuencias relativas de la suma=")
 print(freqRelativaSuma)
@@ -655,281 +672,87 @@ print(freqRelativaSuma)
 Recuerda comparar estas frecuencias relativas (experimentales) con las probabilidades (teóricas):
 
 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio02}, pág. \pageref{tut04:ejercicio02}}
-%' \label{tut04:ejercicio02:sol}\quad\\
-%' 
-%' \begin{enumerate}
-%'   \item Los valores y probabilidades son:
-%'     <<ejercicio02sola, purl=FALSE>>=
-%'     valores = 2:12
-%'     probabilidades = c(1:6,5:1)/36
-%'     @
-%'     Así que la media, varianza y desviación típica son:
-%'     <<ejercicio02solb, purl=FALSE>>=
-%'     (mu=sum(valores*probabilidades) )
-%'     (varianza=sum((valores-mu)^2*probabilidades) )
-%'     (sigma=sqrt(varianza) )
-%'     @
-%' 
-%'   \item Para obtener un valor simbólico en Wolfram Alpha evalúa este comando (corta y pega):
-%'   \begin{center}
-%'     {\tt\small (1/36)*(2-7)\verb/^/2 + (2/36)*(3-7)\verb/^/2 + (3/36)*(4-7)\verb/^/2 + (4/36)*(5-7)\verb/^/2 + (5/36)*(6-7)\verb/^/2 + (6/36)*(7-7)\verb/^/2 + (5/36)*(8-7)\verb/^/2 + (4/36)*(9-7)\verb/^/2 + (3/36)*(10-7)\verb/^/2 + (2/36)*(11-7)\verb/^/2 + (1/36)*(12-7)\verb/^/2}
-%'   \end{center}
-%'   ¿Cómo se puede obtener una expresión como esta sin que nos asalten el tedio y/o la melancolía? Pues aprendiendo a usar la función {\tt paste} de R, de la que hablaremos próximamente en otro tutorial.
-%' %  De momento, para ir abriendo el apetito, vamos a mostrarte la forma (que no es seguramente óptima) en la que nosotros hemos fabricado esa expresión:
-%' %  <<ejercicio02solc, eval=c(1:3), purl=FALSE>>=
-%' %    valores = 2:12
-%' %    (numProb=as.character(c(1:6,5:1)))
-%' %    (probTexto = paste(rep("(",11), numProb, rep("/36)",11),sep=""))
-%' %    paste(probTexto, rep("*(",11), valores,rep("-",11 ),rep(7,11),rep(")^2",11), collapse=" + ",sep="")
-%' %  @
-%' %  El resultado de este fragmento de código es la expresión que aparece más arriba, pero hemos cortado el resultado porque, sin formatearlo, es demasiado ancho para esta página.
-%' %
-%' %  Lo bueno de este método es que se adapta muy fácilmente a cualquier otro problema parecido en el que quieras calcular simbólicamente la media de una varianza aleatoria discreta, sea cual sea el número de valores. La función {\tt paste} permite fabricar fácilmente expresiones como esta, y otras mucho más complicadas.
-%' 
-%'   Para explicar cómo hacer esta cuenta con Wiris (de manera no manual) tendríamos que adentrarnos más de lo que queremos en la sintaxis de ese programa. Una posibilidad, sin salir de R, es usar la función fractions de la librería {\tt MASS}, de este modo:
-%'   <<ejercicio02solc, purl=FALSE>>=
-%'     library(MASS)
-%'     valores = 2:12
-%'     (probabilidades= fractions(c(1:6,5:1)/36))
-%'     sum((valores-7)^2*probabilidades)
-%'   @
-%' 
-%'   \item El código en R es:
-%'   <<ejercicio02sold, purl=FALSE>>=
-%'   library(MASS)
-%'   valores = 0:5
-%'   probabilidades = fractions(c(6,10,8,6,4,2)/36)
-%'   (mu = sum(valores * probabilidades))
-%'   (varianza=sum((valores-mu)^2*probabilidades) )
-%'   (sigma=sqrt(varianza))
-%'   @
-%'   Para convertirlos en valores numéricos podemos usar {\tt as.numeric}:
-%'   <<ejercicio02sole, purl=FALSE>>=
-%'   as.numeric(mu)
-%'   as.numeric(varianza)
-%'   as.numeric(sigma)
-%'   @
-%' \end{enumerate}
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio03}, pág. \pageref{tut04:ejercicio03}}
-%' \label{tut04:ejercicio03:sol}\quad\\
-%' 
-%' El valor es $F(\frac{8}{3})=0.2$, porque se tiene $2<\frac{8}{3}<4$, así que
-%' \[F(\frac{8}{3}) = P(X \leq \frac{8}{3}) = P(X\leq 2)=F(2).\]
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio04}, pág. \pageref{tut04:ejercicio04}}
-%' \label{tut04:ejercicio04:sol}\quad\\
-%' 
-%' <<, purl=FALSE>>=
-%' (satelitesGalileanos[ ,2] > 4000)
-%' @
-%' El resultado es un vector de cuatro valores lógicos ({\tt TRUE/FALSE})que nos dicen, para cada fila del {\tt data.frame} si la condición se cumple. Es decir si el valor en la segunda columna de esa fila es, o no, mayor que $4000$.
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio05}, pág. \pageref{tut04:ejercicio05}}
-%' \label{tut04:ejercicio05:sol}\quad\\
-%' \begin{enumerate}
-%'   \item
-%'   Código para la primera parte:
-%'   <<, purl=FALSE>>=
-%'   set.seed(2014)
-%'   vector1 = rep(c("A", "B", "C"), rep(100, 3))
-%'   vector2 = sample(-100:100, 300, replace=TRUE)
-%'   vector3 = rnorm(300)
-%' 
-%'   Tut04WriteTable = data.frame(vector1, vector2, vector3)
-%'   head(Tut04WriteTable)
-%'   tail(Tut04WriteTable)
-%'   @
-%' 
-%'   \item Tras ejecutar
-%'   <<, purl=FALSE>>=
-%'     write.table(Tut04WriteTable, file="../datos/Tut04WriteTable.csv")
-%'   @
-%'   el {\em Bloc de Notas} muestra que el contenido del fichero  {\tt Tut04WriteTable.csv} tiene este aspecto:
-%'   \begin{center}
-%'   \includegraphics[width=8cm]{../fig/Tut04-18.png}
-%'   \end{center}
-%' 
-%' 
-%'   \item La primera dificultad es que R ha añadido una primera columna adicional con los números de las filas, que en Calc aparecen en la columna {\tt A} (eso, además, hace que los nombres de las variables queden descolocados), como se ve en esta figura.
-%'   \begin{center}
-%'   \includegraphics[width=10cm]{../fig/Tut04-19.png}
-%'   \end{center}
-%'   Pero, además, los elementos de la tercera columna usan puntos (en lugar de comas) como separadores decimales. A Calc, en su versión en español, eso le hace pensar que no se trata de números. Y si intentas calcular la media (recuerda usar la función {\tt PROMEDIO}) aparecerá un mensaje de error.
-%' 
-%'   \item El fichero {\tt Tut04WriteTable2.csv}, tras abrirlo con Calc y calcular la media de la tercera columna (en la celda {\tt E3}), muestra este aspecto:
-%'   \begin{center}
-%'   \includegraphics[width=10cm]{../fig/Tut04-20.png}
-%'   \end{center}
-%'   La media, calculada por Calc, se puede comprobar con R de cualquiera de estas dos formas (una usa el vector {\tt vector3} y la otra la tercera columna del {\tt data.frame}):
-%'   <<, purl=FALSE>>=
-%'   mean(vector3)
-%'   mean(Tut04WriteTable[,3])
-%'   @
-%' 
-%' 
-%' %%####################################################
-%' %% Adicionales
-%' 
-%' <<adicional2, echo=FALSE, eval=FALSE, purl=FALSE>>=
-%' rm(list=ls())
-%' 
-%' 
-%' valoresX = 0:5
-%' probabilidadesX = c(1/6,1/12,1/4,1/4,1/12,1/6)
-%' (mediaX = sum(valoresX * probabilidadesX))
-%' (varX = sum((valoresX - mediaX)^2 * probabilidadesX))
-%' 
-%' 
-%' (valoresY  = 5 * valoresX +1 )
-%' 
-%' probabilidadesY = probabilidadesX
-%' (mediaY = sum(valoresY * probabilidadesY))
-%' 
-%' 5 * mediaX + 1
-%' 
-%' 
-%' valoresW = valoresX ^2
-%' probabilidadesW = probabilidadesX
-%' (mediaW = sum(valoresW * probabilidadesW))
-%' mediaX^2
-%' mediaW - mediaX^2
-%' @
-%' 
-%' \end{enumerate}
-%' 
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio06}, pág. \pageref{tut04:ejercicio06}}
-%' \label{tut04:ejercicio06:sol}\quad\\
-%' 
-%' <<, purl=FALSE>>=
-%' colnames(satelitesGalileanos) = c("nombres", "diametrosKm", "periodoOrbital")
-%' head(satelitesGalileanos)
-%' @
-%' El resultado de {\tt dim} es:
-%' <<, purl=FALSE>>=
-%' dim(satelitesGalileanos)
-%' @
-%' Es decir, un vector con el número de filas y columnas del {\tt data.frame}.
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio07}, pág. \pageref{tut04:ejercicio07}}
-%' \label{tut04:ejercicio07:sol}\quad\\
-%' 
-%' \begin{enumerate}
-%'   \item El código para la primera parte es:
-%'     <<, purl=FALSE>>=
-%'     traspuesta = t(matrizDatos)
-%'     write.table(traspuesta, file="../datos/Traspuesta.csv",
-%'         row.names = FALSE, col.names=FALSE, sep=" ")
-%'     @
-%'     Hemos dividido la función {\tt write.table} en dos líneas, para ajustarla al ancho de página.
-%' 
-%'   \item Para la segunda parte empezamos por leer el fichero en un data.frame, que vamos a llamar igual que el fichero (es una costumbre que a menudo resulta útil), salvo por el cambio de {\tt -} a {\tt \_}, porque el guión alto {\tt -} representa la resta en R, y no se puede usar en nombres de objetos:
-%'   <<eval=FALSE, purl=FALSE>>=
-%'   Tut04_3000datos = read.table(file="../datos/Tut04-3000datos.csv", header=FALSE, sep=" ")
-%'   @
-%'   <<echo=FALSE, purl=FALSE>>=
-%'   Tut04_3000datos = read.table(file="../datos/Tut04-3000datos.csv", header=FALSE, sep=" ")
-%'   @
-%'   Una vez hecho esto, convertimos el {\tt data.frame} en una matriz:
-%'   <<, purl=FALSE>>=
-%'   matriz3000Datos = as.matrix(Tut04_3000datos)
-%'   head(matriz3000Datos, 10)
-%'   @
-%'   Para convertirlo en un vector, recorriendo la matriz por filas, vamos a usar lo que aprendimos en la Sección \ref{tut03-tut03:subsec:CaminoVueltaMatricesVectores} (pág. \pageref{tut03-tut03:subsec:CaminoVueltaMatricesVectores}) del Tutorial03. Mostramos sólo los primeros $20$ elementos del vector resultante:
-%'   <<, purl=FALSE>>=
-%'   head(as.vector(t(matriz3000Datos)), 20)
-%'   @
-%'   Finalmente para guardarlo en un fichero {\tt csv} puedes usar {\tt cat} (que ya conoces de anteriores tutoriales) o puedes usar {\tt write.table} así:
-%'   <<, purl=FALSE>>=
-%'   write.table(as.vector(t(matriz3000Datos)), file="../datos/Tut04-3000datos-solucion.csv",
-%'           row.names=FALSE, col.names=FALSE)
-%'   @
-%' 
-%' \end{enumerate}
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio08}, pág. \pageref{tut04:ejercicio08}}
-%' \label{tut04:ejercicio08:sol}\quad\\
-%' 
-%' <<, purl=FALSE>>=
-%' (bolaUrna2 = sample( c("blanca","negra"), 1, prob=c(4,3) ))
-%' @
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio09}, pág. \pageref{tut04:ejercicio09}}
-%' \label{tut04:ejercicio09:sol}\quad\\
-%' 
-%' Los valores de {\tt cuenta} y {\tt k} se alternan en la salida. Ya aprenderemos a presentarlos un poco mejor.
-%' <<, purl=FALSE>>=
-%'     cuenta=0
-%'     for(k in 1:10){
-%'         # Cuerpo del bucle (entre las dos llaves)
-%'         cuenta = cuenta + 3
-%'         print(cuenta)
-%'         print(k)
-%'     }
-%'     cuenta
-%' @
-%' 
-%' \paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio10}, pág. \pageref{tut04:ejercicio10}}
-%' \label{tut04:ejercicio10:sol}\quad\\
-%' 
-%' \begin{enumerate}
-%'   \item Aquí puedes ver el resultado de tres ejecuciones del código, todas con $n=10000$:
-%'         <<echo=FALSE, purl=FALSE>>=
-%'         <<Tut04ProbabilidadesTotales>>
-%'         @
-%'         <<echo=FALSE, purl=FALSE>>=
-%'         <<Tut04ProbabilidadesTotales>>
-%'         @
-%'         <<echo=FALSE, purl=FALSE>>=
-%'         <<Tut04ProbabilidadesTotales>>
-%'         @
-%' 
-%'       \item El código modificado es este:
-%'     <<Tut04ProbabilidadesTotales2, eval=FALSE, purl=FALSE>>=
-%'     # Empezamos lanzando un dado n veces.
-%'     n = 10
-%'     dado = sample(1:6, n, replace=TRUE)
-%' 
-%'     # El proceso ahora depende de si el dado es o no menor que 5
-%'     bola=c()
-%'     for(k in 1:n){
-%'       if(dado[k] < 5){
-%'           #Se ha elegido la urna 1.
-%'           #Estas instrucciones (hasta la linea con else) se usan si dado<5
-%'           #print("Usamos una urna con 3 bolas blancas y 5 negras")
-%'           bola = c(bola, sample(c("b","n"), 1, prob=c(1,9)) )
-%'       } else {
-%'         #Se ha elegido la urna 2.
-%'         #Estas instrucciones (hasta la llave) se usan si dado>=5
-%'         #print("Usamos una urna con 7 bolas blancas y 3 negras")
-%'           bola = c(bola, sample(c("b","n"), 1, prob=c(4,3)) )
-%'       }
-%'       print("-----------------------------------------")
-%'       print(c(" dado =", dado[k]) )
-%'       print(c("k = ", k))
-%'       print(bola)
-%'     }
-%'     # Y al final, miramos la tabla de frecuencias relativas.
-%'     table(bola) / length(bola)
-%'     @
-%'     Puedes ver que hemos cambiado $n=10$, y que hemos añadido un grupo de sentencias con la función {\tt print}, dentro del bucle {\tt for} pero fuera del condicional {\tt if/else}. El resultado de esas modificaciones es este:
-%'     <<Tut04ProbabilidadesTotales2, echo=FALSE, purl=FALSE>>=
-%'     @
-%'     Hemos usado un par de veces un ``truco'' para indicar cual es la variable que se muestra. Por ejemplo, en la línea de código:
-%'     <<eval=FALSE, purl=FALSE>>=
-%'     print(c("k = ", k))
-%'     @
-%'     Al usar {\tt c("k = ", k)} estamos construyendo un vector que contiene una mezcla de números y texto. Es muy posible que no lo recuerdes, pero en la Sección \ref{tut02-tut02:subsec:Vectores} del Tutorial02 hemos comentado brevemente que en estos casos, R convierte todos los elementos del vector en cadenas alfanuméricas. El resultado dista todavía mucho de lo que se puede conseguir (¡todas esas comillas!), pero es un primer paso.
-%' 
-%'     Naturalmente, en este caso, con $n$ tan pequeño, las frecuencias se parecen bastante menos a las que predice la teoría.
-%' 
-%' \end{enumerate}
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio02}, pág. \pageref{tut04:ejercicio02}}
+\label{tut04:ejercicio02:sol}\quad\\
+
+\begin{enumerate}
+  \item Suponemos que la tabla de densidad de la variable suma está almacenada en la lista de pares {\tt probabilidadesSuma} que hemos obtenido al principio de la Sección \ref{tut04:subsec:TablaDensidadVariableAleatoriaDiscreta}.
+<<raptor="python", purl=FALSE, program="dosDados">>=
+print(probabilidadesSuma)
+@
+Entonces podemos hacer 
+<<raptor="python", purl=FALSE, program="dosDados">>=
+X = probabilidadesSuma
+@
+y limitarnos a aplicar el código que hemos visto en este apartado:
+<<raptor="python", purl=FALSE, program="dosDados">>=
+media = sum([x[0] * x[1] for x in X])
+print("Media de X = {0:0.4f}".format(media))
+import math as m
+varianza = sum([(x[0] - media)**2 * x[1] for x in X])
+print("varianza = {0:0.4f}".format(varianza))
+sigma = m.sqrt(varianza)
+print("desviacion tipica = {0:0.4f}".format(sigma))
+@
+
+  \item Debes obtener el valor de la varianza igual a $\frac{35}{6}$, como se indica en el ejemplo.
+  
+  \item Para obtener la diferencia hacemos:
+<<raptor="python", purl=FALSE, program="dosDados">>=
+diferencia = [abs(d1 - d2) for d1 in dado1 for d2 in dado2]
+@  
+La función {\tt abs} sirve para calcular el valor absoluto de la diferencia. Su tabla de frecuencias se obtiene con:
+<<raptor="python", purl=FALSE, program="dosDados">>=
+diferenciaCounter = cl.Counter(diferencia)
+recuentoValoresDiferencia = diferenciaCounter.most_common()
+recuentoValoresDiferencia.sort()
+print(recuentoValoresDiferencia)
+@
+Las convertimos en probabilidades con:
+<<raptor="python", purl=FALSE, program="dosDados">>=
+n = len(diferencia)
+print("n=", n)
+probabilidadesDiferencia = [[item[0], item[1]/n] for item in recuentoValoresDiferencia]
+print("probabilidadesDiferencia=", probabilidadesDiferencia)
+@
+Y ahora podemos calcular la media, varianza y desviación típica con:
+<<raptor="python", purl=FALSE, program="dosDados">>=
+Y = probabilidadesDiferencia
+
+media = sum([y[0] * y[1] for y in Y])
+print("Media de Y = {0:0.4f}".format(media))
+import math as m
+varianza = sum([(y[0] - media)**2 * y[1] for y in Y])
+print("varianza = {0:0.4f}".format(varianza))
+sigma = m.sqrt(varianza)
+print("desviacion tipica = {0:0.4f}".format(sigma))
+@
+En esta ocasión hemos llamado {\tt Y} a la variable diferencia porque ya teníamos una variable {\tt X} en el mismo ejercicio. Pero eso nos obliga a  cambiar el código de cálculo de la media y la varianza, renombrando las variables. No es una buena práctica, porque en esos cambios se pueden introducir errores y porque duplicamos código innecesariamente. Habría sido mejor en todo caso hacer 
+<<eval=FALSE, purl=FALSE>>=
+X = probabilidadesDiferencia
+@
+y depués copiar exactamente las mismas líneas de código que usamos cuando {\tt X} era la variable suma. Pero hemos hecho esto precisamente para brindarte la ocasión de reflexionar sobre esto. Incluso la segunda opción, siendo preferible, incluye código duplicado. La mejor solución será evidente una vez que hayamos aprendido a escribir funciones en Python, más adelante en este mismo tutorial.  
+
+\end{enumerate}
+
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut04:ejercicio03}, pág. \pageref{tut04:ejercicio03}}
+\label{tut04:ejercicio03:sol}\quad\\
+
+El valor es $F(\frac{8}{3})=0.2$, porque se tiene $2<\frac{8}{3}<4$, así que
+\[F(\frac{8}{3}) = P(X \leq \frac{8}{3}) = P(X\leq 2)=F(2) = 0.2\]
+La gráfica de la función de distribución (pág. \pageref{tut04:fig:graficoFuncionDistribucion}) puede ayudarte a entender este resultado.
 
 
 
-
+\begin{thebibliography}{99}
+\label{bibliografia}
+\bibitem{downey2015thinkPython}
+Allen Downey.
+\newblock {\em Think Python}.
+\newblock O'Reilly Media, 2nd edition, 2015.
+\newblock Ebook ISBN: 978-1-4919-3935-2
+\end{thebibliography}
 
 
 %#########################################################################################

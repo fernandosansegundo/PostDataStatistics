@@ -1,12 +1,12 @@
+# -*- coding: utf-8 -*-
 ## ---- Tut04-VariableAleatoriaDiscreta
-########################################################
-# www.postdata-statistics.com
-# POSTDATA. Introducción a la Estadística
-# Tutorial 04.  
-# Plantilla de comandos Python para el estudio de 
-# una variable aleatoria discreta.
-########################################################
-
+"""
+www.postdata-statistics.com
+POSTDATA. Introducción a la Estadística
+Tutorial 04.  
+Fichero de comandos Python para el estudio de 
+una variable aleatoria discreta.
+"""
 ## Importacion de Modulos
 
 import numpy as np 
@@ -43,14 +43,14 @@ print("varianza = {0:0.4f}".format(varianza))
 sigma = m.sqrt(varianza)
 print("desviacion tipica = {0:0.4f}".format(sigma))
 
-# Funcion de distribucion.
+# Función de distribucion.
 
 FdistX = np.cumsum(probabilidadesX).tolist()
 
 # y su tabla:
 
 k = len(valoresX)
-print("\nTabla de la variable aleatoria X:\n")
+print("\nTabla de densidad de la variable aleatoria X:\n")
 linea = "_" * 49
 print(linea)
 print("| Valor x | Probabilidad p | Fun. de dist. F(x) |")
@@ -60,20 +60,20 @@ for i in range(0, k):
           probabilidadesX[i], FdistX[i]))
 print(linea)
 
-# Grafico de barras de la funcion de densidad.
+# Gráfico de barras de la función de densidad.
 
-plt.suptitle("Grafico de barras de la funcion de densidad:")
+plt.suptitle("Gráfico de barras de la función de densidad:")
 plt.xticks(valoresX)
 plt.axis([min(valoresX) - 1,max(valoresX) + 1, 0, 1])
 plt.bar(valoresX, probabilidadesX, color='tan', align='center')
 
-#   Reset grafico.
+#   Reset gráfico.
 
 plt.figure()
 
-# Grafico de escalera de la funcion de distribucion.
+# Gráfico de escalera de la función de distribucion.
 
-plt.suptitle("Grafico de escalera de la funcion de distribucion:")
+plt.suptitle("Gráfico de escalera de la función de distribucion:")
 plt.xticks(valoresX)
 plt.step([min(valoresX) - 2] + valoresX + [max(valoresX) + 1],
          [0] + FdistX + [1.00001], where='post', linewidth=4.0, color='red')
