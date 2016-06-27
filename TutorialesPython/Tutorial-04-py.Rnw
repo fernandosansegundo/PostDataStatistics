@@ -59,7 +59,12 @@ setwd("~/Dropbox/PostDataFernando/TutorialesPython")
 source("~/Dropbox/Code/R/raptor/raptor.R")
 library(knitr)
 purl("Tutorial-04-py.Rnw", output="./code/Tut04-VariableAleatoriaDiscreta.py", documentation = 0)
-raptor("Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, defaultExecOrder = Inf)
+# filename = "Tutorial-04-py.Rnw"
+# language = "python"
+# fileOverwrite = TRUE
+# keepAux = TRUE
+# defaultExecOrder = Inf
+raptor(filename = "Tutorial-04-py.Rnw", language = "python", fileOverwrite = TRUE, keepAux = TRUE, defaultExecOrder = Inf)
 @
 
 
@@ -458,7 +463,7 @@ Dada una variable aleatoria $X$, por ejemplo la que venimos usando desde el comi
 import matplotlib.pyplot as plt
 @
 Y luego usaremos estos comandos:
-<<raptor = "python", putl=Tut04_VariableAleatoriaDiscreta, echo =-(1:2), results='hide'>>=
+<<raptor = "python", purl=Tut04_VariableAleatoriaDiscreta, echo =-(1:2), results='hide'>>=
 # Gráfico de barras de la función de densidad.
 
 plt.suptitle("Gráfico de barras de la función de densidad:")
