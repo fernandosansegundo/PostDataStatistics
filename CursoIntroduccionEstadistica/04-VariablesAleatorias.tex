@@ -946,16 +946,6 @@ Y lo mismo sucede si $y_0$ no es uno de los valores $y_1,\ldots,y_m$. Entonces, 
 \label{cap04:ejem:vectorAleatorioDias2014}
 Imagínate que el departamento de control de calidad de una gran empresa quiere realizar un estudio sobre su servicio de atención al cliente, para saber si los recursos asignados a ese servicio son suficientes. Si la empresa es grande, puede que el servicio haya atendido decenas de miles de peticiones a lo largo de un año. Y puede resultar poco práctico tratar de analizarlas todas. Para hacerse una idea rápida, se podrían seleccionar  al azar $30$ días del año, y analizar el funcionamiento del servicio en esos días. Ya volveremos sobre estas ideas más adelante, pero el hecho de seleccionar los días al azar es esencial, para garantizar que el conjunto de días seleccionados  es {\em representativo} y reducir la posible influencia de factores desconocidos. Por ejemplo si todos los días seleccionados fueran viernes o si se seleccionan varios días en los que hubo grandes averías del servicio telefónico, la muestra no sería representativa. La selección al azar hace muy improbable elegir una muestra así.
 
-Para llevar adelante este plan, por tanto, tenemos que seleccionar un día del año al azar. Y después, cuando analicemos los resultados, querremos saber si ese día es laborable, si es viernes o jueves, etc.  Así que vamos a pensar en un experimento en el que elegimos al azar un día del año 2014. Este es el mecanismo básico. Luego bastaría con repetirlo para obtener los 30 días necesarios. Volveremos sobre esto en el Capítulo \ref{cap:IntervalosConfianza}, cuando hablemos de muestreo.
-
-Vamos a considerar el vector aleatorio $(X,Y)$, donde el valor de $X$ indica el día de la semana (desde $1$ para lunes, a $7$ para domingo) , y el valor de $Y$ indica el día del mes. La Tabla \ref{cap04:tabla:vectorAleatorioDias2014} (pág. \pageref{cap04:tabla:vectorAleatorioDias2014}) es una tabla de {\em frecuencia} conjunta de $X$ e $Y$.  No hemos presentado directamente la tabla de densidad conjunta porque creemos que en este caso es más fácil visualizar los datos en forma de frecuencias, y porque el cálculo  de las probabilidades a partir de ahí es inmediato: para conseguir la tabla de densidad del vector aleatorio $(X,Y)$ basta con dividir cada elemento de la Tabla \ref{cap04:tabla:vectorAleatorioDias2014} por $365$.
-
-Para entender más a fondo el ejemplo, veamos cuanto vale
-\[f(4, 20) = P(X=4, Y=20).\]
-Vamos a la Tabla \ref{cap04:tabla:vectorAleatorioDias2014} y comprobamos que la frecuencia del valor $(X,Y)=(4,20)$ es $3$. Por lo tanto:
-\[f(4, 20) = P(X=4, Y=20)=\dfrac{3}{365}.\]
-Esto significa que si elegimos un día al azar  del año $2014$, la probabilidad de que sea $X=4$ (el día es jueves) e $Y=20$ (el día elegido es el día $20$ del mes) es de $\frac{3}{365}\approx 0.008219$.
-
 \begin{table}[p]
 \centering
 $Y=$ día del mes
@@ -1001,6 +991,18 @@ $Y=$ día del mes
 \caption{Tabla de frecuencia conjunta de $X$ (día de la semana) e $Y$ día del mes, para el año 2014, en el Ejemplo \ref{cap04:ejem:vectorAleatorioDias2014}.}
 \label{cap04:tabla:vectorAleatorioDias2014}
 \end{table}
+
+Para llevar adelante este plan, por tanto, tenemos que seleccionar un día del año al azar. Y después, cuando analicemos los resultados, querremos saber si ese día es laborable, si es viernes o jueves, etc.  Así que vamos a pensar en un experimento en el que elegimos al azar un día del año 2014. Este es el mecanismo básico. Luego bastaría con repetirlo para obtener los 30 días necesarios. Volveremos sobre esto en el Capítulo \ref{cap:IntervalosConfianza}, cuando hablemos de muestreo.
+
+Vamos a considerar el vector aleatorio $(X,Y)$, donde el valor de $X$ indica el día de la semana (desde $1$ para lunes, a $7$ para domingo) , y el valor de $Y$ indica el día del mes. La Tabla \ref{cap04:tabla:vectorAleatorioDias2014} (pág. \pageref{cap04:tabla:vectorAleatorioDias2014}) es una tabla de {\em frecuencia} conjunta de $X$ e $Y$.  No hemos presentado directamente la tabla de densidad conjunta porque creemos que en este caso es más fácil visualizar los datos en forma de frecuencias, y porque el cálculo  de las probabilidades a partir de ahí es inmediato: para conseguir la tabla de densidad del vector aleatorio $(X,Y)$ basta con dividir cada elemento de la Tabla \ref{cap04:tabla:vectorAleatorioDias2014} por $365$.
+
+
+
+Para entender más a fondo el ejemplo, veamos cuanto vale
+\[f(4, 20) = P(X=4, Y=20).\]
+Vamos a la Tabla \ref{cap04:tabla:vectorAleatorioDias2014} y comprobamos que la frecuencia del valor $(X,Y)=(4,20)$ es $3$. Por lo tanto:
+\[f(4, 20) = P(X=4, Y=20)=\dfrac{3}{365}.\]
+Esto significa que si elegimos un día al azar  del año $2014$, la probabilidad de que sea $X=4$ (el día es jueves) e $Y=20$ (el día elegido es el día $20$ del mes) es de $\frac{3}{365}\approx 0.008219$.
 \qed
 \end{ejemplo}
 
@@ -1010,7 +1012,7 @@ $Y=$ día del mes
 
 Recuerda que dos sucesos $A$ y $B$ son independientes si se cumple:
 \[P(A\cap B)= P(A)\cdot P(B).\]
-Ahora queremos trasladar esta definición al caso de un vector aleatorio discreto. La densidad conjunta, que ya hemos definido, va a jugar el papel que  la intersección jugaba en el caso de los sucesos. Pero entonces necesitamos algo que juegue el papel de las probabilidades {\em por separado} de cada una de las componentes $X$ e $Y$ del vector aleatorio. Ese papel lo juegan las densidades marginales.
+Ahora queremos trasladar esta definición al caso de un vector aleatorio discreto. La densidad conjunta, que ya hemos definido, va a jugar el papel que  la intersección jugaba en el caso de los sucesos. Pero entonces necesitamos algo que juegue el papel de las probabilidades {\em por separado} de cada una de las componentes $X$ e $Y$ del vector aleatorio. Ese papel lo juegan las densidades marginales, que definimos a continuación.\\[1cm]
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}

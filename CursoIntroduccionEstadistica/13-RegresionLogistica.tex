@@ -207,7 +207,7 @@ Para tener una visión más completa de la situación, ahora conviene que nos pr
 \caption{El caso ``todo ruido, nada de modelo'' en el Ejemplo \ref{cap13:ejem:RegresionLogistica03}.}
 \label{cap13:fig:RegresionLogisticaNoRelacion}
 \end{figure}
-La distribución de los datos de la figura sugiere que la enfermedad parece no guardar relaci\'on con el valor del itb, pues los casos aparecen, aproximadamente, uniformemente repartidos en el recorrido de los valores del itb. Siguiendo con las analogías que estamos estableciendo con el modelo de regresión lineal, esta situación nos recuerda a la del diagrama de dispersión de la Figura \ref{cap10:fig:EjemploRectaMalaAproximacion02} (pág. \pageref{cap10:fig:EjemploRectaMalaAproximacion02}), en la que quedaba patente la falta de una relación clara entre las variables. La diferencia entre ambas figuras es, insistimos, que las coordenadas verticales, ahora, en la Figura \ref{cap13:fig:RegresionLogisticaNoRelacion}, están limitadas a tomar los valores $0$ o $1$.
+La distribución de los datos de la figura sugiere que la enfermedad parece no guardar relaci\'on con el valor del itb, pues los casos aparecen, aproximadamente, uniformemente repartidos en el recorrido de los valores del itb. Siguiendo con las analogías que estamos estableciendo con el modelo de regresión lineal, esta situación nos recuerda a la del diagrama de dispersión de la Figura \ref{cap10:fig:EjemploRectaMalaAproximacion02} (pág. \pageref{cap10:fig:EjemploRectaMalaAproximacion02}), en la que quedaba patente la falta de una relación clara entre las variables. La diferencia entre ambas figuras es, insistimos, que las coordenadas verticales, ahora, en la Figura \ref{cap13:fig:RegresionLogisticaNoRelacion}, sólo pueden valer $0$ o $1$.
 \qed
 \end{ejemplo}
 
@@ -1217,9 +1217,8 @@ En la sección anterior hemos querido plantear el contraste de hipótesis como u
 	\label{cap13:ejem:RegresionLogisticaMultivariableSeleccionModelos}
 	En el Ejemplo \ref{cap13:ejem:RegresionLogistica00} con el que hemos comenzado este capitulo hemos planteado la posible relación entre el índice tobillo-brazo (itb) como variable predictora y el desarrollo de una enfermedad vascular como variable respuesta. Pero naturalmente hay otros factores de riesgo para la vasculopatía: la edad, por ejemplo o  niveles altos de colesterol, hipertensión, índice de masa corporal, etc. Supongamos, para fijar ideas, que el investigador centra su atención, por alguna razón, en tres de esas variables: el itb que ya hemos usado, la edad y el índice de masa corporal. Vamos a representar esas tres variables explicativas mediante $X_1, X_2, X_3$ respectivamente. Entonces podemos pensar en un modelo de regresión logística multivariable definido mediante:
 \[
-{\pi}(x_1, x_2, x_3) = P(Y=1|X_1=x_1, X_2 = x_2, X_3=x_3)= \]
-\[
-=\dfrac{
+{\pi}(x_1, x_2, x_3) = P(Y=1|X_1=x_1, X_2 = x_2, X_3=x_3)= 
+\dfrac{
 	e^{\beta_0+\beta_1\cdot x_1+\beta_2\cdot x_2+\beta_3\cdot x_3}
 	}{
 	1 + e^{\beta_0+\beta_1\cdot x_1+\beta_2\cdot x_2+\beta_3\cdot x_3}

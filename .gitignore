@@ -12,6 +12,10 @@ exclude/
 ## Busy files
 *.*(busy)
 
+## Dropbox files
+
+.DS_Store
+
 ## R history files
 
 .Rhistory

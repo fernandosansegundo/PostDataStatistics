@@ -1,0 +1,350 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[10pt,a4paper]{book}
+
+\usepackage{etoolbox}
+\newtoggle{color}
+\togglefalse{color}
+%\toggletrue{color}	
+\newtoggle{distribuir}
+\togglefalse{distribuir}
+%\toggletrue{distribuir}
+
+\patchcmd{\thebibliography}{\chapter*}{\section*}{}{}
+
+
+%\usepackage[paper size={170mm, 235mm},left=20mm,right=20mm,top=15mm,bottom=15mm,nohead]{geometry}
+\usepackage[includefoot]{geometry}
+\geometry{paperwidth=18.91cm,paperheight=24.589cm,
+          vmargin=1.9cm, % top and bottom margins
+          inner=1.9cm, % inside margin
+          outer=2.29cm, % outside margin
+          bindingoffset=0.89cm % gutter
+}
+
+\sloppy
+\usepackage{makeidx}
+\newcommand{\idioma}{spanish}
+\newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
+\input{../tex/definiciones}
+
+\includecomment{com}
+%\excludecomment{com}
+
+\iftoggle{color}{%
+  % color version
+    \includecomment{enColor}
+    \excludecomment{bn}
+}{%
+  % b/w version
+    \includecomment{bn}
+    \excludecomment{enColor}
+}
+
+\iftoggle{distribuir}{%
+  % color version
+    \includecomment{distribuir}
+    \excludecomment{noDistribuir}
+}{%
+  % b/w version
+    \includecomment{noDistribuir}
+    \excludecomment{distribuir}
+}
+
+%\usepackage[dvips]{hyperref}
+
+\usepackage{attachfile}
+\usepackage{graphicx}
+\usepackage[totoc]{idxlayout}
+
+\definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
+%\setlength{\fboxsep}{2pt}
+
+% \textwidth=150mm \textheight=260mm
+% \hoffset=-1cm
+% \voffset=-25mm
+% %\textwidth=160mm \textheight=240mm \hoffset=-20mm \voffset=-20mm \parskip=0mm \marginparsep=-25mm
+% \setlength{\parindent}{0pt}
+
+\begin{document}
+
+\frontmatter
+%
+%\thispagestyle{empty}
+%
+%\begin{center}
+%\includegraphics[width=08cm]{../fig/frontispicio.png}
+%\end{center}
+%\pagebreak
+%\thispagestyle{empty}
+%\mbox{}
+%\pagebreak
+
+
+\author{Fernando San Segundo, Marcos Marvá.}
+\title{
+%\textcolor{\iftoggle{color}{blue}{black}}{\Huge POSTDATA 1.0}\\[5mm]
+\includegraphics[width=14cm]{../fig/frontispicio.png}\\[5mm]
+{\small Un curso de introducción a la Estadística, pensado para principiantes.}
+}
+\date{\small Versión del \today.}
+%pruebar
+
+\VerbatimFootnotes
+
+
+\maketitle
+%\renewcommand{\thepage}{\roman{page}}% Roman numerals for page counter
+
+\newpage
+% copyright page
+
+\thispagestyle{empty}
+
+\small
+\noindent \textbf{PostData 1.0. Un curso de introducción a la Estadística, pensado para principiantes. } \\
+Fernando San Segundo, Marcos Marvá.
+
+\vspace{0.15cm}
+\copyright Todos los derechos reservados, o bien...
+%
+{\scriptsize
+\noindent
+This work is licensed under the Creative Commons Attribution 3.0
+Unported license (CC~BY~3.0).  You are free:
+
+\begin{itemize}
+  \item to Share---to copy, distribute and transmit the work
+  \item to Remix---to adapt the work
+\end{itemize}
+
+\noindent
+under the following conditions:
+
+\begin{itemize}
+  \item Attribution---you must attribute the work in the manner
+    specified by the author or licensor (but not in any way that
+    suggests that they endorse you or your use of the work).
+\end{itemize}
+
+\noindent
+with the understanding that:
+
+\begin{itemize}
+
+  \item Waiver---Any of the above conditions can be waived if you get
+    permission from the copyright holder.
+
+  \item Public Domain---Where the work or any of its elements is in
+    the public domain under applicable law, that status is in no way
+    affected by the license.
+
+  \item Other Rights---In no way are any of the following rights
+    affected by the license:
+    \begin{itemize}
+
+      \item Your fair dealing or fair use rights, or other applicable
+        copyright exceptions and limitations;
+
+      \item The author's moral rights;
+
+      \item Rights other persons may have either in the work itself or
+        in how the work is used, such as publicity or privacy rights.
+
+    \end{itemize}
+
+  \item Notice---For any reuse or distribution, you must make clear to
+    others the license terms of this work. The best way to do this is
+    with a link to \url{http://creativecommons.org/licenses/by/3.0/}.
+
+\end{itemize}
+
+\noindent To view a copy of this license, visit
+\url{http://creativecommons.org/licenses/by/3.0/} or send a letter to Creative
+Commons, 444 Castro Street, Suite 900, Mountain View, California,
+94041, USA.\\
+}
+
+\vspace{0.15cm}
+
+\noindent
+{\bf Correo electrónico:} PostdataStatistics@gmail.com
+
+
+\noindent
+{\bf Página web y versión pdf:}
+Una versión en formato pdf de este libro está disponible de forma online
+en la página web asociada:\\
+\begin{center}
+\url{http://www.postdata-statistics.com/}.
+\end{center}
+Para más detalles ver la Introducción.
+
+
+\noindent Una parte de los beneficios de la venta van destinados a la Sociedad Española de Ornitología.\\
+
+\vfill
+
+\vspace{0.3cm}
+
+\noindent
+{\bf Portada:} La fotografía de la portada muestra una Malvasía Cabeciblanca ({\em Oxyura leucocephala}).
+La foto fue tomada por Fernando San Segundo en la Laguna de Los Charcones, en la
+localidad manchega de Miguel Esteban. La Malvasía Cabeciblanca acompaña desde
+sus orígenes al blog del que este libro toma el nombre. \\
+
+\vspace{1cm}
+
+\noindent Fecha de revisión: \today \\
+
+\normalsize
+
+\begin{center}
+\includegraphics[width=08cm]{../exclude/Publicacion/Lulu/isbn_barcode.pdf}
+\end{center}
+
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+%\setcounter{chapter}{-1}
+\chapter*{Introducción.}
+\addcontentsline{toc}{chapter}{\textbf{Introducción.}}
+\input{00-Introduccion}
+
+
+\pagestyle{empty}
+\newpage
+
+%\setcounter{page}{0}% Start page number with 0
+%\renewcommand{\thepage}{\arabic{page}}% Arabic numerals for page counter
+
+\mainmatter
+
+\part{Estadística descriptiva.}
+\label{parte:EstadisticaDescriptiva}
+
+\pagestyle{plain}
+
+\input{001-EstadisticaDescriptiva}
+
+\chapter{Introducción a la estadística descriptiva.}
+\label{cap:IntroduccionEstadisticaDescriptiva}
+\input{01-EstadisticaDescriptiva}
+
+\chapter{Valores centrales y dispersión.}
+\label{cap:ValoresCentralesDispersion}
+\input{02-ValoresCentralesDispersion}
+
+\part{Probabilidad y variables aleatorias.}
+\label{parte:ProbabilidadVariablesAleatorias}
+\input{002-ProbabilidadVariablesAleatorias}
+
+\chapter{Probabilidad.}
+\label{cap:Probabilidad}
+\input{03-Probabilidad}
+
+\chapter{Variables aleatorias.}
+\label{cap:VariablesAleatorias}
+\input{04-VariablesAleatorias}
+
+\chapter{Teorema central del límite.}
+\label{cap:TeoremaCentralLimite}
+\input{05-TeoremaCentralLimite}
+
+
+\part{Inferencia Estadística.}
+\label{parte:InferenciaEstadistica}
+\input{003-InferenciaEstadistica}
+
+\chapter{Muestreo e intervalos de confianza.}
+\label{cap:IntervalosConfianza}
+\input{06-IntervalosConfianza}
+
+\chapter{Contraste de hipótesis.}
+\label{cap:ContrasteHipotesis}
+\input{07-ContrasteHipotesis}
+
+
+\chapter{Distribuciones relacionadas con la binomial.}
+\label{cap:DistribucionesRelacionadasBinomial}
+\input{08-DistribucionesRelacionadasBinomial}
+
+\chapter{Inferencia sobre dos poblaciones.}
+\label{cap:Inferencia2Poblaciones}
+\input{09-InferenciasSobreDosPoblaciones.tex}
+
+
+\part{Inferencia sobre la relación entre dos variables.}
+\label{parte:InferenciaRelacion2Variables}
+\input{004-Inferencia2variables}
+
+\chapter{Regresión lineal simple.}
+\label{cap:RegresionLinealSimple}
+\input{10-RegresionLinealSimple.tex}
+
+\chapter{Anova unifactorial.}
+\label{cap:IntroduccionAnova}
+\input{11-Anova}
+
+\chapter{Tablas de contingencia y test $\chi^2$.}
+\label{cap:TablasContingenciaTestChi2}
+\input{12-TablasContingencia.tex}
+
+\chapter{Regresión logística.}
+\label{cap:RegresionLogistica}
+\input{13-RegresionLogistica.tex}
+
+
+\newpage
+\part*{Apéndices.}
+\addcontentsline{toc}{part}{\textbf{Apéndices.}}
+\appendix
+
+\chapter{Más allá de este libro.}
+\label{apendice:MasAlla}
+\input{90-MasAlla}
+
+
+\chapter{Formulario.}
+\label{apendice:Tablas}
+\newpage
+\input{91-TablaEstadisticosContrastes}
+
+\newpage
+\chapter{Fuentes de Datos, por capítulos.}
+\label{apendice:FuentesDatos}
+\input{93-FuentesDatos}
+
+\chapter{Bibliografía y enlaces.}\label{apendice:comentarioBibliografia}
+%\chapter{Bibliografía}\label{apendice:comentarioBibliografia}
+\input{95-ComentariosBibliografia}
+
+%\begin{thebibliography}{15}
+%\end{thebibliography}
+%\chapter*{}\label{apendice:comentarioBibliografia}
+%\addcontentsline{toc}{chapter}{\textbf{Bibliografía}}
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{alpha}
+\section{Bibliografía.}\label{bibliografia}
+\bibliography{../bib/bibEstadistica}
+
+\section{Lista de enlaces.}
+\input{99-ListaEnlaces}
+
+\backmatter
+
+\printindex
+
+% add a blank page at the end to satify Lulu's distribution requirements
+\pagebreak
+\thispagestyle{empty}
+\mbox{}
+
+\newpage
+\thispagestyle{empty}
+\mbox{  }
+
+
+\end{document}
+
