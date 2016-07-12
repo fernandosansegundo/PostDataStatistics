@@ -1292,7 +1292,7 @@ En el Tutorial09 veremos como usar el ordenador para trabajar con estas variable
 \label{cap09:subsec:InferenciaRiesgoRelativo}
 
 Ahora que ya hemos discutido, siquiera brevemente, las razones por las que puede ser conveniente considerar como variable de interés el logaritmo del riesgo relativo:
-\[ln(RR)=\ln\left(\dfrac{\hat p_1}{\hat p_2}\right),\]
+\[\ln(RR)=\ln\left(\dfrac{\hat p_1}{\hat p_2}\right),\]
 lo que necesitamos es información muestral sobre esta cantidad.
 
 \begin{center}
@@ -1425,22 +1425,22 @@ En la Tabla \ref{cap03:tabla:ejemploPruebasDiagnosticas} (pág. \pageref{cap03:t
 Empecemos calculando las estimaciones muestrales de las proporciones de éxitos y fracasos para ambas poblaciones:
 \[
 \begin{cases}
-    \hat p_1=\dfrac{192}{10000}=0.0192\\[3mm]
-    \hat q_1=\dfrac{4}{10000}=0.0004\\[3mm]
-    \hat p_2=\dfrac{158}{10000}=0.0158\\[3mm]
-    \hat q_2=\dfrac{9646}{10000}=0.9646
+    \hat p_1=\dfrac{192}{196}\approx 0.9796\\[3mm]
+    \hat q_1=\dfrac{4}{196}\approx 0.02041\\[3mm]
+    \hat p_2=\dfrac{158}{9804}\approx 0.01612\\[3mm]
+    \hat q_2=\dfrac{9646}{9804}=0.9839
 \end{cases}
 \quad
 \mbox{, y por tanto }
 \quad
 \begin{cases}
     \hat O_1=\dfrac{192}{4}=48\\[3mm]
-    \hat O_2=\dfrac{4}{9646}\approx 0.01638
+    \hat O_2=\dfrac{158}{9646}\approx 0.01638
 \end{cases}
 \]
 A partir de aquí es fácil usar la Ecuación \ref{cap09:ecu:IntConfRiesgoRelativo} para obtener un intervalo de confianza al $95\%$ para $\ln(RR)$:
 \[
-\ln(RR)=\ln\left(\dfrac{0.0192}{0.0158}\right)\pm z_{\alpha/2}\sqrt{\dfrac{0.004}{196\cdot 0.0192}+\dfrac{0.9646}{9804\cdot 0.0158}},
+\ln(RR)=\ln\left(\dfrac{0.9796}{0.01612}\right)\pm z_{\alpha/2}\sqrt{\dfrac{0.02041}{196\cdot 0.9796}+\dfrac{0.9839}{9804\cdot 0.01612}},
 \]
 es decir, aproximadamente:
 \[
@@ -1454,7 +1454,7 @@ Vamos ahora a calcular un intervalo de confianza para el logaritmo del cociente 
 Y el intervalo de confianza para $\ln(OR)$ es, según la Ecuación \ref{cap09:ecu:IntConfLogaritmoOR}:
 \[
         \ln(OR)\approx
-        \ln\left(2930\right)\pm z_{\alpha/}
+        \ln\left(2930\right)\pm z_{\alpha/2}
         \sqrt{\dfrac{1}{192}+\dfrac{1}{158}+\dfrac{1}{4}+\dfrac{1}{9646}},
 \]
 es decir:
