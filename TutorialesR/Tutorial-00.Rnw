@@ -27,7 +27,7 @@
 \externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
 \includecomment{pdf}
 %\excludecomment{pdf}
 %\includecomment{dvi}
@@ -121,7 +121,7 @@ Una primera advertencia:
 
 SumatraPDF no es el lector de PDF más conocido, ni el que más posibilidades ofrece, pero es muy
 rápido y ligero (en términos de consumo de recursos, si tu ordenador no es muy potente). Y se lleva
-bastante bien con los enlaces y ficheros adjuntos que incluiremos. Un simple click con el botón
+bastante bien con los enlaces y ficheros adjuntos que incluiremos. Un simple clic con el botón
 izquierdo del ratón basta para:
 \begin{itemize}
   \item Abrir un enlace en el navegador.
@@ -134,7 +134,7 @@ detalles.
 
 Queremos extendernos un poco más sobre este último punto. Nuestra experiencia indica que los
 usuarios, con demasiada frecuencia, somos {\em de gatillo fácil} con el ratón: nos hemos
-acostumbrado a hacer click, o doble click, con el botón izquierdo del ratón con demasiada
+acostumbrado a hacer clic, o doble clic, con el botón izquierdo del ratón con demasiada
 facilidad. En muchos casos, eso conduce a que el sistema trate de abrir el fichero adjunto  con el
 {\em programa predeterminado} del sistema operativo para ese tipo de archivos. En la mayoría de los
 sistemas, el nombre de los archivos se compone de dos partes, separadas por un punto, como en este
@@ -144,7 +144,7 @@ ejemplo:
 \]
 La {\sf extensión}, como seguramente sabes, es el código (muchas veces, pero no siempre) de tres
 letras que sigue al punto, y que nos permite identificar el tipo de fichero. Pero, además, el tipo
-de fichero (la extensión), sirve para determinar cuál es el programa que se utiliza por defecto cuando abrimos el fichero, por ejemplo haciendo doble click sobre él con el ratón. De esa forma, al hacer doble clic sobre un fichero de tipo {\tt csv} , nos podemos encontrar con la sorpresa de que el sistema intenta abrirlo con la hoja de cálculo Microsoft Excel, si está instalada, porque el sistema tiene
+de fichero (la extensión), sirve para determinar cuál es el programa que se utiliza por defecto cuando abrimos el fichero, por ejemplo haciendo doble clic sobre él con el ratón. De esa forma, al hacer doble clic sobre un fichero de tipo {\tt csv} , nos podemos encontrar con la sorpresa de que el sistema intenta abrirlo con la hoja de cálculo Microsoft Excel, si está instalada, porque el sistema tiene
 una lista de asociaciones de ficheros con programas que dice cosas como
 \begin{center}
 {\em ``los ficheros {\tt csv}  (cuya extensión es {.csv}) se abren con Excel''.}
@@ -160,7 +160,7 @@ usuario tenga Excel instalado). Para evitar eso, sigue este consejo:
             \begin{enumerate}
               \item Acostúmbrate a usar el botón derecho del ratón y busca opciones como {\tt
                   Guardar archivo...} Si eso no funciona, entonces y sólo entonces, prueba a
-                  hacer click o doble click con el botón izquierdo.
+                  hacer clic o doble clic con el botón izquierdo.
               \item Una vez que hayas guardado el fichero en una carpeta de tu ordenador, tienes
                   que abrirlo. Y aquí, de nuevo, hay que acostumbrarse a usar el botón derecho, y
                   buscar opciones como {\tt Abrir con...}
@@ -171,7 +171,7 @@ Si no hay disponible una opción como {\tt Abrir con...}, se debe a que tu orden
 asignado un programa por defecto con el que abrir ese tipo de ficheros. Por ejemplo, en mi {\em
 Escritorio} de Windows (versión 7) tengo un fichero que se llama {\tt bicho.raro}. Usando el botón
 derecho no aparece la opción {\tt abrir con}, solo la opción {\tt Abrir}. Usando esta opción (o si,
-directamente, hago doble click sobre el fichero) aparece esta ventana:
+directamente, hago doble clic sobre el fichero) aparece esta ventana:
     \begin{center}
     \includegraphics[height=6cm]{../fig/Tut00-AbriendoBichoRaro.png}
     \end{center}
@@ -253,7 +253,7 @@ y usa el enlace {\em Quiero descargar  OpenOffice}:
     \end{center}
 
 Usando ese enlace, se abrirá la ventana que aparece en la siguiente figura, en la que debes hacer
-click en el enlace indicado por la flecha. ¡Asegurate de que seleccionas tu sistema operativo y el idoma español! El número de versión habrá cambiado, desde luego. En la
+clic en el enlace indicado por la flecha. ¡Asegurate de que seleccionas tu sistema operativo y el idoma español! El número de versión habrá cambiado, desde luego. En la
 Figura aparece la versión {\tt 4.1.2}, pero en el momento en que tú la descargues, posiblemente habrá avanzado:
     \begin{center}
     \includegraphics[height=9cm]{../fig/Tut00-WebOpenOffice-02-201605.png}
@@ -373,8 +373,8 @@ fichero (que también usaremos en el Tutorial-01)
 Te aconsejamos que {\em guardes} el fichero, en lugar de {\em abrirlo} directamente (y no olvides
 dónde lo has guardado; el {\em Escritorio} puede servir, para empezar). Recuerda lo que hemos
 visto en la Sección \ref{tut00:sec:InstalacionGeoGebra}: el fichero de datos va {\em adjunto} a
-este documento pdf y, para guardar los datos en tu ordenador, debes hacer click (aquí mismo, en el
-documento pdf) sobre el nombre del fichero. ¿Click derecho o izquierdo? Depende del lector de pdfs
+este documento pdf y, para guardar los datos en tu ordenador, debes hacer clic (aquí mismo, en el
+documento pdf) sobre el nombre del fichero. ¿Clic derecho o izquierdo? Depende del lector de pdfs
 que estés usando. ¡Recuerda que en muchos casos es mejor usar primero el botón derecho del ratón!
 Si no sabes bien lo que haces, este es otro paso en el que es posible que te pierdas. Si eso
 sucede, será un buen momento para acudir a \ninja{nuestro amigo.} Y, en cualquier caso, recuerda
@@ -541,23 +541,20 @@ Si ya tienes una versión anterior de R instalado, al final de esta sección enc
 La página principal de R (oficialmente R-project), es
 \link{http://www.r-project.org/}{www.r-project.org}.
     \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-35.png}
+    \includegraphics[width=15cm]{../fig/Tut00-35a.png}
     \end{center}
 Busca el enlace {\tt download R} (lo he señalado con una flecha roja en la figura, pero puede haber
 cambiado de ubicación cuando leas esto). Se abrirá una página en la que debes elegir el repositorio
 (mirror) desde el que vas a descargar. En general, conviene elegir uno geográficamente cercano,
 para que la conexión sea rápida. El que está situado en España
-(\link{http://cran.es.r-project.org/}{cran.es.r-project.org}) suele funcionar bien. A partir de
-ahí, el resto de los pasos necesarios para la instalación dependen de cual sea tu sistema
-operativo.
+(\link{https://cran.rediris.es/}{cran.rediris.es}) suele funcionar bien. Al hacer clic sobre el enlace del repositorio llegamos a una página en la que debes decidir según cual sea tu sistema operativo. Aquí veremos las instrucciones para Windows. Haz clic sobre el enlace {\em Download R for Windows} y llegarás a:
     \begin{center}
     \includegraphics[width=15cm]{../fig/Tut00-36.png}
     \end{center}
-Aquí veremos las instrucciones para Windows. Al hacer clic sobre el enlace llegamos a:
+ Seguimos el enlace para instalar Windows por primera vez (recuadrado en rojo).
     \begin{center}
     \includegraphics[width=15cm]{../fig/Tut00-37.png}
     \end{center}
-Donde seguimos el enlace para instalar Windows por primera vez (recuadrado en rojo).
 Finalmente, llegamos a la página desde la que descargaremos el instalador de la última versión, la
 3.3.0 en el momento de escribir esto. El instalador es el
 mismo, con independencia de que uses Windows Xp/Windows 7/Windows 8/ Windows 10 (de 32 o 64 bits). 
@@ -574,7 +571,7 @@ si todo va bien, te encontrarás con una ventana muy parecida a esta:
     \begin{center}
     \includegraphics[width=15cm]{../fig/Tut00-39.png}
     \end{center}
-En el futuro, como veremos a continuación, usaremos otra forma, más cómoda, de arrancar R.
+En el futuro, como veremos a continuación, usaremos otra forma, más cómoda, de arrancar R. Usa el menú {\em Archivo} para salir de R (y responde {\em No} a la pregunta sobre guardar la imagen del área de trabajo).
 
 \subsubsection*{Actualizar una versión anterior de R}
 
@@ -594,14 +591,13 @@ lo hagas te preguntará {\tt Save workspace image?} y puedes responder tranquila
 Para instalar {\em RStudio} nos dirigimos a su página web oficial, en
 \link{http://www.rstudio.com/}{www.rstudio.com}.
     \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-41.png}
+    \includegraphics[width=9cm]{../fig/Tut00-41a.png}
     \end{center}
-y hacemos clic en el enlace que indica la flecha roja. En el siguiente paso elegimos {\tt Download
-RStudio Desktop}
+y hacemos clic en el enlace que indica la flecha roja. En el siguiente paso elegimos {\tt Download} bajo la columna {\tt RStudio Desktop}
     \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-42.png}
+    \includegraphics[width=9cm]{../fig/Tut00-42a.png}
     \end{center}
-y, finalmente, llegamos a la ventana en la que debemos elegir el instalador adecuado para nuestro 
+y, finalmente, más abajo en la ventana debemos elegir el instalador adecuado para nuestro 
 sistema
 %:
 %    \begin{center}
@@ -610,7 +606,7 @@ sistema
 % En mi caso, puesto que he accedido desde una máquina Windows, ese es el sistema que aparece como
 % recomendado.
     \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut00-43.png}
+    \includegraphics[width=15cm]{../fig/Tut00-43a.png}
     \end{center}
 Descarga el instalador que corresponda, y ejecútalo. La instalación no presenta ninguna dificultad,
 y una vez terminada, puedes iniciar el programa desde el menu Inicio. El programa, al arrancar,
