@@ -42,7 +42,7 @@ es más probable?
     Los jugadores que, en aquella época, se planteaban esta pregunta respondían inicialmente así:
     \begin{itemize}
     \item[(a)] La probabilidad de obtener un seis en cada tirada es $\dfrac{1}{6}$. Por lo tanto, en cuatro tiradas es
-    \[\dfrac{1}{6}+\dfrac{1}{6} = \dfrac{1}{3}.\]
+    \[\dfrac{1}{6}+\dfrac{1}{6}+\dfrac{1}{6}+\dfrac{1}{6} = \dfrac{2}{3}.\]
 
     \item[(b)] La probabilidad de obtener un doble seis en cada tirada de dos dados es $\dfrac{1}{36}$, porque hay 36 resultados distintos, y todos aparecen con la misma frecuencia. Por lo tanto, en veinticuatro tiradas será \[\dfrac{1}{36}+\cdots+\dfrac{1}{36}=\dfrac{24}{36}=\dfrac{2}{3}.\]
     \end{itemize}
@@ -198,18 +198,14 @@ Cerramos este apartado con un ejemplo-pregunta, que deberías responder antes de
 La Regla de Laplace puede servir, con más o menos complicaciones combinatorias, para calcular probabilidades en casos como los de los dados, la
 ruleta, las monedas, etcétera. Pero desde el punto de vista teórico, hay una dificultad, que el lector probablemente ya ha detectado: en la base de
 esa Regla de Laplace está la idea de {\em sucesos equiprobables}. Así que puede que la regla de Laplace sirviera para {\em calcular} probabilidades, y
-hacer la discusión más precisa. Y ese es, sin duda, su mérito histórico. Pero no parece una buena forma de {\em definir} Probabilidad, al menos, si
-queremos evitar incurrir en una {\em definición circular}, usando la noción de probabilidad para definir la propia idea de probabilidad. Además, incluso sin salir del casino, ¿qué sucede cuando los dados están cargados o las monedas
-trucadas? Y en el mundo real es muy fácil encontrar ejemplos, en los que la noción de sucesos equiprobables no es de gran ayuda a la hora de calcular
-probabilidades: el mundo está lleno de ``dados cargados'' en favor de uno u otro resultado. Y como vamos a ver en los siguientes ejemplos, esa
-definición resulta claramente insuficiente para afrontar algunas situaciones.
+hacer la discusión más precisa. Y ese es, sin duda, su mérito histórico. Pero no parece una buena forma de {\em definir} la Probabilidad, al menos, si queremos evitar incurrir en una {\em definición circular}, usando la noción de probabilidad para definir la propia idea de probabilidad. Además, incluso sin salir del casino, ¿qué sucede cuando los dados están cargados o las monedas trucadas? Y en el mundo real es muy fácil encontrar ejemplos, en los que la noción de sucesos equiprobables no es de gran ayuda a la hora de calcular probabilidades: el mundo está lleno de ``dados cargados'' en favor de uno u otro resultado. Aún peor, como vamos a ver en lo que sigue, esa definición resulta claramente insuficiente para afrontar algunas situaciones.
 
 \begin{itemize}
 \item Por ejemplo, cuando tomamos una bombilla de una cadena de montaje y la
-inspeccionamos para determinar si es defectuosa o no, parece natural pensar que esos dos ($A=$``bombilla defectuosa'' y $\bar A=$``bombilla no defectuosa'') son los sucesos elementales. De hecho, tratar de introducir otros sucesos ``más elementales'', seguramente complicaría excesivamente el análisis.  Pero, desde luego, lo \'ultimo que esperar\'iamos (o al menos el propietario de la f\'abrica) es que los sucesos $A$ y $\bar{A}$  fueran equiprobables.
+inspeccionamos para determinar si es defectuosa o no, parece natural pensar que esos dos sucesos ($A=$ ``bombilla defectuosa'' y $\bar A=$ ``bombilla no defectuosa'') son los sucesos elementales. De hecho, tratar de introducir otros sucesos ``más elementales'', seguramente complicaría excesivamente el análisis.  Pero, desde luego, lo \'ultimo que esperar\'iamos (o al menos el propietario de la f\'abrica) es que los sucesos $A$ y $\bar{A}$  fueran equiprobables.
 En casos como este se utiliza la {\sf definici\'on frecuentista de probabilidad}
 \index{definici\'on frecuentista de probabilidad}. En este contexto, la soluci\'on pasa
-por observar durante cierto tiempo la producci\'on y asignar a los eventos $A$ y $\bar{A}$ una probabilidad igual a la frecuencia relativa observada (de ah\'i el nombre).
+por observar durante cierto tiempo la producci\'on y asignar a los sucesos $A$ y $\bar{A}$ una probabilidad igual a la frecuencia relativa observada (de ah\'i el nombre).
 
 \item Podríamos pensar que esa definición frecuentista es la respuesta definitiva. Sin embargo, para poder aplicarla,  es necesario suponer que los sucesos puedan repetirse
 una cantidad grande de veces, para medir las frecuencias correspondientes. Se ha apuntado muchas veces que ese enfoque frecuentista tropieza con muchas dificultades conceptuales: ¿qué quiere decir {\em repetir un suceso}, cuando las circunstancias, necesariamente, habrán cambiado? En el caso del cálculo de la probabilidad de que mañana llueva, ¿qué querría decir ``repetir el día de mañana''? Y la alternativa más extendida es el {\sf enfoque Bayesiano} de la Estadística, que entiende la probabilidad como una medida de nuestro {\em grado de certidumbre} en la posibilidad de que un suceso ocurra, o nuestra estimación de la {\em verosimilitud} de ese suceso. En cualquier caso, no queremos que esa discusión conceptual nos haga perder el paso aquí. La discusión tiene sentido, desde luego, pero sólo cuando se han entendido los elementos básicos del problema, que es a lo que nos vamos a dedicar en este curso. En los Comentarios a la Bibliografía (pág. \pageref{apendice:comentarioBibliografia}) daremos alguna indicación más sobre este tema.
@@ -234,7 +230,7 @@ Lo anterior pone de manifiesto que
 Iniciamos esta secci\'on con algunos ejemplos que motivar\'an lo que viene a continuaci\'on:
 
 \begin{Ejemplo}\label{Cap03:ejem:LanzamientoMonedaHastPrimeraCara}
-Por ejemplo, siguiendo en el terreno de los juegos de azar: dos jugadores A y B, juegan a lanzar una moneda. El primero que saque cara, gana, y empieza lanzando $A$. ¿Cuál es la probabilidad de que gane A?
+Siguiendo en el terreno de los juegos de azar: dos jugadores A y B, juegan a lanzar una moneda. El primero que saque cara, gana, y empieza lanzando $A$. ¿Cuál es la probabilidad de que gane A?
 Si tratamos de aplicar la Regla de Laplace a este problema nos tropezamos con una dificultad; no hay límite al número de lanzamientos necesarios en el juego. Al tratar de hacer la lista de ``casos posibles'' nos tenemos que plantear la posibilidad de encontrarnos con secuencias de cruces cada vez más largas.
     \[
         \smiley, \dag\smiley, \dag \dag\smiley, \dag \dag \dag\smiley, \dag \dag \dag \dag\smiley,\ldots
@@ -380,7 +376,7 @@ La Figura \ref{Cap03:fig:DiagramaVennSucesosDisjuntos} representa, en un diagram
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[height=4cm]{../fig/Cap03-DiagramaVennSucesosDisjuntos.png}
-	\caption{Diagrama para la intersección de dos sucesos }\label{Cap03:fig:DiagramaVennSucesosDisjuntos}
+	\caption{Dos sucesos incompatibles o disjuntos.}\label{Cap03:fig:DiagramaVennSucesosDisjuntos}
 \end{center}
 \end{figure}
 
@@ -420,7 +416,7 @@ Y una última aclaración: la probabilidad definida mediante la Regla de Laplace
 \subsection{Más propiedades de la Función Probabilidad.}
 \label{cap03:subsec:MasPropiedadesFuncionProbabilidad}
 
-Las tres propiedades básicas de la Función Probabilidad tienen una serie de consecuencias que vamos a explorar en el resto de este capítulo. Las primeras y más sencillas aparecen resumidas en este cuadro:	
+Las tres propiedades básicas de la Función Probabilidad tienen una serie de consecuencias que vamos a explorar en el resto de este capítulo. En el Tutorial03 veremos ejemplos y ejercicios que muestran como estas propiedades a menudo permiten convertir un problema complicado de probabilidad en otro más sencillo. Por ejemplo, en lugar de contar los casos favorables a un suceso puede resultar más fácil contar las veces en las que {\em no} ocurre dicho suceso. Así, la pregunta: {\em ¿cuántos números menores que 100 tienen cifras repetidas?} puede convertirse en esta más sencilla: {\em ¿cuántos números menores que 100 no tienen cifras repetidas?} También podemos tratar de descomponer un suceso en trozos más fáciles de contar por separado. Las primeras y más sencillas de esas propiedades aparecen resumidas en este cuadro:	
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
@@ -566,12 +562,13 @@ probabilidades condicionadas.
         \begin{center}
         \fcolorbox{black}{Gris025}{
         \begin{minipage}{8cm}
+        	\vspace{-5mm}
         \begin{equation}\label{cap03:ecu:ReglaProductoProbabilidadCondicionada}
             P(A\cup B) = P(A|B)P(B)=P(B|A)P(A),
         \end{equation}
         \end{minipage}}
         \end{center}
-porque la definición de probabilidad condicionada dice que los dos miembros son dos formas de escribir $P(A\cap B)$. Teniendo esto en cuenta, si se conocen las probabilidades de $A$ y $B$, se puede obtener fácilmente una probabilidad condicionada a partir de la otra. Este resultado es extremadamente útil para, por ejemplo, descomponer problemas de probabilidad en varias etapas, y usar las probabilidades condicionadas, normalmente más fáciles de calcular.
+porque la definición de probabilidad condicionada dice que los dos miembros son dos formas de escribir $P(A\cap B)$. Teniendo esto en cuenta, si se conocen las probabilidades de $A$ y $B$, se puede obtener fácilmente una probabilidad condicionada a partir de la otra. Este resultado es extremadamente útil para, por ejemplo, descomponer problemas de probabilidad en varias etapas, y usar las probabilidades condicionadas, normalmente más fáciles de calcular. Veremos ejemplos en el Tutorial03.
 
 \subsubsection{Tablas de contingencia y probabilidad condicionada}
 \label{cap03:subsubsec:TablasContingenciaProbabilidadCondicionada}
@@ -580,7 +577,7 @@ porque la definición de probabilidad condicionada dice que los dos miembros son
 \begin{ejemplo}
 \label{cap03:ejem:PruebasDiagnosticas01}
 \index{pruebas diagnósticas}\index{diagnósticas, pruebas}
-           Vamos a suponer que analizamos una prueba diagnóstica para cierta enfermedad. Las pruebas diagnósticas no son infalibles. A veces la prueba dará como resultado que una persona padece la enfermedad, cuando en realidad no es así. Es lo que se llama un {\sf falso positivo}\index{falso positivo}. Y en otras ocasiones el problema será el contrario. La prueba dirá que la persona no padece la enfermedad, aunque de hecho la padezca. Eso es un {\sf falso negativo}\index{falso negativo}. Vamos a suponer que sabemos en una población de 10000, aproximadamente, el 2\% están afectados por esa enfermedad. La Tabla \ref{cap03:tabla:ejemploPruebasDiagnosticas}, que es típica de esta clase de situaciones, contiene los valores precisos de este ejemplo.
+           Vamos a suponer que analizamos una prueba diagnóstica para cierta enfermedad. Las pruebas diagnósticas no son infalibles. A veces la prueba dará como resultado que una persona padece la enfermedad, cuando en realidad no es así. Es lo que se llama un {\sf falso positivo}\index{falso positivo}. Y en otras ocasiones el problema será el contrario. La prueba dirá que la persona no padece la enfermedad, aunque de hecho la padezca. Eso es un {\sf falso negativo}\index{falso negativo}. Vamos a suponer que sabemos que en una población de 10000 personas, aproximadamente el 2\% están afectados por esa enfermedad. La Tabla \ref{cap03:tabla:ejemploPruebasDiagnosticas}, que es típica de esta clase de situaciones, contiene los valores precisos de este ejemplo.
         \begin{table}[h!]
         \begin{center}
             \begin{tabular}{llccc}
@@ -608,7 +605,7 @@ porque la definición de probabilidad condicionada dice que los dos miembros son
 
         Para calcular la probabilidad de que un individuo esté sano, debemos mirar en el {\em margen inferior} (de otro modo, la última fila de la tabla). Allí vemos que hay 196 personas enfermas de un total de 10000. Por lo tanto, la probabilidad es:
         \[P(\mbox{enfermo})=\dfrac{196}{10000}=0.0196.\]
-        Como decíamos antes, aproximadamente un 2\%. Puesto que, en este ejemplo, suponemos que una persona sólo puede estar sana o enferma, la probabilidad de enfermo es:
+        Como decíamos antes, aproximadamente un 2\%. Puesto que, en este ejemplo, suponemos que una persona sólo puede estar sana o enferma, la probabilidad de estar enfermo es:
         \[P(\mbox{sano})=1-P(\mbox{enfermo})=1-0.0196=0.9804.\]
         Este resultado también se puede obtener, directamente, del margen inferior de la tabla. Si en lugar de sano/enfermo pensamos en las probabilidades de diagnóstico positivo/negativo, entonces tenemos que mirar en el {\em margen derecho} (la última columna) de la tabla. Allí vemos que, de las 10000 personas, 350 han dado positivo, así que
         \[P(\mbox{positivo})=\dfrac{350}{10000}=0.035.\]
@@ -647,19 +644,20 @@ porque la definición de probabilidad condicionada dice que los dos miembros son
 \subsection{Sucesos independientes.}
 \label{cap03:subsec:SucesosIndependientes}
 
-¿Qué significado debería tener la frase {\em ``el suceso $A$ es independiente del suceso $B$''}\,? Parece evidente que, si los sucesos son independientes, el hecho de saber que el suceso $B$ ha ocurrido no debería afectar para nada nuestro cálculo de la probabilidad de que ocurra $A$. Esta idea tiene una traducción inmediata en el lenguaje de la probabilidad condicionada, que es de hecho la definición de sucesos independientes:
+¿Qué significado debería tener la frase {\em ``el suceso $A$ es independiente del suceso $B$''}\,? Parece evidente que, si los sucesos son independientes, el hecho de saber que el suceso $B$ ha ocurrido no debería afectar para nada a nuestro cálculo de la probabilidad de que ocurra $A$. Esta idea tiene una traducción inmediata en el lenguaje de la probabilidad condicionada, que es de hecho la definición de sucesos independientes:
         \begin{center}
         \fcolorbox{black}{Gris025}{
         \begin{minipage}{12cm}
-            {\centering\bf Sucesos independientes}
+            \begin{center}
+            	{\bf Sucesos independientes}
+            \end{center}
             Los sucesos $A$ y $B$ son \index{sucesos independientes}{\sf sucesos independientes}\index{independientes, sucesos} si
                 \[P(A|B)=P(A).\]
             Esto es equivalente a decir que:
             \begin{equation}\label{cap03:ecu:ReglaProductoProbabilidadDosSucesosIndependientes}
                 P(A\cap B)=P(A)P(B).
             \end{equation}
-            Esta propiedad se conoce como la {\sf Regla del Producto para sucesos independientes.}\index{regla del producto para sucesos independientes}\index{sucesos independientes, regla del producto}\\
-            En particular, {\bf cuando los sucesos $A$ y $B$ son independientes}, se cumple:
+            Esta propiedad se conoce como la {\sf Regla del Producto para sucesos independientes.}\index{regla del producto para sucesos independientes}\index{sucesos independientes, regla del producto}.  En particular, {\bf cuando los sucesos $A$ y $B$ son independientes}, se cumple:
             \[P(A\cup B)=P(A)+P(B)-P(A)P(B).\]
         \end{minipage}}
         \end{center}
@@ -673,7 +671,7 @@ pero también
 \[P(A_1\cap A_5)=P(A_1)\cdot P(A_5),\]
 entre otras muchas. ¿Cuántas? Es un buen ejercicio de Combinatoria convencerse de que son $2^k - k -1$, donde $k$ es el número de sucesos. {!`}Verificar la independencia de una colección de sucesos puede ser muy complicado! Normalmente partiremos de situaciones en las que sabemos {\em a priori} que se cumple la independencias, y entonces usaremos estas propiedades para poder calcular las probabilidades de las intersecciones que nos interesen.
 
-\subsubsection{Sucesos independientes y sucesos disjuntos (incompatibles)}
+\subsubsection{Sucesos independientes y sucesos disjuntos (incompatibles).}
 
 A menudo, al principio, hay cierta confusión entre la noción de sucesos independientes y la de sucesos disjuntos, que también hemos llamado incompatibles. Tal vez sea el origen de la confusión tenga algo que ver con el parecido entre esas dos palabras.  En cualquier caso, recordemos que dos sucesos son disjuntos si no pueden ocurrir a la vez (ver Figura \ref{Cap03:fig:DiagramaVennSucesosDisjuntos}, pág. \pageref{Cap03:fig:DiagramaVennSucesosDisjuntos}). Por ejemplo, si $A$ es el suceso {\em ``Hoy es lunes''} y $B$ es el suceso {\em ``Hoy es viernes''}, está
 claro que $A$ y $B$ no pueden ocurrir a la vez. Por otra parte, los sucesos son independientes cuando uno de ellos no aporta ninguna información sobre
@@ -694,17 +692,22 @@ Así que la información sobre el suceso $A$ nos permite decir algo sobre el suc
 \label{cap03:subsec:ProbabilidadesTotales}
 
 
-El resultado que vamos a ver utiliza la noción de probabilidad condicionada para calcular la probabilidad de un suceso $A$ mediante la estrategia de {\em divide y vencerás}.  Se trata de descomponer el espacio muestral completo en una serie de sucesos $B_1,\ldots,B_k$ de manera que:
+El resultado que vamos a ver utiliza la noción de probabilidad condicionada para calcular la probabilidad de un suceso $A$ mediante la estrategia de {\em divide y vencerás}.  Se trata de descomponer el espacio muestral completo en una serie de sucesos $B_1,\ldots,B_k$ que reunan estas características:\\[3mm]
+\begin{minipage}{6.5cm}
     \begin{enumerate}
-        \item[(1)] $\Omega=B_1\cup B_2\cup\cdots\cup B_k.$
-        %\textcolor{red}{Es decir, cada evento elemental est\'an en alguno de los $B_i$.}
-        \item[(2)] $B_i\cap B_j=\emptyset$, para cualquier pareja $i\neq j$:
-        %\textcolor{red}{ning\'un evento evento elemental est\'a repetido.}
-        \item[(3)] $P(B_i)\neq 0$ para $i=1,\ldots,k$.
-        %\textcolor{red}{Todos los eventos $B_i$ son posibles.}
+    	\item[(1)] $\Omega=B_1\cup B_2\cup\cdots\cup B_k.$
+    	%\textcolor{red}{Es decir, cada suceso elemental est\'an en alguno de los $B_i$.}
+    	\item[(2)] $B_i\cap B_j=\emptyset$, para cualquier par $i\neq j$.
+    	%\textcolor{red}{ning\'un suceso suceso elemental est\'a repetido.}
+    	\item[(3)] $P(B_i)\neq 0$ para $i=1,\ldots,k$.
+    	%\textcolor{red}{Todos los sucesos $B_i$ son posibles.}
     \end{enumerate}
-{En este caso se dice que los sucesos $B_1,\ldots,B_k$ constituyen una partici\'on (1)
-disjunta (2) del espacio muestral. \index{partici\'on disjunta del espacio muestral}} Entonces
+\end{minipage}
+\begin{minipage}{6.5cm}
+	\qquad\includegraphics[height=2.5cm]{../fig/Cap03-ProbabilidadesTotales.png}
+\end{minipage}
+\\[3mm]	
+{En tal caso decimos que $B_1,\ldots,B_k$ constituyen una partici\'on (1) disjunta (2) del espacio muestral. \index{partici\'on disjunta del espacio muestral}} Entonces (ver la figura) podemos usarlos para calcular $P(A)$ usando la :
         \begin{center}
         \fcolorbox{black}{Gris025}{
         \begin{minipage}{12cm}
@@ -762,7 +765,7 @@ Obsérvese que:
 Con estas observaciones, la fórmula de Bayes es bastante fácil de recordar. Vamos a ver dos ejemplos de este teorema, ambos relacionados con ejemplos anteriores de este capítulo.
 El primero es el ejemplo prototípico, un problema de urnas, que sólo tiene el interés de que nos sirve como modelo mental de la forma en que se aplica el teorema.
 \begin{Ejemplo}
-    {\bf Continuación del Ejemplo \ref{cap03:ejem:ProbailidadTotalEjemploUrnas}, pág. \pageref{cap03:ejem:ProbailidadTotalEjemploUrnas}}\label{cap03:ejem:EjemploUrnasBayes}
+    {\bf Continuación del Ejemplo \ref{cap03:ejem:ProbailidadTotalEjemploUrnas}, pág. \pageref{cap03:ejem:ProbailidadTotalEjemploUrnas}}\label{cap03:ejem:EjemploUrnasBayes}. 
     Recordemos que, en aquel ejemplo, teníamos dos urnas. La primera con 3 bolas blancas y dos negras, y la segunda con 4 bolas blancas y 1 negra. Para extraer una bola, se lanza un dado. Si el resultado es $1$ o $2$ usamos la primera urna; si es cualquier otro número usamos la segunda urna.
     Supongamos que hemos hecho ese proceso, y la bola extraída es blanca. ¿Cuál es la probabilidad de que proceda de la primera urna?
 
@@ -988,7 +991,9 @@ Es decir, el producto de todos los números entre $1$ y $n$. Por ejemplo,
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{2cm}
-        {\centering $0!=1.$}
+    \begin{center}
+    	$0!=1.$
+   \end{center}		
     \end{minipage}}
     \end{center}
 La propiedad más llamativa del factorial es su crecimiento extremadamente rápido. Por ejemplo, $100!$ es del orden de $10^{57}$. Este comportamiento
@@ -1070,7 +1075,7 @@ Para intentar aclarar la relación entre ambos conceptos, podemos ver las permut
 \label{cap03:subsec:Combinaciones}
 
 Tanto en las permutaciones como en las variaciones, el orden en que aparecen los elementos es
-importante. Ahora nos vamos a olvidarnos de \'el. Esto recuerda a juegos de apuestas como las de la
+importante. Ahora vamos a olvidarnos de \'el. Esta situación recuerda a juegos de apuestas como las de la
 {\em Loter\'ia Primitiva} en España (descrita en detalle en el enlace [\,\ref{enlace0008}\,]\label{enlace0008a}). En este tipo de juegos da igual el orden en el que salgan los n\'umeros, lo importante es que coincidan con nuestra apuesta.
 	
 Estamos interesados en este problema. Dado un conjunto de $n$ elementos
@@ -1088,9 +1093,8 @@ Esto no deber\'ia sorprendernos (y no digo que lo haga) porque en ambos casos te
     contabilizamos como variaciones diferentes (porque lo son) aquellas que
     tienen los mismos $k$ elementos ordenados de distinta forma.
     \end{itemize}
-Con la experiencia adquirida con permutaciones y variaciones, no necesitamos
-pasar por un ejemplo previo.
-
+Por ejemplo, las combinaciones de los números $\{1, 2, 3, 4\}$ tomados de $3$ en $3$ son $\{1, 2, 3\}$, $\{1, 2, 4\}$, $\{1, 3, 4\}$ y  $\{2, 3, 4\}$. ¡Asegúrate de que no hay más!
+ 
 Si nos fijamos en que en un caso el orden es importante y en el otro no, resulta que por cada combinaci\'on (subconjunto de $k$ elementos) tenemos $k!$ variaciones (el n\'umero de formas distintas de ordenar esos $k$ elementos). Dicho de otro modo, fijados $n$ y $k$, hay $k!$ más variaciones que combinaciones. De ahí deducimos que
 \[C(n,k)\cdot k! = V(n,k)\]
 Si recordamos la fórmula que nos permitía calcular $V(n,k)$, podemos despejar
@@ -1190,7 +1194,7 @@ Hay dos observaciones que facilitan bastante el trabajo con estos números combi
         Ahora observamos que $12!=(12\cdot 11\cdot\cdots\cdot 6)\cdot(5\cdot\cdots\cdot 2\cdot 1)$, y los paréntesis muestran que esto
         es igual a $(12\cdot 11\cdot\cdots\cdot 6)\cdot 5!$. Este factorial de $5$ se cancela con el del denominador y tenemos
         \[
-        \binom{12}{7}=\dfrac{\overbrace{12\cdot 11\cdot 10\cdot 9\cdot 8\cdot 7\cdot 6}^{6\mbox{ factores}}}{7!}=792.
+        \binom{12}{7}=\dfrac{\overbrace{12\cdot 11\cdot 10\cdot 9\cdot 8\cdot 7\cdot 6}^{7\mbox{ factores}}}{7!}=792.
         \]
         Generalizando esta observación sobre la cancelación de factoriales, la forma en la que vamos a expresar los coeficientes binomiales será finalmente esta:
         \begin{equation}\label{cap03:ecu:expresionPseudoFactorialCoeficientesBinomiales}
@@ -1204,17 +1208,16 @@ Los números combinatorios son importantes en muchos problemas de probabilidad. 
     Tenemos una caja de 10 bombillas y sabemos que tres están fundidas. Si sacamos al azar tres bombillas de la caja\footnote{``al azar'' aquí significa que todos los subconjuntos de tres bombillas son equiprobables.}, ¿Cuál es la probabilidad de que hayamos sacado las tres que están fundidas?\\[2mm]
     En este caso, al tratar de aplicar la Regla de Laplace, usamos los números combinatorios para establecer el número de casos posibles. ¿Cuántas formas distintas hay de seleccionar tres bombillas de un conjunto de 10? Evidentemente hay $\binom{10}{3}$ formas posibles. Este número es:
     \[\binom{10}{3}=\dfrac{10\cdot 9\cdot 8}{3\cdot 2\cdot 1}=120.\]
-    Estos son los casos posibles. Está claro además que sólo hay un caso favorable, cuando elegimos las tres bombillas defectuosas. Así pues, la probabilidad pedida es:
-    \[\dfrac{1}{120}.\]
+    Estos son los casos posibles. Está claro además que sólo hay un caso favorable, cuando elegimos las tres bombillas defectuosas. Así pues, la probabilidad pedida es $\dfrac{1}{120}$.
     \qed
     \end{Ejemplo}
-El siguiente ejemplo es {\sf\em extremadamente importante} para el resto del curso, porque nos abre la puerta que nos conducirá a la Distribución Binomial (que veremos en el Capítulo \ref{cap:TeoremaCentralLimite}) y a algunos de los resultados más profundos de la Estadística.
+\quad\\[3mm]    
+\noindent El siguiente ejemplo es {\sf\em extremadamente importante} para el resto del curso, porque nos abre la puerta que nos conducirá a la Distribución Binomial (que veremos en el Capítulo \ref{cap:TeoremaCentralLimite}) y a algunos de los resultados más profundos de la Estadística.
     \begin{Ejemplo}
     \label{cap03:ejem:probabilidadLanzamientoMonedas}
-    Lanzamos una moneda al aire cuatro veces, y contamos el número de caras obtenidas en esos lanzamientos. ¿Cuál es la probabilidad de obtener exactamente dos caras en total?\\
-    Vamos a pensar en cuál es el espacio muestral. Se trata de listas de cuatro símbolos: cara o cruz. Por ejemplo,
+    Lanzamos una moneda al aire cuatro veces, y contamos el número de caras obtenidas en esos lanzamientos. ¿Cuál es la probabilidad de obtener exactamente dos caras en total? Vamos a pensar en cuál es el espacio muestral. Se trata de listas de cuatro símbolos, elegidos entre caras o cruces. Por ejemplo,
     \[\smiley\smiley\dagger\smiley\]
-    es un resultado posible, con tres caras y una cruz. ¿Cuántas de estas listas de cara y cruz con cuatro símbolos hay? Enseguida se ve que hay $2^4$, así que ese es el número de casos posibles. ¿Y cuál es el número de casos favorables? Aquí es donde los números combinatorios acuden en nuestra ayuda. Podemos pensar así en los sucesos favorables: tenemos cuatro fichas, dos caras y dos cruces $\smiley,\smiley,\dagger,\dagger,$ y un casillero con cuatro casillas
+    es un resultado posible (no favorable), con tres caras y una cruz. ¿Cuántas de estas listas de caras y cruces con cuatro símbolos hay? Enseguida se ve que hay $2^4$, que es el número de casos posibles. ¿Y cuál es el número de casos favorables? Aquí es donde los números combinatorios acuden en nuestra ayuda. Podemos pensar así en los sucesos favorables: tenemos cuatro fichas, dos caras y dos cruces $\smiley,\smiley,\dagger,\dagger,$ y un casillero con cuatro casillas\\
     \begin{center}
     \begin{tabular}{|c|c|c|c|}
     \hline
@@ -1237,7 +1240,7 @@ El lector conocerá, sin duda, el caso $n=2$, que es la fórmula para el cuadrad
 \[(a+b)^2=a^2+2ab+b^2.\]
 Dejamos como ejercicio comprobar que esto es exactamente lo que dice la Fórmula del Binomio para $n=2$. Asimismo, le pedimos al lector que compruebe que:
 \[(a+b)^3=a^3+3a^2b+3ab^2+b^3.\]
-Y que haga el mismo ejercicio para $n=4$ y $n=5$ (es de mucha ayuda mirar las filas dle triángulo de Pascal, pág. \pageref{cap03:ecu:TrianguloPascal}).
+Y que haga el mismo ejercicio para $n=4$ y $n=5$ (es de mucha ayuda mirar las filas del triángulo de Pascal, pág. \pageref{cap03:ecu:TrianguloPascal}).
 
 \subsection{Otras fórmulas combinatorias.}
 \label{cap03:subsec:OtrasFormulasCombinatorias}
@@ -1267,8 +1270,8 @@ Vamos a ver los análogos de los objetos que hemos estudiado (permutaciones, var
 
     \begin{center}
     \fcolorbox{black}{Gris025}{
-    \begin{minipage}{10cm}
-        {\centering \bf Variaciones con repetición de $n$ elementos, tomados de $k$ en $k$\index{variaciones con repetici\'on}}\\
+    \begin{minipage}{11cm}
+        {\centering \bf Variaciones con repetición de $n$ elementos, tomados de $k$ en $k$\index{variaciones con repetici\'on}.}\\
         Si se permite que cada elemento aparezca tantas veces como se quiera, entonces:
         \begin{equation}\label{cap03:ecu:VariacionesConRepeticion}
         \operatorname{VRep}(n,k)=n^k
@@ -1288,7 +1291,7 @@ Vamos a ver los análogos de los objetos que hemos estudiado (permutaciones, var
             a & b & c & a & b & c & a & b & c \\
            \hline
         \end{tabular}
-        \caption{Las 9 variaciones con repetición de los elementos $[a,b,c]$, tomados de 2 en 2}.\label{cap03:tabla:variacionesRepeticion}
+        \caption{Las 9 variaciones con repetición de los elementos $[a,b,c]$, tomados de 2 en 2.}\label{cap03:tabla:variacionesRepeticion}
         \end{table}
     De hecho, ya hemos visto otro caso similar en el Ejemplo \ref{cap03:ejem:probabilidadLanzamientoMonedas}. Con los dos símbolos $\smiley$ y $\dagger$, para rellenar cuatro casillas (con repeticiones) se pueden formar
     \[\operatorname{VRep}(3,2)=2^4=16\]
@@ -1389,8 +1392,8 @@ Vamos a ver los análogos de los objetos que hemos estudiado (permutaciones, var
 
 Vamos a utilizar estas fórmulas para responder, de una manera fácil, a los dos experimentos (a) y (b) del Caballero De Méré (ver apartado \ref{PrimerasNocionesProbabilidad}, pág. \pageref{PrimerasNocionesProbabilidad}).
 
-\begin{Ejemplo}{El primer juego de De Méré}\label{cap03:ejem:DeMere01}
-    Recordemos que, en este juego, se trata de calcular la probabilidad de obtener al menos un seis en cuatro lanzamientos de un dado. Para usar la Regla de Laplace debemos empezar por considerar todos los resultados elementales (y equiprobables) posibles. Es decir, todas las listas posibles (incluyendo repeticiones, y teniendo en cuenta el orden) de  cuatro números, formadas con los números del 1 al 6. La combinatoria que hemos aprendido en esta Sección dice que hay
+\begin{Ejemplo}{\bf El primer juego de De Méré.}\label{cap03:ejem:DeMere01}
+    Recordemos que, en este juego, se trata de calcular la probabilidad de obtener al menos un seis en cuatro lanzamientos de un dado. Para usar la Regla de Laplace debemos empezar por considerar todos los resultados elementales (y equiprobables) posibles. Es decir, todas las listas posibles (incluyendo repeticiones, y teniendo en cuenta el orden) de  cuatro números, formadas con los números del 1 al 6. La combinatoria que hemos aprendido en esta sección dice que hay
     \[\operatorname{VRep}(6,4)=6^4=1296.\]
     de esas listas. De ellas, las que {\em no contienen} ningún 6 son todas las listas posibles (incluyendo repeticiones, y teniendo en cuenta el orden) de cuatro números,  formadas con los números del 1 al 5. De estas, hay:
     \[\operatorname{VRep}(5,4)=5^4=625.\]
@@ -1400,7 +1403,7 @@ Vamos a utilizar estas fórmulas para responder, de una manera fácil, a los dos
 \end{Ejemplo}
 
 \begin{Ejemplo}{El segundo juego de De Méré}\label{cap03:ejem:DeMere02}
-    En este segundo juego, se trata de calcular la probabilidad de obtener al menos un seis doble en veinticuatro lanzamientos de un par de dados. Para usar la Regla de Laplace, empezamos considerando todas las listas posibles (incluyendo repeticiones, y teniendo en cuenta el orden) de  24 números, formadas con los números del 1 al 36 (los 36 resultados equiprobables posibles al lanzar dos dados). La combinatoria que hemos aprendido en esta Sección dice que hay
+    En este segundo juego, se trata de calcular la probabilidad de obtener al menos un seis doble en veinticuatro lanzamientos de un par de dados. Para usar la Regla de Laplace, empezamos considerando todas las listas posibles (incluyendo repeticiones, y teniendo en cuenta el orden) de  24 números, formadas con los números del 1 al 36 (los 36 resultados equiprobables posibles al lanzar dos dados). La combinatoria que hemos aprendido en esta sección dice que hay
     \[\operatorname{VRep}(36,24)=36^{24}=22452257707354557240087211123792674816\]
     de esas listas. Por cierto, ¿podrías calcular esto usando una calculadora? De ellas, las que {\em no contienen} ningún 6 doble son todas las listas posibles (incluyendo repeticiones, y teniendo en cuenta el orden) de 24 números,  formadas con los números del 1 al 35. De estas, hay:
     \[\operatorname{VRep}(35,24)=35^{24}=11419131242070580387175083160400390625.\]
@@ -1484,7 +1487,7 @@ En inglés se utiliza terminología análoga: {\em positive predictive value (PP
 \subsubsection*{Sensibilidad y especificidad. Coeficientes de verosimilitud.}
 
 En el Ejemplo \ref{cap03:ejem:PruebasDiagnosticasBayes} hemos visto que para calcular esas probabilidades condicionadas, podemos usar el Teorema de Bayes, y expresarlas en función de estas otras cuatro probabilidades recíprocas:
-\[P(+\,|\,D),\quad P(-\,|\,D^c), P(-\,|\,D),\quad  P(+\,|\,D^c).\]
+\[P(+\,|\,D),\quad P(-\,|\,D^c),\quad   P(-\,|\,D),\quad  P(+\,|\,D^c).\]
 Los valores predictivos $VPP$ y $VPN$ contienen, como hemos dicho, la información que interesa a cada individuo concreto, para interpretar correctamente el resultado de la prueba. Pero estos otros valores se refieren más directamente a la fiabilidad o validez de la prueba cuando se aplica a varios individuos. Precisando más, un valor como
 \[
 P(+\,|\,D)
@@ -1826,7 +1829,7 @@ La Ecuación \ref{cap03:ecu:RelacionBayesianaOddsPrePostTestPositivo} permite, d
 \subsubsection{¿Qué es mejor, usar probabilidades o posibilidades (odds)?}
 \label{cap03:subsubsec:QueEsMejorPosibilidadesProabilidades}
 
-Ahora que ya sabemos qué son, y cómo se comportan las posibilidades, es posible que el lector se esté planteando la pregunta que encabeza este apartado. Y la mejor respuesta que podemos darle es que no hay una respuesta. Los dos objetos, posibilidades y probabilidades, son descripciones alternativas de una misma situación. Y tienen propiedades matemáticas distintas. Una probabilidad está obligada a permanecer en el intervalo $[0,1]$, y es muy fácil de convertir en un porcentaje. Por su parte, las posibilidades pueden tomar cualquier valor positivo (o infinito, si la probabilidad es $1$). Todavía no hemos avanzado suficiente en el curso para saber porque a veces es preferible que suceda una de esas dos cosas. Pero la buena noticia es, sin duda, que no hay ninguna necesidad de elegir. Las probabilidades y las posibilidades son herramientas de las que disponemos. Es como si tuviéramos que elegir si es mejor un destornillador o una llave inglesa. Lo mejor, sin duda, es llevar las dos en la caja de herramientas, y usar la herramienta adecuada para cada problema.
+Ahora que ya sabemos qué son, y cómo se comportan las posibilidades, es posible que el lector se esté planteando la pregunta que encabeza este apartado. Y la mejor respuesta que podemos darle es que no hay una respuesta. Los dos objetos, posibilidades y probabilidades, son descripciones alternativas de una misma situación. Y tienen propiedades matemáticas distintas. Una probabilidad está obligada a permanecer en el intervalo $[0,1]$, y es muy fácil de convertir en un porcentaje. Por su parte, las posibilidades pueden tomar cualquier valor positivo (o infinito, si la probabilidad es $1$). Todavía no hemos avanzado suficiente en el curso para saber por qué a veces es preferible que suceda una de esas dos cosas. Pero la buena noticia es, sin duda, que no hay ninguna necesidad de elegir. Las probabilidades y las posibilidades son herramientas de las que disponemos. Es como si tuviéramos que elegir si es mejor un destornillador o una llave inglesa. Lo mejor, sin duda, es llevar las dos en la caja de herramientas, y usar la herramienta adecuada para cada problema.
 
 \subsubsection{Verosimilitud}
 \label{cap03:subsubsec:verosimilitud}

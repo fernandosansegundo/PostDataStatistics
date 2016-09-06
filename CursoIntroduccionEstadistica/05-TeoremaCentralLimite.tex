@@ -14,11 +14,11 @@ En muchas situaciones, el resultado de un experimento sólo admite dos resultado
 Por ejemplo:
     \begin{enumerate}
             \item Cuando lanzamos una moneda, y apostamos a que va a salir cara, entonces sólo podemos ganar la apuesta o perderla.
-            \item Y si lanzamos un dado, y apostamos a que va a salir un seis, entonces sólo podemos ganar la apuesta o perderla.
-            \item Al hacer pruebas diagnósticas en Medicina, nos interesa la respuesta a preguntas como:``¿El paciente es hipertenso, sí o no?''
+            \item Si lanzamos un dado y apostamos a que va a salir un seis, entonces sólo podemos ganar la apuesta o perderla.
+            \item Al hacer pruebas diagnósticas en Medicina, nos interesa la respuesta a preguntas como: {\em ``¿El paciente es hipertenso, sí o no?''}
             \item Y de forma parecida, en un proceso de fabricación industrial queremos saber si una pieza es o no defectuosa.
     \end{enumerate}
-En ambas ocasiones sólo hay dos resultados posibles. La diferencia entre ellas es, naturalmente,  que la probabilidad de éxito o fracaso no es la misma. Al lanzar la moneda, la probabilidad de ganar la apuesta es $1/2$, mientras que en el caso del dado es $1/6$. Vamos a introducir la terminología que usaremos para describir este tipo de situaciones:
+En todos esos casos sólo hay dos resultados posibles. La diferencia entre ellos es, naturalmente,  que la probabilidad de éxito o fracaso no es la misma. Al lanzar la moneda, la probabilidad de ganar la apuesta es $1/2$, mientras que en el caso del dado es $1/6$. Vamos a introducir la terminología que usaremos para describir este tipo de situaciones:
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{13cm}
@@ -37,7 +37,7 @@ En ambas ocasiones sólo hay dos resultados posibles. La diferencia entre ellas 
 Por ejemplo, en el caso de la moneda es $p=q=\frac{1}{2}$ (a menos, naturalmente, que la moneda esté trucada). Y en el caso del dado es $p=\frac{1}{6}$, mientras $q=\frac{5}{6}$.
 
 Para describir el resultado de un experimento de este tipo, utilizamos un tipo especial de variables aleatorias. Una variable aleatoria $X$ es de tipo {\em Bernouilli$(p)$}\index{Bernouilli$(p)$, variable aleatoria}
-si sólo puede tomar dos valores. Puesto que una variable aleatoria tiene que producir resultados numéricos, arbitrariamente, se asignan los valores
+si sólo puede tomar dos valores. Puesto que una variable aleatoria tiene que producir resultados numéricos, se asignan arbitrariamente (pero de forma conveniente, como veremos) los valores
 \[X(\text{éxito})= 1\qquad\qquad X(\text{fracaso})= 0,\]
 con probabilidades $p$ y $q=1-p$. En resumen, estas variables tienen la tabla (o función de densidad) más sencilla posible, que puede verse  en la Tabla \ref{cap05:tabla:FuncionDensidadVariableBernouilli}.
     \begin{table}[hp]
@@ -59,7 +59,7 @@ con probabilidades $p$ y $q=1-p$. En resumen, estas variables tienen la tabla (o
 \label{cap05:ecu:FuncionDensidadVariableBernouilli}
 f_X(x)=p^{x}\cdot q^{1-x}.
 \end{equation}
-Recuerda que $X$ sólo toma los valores $0$ y $1$, y sustituye $x$ por $0$ y por $1$ en $f_X(x)$ para ver como funciona esto.
+Recuerda que $X$ sólo toma los valores $0$ y $1$, y sustituye $x$ por $0$ y por $1$ en $f_X(x)$ para ver cómo funciona esto.
 
 Con una función de densidad tan sencilla, es muy fácil también calcular la media y la varianza de una variable de tipo {\em Bernouilli$(p)$}. Para la media tenemos:
     \begin{equation}\label{cap05:ecu:MediaVariableBernouilli}
@@ -72,7 +72,7 @@ Y para la varianza:
      &=(1-p)^2\cdot p+(0-p)^2\cdot q=q^2p+p^2q=pq\cdot(p+q)=pq.
     \end{array}
     \end{equation}
-Las variables de tipo Bernouilli son muy importantes, porque los usamos como bloques básicos para construir otras situaciones más complejas. En particular, son las piezas básicas para construir la Distribución Binomial.
+Las variables de tipo Bernouilli son muy importantes, porque las usamos como bloques básicos para construir otras situaciones más complejas. En particular, son las piezas básicas para construir la Distribución Binomial.
 
 \subsection{Variable aleatoria binomial.}
 \label{cap05:subsec:VariableAleatoriaBinomial}
@@ -81,9 +81,9 @@ Supongamos que tenemos un experimento de Bernouilli, con sus dos resultados posi
 
 Para fijar ideas, el experimento de Bernouilli puede ser lanzar un dado, y vamos a suponer que lo lanzamos $n=5$ veces. ¿Cuál es la probabilidad de sacar {\em exactamente} $k=2$ seises en esos 5 lanzamientos? Antes de seguir adelante, recomendamos al lector que repase el Ejemplo \ref{cap03:ejem:probabilidadLanzamientoMonedas} (pág. \pageref{cap03:ejem:probabilidadLanzamientoMonedas}), en el que se planteaba una pregunta muy parecida, pero en aquel caso usando monedas sin trucar. La diferencia, por tanto, es que aquí, con el dado, nos planteamos un problema más general, porque las probabilidades de éxito $p=1/6$ y de fracaso $q=5/6$ son distintas, mientras que en las monedas es $p=q=1/2$. Además, también podemos ver que es una pregunta muy relacionada con los juegos del caballero De Mere. (De hecho, para obtener la respuesta al primer juego de De Mere, lo que hicimos fue calcular la probabilidad del suceso contrario: obtener exactamente {\em ningún} seis en cuatro tiradas de un dado). En el siguiente ejemplo vamos a obtener la respuesta y, como consecuencia, descubriremos la fórmula general para la Distribución Binomial. Esa distribución juega un papel tan importante en todo lo que sigue, que creemos que es fundamental entender bien este ejemplo. Por esa razón, vamos a darte dos versiones del ejemplo, con la esperanza de que, de una u otra manera, entiendas el resultado final. La situación ideal es que entiendas las dos, y llegues a ver la relación entre los dos enfoques de un mismo problema. Pero lo que es irrenunciable es que entiendas la fórmula que vamos a obtener para el resultado del problema.
 
-\begin{Ejemplo}{\bf (Binomial, primera versión)}
+\begin{Ejemplo}{\bf (Binomial, primera versión).}
 \label{ejem:BinomialDosSeisesCuatroTiradas}
-    El conjunto de respuestas posibles (espacio muestral) tiene $6^5$ respuestas posibles (y equiprobables). Hemos usado muchas veces el ejemplo del lanzamiento de dos dados, con $36=6^2$ resultados posibles, así que no es una sorpresa que aquí, al lanzar cinco veces, tengamos $6^5$ resultados posibles. Y si lo quieres ver desde un punto de vista combinatorio, se trat del número de variaciones con repetición de seis elementos, tomados de cinco en cinco (ver la Ecuación \ref{cap03:ecu:VariacionesConRepeticion}, pág. \pageref{cap03:ecu:VariacionesConRepeticion}).
+    El conjunto de respuestas posibles (espacio muestral) tiene $6^5$ respuestas posibles (y equiprobables). Hemos usado muchas veces el ejemplo del lanzamiento de dos dados, con $36=6^2$ resultados posibles, así que no es una sorpresa que aquí, al lanzar cinco veces, tengamos $6^5$ resultados posibles. Y si lo quieres ver desde un punto de vista combinatorio, se trata del número de variaciones con repetición de seis elementos, tomados de cinco en cinco (ver la Ecuación \ref{cap03:ecu:VariacionesConRepeticion}, pág. \pageref{cap03:ecu:VariacionesConRepeticion}).
 
     ¿En cuántas de esas respuestas posibles se obtienen exactamente dos seises? (Dicho de otro modo ¿cuántas ``favorables'' hay?) Como hicimos en el caso de una moneda, podemos representar los resultados de esas cinco tiradas usando un casillero con cinco casillas.
     \begin{center}
@@ -198,7 +198,7 @@ Queremos determinar la siguiente probabilidad:
              \end{tabular}
              \end{center}
              Los $2$ seises se pueden haber obtenido en la primera y segunda casillas, o en la primera y la tercera, etcétera.
-    En la Tabla \ref{cap05:tabla:FormasSacarDosVecesSeisCincoTiradasDado} marcamos con un $6$ las casillas en las que se han obtenido los seises. Adem\'as, pondremos nombre a los eventos; en la primera columna: con $A_1$ nos referimos al caso en el que los seises están en las casillas 1 y 2, y así sucesivamente. Y  ''traduciremos'' los eventos a \'exitos (E) y fracasos (F), que tienen probabilidad $p=1/6$ y $q=1-p=5/6$, respectivamente:
+    En la Tabla \ref{cap05:tabla:FormasSacarDosVecesSeisCincoTiradasDado} marcamos con un $6$ las casillas en las que se han obtenido los seises. Adem\'as, pondremos nombre a los sucesos; en la primera columna: con $A_1$ nos referimos al caso en el que los seises están en las casillas 1 y 2, y así sucesivamente. Y  ''traduciremos'' los sucesos a \'exitos (E) y fracasos (F), que tienen probabilidad $p=1/6$ y $q=1-p=5/6$, respectivamente:
     \begin{table}[htbp]
         \begin{center}
           \begin{tabular}{|c|c|c|c|c|c|}
@@ -282,12 +282,12 @@ Queremos determinar la siguiente probabilidad:
           	\]
          Para no complicarnos tanto la vida de entrada, vamos a considerar la probabilidad de que se de, o bien $A_1$, o bien $A_2$. Esto, en lenguaje conjuntista, es
          \[P(\text{Suceda o bien $A_1$, o bien suceda $A_2$)}=P(A_1\cup A_2).\]
-         Aparece la probabilidad de la uni\'on de dos eventos. Esto debería traerte a la cabeza
+         Aparece la probabilidad de la uni\'on de dos sucesos. Esto debería traerte a la cabeza
          lo explicado en la Secci\'on \ref{Cap03:def:DefinicionProbabilidad}, en la que hemos visto         la forma de operar con este tipo de problemas; en concreto (Ecuación \ref{cap03:ecu:ProbabilidadUnionDosSucesosCasoGeneral}, pág. \pageref{cap03:ecu:ProbabilidadUnionDosSucesosCasoGeneral})
 		\[P(A_1\cup A_2)=P(A_1)+P(A_2)-P(A_1\cap A_2).\]
-    Además, es importante el hecho de que los eventos $A_1$ y $A_2$ son incompatibles: efectivamente, si tiene que haber 2 seises, estos no pueden estar en las casillas $1$ y $2$ (por $A_1$), y a la vez en las casillas $2$ y $3$ (por $A_2$), porque habría 3 seises. Esto nos dice (ver la segunda de las Propiedades Fundamentales de la Probabilidad, pág. \pageref{cap03:def:PropiedadesFundamentalesFuncionProbabilidad}) que (puesto que $P(A_1\cap A_2)=0$), se cumple:
+    Además, es importante el hecho de que los sucesos $A_1$ y $A_2$ son incompatibles: efectivamente, si tiene que haber 2 seises, estos no pueden estar en las casillas $1$ y $2$ (por $A_1$), y a la vez en las casillas $2$ y $3$ (por $A_2$), porque habría 3 seises. Esto nos dice (ver la segunda de las Propiedades Fundamentales de la Probabilidad, pág. \pageref{cap03:def:PropiedadesFundamentalesFuncionProbabilidad}) que (puesto que $P(A_1\cap A_2)=0$), se cumple:
 %         Sabemos que lo que obtengamos en una serie de lanzamientos (de hecho, en cada lanzamiento)
-%         es independiente de lo que obtenemos en otra. Gracias a una de las propiedades fundamentales de la funci\'on  de probabilidad, cuando los eventos son incompatibles
+%         es independiente de lo que obtenemos en otra. Gracias a una de las propiedades fundamentales de la funci\'on  de probabilidad, cuando los sucesos son incompatibles
          %\pendiente{En esta parte creo que quieres decir incompatibles, no independientes} YA ESTÁ ARREGLADO\\
 %         (ver la segunda de las Propiedades Fundamentales de la Probabilidad, pág. \pageref{cap03:def:PropiedadesFundamentalesFuncionProbabilidad}) se cumple que
          \[P(A_1\cup A_2)=P(A_1)+P(A_2).\]
@@ -317,7 +317,7 @@ Queremos determinar la siguiente probabilidad:
           	al hacer $5$ lanzamientos.
           	Esa respuesta ser\'a de utilidad si pensamos en la relaci\'on entre $10$
           	y los datos del problema. Hacemos $5$ lanzamientos, que llamaremos $1,2,3,4,5$,
-          	y los eventos $A_i$ 	describen en qu\'e posici\'on han salido los $2$ seises.
+          	y los sucesos $A_i$ 	describen en qu\'e posici\'on han salido los $2$ seises.
           	Por ejemplo, $A_1$ se corresponde con $\left\{1,2\right\}$, $A_3$ con $\left\{1,3\right\}$,
           	y as\'i sucesivamente. Y aqu\'i entran en escena las combinaciones:
           	las posiciones en las que salen los $2$ seises vienen dadas por los
@@ -566,7 +566,7 @@ situaciones:
   \end{figure}
 
 
-      Como puede verse, estas distribuciones son un caso extremo, que concentra casi toda la probabilidad en los valores iniciales (o finales, si $p\approx 1$), en muy pocos valores, si se comparan con $n$ (que, en este ejemplo, es $100$). Este es el caso más difícil de tratar, y de hecho lo vamos a apartar de nuestra discusión hasta la Sección \ref{cap08:sec:DistribucionPoisson} del Capítulo \ref{cap:DistribucionesRelacionadasBinomial} (pág. \pageref{cap08:sec:DistribucionPoisson}), cuando estudiaremos la distribución de Poisson, que está hecha a la medida de esta situación.
+      Como puede verse, estas distribuciones son un caso extremo, que concentra casi toda la probabilidad en los valores iniciales (o finales, si $p\approx 1$), en muy pocos valores, si se comparan con $n$ (que, en este ejemplo, es $1000$). Este es el caso más difícil de tratar, y de hecho lo vamos a apartar de nuestra discusión hasta la Sección \ref{cap08:sec:DistribucionPoisson} del Capítulo \ref{cap:DistribucionesRelacionadasBinomial} (pág. \pageref{cap08:sec:DistribucionPoisson}), cuando estudiaremos la distribución de Poisson, que está hecha a la medida de esta situación.
 \end{enumerate}
 
 Naturalmente, hay distribuciones que no son binomiales, y a veces basta con echar un vistazo a una gráfica de frecuencias observadas, y compararla con la gráfica teórica de probabilidades, para comprender que estamos ante una distribución que no es binomial. La Figura \ref{cap02:fig:DatosBimodales} (pág. \pageref{cap02:fig:DatosBimodales}), por ejemplo, muestra las frecuencias observadas de un conjunto de datos {\em bimodal}\index{bimodal}, con dos máximos bien diferenciados de la frecuencia. Y las distribuciones binomiales nunca son bimodales, así que la distribución de la variable, en la población de la que se ha tomado esa muestra, no parece una binomial. Una gráfica bimodal nos puede hacer sospechar que los datos que estamos observando provienen, en realidad, de la mezcla de dos poblaciones distintas, correspondientes a los dos máximos de la frecuencia.
@@ -794,7 +794,7 @@ Como hemos dicho al cerrar la anterior sección, en una variable discreta, que t
 finita de valores, utilizamos  una tabla como la Tabla
 \ref{cap04:tabla:tablaDensidadProbabilidadGenericaVariableAleatoriaDiscreta}, pág.
 \pageref{cap04:tabla:tablaDensidadProbabilidadGenericaVariableAleatoriaDiscreta}) para repartir la
-probabilidad entre los distintos valores. Pero con una variable aleatoria, que toma infinitos
+probabilidad entre los distintos valores. Pero con una variable aleatoria continua, que toma infinitos
 valores (todos los valores de un intervalo), no podemos hacer eso. Si la variable aleatoria
 continua $X$ toma todos los valores del intervalo $(a,b)$, vamos a aprender a utilizar las
 integrales, para repartir la probabilidad entre esos valores. En el siguiente cuadro se resume la
@@ -888,7 +888,7 @@ Vamos a empezar con un ejemplo que ilustre la definición de función de densida
 ¿Cómo se calcula la integral que ha aparecido en este ejemplo? En la inmensa mayoría de los casos, cuando se desea un resultado exacto (simbólico), el cálculo es un proceso en dos pasos, usando el método que se conoce como {\sf Teorema Fundamental del Cálculo Integral}\index{teorema fundamental del cálculo integral} (o Regla de Barrow)\index{regla de Barrow}:
     \begin{center}
     \fcolorbox{black}{Gris025}{
-    \begin{minipage}{12cm}
+    \begin{minipage}{12.5cm}
         \begin{center}
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         {\bf Teorema Fundamental del Cálculo Integral}
@@ -896,10 +896,10 @@ Vamos a empezar con un ejemplo que ilustre la definición de función de densida
         \end{center}
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         \begin{enumerate}
-          \item Buscamos una función $F(x)$ que cumpla $F'(x)=f(x)$. Esa función $F$ se denomina una {\sf primitiva}\index{primitiva} de $f(x)$, también se representa mediante el símbolo de integral, pero sin que aparezcan los extremos del intervalo:
+          \item Buscamos una función $F(x)$ que cumpla $F'(x)=f(x)$ (es decir, la derivada de $F$ es $f$). Esa función $F$ se denomina una {\sf primitiva}\index{primitiva} de $f(x)$, también se representa mediante el símbolo de integral, pero sin que aparezcan los extremos del intervalo:
               \[F(x)=\int f(x)dx.\]
               La notación habitual para una primitiva es, como hemos hecho aquí, utilizar la misma letra pero en mayúsculas.
-          \item Una vez que hemos hallado $F$, la integral (es decir, el área, es decir, la probabilidad) es igual a la diferencia de valores de $F$ en los extremos del intervalo:
+          \item Una vez que hemos hallado $F$, obtenemos el valor de la integral (es decir, el área, es decir, la probabilidad) calculando la diferencia de valores de $F$ en los extremos del intervalo:
               \begin{equation}\label{cap05:ecu:TeoremaFundamentalCalculo}
               \int_a^b f(x)dx = F(b)-F(a).
               \end{equation}
@@ -939,7 +939,7 @@ Antes de eso, un consejo, a modo de advertencia, dirigido a aquellos lectores co
     \[\int_{-\infty}^{\infty}\dfrac{1}{\pi(1+x^2)}dx=F(\infty)-F(-\infty).\]
     ¿Qué significa $F(\infty)$? Sustituyendo ingenuamente, como si infinito fuera un número cualquiera, obtenemos
     \[\dfrac{1}{\pi}\arctan(\infty).\]
-    Así que la pregunta pasa a ser ``¿qué significa $\arctan(\infty)$?''. La respuesta técnica es que tendríamos que calcular un límite. Pero en este, y en muchos otros casos, podemos tomar un camino más sencillo. Cuando un matemático ve un símbolo como $\infty$, sabe que casi siempre eso significa que debemos preguntarnos lo que sucede cuando pensamos en valores muy grandes de la variable; de hecho, tan grandes como se quiera. Vamos a representar la gráfica de la función $F(x)$, que puede verse en la Figura \ref{cap05:fig:Cap05-GraficaArcoTangente}.
+    Así que la pregunta pasa a ser ``¿qué significa $\arctan(\infty)$?''. La respuesta técnica es que tendríamos que calcular un límite. Pero en este, y en muchos otros casos, podemos tomar un camino más sencillo. Cuando un matemático ve un símbolo como $\infty$, sabe que casi siempre eso significa que debemos preguntarnos lo que sucede cuando pensamos en valores muy grandes de la variable; de hecho, tan grandes como se quiera. Vamos a representar la gráfica de la función $\arctan(x)$, que puede verse en la Figura \ref{cap05:fig:Cap05-GraficaArcoTangente}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -949,7 +949,7 @@ Antes de eso, un consejo, a modo de advertencia, dirigido a aquellos lectores co
 \begin{bn}
 \includegraphics[width=12cm]{../fig/Cap05-GraficaArcoTangente-bn.png}
 \end{bn}
-\caption{Gráfica de la función $F(x)$ del Ejemplo \ref{cap05:ejem:DistribucionCauchyIntegralTotal1}.}
+\caption{Gráfica de la función $\arctan(x)$ para el Ejemplo \ref{cap05:ejem:DistribucionCauchyIntegralTotal1}.}
 \label{cap05:fig:Cap05-GraficaArcoTangente}
 \end{center}
 \end{figure}
@@ -1039,7 +1039,7 @@ Esperamos que estos ejemplos ayuden al lector a empezar a entender el papel que 
 \subsection{Variables continuas con soporte en un intervalo.}
 \label{cap05:subsec:VariablesContinuasSoporteIntervalo}
 
-En el apartado precedente hemos trabajado con un ejemplo de función de densidad definida en $(-\infty, \infty)$. Es decir, que la variable aleatoria $X$ asociada con $f$ puede tomar todos los valores. Pero, como ya habíamos anunciado, en muchos otros casos, vamos a trabajar con variables continuas que sólo toman valores en un intervalo acotado $(a,b)$, o con casos intermedios, como las variables aleatorias que sólo toman valores positivos (es decir, en el intervalo $(0,+\infty)$).
+En el apartado precedente hemos trabajado con un ejemplo de función de densidad definida en $(-\infty, \infty)$. Es decir, que la variable aleatoria $X$ asociada con $f$ puede tomar todos los valores. Pero, como ya habíamos anunciado, en muchos otros casos vamos a trabajar con variables continuas que sólo toman valores en un intervalo acotado $(a,b)$, o con casos intermedios, como las variables aleatorias que sólo toman valores positivos (es decir, en el intervalo $(0,+\infty)$).
 
 Aunque al principio puede parecer que cada uno de esos casos es diferente, hay una forma en la que podemos simplificar las cosas, y tratar a todos los casos por igual. {\sf Basta con redefinir $f$, para que pase a valer $0$ en todos los valores en los que, originalmente, no estaba definida.} Al hacer esto no se modifica ninguna asignación de probabilidad, y lo que es más importante, si $f$ es $0$ fuera de un intervalo $(a,b)$, entonces da igual escribir las integrales usando ese intervalo o integrando desde $-\infty$ hasta $\infty$. En fórmulas:
     \begin{center}
@@ -1267,7 +1267,7 @@ La Tabla \ref{cap05:tablas:MuSigmaFormulasDosTiposVariables} resume la situació
 \label{cap05:tablas:MuSigmaFormulasDosTiposVariables}
 \end{table}
 
-Como puede apreciarse, si se reemplaza $P(X=x_i)$ por $f(x)$, el paralelismo entre las dos fórmulas resulta evidente.
+Como puede apreciarse, si se reemplaza $P(X=x_i)$ por $f(x)\,dx$, el paralelismo entre las dos fórmulas resulta evidente.
 
 \begin{ejemplo}
 \label{cap05:ejem:MediaVarianzaVariableAleatoriaContinua}
@@ -1296,13 +1296,11 @@ k&\mbox{ si }a<x<b\\
 0&\mbox{ en otro caso. }
 \end{cases}
 \]
-Y ahora ya sabemos lo que viene a continuación: como la probabilidad total tiene que ser uno, podemos usar eso para determinar la constante $k$. La cuenta es esta:
+Y ahora las cosas resultan más sencillas: como la probabilidad total tiene que ser uno, podemos usar eso para determinar la constante $k$. La cuenta es esta:
 \[
-1=\int_a^b k dx
+1=\int_a^b k\, dx
 \]
-Tenemos que encontrar una primitiva de la función constante $f(x)=k$. Esa primitiva es $F(x)=k\cdot x$, como puedes comprobar fácilmente derivando. También puedes usar un programa de integración simbólica, como hemos hecho en otros ejemplos. Pero en este caso es muy importante ser cuidadosos, y asegurarnos de que el programa entiende que la variable de la función es $x$ y no $k$. Veremos esto con más detalle en el Tutorial05.
-
-Usando esa primitiva:
+Tenemos que encontrar una primitiva de la función constante $f(x)=k$. Esa primitiva es $F(x)=k\cdot x$, como puedes comprobar fácilmente derivando. También puedes usar un programa de integración simbólica, como hemos hecho en otros ejemplos. Pero en este caso es muy importante ser cuidadosos, y asegurarnos de que el programa entiende que la variable de la función es $x$ y no $k$. Discutiremos esto con más detalle en la Sección \ref{cap05:subsec:VariablesMudasIntegrales} (pág. \pageref{cap05:subsec:VariablesMudasIntegrales}) y el Tutorial05. Usando esa primitiva:
 \[
 1=\int_a^b k dx=F(b)-F(a)=k\cdot b-k\cdot a=k\cdot(b-a)
 \]
@@ -1354,7 +1352,7 @@ Pero si observamos la definición anterior de $F$, veremos que no hay nada en es
     %\end{definicion}
     \end{minipage}}
     \end{center}
-Én el caso de las variables discretas dadas mediante una tabla de densidad, como hemos dicho, bastaba con acumular las probabilidades para obtener los valores de $F$. ¿Cómo se obtienen eso valores, cuando $X$ es una variable aleatoria continua? En ese caso, hemos aprendido que las probabilidades asociadas con $X$ se calculan integrando la función de densidad $f(x)$. Y aquí sucede lo mismo. La expresión que se obtiene para $F(x)$ es esta:
+Én el caso de las variables discretas dadas mediante una tabla de densidad, como hemos dicho, bastaba con acumular las probabilidades para obtener los valores de $F$. ¿Cómo se obtienen esos valores, cuando $X$ es una variable aleatoria continua? En ese caso, hemos aprendido que las probabilidades asociadas con $X$ se calculan integrando la función de densidad $f(x)$. Y aquí sucede lo mismo. La expresión que se obtiene para $F(x)$ es esta:
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
@@ -1698,7 +1696,7 @@ Hemos aprovechado este fichero para presentar una propiedad especialmente signif
             \end{equation}
     \end{minipage}}
     \end{center}
-Ya sabemos que usamos la media como representante de un conjunto de datos, y que la desviación típica mide cómo de agrupados están los datos, con respecto a la media. Lo que dicen estas dos desigualdades es que, si tenemos datos de tipo normal (lo cual, como veremos, sucede a menudo), el 68\% de los datos no se aleja de la media más de $\sigma$, y hasta un 95\% de los datos está a distancia menor que $2\sigma$ de la media. Cuando estamos mirando datos de tipo normal, podemos medir la distancia de un dato a la media usando como unidad la desviación típica $\sigma$. Un dato que esté a $\sigma$ o menos de distancia es un valor bastante típico de esa variable, mientras que si un dato está a distancia mayor que $6\sigma$ de la media, podemos decir que es un valor extremadamente raro (y es muy improbable que la variable tome ese valor).
+Ya sabemos que usamos la media como representante de un conjunto de datos, y que la desviación típica mide cómo de agrupados están los datos, con respecto a la media. Lo que dicen estas dos desigualdades es que, si tenemos datos de tipo normal (lo cual, como veremos, sucede a menudo), el 68\% de los datos no se aleja de la media más de $\sigma$, y hasta un 95\% de los datos está a distancia menor que $2\sigma$ de la media. Cuando estamos mirando datos de tipo normal, podemos medir la distancia de un dato a la media usando como unidad la desviación típica $\sigma$. Un dato cuya distancia a la media sea menor que $\sigma$ es un valor bastante típico de esa variable, mientras que si un dato está a distancia mayor que, por ejemplo,  $6\sigma$ de la media podemos decir que es un valor extremadamente raro (y es muy improbable que la variable tome ese valor).
 
 Estas variables aleatorias normales son, insistimos, excepcionalmente importantes. En primer lugar, porque tienen esa relación especial con las binomiales, y las binomiales, a su vez, son las más importantes de las variables aleatorias discretas. Vamos a recapitular los detalles de esa relación de aproximación, porque hay un detalle importante que el lector debe conocer, pero que hasta ahora hemos omitido, para no interrumpir la discusión.
 
@@ -1791,7 +1789,7 @@ no depende de $\mu$ ni de $\sigma$ (la demostración rigurosa no es trivial, por
    \end{ejemplo}
 Este ejemplo ayuda a entender porque los valores de $N(0,1)$ son especialmente importantes. Durante mucho tiempo, hasta la generalización de los ordenadores personales, esos valores se calculaban aproximadamente, con unas cuantas cifras decimales (usando métodos numéricos), y se tabulaban. Si miras al final de la mayoría de los libros de Estadística ({!`}pero no de este!), aún encontraras esas tablas, casi como un tributo al enorme trabajo que representan, un trabajo que desde la actualidad parece casi artesano. Nosotros no necesitaremos tablas, porque el ordenador puede calcular cualquiera de esos valores para nosotros, al instante, con más precisión de la que tenían las mejores de aquellas tablas, como veremos en el Tutorial05.
 
-\subsubsection{Suma de variables aleatorias normales}
+\subsubsection{Suma de variables aleatorias normales.}
 \label{cap05:subsubsec:SumaVariablesAleatoriasNormales}
 
 Si tenemos dos variables normales independientes, de tipos distintos, por ejemplo:
@@ -1810,9 +1808,7 @@ y desviación típica
         \index{variables normales independientes, suma}
         \index{normales independientes, suma de variables}
         \end{center}
-       Si
-       \[X_1\sim N(\mu_1,\sigma_1)\qquad \mbox{ y }X_2\sim N(\mu_2,\sigma_2),\]
-       son variables normales independientes, su suma {\sf es de nuevo una variable normal} de tipo
+       Si $X_1\sim N(\mu_1,\sigma_1)$ y $X_2\sim N(\mu_2,\sigma_2)$ son variables normales independientes, su suma {\sf es de nuevo una variable normal} de tipo
         \[N\left(\mu_1+\mu_2,\sqrt{\sigma_1^2+\sigma_2^2}\right).\]
        Y este resultado se generaliza a la suma de $k$ variables normales independientes, que dan como resultado una normal de tipo
        \begin{equation}\label{cap05:ecu:SumaVariablesNormalesIndependientes}
@@ -1821,7 +1817,7 @@ y desviación típica
     \end{minipage}
     }
     \end{center}
-
+Insistimos, lo importante aquí es que la suma de variables normales independientes es, de nuevo, una variable normal.
 
 \subsection{El teorema central del límite.}
 \label{sec:teoremaCentralLimitePrimeraVersion}

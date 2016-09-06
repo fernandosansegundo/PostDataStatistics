@@ -328,7 +328,7 @@ en el cuadro de diálogo que se abrirá escribe {\tt Notepad}. Tras pulsar en Ac
 \begin{center}
 \includegraphics[width=10cm]{../fig/Tut00-BlocDeNotas.png}
 \end{center}
-No soy usuario de Mac, pero en ese sistema creo que puedes usar el programa gratuito {\tt
+En un Mac te recomendamos usar el programa gratuito {\tt
 textwrangler}, que se descarga desde el enlace:
       \begin{center}
       \link{http://www.barebones.com/products/textwrangler/}{http://www.barebones.com/products/textwrangler/}

@@ -19,6 +19,7 @@ exclude/
 ## R history files
 
 .Rhistory
+TutorialesR/.Rhistory
 
 ## Tex files that are output of Rnw files:
 

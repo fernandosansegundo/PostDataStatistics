@@ -37,7 +37,7 @@ Hemos visto que cada suceso $A$ del espacio muestral $\Omega$ tiene asociado un 
 Vamos ahora a ver otro ejemplo, en este caso inspirado en los problemas de probabilidad geométrica.
 \begin{Ejemplo}\label{ejem:ProbabilidadGeometricaSubconjuntosCirculo}
     Consideremos un círculo $C$ centrado en el origen y de radio 1. El espacio muestral $\Omega$ está formado por todos los subconjuntos\footnote{Subconjuntos que no sean excesivamente ``raros'', en el sentido que ya hemos discutido.} de puntos de $C$. Y la probabilidad de un subconjunto $A$ se define así:
-    \[P(A)=\mbox{área de }A.\]
+    \[P(A)=\dfrac{\mbox{área de }A}{\mbox{área del círculo }C} = \dfrac{\mbox{área de }A}{\pi}.\]
     Consideremos ahora la variable $X(x,y)=x$, que a cada punto del círculo le asocia su coordenada $x$. En este caso la coordenada $x$ toma cualquier valor real entre $-1$ y $1$. Y si preguntamos {``¿cuál es la probabilidad de que tome por ejemplo el valor $1/2$?''}, la respuesta es $0$. Porque los puntos del círculo donde toma ese valor forman un segmento (una cuerda del círculo), y el segmento tiene área $0$. Las cosas cambian si preguntamos {``¿cuál es la probabilidad de que la coordenada $x$ esté entre $0$ y $1/2$?''} En este caso, como muestra la Figura \ref{cap04:fig:EjemploVariableAleatoriaContinua}
     \begin{figure}[h]
 	\centering
@@ -50,8 +50,8 @@ Vamos ahora a ver otro ejemplo, en este caso inspirado en los problemas de proba
 	\caption{Cálculo de probabilidad en una variable aleatoria continua}
 	\label{cap04:fig:EjemploVariableAleatoriaContinua}
     \end{figure}
-el conjunto de puntos del círculo cuyas coordenadas $x$ están entre $0$ y $1/2$ tiene un área bien definida y no nula. ¿Cuánto vale ese área? Aproximadamente $0.48$, y esa es la probabilidad que buscábamos. El cálculo del área se puede hacer de distintas maneras, pero el lector debe darse cuenta de que en ejemplos como este se necesita a veces recurrir al cálculo de integrales.\\
-    Naturalmente, se pueden hacer preguntas más complicadas. Por ejemplo, dado un punto $(x,y)$ del círculo $C$ podemos calcular el valor de $f(x,y)=x^2+ 4y^2$. Y entonces nos preguntamos ¿cuál es la probabilidad de que, tomando un punto al azar en $C$, el valor de $f$ esté entre 0 y 1? La respuesta es, de nuevo, un área, pero más complicada: es el área que se muestra en la Figura \ref{cap04:fig:EjemploVariableAleatoriaContinua2}.
+el conjunto de puntos del círculo cuyas coordenadas $x$ están entre $0$ y $1/2$ tiene un área bien definida y no nula. ¿Cuánto vale ese área? Aproximadamente $0.48$, y la probabilidad que buscábamos es $0.48/\pi\approx 0.15$. El cálculo del área se puede hacer de distintas maneras, pero el lector debe darse cuenta de que en ejemplos como este se necesita a veces recurrir al cálculo de integrales.\\
+    Naturalmente, se pueden hacer preguntas más complicadas. Por ejemplo, dado un punto $(x,y)$ del círculo $C$ podemos calcular el valor de $f(x,y)=x^2+ 4y^2$. Y entonces nos preguntamos ¿cuál es la probabilidad de que, tomando un punto al azar en $C$, el valor de $f$ esté entre 0 y 1? La respuesta implica, de nuevo, calcular un área, pero más complicada: es el área que se muestra en la Figura \ref{cap04:fig:EjemploVariableAleatoriaContinua2}.
     \begin{figure}[h]
 	\centering
 	\begin{enColor}
@@ -63,14 +63,14 @@ el conjunto de puntos del círculo cuyas coordenadas $x$ están entre $0$ y $1/2
 	\caption{Un cálculo de probabilidad más complicado, para una variable aleatoria continua.}
 	\label{cap04:fig:EjemploVariableAleatoriaContinua2}
     \end{figure}
-    Lo que tienen en común ambos casos es que hay una función (o fórmula), que es $x$ en el primero y $f(x,y)$ en el segundo, y que nos preguntamos por la probabilidad de que los valores de esa fórmula caigan dentro de un cierto intervalo.
+    Lo que tienen en común ambos casos es que hay una función (o fórmula), que es $x$ en el primero y $f(x,y)$ en el segundo, y  nos preguntamos por la probabilidad de que los valores de esa fórmula caigan dentro de un cierto intervalo.
     \qed
 \end{Ejemplo}
 Los dos ejemplos que hemos visto contienen los ingredientes básicos de la noción de variable aleatoria. En el primer caso teníamos un conjunto finito de valores posibles, y a cada uno le asignábamos una probabilidad. En el segundo caso teníamos un recorrido continuo de valores posibles, y podíamos asignar probabilidades a intervalos. Lo que vamos a ver a continuación no se puede considerar de ninguna manera una definición rigurosa de variable aleatoria, pero servirá a nuestros propósitos.
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
-        \begin{center}\bf Variables aleatorias:\end{center}
+        \begin{center}\bf Variables aleatorias.\end{center}
         Una {\sf variable aleatoria}\index{variable aleatoria} $X$ es una función (o fórmula) que le asigna, a cada elemento $p$ del espacio muestral $\Omega$, un número real $X(p)$. Distinguimos dos tipos de variables aleatorias:
         \begin{enumerate}
             \item La {\sf variable aleatoria $X$ es discreta}\index{variable aleatoria discreta} si sólo toma una cantidad finita (o una sucesión) de valores numéricos $x_1,x_2,x_3,\ldots$, de manera que para cada uno de esos valores tenemos bien definida la probabilidad $p_i=P(X=x_i)$ de que $X$ tome el valor $x_i$.
@@ -129,7 +129,7 @@ Al principio la diferencia entre suceso aleatorio y variable aleatoria puede res
 \[\{(1,4),(2,5),(3,6),(6,3,),(5,2),(4,1)\}.\]
 Y hemos visto en el Ejemplo \ref{ejem:VariableAleatoria:RestaDosDados} que la probabilidad de ese suceso es
 \[P(Y=3)=1/6.\]
-¿Para qué sirven entonces las variables aleatorias? Simplificando podemos decir que son, entre otras cosas, un atajo para hacer más sencillo el trabajo con sucesos. Precisando un poco más, su utilidad es que representan {\sf modelos abstractos de asignación (o distribución) de probabilidad}. Es decir, la variable aleatoria nos permite concentrar nuestra atención en la forma en que la probabilidad se reparte o {\em distribuye} entre los posibles resultados numéricos de un experimento aleatorio, sin entrar en detalles sobre el espacio muestral y los sucesos subyacentes a esa asignación de probabilidad.  Vamos a ver un par de ejemplos que tal vez ayude a aclarar el sentido en el que estas variables aleatorias son resúmenes que eliminan detalles (y por tanto, a menudo, información).
+¿Para qué sirven entonces las variables aleatorias? Simplificando podemos decir que son, entre otras cosas, un atajo para hacer más sencillo el trabajo con sucesos. Precisando un poco más, su utilidad es que representan {\sf modelos abstractos de asignación (o distribución) de probabilidad}. Es decir, la variable aleatoria nos permite concentrar nuestra atención en la forma en que la probabilidad se reparte o {\em distribuye} entre los posibles resultados numéricos de un experimento aleatorio, sin entrar en detalles sobre el espacio muestral y los sucesos subyacentes a esa asignación de probabilidad.  Vamos a ver un par de ejemplos que tal vez ayuden a aclarar el sentido en el que estas variables aleatorias son resúmenes que eliminan detalles (y por tanto, a menudo, información).
 \begin{Ejemplo}\label{cap04:ejem:VariablesAleatoriasEliminanInformacion}
     Ya hemos discutido que en el espacio muestral correspondiente al lanzamiento de dos dados, la variable aleatoria $Y(a,b)=|a-b|$ tiene la tabla de densidad de probabilidades que se muestra en la Tabla \ref{cap04:tabla:VariableAleatoriaDiferencia2Dados} (pág. \pageref{cap04:tabla:VariableAleatoriaDiferencia2Dados}).
     Por su parte, la Tabla \ref{cap04:tabla:probabilidadSumaDados} (pág. \pageref{cap04:tabla:probabilidadSumaDados}) muestra la asignación (o densidad) de probabilidad de la variable aleatoria suma $X(a,b)=a+b$.
@@ -255,7 +255,7 @@ La idea que queremos subrayar es que, en el caso de los dados, los valores de la
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
         \begin{center}
-        \bf Media $\mu$ de una variable aleatoria discreta (valor esperado o esperanza)
+        \bf Media $\mu$ de una variable aleatoria discreta\\ (valor esperado o esperanza).
         \index{valor esperado de una variable aleatoria discreta}
         \index{esperanza de una variable aleatoria discreta}
         \index{media de una variable aleatoria discreta}
@@ -263,7 +263,7 @@ La idea que queremos subrayar es que, en el caso de los dados, los valores de la
         Si $X$ es una variable aleatoria discreta, que toma los valores $x_1,x_2,\ldots,x_k$, con las probabilidades $p_1,p_2,\ldots,p_k$ (donde $p_i=P(X=x_i)$), entonces la {\sf media}, o {\sf valor esperado}, o {\sf esperanza matemática}  de $X$ es:
         \begin{equation}\label{cap04:ecu:MediaVariableDiscreta}
         \mu=\sum_{i=1}^k
-        \left(x_i\cdot P(X=x_i)\right)=x_1p_1+x_2p_2+\cdots+x_kp_k.
+        x_i\cdot P(X=x_i) = x_1\, p_1+x_2\, p_2 + \cdots + x_k\, p_k.
         \end{equation}
     \end{minipage}
     }
@@ -350,13 +350,13 @@ Por cierto, esencialmente ninguna de las loterías, sorteos o juegos de azar leg
 Esta definición de juego justo está muy relacionada con las reglas de las apuestas que discutimos en la Sección (opcional) \ref{cap03:sec:OddsPruebasDiagnosticas} (pág. \pageref{cap03:sec:OddsPruebasDiagnosticas}). Vamos a verlo en un ejemplo, pero por supuesto, con la advertencia de que si aún no has leído esa sección, debes ignorar este ejemplo y el que le sigue.
 \begin{ejemplo}\label{cap04:ejem:OddsReglasApuestasJuegoJusto}
 {\bf (Continuación del Ejemplo \ref{cap03:ejem:OddsReglasApuestas}, ver pág. \pageref{cap03:ejem:OddsReglasApuestas})}
-Las cuentas que hemos hecho en el Ejemplo \ref{cap03:ejem:OddsReglasApuestas} consisten esencialmente en demostrar que las reglas de las apuestas definen un juego justo para el corredor de apuestas (su beneficio esperado era $0$ euros). Vamos a hacer ahora las cuentas para un jugador que apuesta a favor de $A$. Recordemos que en aquel ejemplo, las posibilidades (odds) en contra de $A$ eran de $1$ a $7$. Es decir,
-\[O_A=\dfrac{1}{7}.\]
+Las cuentas que hemos hecho en el Ejemplo \ref{cap03:ejem:OddsReglasApuestas} consisten esencialmente en demostrar que las reglas de las apuestas definen un juego justo para el corredor de apuestas (su beneficio esperado era $0$ euros). Vamos a hacer ahora las cuentas para un jugador que apuesta en contra de $A$. Recordemos que en aquel ejemplo, las posibilidades (odds) en contra de $A$ eran de $1$ a $7$. Es decir,
+\[O_{A^c}=\dfrac{1}{7}.\]
 Por lo tanto,
-\[P(A)=\dfrac{1}{8},\quad  P(A^c)=\dfrac{7}{8}.\]
-Y teniendo en cuenta que el jugador invierte un euro, y si gana obtiene $8$ euros, su beneficio esperado es:
-\[(-1)\cdot\dfrac{1}{8}+8\cdot\dfrac{7}{8}=0.\]
-Así que el juego también es justo para los apostadores (dejamos como ejercicio comprobar que lo es para quienes apuestan por $A^c$).
+\[P(A^c)=\dfrac{1}{8},\quad  P(A)=\dfrac{7}{8}.\]
+Y teniendo en cuenta que el jugador invierte un euro y si gana obtiene $7$ euros, su beneficio esperado es:
+\[(-1)\cdot\dfrac{7}{8} + 7\cdot\dfrac{1}{8}=0.\]
+Así que el juego es justo para ese jugador (dejamos como ejercicio comprobar que también lo es para quienes apuestan a favor de $A$).
 \qed
 \end{ejemplo}
 Para ver como la noción de posibilidades (odds) puede simplificar el análisis de un juego de apuestas, volvamos sobre el primer ejemplo que hemos discutido.
@@ -428,7 +428,7 @@ Y por supuesto, esta definición va acompañada por la de la desviación típica
     \end{minipage}
     }
     \end{center}
-Para ilustrar las definiciones anteriores, vamos a calcular la varianza y desviación típica de la variable aleatoria
+Para ilustrar las definiciones anteriores, vamos a calcular la varianza y desviación típica de la variable aleatoria que ya hemos usado en ejemplos previos.
 \begin{Ejemplo}[\bf Continuación del Ejemplo \ref{ejem:Cap04:VariableAleatoriaSumaDosDadosMedia}, pág. \pageref{ejem:Cap04:VariableAleatoriaSumaDosDadosMedia}]
 \label{cap04:ejem:varianzaVariableAleatoriaDiscreta}
 Para la variable aleatoria $X$, suma de los resultados al lanzar dos dados, hemos obtenido $\mu=7$. Ahora, usando su tabla de densidad de probabilidades, tenemos
@@ -613,7 +613,7 @@ que tiene el aspecto de una escalera, como el que se muestra en la Figura
 \ref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta} (pág.
 \pageref{cap04:fig:GraficaFuncionDistribucionVariableAleatoriaDiscreta}; atención, los datos que se
 han usado para la gráfica no son los datos de la Tabla
-\ref{cap04:tabla:tablaDistribucionProbabilidadGenericaVariableAleatoriaDiscreta}). Aunque hemos
+\ref{cap04:tabla:FuncionDistribucionSumaDados}). Aunque hemos
 dibujado segmentos discontinuos verticales para facilitar la visualización, la gráfica de la
 función está formada sólo por los segmentos horizontales. A medida que avanzamos por el eje $x$,
 cada nuevo valor $x_1$, $x_2$, \ldots, $x_n$ marca el comienzo de un peldaño. Sin contar el
@@ -1220,7 +1220,7 @@ Por lo tanto,
 \[f_{Y|X=5}(3)=\dfrac{f(X=5, Y=3)}{f(X=5)}=\dfrac{\dfrac{1}{18}}{\dfrac{1}{9}}=\dfrac{1}{2}.\]
 La tabla completa de densidades condicionadas (siempre con respecto a $X$) es:
 \begin{center}
-{\scriptsize
+{\small
 \hspace{-1cm}\mbox{Valor de $X$}\quad
 \begin{tabular}{|r|r|r|r|r|r|r|}
  \multicolumn{1}{c}{} &\multicolumn{6}{c}{\mbox{Valor de $Y$}}{}\\
@@ -1245,7 +1245,7 @@ Dejamos al lector la tarea de completar la tabla de densidad condicionada con re
 \qed
 \end{ejemplo}
 
-\subsubsection{Independencia y densidades condicionadas}
+\subsubsection{Independencia y densidades condicionadas.}
 
 ¿Qué efecto tiene la independencia de $X$ e $Y$ sobre estas funciones de densidad condicionada? Si lo piensas un momento, es muy posible que la intuición te traiga la respuesta. En cualquier caso, las ecuaciones confirman lo que la intuición insinúa:
 \[
