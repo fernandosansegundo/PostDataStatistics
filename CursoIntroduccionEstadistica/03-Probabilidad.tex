@@ -88,8 +88,10 @@ para formular esa regla.
 Con estas premisas, la formulación de la Regla de Laplace es esta:
         \begin{center}
         \fcolorbox{black}{Gris025}{
-        \begin{minipage}{12cm}
-            \centering {\bf Regla de Laplace}\\
+        \begin{minipage}{10cm}
+            \begin{center}
+						{\bf Regla de Laplace.}
+						\end{center}
             La probabilidad del suceso A es el cociente:
             \begin{equation}
             \label{cap03:ecu:ReglaLaplace}
@@ -358,7 +360,7 @@ En un diagrama como ese, el rectángulo exterior representa el espacio muestral,
 \begin{center}
 \fcolorbox{black}{Gris025}{
 \begin{minipage}{12cm}
-    \centering {\bf Propiedades fundamentales de la Función Probabilidad:}
+    \centering {\bf Propiedades fundamentales de la Función Probabilidad.}
     \label{cap03:def:PropiedadesFundamentalesFuncionProbabilidad}
     \index{probabilidad, propiedades fundamentales}
     \begin{enumerate}
@@ -420,7 +422,7 @@ Las tres propiedades básicas de la Función Probabilidad tienen una serie de co
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
-        \centering {\bf Propiedades adicionales de la Función Probabilidad:}
+        \centering {\bf Propiedades adicionales de la Función Probabilidad.}
          \begin{enumerate}
             \item Sea cual sea el suceso aleatorio $A$, si $A^c$ es el
             \index{suceso complementario}\index{complementario} {\sf suceso complementario o suceso contrario}\index{suceso contrario}\index{contrario}
@@ -516,8 +518,9 @@ definición:
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{12cm}
-        {\centering {\bf Probabilidad condicionada:}}\\
-        \label{cap03:def:ProbabilidadCondicionada}
+        \begin{center}{\bf Probabilidad condicionada.}
+				        \label{cap03:def:ProbabilidadCondicionada}
+				\end{center}
         La probabilidad del suceso $A$ condicionada por el suceso $B$ se define así:
         \[P(A|B)=\dfrac{P(A\cap B)}{P(B)}.\]
         donde se supone que $P(B)\neq 0$.
@@ -649,7 +652,7 @@ porque la definición de probabilidad condicionada dice que los dos miembros son
         \fcolorbox{black}{Gris025}{
         \begin{minipage}{12cm}
             \begin{center}
-            	{\bf Sucesos independientes}
+            	{\bf Sucesos independientes.}
             \end{center}
             Los sucesos $A$ y $B$ son \index{sucesos independientes}{\sf sucesos independientes}\index{independientes, sucesos} si
                 \[P(A|B)=P(A).\]
@@ -679,7 +682,7 @@ el otro. Y volviendo al ejemplo, en cuanto sabemos que hoy es lunes (ha ocurrido
 Así que la información sobre el suceso $A$ nos permite decir algo sobre el suceso $B$, y eso significa que no hay independencia.
         \begin{center}
         \fcolorbox{black}{Gris025}{
-        \begin{minipage}{8cm}
+        \begin{minipage}{7cm}
                         {\sf Dos sucesos disjuntos nunca son independientes.}
         \end{minipage}}
         \end{center}
@@ -711,7 +714,9 @@ El resultado que vamos a ver utiliza la noción de probabilidad condicionada par
         \begin{center}
         \fcolorbox{black}{Gris025}{
         \begin{minipage}{12cm}
-            {\centering\bf Regla de las probabilidades totales\index{regla de las probabilidades totales}}
+            \begin{center}
+						\bf Regla de las probabilidades totales.\index{regla de las probabilidades totales}
+						\end{center}
             Si los sucesos $B_1,\ldots,B_K$ cumplen las condiciones (1), (2) y (3) entonces:
             \[P(A)=P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+\cdots+P(B_k)P(A|B_k).\]
         \end{minipage}}
@@ -748,7 +753,9 @@ despejamos de aquí lo que queremos, y usamos el teorema de las probabilidades t
 \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{13cm}
-        {\centering\bf Teorema de Bayes\index{teorema de Bayes}}
+        \begin{center}
+				\bf Teorema de Bayes.\index{teorema de Bayes}
+				\end{center}
         Si los sucesos $B_1,\ldots,B_k$ cumplen las condiciones (1), (2) y (3) (ver la Sección \ref{cap03:subsec:ProbabilidadesTotales}), entonces para cualquier $j$ de $1$ a $k$ se tiene:
         {\small
         \[P(B_j|A)=\dfrac{P(B_k)P(A|B_k)}{P(A)} = \dfrac{P(B_k)P(A|B_k)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+\cdots+P(B_k)P(A|B_k)}.\]
@@ -981,7 +988,8 @@ Si has entendido lo anterior, verás que no es dif\'icil extender el razonamient
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{8cm}
-        {\centering \bf El factorial de $n=1,2,3,\ldots$ es:}
+        {\begin{center}\bf El factorial de $n=1,2,3,\ldots$.
+				\end{center}}
             \[n!=n\cdot(n-1)\cdot(n-2)\cdot\,\ldots\,\cdot3\cdot 2\cdot 1.\]
     \end{minipage}}
     \end{center}
@@ -990,7 +998,7 @@ Es decir, el producto de todos los números entre $1$ y $n$. Por ejemplo,
 (Con diez personas, hay más de tres millones de colas distintas posibles). Además definimos el factorial de $0$ como un caso especial:
     \begin{center}
     \fcolorbox{black}{Gris025}{
-    \begin{minipage}{2cm}
+    \begin{minipage}{1.5cm}
     \begin{center}
     	$0!=1.$
    \end{center}		
@@ -1004,7 +1012,8 @@ En resumen, el número de permutaciones de $n$ elementos, esto es, el n\'umero d
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{8cm}
-        {\centering \bf Permutaciones de $n$ elementos}
+        {\begin{center}\bf Permutaciones de $n$ elementos.
+				\end{center}}
             \[\operatorname{Per}(n)=n!=n\cdot(n-1)\cdot(n-2)\cdot\,\ldots\,\cdot3\cdot 2\cdot 1.\]
     \end{minipage}}
     \end{center}
@@ -1053,7 +1062,8 @@ Lo interesante de este truco es que nos permite escribir el caso general de una 
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{10cm}
-        {\centering \bf Variaciones de $n$ elementos, tomados de $k$ en $k$}
+        {\begin{center} \bf Variaciones de $n$ elementos, tomados de $k$ en $k$.
+				\end{center}}
             \[\operatorname{V}(n,k)=n\cdot(n-1)\cdot\dots\cdot(n-k+1)=\dfrac{n!}{(n-k)!}.\]
     \end{minipage}}
     \end{center}
@@ -1102,7 +1112,8 @@ de la igualdad anterior $C(n,k)$ y obtener una fórmula para el número de combi
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{10cm}
-        {\centering \bf Combinaciones de $n$ elementos, tomados de $k$ en $k$}
+        {\begin{center} \bf Combinaciones de $n$ elementos, tomados de $k$ en $k$.
+				\end{center}}
         \[C(n,k)=\dfrac{n!}{k!(n-k)!},\]
         para $0\leq k\leq n$, y $n=0,1,2\ldots$ cualquier número natural.
     \end{minipage}}
@@ -1115,7 +1126,8 @@ Los números combinatorios\index{números combinatorios}\index{combinatorios, n�
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{10cm}
-        {\centering \bf Números combinatorios}\\
+        \begin{center} \bf Números combinatorios.
+				\end{center}
         El número combinatorio $n$ sobre $k$ es
         \[\binom{n}{k}=\dfrac{n!}{k!(n-k)!},\]
         para $0\leq k\leq n$, y $n=0,1,2\ldots$ cualquier número natural.
@@ -1252,7 +1264,8 @@ Vamos a ver los análogos de los objetos que hemos estudiado (permutaciones, var
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{10cm}
-        {\centering \bf Permutaciones con repetición de $n$ elementos\index{permutaciones con repetici\'on}}\\
+        {\begin{center} \bf Permutaciones con repetición de $n$ elementos\index{permutaciones con repetici\'on.}
+				\end{center}}
         El n\'umero de permutaciones que se pueden formar con $m$ objetos
         entre los cuales hay $n_1$ iguales entre s\'{\i}, otros $n_2$ iguales
         entre s\'{\i},\dots, y finalmente $n_k$ iguales entre s\'{\i}, es:
@@ -1271,7 +1284,8 @@ Vamos a ver los análogos de los objetos que hemos estudiado (permutaciones, var
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{11cm}
-        {\centering \bf Variaciones con repetición de $n$ elementos, tomados de $k$ en $k$\index{variaciones con repetici\'on}.}\\
+        {\begin{center} \bf Variaciones con repetición de $n$ elementos, tomados de $k$ en $k$\index{variaciones con repetici\'on}.
+				\end{center}}
         Si se permite que cada elemento aparezca tantas veces como se quiera, entonces:
         \begin{equation}\label{cap03:ecu:VariacionesConRepeticion}
         \operatorname{VRep}(n,k)=n^k
@@ -1300,7 +1314,8 @@ Vamos a ver los análogos de los objetos que hemos estudiado (permutaciones, var
     \begin{center}
     \fcolorbox{black}{Gris025}{
     \begin{minipage}{10cm}
-        {\centering \bf Combinaciones con repetición  de $n$ elementos, tomados de $k$ en $k$\index{combinaciones con repetici\'on}}\\
+        {\begin{center} \bf Combinaciones con repetición  de $n$ elementos, tomados de $k$ en $k$.\index{combinaciones con repetici\'on}
+				\end{center}}
          Selecciones de $k$ elementos entre $n$ posibles,
          admitiendo la repetici\'on de elementos, pero sin tener en cuenta el orden de la selecci\'on.
         \begin{equation}\label{cap03:ecu:CombinacionesConRepeticion}
