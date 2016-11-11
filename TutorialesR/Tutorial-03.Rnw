@@ -1,12 +1,12 @@
 % !Mode:: "Tex:UTF-8"
 
 <<setup, echo=FALSE, cache=FALSE>>=
-## numbers >= 10^5 will be denoted in scientific notation,
-## and rounded to 2 digits
-options(scipen = 2, digits = 3)
+     ## numbers >= 10^5 will be denoted in scientific notation,
+     ## and rounded to 2 digits
+     options(scipen = 2, digits = 3)
 @
-
-
+     
+     
 \documentclass[10pt,a4paper]{article}
 \usepackage{etoolbox}
 \newtoggle{color}
@@ -16,7 +16,7 @@ options(scipen = 2, digits = 3)
 \usepackage{makeidx}
 \newcommand{\idioma}{spanish}
 \newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
-\input{../tex/definiciones}
+\input{definiciones}
 %\input{sahp}
 \includecomment{com}
 %\excludecomment{com}
@@ -28,13 +28,13 @@ options(scipen = 2, digits = 3)
 %\togglefalse{distribuir}
 \toggletrue{distribuir}
 \iftoggle{distribuir}{%
-  % color version
-    \includecomment{distribuir}
-    \excludecomment{noDistribuir}
+                      % color version
+                      \includecomment{distribuir}
+                      \excludecomment{noDistribuir}
 }{%
   % b/w version
-    \includecomment{noDistribuir}
-    \excludecomment{distribuir}
+  \includecomment{noDistribuir}
+  \excludecomment{distribuir}
 }
 
 
@@ -49,13 +49,14 @@ options(scipen = 2, digits = 3)
 \setlength{\parindent}{0pt}
 \newcounter {cont01}
 
-\externaldocument[curso-]{../CursoIntroduccionEstadistica/000-CursoEstadistica}
+\externaldocument[curso-]{000-CursoEstadistica}
 \externaldocument[tut01-]{Tutorial-01}
 \externaldocument[tut02-]{Tutorial-02}
 %\externaldocument[tut03-]{Tutorial-03}
 
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 %\SweaveOpts{concordance=TRUE}
 \includecomment{pdf}
 %\excludecomment{pdf}
@@ -68,16 +69,16 @@ options(scipen = 2, digits = 3)
 
 \setcounter{section}{0}
 \section*{\hspace{-0.1cm}\fbox{\colorbox{Gris025}{
-\begin{minipage}{14.5cm}
-Tutorial 03: Probabilidad.
-\end{minipage}
+     \begin{minipage}{14.5cm}
+     Tutorial 03: Probabilidad.
+     \end{minipage}
 }}}
 {
-Atención:
-\begin{itemize}
-  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
-  \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si existe una versión más reciente.
-\end{itemize}
+     Atención:
+          \begin{itemize}
+     \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
+     \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si existe una versión más reciente.
+     \end{itemize}
 }
 \setcounter{tocdepth}{1}
 \tableofcontents
@@ -92,76 +93,76 @@ En la segunda parte del curso estamos aprendiendo el lenguaje matemático de la 
 \label{tut03:sec:NumerosAleatoriosRSample}
 
 Para poder hacer experimentos relacionado con la idea de probabilidad, necesitamos ser capaces de generar valores al azar. En los dos tutoriales previos, hemos avanzado algunas ideas de la forma en que podemos usar Calc y R para esa tarea. Recordemos brevemente lo que hemos hecho hasta ahora:
-
-\begin{itemize}
-  \item En la página \pageref{tut01-tut01:subsubsec:NumerosAleatoriosCalc} del Tutorial-01 hemos aprendido a usar la función {\tt ALEATORIO.ENTRE} de Calc.
-  \item En la Sección \ref{tut02-tut02:subsec:NumerosAleatoriosRSample} del Tutorial-02 (pág. \pageref{tut02-tut02:subsec:NumerosAleatoriosRSample}) hemos descrito el uso básico de la función {\tt sample} de R. Aquí vamos a profundizar en esa función.
-  \item También, en esa misma sección, hemos aprendido a usar la función {\tt set.seed} de R para que los resultados sean reproducibles. En Calc puede hacerse algo parecido con el {\em pegado especial}, pero es una herramienta mucho más incómoda que en R\footnote{Puedes ver los detalles en este enlace (en inglés):\\ \link{https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_RAND_function}{https://wiki.openoffice.org/wiki/Documentation/How\_Tos/Calc:\_RAND\_function}}.
-  \item Hemos insistido en la idea de que, en cualquier caso, los números que se generan con el ordenador son pseudoaleatorios (la propia existencia de {\tt set.seed} es una prueba de esto). Pero podemos tranquilizar al lector: a todos los efectos, la diferencia entre estos números pseudoaleatorios y los números verdaderamente aleatorios es tan sutil, que no va a suponer ningún problema en este curso.
+     
+     \begin{itemize}
+\item En la página \pageref{tut01-tut01:subsubsec:NumerosAleatoriosCalc} del Tutorial-01 hemos aprendido a usar la función {\tt ALEATORIO.ENTRE} de Calc.
+\item En la Sección \ref{tut02-tut02:subsec:NumerosAleatoriosRSample} del Tutorial-02 (pág. \pageref{tut02-tut02:subsec:NumerosAleatoriosRSample}) hemos descrito el uso básico de la función {\tt sample} de R. Aquí vamos a profundizar en esa función.
+\item También, en esa misma sección, hemos aprendido a usar la función {\tt set.seed} de R para que los resultados sean reproducibles. En Calc puede hacerse algo parecido con el {\em pegado especial}, pero es una herramienta mucho más incómoda que en R\footnote{Puedes ver los detalles en este enlace (en inglés):\\ \link{https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_RAND_function}{https://wiki.openoffice.org/wiki/Documentation/How\_Tos/Calc:\_RAND\_function}}.
+\item Hemos insistido en la idea de que, en cualquier caso, los números que se generan con el ordenador son pseudoaleatorios (la propia existencia de {\tt set.seed} es una prueba de esto). Pero podemos tranquilizar al lector: a todos los efectos, la diferencia entre estos números pseudoaleatorios y los números verdaderamente aleatorios es tan sutil, que no va a suponer ningún problema en este curso.
 \end{itemize}
 
 \subsection{La función {\tt ALEATORIO.ENTRE} de Calc y los problemas del Caballero de Méré.}
 
 La función {\tt ALEATORIO.ENTRE} de Calc es suficiente para los primeros experimentos sencillos sobre la Regla de Laplace y, por ejemplo, los problemas del Caballero de Méré (ver la Sección \ref{curso-cap03:sec:PrimerasNocionesProbabilidad}, pág. \pageref{curso-cap03:sec:PrimerasNocionesProbabilidad} del libro). Para centrar la discusión, hemos aprendido que, por ejemplo,
 \begin{verbatim}
-  ALEATORIO.ENTRE(20;80)
+ALEATORIO.ENTRE(20;80)
 \end{verbatim}
 produce un número (pseudo)aleatorio entre $20$ y $80$. Con el lenguaje que estamos desarrollando en el Capítulo \ref{curso-cap:Probabilidad}, podemos añadir que todos los resultados entre $20$ y $80$ son equiprobables. Si queremos conseguir más de un número, debemos copiar esa fórmula en más celdas de la hoja de cálculo. Cada vez que abras o cierres la hoja de cálculo, los números generados con  {\tt ALEATORIO.ENTRE} cambiarán. Y si deseas generar nuevos valores, sin tener que cerrar y abrir la hoja de cálculo, puedes utilizar la combinación de teclas {\tt Ctrl+Mayús+F9}.
 
 
 Vamos a usar la función para ilustrar los problemas del Caballero de Méré que hemos descrito en la Sección \ref{curso-cap03:sec:PrimerasNocionesProbabilidad} (pág. \pageref{curso-cap03:sec:PrimerasNocionesProbabilidad}). Concretamente, hemos adjuntado a este documentos dos hojas de cálculo,
 \begin{center}
-  \begin{enumerate}
-    \item \fichero{../ods/Tut03-DeMere1.ods}{Tut03-DeMere1.ods} (para la apuesta (a))
-    \item \fichero{../ods/Tut03-DeMere2.ods}{Tut03-DeMere2.ods} (para la apuesta (b))
-  \end{enumerate}
+\begin{enumerate}
+\item \otrofichero{Cap03-DeMere1.ods}{{Cap03-DeMere1.ods}} (para la apuesta (a))
+\item \otrofichero{Cap03-DeMere2.ods}{{Cap03-DeMere2.ods}} (para la apuesta (b))
+\end{enumerate}
 \end{center}
-en las que hemos {\em simulado} esas dos apuestas, y hemos jugado 1000 veces cada una de ellas. La Figura \ref{tut03:fig:Tut03-DeMere1.ods} muestra el resultado al abrir el primero de esos ficheros. Tus números, al ser aleatorios, serán distintos de los nuestros, pero lo esencial de la discusión seguirá siendo válido.
+en las que hemos {\em simulado} esas dos apuestas, y hemos jugado 1000 veces cada una de ellas. La Figura \ref{tut03:fig:Cap03-DeMere1.ods} muestra el resultado al abrir el primero de esos ficheros. Tus números, al ser aleatorios, serán distintos de los nuestros, pero lo esencial de la discusión seguirá siendo válido.
 \begin{figure}[h!]
-    \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut03-41.png}
-    \end{center}
-  \caption{El fichero {\tt Tut03-DeMere1.ods} de Calc}
-  \label{tut03:fig:Tut03-DeMere1.ods}
+\begin{center}
+\includegraphics[width=15cm]{./fig/Tut03-41.png}
+\end{center}
+\caption{El fichero {\tt Cap03-DeMere1.ods} de Calc}
+\label{tut03:fig:Cap03-DeMere1.ods}
 \end{figure}
 Las primeras cuatro columnas de la hoja de cálculo (de la {\tt A} a la {\tt D}) se han obtenido usando la función {\tt ALEATORIO.ENTRE}. Cada fila, por tanto se corresponde con una jugada, y si examinas el fichero verás que hemos jugado $1000$ veces.  Además, cada vez que pulses {\tt Ctrl+Mayús+F9} obtendrás $1000$ nuevas partidas de este juego. La columna {\tt E} contiene
 un $1$ si hemos obtenido (al menos) un $6$ en las cuatro tiradas, y un $0$ si no es así. No queremos entretenernos demasiado en la forma en la que hemos conseguido que Calc haga esto, porque haremos cosas más  sofisticadas con R, de una manera muy sencilla, y merece la pena reservar nuestras fuerzas para ese empeño. Pero si sientes curiosidad, puedes hacer clic sobre la celda {\tt E2}, y ver los comandos de Calc que hemos usado para conseguirlo:
-\begin{verbatim}
-  =SI(O(A2=6;B2=6;C2=6;D2=6);1;0)
+     \begin{verbatim}
+=SI(O(A2=6;B2=6;C2=6;D2=6);1;0)
 \end{verbatim}
-Esencialmente, lo que hemos dicho, en el lenguaje de Calc, es "Si alguna de las celdas {\tt A2, B2, C2, D2} contiene un 6, entonces el resultado es $1$. En caso contrario, es un $0$". Y para eso hemos usado dos funciones de Calc, llamadas {\tt SI} y {\tt O}.
+Esencialmente, lo que hemos dicho, en el lenguaje de Calc, es ''Si alguna de las celdas {\tt A2, B2, C2, D2} contiene un 6, entonces el resultado es $1$. En caso contrario, es un $0$''. Y para eso hemos usado dos funciones de Calc, llamadas {\tt SI} y {\tt O}.
 
 Las columnas {\tt G, H} e {\tt I} contienen el análisis de los resultados en forma de tabla de frecuencias y frecuencias relativas. Las frecuencias relativas son las cantidades que debemos comparar con las probabilidades calculadas de forma teórica, para saber si la teoría de las probabilidades que estamos aplicando es una descripción correcta del fenómeno. Y, en este ejemplo en particular, el resultado nos indica que la teoría del Caballero de Méré no está funcionando.
 
 Recuerda que, según hemos visto en la teoría del curso, la ganancia que el Caballero de Méré esperaba era de un 66\% de lo invertido. Y lo que se observa es que la proporción de apuestas perdidas frente a apuestas ganadas es mucho menor de lo que el Cabllero esperaba.
 
-En la Figura \ref{tut03:fig:Tut03-DeMere2.ods} puedes ver el comienzo del fichero correspondiente al segundo juego del Caballero de Méré. Sin entrar en muchos detalles (¡explora tú mismo el fichero!), las columnas de la izquierda contienen los resultados de las tiradas, que son números del $1$ al $36$, donde el $1$ corresponde a $(1,1)$ y $36$ corresponde a $(6,6)$. Y a la derecha aparece la tabla de frecuencias relativas, que muestra que el resultado es claramente distinto del que hemos obtenido en el otro juego. De hecho, la probabilidad de ganar en este segundo juego es aún más baja que en el otro (es aproximadamente igual a $0.49$). Usa {\tt Ctrl+Mayús+F9} unas cuantas veces para comprobarlo. Y recuerda que el Caballero de Méré creía que la probabilidad de ganar era la misma en ambos juegos.
+En la Figura \ref{tut03:fig:Cap03-DeMere2.ods} puedes ver el comienzo del fichero correspondiente al segundo juego del Caballero de Méré. Sin entrar en muchos detalles (¡explora tú mismo el fichero!), las columnas de la izquierda contienen los resultados de las tiradas, que son números del $1$ al $36$, donde el $1$ corresponde a $(1,1)$ y $36$ corresponde a $(6,6)$. Y a la derecha aparece la tabla de frecuencias relativas, que muestra que el resultado es claramente distinto del que hemos obtenido en el otro juego. De hecho, la probabilidad de ganar en este segundo juego es aún más baja que en el otro (es aproximadamente igual a $0.49$). Usa {\tt Ctrl+Mayús+F9} unas cuantas veces para comprobarlo. Y recuerda que el Caballero de Méré creía que la probabilidad de ganar era la misma en ambos juegos.
 \begin{figure}[h!]
-    \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut03-42.png}
-    \end{center}
-  \caption{El fichero {\tt Tut03-DeMere2.ods} de Calc}
-  \label{tut03:fig:Tut03-DeMere2.ods}
+\begin{center}
+\includegraphics[width=15cm]{./fig/Tut03-42.png}
+\end{center}
+\caption{El fichero {\tt Cap03-DeMere2.ods} de Calc}
+\label{tut03:fig:Cap03-DeMere2.ods}
 \end{figure}
 En la página \pageref{curso-cap03:subsubsec:JuegosDeMereCombinatoria} del Capítulo \ref{curso-cap:Probabilidad} del libro se explica cómo calcular las probabilidades correctas para ambos juegos y, más adelante en este tutorial, daremos los detalles computacionales necesarios.
 
 \subsection{Probabilidades y la función {\tt sample} de R.}
 
 Vamos a empezar recordando algo de lo que hemos aprendido sobre la función {\tt sample}. Si queremos fabricar $100$ números (pseudo)aleatorios entre $20$ y $80$, usaríamos (como hemos visto en la Sección \ref{tut02-tut02:subsec:NumerosAleatoriosRSample} del Tutorial-02) un código similar a este:
-<<chunk01 >>=
-set.seed(2014)
+     <<chunk01 >>=
+     set.seed(2014)
 n=100
 (datos = sample(20:80, n, replace=TRUE))
 @
-(Habrás observado que el formato del código R en este Tutorial es distinto, como ya advertimos al final  del Tutorial02). De esta forma los resultados quedan guardados en el vector {\tt datos}. Los valores que hemos obtenido son reproducibles (puedes eliminar o comentar la línea con {\tt set.seed} para evitar esto). Y además, todos los números entre $20$ y $80$ son equiprobables. Y, puesto que estamos hablando de Probabilidad, es en este último aspecto en el que nos vamos a concentrar.
+     (Habrás observado que el formato del código R en este Tutorial es distinto, como ya advertimos al final  del Tutorial02). De esta forma los resultados quedan guardados en el vector {\tt datos}. Los valores que hemos obtenido son reproducibles (puedes eliminar o comentar la línea con {\tt set.seed} para evitar esto). Y además, todos los números entre $20$ y $80$ son equiprobables. Y, puesto que estamos hablando de Probabilidad, es en este último aspecto en el que nos vamos a concentrar.
 
 ¿Cómo podemos fabricar valores que no sean equiprobables? En el Tutorial-02 nos las ingeniamos para conseguirlo por el procedimiento de aplicar {\tt sample} a vectores en los que había elementos repetidos. Recuerda el ejemplo:
-<<chunk02, eval=TRUE>>=
-muchosUnos = c(1,1,1,1,1,1,1,1,1,2)
+     <<chunk02, eval=TRUE>>=
+     muchosUnos = c(1,1,1,1,1,1,1,1,1,2)
 (muestra = sample(muchosUnos, size=100, replace=TRUE) )
 @
-
-% \begin{verbatim}
+     
+     % \begin{verbatim}
 %         muchosUnos = c(1,1,1,1,1,1,1,1,1,1,2)
 %         (muestra = sample(muchosUnos, size=100, replace=TRUE) )
 % \end{verbatim}
@@ -171,13 +172,13 @@ Este método, combinado con la función {\tt rep}, nos podría servir para conse
 \label{tut03:ejercicio01}
 \quad\\
 Una caja contiene $100$ fichas, idénticas salvo por el número que aparece en ellas. De ellas, $35$ fichas están marcadas con el número $1$, $15$ con el número $2$, $10$ con el número $3$, $10$ con el número $4$ y el resto con el número $5$. Queremos extraer 20 fichas de la caja:
-\begin{itemize}
-  \item[(a)] con reemplazamiento.
-  \item[(b)] sin reemplazamiento.
+     \begin{itemize}
+\item[(a)] con reemplazamiento.
+\item[(b)] sin reemplazamiento.
 \end{itemize}
 \begin{enumerate}
-  \item Escribe el código en R que permite obtener esas $20$ fichas, usando las funciones {\tt rep} y {\tt sample}. Los resultados, para los casos (a) y (b), se guardaran en dos vectores, llamados {\tt sorteo1} y  {\tt sorteo2}, respectivamente. Utiliza {\tt set.seed(2014)} como primera línea de tu código, para poder comparar tus resultados con los nuestros.
-  \item Obtén las tablas de frecuencias absolutas y relativas de ambos vectores.
+\item Escribe el código en R que permite obtener esas $20$ fichas, usando las funciones {\tt rep} y {\tt sample}. Los resultados, para los casos (a) y (b), se guardaran en dos vectores, llamados {\tt sorteo1} y  {\tt sorteo2}, respectivamente. Utiliza {\tt set.seed(2014)} como primera línea de tu código, para poder comparar tus resultados con los nuestros.
+\item Obtén las tablas de frecuencias absolutas y relativas de ambos vectores.
 \end{enumerate}
 Solución en la página \pageref{tut03:ejercicio01:sol}.
 \qed
@@ -186,55 +187,55 @@ Solución en la página \pageref{tut03:ejercicio01:sol}.
 Pero la función {\tt sample} nos permite conseguir eso mismo de una manera mucho más sencilla. Podemos añadir a {\tt sample} un argumento opcional {\tt prob}, que es un vector con las probabilidades de cada uno de los elementos entre los que elegimos. Por ejemplo, en el vector {\tt muchosUnos}, teníamos $9$ repeticiones de $1$ por una sola de $2$. Eso significa que la probabilidad de que, al elegir un elemento al azar, sea un $1$, es
 \[p_1=\dfrac{9}{10},\]
 mientras que la probabilidad de que sea un $2$ es:
-\[p_2=\dfrac{1}{10}.\]
+     \[p_2=\dfrac{1}{10}.\]
 Teniendo estas probabilidades en cuenta, para elegir 100 elementos al azar podemos hacer, como antes:
-<<chunk03, eval=TRUE>>=
-set.seed(2014)
+     <<chunk03, eval=TRUE>>=
+     set.seed(2014)
 (muestra = sample(muchosUnos, size=100, replace=TRUE) )
 which(muestra==2)
 @
-Hemos incluido la función {\tt which}, para que puedas ver las posiciones que ocupan los doses en este vector. La nueva forma de conseguir esto que vamos a aprender consiste en partir de un vector con una única aparición del $1$ y el $2$, sobre el que vamos a usar directamente el argumento {\tt prob} de {\tt sample}. Así:
-<<chunk04, eval=TRUE>>=
-set.seed(2014)
+     Hemos incluido la función {\tt which}, para que puedas ver las posiciones que ocupan los doses en este vector. La nueva forma de conseguir esto que vamos a aprender consiste en partir de un vector con una única aparición del $1$ y el $2$, sobre el que vamos a usar directamente el argumento {\tt prob} de {\tt sample}. Así:
+     <<chunk04, eval=TRUE>>=
+     set.seed(2014)
 (muestra = sample(c(1,2), size=100, replace=TRUE, prob=c(9/10, 1/10) ) )
 which(muestra==2)
 @
-Como ves, {\tt which} nos confirma que las posiciones son las mismas en los dos casos, así que los métodos son equivalentes. (Recuerda siempre que {\tt sample} trabaja con las posiciones del vector, y no con sus contenidos.)
+     Como ves, {\tt which} nos confirma que las posiciones son las mismas en los dos casos, así que los métodos son equivalentes. (Recuerda siempre que {\tt sample} trabaja con las posiciones del vector, y no con sus contenidos.)
 
 \subsubsection{De Méré en R, primera visita.}
 \label{tut03:subsubsec:DeMereRPrimeraVisita}
 
-Para cerrar este apartado y preparar la discusión del siguiente, vamos a pedirle al lector que vuelva un momento a pensar en la Figura \ref{tut03:fig:Tut03-DeMere1.ods} (pág. \pageref{tut03:fig:Tut03-DeMere1.ods}). La tabla del fichero {\tt Tut03-DeMere1.ods} de Calc representa el resultado de $1000$ partidas del primer juego del Caballero de Méré. En ese juego, nosotros agrupamos cuatro tiradas del dado y las llamamos {\em una partida} del juego. Pero, en el fondo, esa tabla significa que hemos tirado el dado $4\cdot 1000$ veces en total. Y eso es algo que ya sabemos hacer en R, usando la función {\tt sample}:
-<<chunk05, eval=TRUE, cache=FALSE>>=
-set.seed(2014)
+Para cerrar este apartado y preparar la discusión del siguiente, vamos a pedirle al lector que vuelva un momento a pensar en la Figura \ref{tut03:fig:Cap03-DeMere1.ods} (pág. \pageref{tut03:fig:Cap03-DeMere1.ods}). La tabla del fichero {\tt Cap03-DeMere1.ods} de Calc representa el resultado de $1000$ partidas del primer juego del Caballero de Méré. En ese juego, nosotros agrupamos cuatro tiradas del dado y las llamamos {\em una partida} del juego. Pero, en el fondo, esa tabla significa que hemos tirado el dado $4\cdot 1000$ veces en total. Y eso es algo que ya sabemos hacer en R, usando la función {\tt sample}:
+     <<chunk05, eval=TRUE, cache=TRUE>>=
+     set.seed(2014)
 dado4000 = sample(1:6, 4000, replace=TRUE)
 @
-Naturalmente, al hacer esto, R fabrica un {\em vector} de longitud 4000, en el que no resulta evidente la estructura en {\em partidas} del juego. Los matemáticos se encuentran a menudo con esta situación en la que tenemos un vector de números con alguna estructura adicional. Y han inventado el lenguaje de las matrices para poder trabajar con algunas de esas situaciones. Por ejemplo,
+     Naturalmente, al hacer esto, R fabrica un {\em vector} de longitud 4000, en el que no resulta evidente la estructura en {\em partidas} del juego. Los matemáticos se encuentran a menudo con esta situación en la que tenemos un vector de números con alguna estructura adicional. Y han inventado el lenguaje de las matrices para poder trabajar con algunas de esas situaciones. Por ejemplo,
 los primeros ocho números del vector {\tt dado4000} son:
-<<chunk06, eval=TRUE>>=
-head(dado4000, 8)
+     <<chunk06, eval=TRUE>>=
+     head(dado4000, 8)
 @
-pero si queremos verlos como las primeras dos partidas que hemos jugado, lo mejor es colocarlos en forma de matriz, así:
-\[
-\left(
-\begin{array}{cccc}
-2& 2& 4& 2\\
-4& 1& 6& 4
-\end{array}
-\right)
-\]
+     pero si queremos verlos como las primeras dos partidas que hemos jugado, lo mejor es colocarlos en forma de matriz, así:
+     \[
+          \left(
+               \begin{array}{cccc}
+               2& 2& 4& 2\\
+               4& 1& 6& 4
+               \end{array}
+               \right)
+          \]
 Este objeto es una matriz con dos filas y cuatro columnas. En R podemos hacer algo muy parecido, convirtiendo un vector en una matriz. Sólo tenemos que decirle a R cuál es el vector, cuántas filas o columnas tiene la matriz resultante, y cuál es el orden en que se colocan los elementos (por filas o por columnas). Para fabricar la matriz anterior hacemos:
-<<chunk07, eval=TRUE>>=
-(dosPartidas = matrix( head(dado4000, 8), ncol=4, byrow=TRUE))
+     <<chunk07, eval=TRUE>>=
+     (dosPartidas = matrix( head(dado4000, 8), ncol=4, byrow=TRUE))
 class(dosPartidas)
 @
-La opción {\tt ncol} es el número columnas, mientras que {\tt byrow} debe su nombre al término inglés para fila, que es {\em row}.  Hemos usado la función {\tt class} para que veas que el objeto {\tt dosPartidas} es de tipo {\tt matrix}, una nueva clase de objetos de R. Fíjate también en la forma en la que R muestra esa matriz, indicando entre corchetes el número de fila (a la izquierda) y el número de columna (en la parte superior). En la próxima sección vamos a aprender el manejo básico de las matrices en R, y después retomaremos la discusión de los problemas del Caballero de Méré en R. Despedimos esta sección con un ejercicio.
+     La opción {\tt ncol} es el número columnas, mientras que {\tt byrow} debe su nombre al término inglés para fila, que es {\em row}.  Hemos usado la función {\tt class} para que veas que el objeto {\tt dosPartidas} es de tipo {\tt matrix}, una nueva clase de objetos de R. Fíjate también en la forma en la que R muestra esa matriz, indicando entre corchetes el número de fila (a la izquierda) y el número de columna (en la parte superior). En la próxima sección vamos a aprender el manejo básico de las matrices en R, y después retomaremos la discusión de los problemas del Caballero de Méré en R. Despedimos esta sección con un ejercicio.
 \begin{ejercicio}
 \label{tut03:ejercicio02}
 \quad
 \begin{itemize}
-  \item ¿Qué sucede si ejecutas el mismo código pero con {\tt byrow=FALSE}?
-  \item ¿Cuál es el valor {\em por defecto} de {\tt byrow}? Es decir, ¿qué sucede si no incluyes un valor de {\tt byrow}?
+\item ¿Qué sucede si ejecutas el mismo código pero con {\tt byrow=FALSE}?
+\item ¿Cuál es el valor {\em por defecto} de {\tt byrow}? Es decir, ¿qué sucede si no incluyes un valor de {\tt byrow}?
 \end{itemize}
 Solución en la página \pageref{tut03:ejercicio02:sol}. Recuerda que el ejercicio te resultará mucho más útil si te esfuerzas en resolverlo, sin mirar la solución demasiado pronto.
 \qed
@@ -248,10 +249,10 @@ Solución en la página \pageref{tut03:ejercicio02:sol}. Recuerda que el ejercic
 Las matrices son una de las formas que utiliza R para almacenar y organizar la información. A este tipo de objetos (vectores, matrices, tablas, etc.) los informáticos los conocen como Estructuras de Datos. Hemos presentado el primer ejemplo de matriz tratando de hacer visible el hecho de que la diferencia entre un vector y una matriz es, precisamente, una cuestión de {\em estructura}.
 
 Para trabajar sobre un ejemplo concreto, vamos a colocar los números del 1 al 36 en una matriz de R, llamada {\tt M}, de 4 filas y 9 columnas (diremos que es una matriz $4\times 9$). El código es este:
-<<chunk08, eval=TRUE>>=
-(M = matrix(1:36, nrow=4) )
+     <<chunk08, eval=TRUE>>=
+     (M = matrix(1:36, nrow=4) )
 @
-Como ya hemos visto antes, R rellena la matriz columna por columna.
+     Como ya hemos visto antes, R rellena la matriz columna por columna.
 
 \begin{ejercicio}
 \label{tut03:ejercicio03}
@@ -260,26 +261,26 @@ Cambia el código para que la matriz $M$ se rellene fila por fila. Asegúrate, a
 \qed
 \end{ejercicio}
 <<chunk08a, eval=TRUE, echo=FALSE,results='hide'>>=
-(M = matrix(1:36, nrow=4, byrow=TRUE) )
+     (M = matrix(1:36, nrow=4, byrow=TRUE) )
 @
-\begin{center}
+     \begin{center}
 \textcolor{red}{\Large\bf  ¡No sigas, si no has hecho este ejercicio!}
 \end{center}
 \newpage
 
 El resultado de ese ejercicio es que ahora la matriz {\tt M} es así:
-<<chunk08b, eval=TRUE>>=
+     <<chunk08b, eval=TRUE>>=
+     M
+@
+     En R podemos cambiar las dimensiones de una matriz ya definida, usando la función {\tt dim}. Por ejemplo:
+     <<chunk09, eval=TRUE>>=
+     dim(M)=c(3,12)
 M
 @
-En R podemos cambiar las dimensiones de una matriz ya definida, usando la función {\tt dim}. Por ejemplo:
-<<chunk09, eval=TRUE>>=
-    dim(M)=c(3,12)
-    M
-@
-El resultado demuestra que R ha redistribuido los 24 elementos de la matriz en 3 filas y 12 columnas, como le habíamos pedido. Dos observaciones sobre ese proceso:
-\begin{itemize}
-  \item Para redistribuir los elementos R ha trabajado, de nuevo, por columnas (es su modo por defecto, recuérdalo). Es decir, que la primera columna de la matriz redimensionada la forman los tres primeros elementos de la primera columna de M (antes de la redimensión), que eran el $1, 10$ y el $19$. Si avanzas así, por columnas, es fácil ver el esquema que R ha usado para redistribuir los números (y si miras las diagonales verás los restos del orden original).
-  \item Cuidado: aunque el procedimiento es reversible, al hacer esto hemos cambiado la {\em estructura} de la matriz original.
+     El resultado demuestra que R ha redistribuido los 24 elementos de la matriz en 3 filas y 12 columnas, como le habíamos pedido. Dos observaciones sobre ese proceso:
+     \begin{itemize}
+\item Para redistribuir los elementos R ha trabajado, de nuevo, por columnas (es su modo por defecto, recuérdalo). Es decir, que la primera columna de la matriz redimensionada la forman los tres primeros elementos de la primera columna de M (antes de la redimensión), que eran el $1, 10$ y el $19$. Si avanzas así, por columnas, es fácil ver el esquema que R ha usado para redistribuir los números (y si miras las diagonales verás los restos del orden original).
+\item Cuidado: aunque el procedimiento es reversible, al hacer esto hemos cambiado la {\em estructura} de la matriz original.
 \end{itemize}
 
 \begin{ejercicio}
@@ -289,19 +290,19 @@ Devuelve la matriz M a la forma anterior, en la que la primera fila la forman lo
 \qed
 \end{ejercicio}
 <<chunk09a, eval=TRUE, echo=FALSE, results='hide'>>=
-    dim(M)=c(4,9)
+     dim(M)=c(4,9)
 @
-\vspace{1cm}
+     \vspace{1cm}
 \begin{center}
 \textcolor{red}{\Large\bf  ¡No sigas, si no has hecho este ejercicio!}
 \end{center}
 
 Además de cambiar la dimensión, la función {\tt dim} sirve para {\em obtener} esa dimensión (en forma de vector de dos elementos, número de filas y columnas respectivamente.) Por ejemplo (si has hecho el Ejercicio \ref{tut03:ejercicio03}):
-<<chunk09b>>=
-    dim(M)
+     <<chunk09b>>=
+     dim(M)
 @
-
-\begin{ejercicio}
+     
+     \begin{ejercicio}
 \label{tut03:ejercicio05}
 \quad
 ¿Cuanto vale la dimensión de un vector? Define un vector con $10$ elementos (por ejemplo, {\tt 1:10}) y calcula su dimensión.
@@ -323,57 +324,57 @@ Solución en la página \pageref{tut03:ejercicio06:sol}.
 \label{tut03:subsec:FuncionesMatricialesR}
 
 La función {\tt dim} es sólo el primer ejemplo que hemos encontrado de una función matricial. Pero hay muchas otras. Por ejemplo, si queremos trasponer una matriz, cambiando filas por columnas, usaremos la función {\tt t} (su nombre es la letra {\tt t}). Al aplicarla a la matriz {\tt M} se obtiene:
-<<chunk09c>>=
-    t(M)
+     <<chunk09c>>=
+     t(M)
 @
-Al trasponer una matriz $m\times n$ se obtiene una matriz $n\times m$. Pero fíjate en que el efecto de trasponer una matriz $m\times n$ no es lo mismo que redimensionar la matriz para que sus dimensiones sean $n\times m$. El siguiente ejercicio lo demuestra.
+     Al trasponer una matriz $m\times n$ se obtiene una matriz $n\times m$. Pero fíjate en que el efecto de trasponer una matriz $m\times n$ no es lo mismo que redimensionar la matriz para que sus dimensiones sean $n\times m$. El siguiente ejercicio lo demuestra.
 
 \begin{ejercicio}
 \label{tut03:ejercicio07}
 \quad
 Dada la matriz
 <<chunk09d>>=
-    (W = matrix(1:15, nrow=3, byrow=TRUE))
+     (W = matrix(1:15, nrow=3, byrow=TRUE))
 @
-comprueba que esta operación:
-<<chunk09e, eval=FALSE>>=
-    t(W)
+     comprueba que esta operación:
+     <<chunk09e, eval=FALSE>>=
+     t(W)
 @
-y esta
+     y esta
 <<chunk09f, eval=FALSE>>=
-    dim(W) = c(5,3)
+     dim(W) = c(5,3)
 @
-no dan el mismo resultado. Solución en la página \pageref{tut03:ejercicio07:sol}.
+     no dan el mismo resultado. Solución en la página \pageref{tut03:ejercicio07:sol}.
 \qed
 \end{ejercicio}
 Otras dos funciones matriciales útiles son {\tt nrow} y {\tt ncol}, que proporcionan, respectivamente, el número de filas y columnas de la matriz. Con la matriz {\tt M}, por ejemplo:
-<<chunk09g>>=
-    nrow(M)
-    ncol(M)
+     <<chunk09g>>=
+     nrow(M)
+ncol(M)
 @
-Para las matrices numéricas existen, además, cuatro funciones que permiten hacer operaciones por sumas o por columnas. Por ejemplo, la función {\tt rowSums} calcula la suma de cada una de las filas, mientras que {\tt sumCols} hace lo propio con las columnas:
-<<chunk09h>>=
-    rowSums(M)
-    colSums(M)
+     Para las matrices numéricas existen, además, cuatro funciones que permiten hacer operaciones por sumas o por columnas. Por ejemplo, la función {\tt rowSums} calcula la suma de cada una de las filas, mientras que {\tt sumCols} hace lo propio con las columnas:
+     <<chunk09h>>=
+     rowSums(M)
+colSums(M)
 @
-Las funciones {\tt rowMeans} y {\tt colMeans} proporcionan las medias aritméticas por filas y por columnas, respectivamente.
+     Las funciones {\tt rowMeans} y {\tt colMeans} proporcionan las medias aritméticas por filas y por columnas, respectivamente.
 
 Hay muchas otras operaciones matriciales y, más adelante, iremos conociendo algunas. En la Sección \ref{tut03:subsec:IntroAlgebraMatricial} (pág. \pageref{tut03:subsec:IntroAlgebraMatricial}) hemos añadido un apartado opcional con algo más de información, para aquellos lectores que estén algo más familiarizados con el álgebra matricial (multiplicación de matrices, determinantes, inversas y operaciones relacionadas con estas). Pero hay una estrategia general cuando queremos aplicar una función a todas las filas (o columnas) de una matriz, que consiste en utilizar la función {\tt apply}. Esta función usa (al menos) tres argumentos: la matriz, un índice que puede valer $1$ o $2$ para indicar filas o columnas, respectivamente, y la función que deseamos aplicar. Por ejemplo, dada la matriz {\tt M} que venimos usando, puedes usar {\tt apply} para calcular las sumas de las filas y columnas, mediante estos comandos:
-<<chunk09ha>>=
-    # Por filas:
-    apply(M, 1, sum)
+     <<chunk09ha>>=
+     # Por filas:
+     apply(M, 1, sum)
 
-    # Por columnas:
-    apply(M, 2, sum)
+# Por columnas:
+apply(M, 2, sum)
 @
-Y puedes comprobar que estos son los mismos resultados que obtuvimos con {\tt rowSums} y {\tt colSums}, respectivamente.
+     Y puedes comprobar que estos son los mismos resultados que obtuvimos con {\tt rowSums} y {\tt colSums}, respectivamente.
 \begin{ejercicio}
 \label{tut03:ejercicio07a}
 \quad
 \begin{enumerate}
-  \item Calcula la cuasidesviación típica muestral de las filas de {\tt M}.
-  \item Calcula la mediana de las columnas de {\tt M}.
-  \item La cuasidesviación típica muestral y la mediana son números. Pero también hay funciones que devuelven vectores en lugar de números. ¿Qué sucede si usas {\tt apply} para aplicar la función {\tt summary} a las columnas de {\tt M}?
+\item Calcula la cuasidesviación típica muestral de las filas de {\tt M}.
+\item Calcula la mediana de las columnas de {\tt M}.
+\item La cuasidesviación típica muestral y la mediana son números. Pero también hay funciones que devuelven vectores en lugar de números. ¿Qué sucede si usas {\tt apply} para aplicar la función {\tt summary} a las columnas de {\tt M}?
 \end{enumerate}
 Soluciones en la página \pageref{tut03:ejercicio07a:sol}.
 \qed
@@ -386,44 +387,44 @@ Soluciones en la página \pageref{tut03:ejercicio07a:sol}.
 
 Otra propiedad interesante de las matrices es que podemos operar con ellas de forma muy parecida a como hemos hecho con los vectores. Para disponer de un ejemplo, este código define un par de matrices {\tt A} y {\tt B}, ambas matrices aleatorias (construidas con sample) de dimensión $3\times 4$.
 <<chunk09i>>=
-    set.seed(2014)
-    (A = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
-    (B = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
+     set.seed(2014)
+(A = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
+(B = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
 @
-Y ahora podemos ilustrar algunas operaciones con estas matrices. Por ejemplo, podemos multiplicar {\tt A } por $2$:
-<<chunk09k>>=
-    2 * A
+     Y ahora podemos ilustrar algunas operaciones con estas matrices. Por ejemplo, podemos multiplicar {\tt A } por $2$:
+     <<chunk09k>>=
+     2 * A
 @
-Podemos elevar {\tt B} al cuadrado:
-<<chunk09l>>=
-    B^2
+     Podemos elevar {\tt B} al cuadrado:
+     <<chunk09l>>=
+     B^2
 @
-Podemos sumar las matrices:
-<<chunk09m>>=
-    A + B
+     Podemos sumar las matrices:
+     <<chunk09m>>=
+     A + B
 @
-Y también podemos multiplicarlas elemento a elemento.
+     Y también podemos multiplicarlas elemento a elemento.
 <<chunk09n>>=
-    A * B
+     A * B
 @
-¡Pero cuidado! Lo que R ha hecho aquí es lo mismo que ha hecho en todas las operaciones anteriores: trabajar elemento a elemento, como hacíamos en los vectores. En particular el resultado {\bf no es el producto de matrices} tal como se define habitualmente en Matemáticas. En la Sección \ref{tut03:subsec:IntroAlgebraMatricial} (pág. \pageref{tut03:subsec:IntroAlgebraMatricial}) veremos cómo se calcula el verdadero producto matricial.
+     ¡Pero cuidado! Lo que R ha hecho aquí es lo mismo que ha hecho en todas las operaciones anteriores: trabajar elemento a elemento, como hacíamos en los vectores. En particular el resultado {\bf no es el producto de matrices} tal como se define habitualmente en Matemáticas. En la Sección \ref{tut03:subsec:IntroAlgebraMatricial} (pág. \pageref{tut03:subsec:IntroAlgebraMatricial}) veremos cómo se calcula el verdadero producto matricial.
 
 Naturalmente, podemos aplicar una función (como, por poner un ejemplo, el arcotangente, {\tt atan}), a todos los elementos de la matriz:
-<<chunk09o>>=
-    atan(A)
+     <<chunk09o>>=
+     atan(A)
 @
-Y no queremos cerrar este apartado sin comentar algo que luego nos será muy útil. Además de las operaciones aritméticas, también podemos hacer operaciones lógicas (booleanas; recuerda el Tutorial02, pág. \pageref{tut02-tut02:subsubsec:SeleccionElementosCondicionesValoresBooleanosWhich}). Si queremos saber qué elementos de la matriz {\tt A} son mayores o iguales que $0$, haremos:
-<<chunk09p>>=
-    A >= 0
+     Y no queremos cerrar este apartado sin comentar algo que luego nos será muy útil. Además de las operaciones aritméticas, también podemos hacer operaciones lógicas (booleanas; recuerda el Tutorial02, pág. \pageref{tut02-tut02:subsubsec:SeleccionElementosCondicionesValoresBooleanosWhich}). Si queremos saber qué elementos de la matriz {\tt A} son mayores o iguales que $0$, haremos:
+     <<chunk09p>>=
+     A >= 0
 @
-Y, como ves, la respuesta es una matriz de valores booleanos, con las respuestas a esa pregunta, calculados de nuevo {\em elemento a elemento}.
+     Y, como ves, la respuesta es una matriz de valores booleanos, con las respuestas a esa pregunta, calculados de nuevo {\em elemento a elemento}.
 
 \begin{ejercicio}
 \label{tut03:ejercicio08}
 \quad
 \begin{enumerate}
-  \item Construye una matriz de la misma dimensión que {\tt B} y con elementos {\tt TRUE/FALSE} que permita saber si el correspondiente elemento de {\tt B} son iguales a $2$.
-  \item Cambia la dimensión de la matriz {\tt A} para que sea una matriz $2\times 6$. Trata de calcular ahora el producto {\tt A * B}. ¿Qué sucede?
+\item Construye una matriz de la misma dimensión que {\tt B} y con elementos {\tt TRUE/FALSE} que permita saber si el correspondiente elemento de {\tt B} son iguales a $2$.
+\item Cambia la dimensión de la matriz {\tt A} para que sea una matriz $2\times 6$. Trata de calcular ahora el producto {\tt A * B}. ¿Qué sucede?
 \end{enumerate}
 Soluciones en la página \pageref{tut03:ejercicio08:sol}.
 \qed
@@ -434,60 +435,60 @@ Soluciones en la página \pageref{tut03:ejercicio08:sol}.
 
 
 La selección de elementos de una matriz de R usa técnicas parecidas a las que ya hemos aprendido en el caso de los vectores. Vamos a suponer, por ejemplo, que queremos seleccionar el elemento de la tercera fila, sexta columna de la matriz {\tt M} que venimos usando. En notación matemática, si $M$ es la matriz ese elemento sería $m_{3,6}$ (a menudo se usa una letra mayúscula para la matriz y la misma letra minúscula para sus elementos). Recuerda que la matriz era:
-<<chunk10, eval=TRUE, echo=TRUE>>=
-    M
+     <<chunk10, eval=TRUE, echo=TRUE>>=
+     M
 @
-El elemento deseado se selecciona usando así los corchetes:
-<<chunk11, eval=TRUE, echo=TRUE>>=
-    M[3, 6]
+     El elemento deseado se selecciona usando así los corchetes:
+     <<chunk11, eval=TRUE, echo=TRUE>>=
+     M[3, 6]
 @
-¿Y si lo que queremos es seleccionar una fila entera? Por ejemplo, la segunda fila. El propio R, al mostrar la matriz {\tt M}, nos da una pista sobre la forma de conseguir esto con la notación de corchetes. La forma de obtener la segunda fila es esta:
-<<chunk12, eval=TRUE, echo=TRUE>>=
-    M[2, ]
+     ¿Y si lo que queremos es seleccionar una fila entera? Por ejemplo, la segunda fila. El propio R, al mostrar la matriz {\tt M}, nos da una pista sobre la forma de conseguir esto con la notación de corchetes. La forma de obtener la segunda fila es esta:
+     <<chunk12, eval=TRUE, echo=TRUE>>=
+     M[2, ]
 @
-mientras que si lo que quieres es la cuarta columna, tendrás que usar:
-<<chunk13, eval=TRUE, echo=TRUE>>=
-    M[ , 4]
+     mientras que si lo que quieres es la cuarta columna, tendrás que usar:
+     <<chunk13, eval=TRUE, echo=TRUE>>=
+     M[ , 4]
 @
-Esta notación con corchetes es, como ya vimos con los vectores, muy flexible. Por ejemplo, para seleccionar las columnas de la $5$ a la $8$ podemos hacer:
-<<chunk14, eval=TRUE, echo=TRUE>>=
-    M[ , 5:8]
+     Esta notación con corchetes es, como ya vimos con los vectores, muy flexible. Por ejemplo, para seleccionar las columnas de la $5$ a la $8$ podemos hacer:
+     <<chunk14, eval=TRUE, echo=TRUE>>=
+     M[ , 5:8]
 @
-Y si lo que quieres son las columnas pares, puedes probar con:
-<<chunk15>>=
-    M[ , seq(from=2, to=ncol(M), by=2)]
+     Y si lo que quieres son las columnas pares, puedes probar con:
+     <<chunk15>>=
+     M[ , seq(from=2, to=ncol(M), by=2)]
 @
-Fíjate en que, en este ejemplo, como sabemos el número de columnas podríamos haber escrito simplemente
+     Fíjate en que, en este ejemplo, como sabemos el número de columnas podríamos haber escrito simplemente
 <<chunk16>>=
-    M[ , c(2,4,6,8)]
+     M[ , c(2,4,6,8)]
 @
-y el resultado es el mismo. Pero el método anterior tiene la ventaja de que no depende del conocimiento previo de las dimensiones de la matriz. Es una buena práctica acostumbrarse a buscar soluciones tan generales como sea posible. Aparte de hacer avanzar por la senda de la sabiduría, esto te facilitaré reutilizar el mismo código en el futuro para otras tareas.
+     y el resultado es el mismo. Pero el método anterior tiene la ventaja de que no depende del conocimiento previo de las dimensiones de la matriz. Es una buena práctica acostumbrarse a buscar soluciones tan generales como sea posible. Aparte de hacer avanzar por la senda de la sabiduría, esto te facilitaré reutilizar el mismo código en el futuro para otras tareas.
 
 Naturalmente, es posible combinar la selección por filas y por columnas. Supongamos que queremos los elementos de la matriz {\tt M} que ocupan la intersección de las filas $2$ y $4$ con las columnas $6$ y $9$. Los podemos obtener de esta manera:
-<<chunk17>>=
-    M[ c(2, 4), c(6, 9)]
+     <<chunk17>>=
+     M[ c(2, 4), c(6, 9)]
 @
-
-\subsection{Matrices por filas y columnas: {\tt cbind} y {\tt rbind}.}
+     
+     \subsection{Matrices por filas y columnas: {\tt cbind} y {\tt rbind}.}
 \label{tut03:subsec:RbindCbind}
 
 Otra manera de fabricar matrices a partir de vectores es utilizar las funciones {\tt cbind} y {\tt rbind} (donde r y c proceden de row (fila) y column (columna), respectivamente). Estas funciones nos permiten escribir las filas o columnas directamente como vectores. Por ejemplo, podemos fabricar una matriz {\tt U} a partir de sus tres filas, definidas todas mediante vectores de la misma longitud (que en este caso, es $4$), con el código:
-<<chunk18>>=
-    (U = rbind(2:5, 1:4, c(-2,1,4,7)))
+     <<chunk18>>=
+     (U = rbind(2:5, 1:4, c(-2,1,4,7)))
 @
-Y para ilustrar la función {\tt cbind} vamos a añadirle una columna más a la matriz {\tt U}, escribiendo:
-<<chunk19>>=
-    (U = cbind(U, c(11,17,-4)))
+     Y para ilustrar la función {\tt cbind} vamos a añadirle una columna más a la matriz {\tt U}, escribiendo:
+     <<chunk19>>=
+     (U = cbind(U, c(11,17,-4)))
 @
-
-\begin{ejercicio}
+     
+     \begin{ejercicio}
 \label{tut03:ejercicio09}
 \quad
 Dada la matriz
 <<chunk20>>=
-    (B = matrix(1:100, nrow=10))
+     (B = matrix(1:100, nrow=10))
 @
-añádele a la derecha una columna que contenga los cuadrados de los elementos de la primera columna de {\tt B}. ¿Cómo la añadirías a la izquierda? ¿Y en el medio (pongamos, entre la segunda y la tercera)? Solución en la página \pageref{tut03:ejercicio09:sol}.
+     añádele a la derecha una columna que contenga los cuadrados de los elementos de la primera columna de {\tt B}. ¿Cómo la añadirías a la izquierda? ¿Y en el medio (pongamos, entre la segunda y la tercera)? Solución en la página \pageref{tut03:ejercicio09:sol}.
 \qed
 \end{ejercicio}
 
@@ -495,39 +496,39 @@ añádele a la derecha una columna que contenga los cuadrados de los elementos d
 \label{tut03:subsec:CaminoVueltaMatricesVectores}
 
 Hemos visto que la función {\tt matrix} sirve para convertir un vector en una matriz. Pero a veces necesitaremos la transformación contraria. Afortunadamente, hay varias maneras de convertir una matriz en un vector. Para trabajar sobre un ejemplo concreto vamos a fabricar con la matriz {\tt A}, que hemos usado en anteriores ejemplos, y que habíamos fabricado así:
-<<chunk40>>=
-    set.seed(2014)
-    (A = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
+     <<chunk40>>=
+     set.seed(2014)
+(A = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
 @
-La forma más clara de convertirla en un vector es usando una función matricial llamada {\tt as.vector}:
-<<chunk41>>=
-    as.vector(A)
+     La forma más clara de convertirla en un vector es usando una función matricial llamada {\tt as.vector}:
+     <<chunk41>>=
+     as.vector(A)
 @
-Fiel a sus costumbres, R trabaja por columnas, de manera que los primeros tres elementos del vector son los de la primera columna de {\tt A}. Si queremos fabricar el vector avanzando por filas, podemos usar la función {\tt t} para trasponer primero la matriz, y luego usar {\tt as.vector}:
-<<chunk42>>=
-    as.vector(t(A))
+     Fiel a sus costumbres, R trabaja por columnas, de manera que los primeros tres elementos del vector son los de la primera columna de {\tt A}. Si queremos fabricar el vector avanzando por filas, podemos usar la función {\tt t} para trasponer primero la matriz, y luego usar {\tt as.vector}:
+     <<chunk42>>=
+     as.vector(t(A))
 @
-
-Hay otra manera muy fácil de convertir matrices en vectores, usando
+     
+     Hay otra manera muy fácil de convertir matrices en vectores, usando
 <<chunk43>>=
-    c(A)
+     c(A)
 @
-El resultado es el mismo que con {\tt as.vector}, así que podrías pensar que es mejor (por más breve) usar la función {\tt c}. Pero a menudo, cuando escribimos programas, la claridad es más importante que la brevedad.
+     El resultado es el mismo que con {\tt as.vector}, así que podrías pensar que es mejor (por más breve) usar la función {\tt c}. Pero a menudo, cuando escribimos programas, la claridad es más importante que la brevedad.
 
 Finalmente, hay un método algo más esotérico para convertir una matriz en un vector, que consiste en ``borrarle'' sus dimensiones. Recuerda que para obtener las dimensiones de la matriz hacemos:
-<<chunk44>>=
-    dim(A)
+     <<chunk44>>=
+     dim(A)
 @
-Pero también podemos usar la función {\tt dim} para {\em cambiar} esas dimensiones. Vamos a hacer esto, pero cambiando las dimensiones por el valor {\tt NULL}. Este símbolo representa un valor especial R, como otros valores especiales que ya hemos encontrado: {\tt NA, NaN, Inf}. El valor {\tt NULL} se utiliza, principalmente, para ``vaciar'' una variable. Es una forma de decirle a R ``olvídate del contenido de esta variable''. Así que si hacemos
+     Pero también podemos usar la función {\tt dim} para {\em cambiar} esas dimensiones. Vamos a hacer esto, pero cambiando las dimensiones por el valor {\tt NULL}. Este símbolo representa un valor especial R, como otros valores especiales que ya hemos encontrado: {\tt NA, NaN, Inf}. El valor {\tt NULL} se utiliza, principalmente, para ``vaciar'' una variable. Es una forma de decirle a R ``olvídate del contenido de esta variable''. Así que si hacemos
 <<chunk45>>=
-    dim(A) = NULL
+     dim(A) = NULL
 @
-le estamos diciendo a R ``olvídate de que {\tt A} tenía dimensiones''. Y el resultado es que si ahora preguntamos por {\tt A} obtenemos:
-<<chunk46>>=
-    A
-    class(A)
+     le estamos diciendo a R ``olvídate de que {\tt A} tenía dimensiones''. Y el resultado es que si ahora preguntamos por {\tt A} obtenemos:
+     <<chunk46>>=
+     A
+class(A)
 @
-Es decir, que {\tt A} ha pasado a ser un vector de tipo {\tt integer}. Los vectores, en R, no tienen dimensión. O,  mejor dicho, su dimensión es {\tt NULL}.
+     Es decir, que {\tt A} ha pasado a ser un vector de tipo {\tt integer}. Los vectores, en R, no tienen dimensión. O,  mejor dicho, su dimensión es {\tt NULL}.
 
 
 
@@ -538,134 +539,134 @@ Es decir, que {\tt A} ha pasado a ser un vector de tipo {\tt integer}. Los vecto
 Esta sección no pretende ser, en modo alguno, una introducción siquiera mínimamente completa al Álgebra Lineal con R, porque eso nos ocuparía mucho más espacio del que razonablemente podemos dedicarle en este tutorial. Pero sí queremos que sirva de aperitivo para aquellos lectores con conocimientos más avanzados sobre matrices.
 
 Para empezar, en R, el producto matricial se representa con el operador {\tt \%*\%}. Por ejemplo, si definimos las matrices:
-<<chunk20a>>=
-    (U = matrix(1:8, nrow=2, byrow=TRUE))
-    (V = matrix(rep(c(1,-1),12), nrow=4, byrow=TRUE))
+     <<chunk20a>>=
+     (U = matrix(1:8, nrow=2, byrow=TRUE))
+(V = matrix(rep(c(1,-1),12), nrow=4, byrow=TRUE))
 @
-En este caso, $U$ es $2\times 4$, mientras que $V$ es $4\times 6$, así que el producto es esta matriz $2\times 6$:
-<<chunk20b>>=
-    U %*% V
+     En este caso, $U$ es $2\times 4$, mientras que $V$ es $4\times 6$, así que el producto es esta matriz $2\times 6$:
+     <<chunk20b>>=
+     U %*% V
 @
-Naturalmente, si tratamos de hacer un producto no definido, R nos reprende con un error:
-<<chunk20c>>=
-    V %*% U
+     Naturalmente, si tratamos de hacer un producto no definido, R nos reprende con un error:
+     <<chunk20c>>=
+     V %*% U
 @
-Para matrices cuadradas, como la matriz {\tt M}, podemos calcular el determinante:
-<<chunk20d>>=
-    (K = matrix(c(3,1,7,3), nrow=2))
-    det(K)
+     Para matrices cuadradas, como la matriz {\tt M}, podemos calcular el determinante:
+     <<chunk20d>>=
+     (K = matrix(c(3,1,7,3), nrow=2))
+det(K)
 @
-Si la matriz no es cuadrada, se producirá un error. Y si, como ha sucedido en este ejemplo, el determinante es distinto de $0$, entonces podemos usar la función {\tt solve} para calcular la inversa de la matriz:
-<<chunk20e>>=
-    solve(K)
-    K %*% solve(K)
+     Si la matriz no es cuadrada, se producirá un error. Y si, como ha sucedido en este ejemplo, el determinante es distinto de $0$, entonces podemos usar la función {\tt solve} para calcular la inversa de la matriz:
+     <<chunk20e>>=
+     solve(K)
+K %*% solve(K)
 @
-Hemos incluido el producto matricial para que resulte evidente que, de hecho, hemos obtenido la inversa.
+     Hemos incluido el producto matricial para que resulte evidente que, de hecho, hemos obtenido la inversa.
 
 Como hemos dicho, apenas hemos arañado la superficie de lo que es posible hacer con R. Existen muchas más funciones (y paquetes) para calcular autovalores (ver la función {\tt eigen()}, descomposiciones de Cholesky (ver la función {\tt chol}), o en valores singulares  (función {\tt svd}), etc. El enlace
-\begin{center}
-  \link{http://www.statmethods.net/advstats/matrix.html}{http://www.statmethods.net/advstats/matrix.html}
+                                                                                                                                                            \begin{center}
+                                                                                                                                                            \link{http://www.statmethods.net/advstats/matrix.html}{http://www.statmethods.net/advstats/matrix.html}
+                                                                                                                                                            \end{center}
+                                                                                                                                                            contiene algo más de información sobre este tema.
+                                                                                                                                                            
+                                                                                                                                                            \section{Los juegos del Caballero de Méré en R}
+                                                                                                                                                            \label{tut03:sec:JuegosCaballeroMereR}
+                                                                                                                                                            
+                                                                                                                                                            Ya va siendo hora de poner a trabajar a las matrices de R en un problema que nos interesa. Más adelante en el curso, cuando  manejemos R con más soltura, conoceremos otros objetos (en especial las listas y los {\tt data.frames}) que harán más fácil esta tarea. Pero por el momento nos las podemos arreglar con lo que hemos aprendido para obtener resultados sobre los juegos del Caballero de Méré muy parecidos a los que hemos obtenido con Calc.
+                                                                                                                                                            
+                                                                                                                                                            \subsection{El primer juego}
+                                                                                                                                                            \label{tut03:subsec:PrimerJuego}
+                                                                                                                                                            
+                                                                                                                                                            
+                                                                                                                                                            Recuerda que ya habíamos empezado el trabajo, en la Sección \ref{tut03:subsubsec:DeMereRPrimeraVisita} (pág. \pageref{tut03:subsubsec:DeMereRPrimeraVisita}), en la que habíamos construido un vector de $4000$ tiradas del dado, y descubrimos que podíamos agruparlas en partidas de cuatro tiradas cada una usando una matriz de cuatro columnas. El código necesario es:
+                                                                                                                                                                 
+                                                                                                                                                                 <<chunk21, eval=TRUE, cache=TRUE>>=
+                                                                                                                                                                 set.seed(2014)
+                                                                                                                                                            dado4000 = sample(1:6, 4000, replace=TRUE)
+                                                                                                                                                            deMere1 = matrix(dado4000, ncol=4, byrow=TRUE)
+                                                                                                                                                            @
+                                                                                                                                                                 Al hacer esto, la matriz {\tt deMere1} es una matriz $1000\times 4$ que contiene, en cada fila, una partida del primer juego. Es decir, esa matriz contiene el equivalente a las primeras cuatro columnas del fichero {\tt Cap03-DeMere1.ods} de Calc que aparecía en la Figura \ref{tut03:fig:Cap03-DeMere1.ods}. Por ejemplo,  las primeras 10 partidas son:
+                                                                                                                                                                 
+                                                                                                                                                                 <<chunk22, eval=TRUE>>=
+                                                                                                                                                                 head(deMere1, 10)
+                                                                                                                                                            @
+                                                                                                                                                                 Para saber si ha ganado en una partida concreta, el Caballero de Méré tiene que preguntarse si alguno de los cuatro números de esa partida es un 6. Ya hemos visto que eso se puede hacer en R de una manera muy fácil, con el código {\tt deMere1 == 6}. Vamos a guardar el resultado en una matriz de valores booleanos, y le echaremos un vistazo a las 10 primeras filas de esa matriz.
+                                                                                                                                                            <<chunk23, eval=TRUE>>=
+                                                                                                                                                                 esSeis = (deMere1 == 6)
+                                                                                                                                                            head(esSeis, 10)
+                                                                                                                                                            @
+                                                                                                                                                                 El siguiente paso es fácil de describir: tenemos que ver cuáles son las filas que contienen al menos un valor {\tt TRUE}. El truco consiste en usar la equivalencia de los valores {\tt TRUE} y {\tt FALSE} con $1$ y $0$ que aprendimos en el Tutorial02 (ver la página  \pageref{tut02-tut02:subsubsec:BooleanosComoUnosCeros}). Vamos a fijarnos, por ejemplo, en la primera partida, en la que no hay ningún $6$, y sumemos esa fila de la matriz {\tt esSeis}:
+                                                                                                                                                                 <<chunk24, eval=TRUE>>=
+                                                                                                                                                                 esSeis[1, ]
+                                                                                                                                                            sum(esSeis[1, ])
+                                                                                                                                                            @
+                                                                                                                                                                 En cambio en la segunda partida hay un seis, y la suma de la segunda fila de {\tt esSeis} así lo indica:
+                                                                                                                                                                 <<chunk25, eval=TRUE>>=
+                                                                                                                                                                 esSeis[2, ]
+                                                                                                                                                            sum(esSeis[2, ])
+                                                                                                                                                            which(rowSums(esSeis) == max(rowSums(esSeis)))
+                                                                                                                                                            @
+                                                                                                                                                                 En la partida número $602$ el Caballero de Méré tuvo mucha suerte, y obtuvo $6$ cuatro veces \footnote{¿Es un milagro? ¿Cómo de probable crees que es que suceda esto en $1000$ partidas? Aprenderemos a contestar esa pregunta en el Capítulo \ref{curso-cap:TeoremaCentralLimite} del libro, y veremos que es aproximadamente igual a $0.0008$. No es, desde luego, un milagro...}:
+                                                                                                                                                                 <<chunk26, eval=TRUE>>=
+                                                                                                                                                                 esSeis[602, ]
+                                                                                                                                                            sum(esSeis[602, ])
+                                                                                                                                                            @
+                                                                                                                                                                 
+                                                                                                                                                                 \begin{ejercicio}
+                                                                                                                                                            \label{tut03:ejercicio10}
+                                                                                                                                                            \quad
+                                                                                                                                                            ¿Cómo hemos averiguado que en esa fila aparecían cuatro seises? Tienes todos los ingredientes para responder, pero si no lo ves claro sigue leyendo y luego vuelve a este ejercicio. Una pista: las funciones {\tt which} y {\tt max} ayudarán a obtener la respuesta, junto con el ingrediente que vamos a ver a continuación. Solución en la página \pageref{tut03:ejercicio10:sol}.
+                                                                                                                                                            \qed
+                                                                                                                                                            \end{ejercicio}
+                                                                                                                                                            
+                                                                                                                                                            Todo eso está muy bien, pero no podemos ir fila for fila sumando unos y ceros en cada una de las $1000$ filas de la matriz {\tt esSeis}. Afortunadamente, hay una función que nos ayuda a hacer exactamente lo que necesitamos: la función {\tt rowSums}:
+                                                                                                                                                                 <<chunk27, eval=TRUE>>=
+                                                                                                                                                                 cuantosSeis = rowSums(esSeis)
+                                                                                                                                                            head(cuantosSeis, 10)
+                                                                                                                                                            @
+                                                                                                                                                                 El vector {\tt cuantosSeis} nos dice cuántas veces se ha obtenido $6$ en cada una de las $1000$ partidas. Para saber las partidas ganadoras basta saber el número de elementos de {\tt cuantosSeis} que son mayores que $0$.  A partir de ahí es muy fácil calcular la proporción de partidas ganadoras:
+                                                                                                                                                                 <<chunk28, eval=TRUE>>=
+                                                                                                                                                                 partidasGanadoras = (cuantosSeis > 0)
+                                                                                                                                                            (proporcion = table(partidasGanadoras)/length(partidasGanadoras))
+                                                                                                                                                            @
+                                                                                                                                                                 Y, como puede verse, el resultado es coincidente con el que apuntaba Calc. Naturalmente, esto es sólo un ejemplo. Pero basta con volver a ejecutar el código (sin usar {\tt set.seed}, desde luego) para obtener otro conjunto de partidas y seguir el  experimento, constatando, como hicimos con Calc, que la probabilidad estimada por el Caballero de Méré era errónea. Para facilitar esa tarea, hemos agrupado el código en el fichero adjunto \otrofichero{Tut-03-DeMere1.R}{Tut-03-DeMere1.R}, cuyo listado aparece en la Tabla \ref{tut03:tabla:FicheroTut-03-DeMere1}. Prueba a ejecutarlo unas cuantas veces.
+                                                                                                                                                            
+                                                                                                                                                            \begin{table}[h!]
+                                                                                                                                                            \lstinputlisting[numbers=none]{./datos/Tut-03-DeMere1.R}
+                                                                                                                                                            \caption{Comandos R para el primer juego del Caballero de Méré. Fichero {\tt Tut-03-DeMere1.R}}
+                                                                                                                                                            \label{tut03:tabla:FicheroTut-03-DeMere1}
+                                                                                                                                                            \end{table}
+                                                                                                                                                            
+                                                                                                                                                            \subsection{El segundo juego}
+                                                                                                                                                            \label{tut03:subsec:SegundoJuego}
+                                                                                                                                                            
+                                                                                                                                                            En lugar de hacer una descripción igual de detallada del segundo juego, vamos a proponer al lector que lo aborde mediante un ejercicio.
+                                                                                                                                                            
+                                                                                                                                                            \begin{ejercicio}
+                                                                                                                                                            \label{tut03:ejercicio11}
+                                                                                                                                                            \quad
+                                                                                                                                                            \begin{enumerate}
+                                                                                                                                                            \item Construye un vector {\tt dosDados24000} con $24\cdot 1000$ tiradas de un ``dado'' de 36 caras. El número $36$ corresponde al $6$ doble.
+                                                                                                                                                            \item Conviértelo en una matriz, agrupando las tiradas por partidas (cada partida consta de $24$ tiradas).
+                                                                                                                                                            \item Identifica las partidas ganadoras.
+                                                                                                                                                            \item Calcula la proporción de partidas ganadoras sobre el total de $1000$ partidas.
+                                                                                                                                                            \end{enumerate}
+                                                                                                                                                            
+                                                                                                                                                            Solución en la página \pageref{tut03:ejercicio11:sol}.
+                                                                                                                                                            \qed
+                                                                                                                                                            \end{ejercicio}
+                                                                                                                                                            
+                                                                                                                                                            
+                                                                                                                                                            \subsubsection{Comprobando experimentalmente la regla de Laplace}
+                                                                                                                                                            \label{tut03:subsubsec:ComprobandoExperimentalmenteReglaLaplace}
+                                                                                                                                                            
+                                                                                                                                                            Uno de nuestros primeros ejemplos usando la Regla de Laplace, al final de la Sección \ref{curso-cap03:sec:ReglaLaplace} del libro, se refiere al juego en el que tiramos dos veces un dado y queremos calcular la probabilidad del suceso
+                                                                                                                                                            \begin{center}
+{\sf  $A=${\em obtener al menos un seis en las dos tiradas.} }
 \end{center}
-contiene algo más de información sobre este tema.
-
-\section{Los juegos del Caballero de Méré en R}
-\label{tut03:sec:JuegosCaballeroMereR}
-
-Ya va siendo hora de poner a trabajar a las matrices de R en un problema que nos interesa. Más adelante en el curso, cuando  manejemos R con más soltura, conoceremos otros objetos (en especial las listas y los {\tt data.frames}) que harán más fácil esta tarea. Pero por el momento nos las podemos arreglar con lo que hemos aprendido para obtener resultados sobre los juegos del Caballero de Méré muy parecidos a los que hemos obtenido con Calc.
-
-\subsection{El primer juego}
-\label{tut03:subsec:PrimerJuego}
-
-
-Recuerda que ya habíamos empezado el trabajo, en la Sección \ref{tut03:subsubsec:DeMereRPrimeraVisita} (pág. \pageref{tut03:subsubsec:DeMereRPrimeraVisita}), en la que habíamos construido un vector de $4000$ tiradas del dado, y descubrimos que podíamos agruparlas en partidas de cuatro tiradas cada una usando una matriz de cuatro columnas. El código necesario es:
-
-<<chunk21, eval=TRUE, cache=FALSE>>=
-set.seed(2014)
-dado4000 = sample(1:6, 4000, replace=TRUE)
-deMere1 = matrix(dado4000, ncol=4, byrow=TRUE)
-@
-Al hacer esto, la matriz {\tt deMere1} es una matriz $1000\times 4$ que contiene, en cada fila, una partida del primer juego. Es decir, esa matriz contiene el equivalente a las primeras cuatro columnas del fichero {\tt Tut03-DeMere1.ods} de Calc que aparecía en la Figura \ref{tut03:fig:Tut03-DeMere1.ods}. Por ejemplo,  las primeras 10 partidas son:
-
-<<chunk22, eval=TRUE>>=
-head(deMere1, 10)
-@
-Para saber si ha ganado en una partida concreta, el Caballero de Méré tiene que preguntarse si alguno de los cuatro números de esa partida es un 6. Ya hemos visto que eso se puede hacer en R de una manera muy fácil, con el código {\tt deMere1 == 6}. Vamos a guardar el resultado en una matriz de valores booleanos, y le echaremos un vistazo a las 10 primeras filas de esa matriz.
-<<chunk23, eval=TRUE>>=
-esSeis = (deMere1 == 6)
-head(esSeis, 10)
-@
-El siguiente paso es fácil de describir: tenemos que ver cuáles son las filas que contienen al menos un valor {\tt TRUE}. El truco consiste en usar la equivalencia de los valores {\tt TRUE} y {\tt FALSE} con $1$ y $0$ que aprendimos en el Tutorial02 (ver la página  \pageref{tut02-tut02:subsubsec:BooleanosComoUnosCeros}). Vamos a fijarnos, por ejemplo, en la primera partida, en la que no hay ningún $6$, y sumemos esa fila de la matriz {\tt esSeis}:
-<<chunk24, eval=TRUE>>=
-esSeis[1, ]
-sum(esSeis[1, ])
-@
-En cambio en la segunda partida hay un seis, y la suma de la segunda fila de {\tt esSeis} así lo indica:
-<<chunk25, eval=TRUE>>=
-esSeis[2, ]
-sum(esSeis[2, ])
-which(rowSums(esSeis) == max(rowSums(esSeis)))
-@
-En la partida número $602$ el Caballero de Méré tuvo mucha suerte, y obtuvo $6$ cuatro veces \footnote{¿Es un milagro? ¿Cómo de probable crees que es que suceda esto en $1000$ partidas? Aprenderemos a contestar esa pregunta en el Capítulo \ref{curso-cap:TeoremaCentralLimite} del libro, y veremos que es aproximadamente igual a $0.0008$. No es, desde luego, un milagro...}:
-<<chunk26, eval=TRUE>>=
-esSeis[602, ]
-sum(esSeis[602, ])
-@
-
-\begin{ejercicio}
-\label{tut03:ejercicio10}
-\quad
-¿Cómo hemos averiguado que en esa fila aparecían cuatro seises? Tienes todos los ingredientes para responder, pero si no lo ves claro sigue leyendo y luego vuelve a este ejercicio. Una pista: las funciones {\tt which} y {\tt max} ayudarán a obtener la respuesta, junto con el ingrediente que vamos a ver a continuación. Solución en la página \pageref{tut03:ejercicio10:sol}.
-\qed
-\end{ejercicio}
-
-Todo eso está muy bien, pero no podemos ir fila for fila sumando unos y ceros en cada una de las $1000$ filas de la matriz {\tt esSeis}. Afortunadamente, hay una función que nos ayuda a hacer exactamente lo que necesitamos: la función {\tt rowSums}:
-<<chunk27, eval=TRUE>>=
-cuantosSeis = rowSums(esSeis)
-head(cuantosSeis, 10)
-@
-El vector {\tt cuantosSeis} nos dice cuántas veces se ha obtenido $6$ en cada una de las $1000$ partidas. Para saber las partidas ganadoras basta saber el número de elementos de {\tt cuantosSeis} que son mayores que $0$.  A partir de ahí es muy fácil calcular la proporción de partidas ganadoras:
-<<chunk28, eval=TRUE>>=
-partidasGanadoras = (cuantosSeis > 0)
-(proporcion = table(partidasGanadoras)/length(partidasGanadoras))
-@
-Y, como puede verse, el resultado es coincidente con el que apuntaba Calc. Naturalmente, esto es sólo un ejemplo. Pero basta con volver a ejecutar el código (sin usar {\tt set.seed}, desde luego) para obtener otro conjunto de partidas y seguir el  experimento, constatando, como hicimos con Calc, que la probabilidad estimada por el Caballero de Méré era errónea. Para facilitar esa tarea, hemos agrupado el código en el fichero adjunto \fichero{./code/Tut-03-DeMere1.R}{Tut-03-DeMere1.R}, cuyo listado aparece en la Tabla \ref{tut03:tabla:FicheroTut-03-DeMere1}. Prueba a ejecutarlo unas cuantas veces.
-
-\begin{table}[h!]
-\lstinputlisting[numbers=none]{./code/Tut-03-DeMere1.R}
-\caption{Comandos R para el primer juego del Caballero de Méré. Fichero {\tt Tut-03-DeMere1.R}}
-\label{tut03:tabla:FicheroTut-03-DeMere1}
-\end{table}
-
-\subsection{El segundo juego}
-\label{tut03:subsec:SegundoJuego}
-
-En lugar de hacer una descripción igual de detallada del segundo juego, vamos a proponer al lector que lo aborde mediante un ejercicio.
-
-\begin{ejercicio}
-\label{tut03:ejercicio11}
-\quad
-\begin{enumerate}
-  \item Construye un vector {\tt dosDados24000} con $24\cdot 1000$ tiradas de un ``dado'' de 36 caras. El número $36$ corresponde al $6$ doble.
-  \item Conviértelo en una matriz, agrupando las tiradas por partidas (cada partida consta de $24$ tiradas).
-  \item Identifica las partidas ganadoras.
-  \item Calcula la proporción de partidas ganadoras sobre el total de $1000$ partidas.
-\end{enumerate}
-
-Solución en la página \pageref{tut03:ejercicio11:sol}.
-\qed
-\end{ejercicio}
-
-
-\subsubsection{Comprobando experimentalmente la regla de Laplace}
-\label{tut03:subsubsec:ComprobandoExperimentalmenteReglaLaplace}
-
-Uno de nuestros primeros ejemplos usando la Regla de Laplace, al final de la Sección \ref{curso-cap03:sec:ReglaLaplace} del libro, se refiere al juego en el que tiramos dos veces un dado y queremos calcular la probabilidad del suceso
-    \begin{center}
-      {\sf  $A=${\em obtener al menos un seis en las dos tiradas.} }
-    \end{center}
 La probabilidad ingenua predice $\frac{12}{36}\approx 0.33$ para la probabilidad $P(A)$. En cambio, la regla de Laplace predice $\frac{11}{36}$. Para comprobarlo experimentalmente hemos incluido aquí una hoja de cálculo de Calc, llamada
 \begin{center}
-  \fichero{../ods/Tut03-DeMere1a.ods}{Tut03-DeMere1a.ods}
+\otrofichero{Tut03-DeMere1a.ods}{Tut03-DeMere1a.ods}
 \end{center}
 en la que se ha simulado ese lanzamiento. Recarga los valores unas cuantas
 veces (con {\tt Ctrl+Mayús+F9}), para ver lo que sucede.
@@ -689,80 +690,80 @@ En la Sección \ref{curso-cap03:sec:ProbabilidadMasAllaReglaLaplace} (pág. \pag
 \subsubsection{Un punto al azar en el segmento $[0,1]$.}
 
 Vamos a tratar de usar R para ilustrar las ideas que han aparecido en el Ejemplo \ref{curso-cap03:ejem:ProbabilidadGeometricaElegirPuntoIntervalo} del libro (pág. \pageref{curso-cap03:ejem:ProbabilidadGeometricaElegirPuntoIntervalo}). En ese ejemplo hemos tomado un número $n_0$ muy grande, por ejemplo $n_0=100000$, para definir $n_0+1$ puntos homogéneamente repartidos en el intervalo $[0,1]$. Vamos a usar R para construir esos puntos. Mostramos los primeros puntos con {\tt head} y los últimos con {\tt tail}. Los últimos están tan cerca de $1$ que R los redondea a $1$ (al mostrarlos, pero no en las operaciones internas; ejecuta si quieres {\tt puntos[n0-1]==1} para comprobarlo):
-
-<<chunk29, eval=TRUE, cache=FALSE>>=
-n0 = 100000
+     
+     <<chunk29, eval=TRUE, cache=TRUE>>=
+     n0 = 100000
 puntos = (0:n0)/n0
 head(puntos)
 tail(puntos)
 @
-Ahora vamos a elegir
+     Ahora vamos a elegir
 <<chunk29a, eval=TRUE>>=
-k = 10000
+     k = 10000
 @
-de esos puntos, y vamos a ver que proporción de ellos pertenecen al intervalo $A=[2/3, 1]$. Usaremos ideas que ya conocemos, como la equivalencia de {\tt TRUE} y {\tt FALSE} con {\tt 1} y {\tt 0}, respectivamente.
-<<chunk30, eval=TRUE, cache=FALSE>>=
-set.seed(2014)
+     de esos puntos, y vamos a ver que proporción de ellos pertenecen al intervalo $A=[2/3, 1]$. Usaremos ideas que ya conocemos, como la equivalencia de {\tt TRUE} y {\tt FALSE} con {\tt 1} y {\tt 0}, respectivamente.
+<<chunk30, eval=TRUE, cache=TRUE>>=
+     set.seed(2014)
 elegidos = sample(puntos, k)
 enA = (elegidos >= 2/3)
 (proporcion = sum(enA) / k)
 @
-La proporción \Sexpr{proporcion}, como ves, es cercana al valor $\frac{1}{3}=$\Sexpr{1/3} que pronosticábamos.
+     La proporción \Sexpr{proporcion}, como ves, es cercana al valor $\frac{1}{3}=$\Sexpr{1/3} que pronosticábamos.
 
 \subsubsection{Lanzando dardos. El método de Montecarlo para calcular áreas.}
 
 
 Para ilustrar el Ejemplo \ref{curso-Cap03:ejem:ProbabilidadGeometricaMontecarlo} del libro (pág. \pageref{curso-Cap03:ejem:ProbabilidadGeometricaMontecarlo}), vamos a utilizar el fichero GeoGebra:
-\begin{center}
-  \fichero{../ggb/Cap03-MonteCarloAreaCirculo.ggb}{Cap03-MonteCarloAreaCirculo.ggb}
+     \begin{center}
+\otrofichero{Cap03-MonteCarloAreaCirculo.ggb}{Cap03-MonteCarloAreaCirculo.ggb}
 \end{center}
 La parte (a) de la Figura \ref{tut03:fig:MontecarloAreaCirculo01} muestra lo que verás cuando lo abras con GeoGebra. El cuadrado inicial, al que llamaremos $C_1$, es de lado $4$, así que su área es 16. El interior del cuadrado contiene cinco puntos, porque el valor del deslizador inicialmente es $n=5$. Arrastra el deslizador con el ratón para ir viendo como se generan más puntos en el interior del cuadrado. Por ejemplo, la parte (b) de la Figura \ref{tut03:fig:MontecarloAreaCirculo01} muestra un ejemplo en el que se han generado  $n=2800$ puntos.
 \begin{figure}[p]
-    \begin{center}
-    (a)\\[3mm]
-    \includegraphics[width=15cm]{../fig/Tut03-43.png}\\[3mm]
-    (b)\\[3mm]
-    \includegraphics[width=15cm]{../fig/Tut03-44.png}
-    \end{center}
-  \caption{(a) Abriendo el fichero {\tt Cap03-MonteCarloAreaCirculo.ggb} con GeoGebra (b) Más puntos al mover el deslizador...}
-  \label{tut03:fig:MontecarloAreaCirculo01}
+\begin{center}
+(a)\\[3mm]
+\includegraphics[width=15cm]{./fig/Tut03-43.png}\\[3mm]
+(b)\\[3mm]
+\includegraphics[width=15cm]{./fig/Tut03-44.png}
+\end{center}
+\caption{(a) Abriendo el fichero {\tt Cap03-MonteCarloAreaCirculo.ggb} con GeoGebra (b) Más puntos al mover el deslizador...}
+\label{tut03:fig:MontecarloAreaCirculo01}
 \end{figure}
 Si ahora marcas con el ratón la casilla rotulada {\em ``Área del cuadrado pequeño''}, verás aparecer un cuadrado más pequeño, de color rojo y centrado en el cuadrado más grande, al que vamos a llamar $C_2$. El lado de este cuadrado más pequeño es $2$, así que su área es $4$. Pero vamos a {\em fingir} que no sabemos cuánto vale el área, y vamos a tratar de calcular ese valor lanzando dardos, y contando la proporción de dardos que hacen blanco en el cuadrado pequeño. La idea subyacente es que ese número de dardos que aciertan en $C_2$ es proporcional al área de $C_2$, así que tenemos:
-\[
-\dfrac{\mbox{Dardos en $C_2$}}{\mbox{Total de dardos (en $C_1$)}} =
-\dfrac{\mbox{Área de $C_2$}}{\mbox{Área de $C_1$}}
-\]
+     \[
+          \dfrac{\mbox{Dardos en $C_2$}}{\mbox{Total de dardos (en $C_1$)}} =
+               \dfrac{\mbox{Área de $C_2$}}{\mbox{Área de $C_1$}}
+          \]
 En la Figura \ref{tut03:fig:MontecarloAreaCirculo02} se muestra ese proceso. Puedes ver que hemos lanzado $n=3000$ dardos, y que la proporción de aciertos en $C_2$ es $0.265$. Así que usando la ecuación anterior, y sabiendo que el área de $C_1$ es 16, estimamos que:
-\[
-\mbox{Área de $C_1$} \approx 16\cdot 0.265\approx 4.24
-\]
+     \[
+          \mbox{Área de $C_1$} \approx 16\cdot 0.265\approx 4.24
+          \]
 Que, sin ser impresionante, es una primera aproximación. Prueba a mover el deslizador para ver como,  a medida que el número de puntos aumenta, las estimaciones son cada vez mejores. Puedes moverlos hasta $n=5000$. Y una vez que llegues a ese valor, pulsa {\tt Ctrl + R}. Cada vez que lo hagas, GeoGebra volverá a lanzar $5000$ nuevos dardos, y podrás ver una nueva estimación del área de $C_2$ (también puedes mover el deslizador ligeramente para conseguir lo mismo).
 
 \begin{figure}[htbp]
-    \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut03-45.png}\\[3mm]
-    \end{center}
-  \caption{Lanzando dardos para calcular el área del cuadrado pequeño.}
-  \label{tut03:fig:MontecarloAreaCirculo02}
+\begin{center}
+\includegraphics[width=15cm]{./fig/Tut03-45.png}\\[3mm]
+\end{center}
+\caption{Lanzando dardos para calcular el área del cuadrado pequeño.}
+\label{tut03:fig:MontecarloAreaCirculo02}
 \end{figure}
 Todo eso puede estar muy bien, pero el lector estará pensando que ya sabemos calcular (y de forma exacta) el área de un cuadrado. Al fin y al cabo de ahí hemos sacado el área  $16$ de $C_1$, para empezar. Es cierto. Pero lo interesante empieza ahora, el cuadrado era sólo calentamiento. Desmarca la casilla del cuadrado, y marca la del círculo. Vamos a llamar $C_3$ al círculo que aparece, y cuyo radio es $1$. Imagínate de nuevo que no conocemos la fórmula para el área del círculo.   El razonamiento es el mismo, y nos conduce a la relación:
-\[
-\dfrac{\mbox{Dardos en $C_3$}}{\mbox{Total de dardos (en $C_1$)}} =
-\dfrac{\mbox{Área de $C_3$}}{\mbox{Área de $C_1$ (es 16)}}
-\]
+     \[
+          \dfrac{\mbox{Dardos en $C_3$}}{\mbox{Total de dardos (en $C_1$)}} =
+               \dfrac{\mbox{Área de $C_3$}}{\mbox{Área de $C_1$ (es 16)}}
+          \]
 Por lo tanto,
 \[
-\mbox{Área de $C_3$}\approx 16\cdot \dfrac{\mbox{Dardos en $C_3$}}{\mbox{Total de dardos (en $C_1$)}}.
-\]
+     \mbox{Área de $C_3$}\approx 16\cdot \dfrac{\mbox{Dardos en $C_3$}}{\mbox{Total de dardos (en $C_1$)}}.
+     \]
 Así que esto nos proporciona un procedimiento para aproximar el área del círculo (o de cualquier otra figura, por cierto) lanzando dardos. Eso empieza a parecer más interesante, ¿verdad?
 
 Vuelve a repetir los pasos que dimos con el cuadrado, moviendo el deslizador hacia la derecha para ver como cambia la aproximación. Y cuando llegues a $5000$ dardos, usa {\tt Ctrl + R} para hacer varios experimentos. Al cabo de unos cuantos intentos espero que te hayas convencido de que el área del círculo tiene un valor cercano a $3.1$. El valor real, naturalmente, es $\pi$. Así que es posible calcular el valor de $\pi$ mientras juegas a los dardos (como ilustra la Figura \ref{tut03:fig:MontecarloAreaCirculo03})... siempre que estés dispuesto a jugar durante un buen rato, y no te esfuerces lo más mínimo en apuntar.
 \begin{figure}[h!]
-    \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut03-45a.png}\\[3mm]
-    \end{center}
-  \caption{Lanzando dardos para calcular el área del círculo, que es precisamente $\pi$.}
-  \label{tut03:fig:MontecarloAreaCirculo03}
+\begin{center}
+\includegraphics[width=15cm]{./fig/Tut03-45a.png}\\[3mm]
+\end{center}
+\caption{Lanzando dardos para calcular el área del círculo, que es precisamente $\pi$.}
+\label{tut03:fig:MontecarloAreaCirculo03}
 \end{figure}
 Recuerda que lo esencial de estos experimentos es observar el vínculo que existe entre áreas y probabilidades. Cuanto mayor es el área de una figura, mayor es la probabilidad de acertarle con un dardo lanzado al azar.
 
@@ -771,60 +772,60 @@ Recuerda que lo esencial de estos experimentos es observar el vínculo que exist
 \label{tut03:sec:OperacionesSimbolicas}
 
 Cuando empezamos a trabajar con probabilidades, usando al principio la Regla de Laplace, y luego con la Combinatoria, a menudo nos surge la necesidad de operar con fracciones,  como en el cálculo de esta fracción (que procede del Ejemplo \ref{curso-cap03:ejem:EjemploUrnasBayes}, pág. \pageref{curso-cap03:ejem:EjemploUrnasBayes}, de nuestro curso):
-\[
-\dfrac{\dfrac{3}{5}\cdot \dfrac{2}{6}}{\dfrac{3}{5}\cdot \dfrac{2}{6}+\dfrac{4}{5}\cdot\dfrac{4}{6}}=\dfrac{3}{11}
-\]
+     \[
+          \dfrac{\dfrac{3}{5}\cdot \dfrac{2}{6}}{\dfrac{3}{5}\cdot \dfrac{2}{6}+\dfrac{4}{5}\cdot\dfrac{4}{6}}=\dfrac{3}{11}
+          \]
 Si intentas hacer esta cuenta en R, para empezar tienes que ser cuidadoso con los paréntesis (se aplica la regla de ``más vale que sobren''), y escribir:
-<<chunk31, eval=TRUE>>=
-    ( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) )
+     <<chunk31, eval=TRUE>>=
+     ( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) )
 @
-Fíjate en los espacios que hemos dejado para hacer la expresión más legible. La respuesta
+     Fíjate en los espacios que hemos dejado para hacer la expresión más legible. La respuesta
 \Sexpr{( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) )}
 no es exactamente lo que queríamos. Para un problema como este, es muy posible que queramos ver el resultado en forma de fracción. El problema es que R es un programa esencialmente {\sf numérico}, que trabaja con la representación de los números en forma decimal (podemos {\em obligarle}, hasta cierto punto, a trabajar con fracciones, pero no es su lenguaje natural). Mientras que \Sexpr{ signif(( (3/5) * (2/6) ) /( (3/5) * (2/6) + (4/5) * (4/6) ), digits=9) } es una versión {\sf numérica} de la respuesta, en el sentido de {\em redondeada a unas cuantas cifras significativas} y, por lo tanto, es una respuesta aproximada. En cambio la respuesta en forma de fracción
 \[
-\dfrac{3}{11}
-\]
+     \dfrac{3}{11}
+     \]
 es una respuesta {\sf simbólica}, y es absolutamente exacta: no hay ninguna pérdida de precisión. Usamos la dualidad {\em numerico/simbólico} en el sentido habitual en las matemáticas contemporáneas. En ese sentido, las cantidades
 \[\sqrt{2},\qquad \pi\]
 son cantidades simbólicas, mientras que sus contrapartes numéricas (con cinco cifras significativas) son:
-\[1.4142,\qquad 3.1416\]
+     \[1.4142,\qquad 3.1416\]
 Y conviene insistir en que R es un programa numérico, no simbólico. Por eso, para algunas operaciones del curso vamos a tener que recurrir a la ayuda de programas simbólicos. Veamos algunos.
 
 \subsection{Wiris.}
 \label{tut03:subsec:Wiris}
 
 El programa Wiris CAS (de Computer Algebra System) es una creación de la empresa de software matemático {\em Maths for More}, con sede en Barcelona, y fundada por profesores y antiguos estudiantes de la Universitat Politècnica de Catalunya. Para utilizar el programa debemos estar conectados a internet.  El programa se usa en el navegador, a través de la Web, en la página de la propia empresa (que incluye publicidad insertada en la página):
-\begin{center}
+     \begin{center}
 \link{http://www.wiris.net/demo/wiris/es/index.html}{http://www.wiris.net/demo/wiris/es/index.html}
 \end{center}
 o a través de las páginas Wiris que algunas Consejerías de Educación de distintas comunidades autónomas españolas ponen a libre disposición del público (tras llegar a acuerdos con la empresa, claro). Aquí tienes, por ejemplo, el enlace de la Comunidad de Madrid:
-\begin{center}
+     \begin{center}
 \link{http://www.wiris.net/educa.madrid.org/wiris/es/index.html}{http://www.wiris.net/educa.madrid.org/wiris/es/index.html}
 \end{center}
 Usemos esta última. Al abrirla (es necesario tener instalado \link{http://www.java.com/es/download/}{Java} en el ordenador; si no sabes si lo tienes, o si puedes o debes instalarlo, consulta a un \ninja{ninja informático),} el aspecto es este:
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-09.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-09.png}
+\end{center}
 Wiris CAS nos permite escribir fórmulas matemáticas usando una notación muy parecida a la que usaríamos en el papel o la pizarra. Los símbolos y operaciones matemáticas están organizados por pestañas, pero para este primer ejemplo tan sencillo, todo lo que necesitamos está en la pestaña operaciones. Busca en ella el símbolo de fracción, que es el icono:
-    \begin{center}
-    \includegraphics[width=1cm]{../fig/Tut04-10.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=1cm]{./fig/Tut04-10.png}
+\end{center}
 Púlsalo una vez con el ratón, y obtendrás
-    \begin{center}
-    \includegraphics[width=15cm]{../fig/Tut04-11.png}
-    \end{center}
+\begin{center}
+\includegraphics[width=15cm]{./fig/Tut04-11.png}
+\end{center}
 A partir de aquí las cosas son bastante intuitivas. Tienes que usar las teclas {\tt +} para la suma, y {\tt *} para la multiplicación, y usar el icono de fracción cada vez que quieras crear una nueva fracción. Tus primeros pasos te pueden llevar a algo como esto:
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-12.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-12.png}
+\end{center}
 Ten en cuenta, para avanzar más rápido, que puedes seleccionar trozos de la fórmula con el ratón, y copiarlos y pegarlos. También, que en la pestaña {\tt Edición} tienes dos iconos en forma de flechas curvas, para deshacer y rehacer operaciones. Debes llegar a:
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-13.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-13.png}
+\end{center}
 Y ahora viene lo bueno. Una vez que estés ahí, pulsa sobre el icono {\em igual} que hay a la derecha de la fórmula (o, con el cursor situado en la fórmula, pulsa {\tt Ctrl+Enter}). Al cabo de unos instantes (tu fórmula viaja por la red, se calcula, y la respuesta vuela de vuelta a tu ordenador), tendrás la respuesta:
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-14.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-14.png}
+\end{center}
 Y Wiris CAS está listo para nuestra siguiente pregunta. Como ves, la respuesta es simbólica, no numérica, como queríamos. El inconveniente que encontramos es que la respuesta es realmente una imagen en la pantalla, no un número que podamos cortar y pegar para llevar a otro programa.
 
 El cálculo de este ejemplo ha sido muy sencillo, pero a lo largo del curso iremos viendo más ejemplos en los que Wiris CAS nos puede ser de gran ayuda.
@@ -837,17 +838,17 @@ Se trata también de una herramienta sólo accesible a través de la Web, en est
 \link{http://www.wolframalpha.com/}{http://www.wolframalpha.com/}
 \end{center}
 Wolfram Alpha te recibe con una pantalla como esta:
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-15.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-15.png}
+\end{center}
 Debemos introducir lo que queremos calcular en el campo de entrada del centro de la ventana, usando en este caso la misma sintaxis que en R:
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-16.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-16.png}
+\end{center}
 En este caso, como ves, en cuanto hemos tecleado la operación, Wolfram Alpha nos ha mostrado la respuesta. Pero para hacer el ejemplo más completo, pulsa sobre el símbolo igual que hay al final del campo de entrada. Verás una pantalla parecida a esta,
-    \begin{center}
-    \includegraphics[width=15.5cm]{../fig/Tut04-17.png}
-    \end{center}
+\begin{center}
+\includegraphics[width=15.5cm]{./fig/Tut04-17.png}
+\end{center}
 en la que, desde luego, está la respuesta a tu pregunta, pero que contiene además mucha más información matemática sobre esa pregunta (más de la que seguramente nunca pensaste que existiera...) Como en el caso de Wiris CAS, apenas hemos rozado la superficie de lo que Wolfram Alpha es capaz de hacer, y volveremos más adelante a seguir aprendiendo como usarlo. Si quieres, puedes pulsar en el enlace {\tt Examples} que aparece bajo la barra de entrada para ver algunas de esas cosas.
 
 
@@ -859,133 +860,133 @@ Una serie es una suma con infinitos sumandos, como la suma
 que vimos en el Ejemplo \ref{curso-cap03:ejem:LanzamientoMonedaHastPrimeraCara:2} (pág. \pageref{curso-cap03:ejem:LanzamientoMonedaHastPrimeraCara:2}) del libro. La teoría matemática de este tipo de sumas puede llegar a ser muy complicada. Pero nosotros nos vamos a quedar en la superficie, limitándonos a usar el ordenador para calcular los ejemplos que necesitemos.
 
 El primer ejemplo, el más sencillo de todos, nos permite comprobar que la probabilidad total asignada en ese Ejemplo \ref{curso-cap03:ejem:LanzamientoMonedaHastPrimeraCara:2} es igual a 1, como exigen las propiedades básicas de la Probabilidad. Es decir, que queremos ver que:
-\[ \dfrac{1}{2}+\dfrac{1}{2^2}+\dfrac{1}{2^3}+\dfrac{1}{2^4}+\cdots=1. \]
+     \[ \dfrac{1}{2}+\dfrac{1}{2^2}+\dfrac{1}{2^3}+\dfrac{1}{2^4}+\cdots=1. \]
 En la primera suma de esta sección sumábamos sólo los términos con exponentes impares, aquí los sumamos todos. Para calcular esta suma usaremos Wiris. Una vez abierto, en la pestaña {\tt Operaciones}, busca el icono del sumatorio
-    \begin{center}
-    \includegraphics[width=6.5cm]{../fig/Tut05-02.png}
-    \end{center}
+\begin{center}
+\includegraphics[width=6.5cm]{./fig/Tut05-02.png}
+\end{center}
 Y usa la paleta de símbolos de esa misma pestaña para escribir la serie, como en la siguiente figura. Un par de advertencias:
-\begin{itemize}
-  \item Encontrarás el símbolo de infinito positivo ($+\infty$) en la pestaña {\tt Símbolos}.
-  \item Para escribir un exponente en Wiris puedes, desde luego, usar el botón \includegraphics[width=0.3cm]{../fig/Tut05-03.png} de la pestaña {\tt Operaciones}. Pero es más rápido usar el atajo de teclado {\tt Ctrl+$\uparrow$}.
+     \begin{itemize}
+\item Encontrarás el símbolo de infinito positivo ($+\infty$) en la pestaña {\tt Símbolos}.
+\item Para escribir un exponente en Wiris puedes, desde luego, usar el botón \includegraphics[width=0.3cm]{./fig/Tut05-03.png} de la pestaña {\tt Operaciones}. Pero es más rápido usar el atajo de teclado {\tt Ctrl+$\uparrow$}.
 \end{itemize}
-    \begin{center}
-    \includegraphics[width=5cm]{../fig/Tut05-04.png}
-    \end{center}
+\begin{center}
+\includegraphics[width=5cm]{./fig/Tut05-04.png}
+\end{center}
 Pulsa sobre el símbolo igual, y verás como Wiris te confirma que el resultado de sumar esa serie es un 1.
 
 Ahora vamos a modificar ligeramente este cálculo, para obtener la suma de la serie de los términos con exponentes impares con la que empezamos esta sección. Para conseguir esto, vamos a modificar el exponente para que sólo tome valores impares. La forma de conseguirlo es sustituir, en el exponente, la variable $k$ por la fórmula $2\cdot k-1$. Porque, cuando $k$ recorre los valores $1,2,3,\ldots$, la fórmula $2\cdot k-1$ recorre a su vez los valores impares $1,3,5,\ldots$
-
-Por lo tanto, hacemos ese cambio en Wiris, volvemos a pulsar el símbolo igual y obtenemos el resultado que se muestra en esta figura:
-    \begin{center}
-    \includegraphics[width=5cm]{../fig/Tut05-05.png}
-    \end{center}
+     
+     Por lo tanto, hacemos ese cambio en Wiris, volvemos a pulsar el símbolo igual y obtenemos el resultado que se muestra en esta figura:
+     \begin{center}
+\includegraphics[width=5cm]{./fig/Tut05-05.png}
+\end{center}
 
 Como hemos dicho, las matemáticas de las series pueden ser muy complicadas. Queremos, para cerrar esta brevísima visita, añadir un ejemplo final, que ilustra un punto importante de esa teoría. La suma de esta serie
 \[1+\dfrac{1}{2}+\dfrac{1}{3}+\cdots+\dfrac{1}{n}+\cdots\]
 es infinito. Si le preguntas a Wiris, en este caso protestará, y dirá que no ha sido capaz de calcularlo (mira en la parte inferior de la pantalla). Lo malo es que a veces obtendremos esa misma respuesta con series que son ``demasiado complicadas para Wiris'', pero cuya suma es una cantidad finita. Si alguna vez necesitas necesitas más detalles, puedes consultar el
 \link{http://www.wiris.net/educa.madrid.org/wiris/manual/es/html/tour/analisi.html\#series}{manual de Wiris } al respecto.
-
-También  puedes probar con Wolfram Alpha. Ya sabes, la dirección es
-
-\begin{center}
-\link{http://www.wolframalpha.com/}{http://www.wolframalpha.com/}
-\end{center}
-
-Prueba a escribir en el campo de entrada
-\begin{center}
-\begin{minipage}{12cm}
-    sum (1/n)
-\end{minipage}
-\end{center}
-
-y obtendrás esta respuesta
-    \begin{center}
-    \includegraphics[width=8cm]{../fig/Tut05-06.png}
-    \end{center}
-La frase {\tt sum does not converge} (la suma --o serie-- no converge) se debe, en este caso, a que el resultado no es un número finito\footnote{Aparte de que el resultado sea infinito,  pueden ocurrir otras cosas. La serie converge cuando el resultado es un número finito, y no converge en cualquier otro caso.}
-
-¿Por qué esta suma es infinito, mientras que las anteriores daban resultados finitos? La respuesta es que una serie es una suma de infinitos números,
-cada vez más pequeños, y que el factor clave para que la suma sea finita es la {\em velocidad} a la que los números se hacen pequeños. Si se hacen
-pequeños muy rápido,  la serie tendrá una suma finita (el resultado de la suma dependerá de cómo sea esa velocidad, en detalle). Pero si los números,
-por el contrario, aunque se hagan pequeños, lo hacen despacio, entonces la suma se irá haciendo cada vez más grande, hasta valer infinito, {\em en el límite}.
-
-
-\section{Combinatoria en R. Cómo instalar librerías adicionales.}
-\label{tut03:sec:CombinatoriaR}
-
-R proporciona algunas herramientas básicas para hacer cálculos en Combinatoria. Para empezar, la función {\tt factorial}, que se usa como muestra este ejemplo de código:
-<<chunk32, eval=TRUE>>=
-factorial(6)
-@
-El factorial de $n$, {\tt fact(n)} en el lenguaje de R, da como resultado el producto de todos los elementos que forman el vector {\tt 1:n}. Y no es de extrañar que en R exista una función {\tt prod}, para multiplicar todos los elementos de un vector:
-<<chunk33, eval=TRUE>>=
-prod(1:6)
-@
-La ventaja de {\tt prod} frente a {\tt fact} es, desde luego, que los elementos no tienen porque ser naturales, ni consecutivos, etc. Puesto que casi todos los cálculos de Combinatoria que vamos a usar en el curso se basan en el factorial, podríamos parar aquí. Pero el factorial es una forma extremadamente poco eficiente de hacer cálculos. Para trabajar de una forma más sensata, por ejemplo, al calcular números combinatorios, R nos ofrece la función {\tt choose}. La forma de utilizar esta función para  calcular el número combinatorio
-\[\binom{22}{7}\]
-es esta:
-<<chunk34, eval=TRUE>>=
-choose(n=22,k=7)
-@
-
-\subsection{Librerías adicionales en R.}
-\label{tut03:subsec:LibreriasAdicionalesR}
-
-Con estas dos herramientas podemos resolver la mayoría de las preguntas que surgen en los problemas elementales de Probabilidad, al aplicar la Regla de Laplace, cuando queremos calcular el {\em número} de casos posibles o de casos favorables a un suceso. Pero no nos sirven si lo que queremos es, de hecho, enumerar esos casos y construir realmente la lista completa de casos.
-
-Por ejemplo, en el caso que usamos muchas veces de las tiradas de un par de dados. Sabemos por un lado que hay 36 resultados posibles distintos. Pero si queremos obtener la lista, entonces queremos obtener los resultados en una forma similar a
-\[(1,1) , (1,2), \ldots, (4,3), \ldots,(6,5), (6,6).\]
-Hasta ahora nos hemos limitado a representar los resultados de las dos tiradas mediante números del $1$ al $36$. Pero  esa representación no es siempre conveniente y, en problemas más complicados, las representaciones análogas, que nos alejan de la estructura real de los datos, se convierten en un inconveniente cada vez mayor. Así que nos conviene buscar maneras de representar los datos en R tal y como son, de la manera más fidedigna posible.
-
-Vamos a utilizar este problema para aprender algunas cosas más sobre R. La instalación de R, tal como hemos aprendido a hacerla en el Tutorial02, incluye sólo una pequeña parte de todo lo que es posible hacer con R. Porque una de las ventajas que se desprenden del hecho de que R sea un programa de código abierto es la gran cantidad de paquetes de código R que se han escrito, para resolver los problemas más variados. Ya hemos visto cómo guardar nuestros propios fragmentos de código en R. Otros usuarios, a menudo expertos en R y en alguna de sus aplicaciones, escriben sus propios fragmentos de código, a veces muy sofisticados, para resolver problemas. Y después ponen esos fragmentos de código, llamados a veces paquetes o librerías,  a disposición de la comunidad de usuarios de R, de forma libre y gratuita. A fecha de hoy, R-cran, que es el mayor almacén de código R, contiene más de 5600 de esos paquetes (y la cifra aumenta constantemente).
-
-Cuando instalas  R en tu ordenador, normalmente sólo instalas una pequeña parte de esos paquetes, para no hacer la instalación innecesariamente larga y complicada. En RStudio, el panel inferior izquierdo contiene una pestaña llamada {\tt Packages}, en la que puedes ver la lista de las librerías que actualmente tienes instaladas. Tu lista será, muy probablemente, diferente de la mía (y, si tienes una versión reciente de RStudio, incluirá una pestaña adicional, llamada {\tt Viewer}).
-    \begin{center}
-    \includegraphics[width=6cm]{../fig/Tut05-10.png}
-    \end{center}
-Si en algún momento necesitas uno de los paquetes  que no has instalado, puedes conectar con un almacén de paquetes en Internet, descargarlo e instalarlo de forma casi automática. Para ello, asegúrate de que tu ordenador está conectado a la red. Si es así, en RStudio basta con que pulses sobre el botón {\tt Install Packages} de esa ventana, y que teclees el nombre del paquete en el campo {\tt Packages} de la ventana que se abre (ver la siguiente figura).
-
-Para practicar esto y, de paso, mejorar las habilidades Combinatorias de R vamos a instalar un paquete llamado {\tt gtools}. Así que escribe ese nombre en el campo {\em packages} (a medida que escribes el nombre, verás que RStudio lo reconoce como uno de los  paquetes disponibles).
-    \begin{center}
-    \includegraphics[width=7cm]{../fig/Tut03-InstalarGtools2.png}
-    \end{center}
-Después pulsa sobre el botón {\tt Install}, y verás como R realiza una serie de operaciones (descarga e instalación, básicamente). Si, por alguna razón, no usas RStudio, siempre puedes ejecutar este comando en la consola de R:
-<<chunk35, eval=FALSE>>=
-install.packages(pkgs="gtools",dependencies=TRUE)
-@
-Ya hemos instalado el paquete {\tt gtools}, pero todavía falta un paso más. De la misma forma que la instalación de R no incluye todos los paquetes que existen (más de $5600$, sólo en CRAN), es posible que al cabo de un tiempo tengas instalados en tu ordenador decenas o cientos de paquetes. Y no queremos sobrecargar la memoria del ordenador, haciéndole cargar todos esos paquetes en cada sesión de trabajo (además, algunos de ellos podrían interferir entre sí). Por esa razón, cada vez que vayamos a usarlo tenemos que decirle a R que, para nuestro trabajo en esa sesión, queremos usar ese paquete en concreto. La forma de decirle a R que quiero usar ese paquete es mediante el comando:
-<<chunk36>>=
-library("gtools")
-@
-Al ejecutarlo puede que aparezca alguna advertencia ({\tt warning}) de R sobre el número de versión. No te preocupes, mientras no aparezcan mensajes de error. Tras la instalación, ya podemos empezar el trabajo de Combinatoria con R.
-
-\subsection{Lista de Permutaciones y combinaciones con R.}
-\label{tut03:subsec:PermutacionesCombinacionesR}
-
-El paquete {\tt gtools} añade (entre otras muchas cosas) dos funciones nuevas a R, {\tt permutations} y {\tt combinations}, que nos van a servir precisamente para obtener esos resultados. En España, como hemos visto en el curso, distinguimos entre variaciones y permutaciones, pero la tradición anglosajona engloba dentro del término {\em permutations} tanto las variaciones como las permutaciones.
-
-Insistimos en que no se trata de saber cuántos hay, sino, de hecho, de construirlos y enumerarlos. Para ver en acción a estas funciones de R, vamos a utilizarlas para fabricar todas las listas posibles de tres elementos, elegidos de entre cuatro posibles. Para empezar, no admitimos repeticiones de los elementos. Entonces, si el orden no importa, estamos formando las combinaciones de cuatro elementos tomados de tres en tres. Y si el orden importa, entonces se trata de las variaciones (un inglés diría permutaciones) de cuatro elementos tomados de tres en tres.
-
-Los correspondientes comandos son estos (recuerda que has debido ejecutar primero {\tt library("gtools")}). Para las combinaciones:
-<<chunk37>>=
-   combinations(4,3)
-@
-Cada fila de la salida contiene una de las combinaciones que buscábamos. Y para las permutaciones:
-<<chunk38>>=
-   permutations(4,3)
-@
-\begin{ejercicio}
-\label{tut03:ejercicio13}
-\quad
-Hemos visto ya que en R hay muchos tipos de objetos distintos (vectores, matrices, tablas, etc.) ¿Qué tipo de objetos son los que estamos obteniendo? Solución en la página \pageref{tut03:ejercicio13:sol}.
-\qed
-\end{ejercicio}
-¿Cómo se usa esto para las tiradas de dos dados? Bueno, si queremos obtener resultados equiprobables, debemos distinguir el orden (como si cada dado fuera de un color) y, además, a diferencia de los dos ejemplos anteriores, debemos permitir resultados repetidos. Con esas premisas, hacemos
+      
+      También  puedes probar con Wolfram Alpha. Ya sabes, la dirección es
+      
+      \begin{center}
+      \link{http://www.wolframalpha.com/}{http://www.wolframalpha.com/}
+      \end{center}
+      
+      Prueba a escribir en el campo de entrada
+      \begin{center}
+      \begin{minipage}{12cm}
+      sum (1/n)
+      \end{minipage}
+      \end{center}
+      
+      y obtendrás esta respuesta
+      \begin{center}
+      \includegraphics[width=8cm]{./fig/Tut05-06.png}
+      \end{center}
+      La frase {\tt sum does not converge} (la suma --o serie-- no converge) se debe, en este caso, a que el resultado no es un número finito\footnote{Aparte de que el resultado sea infinito,  pueden ocurrir otras cosas. La serie converge cuando el resultado es un número finito, y no converge en cualquier otro caso.}
+      
+      ¿Por qué esta suma es infinito, mientras que las anteriores daban resultados finitos? La respuesta es que una serie es una suma de infinitos números,
+      cada vez más pequeños, y que el factor clave para que la suma sea finita es la {\em velocidad} a la que los números se hacen pequeños. Si se hacen
+      pequeños muy rápido,  la serie tendrá una suma finita (el resultado de la suma dependerá de cómo sea esa velocidad, en detalle). Pero si los números,
+      por el contrario, aunque se hagan pequeños, lo hacen despacio, entonces la suma se irá haciendo cada vez más grande, hasta valer infinito, {\em en el límite}.
+      
+      
+      \section{Combinatoria en R. Cómo instalar librerías adicionales.}
+      \label{tut03:sec:CombinatoriaR}
+      
+      R proporciona algunas herramientas básicas para hacer cálculos en Combinatoria. Para empezar, la función {\tt factorial}, que se usa como muestra este ejemplo de código:
+           <<chunk32, eval=TRUE>>=
+           factorial(6)
+      @
+           El factorial de $n$, {\tt fact(n)} en el lenguaje de R, da como resultado el producto de todos los elementos que forman el vector {\tt 1:n}. Y no es de extrañar que en R exista una función {\tt prod}, para multiplicar todos los elementos de un vector:
+           <<chunk33, eval=TRUE>>=
+           prod(1:6)
+      @
+           La ventaja de {\tt prod} frente a {\tt fact} es, desde luego, que los elementos no tienen porque ser naturales, ni consecutivos, etc. Puesto que casi todos los cálculos de Combinatoria que vamos a usar en el curso se basan en el factorial, podríamos parar aquí. Pero el factorial es una forma extremadamente poco eficiente de hacer cálculos. Para trabajar de una forma más sensata, por ejemplo, al calcular números combinatorios, R nos ofrece la función {\tt choose}. La forma de utilizar esta función para  calcular el número combinatorio
+      \[\binom{22}{7}\]
+      es esta:
+           <<chunk34, eval=TRUE>>=
+           choose(n=22,k=7)
+      @
+           
+           \subsection{Librerías adicionales en R.}
+      \label{tut03:subsec:LibreriasAdicionalesR}
+      
+      Con estas dos herramientas podemos resolver la mayoría de las preguntas que surgen en los problemas elementales de Probabilidad, al aplicar la Regla de Laplace, cuando queremos calcular el {\em número} de casos posibles o de casos favorables a un suceso. Pero no nos sirven si lo que queremos es, de hecho, enumerar esos casos y construir realmente la lista completa de casos.
+      
+      Por ejemplo, en el caso que usamos muchas veces de las tiradas de un par de dados. Sabemos por un lado que hay 36 resultados posibles distintos. Pero si queremos obtener la lista, entonces queremos obtener los resultados en una forma similar a
+      \[(1,1) , (1,2), \ldots, (4,3), \ldots,(6,5), (6,6).\]
+      Hasta ahora nos hemos limitado a representar los resultados de las dos tiradas mediante números del $1$ al $36$. Pero  esa representación no es siempre conveniente y, en problemas más complicados, las representaciones análogas, que nos alejan de la estructura real de los datos, se convierten en un inconveniente cada vez mayor. Así que nos conviene buscar maneras de representar los datos en R tal y como son, de la manera más fidedigna posible.
+      
+      Vamos a utilizar este problema para aprender algunas cosas más sobre R. La instalación de R, tal como hemos aprendido a hacerla en el Tutorial02, incluye sólo una pequeña parte de todo lo que es posible hacer con R. Porque una de las ventajas que se desprenden del hecho de que R sea un programa de código abierto es la gran cantidad de paquetes de código R que se han escrito, para resolver los problemas más variados. Ya hemos visto cómo guardar nuestros propios fragmentos de código en R. Otros usuarios, a menudo expertos en R y en alguna de sus aplicaciones, escriben sus propios fragmentos de código, a veces muy sofisticados, para resolver problemas. Y después ponen esos fragmentos de código, llamados a veces paquetes o librerías,  a disposición de la comunidad de usuarios de R, de forma libre y gratuita. A fecha de hoy, R-cran, que es el mayor almacén de código R, contiene más de 5600 de esos paquetes (y la cifra aumenta constantemente).
+      
+      Cuando instalas  R en tu ordenador, normalmente sólo instalas una pequeña parte de esos paquetes, para no hacer la instalación innecesariamente larga y complicada. En RStudio, el panel inferior izquierdo contiene una pestaña llamada {\tt Packages}, en la que puedes ver la lista de las librerías que actualmente tienes instaladas. Tu lista será, muy probablemente, diferente de la mía (y, si tienes una versión reciente de RStudio, incluirá una pestaña adicional, llamada {\tt Viewer}).
+      \begin{center}
+      \includegraphics[width=6cm]{./fig/Tut05-10.png}
+      \end{center}
+      Si en algún momento necesitas uno de los paquetes  que no has instalado, puedes conectar con un almacén de paquetes en Internet, descargarlo e instalarlo de forma casi automática. Para ello, asegúrate de que tu ordenador está conectado a la red. Si es así, en RStudio basta con que pulses sobre el botón {\tt Install Packages} de esa ventana, y que teclees el nombre del paquete en el campo {\tt Packages} de la ventana que se abre (ver la siguiente figura).
+      
+      Para practicar esto y, de paso, mejorar las habilidades Combinatorias de R vamos a instalar un paquete llamado {\tt gtools}. Así que escribe ese nombre en el campo {\em packages} (a medida que escribes el nombre, verás que RStudio lo reconoce como uno de los  paquetes disponibles).
+      \begin{center}
+      \includegraphics[width=7cm]{./fig/Tut03-InstalarGtools2.png}
+      \end{center}
+      Después pulsa sobre el botón {\tt Install}, y verás como R realiza una serie de operaciones (descarga e instalación, básicamente). Si, por alguna razón, no usas RStudio, siempre puedes ejecutar este comando en la consola de R:
+           <<chunk35, eval=FALSE>>=
+           install.packages(pkgs="gtools",dependencies=TRUE)
+      @
+           Ya hemos instalado el paquete {\tt gtools}, pero todavía falta un paso más. De la misma forma que la instalación de R no incluye todos los paquetes que existen (más de $5600$, sólo en CRAN), es posible que al cabo de un tiempo tengas instalados en tu ordenador decenas o cientos de paquetes. Y no queremos sobrecargar la memoria del ordenador, haciéndole cargar todos esos paquetes en cada sesión de trabajo (además, algunos de ellos podrían interferir entre sí). Por esa razón, cada vez que vayamos a usarlo tenemos que decirle a R que, para nuestro trabajo en esa sesión, queremos usar ese paquete en concreto. La forma de decirle a R que quiero usar ese paquete es mediante el comando:
+           <<chunk36>>=
+           library("gtools")
+      @
+           Al ejecutarlo puede que aparezca alguna advertencia ({\tt warning}) de R sobre el número de versión. No te preocupes, mientras no aparezcan mensajes de error. Tras la instalación, ya podemos empezar el trabajo de Combinatoria con R.
+      
+      \subsection{Lista de Permutaciones y combinaciones con R.}
+      \label{tut03:subsec:PermutacionesCombinacionesR}
+      
+      El paquete {\tt gtools} añade (entre otras muchas cosas) dos funciones nuevas a R, {\tt permutations} y {\tt combinations}, que nos van a servir precisamente para obtener esos resultados. En España, como hemos visto en el curso, distinguimos entre variaciones y permutaciones, pero la tradición anglosajona engloba dentro del término {\em permutations} tanto las variaciones como las permutaciones.
+      
+      Insistimos en que no se trata de saber cuántos hay, sino, de hecho, de construirlos y enumerarlos. Para ver en acción a estas funciones de R, vamos a utilizarlas para fabricar todas las listas posibles de tres elementos, elegidos de entre cuatro posibles. Para empezar, no admitimos repeticiones de los elementos. Entonces, si el orden no importa, estamos formando las combinaciones de cuatro elementos tomados de tres en tres. Y si el orden importa, entonces se trata de las variaciones (un inglés diría permutaciones) de cuatro elementos tomados de tres en tres.
+      
+      Los correspondientes comandos son estos (recuerda que has debido ejecutar primero {\tt library("gtools")}). Para las combinaciones:
+           <<chunk37>>=
+           combinations(4,3)
+      @
+           Cada fila de la salida contiene una de las combinaciones que buscábamos. Y para las permutaciones:
+           <<chunk38>>=
+           permutations(4,3)
+      @
+           \begin{ejercicio}
+      \label{tut03:ejercicio13}
+      \quad
+      Hemos visto ya que en R hay muchos tipos de objetos distintos (vectores, matrices, tablas, etc.) ¿Qué tipo de objetos son los que estamos obteniendo? Solución en la página \pageref{tut03:ejercicio13:sol}.
+      \qed
+      \end{ejercicio}
+      ¿Cómo se usa esto para las tiradas de dos dados? Bueno, si queremos obtener resultados equiprobables, debemos distinguir el orden (como si cada dado fuera de un color) y, además, a diferencia de los dos ejemplos anteriores, debemos permitir resultados repetidos. Con esas premisas, hacemos
 {\small
-<<chunk39>>=
-   (dosDados=permutations(6,2,repeats.allowed=TRUE))
-@
+ <<chunk39>>=
+      (dosDados=permutations(6,2,repeats.allowed=TRUE))
+ @
 }
 Fíjate que cada tirada de los dos dados ocupa una fila de la matriz que se obtiene como resultado.
 
@@ -999,21 +1000,21 @@ permutaciones, variaciones,  y combinaciones, con o sin repetición. Aquí vamos
 \label{tut03:subsec:CombinatoriaWiris}
 
 De nuevo en Wiris,  en la pestaña de Combinatoria, encontrarás los iconos de esta figura:
-    \begin{center}
-    \includegraphics[width=3cm]{../fig/Tut05-01.png}
-    \end{center}
+     \begin{center}
+\includegraphics[width=3cm]{./fig/Tut05-01.png}
+\end{center}
 Los significados son evidentes, así que nos limitamos a invitarte  a que uses Wiris para calcular
 el resultado de estos ejercicios:
-\begin{ejercicio}
+     \begin{ejercicio}
 \label{tut03:ejercicio14}
 \quad
 \begin{enumerate}
-  \item Permutaciones de 6 elementos.
-  \item Variaciones de 100 elementos, tomados de 30 en 30.
-  \item Combinaciones de 22 elementos, tomados de 7 en 7.
-  \item Permutaciones con repetición de 10 elementos, divididos en grupos de elementos idénticos de $( 2,2,3,3)$ (de modo que hay $2$ del primer tipo, $2$ del segundo, $3$ del tercero y $3$ del cuarto tipo).
-  \item Variaciones con repetición de 8 elementos, tomados de 13 en 13.
-  \item Combinaciones con repetición de 4 elementos tomados de 6 en 6.
+\item Permutaciones de 6 elementos.
+\item Variaciones de 100 elementos, tomados de 30 en 30.
+\item Combinaciones de 22 elementos, tomados de 7 en 7.
+\item Permutaciones con repetición de 10 elementos, divididos en grupos de elementos idénticos de $( 2,2,3,3)$ (de modo que hay $2$ del primer tipo, $2$ del segundo, $3$ del tercero y $3$ del cuarto tipo).
+\item Variaciones con repetición de 8 elementos, tomados de 13 en 13.
+\item Combinaciones con repetición de 4 elementos tomados de 6 en 6.
 \end{enumerate}
 Soluciones en la pág. \pageref{tut03:ejercicio14:sol}.
 \qed
@@ -1021,40 +1022,40 @@ Soluciones en la pág. \pageref{tut03:ejercicio14:sol}.
 Aparte de calcular estos números, puedes usar Wiris para enumerar (es decir, hacer la lista, explícitamente) las variaciones o combinaciones. La forma de hacer esto es darle a Wiris como primer argumento una lista de los valores entre los que tiene que hacer la selección. Por ejemplo, para obtener la lista de variaciones de las 5 letras
 \[\{a, b, c, d\}\]
 tomadas de 2 en 2 (hay 12 posibles), hacemos esto (se muestra el resultado de ejecutar el comando)
-    \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut05-07.png}
-    \end{center}
-Puedes aprender más sobre las capacidades combinatorias de Wiris en el manual:
 \begin{center}
-    \link{http://www.wiris.net/educa.madrid.org/wiris/manual/es/html/tour/combinatoria.html}{http://www.wiris.net/educa.madrid.org/wiris/manual/es/html/tour/combinatoria.html}
+\includegraphics[width=12cm]{./fig/Tut05-07.png}
+\end{center}
+Puedes aprender más sobre las capacidades combinatorias de Wiris en el manual:
+     \begin{center}
+\link{http://www.wiris.net/educa.madrid.org/wiris/manual/es/html/tour/combinatoria.html}{http://www.wiris.net/educa.madrid.org/wiris/manual/es/html/tour/combinatoria.html}
 \end{center}
 
 \subsection{Wolfram Alpha}
 \label{tut03:subsec:CombinatoriaWolframAlpha}
 
 Para usar Wolfram Alpha, debemos expresar (en inglés, claro) lo que deseamos calcular en esa mezcla de lenguaje natural y símbolos matemáticos, característica de este sistema. Por ejemplo, si escribes en el campo de entrada:
-\begin{center}
-    {\tt number of permutations of 23 elements}
+     \begin{center}
+{\tt number of permutations of 23 elements}
 \end{center}
 obtendrás como respuesta
-    \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut05-08.png}
-    \end{center}
+\begin{center}
+\includegraphics[width=12cm]{./fig/Tut05-08.png}
+\end{center}
 Si quieres copiar el resultado para poder pegarlo en otro programa, sitúa el ratón sobre ese resultado, y verás aparecer una barra de herramientas, como en la siguiente figura. Haz clic en la letra {\tt A} para obtener una versión copiable como texto del resultado.
-    \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut05-09.png}
-    \end{center}
+\begin{center}
+\includegraphics[width=12cm]{./fig/Tut05-09.png}
+\end{center}
 Para ver más ejemplos de como usar Wolfram Alpha en Combinatoria, teclea {\tt Combinatorics} en la línea de entrada. Ten en cuenta, en cualquier caso, que muchos de los ejemplos que verás no son relevantes para nuestro curso. Así que asegúrate de, al menos, hacer el siguiente
 \begin{ejercicio}
 \label{tut03:ejercicio15}
 \quad
 Teclea en el campo de entrada de Wolfram Alpha los siguientes comandos y, para practicar, copia el resultado como texto en un editor de texto, como el Bloc de Notas.
 \begin{enumerate}
-  \item {\tt permutations of 6 elements}
-  \item {\tt permutations(100,30)}
-  \item {\tt combinations(22,7)}
-  \item {\tt number of permutations of {a,a,b,b,c,c,c,d,d,d}}
-  \item Aunque no hay una sintaxis directa (al menos, yo no la conozco), usa Wolpram Alpha para calcular el número de variaciones con repetición de 8 elementos, tomados de 13 en 13, y el de combinaciones con repetición de 4 elementos tomados de 6 en 6.
+\item {\tt permutations of 6 elements}
+\item {\tt permutations(100,30)}
+\item {\tt combinations(22,7)}
+\item {\tt number of permutations of {a,a,b,b,c,c,c,d,d,d}}
+\item Aunque no hay una sintaxis directa (al menos, yo no la conozco), usa Wolpram Alpha para calcular el número de variaciones con repetición de 8 elementos, tomados de 13 en 13, y el de combinaciones con repetición de 4 elementos tomados de 6 en 6.
 \end{enumerate}
 Soluciones en la pág. \pageref{tut03:ejercicio15:sol}.
 \qed
@@ -1068,136 +1069,168 @@ Soluciones en la pág. \pageref{tut03:ejercicio15:sol}.
 \label{tut03:subsec:EjerciciosAdicionales}
 
 \begin{enumerate}
-  \addtocounter{enumi}{16}
+\addtocounter{enumi}{16}
 
-    %17
-    \item Se lanzan dos dados. Hallar la probabilidad de estos sucesos:
-        \begin{enumerate}
-            \item la suma de los resultados es ocho y (simultáneamente) su diferencia es cuatro.
-            \item la suma de los resultados es cinco y (simultáneamente) su producto es cuatro.
-            \item la suma de los resultados sea mayor que 12.
-            \item la suma de los resultados sea divisible entre 3.
-        \end{enumerate}
-
-    %18
-    \item Hallar la probabilidad de que al lanzar una moneda dos veces se obtenga al menos una vez una cruz.
-
-    %19
-    \item En una caja hay seis fichas iguales numeradas del uno al 6. Se extraen una por una (sin reemplazarlas) todas las fichas de la caja. ¿Cuál es la probabilidad de que salgan en el orden natural? (Es decir, primero la ficha número uno, luego la dos, etc.)
-
-    %20
-    \item En un paquete hay 20 tarjetas numeradas del 1 al 20. Se escogen al azar dos tarjetas. ¿Cuál es la probabilidad de que las dos que se han elegido sean la número 1 y la número 20? ¿Hay alguna diferencia entre sacar las dos tarjetas a la vez, o sacarlas consecutivamente sin reemplazamiento? ¿Y si es con reemplazamiento (sacamos una, la devolvemos al paquete y sacamos otra al azar)?
-
-    %21
-    \item Una clase consta de 10 hombres y 20 mujeres. La mitad de los hombres y la mitad de las mujeres tienen los ojos castaños. Hallar la probabilidad de que una persona elegida al azar sea un hombre o tenga los ojos castaños.
-
-    %22
-    \item Las siguientes afirmaciones son necesariamente falsas. Explica por qué.
-        \begin{enumerate}
-        \item En un hospital, la probabilidad de que un paciente permanezca ingresado durante m\'as de dos d\'ias  es de 0.5. La probabilidad de que un paciente permanezca hospitalizado durante m\'as de un d\'ia es de 0.3.
-        \item La probabilidad de que llueva el s\'abado es del 50\% y de que llueva el domingo es del 50\%. Por tanto, durante el fin de semana es seguro que llover\'a.
-        \end{enumerate}
-
-    %23
-    \item Se escogen al azar tres lámparas de entre 15, y sabemos que de esas 15, cinco son defectuosas. ¿Cuál es la probabilidad de que al menos una de las tres elegidas sea defectuosa?
+%17 
+\item \label{tut03:ejercicio17} Se lanzan dos dados. Hallar la probabilidad de estos sucesos:
+\begin{enumerate}
+     \item la suma de los resultados es ocho y (simultáneamente) su diferencia es cuatro.
+     \item la suma de los resultados es cinco y (simultáneamente) su producto es cuatro.
+     \item la suma de los resultados sea mayor que 12.
+     \item la suma de los resultados sea divisible entre 3.
+\end{enumerate}
+Solución en la página \pageref{tut03:ejercicio17:sol}. 
 
 
-
-    \item Hallar la probabilidad de que al tirar tres dados aparezca el seis en uno de los dados (no importa cual), pero sólo en uno de ellos.
-
-
-    %Soluci\'on: ambas son falsas teniendo en cuenta las propiedades de la probabilidad.
-
-    \item En una baraja de cartas espa\~nola (40 cartas repartidas entre 4 palos) se desechan un n\'umero de cartas indeterminado. De las cartas que quedan se tiene una serie de probabilidades a la hora de sacar una carta:
-        $$P(\{\hbox{sacar rey}\})=0.15,\quad P(\{\hbox{sacar bastos}\})=0.3,$$
-        y adem\'as
-        $$P(\{\hbox{sacar carta que no sea rey ni bastos}\})=0.6.$$
-            \begin{enumerate}
-            \item ¿Est\'a entre las cartas no desechadas el rey de bastos? En caso afirmativo, calcula la probabilidad de sacar esta carta.
-            \item ¿Cu\'antas cartas hay?
-            \end{enumerate}
+%18
+\item  \label{tut03:ejercicio18} Hallar la probabilidad de que al lanzar una moneda dos veces se obtenga al menos una vez una cruz.
+Solución en la página \pageref{tut03:ejercicio18:sol}. 
 
 
-    \item En cierta facultad, se sabe que (1) un 25\% de los estudiantes suspendió Matemáticas, (2) un 15\% suspendió Química y (c) un 10\% suspendió ambas. Se selecciona un estudiante al azar:
-        \begin{enumerate}
-            \item si suspendió Química, ¿cuál es la probabilidad de que también suspendiera Matemáticas?
-            \item si suspendió Matemáticas, ¿cuál es la probabilidad de que también suspendiera Química?
-            \item ¿Cuál es la probabilidad de que suspendiera al menos una de las dos?
-        \end{enumerate}
+%19 
+\item \label{tut03:ejercicio19} En una caja hay seis fichas iguales numeradas del uno al 6. Se extraen una por una (sin reemplazarlas) todas las fichas de la caja. ¿Cuál es la probabilidad de que salgan en el orden natural? (Es decir, primero la ficha número uno, luego la dos, etc.)     
+Solución en la página \pageref{tut03:ejercicio19:sol}. 
 
-    \item En un experimento aleatorio, el suceso A tiene probabilidad 0.5, mientras que el suceso B tiene probabilidad 0.6. ¿Pueden ser los sucesos A y B incompatibles?
 
-    \item Un hospital tiene dos quirófanos en funcionamiento. En el primero se han producido incidentes en el 20\% de sus operaciones y el segundo sólo en el 4\%. El número de operaciones es el mismo en ambos quirófanos. La inspección hospitalaria analiza el expediente de una operación, elegido  al azar y observa que en esa operación se produjo un incidente. ¿Cuál es la probabilidad de que la operación se realizara en el primer quirófano?
+     
+     %20
+\item  \label{tut03:ejercicio20} En un paquete hay 20 tarjetas numeradas del 1 al 20. Se escogen al azar dos tarjetas. ¿Cuál es la probabilidad de que las dos que se han elegido sean la número 1 y la número 20? ¿Hay alguna diferencia entre sacar las dos tarjetas a la vez, o sacarlas consecutivamente sin reemplazamiento? ¿Y si es con reemplazamiento (sacamos una, la devolvemos al paquete y sacamos otra al azar)?      
+Solución en la página \pageref{tut03:ejercicio20:sol}.
+
+
+%21
+\item  \label{tut03:ejercicio21} Una clase consta de 10 hombres y 20 mujeres. La mitad de los hombres y la mitad de las mujeres tienen los ojos castaños. Hallar la probabilidad de que una persona elegida al azar sea un hombre o tenga los ojos castaños. 
+Solución en la página \pageref{tut03:ejercicio21:sol}. 
+
+%22
+\item \label{tut03:ejercicio22} Las siguientes afirmaciones son necesariamente falsas. Explica por qué.
+\begin{enumerate}
+     \item En un hospital, la probabilidad de que un paciente permanezca ingresado durante m\'as de dos d\'ias  es de 0.5. La probabilidad de que un paciente permanezca hospitalizado durante m\'as de un d\'ia es de 0.3.
+     \item La probabilidad de que llueva el s\'abado es del 50\% y de que llueva el domingo es del 50\%. Por tanto, durante el fin de semana es seguro que llover\'a.
+\end{enumerate}
+Solución en la página \pageref{tut03:ejercicio22:sol}. 
+
+
+
+%23
+\item \label{tut03:ejercicio23} Se escogen al azar tres lámparas de entre 15, y sabemos que de esas 15, cinco son defectuosas. ¿Cuál es la probabilidad de que al menos una de las tres elegidas sea defectuosa? 
+Solución en la página \pageref{tut03:ejercicio23:sol}.   
+
+%24
+\item \label{tut03:ejercicio24} Hallar la probabilidad de que al tirar tres dados aparezca el seis en uno de los dados (no importa cual), pero sólo en uno de ellos.     
+Solución en la página \pageref{tut03:ejercicio24:sol}. 
+
+
+%25
+\item \label{tut03:ejercicio25} En una baraja de cartas espa\~nola (40 cartas repartidas entre 4 palos) se desechan un n\'umero de cartas indeterminado. De las cartas que quedan se tiene una serie de probabilidades a la hora de sacar una carta:
+$$P(\{\hbox{sacar rey}\})=0.15,\quad P(\{\hbox{sacar bastos}\})=0.3,$$
+y adem\'as
+$$P(\{\hbox{sacar carta que no sea rey ni bastos}\})=0.6.$$
+\begin{enumerate}
+     \item ¿Est\'a entre las cartas no desechadas el rey de bastos? En caso afirmativo, calcula la probabilidad de sacar esta carta.
+     \item ¿Cu\'antas cartas hay?
+\end{enumerate}
+Solución en la página \pageref{tut03:ejercicio25:sol}. 
+
+
+%26
+\item  \label{tut03:ejercicio26}  En cierta facultad, se sabe que (1) un 25\% de los estudiantes suspendió Matemáticas, (2) un 15\% suspendió Química y (c) un 10\% suspendió ambas. Se selecciona un estudiante al azar:
+\begin{enumerate}
+\item si suspendió Química, ¿cuál es la probabilidad de que también suspendiera Matemáticas?
+\item si suspendió Matemáticas, ¿cuál es la probabilidad de que también suspendiera Química?
+\item ¿Cuál es la probabilidad de que suspendiera al menos una de las dos?
+\end{enumerate}
+Solución en la página \pageref{tut03:ejercicio26:sol}. 
+
+
+%28
+\item  \label{tut03:ejercicio28} Un hospital tiene dos quirófanos en funcionamiento. En el primero se han producido incidentes en el 20\% de sus operaciones y el segundo sólo en el 4\%. El número de operaciones es el mismo en ambos quirófanos. La inspección hospitalaria analiza el expediente de una operación, elegido  al azar y observa que en esa operación se produjo un incidente. ¿Cuál es la probabilidad de que la operación se realizara en el primer quirófano?
+Solución en la página \pageref{tut03:ejercicio28:sol}. 
 
 %    \item En cierta población el porcentaje de personas que padecen una determinada enfermedad es del $2\%$. Para identificar a los enfermos se dispone de una prueba diagnóstica. Esa prueba no es perfecta: resulta positiva en el $95\%$ de las personas que padecen la enfermedad, pero también resulta positiva en el $3\%$ de las personas sanas (falsos positivos).  Calcular la probabilidad de que una persona con prueba positiva padezca realmente la enfermedad.
 
-    \item Un equipo de investigación está preparando un nuevo test para el diagnóstico de la enfermedad de Alzheimer. El test se ha probado en una muestra aleatoria con 450 pacientes diagnosticados con Alzheimer y una muestra aleatoria independiente de 500 pacientes que no presentan síntomas de la enfermedad. La siguiente tabla resume los resultados del ensayo:
-        \begin{center}
-            \begin{tabular}{llccc}
-            &&\multicolumn{3}{c}{\underline{\bf Padecen Alzheimer}}\\
+%29
+\item  \label{tut03:ejercicio29} Un equipo de investigación está preparando un nuevo test para el diagnóstico de la enfermedad de Alzheimer. El test se ha probado en una muestra aleatoria con 450 pacientes diagnosticados con Alzheimer y una muestra aleatoria independiente de 500 pacientes que no presentan síntomas de la enfermedad. La siguiente tabla resume los resultados del ensayo:
+\begin{center}
+\begin{tabular}{llccc}
+&&\multicolumn{3}{c}{\underline{\bf Padecen Alzheimer}}\\
 
-                                      &          & Sí  & No  & Total\\
-            \hline
-  \underline{\bf Resultado del  Test} & Positivo & 436 & 5   & 441  \\
-                                      & Negativo & 14  & 495 & 509  \\
-            \hline
-                                      & Total    & 450 & 500 & 950  \\
-            \hline
-            \end{tabular}
-        \end{center}
-    Con estos datos, responder a las siguientes preguntas:
-    \begin{enumerate}
-        \item ¿Cuál es la probabilidad de que un sujeto sano haya dado positivo en el test?
-        \item ¿Cuál es la probabilidad de que un sujeto enfermo haya dado negativo en el test?
-        \item Sabiendo que un sujeto ha dado positivo en el test, ¿cuál es la probabilidad de que esté enfermo?
-        \item  Sabiendo que un sujeto ha dado negativo en el test, ¿cuál es la probabilidad de que esté sano?
-    \end{enumerate}
-    %\setcounter{cont01}{\theenumi}
+&          & Sí  & No  & Total\\
+\hline
+\underline{\bf Resultado del  Test} & Positivo & 436 & 5   & 441  \\
+& Negativo & 14  & 495 & 509  \\
+\hline
+& Total    & 450 & 500 & 950  \\
+\hline
+\end{tabular}
+\end{center}
+Con estos datos, responder a las siguientes preguntas:
+\begin{enumerate}
+     \item ¿Cuál es la probabilidad de que un sujeto sano haya dado positivo en el test?
+     \item ¿Cuál es la probabilidad de que un sujeto enfermo haya dado negativo en el test?
+     \item Sabiendo que un sujeto ha dado positivo en el test, ¿cuál es la probabilidad de que esté enfermo?
+     \item  Sabiendo que un sujeto ha dado negativo en el test, ¿cuál es la probabilidad de que esté sano?
+\end{enumerate}
+Solución en la página \pageref{tut03:ejercicio29:sol}. 
 
-    \item Una empresa produce anillas para identificaci\'on de tortugas marinas en tres fábricas. El volumen de producci\'on diario es de 500, 1000 y 2000 unidades respectivamente. Se sabe  que la fracci\'on de producci\'on defectuosa de las tres fábricas es de 0.005, 0.008, 0.010 respectivamente. Si se selecciona una anilla de forma aleatoria del total de producci\'on de un d\'ia y se descubre que es defectuosa, ?`de qu\'e fábrica es más probable que provenga esa anilla?.
+%  30
+\item  \label{tut03:ejercicio30} Una empresa produce anillas para identificaci\'on de tortugas marinas en tres fábricas. El volumen de producci\'on diario es de 500, 1000 y 2000 unidades respectivamente. Se sabe  que la fracci\'on de producci\'on defectuosa de las tres fábricas es de 0.005, 0.008, 0.010 respectivamente. Si se selecciona una anilla de forma aleatoria del total de producci\'on de un d\'ia y se descubre que es defectuosa, ?`de qu\'e fábrica es más probable que provenga esa anilla?    
+Solución en la página \pageref{tut03:ejercicio30:sol}. 
 
 
-
-
-  \item Usa R para simular el experimento que se describe en el Ejemplo \ref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados} del libro (pág. \pageref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados}). Por si te sirve de guía visual, en la hoja de cálculo (del programa Calc):
-\begin{center} \fichero{../ods/Cap03-Lanzamientos2Dados-ProbabilidadCondicionada.ods}{Cap03-Lanzamientos2Dados-ProbabilidadCondicionada.ods}
+% 31
+\item Usa R para simular el experimento que se describe en el Ejemplo \ref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados} del libro (pág. \pageref{curso-Cap03:probabilidadCondicionadaLanzamientoDosDados}). Por si te sirve de guía visual, en la hoja de cálculo (del programa Calc):
+\begin{center} \otrofichero{Cap03-Lanzamientos2Dados-ProbabilidadCondicionada.ods}{Cap03-Lanzamientos2Dados-ProbabilidadCondicionada.ods}
 \end{center}
 se ha realizado una simulación para comprobar estos resultados.\\
 Una extensión natural de este ejemplo es tratar de calcular $P(S|D)$. ¿Puedes modificar la hoja de cálculo para simular este otro caso?
 
-  \item  Usa R para simular el experimento que se describe en el Ejemplo \ref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas} del libro (pág. \pageref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas}), y que ilustramos con el fichero  Calc
-      \begin{center}
-        \fichero{../ods/Cap03-ProbabilidadesTotales-Urnas.ods}{Cap03-ProbabilidadesTotales-Urnas.ods}
-      \end{center}
-
-  \item Usa R para simular los experimentos de los Ejemplos \ref{curso-cap03:ejem:BombillasDefectuosas} y \ref{curso-cap03:ejem:probabilidadLanzamientoMonedas} del libro (pág. \pageref{curso-cap03:ejem:BombillasDefectuosas})
-
-
-
-  \item Elegimos al azar cinco números del $1$ al $10$, con reemplazamiento. Puedes pensarlo así: en una caja hay $10$ bolas numeradas del $1$ al $10$. Sacamos una bola, anotamos el número, devolvemos la bola a la caja, y la agitamos bien. ¿Cuál es la probabilidad de que no haya repeticiones y, por tanto, obtengamos cinco números distintos?
-
-    \item De entre los números naturales $1,2,\ldots,20$ se seleccionan cinco al azar sin reemplazamiento. Calcular la probabilidad de que: (a) los cinco sean pares. (b) exactamente dos de ellos sean múltiplos de 3. (c) dos sean impares y tres impares.
-
-    \item En la lotería primitiva gana quien acierta 6 números de entre 64 sin importar el orden en el que salgan. ¿Cuál es la probabilidad de ganar con una única apuesta?
+%32
+\item  Usa R para simular el experimento que se describe en el Ejemplo \ref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas} del libro (pág. \pageref{curso-cap03:ejem:ProbailidadTotalEjemploUrnas}), y que ilustramos con el fichero  Calc
+\begin{center}
+\otrofichero{Cap03-ProbabilidadesTotales-Urnas.ods}{Cap03-ProbabilidadesTotales-Urnas.ods}
+\end{center}
+%33
+\item Usa R para simular los experimentos de los Ejemplos \ref{curso-cap03:ejem:BombillasDefectuosas} y \ref{curso-cap03:ejem:probabilidadLanzamientoMonedas} del libro (pág. \pageref{curso-cap03:ejem:BombillasDefectuosas})
 
 
-    \item De las 28 fichas del dominó, se extraen dos al azar (sin remplazamiento). ¿Cuál es la probabilidad de que con ellas se pueda formar una cadena, conforme a las reglas del juego (debe haber un número que aparezca en ambas fichas)?
-
-    \item Calcular la probabilidad de que un número de cuatro cifras (una matrícula, o un pin)
-    \begin{itemize}
-      \item tenga cuatro cifras diferentes.
-      \item tenga alguna cifra repetida.
-      \item tenga exactamente dos cifras iguales.
-      \item tenga dos parejas de cifras iguales (pero distintas entre sí).
-      \item tenga exactamente tres cifras iguales.
-      \item tenga todas las cifras iguales.
-    \end{itemize}
+% 34
+\item  \label{tut03:ejercicio34} Elegimos al azar cinco números del $1$ al $10$, con reemplazamiento. Puedes pensarlo así: en una caja hay $10$ bolas numeradas del $1$ al $10$. Sacamos una bola, anotamos el número, devolvemos la bola a la caja, y la agitamos bien. ¿Cuál es la probabilidad de que no haya repeticiones y, por tanto, obtengamos cinco números distintos?
+Solución en la página \pageref{tut03:ejercicio34:sol}. 
 
 
-  \item {\bf ``La paradoja del cumpleaños''.} Si en una sala hay $367$ personas, entonces, con total seguridad, habrá dos personas con la misma fecha de cumpleaños (hemos usado $367$ para cubrir incluso el caso de los años bisiestos, por si alguien de la sala nació el $29$ de Febrero). Así que, si llamamos
-      $$A_n= \{\mbox{al menos dos de las $n$ personas cumplen años el mismo día}\}$$
-      entonces $P(A_{367})=1$. ¿Cuántas personas tiene que haber en la sala para que la probabilidad $P(A_{n})$ sea mayor que $1/2$? Muchas menos de las que imaginas. Empieza por calcular ¿Cuánto vale $P(A_{5})$ usando el ejercicio anterior.\\
-      Este resultado se conoce como ``la paradoja del cumpleaños'', aunque no tiene nada de paradójico. Lo único que realmente demuestra este resultado es que, como hemos señalado en el curso, la intuición en materia de probabilidades es, en general, para la mayoría de nosotros, muy pobre.
+%35
+\item  \label{tut03:ejercicio35} De entre los números naturales $1,2,\ldots,20$ se seleccionan cinco al azar sin reemplazamiento. Calcular la probabilidad de que: (a) los cinco sean pares. (b) exactamente dos de ellos sean múltiplos de 3. (c) dos sean impares y tres pares. 
+Solución en la página \pageref{tut03:ejercicio35:sol}. 
+
+% 36 
+   \item \label{tut03:ejercicio36}  En la lotería primitiva gana quien acierta 6 números de entre 64 sin importar el orden en el que salgan. ¿Cuál es la probabilidad de ganar con una única apuesta? 
+Solución en la página \pageref{tut03:ejercicio36:sol}. 
+
+% 37
+\item  \label{tut03:ejercicio37} De las 28 fichas del dominó, se extraen dos al azar (sin remplazamiento). ¿Cuál es la probabilidad de que con ellas se pueda formar una cadena, conforme a las reglas del juego (debe haber un número que aparezca en ambas fichas)?
+Solución en la página \pageref{tut03:ejercicio37:sol}. 
+
+
+%38
+\item  \label{tut03:ejercicio38} Calcular la probabilidad de que un número de cuatro cifras (una matrícula, o un pin)
+\begin{enumerate}
+\item tenga cuatro cifras diferentes.
+\item tenga alguna cifra repetida.
+\item tenga exactamente dos cifras iguales.
+\item tenga dos parejas de cifras iguales (pero distintas entre sí).
+\item tenga exactamente tres cifras iguales.
+\item tenga todas las cifras iguales.
+\end{enumerate}
+Solución en la página \pageref{tut03:ejercicio38:sol}. 
+
+% 39
+\item \label{tut03:ejercicio39} {\bf ``La paradoja del cumpleaños''.} Si en una sala hay $367$ personas, entonces, con total seguridad, habrá dos personas con la misma fecha de cumpleaños (hemos usado $367$ para cubrir incluso el caso de los años bisiestos, por si alguien de la sala nació el $29$ de Febrero). Así que, si llamamos
+$$A_n= \{\mbox{al menos dos de las $n$ personas cumplen años el mismo día}\}$$
+entonces $P(A_{367})=1$. ¿Cuántas personas tiene que haber en la sala para que la probabilidad $P(A_{n})$ sea mayor que $1/2$? Muchas menos de las que imaginas. Empieza por calcular ¿Cuánto vale $P(A_{5})$ usando el ejercicio anterior.\\
+Este resultado se conoce como ``la paradoja del cumpleaños'', aunque no tiene nada de paradójico. Lo único que realmente demuestra este resultado es que, como hemos señalado en el curso, la intuición en materia de probabilidades es, en general, para la mayoría de nosotros, muy pobre.%\\
+Solución en la página \pageref{tut03:ejercicio39:sol}. 
+
 \end{enumerate}
 
 \subsection*{Soluciones de algunos ejercicios}
@@ -1272,13 +1305,13 @@ letras
 \label{tut03:ejercicio07:sol}\quad\\
 
 <<ejercicio07sol_a, echo=FALSE, results='hide'>>=
-    (W = matrix(1:15, nrow=3, byrow=TRUE))
+(W = matrix(1:15, nrow=3, byrow=TRUE))
 @
 La comprobación es:
 <<ejercicio07sol_b>>=
-    t(W)
-    dim(W) = c(5,3)
-    W
+t(W)
+dim(W) = c(5,3)
+W
 @
 
 
@@ -1287,13 +1320,13 @@ La comprobación es:
 \label{tut03:ejercicio07a:sol}\quad\\
 
 <<ejercicio07asol_a, echo=FALSE, results='hide'>>=
-    (M = matrix(1:36, nrow = 4, byrow=TRUE))
+(M = matrix(1:36, nrow = 4, byrow=TRUE))
 @
 <<ejercicio07asol_b>>=
-    apply(M, 1, sd)
-    apply(M, 2, median)
-    apply(M, 2, summary)
-    class(apply(M, 2, summary))
+apply(M, 1, sd)
+apply(M, 2, median)
+apply(M, 2, summary)
+class(apply(M, 2, summary))
 @
 
 
@@ -1302,18 +1335,18 @@ La comprobación es:
 
 
 <<chunk08sola, echo=FALSE, results='hide'>>=
-    set.seed(2014)
-    (A = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
-    (B = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
+set.seed(2014)
+(A = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
+(B = matrix(sample(-10:10, 12, replace=TRUE), nrow=3))
 @
 
 \begin{enumerate}
-  \item La matriz que buscamos es:
+\item La matriz que buscamos es:
 <<chunk08solb>>=
 B == 2
 @
 
-  \item Se produce un error, porque al tratarse de matrices de dimensiones distintas, R no sabe como emparejar los elementos de {\tt A} con los de {\tt B}.
+\item Se produce un error, porque al tratarse de matrices de dimensiones distintas, R no sabe como emparejar los elementos de {\tt A} con los de {\tt B}.
 <<chunk08solc>>=
 dim(A) = c(2, 6)
 A * B
@@ -1328,10 +1361,10 @@ A * B
 \label{tut03:ejercicio09:sol}\quad\\
 
 <<ejercicio09sol_a, echo=FALSE, results='hide'>>=
-    B = matrix(1:100, nrow=10)
+B = matrix(1:100, nrow=10)
 @
 <<ejercicio09sol_b>>=
-    (B = cbind(A, A[, 1]^2))
+(B = cbind(A, A[, 1]^2))
 @
 
 
@@ -1339,16 +1372,16 @@ A * B
 \label{tut03:ejercicio10:sol}\quad\\
 
 <<ejercicio10sol>>=
-    which(rowSums(esSeis) == max(rowSums(esSeis)))
+which(rowSums(esSeis) == max(rowSums(esSeis)))
 @
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio11}, pág. \pageref{tut03:ejercicio11}}
 \label{tut03:ejercicio11:sol}\quad\\
 
-Puedes ejecutar varias veces este código (que puedes abrir en el fichero adjunto \fichero{./code/Tut03-DeMere2.R}{Tut03-DeMere2.R}) para experimentar.
+Puedes ejecutar varias veces este código (que puedes abrir en el fichero adjunto \otrofichero{Tut03-DeMere2.R}{Tut03-DeMere2.R}) para experimentar.
 
 <<ejercicio11solExternalCode, cache=FALSE, echo=FALSE>>=
-read_chunk('./code/Tut03-DeMere2.R')
+read_chunk('./datos/Tut03-DeMere2.R')
 @
 
 <<ejercicio11sol>>=
@@ -1357,9 +1390,9 @@ read_chunk('./code/Tut03-DeMere2.R')
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio12}, pág. \pageref{tut03:ejercicio12}}
 \label{tut03:ejercicio12:sol}\quad\\
 
-El código (que puedes abrir en el fichero adjunto \fichero{./code/Tut03-DeMere1a.R}{Tut03-DeMere1a.R}) es una adaptación sencilla del que corresponde al primer juego del Caballero de Méré. Puedes ejecutarlo varias veces para comprobar que el resultado se parece más a $\frac{11}{36}\approx\Sexpr{11/36}$ que a $\frac{12}{36}\approx\Sexpr{1/3}$.
+El código (que puedes abrir en el fichero adjunto \otrofichero{Tut03-DeMere1a.R}{Tut03-DeMere1a.R}) es una adaptación sencilla del que corresponde al primer juego del Caballero de Méré. Puedes ejecutarlo varias veces para comprobar que el resultado se parece más a $\frac{11}{36}\approx\Sexpr{11/36}$ que a $\frac{12}{36}\approx\Sexpr{1/3}$.
 <<ejercicio12solExternalCode, cache=FALSE, echo=FALSE>>=
-read_chunk('./code/Tut03-DeMere1a.R')
+read_chunk('./datos/Tut03-DeMere1a.R')
 @
 
 
@@ -1382,13 +1415,13 @@ Como puedes ver, lo que hemos obtenido es un objeto de tipo {\tt matrix}.
 \label{tut03:ejercicio14:sol}\quad\\
 
 \begin{enumerate}
-  \item $720$.
-  \item $7791097137057804874587232499277321440358327700684800000000$.
-    Este número podría representar el número de subgrupos distintos de 30 alumnos, que podemos formar a partir de una clase de 100 alumnos. Su orden de magnitud es de $10^{57}$. Para que te hagas una idea, el número estimado de estrellas en el universo es del orden de $10^{24}$.
-  \item $170544$.
-  \item $25200$.
-  \item $549755813888$.
-  \item $84$.
+\item $720$.
+\item $7791097137057804874587232499277321440358327700684800000000$.
+Este número podría representar el número de subgrupos distintos de 30 alumnos, que podemos formar a partir de una clase de 100 alumnos. Su orden de magnitud es de $10^{57}$. Para que te hagas una idea, el número estimado de estrellas en el universo es del orden de $10^{24}$.
+\item $170544$.
+\item $25200$.
+\item $549755813888$.
+\item $84$.
 \end{enumerate}
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio15}, pág. \pageref{tut03:ejercicio15}}
@@ -1396,9 +1429,132 @@ Como puedes ver, lo que hemos obtenido es un objeto de tipo {\tt matrix}.
 
 Todas las preguntas aparecen en el Ejercicio \ref{tut03:ejercicio14}; consulta las respuesta a ese ejercicio.
 
-\paragraph{\bf $\bullet$ Ejercicio 23.}
-\label{tut03:ejercicio23:sol}\quad\\
 
+%17 
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio17}, pág. \pageref{tut03:ejercicio17}}
+\label{tut03:ejercicio17:sol}\quad\\
+
+
+Se trata de contar casos favorables y casos posibles. 
+\begin{enumerate}
+\item Una posibilidad consiste en escribir todo el espacio muestral y contar a mano.
+\[\begin{array}{rrrrrr}
+  (1,1)&(1,2)&(1,3)&(1,4)&(1,5)&{(1,6)}\\
+  (2,1)&(2,2)&(2,3)&(2,4)&(2,5)&{(2,6)}\\
+  (3,1)&(3,2)&(3,3)&(3,4)&(3,5)&{(3,6)}\\
+  (4,1)&(4,2)&(4,3)&(4,4)&(4,5)&{(4,6)}\\
+  (5,1)&(5,2)&(5,3)&(5,4)&(5,5)&{(5,6)}\\
+  (6,1)&(6,2)&(6,3)&(6,4)&(6,5)&{(6,6)}
+  \end{array} \]
+ Otra posibilidad consiste en llamar $x_i$ al resultado del lanzamiento $i$. Lo que nos dice el enunciado es que 
+\[\left\{\begin{array}{ll}
+         x_1+x_2=8\\
+         |x_1-x_2|=4
+         \end{array}        
+         \right.\]
+donde las barras de valor absoluto estan para tener en cuenta la posibilidad de que, al restar el resultado de las dos caras del dado, la segunda sea mayor que la primera y el resultdo sea $-4$. Al eliminar el símbolo de valor absoluto, ese sistema de  ecuaciones es equivalente a
+\[\left\{\begin{array}{ll}
+         x_1+x_2=8\\
+         x_1-x_2=4
+         \end{array}\right.,\qquad \qquad 
+         \left\{
+              \begin{array}{ll}
+               x_1+x_2=8\\
+               x_1-x_2=-4
+               \end{array}\right.\]
+Al resolver cada uno de los sistemas tenemos $x_1=6, x_2=2$ y  $x_1=2, x_2=6$. Es decir, dos casos favorables frente a 36 posibles. 
+\item Análogo al anterior
+\item No es posible
+\item Debe ser $x_1+x_2=3n$, donde $n$ sólo puede valer $n=1,2,3,4$. La probabilidad es $\frac{12}{36} $
+ \end{enumerate}
+
+%18
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio18}, pág. \pageref{tut03:ejercicio18}}
+\label{tut03:ejercicio18:sol}\quad\\
+Si escribes el espacio muestral, ${(C,C), (C,X), (X,C), (XX)}$ verás que 
+hay 4 casos posibles y 3 favorables.
+
+%19 
+\paragraph{\bf $\bullet$ 
+                Ejercicio \ref{tut03:ejercicio19}, pág. 
+           \pageref{tut03:ejercicio19}}
+\label{tut03:ejercicio19:sol}\quad\\
+Hay 1 caso favorable y $6!$ casos posibles, por lo que la probabilidad es $\frac{1}{6!}$ donde puedes calcular $6!$ con la orden
+<<eval=TRUE, cache=TRUE>>=
+     factorial(6)
+@
+     
+%20
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio20}, pág. \pageref{tut03:ejercicio20}}
+\label{tut03:ejercicio20:sol}\quad\\ 
+\begin{itemize}
+\item Empezamos suponiendo que sacamos dos fichas a la vez. Usaremos la regla de Laplace para calcular la probabilidad. Hay un caso favorable, que es sacar ${1,20}$. Observa que el orden NO es importante, nos da lo mismo sacar ${1,20}$ que ${20, 1}$. El n\'umero de casos posibles esel n\'umero de subconjuntos de dos tarjetas que podemos hacer a partir de 20 tarjetas, sin que importe el orden. Es decir, combinaciones de 20 elementos tomados de 2 en 2. Podemos usar R para hacer el cálculo con la función `choose()`. Si no recuerdas su significado, usa el tabulador
+<<eval=TRUE, cache=TRUE>>=
+1/choose(20,2)
+@
+\item Supongamos ahora que sacamos las dos fichas una tras otra SIN reemplazamiento. En este caso debemos tener en cuenta el orden, ya que el experimento tendría resultado positivo tanto si primero sale un 1 y despues el 20 como si sucediera al revés.  
+$$P(A=\text{sacar primero un 1 y después un 20}) = P(\text{sacar un 1})· 
+P(\text{sacar un 20}|\text{ha salido un 1})$$
+$$=\frac{1}{20}\frac{1}{19} $$
+De la misma manera, 
+$$P(B=\text{sacar primero un 20 y después un 1}) =\frac{1}{20}\frac{1}{19} $$
+Y la probabilidad total es 
+<<eval=TRUE, cache=TRUE>>=
+(1/20)*(1/19)+(1/20)*(1/19)
+@  
+\item Vamos a usar un razonamiento diferente para este último caso (pero que se puede aplicar a los anteriores, y recíprocamente, el argumento con el que resolvimos los anteriores apartados se puede aplicar a este) 
+$$P(\text{sacar un 1 y un 20}) = P(\text{sacar un 1 o un 20})· 
+P(\text{sacar la ficha que falta | ya salió un 1 o un 20})$$
+$$=\frac{\textbf{2}}{20}\frac{1}{\textbf{20}} $$
+porque se ha devuelto la primera ficha, de modo que las probabilidades con y sin reemplazamiento son diferentes.
+\end{itemize}
+
+%21
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio21}, pág. \pageref{tut03:ejercicio21}}
+\label{tut03:ejercicio21:sol}\quad\\
+Hay varios enfoques posibles. Uno de ellos, el m\'as sistem\'atico, 
+consiste en definir los eventos 
+\[H=\text{"ser hombre"}\qquad\qquad
+  C=\text{"tenerlos ojos marrones"}\]
+Con esa notaci\'on, la probabilidad pedida es $P(H\up C)$. 
+Un recuento y la regla de Laplace permite determinar que 
+\[P(H)=10/30\qquad P(C)=15/30\qquad P(H\cap C)=5/30\]
+de donde, usando las reglas de c\'alculo de probabilidades, 
+se tiene 
+\[P(H\cup C)=P(H)+P(C)-P(H\cap C)=10/30+P(C)=15/30- P(H\cap C)=2/3\]
+
+Una aproximaci\'on alternativa consiste en contar los casos favorables, que son 20 (10 hombre y las 10 mujeres que tienen los ojos castaños) y dividir entre los casos posibles, que son 30, para obtener $$P(\text{ser hombre o tenerlos ojos castaños})=\frac{2}{3}$$
+
+
+%22
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio22}, pág. \pageref{tut03:ejercicio22}}
+\label{tut03:ejercicio22:sol}\quad\\
+
+\begin{enumerate}
+\item El evento ''permanecer ingresado durante m\'as de dos d\'ias'' está contenido (estrictamente) en el evento ''permanecer  hospitalizado durante m\'as de un d\'ia'', en el sentido de que si alguien está hospitalizado 2 díaso más ha tenidoque estar (forzosamente) hospitalizado un día o más. Por tanto, el primero no puede tener una probabilidad (estríctamente) mayor que el segundo.
+\item Los eventos S = ''que llueva el sábado'' y  D = ''que llueva el domingo'' son independientes y ambos tiene probabilidad 1/2. 
+Por las reglas de la probabilidad 
+$$P(\text{llueva el fin de semana})=P(S\cup D) =P(S)+P( D)-P(S\cap D) =$$ 
+$$ P(S)+P( D)-P(S)P(D) = \frac{1}{2}+\frac{1}{2}-\frac{1}{2}\frac{1}{2}=\frac{3}{4}\neq 1$$
+\end{enumerate}
+
+
+%23
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio23}, pág. \pageref{tut03:ejercicio23}}
+\label{tut03:ejercicio23:sol}\quad\\
+Si llamamos $X$ = ''número de lámpara defectuosas'', lo que queremos es calcular, en términos de la función de probabilidad, es $P(X\geq 1)$. Este planteamiento abre tres subcasos: según sean  una, dos o las tres lámparas defectuosas. Un enfoque alternativo consiste en usar el evento complemetario 
+y calcular $P(X\geq 1)=1-P(X=1)$. Llamamos $A_i$ al evento ''la lámpara extraida en $i$-ésimo lugar no es defectuosa''. Y el cálculo que resuelve el ejercicio es 
+$$P(X\geq 1)=1-P(X=0)=1-P(A_1\cap A_2\cap A_3)$$
+Los tres eventos no son independientes, ya que el hecho de elegir (extraer) una lámpara, cambia tanto el número de casos favorables como el de casos posibles. Por tanto, hay que usar la regla de la multiplicación:
+$$1-P(A_1\cap A_2\cap A_3)=1-P(A_1)·P(A_2| A_1)·P(A_3|A_1\cap A_2)$$
+para obtener
+<<eval=TRUE, cache=TRUE>>=
+1-(10/15)*(9/14)*(8/13)
+@  
+
+
+\paragraph{Ejercicio 23, un enfoque experimental.}, pág. \pageref{tut03:ejercicio22}}
+\label{tut03:ejercicio22:sol}\quad\\
 Código R para comprobar experimentalmente el resultado:
 <<ejercicio23sol>>=
 #set.seed(2014)
@@ -1409,10 +1565,10 @@ ensayos = matrix(nrow = n, ncol = 3)
 
 # Ahora para cada número i desde 1 hasta n,
 for(i in 1:n){
-  # hago una elección al azar de tres lamparas ¡¡sin reemplazamiento!!:
-  tresLamparas = sample(1:15, 3)
-  # y la guardo en la fila número i de la matriz
-  ensayos[i, ] = tresLamparas
+# hago una elección al azar de tres lamparas ¡¡sin reemplazamiento!!:
+tresLamparas = sample(1:15, 3)
+# y la guardo en la fila número i de la matriz
+ensayos[i, ] = tresLamparas
 }
 # La matriz ensayos contiene n repeticiones del experimento
 head(ensayos, 10)
@@ -1439,6 +1595,333 @@ table(sinDefecto) / n
 @
 
 
+% 24 
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio24}, pág. \pageref{tut03:ejercicio24}}
+\label{tut03:ejercicio24:sol}\quad\\
+
+Claramente hay $6^3$ casos posibles (piensa en el arbol que usamos en el libro, en la Sección 3.6,  para calcular el número de permutaciones de orden n). 
+Por otro lado, los casos favorables son $3·5^2$, 
+ya que el 6 puede salir sólo uno de los tres lanzamientos y  hay $5^2$ posibles resultados (diferentes de 6) para los otros dos dados. La probabilidad pedida es $\frac{3·5^2}{6^3}$\\
+
+También se puede resolver con la variable binomial $X$ = ''número de seises al lanzar 3 dados'', con probabilidad de éxito en cada lanzamiento 1/6 y de fracaso 5/6.
+$$ P(X=1)=\left(\begin{array}{c}
+3\\
+1
+\end{array}
+\right) \left(\frac{1}{6}\right)\left(\frac{5}{6}\right)^2$$
+
+%25
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio25}, pág. \pageref{tut03:ejercicio25}}
+\label{tut03:ejercicio25:sol}
+
+\begin{enumerate}
+\item Si la carta está aún en la baraja la probabilidad, al elegir una carta al  azar, de sacarla debe ser positiva. Vamos a llamar $R$ = ''sacar rey''  y $B$ = ''sacar bastos'', y lo que hay que calcular $$P(R\cap B)= 
+P(\text{sacar el rey de bastos})$$
+El enunciado nos dice 
+$$0.6=P(\{\hbox{sacar carta que no sea rey ni bastos}\}=
+P(R^C\cap B^C))=$$ 
+$$P((R\cup B)^C))=1-P(R\cup B)$$
+de donde tenemos 
+$$P(R\cup B)=1-0.6=0.4$$
+Por otro lado, para hacer aparecer el término $P(R\cap B)$ usamos 
+$$0.4=P(R\cup B)=P(R)+P(B)-P(R\cap B)= 0.15+0.3-P(R\cap B)$$
+es decir, $P(R\cap B)=0.05>0$. Luego el rey de bastos está en la baraja.
+\item Usando la regla de Laplace: $$P(R\cap B)=\frac{\text{casos fav} }{\text{casos pos}}=0.05$$
+Como sólo hay un caso favorable, al despejar tenemos que hay 20 casos posibles, es decir, quedan 20 cartas.
+\end{enumerate}
+
+%26
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio26}, pág. \pageref{tut03:ejercicio26}}
+\label{tut03:ejercicio26:sol}\quad\\
+Si definimos los eventos Q = ''suspender química'' y M = ''suspenden matemáticas'', el enunciado nos da la siguiente información
+$$P(Q)=0\text{.}15\qquad P(M)=0\text{.}25\qquad P(Q\cap M)=0\text{.}1 $$
+Lo primero es traducir cada pregunta al lenguaje de la probabilidad, y a continuación, hacer el cálculo correspondiente
+\begin{enumerate}
+\item $P(M|Q)=\frac{P(M\cap Q)}{P(Q)}=\frac{0\text{.}1}{0\text{.}15} = 0\text{.}667 $
+\item $P(Q|M)=\frac{P(M\cap Q)}{P(M)}=\frac{0\text{.}1}{0\text{.}25}=0\text{.}5 $
+\item $P(M\cup Q)= P(M) + P(Q) -P(M\cap Q)=0\text{.}25+0\text{.}15-0\text{.}1 =0\text{.}3 $
+\end{enumerate}
+
+%27 
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio27}, pág. \pageref{tut03:ejercicio27}}
+\label{tut03:ejercicio27:sol}\quad\\
+Si fueran incompatibles tendríamos $P(A\cap B)=0$ porque sería $A\cap B=\emptyset$. En ese caso, tendríamos 
+$$P(A\cup B)=P(A)+P(B)-P(A\cap B) =P(A)+P(B)=0\text{.}5+0\text{.}6=1\text{.}1$$
+lo cual es imposible.
+
+%28
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio28}, pág. \pageref{tut03:ejercicio28}}
+\label{tut03:ejercicio28:sol}\quad\\
+Llamaremos $Q_k$ al evento ''la operación se realizó en el  quirófano $k=1,2$'' e $I$ al evento ''ocurrió un incidente''.
+
+El enunciado proporciona los siguientes datos: 
+$$P(Q_1)=0\text{.}5,\qquad P(Q_2)=0\text{.}5$$
+$$P(I|Q_1)=0\text{.}2,\qquad P(I|Q_2)=0\text{.}04$$ 
+Lo que nos preguntan es $P(Q_1|I)$ y, para calcularlo,  usaremos el teorema de Bayes, es decir
+$$P(Q_1|I) = \frac{P(Q_1)P(I|Q_1)}{P(Q_1)P(I|Q_1)+P(Q_2)P(I|Q_2)}$$
+
+<<eval=TRUE, cache=TRUE>>=
+Prob_quirof = c(1/2, 1/2)
+Prob_incid_x_quirof = c(0.2, 0.04)
+# P(Q_1|I) =
+Prob_quirof[1]*Prob_incid_x_quirof[1]/(sum(Prob_quirof*Prob_incid_x_quirof))
+
+@
+%    \item En cierta población el porcentaje de personas que padecen una determinada enfermedad es del $2\%$. Para identificar a los enfermos se dispone de una prueba diagnóstica. Esa prueba no es perfecta: resulta positiva en el $95\%$ de las personas que padecen la enfermedad, pero también resulta positiva en el $3\%$ de las personas sanas (falsos positivos).  Calcular la probabilidad de que una persona con prueba positiva padezca realmente la enfermedad.
+
+%29
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio29}, pág. \pageref{tut03:ejercicio29}}
+\label{tut03:ejercicio29:sol}\quad\\
+%\setcounter{cont01}{\theenumi}
+En todos los casos se trata de probabilidades condicionadas
+\begin{enumerate}
+\item $ P(+|No) =\frac{P(+\cap No)} {P(No)}=\frac{5/950}{500/950} $. A la vista de este resultado, podemos usar directamente las frecuancias absolutas de cada evento (y no las relativas). Así procedemos en los siguientes apartados
+\item $ P(-|Si) =\frac{P(-\cap Si)} {P(Si)}=\frac{14}{450} $.
+\item $ P(Si|+) =\frac{P(+\cap Si)} {P(+)}=\frac{436}{441} $.
+\item $ P(No|-) =\frac{P(-\cap No)} {P(-)}=\frac{495}{509} $.
+\end{enumerate}
+
+%  30
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio30}, pág. \pageref{tut03:ejercicio30}}
+\label{tut03:ejercicio30:sol}\quad\\
+Llamaremos $F_k$ al evento ''la anilla viene de la fábrica $k$'' y $D$ al evento ''la anilla es defectuosa''.
+
+El enunciado proporciona los siguientes datos: 
+$$P(F_1)=500/3500,\qquad P(F_2)=1000/3500, \qquad P(F_3)=2000/3500 $$
+$$P(D|F_1)=0\text{.}005,\qquad P(D|F_2)=0\text{.}008, \qquad P(D|F_3)=0\text{.}01$$ 
+Para determinar de qu\'e fábrica es más probable que provenga esa anilla hay que calcular 
+$$P(F_1|D),\qquad P(F_2|D), \qquad P(F_3|D)$$ 
+Es decir, hay que usar tres veces el teorema de Bayes que, para la fábrica $i$, dice así
+$$P(F_i|D) = \frac{P(F_i)P(D|F_i)}{P(F_1)P(D|F_1)+P(F_2)P(D|F_2)+P(F_3)P(D|F_3)}$$
+
+<<eval=TRUE, cache=TRUE>>=
+# usar notación vectorial para reaprovechar 
+# las expresiones
+Prob_fabr = c(500/3500,1000/3500, 2000/3500)
+Prob_defecto_x_fabr = c(0.005,0.008, 0.01)
+# P(F_1|D)
+Prob_fabr[1]*Prob_defecto_x_fabr[1]/(sum(Prob_fabr*Prob_defecto_x_fabr))
+
+# P(F_2|D)
+Prob_fabr[2]*Prob_defecto_x_fabr[2]/(sum(Prob_fabr*Prob_defecto_x_fabr))
+
+# P(F_3|D) 
+Prob_fabr[3]*Prob_defecto_x_fabr[3]/(sum(Prob_fabr*Prob_defecto_x_fabr))
+@
+
+Un enfoque alternativo es el siguiente: con lo aprendido en el tutorial 3, podemos crear un vector que contenga tantas veces ''A'', ''B'' y ''C'' 
+como anillas defectuosas se producen en cada una de las fábricas, respectivamente. Luego, basta con contar cuántas ''A'',  ''B'' y ''C'' hay, la que mayor frecuencias absoluta tenga, esa será lamás probable. 
+<<eval=TRUE, cache=TRUE>>=
+anillas=rep(c("A","B", "C"),c(0.005*500,0.008*1000,0.010*2000))
+
+esA= (anillas=="A")
+(cuantasA=sum(esA))
+
+esB= (anillas=="B")
+(cuantasB=sum(esB))
+
+esC= (anillas=="C")
+(cuantasC=sum(esC))
+@
+
+Por tanto, es m\'as probable que la anilla defectuosa venga de la tercera empresa.
+
+
+% 34
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio34}, pág. \pageref{tut03:ejercicio34}}
+\label{tut03:ejercicio34:sol}\quad\\
+
+Como hay reemplazamiento (recuerda el ejercicio \ref{tut03:ejercicio20})
+<<eval=TRUE, cache=TRUE>>=
+(10/10)*(9/10)*(8/10)*(7/10)*(6/10)
+@
+
+%35
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio35}, pág. \pageref{tut03:ejercicio35}}
+\label{tut03:ejercicio35:sol}\quad\\
+a) Puedes razonar como en el ejercicio 20, cuando se trabajaba SIN reemplazamiento, para obtener 
+que la probabilidad 
+vale $$\frac{10}{20}\frac{9}{19}\frac{8}{18}\frac{7}{17}\frac{6}{16}=0\text{.}016$$
+
+b) Entre los 20 primeros n\'umeros naturales existen seis m\'ultiplos de 3. La probabilidad de que al extraer un n\'umero, \'este sea m\'ultiplo
+de 3 es (6/20), mientras que la probabilidad de que no lo sea es de (14/20). Adem\'as, si extraemos 5 n\'umeros y queremos obtener
+2 m\'ultiplos de 3, tenemos que calcular el n\'umero de posibles combinaciones de obtener 2 m\'ultiplos en 5 extracciones.
+Considerando todo esto, la probabilidad de obtener dos m\'ultiplos de 3 en 5 extracciones es de:
+$$P=\left(\begin{array}{c}5 \\ 2 \end{array} \right)\left(\frac{6}{20}\right)^2
+\left(\frac{14}{20}\right)^3=0\text{.}3$$
+Esto se puede expresar en términos de una variable binomial \dots piensa en el problema del caballero de Méré 
+(puedes ir al libro, 
+a la Sección \ref{curso-cap05:subsec:VariableAleatoriaBinomial}) e intercambia ''sacar 2 seises'' por ''sacar 2 múltiplos de 3''.\\
+
+c) De la misma forma que en el apartado anterior, la probabilidad de obtener un n\'umero impar en una extracci\'on es 1/2. Por tanto, la 
+probabilidad de obtener 2  n\'umeros impares y 3 pares ser\'a:
+
+$$P=\left(\begin{array}{c}5 \\ 2 \end{array} \right)
+\left(\frac{1}{2}\right)^2
+\left(\frac{1}{2}\right)^3
+= 0\text{.}31$$
+
+% 36
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio36}, pág. \pageref{tut03:ejercicio36}}
+\label{tut03:ejercicio36:sol}\quad\\
+En el bombo de la loter\'ia hay 64 n\'umeros de los que se extraen 6 (es decir, tenemos que trabajar sin reemplazo, dado que las 
+bolas extraidas ya no se vuelven a introducir en el bombo). 
+Podemos llamar $A_i$ al evento ''en la extracción i-ésima sale uno de mis números''. Y queremos calcular 
+$P(A_1\cap A_2\cap \cdots\cap A_6)$. Si usamos la regla de la multiplicación, tenemos 
+$$P(A_1\cap A_2\cap \cdots\cap A_6)=
+P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\cdots P(A_6|A_1\cap \cdots A_5)$$
+En la primera extración hay 6 casos favorables frente a 64 posibles. En la segunda sólo hay 5 posibles (porque supongo que ya ha salido uno de mis números) frete a63 posibles, y así sucesivamente. 
+Por tanto, la probabilidad de que nuestros seis n\'umeros sean iguales a los
+extra\'idos del bombo:
+$$\frac{6}{64}\frac{5}{63}\frac{4}{62}\frac{3}{61}\frac{2}{60}\frac{1}{59} = 1.33 \times 10^{-8}$$
+
+También puedes razonarlo de esta forma: hay 1 caso favorable, y el número de casos posibles es el número de subconjuntos de $6$ elementos que se puede formar con las 64 bolas, es decir, 
+el número de combinaciones de 64 elementos tomados de 6 en 6. Por tanto, la probabilidad es 
+
+<<eval=TRUE, cache=TRUE>>=
+1/choose(64,6)
+@
+
+% 37
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio37}, pág. \pageref{tut03:ejercicio37}}
+\label{tut03:ejercicio37:sol}\quad\\
+Tengamos en cuenta que existen dos tipos de fichas en el domin\'o: las dobles (hay 7: del blanco al 6) y las que no son dobles (hay 21).
+\begin{itemize}
+\item El n\'umero de casos posibles es el número de formas  en que podemos extraer 2 fichas de las 28, es decir, en número de combinaciones de 28 elementos tomados de 2 en 2 
+$$\frac{28!}{2!(28-2)!}=\frac{28 \times 27}{2}=378$$
+
+\item Para contar los casos favorables, hay que tener en cuenta que
+\begin{itemize}  
+\item Una ficha doble se puede emparejar con otras seis fichas. Como hay siete dobles tenemos un total de $6 \times 7 =42$ 
+emparejamientos.
+
+\item Una ficha no doble se puede emparejar con 12, como hay 21 fichas no dobles, tenemos otros $12 \times 21 = 252$ emparejamientos.
+
+\item Como hemos contando dos veces cada emparejamiento  dobles, tendremos: $(42+252)/2=147$ emparejamientos favorables
+\end{itemize}
+\end{itemize}
+Finalmente, la probabilidad pedida es $$147/378=0\text{.}39$$
+
+
+%38
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio38}, pág. \pageref{tut03:ejercicio38}}
+\label{tut03:ejercicio38:sol}\quad\\
+\begin{enumerate}
+\item  Como las cuatro cifras deben ser diferentes el n\'umero de casos favorables es el de variaciones de 10 elementos tomados de 4 en 4. 
+Hay 10000 casos posibles (si contamos el 0000)
+<<eval=TRUE, cache=TRUE>>=
+(10*9*8*7)/10000
+@
+\item Es el evento complementario del anterior, es decir 
+<<eval=TRUE, cache=TRUE>>=
+1-(10*9*8*7)/10000
+@
+\item Por un lado, hay 10000 casos posibles. Vamos a contar los favorables. Cada n\'umero debe tener dos cifras repetidas, que pueden ocupar en lugar de las unidades, decenas, centenes o millares. Por ejemplo, si fijamos el $1$, algunos n\'umeros son {\tt 11xy}, [\tt 1x1y],...(x, y, son las otras dos cifras, distintas de 1 y entre sí). Lo primero es contar el n\'umero de formas en que pueden colocarse los 2 unos en las cuatro posiciones. Y esa cantidad es 
+ $\left(\begin{array}{c} 4 \\ 2 \end{array} \right)$, ya que elegimos las posiciones de 2 en 2 de entre las cuatro posibles (unidades, decenas,...), y da igual el orden en el que las elijamos, porque en ambas posiciones colocaremos el mismo número, en este caso, el uno (si no lo ves claro, puedes volver sobre el ejercicio \ref{tut03:ejercicio35} (pág  \pageref{tut03:ejercicio35}). 
+ En cada caso, habremos usado un número del 0 al 9, de manera que disponemos de 9 números con los que rellenar las dos cifras restantes (sin repetirlos), lo que puede hacerse de $9\cdot 8$ formas distintas (variaciones de 9 elementos de orden 2) porque el orden importa: 2298 es diferente de 2289. De momento, una vez fijado la cifra que se repite, podemos 
+ \[\left(\begin{array}{c} 4 \\ 2 \end{array} \right)*9*8\]
+n\'umeros posibles. Como hay 10 posibles valores para la cifra repetida, en total hay 
+ \[10\left(\begin{array}{c} 4 \\ 2 \end{array} \right)*9*8\]
+ casos favorables. Resumiendo, la probabilidad pedida es 
+ <<eval=TRUE, cache=TRUE>>=
+(10*choose(4,2)*9*8)/10000
+@
+
+
+% Hay $\left(\begin{array}{c} 4 \\ 2 \end{array} \right)$ posibilidades de obtener dos cifras iguales (puesto que el orden no nos
+% preocupa). La probabilidad de obtener un n\'umero de los diez posibles es (1/10).  Por tanto, la probabilidad de obtener dos cifras
+% iguales es:
+% $P=\left(\begin{array}{c}4 \\ 2 \end{array} \right)(\frac{1}{10})^2(\frac{9}{10})^2=9.70\%$
+
+\item De nuevo, hay 10000 casos posibles. 
+Razonando como en el apartado anterior, hay 
+ $\left(\begin{array}{c} 4 \\ 2 \end{array} \right)$ formas en las que cada una de ellas puede aparecer repetida 2 veces en un número de 4 dígitos. Y los dos dígitos restantes sólo los podemos completar de 9 formas diferentes (porque hay 9 cifras del 0 al 9 que son diferentes de la que ya aparece). Por tanto, la probabilidad pedida es 
+ <<eval=TRUE, cache=TRUE>>=
+(10*choose(4,2)*9)/10000
+@
+
+%$P=\left(\begin{array}{c}4 \\ 2 \end{array} \right)(\frac{1}{10})^2\frac{9}{10}\frac{1}{10}=1.08\%$
+
+\item Hay $\left(\begin{array}{c} 4 \\ 3 \end{array} \right)$ posibilidades de obtener tres cifras iguales (puesto que el orden no nos
+preocupa). La probabilidad de obtener un n\'umero de los diez posibles es (1/10). Por tanto, la probabilidad de obtener tres cifras
+iguales es: 
+<<eval=TRUE, cache=TRUE>>=
+choose(4,3)*(1/10)^3*(9/10)
+@
+%$$\left(\begin{array}{c}4 \\ 3 \end{array} \right)(\frac{1}{1%0})^3(\frac{9}{10})=0.0036$$
+
+\item Hay 10 casos favorables (0000, 1111,..., 9999) y 10000 posibles, por lo que la probabilidad es 
+$$10/10000=0.001$$
+\end{enumerate}
+
+
+% 39
+
+\paragraph{\bf $\bullet$ Ejercicio \ref{tut03:ejercicio39}, pág. \pageref{tut03:ejercicio39}}
+\label{tut03:ejercicio39:sol}\quad\\
+ La probabilidad de que al menos dos personas cumplan a\~nos el mismo d\'ia es $P(A_n)=1-P(\bar A_n)$
+    donde $P(\bar A_n)$ es la probabilidad de que ninguna de las n personas cumpla años el mismo día. 
+    Para que $P(A_2) \geq 1/2$, se tiene que cumplir que $P(\bar A_n) \leq 1/2$. Si $n$ es el n\'umero de personas, entonces
+%     \begin{itemize}
+%     \item El número de casos favorables es el número de formas diferentes en que pueden nacer $n$ personas sin variaciones de orden n de 367 elementos.
+%     \item 
+%     \end{itemize}
+
+$$ P(\bar A_n) =\dfrac{366}{366}\dfrac{365}{366}
+\dfrac{364}{366}\cdots \dfrac{366-n+1}{366}$$
+o, agrupando términos
+$$\frac{366!}{366^n(366-n)!}$$
+Hay que ir probando con con distintos valores de $n$ hasta dar con el primero para el que se cumple la condición requerida: 
+<<eval=TRUE, cache=TRUE>>=
+# probamos con, aproximadamente 366/2 días
+m =180
+n = 1:m
+# si no sabes qué pace la función prod(), usa el tabulador!
+prod((366-n)/366)
+
+# elnúmero debe ser menor. 
+# probamos con (apróx.) el punto medio del rango de días 2-180
+m =90
+n = 1:m
+prod((366-n)/366)
+
+# y así sucesivamente, hasta aislar el valor deseado
+m =35
+n = 1:m
+prod((366-n)/366)
+
+m =17
+n = 1:m
+prod((366-n)/366)
+
+m =26
+n = 1:m
+prod((366-n)/366)
+
+m =21
+n = 1:m
+prod((366-n)/366)
+
+m =22
+n = 1:m
+prod((366-n)/366)
+@
+
+Para n=22, $P(A_n)$ vale 
+<<eval=TRUE, cache=TRUE>>=
+m =22
+n = 1:m
+1-prod((366-n)/366)
+@
+    
+Si hay 22 personas en la sala, tenemos una probabilidad de 1/2 de que haya dos que hayan nacido el mismo d\'ia.
+    
+Observa que un intento de cálculo ''directo'' 
+es inviable
+<<eval=TRUE, cache=TRUE>>=
+factorial(366)
+@
+
 
 %#########################################################################################
 %#########################################################################################
@@ -1453,6 +1936,4 @@ Fin del Tutorial-03. ¡Gracias por la atención!
 %\includepdf[pages={1-},scale=0.90]{03-GuiaDeTrabajo.pdf}
 
 \end{document}
-
-
 

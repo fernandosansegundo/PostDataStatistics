@@ -1166,7 +1166,7 @@ nc = 0.99
 (alfa2 = alfa /2)
 @
 Para  construir el intervalo necesitamos calcular el valor crítico situado más a la derecha, que deja una probabilidad $\frac{\alpha}{2}=0.005$ en su cola derecha (y $\alpha/2 = 0.995$ en la cola izquierda que usa R), al que hemos llamado:
-\[\chi^2_{k;\alpha/2} = \chi^2_{17;0.005}\]
+\[\chi^2_{k;\alpha/2} = \chi^2_{16;0.005}\]
 Este valor crítico se obtiene en R con:
 <<t06ch38>>=
 (chiAlfa2 = qchisq(1 - alfa2, df=k))
