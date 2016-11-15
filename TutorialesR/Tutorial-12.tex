@@ -31,6 +31,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -1063,14 +1064,14 @@ Para ver un ejemplo inicial sencillo de esto vamos a usar una herramienta que R 
 \end{alltt}
 \begin{verbatim}
 ##    user  system elapsed 
-##   16.37    0.03   16.55
+##   9.474   0.094   9.579
 \end{verbatim}
 \begin{alltt}
 \hlkwd{system.time}\hlstd{(v} \hlkwb{<-} \hlstd{v} \hlopt{+}\hlnum{1}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ##    user  system elapsed 
-##    0.04    0.00    0.03
+##   0.019   0.006   0.025
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1125,7 +1126,7 @@ Así que tenemos dos formas de resolver el mismo problema. ¿Cuál es mejor? Hay
 \end{alltt}
 \begin{verbatim}
 ##    user  system elapsed 
-##    0.87    0.00    0.89
+##   0.707   0.023   0.731
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1144,7 +1145,7 @@ Mientras que para el segundo es:
 \end{alltt}
 \begin{verbatim}
 ##    user  system elapsed 
-##    0.04    0.00    0.03
+##   0.019   0.000   0.018
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

@@ -25,6 +25,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -249,13 +250,13 @@ Lo que hemos hecho para obtener ese gráfico es el esquema básico. En ejemplos 
 \hlkwd{head}\hlstd{(datosPisa)}
 \end{alltt}
 \begin{verbatim}
-##               CA    rpc pisa
-## 1    Extremadura 15.394  461
-## 2     AndalucÃ­a 19.960  472
-## 3         Murcia 18.520  462
-## 4        Galicia 20.723  489
-## 5       Asturias 21.035  500
-## 6 Castilla LeÃ³n 22.289  509
+##                     CA    rpc pisa
+## 1          Extremadura 15.394  461
+## 2     Andaluc\303\255a 19.960  472
+## 3               Murcia 18.520  462
+## 4              Galicia 20.723  489
+## 5             Asturias 21.035  500
+## 6 Castilla Le\303\263n 22.289  509
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -468,7 +469,7 @@ y, como ves, R lo entiende sin problemas. El problema de hacer esto es que en oc
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'rpc' not found}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'rpc' no encontrado}}\end{kframe}
 \end{knitrout}
 y el mensaje de error nos confirma de que hemos vuelto a la situación previa al uso de {\tt attach}.
 
@@ -1314,33 +1315,15 @@ Ya hemos dicho, en esa sección, que aunque estos análisis gráficos son muy ú
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(gvlma)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(gvlma): there is no package called 'gvlma'}}\begin{alltt}
 \hlkwd{gvlma}\hlstd{(lmXY)}
 \end{alltt}
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = y ~ x)
-## 
-## Coefficients:
-## (Intercept)            x  
-##       0.983       -0.481  
-## 
-## 
-## ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
-## USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
-## Level of Significance =  0.05 
-## 
-## Call:
-##  gvlma(x = lmXY) 
-## 
-##                    Value p-value                Decision
-## Global Stat        3.686   0.450 Assumptions acceptable.
-## Skewness           0.339   0.561 Assumptions acceptable.
-## Kurtosis           0.531   0.466 Assumptions acceptable.
-## Link Function      2.156   0.142 Assumptions acceptable.
-## Heteroscedasticity 0.661   0.416 Assumptions acceptable.
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}gvlma"{}}}\end{kframe}
 \end{knitrout}
 Fíjate, en particular, en que también se ha comprobado la hipótesis de homocedasticidad (homogeneidad de las varianzas). Para comprobar esta condición, pero usando métodos gráficos, se acude a menudo a representar los residuos estudentizados frente a los valores que predice el modelo. Ese gráfico se obtiene simplemente haciendo:
 \begin{knitrout}
@@ -1419,8 +1402,6 @@ Fíjate en que, en este ejemplo, aunque ese punto es influyente su residuo no es
 
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'car'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:BSDA':\\\#\# \\\#\#\ \ \ \  Vocab, Wool}}
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:gtools':\\\#\# \\\#\#\ \ \ \  logit}}\begin{alltt}
 \hlkwd{outlierTest}\hlstd{(lmXY)}
@@ -1805,31 +1786,9 @@ Si lo que queremos es un diagnóstico sencillo de este modelo de regresión pode
 \begin{alltt}
 \hlkwd{gvlma}\hlstd{(lmA1)}
 \end{alltt}
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = anscombe[, 5] ~ anscombe[, 1])
-## 
-## Coefficients:
-##   (Intercept)  anscombe[, 1]  
-##           3.0            0.5  
-## 
-## 
-## ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
-## USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
-## Level of Significance =  0.05 
-## 
-## Call:
-##  gvlma(x = lmA1) 
-## 
-##                     Value p-value                Decision
-## Global Stat        1.2476   0.870 Assumptions acceptable.
-## Skewness           0.0274   0.869 Assumptions acceptable.
-## Kurtosis           0.2621   0.609 Assumptions acceptable.
-## Link Function      0.6856   0.408 Assumptions acceptable.
-## Heteroscedasticity 0.2725   0.602 Assumptions acceptable.
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}gvlma"{}}}\end{kframe}
 \end{knitrout}
 Te proponemos unos ejercicios adicionales para completar el estudio del {\em cuarteto de Anscombe}:
 \begin{ejercicio}
