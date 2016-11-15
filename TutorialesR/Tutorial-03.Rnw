@@ -16,7 +16,7 @@
 \usepackage{makeidx}
 \newcommand{\idioma}{spanish}
 \newcommand{\opcionesIdioma}{,es-nodecimaldot,es-tabla}
-\input{definiciones}
+\input{../tex/definiciones}
 %\input{sahp}
 \includecomment{com}
 %\excludecomment{com}
