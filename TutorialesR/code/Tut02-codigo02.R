@@ -1,6 +1,6 @@
 setwd("")
 
-var3 = scan(file="./datos/Tut02-var3.csv")
+var3 = read.table(file="./datos/Tut02-var3.csv", header=TRUE)[,1]
 
 ( minimo = min(var3) )
 ( maximo = max(var3) )

@@ -15,7 +15,10 @@ setwd("")
 
 # Leemos el fichero de datos, y lo guardamos en la variable vectorDatos.
 # El fichero debe estar en la subcarpeta datos del directorio de trabajo.
-vectorDatos = scan(file="./datos/")
+# Debes introducir el nombre del fichero. Se supone que los datos están 
+# en la primera columna del fichero. Si no es así, debes modificar la 
+# siguiente orden, indicando la columna que contiene los datos.
+vectorDatos = read.table(file="./datos/", header=TRUE)[,1]
 
 # Calculamos máximo, minimo y rango.
 ( minimo = min(vectorDatos) )
