@@ -32,7 +32,7 @@ rm(list = ls())
 
 # 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.
 
-#muestra = scan(file="",sep=" ",dec=".")  
+#muestra = read.table(file=" ", header = , sep=" ",dec=".")[ , 1]
 
 
 # Valor a contrastar de la media (aparece en la hipotesis nula)

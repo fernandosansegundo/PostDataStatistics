@@ -25,6 +25,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -1020,7 +1021,7 @@ Naturalmente, si intentas  realizar operaciones numéricas con ese vector, como 
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in pacientesPorGenero\textasciicircum{}2: non-numeric argument to binary operator}}\begin{alltt}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in pacientesPorGenero\textasciicircum{}2: argumento no-numérico para operador binario}}\begin{alltt}
 \hlkwd{mean}\hlstd{(pacientesPorGenero)}
 \end{alltt}
 
@@ -1392,7 +1393,7 @@ Personalmente, encuentro este último punto especialmente confuso y en su moment
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in labels(estadoCarreteras) = c("{}atasco"{}, "{}moderado"{}, "{}fluido"{}): could not find function "{}labels<-"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in labels(estadoCarreteras) = c("{}atasco"{}, "{}moderado"{}, "{}fluido"{}): no se pudo encontrar la función "{}labels<-"{}}}\end{kframe}
 \end{knitrout}
 Como hemos dicho, todo este pequeño lío de {\tt levels} y {\tt labels} te costará algo de trabajo al principio (y no es, desde luego, uno de los aspectos mejor resueltos de R) pero con la experiencia irás comprendiéndolo mejor.
 
@@ -1519,7 +1520,7 @@ Vamos a ver como usar {\tt cut} para hacer eso en R. Primero leemos el fichero (
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{edades} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut08-Edades.csv"}\hlstd{)}
+\hlstd{edades} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut08-Edades.csv"}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 \end{alltt}
 \end{kframe}
 \end{knitrout}

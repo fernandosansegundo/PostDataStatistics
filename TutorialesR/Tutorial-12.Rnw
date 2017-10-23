@@ -13,11 +13,11 @@ homogeneidad = FALSE
   independencia = TRUE
   homogeneidad = FALSE
   purl(input = "Tutorial-12.Rnw",
-       output = "../datos/Tut12-Chi2Independencia.R",
+       output = "./code/Tut12-Chi2Independencia.R",
        documentation=0)
-  purl(input = "Tutorial-12.Rnw",
-       output = "../datos/Tut12-Anova-Avanzado.R",
-       documentation=0)
+  # purl(input = "Tutorial-12.Rnw",
+  #      output = "./code/Tut12-Chi2Homogeneidad.R",
+  #      documentation=0)
 @
 
 <<setup, echo=FALSE, purl=FALSE >>=

@@ -25,6 +25,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -842,7 +843,7 @@ En resumen, ya hemos leído el fichero {\tt csv} llamado {\tt Tut01-PracticaConC
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in mean(var3): object 'var3' not found}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in mean(var3): objeto 'var3' no encontrado}}\end{kframe}
 \end{knitrout}
 La respuesta de R, en color rojo, indica que se ha enfadado con nosotros. ¿Por qué? Pues porque las variables de un {\tt data.frame} no viven vidas propias. El nombre correcto de esta variable no es {\tt var3} sino   \verb#datosTutorial01$var3#.
 
@@ -2050,7 +2051,7 @@ Los valores de {\tt cuenta} y {\tt k} se alternan en la salida. Ya aprenderemos 
 \begin{verbatim}
 ## bola
 ##     b     n 
-## 0.250 0.750
+## 0.251 0.750
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

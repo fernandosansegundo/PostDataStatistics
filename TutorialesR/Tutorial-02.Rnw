@@ -570,9 +570,9 @@ Se abre un cuadro de diálogo del sistema, y navegamos hasta la carpeta que cont
 \begin{center}
 \verb# setwd("C:/Users/Fernando/Desktop") #
 \end{center}
-\paragraph*{}\label{tut02:lugar:ComandoSetwd}Este es el resultado en mi ordenador (de ahí el nombre de usuario), usando Windows 7. En versiones más antiguas de Windows, o en una máquina con Linux, o un Mac, el comando será ligeramente distinto. Cuando tengamos más práctica, aprenderemos otras formas de seleccionar el directorio de trabajo, o incluso de utilizar ficheros situados fuera de ese directorio de trabajo. Pero, por el momento, resulta más cómodo dejar que \mbox{RStudio} haga ese trabajo para nosotros.
+\paragraph*{}\label{tut02:lugar:ComandoSetwd}Este es el resultado en mi ordenador (de ahí el nombre de usuario), usando Windows 10. En versiones más antiguas de Windows, o en una máquina con Linux, o un Mac, el comando será ligeramente distinto. Cuando tengamos más práctica, aprenderemos otras formas de seleccionar el directorio de trabajo, o incluso de utilizar ficheros situados fuera de ese directorio de trabajo. Pero, por el momento, resulta más cómodo dejar que \mbox{RStudio} haga ese trabajo para nosotros.
 
-%Naturalmente, ese comando incluye mi nombre de usuario. El truco para que no dependa es usar:
+% Naturalmente, ese comando incluye mi nombre de usuario. El truco para que no dependa es usar:
 %
 %    (dirTrabajo=paste("C:/Users/",Sys.info()["user"],"/Desktop",sep=""))
 %    setwd(dirTrabajo)
@@ -580,28 +580,31 @@ Se abre un cuadro de diálogo del sistema, y navegamos hasta la carpeta que cont
 %    # setwd("~/Desktop")
 %    # setwd("~/Escritorio")
 
-Ahora R ya sabe dónde está el fichero que nos interesa, pero todavía no sabe cual es. Para ello vamos a utilizar la función {\tt scan} de R. Aunque esta función tiene muchas opciones disponibles, nuestro primer uso de ella no podría ser más sencillo. Copia y ejecuta el siguiente código en RStudio:
+Ahora R ya sabe dónde está el fichero que nos interesa, pero todavía no sabe cual es. Para ello vamos a utilizar la función {\tt read.table} de R. Aunque esta función tiene muchas opciones disponibles, nuestro primer uso de ella será bastante sencillo. Copia y ejecuta el siguiente código en RStudio:
 \begin{center}
 \begin{minipage}{10cm}
 {\tt
-( vectorEdades = scan("../datos/Tut02-Edades.csv") )
+(vectorEdades = read.table("./datos/Tut02-Edades.csv", header = FALSE)[,1])
 }
 \end{minipage}
 \end{center}
-En esta instrucción le decimos a R que use la función {\tt scan} para leer el contenido del fichero {\tt Tut02-Edades.csv}, y que almacene lo que ha leído en un vector, que hemos decidido llamar {\tt vectorEdades}.
-Al hacerlo verás una respuesta como esta (que, de paso, contiene la solución del Ejercicio \ref{tut02:ejercicio03}, pág. \pageref{tut02:ejercicio03}):
+En esta instrucción le decimos a R que use la función {\tt read.table} para leer el contenido del fichero {\tt Tut02-Edades.csv}, y que almacene lo que ha leído en un vector, que hemos decidido llamar {\tt vectorEdades}. Y aunque no es necesario entender en detalle el funcionamiento de {\tt read.table} en este momento, vamos a explicar un poco más lo que hemos hecho. A medida que el curso avance irás teniendo más ocasiones de practicar esto e irá quedando cada vez más claro. 
+
+La opción {\tt header = FALSE} sirver para indicarle a R que la tabla almacenada en el fichero no tiene una línea de cabecera (en inglés, {\em header}) que, cuando existe, suele contener los nombres de las variables de la tabla. Además, la función {\tt read.table} sirve para leer tablas con varias columnas, obteniendo como resultado un objeto de R de tipo {\tt data.frame}. Pero nuestro primer ejemplo es muy sencillo y la tabla sólo tiene una columna. Así que usamos la notación {\tt [,1]} para indicarle a R que sólo queremos la primera columna de esa tabla, considerada como un vector.
+
+Al ejecutar esa orden habrás obtenido una respuesta como esta: 
+% (que, de paso, te puede servir para obtener la solución del Ejercicio \ref{tut02:ejercicio03}, pág. \pageref{tut02:ejercicio03}, usando la función {\tt length})
 \begin{center}
 \begin{tabular}{l}
-{\tt > ( vectorEdades = scan(file = "../datos/Tut02-Edades.csv") )}\\
-\textcolor{red}{\tt Read 100 items{}}\\
-{\tt   [1]  6  7  8  8  8  9  9  5  8  7  8  7  7  6  6  7  5  8  9  4  7  5 }\\
-{\tt  [23]  7  7  5  9  4  7  7  7  8  5  8  9  7  4  6  6  6  9  8  6  7  6 }\\
-{\tt  [45]  7  6  6  8  6  5  5  6  6  8  5  8  5  9  7  6  9  5  7  8  8  7 }\\
-{\tt  [67] 10  7  8  7  5  6  8  8  7  3  5  6  7  5  7  7  5  8  4  8  8  8 }\\
-{\tt  [89]  6  7  6  6  8  5  6  5  8  6  9  7 }
+{\tt > > (vectorEdades = read.table("./datos/Tut02-Edades.csv", header = FALSE)[,1])}\\
+{\tt     [1]  6  7  8  8  8  9  9  5  8  7  8  7  7  6  6  7  5  8  9  4  7  5  7}\\
+{\tt  [24]  7  5  9  4  7  7  7  8  5  8  9  7  4  6  6  6  9  8  6  7  6  7  6}\\
+{\tt   [47]  6  8  6  5  5  6  6  8  5  8  5  9  7  6  9  5  7  8  8  7 10  7  8}\\
+{\tt  [70]  7  5  6  8  8  7  3  5  6  7  5  7  7  5  8  4  8  8  8  6  7  6  6}\\
+{\tt  [93]  8  5  6  5  8  6  9  7}
 \end{tabular}
 \end{center}
-Como hemos dicho antes, los números entre corchetes, al principio de cada fila, que en mi caso son {\tt [1], [23]  [45], [67]} y {\tt [89]}, son sólo ayudas para que podamos localizar los elementos del vector. En mi pantalla cada primera fila muestra 22 números del vector. Pero en la tuya, si la ventana de RStudio es de distinta anchura, los números entre corchetes pueden ser distintos.\\
+Como hemos dicho antes, los números entre corchetes, al principio de cada fila, que en mi caso son {\tt [1], [24]  [47], [70]} y {\tt [93]}, son sólo ayudas para que podamos localizar los elementos del vector. En mi pantalla cada primera fila muestra 23 números del vector. Pero en la tuya, si la ventana de RStudio es de distinta anchura, los números entre corchetes pueden ser distintos.\\
 
 En cualquier caso, ahora el vector {\tt vectorEdades} contiene la información del fichero {\tt csv} con el que hemos  empezado. En la Sección \ref{tut03:sec:EstadisticaDescriptivaVariableCuantitativaConR} vamos a empezar a hacer Estadística Descriptiva. Pero antes, te pedimos un poco más de paciencia, porque vamos a entretenernos un poco más en los detalles del manejo de ficheros {\tt csv} con R. No pretendemos ser exhaustivos, ni mucho menos, pero sí queremos aprender lo suficiente como para evitarnos los problemas más habituales en los casos más sencillos.
 
@@ -611,14 +614,14 @@ Para cerrar este apartado, es conveniente haber visto el error que se produce cu
 \quad\\
 Prueba a ejecutar:
 \begin{verbatim}
-  errorDeLectura = scan(file = "../datos/EsteFicheroNoExiste.csv")
+  errorDeLectura = read.table(file = "../datos/EsteFicheroNoExiste.csv")
 \end{verbatim}
 y fíjate en el mensaje de error. Solución en la página \pageref{tut02:ejercicio04:sol}.
 \qed
 \end{ejercicio}
 
-\subsection{Otra variante del fichero de entrada.}
-\label{tut02:subsec:OtraVarianteFicheroEntrada}
+\subsubsection*{Otra variante del fichero de entrada.}
+\label{tut02:subsubsec:OtraVarianteFicheroEntrada}
 
 Los ficheros {\tt  csv} que contienen un único vector (en lugar de una {\em tabla} de datos), pueden adoptar formatos distintos del que acabamos de ver. Por ejemplo, el fichero adjunto
 \begin{center}
@@ -628,39 +631,13 @@ contiene los mismos datos que {\tt Tut02-Edades.csv}, pero ahora los datos del v
     \begin{center}
     \includegraphics[width=12cm]{../fig/Tut02-07a.png}
     \end{center}
-Desde luego, no nos podemos plantear transformar a mano este vector en uno como el anterior. Podríamos buscar soluciones pasando por la hoja de cálculo (por ejemplo: lo leeríamos en una fila de la hoja, y luego habría que usar el {\tt Pegado especial} para trasponerlo -es decir, girarlo- para finalmente volver a guardarlo). Afortunadamente, hay una solución, sin salir de R, bastante menos embrollada. Las instrucciones R para leer este fichero son muy parecidas a las que ya hemos visto. De nuevo usaremos la función {\tt scan}, pero ahora debemos añadir un poco más de información para explicarle a R que los elementos de ese fichero están separados por comas. Tenemos que usar un argumento opcional de la función {\tt scan}, concretamente el argumento {\tt sep}. Para ver como funciona ejecuta este comando (recuerda, el fichero está en la subcarpeta {\tt datos} de tu directorio de trabajo) :
-\begin{verbatim}
-            ( vectorEdades2=scan("../datos/Tut02-Edades2.csv",sep=",") )
-\end{verbatim}
-%
-%    \begin{center}
-%    \begin{minipage}{10cm}
-%    {\verb#    ( vectorEdades2=scan(”Tut02-Edades2.csv”,sep=",") )#    }
-%    \end{minipage}
-%    \end{center}
-La novedad, naturalmente, es la inclusión de {\tt sep=,} como argumento de {\tt scan}.  Con ese  como argumento de {\tt scan}.  Con ese argumento, que proviene del inglés {\em separator}, la lectura del fichero produce el mismo resultado que antes.
-\begin{center}
-\begin{tabular}{l}
-{\tt > ( vectorEdades2 = scan(file="../datos/Tut02-Edades2.csv", sep=",") )}\\
-\textcolor{red}{\tt Read 100 items{}}\\
-{\tt   [1]  6  7  8  8  8  9  9  5  8  7  8  7  7  6  6  7  5  8  9  4  7  5 }\\
-{\tt  [23]  7  7  5  9  4  7  7  7  8  5  8  9  7  4  6  6  6  9  8  6  7  6 }\\
-{\tt  [45]  7  6  6  8  6  5  5  6  6  8  5  8  5  9  7  6  9  5  7  8  8  7 }\\
-{\tt  [67] 10  7  8  7  5  6  8  8  7  3  5  6  7  5  7  7  5  8  4  8  8  8 }\\
-{\tt  [89]  6  7  6  6  8  5  6  5  8  6  9  7 }
-\end{tabular}
-\end{center}
-
-
-%    \begin{center}
-%    \includegraphics[width=14cm]{./datos/Tut03-22.png}
-%    \end{center}
+Desde luego, no nos podemos plantear transformar a mano este vector en uno como el anterior. La solución que te proponemos pasa por la hoja de cálculo, y la opción de trasponer una tabla que hemos visto en el Tutorial-00: lo leeríamos en una fila de la hoja, y luego habría que usar el {\tt Pegado especial} para trasponerlo -es decir, girarlo- para finalmente volver a guardarlo. Alternativamente, hay otras soluciones, sin salir de R, usando una función llamada {\tt scan} o usando de nuevo {\tt read.table} y trasponiendo la tabla dentro de R. Esos métodos son sencillos cuando se aprende un poco más sobre R, pero por el momento, y para los ejemplos sencillos que encontraremos, nos vamos a conformar con ese enfoque básico que usa la hoja de Cálculo si es necesario.
 
 \subsection{Cómo obtener ayuda y usar el tabulador en RStudio.}
 
-Vamos a aprovechar estos ejemplos de lectura de ficheros {\tt csv} para aprender a obtener ayuda sobre las funciones de R. La mayoría de los comandos de R, como el comando {\tt scan} que hemos usado aquí, tienen muchos argumentos opcionales. Y hay muchísimos comandos en R (cada vez más, porque, como veremos más adelante, se peuden añadir comandos nuevos a R cuando se necesitan). No es fácil recordar todos esos comandos, cada uno con sus opciones, así que es muy importante aprender a obtener esa información cuando la necesitamos.
+Vamos a aprovechar estos ejemplos de lectura de ficheros {\tt csv} para aprender a obtener ayuda sobre las funciones de R. La mayoría de las funciones de R, como la función {\tt read.table} o la función {\tt scan} que hemos mencionado al final del anterior apartado, tienen muchos argumentos opcionales. Y hay muchísimas funciones en R (cada vez más, porque, como veremos más adelante, usuarios de todo el mundo añaden constantemente  funciones nuevas a R cuando las necesitan). No es posible recordar todos esas funciones, cada una con sus opciones, así que es muy importante aprender a obtener esa información cuando la necesitamos.
 
-Para ver como obtener esa función en RStudio, sitúate en una línea vacía de la Consola de Comandos, escribe {\tt scan} y a continuación, mientras el cursor parpadea junto a la {\tt n} final de {\tt scan}, pulsa la tecla del tabulador. Verás aparecer una ventana emergente con información sobre la función {\tt scan}, como en esta figura:
+Para ver como obtener esa información en RStudio, vamos a usar por ejemplo la función {\tt scan}. Sitúate en una línea vacía de la Consola de Comandos, escribe {\tt scan} y a continuación, mientras el cursor parpadea junto a la {\tt n} final de {\tt scan}, pulsa la tecla del tabulador (si esto no funciona, usa la tecla {\tt F1} y mira el panel ayuda de RStudio). Verás aparecer una ventana emergente con información sobre la función {\tt scan}, como en esta figura:
     \begin{center}
     \includegraphics[width=15cm]{../fig/Tut02-08.png}
     \end{center}
@@ -670,35 +647,39 @@ Como ves, se muestra un resumen sobre la función {\tt scan}, que a veces será 
     \end{center}
 Esos ficheros de ayuda son muy útiles, aunque al principio pueden resultar un poco intimidatorios, ya sea por un exceso de información, ya sea porque se da por supuesto que el usuario ya entiende algunos conceptos básicos de R. Podemos garantizar al lector que, a medida que se progresa en R, la utilidad de estos ficheros aumenta.
 
-Pero la utilidad de la tecla tabulador en RStudio no se acaba ahí. Supongamos que hemos empezado a usar la función {\tt scan}, como antes, para cargar el contenido del fichero {\tt Tut02-Edades2.csv} en un vector. Pero se nos ha olvidado cual era el argumento que nos permitía elegir la coma como separador. No pasa nada, cuando tenemos escrita una parte del comando, como en
+Pero la utilidad de la tecla tabulador en RStudio no se acaba ahí. Supongamos que quieres aplicar {\tt read.table} para leer el fichero {\tt Tut02-Edades.csv}. Pero te da pereza escribir un nombre tan largo, o no recuerdas exactamente el nombre, o dudas entre dos nombres... no importa cual sea el motivo. Empiezas a escribir la orden, tecleas 
     \begin{center}
     \begin{minipage}{10cm}
-    \verb#    ( vectorEdades2=scan("../datos/Tut02-Edades2.csv",#
+    \verb#    (vectorEdades2 = read.table("./datos/ #
     \end{minipage}
     \end{center}
-entonces, después de teclear la coma (sin la coma no funcionará), pulsamos el tabulador y una nueva ventana emergente nos informa de los posibles argumentos que (probablemente) podemos querer usar.
+y, de nuevo, justo en este punto pulsas el tabulador. Entonces RStudio te ofrece, en una nueva ventana emergente, todos los ficheros disponibles en la carpeta datos:
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut02-10b.png}
+    \includegraphics[width=14cm]{../fig/Tut02-11b.png}
     \end{center}
-Entre ellos (en quinto lugar) aparece {\tt sep}, y al colocar el ratón sobre él, obtenemos de nuevo una explicación más detallada.\\
+Y ahora puedes usar esa lista seleccionar el fichero que quieras utilizar. Puedes también teclear alguna letra más del nombre para acotar aún más la búsqueda, cuando la carpeta contiene muchos ficheros.
 
-Finalmente, para terminar de intentar venderte la idea de que, en RStudio, el tabulador es tu amigo, imagínate que, de nuevo, quieres aplicar {\tt scan} para leer el fichero {\tt Tut02-Edades2.csv}. Pero te da pereza escribir un nombre tan largo, o no recuerdas exactamente el nombre, o dudas entre dos nombres... no importa cual sea el motivo, empiezas a escribir el nombre, por ejemplos las dos primeras letras, como en
-    \begin{center}
-    \begin{minipage}{10cm}
-    \verb#    ( vectorEdades2=scan("Tu #
-    \end{minipage}
-    \end{center}
-y, de nuevo, pulsas el tabulador. Entonces RStudio te ofrece, en una nueva ventana emergente, todas las posibles formas que se le ocurren de completar el nombre, teniendo en cuenta los objetos que hayas definido hasta ese momento. En nuestro ejemplo, el resultado es el de esta figura:
-    \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut02-11a.png}
-    \end{center}
-Y ahora puedes seleccionar, entre esas dos opciones, la que quieras utilizar. En general, RStudio nos ofrece bastante ayuda, para hacer más cómodo nuestro trabajo con R, y el tabulador es una de las herramientas más versátiles y útiles.
+
+% hemos empezado a usar la función {\tt read.table}, como antes, para cargar el contenido del fichero {\tt Tut02-Edades2.csv} en un vector. Pero nos da olvidado cual era el argumento que nos permitía elegir la coma como separador. No pasa nada, cuando tenemos escrita una parte del comando, como en
+%     \begin{center}
+%     \begin{minipage}{10cm}
+%     \verb#    ( vectorEdades2="../datos/Tut02-Edades2.csv",#
+%     \end{minipage}
+%     \end{center}
+% entonces, después de teclear la coma (sin la coma no funcionará), pulsamos el tabulador y una nueva ventana emergente nos informa de los posibles argumentos que (probablemente) podemos querer usar.
+%     \begin{center}
+%     \includegraphics[width=14cm]{../fig/Tut02-10b.png}
+%     \end{center}
+% Entre ellos (en quinto lugar) aparece {\tt sep}, y al colocar el ratón sobre él, obtenemos de nuevo una explicación más detallada.\\
+% Finalmente, para terminar de intentar venderte la idea de que, en RStudio, el tabulador es tu amigo, imagínate que, de nuevo,  
+
+En general, la idea es que en RStudio el tabulador es tu amigo. Como tendremos ocasión de comprobar, RStudio nos ofrece bastante ayuda, para hacer más cómodo nuestro trabajo con R, y el tabulador es una de las herramientas más versátiles y útiles.
 
 \subsection{El camino contrario:  escribir un vector a un fichero de tipo {\tt csv}.}
 
 %Al principio de esta sección (página \pageref{tut03:lugar:vectorEdadesIncrementadas}), después de hacer operaciones con el vector {\tt vectorEdades} hemos fabricado un nuevo –- e interesantísimo –- vector {\tt edadesIncrementadas}, que seguramente querremos guardar para otra sesión, o utilizar en otro programa (por ejemplo una hoja de cálculo, etc.).
 
-Hemos aprendido a leer con R vectores de datos, a partir de ficheros de tipo {\tt csv}. Pero muchas veces, después de hacer operaciones en R, obtendremos como resultados nuevos vectores (y, más adelante en el curso, otro tipo de objetos). Lo natural, entonces,  es aprender a guardar ese vector en un fichero de tipo {\tt csv}, como el fichero con el que empezamos. De esa forma, por ejemplo, puedes compartir tus resultados con otras personas que utilicen programas distintos de R.  Para ello, si antes usábamos la función {\tt scan}, ahora vamos a usar la función {\tt cat} de R.\\
+Hemos aprendido a leer con R vectores de datos, a partir de ficheros de tipo {\tt csv}. Pero muchas veces, después de hacer operaciones en R, obtendremos como resultados nuevos vectores (y, más adelante en el curso, otro tipo de objetos). Lo natural, entonces,  es aprender a guardar ese vector en un fichero de tipo {\tt csv}, como el fichero con el que empezamos. De esa forma, por ejemplo, puedes compartir tus resultados con otras personas que utilicen programas distintos de R.  Para ello, si antes usábamos la función {\tt read.table}, ahora vamos a usar la función {\tt write.table} de R.\\
 
 Como ejemplo, vamos a utilizar este vector de números enteros.\\
 
@@ -712,37 +693,40 @@ Usa {\em copiar y pegar} a partir de este documento pdf,  para crear un vector d
 \end{ejercicio}
 
 
-Para guardar ese vector {\tt muestra} en un fichero {\tt csv} (dentro de la subcarpeta {\tt datos} del {\em directorio de trabajo}) podemos utilizar esa función {\tt cat}, usando como argumentos simplemente:
+Para guardar ese vector {\tt muestra} en un fichero {\tt csv} (dentro de la subcarpeta {\tt datos} del {\em directorio de trabajo}) podemos utilizar la función {\tt write.table}, usando como argumentos:
  \begin{itemize}
    \item El nombre del vector que queremos guardar, que es {\tt muestra}.
    \item Y el nombre del fichero en el que lo guardamos. Vamos llamarlo, por ejemplo, {\tt Tut02-muestra.csv}. Le indicamos a R, además, que lo ponga en la subcarpeta {\tt datos}.
+   \item La opción  {\tt col.names = FALSE} o {\tt col.names = TRUE}, para decidir si queremos que R incluya una línea de cabecera con el nombre de la variable, que en este caso es {\tt muestra} (y que no vamos a incluir).
+   \item La opción  {\tt row.names = FALSE} para evitar que R incluya números de fila en el fichero de salida (normalmente no querremos esos números).
  \end{itemize}
 Es decir, que ejecutamos:
 \begin{verbatim}
-        cat(muestra,file = "../datos/Tut02-muestra.csv")
+write.table(muestra,file = "./datos/Tut02-muestra.csv", col.names=FALSE, row.names=FALSE)
 \end{verbatim}
 %    \begin{center}
 %    \begin{minipage}{10cm}
 %    \verb#     cat(edadesIncrementadas,file="edadesInc.csv") #
 %    \end{minipage}
 %    \end{center}
-No obstante, si hacemos esto, R fabricará un fichero en el que los elementos del vector aparecen uno tras otro separados por espacios, como se muestra en la figura (sólo son visibles los primeros valores del vector):
+% No obstante, si hacemos esto, R fabricará un fichero en el que los elementos del vector aparecen uno tras otro separados por espacios, como se muestra en la figura (sólo son visibles los primeros valores del vector):
+%     \begin{center}
+%     \includegraphics[width=14cm]{../fig/Tut02-12a.png}
+%     \end{center}
+% Es fácil imaginar que, si lo queremos separado por comas, debemos usar la opción \verb# sep = ","#. Al hacer esto, se obtiene un fichero con este aspecto (en el editor de texto)
+%     \begin{center}
+%     \includegraphics[width=14cm]{../fig/Tut02-13a.png}
+%     \end{center}
+% que todavía nos puede dar algún problema al tratar de abrirlo en Calc: los datos aparecerán en una fila, y no en una columna. Como hemos dicho antes, esto se puede arreglar dentro del propio Calc. Pero es que hay una solución mucho más fácil, en R, usando la opción {\tt fill} en lugar de {\tt sep}. 
+Al ejecutar esa orden  
+% \begin{verbatim}
+%         cat(muestra,file = "../datos/Tut02-muestra.csv", fill = 1 )
+% \end{verbatim}
+el fichero que obtenemos tiene la forma deseada (de nuevo, sólo es visible el comienzo del fichero):
     \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut02-12a.png}
+    \includegraphics[width=11cm]{../fig/Tut02-14.png}
     \end{center}
-Es fácil imaginar que, si lo queremos separado por comas, debemos usar la opción \verb# sep = ","#. Al hacer esto, se obtiene un fichero con este aspecto (en el editor de texto)
-    \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut02-13a.png}
-    \end{center}
-que todavía nos puede dar algún problema al tratar de abrirlo en Calc: los datos aparecerán en una fila, y no en una columna. Como hemos dicho antes, esto se puede arreglar dentro del propio Calc. Pero es que hay una solución mucho más fácil, en R, usando la opción {\tt fill} en lugar de {\tt sep}. Al ejecutar:
-\begin{verbatim}
-        cat(muestra,file = "../datos/Tut02-muestra.csv", fill = 1 )
-\end{verbatim}
-el fichero que obtenemos tiene la forma de columna deseada (de nuevo, sólo es visible el comienzo del fichero):
-    \begin{center}
-    \includegraphics[width=14cm]{../fig/Tut02-14.png}
-    \end{center}
-y al abrirlo en Calc los datos se disponen en una columna.\\
+Puedes probar a abrirlo en Calc para ver que es un fichero de datos como los que hemos visto hasta ahora.\\
 
 Naturalmente, apenas hemos rozado el tema de la entrada/salida de datos en R. Pero con lo que hemos aprendido en este apartado, estamos listos para empezar a hacer Estadística Descriptiva, usando ejemplos que no sean demasiado triviales.
 
@@ -765,7 +749,7 @@ Para seguir adelante, tenemos que empezar por aprender un poco más sobre la for
       \begin{center}
         \fichero{../datos/Tut02-vector2.csv}{Tut02-vector2.csv}
       \end{center}
-      Guárdalo en {\tt datos} y examínalo primero con un editor de texto (como el {\em Bloc de Notas}), para ver cómo están almacenados los datos en ese fichero. Una vez hecho esto, usa la función {\tt scan} para almacenar el contenido de ese fichero csv en  el {\tt vector2} de R.
+      Guárdalo en {\tt datos} y examínalo primero con un editor de texto (como el {\em Bloc de Notas}), para ver cómo están almacenados los datos en ese fichero. Una vez hecho esto, usa Calc y la función {\tt read.table} para almacenar el contenido de ese fichero csv en  el {\tt vector2} de R. En algún momento del proceso puede que tengas que usar el {\em pegado especial} de {\tt Calc} para trasponer los datos.
 \end{enumerate}
 Solución en la página \pageref{tut02:ejercicio06:sol}. \qed
 \end{ejercicio}
@@ -859,11 +843,9 @@ Hemos visto antes que se puede aplicar una función, como la raíz cuadrada, a u
     > length(-7:13)
     [1] 21
     \end{verbatim}
-En el Ejercicio \ref{tut02:ejercicio03} (pág. \pageref{tut02:ejercicio03}) nos preguntábamos cuantos elementos tenía el vector {\tt vectorEdades} que habíamos cargado desde el fichero {\tt csv}. Desde luego, R nos informa de lu longitud al usar {\tt scan}, pero también puedes obtenerla con {\tt length(vectorEdades)}. Para comprobarlo, suponiendo que el fichero {\tt Tut02-Edades.csv} está en la subcarpeta {\tt datos} del {\em directorio de trabajo}, prueba a ejecutar:
+En el Ejercicio \ref{tut02:ejercicio03} (pág. \pageref{tut02:ejercicio03}) nos preguntábamos cuantos elementos tenía el vector {\tt vectorEdades} que habíamos cargado desde el fichero {\tt csv}. Puedes obtener la respuesta con {\tt length(vectorEdades)}. Para comprobarlo, asegúrate de que has creado el vector llamado {\tt vectorEdades} y ejecuta esta orden:
 \begin{center}
 \begin{tabular}{l}
-{\tt > vectoEdades = scan(file="../datos/Tut02-Edades.csv") }\\
-\textcolor{red}{\tt Read 100 items{}}\\
 {\tt > length(vectorEdades) }\\
 {\tt [1] 100 }
 \end{tabular}
@@ -2004,11 +1986,11 @@ Hay $100$ elementos en el vector.
 \label{tut02:ejercicio04:sol}\quad\\
 \begin{center}
 \begin{tabular}{l}
-\color{blue} {\verb#> errorDeLectura = scan(file = './datos/EsteFicheroNoExiste.csv')#}\\
-\color{red} {\tt Error in file(file, \verb/"/r\verb/"/) : cannot open the connection}\\
+\color{blue} {\verb#> errorDeLectura = read.table(file = "../datos/EsteFicheroNoExiste.csv")#}\\
+\color{red} {\tt Error in file(file, \verb/"/rt\verb/"/) : no se puede abrir la conexión}\\
 \color{red} {\tt In addition: Warning message:}\\
 \color{red} {\tt In file(file, \verb/"/r\verb/"/) :}\\
-\color{red} {\quad \verb#cannot open file './datos/EsteFicheroNoExiste.csv': No such file or directory#}
+\color{red} {\quad \verb#no fue posible abrir el archivo '../datos/EsteFicheroNoExiste.csv': No such file or directory#}
 \end{tabular}
 \end{center}
 \color{black}
@@ -2019,12 +2001,13 @@ Para guardar el {\tt vector1}, usamos:
 \begin{verbatim}
   vector1 = c(8, 5, 19, 9, 17, 2, 28, 18, 3, 4, 19, 1)
 \end{verbatim}
-Para {\tt vector2}, asegúrate primero de que el fichero {\tt Tut02-vector2.csv} está en la subcarpeta {\tt datos} de tu directorio de trabajo, y luego ejecuta:
+Para {\tt vector2}, puedes usar el pegado especial de Calc, como se sugiere en el enunciado. Pero para leer el fichero sin salir de R asegúrate primero de que el fichero {\tt Tut02-vector2.csv} está en la subcarpeta {\tt datos} de tu directorio de trabajo, y luego ejecuta:
 \begin{verbatim}
-    > (vector2 = scan(file="../datos/Tut02-vector2.csv",sep=";") )
-    Read 12 items
+    > (vector2 = as.vector(read.table(file="./datos/Tut02-vector2.csv", sep=";",header = FALSE)))
      [1] 18 18 20 12 20  1 30  6 26 20 15 25
 \end{verbatim}
+Más adelante entenderás mejor lo que hemos hecho aquí. Esencialmente, hemos pedido a R que lea los datos con `read.table` y luego hemos usado la función `t` para trasponer la tabla resultante. El último detalle es que al hacer esto el resultado es una matriz, no un vector, y por eso hemos usado `as.vector` para convertir la matriz en un vector.
+
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut02:ejercicio07}, pág. \pageref{tut02:ejercicio07}}
 \label{tut02:ejercicio07:sol}\quad\\
@@ -2054,8 +2037,7 @@ La diferencia entre dos cuadrados consecutivos $n^2$  y $(n+1)^2$ es siempre el 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut02:ejercicio09}, pág. \pageref{tut02:ejercicio09}}
 \label{tut02:ejercicio09:sol}\quad\\
 \begin{verbatim}
-> vectorEdades = scan(file="../datos/Tut02-Edades.csv")
-Read 100 items
+> vectorEdades = read.table(file="./datos/Tut02-Edades.csv", header = FALSE)[,1]
 > ( n = length(vectorEdades) )
 [1] 100
 > ( mediaEdades = sum(vectorEdades) / n )
@@ -2078,14 +2060,15 @@ Este valor $0$ se explica en la Ecuación \ref{curso-cap02:ecu:SumaDesviacionesI
 \label{tut02:ejercicio10:sol}\quad\\
 ¡Después de establecer el directorio de trabajo! Si no, no funcionará.
 \begin{verbatim}
-    > var3 = scan("../datos/Tut02-var3.csv")
-    Read 1300 items
+  > var3 = read.table(file="./datos/Tut02-var3.csv", header = FALSE)[,1]
+  > length(var3)
+  [1] 1300
 \end{verbatim}
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut02:ejercicio11},  pág. \pageref{tut02:ejercicio11}}
 \label{tut02:ejercicio11:sol}\quad\\
 \begin{verbatim}
-    > ( tablaFrecAbs = table(var3) )
+    > (tablaFrecAbs = table(var3) )
     var3
       0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  16
       9  25 100 188 244 246 186 131  87  43  28   6   2   2   2   1
@@ -2166,17 +2149,16 @@ En ambos casos, el gráfico resultante será parecido a este:
 \label{tut02:ejercicio16:sol}\quad\\
 Para la primera parte, después de comprobar que el directorio de trabajo es correcto, hacemos:
 \begin{verbatim}
-    > vectorEdades = scan(file="../datos/Tut02-Edades.csv")
-    Read 100 items
-    > (mediaEdades = mean(vectorEdades))
-    [1] 6.75
+  > vectorEdades = read.table(file="./datos/Tut02-Edades.csv", header = FALSE)[,1]
+  > (mediaEdades = mean(vectorEdades))
+  [1] 6.75
 \end{verbatim}
 Para la segunda, las dos posibles formas de calcular la media de {\tt var3} son estas:
 \begin{verbatim}
-    > ( mediaVar3 = mean(var3))
-    [1] 5.039231
-    > ( mediaVar3 = sum(var3)/length(var3))
-    [1] 5.039231
+  > ( mediaVar3 = mean(var3))
+  [1] 5.039231
+  > ( mediaVar3 = sum(var3)/length(var3))
+  [1] 5.039231
 \end{verbatim}
 Y, como era de esperar, el resultado es el mismo.
 
@@ -2184,15 +2166,15 @@ Y, como era de esperar, el resultado es el mismo.
 \label{tut02:ejercicio17:sol}\quad\\
 Calculamos los dos valores:
 \begin{verbatim}
-    > ( varMuestral = var(var3))
-    [1] 4.715165
-    > ( desvTipMuestral = sd(var3))
-    [1] 2.171443
+  > ( varMuestral = var(var3))
+  [1] 4.715165
+  > ( desvTipMuestral = sd(var3))
+  [1] 2.171443
 \end{verbatim}
 Y para la comprobación que pide el ejercicio hacemos:
 \begin{verbatim}
-    > sqrt(varMuestral)
-    [1] 2.171443
+  > sqrt(varMuestral)
+  [1] 2.171443
 \end{verbatim}
 
 \paragraph{\bf $\bullet$ Ejercicio \ref{tut02:ejercicio18},  pág. \pageref{tut02:ejercicio18}}

@@ -1317,7 +1317,7 @@ El uso de estos ficheros es prácticamente idéntico al que vimos en el caso en 
       \end{center}
       Usa R para calcular un intervalo de confianza al $95\%$ para estos datos.
 
-      Yo, desde luego, prefiero leer este fichero usando {\tt scan} (y la opción \verb/dec=","/ para gestionar la coma como separador de decimales). De esa forma, los datos se leen en una sola línea de código en R, en lugar de hacer operaciones de {\em copia/pega}, reemplazar comas por puntos, etc.
+Yo, desde luego, prefiero leer este fichero usando {\tt read.table} (y la opción \verb/dec=","/ para gestionar la coma como separador de decimales). De esa forma, los datos se leen en una sola línea de código en R, en lugar de hacer operaciones de {\em copia/pega}, reemplazar comas por puntos, etc.
 
   \item {\bf IMPORTANTE:} la distribución $t$ de Student es muy útil para trabajar con muestras pequeñas. Pero eso no significa que no pueda usarse con muestras grandes. Para ver lo que sucede, repite el apartado 3 del Ejercicio \ref{tut06:ejercicio06} (en el que $n=450$).
 
@@ -1458,7 +1458,7 @@ El código necesario para fabricar la muestra que queremos con {\tt mvrnorm}, a 
 \hlstd{(muestra} \hlkwb{=} \hlkwd{as.vector}\hlstd{(}\hlkwd{mvrnorm}\hlstd{(n,} \hlkwc{mu}\hlstd{=media_muestral,} \hlkwc{Sigma}\hlstd{=s}\hlopt{^}\hlnum{2}\hlstd{,} \hlkwc{empirical}\hlstd{=T)))}
 \end{alltt}
 \begin{verbatim}
-##  [1] 133.67 135.31 132.12 134.43 130.23 132.43 128.10 134.01 130.40 134.29
+##  [1] 130.72 134.65 129.01 135.59 133.77 133.80 131.73 128.96 133.62 133.15
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1878,9 +1878,7 @@ Recuerda que antes de usar la librería {\tt asbio} debes instalarla (en la Secc
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: tcltk}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package 'tcltk' could not be loaded}}\end{kframe}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: tcltk}}\end{kframe}
 \end{knitrout}
 La librería {\tt asbio} incluye muchas funciones, pero las tres que más nos interesan en este momento son
 {\tt ci.mu.z},   {\tt ci.mu.t} y {\tt  ci.sigma}. Todas ellas permiten calcular intervalos de confianza ({\tt ci} proviene del inglés {\em confidence interval}). Concretamente:
@@ -1901,9 +1899,13 @@ En el apartado 3 del Ejercicio \ref{tut06:ejercicio06} (pág. \pageref{tut06:eje
 \begin{alltt}
 \hlstd{(intAsBio} \hlkwb{=} \hlkwd{ci.mu.z}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{450}\hlstd{,} \hlkwc{sigma}\hlstd{=}\hlnum{2.3}\hlstd{,} \hlkwc{xbar}\hlstd{=}\hlnum{132.5}\hlstd{,} \hlkwc{conf}\hlstd{=}\hlnum{0.99}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{TRUE}\hlstd{))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.mu.z"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 99% z Confidence interval for population mean 
+## Estimate     0.5%    99.5% 
+##   132.50   132.22   132.78
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Compara esto con lo que obtuvimos en el Ejercicio \ref{tut06:ejercicio06}. La respuesta de la función {\tt ci.mu.z} es, en realidad, una {\em lista} de R (puedes usar {\tt class} para comprobarlo). Ya nos hemos encontrado antes con este tipo de situaciones, en las que para acceder a los resultados tenemos que utilizar el operador \verb/$/. Para saber cuales son los elementos de una lista (o de cualquier otro objero de R), disponemos de la función {\tt str}, que en este caso produce:
 \begin{knitrout}
@@ -1911,9 +1913,15 @@ Compara esto con lo que obtuvimos en el Ejercicio \ref{tut06:ejercicio06}. La re
 \begin{alltt}
 \hlkwd{str}\hlstd{(intAsBio)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in str(intAsBio): objeto 'intAsBio' no encontrado}}\end{kframe}
+\begin{verbatim}
+## List of 4
+##  $ margin: num 0.279
+##  $ ci    : num [1:3] 132 132 133
+##  $ head  : chr "99% z Confidence interval for population mean"
+##  $ ends  : chr [1:3] "Estimate" "0.5%" "99.5%"
+##  - attr(*, "class")= chr "ci"
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Nos interesa el elemento {\tt ci} de esta lista. Y podemos acceder a ese elemento con este comando
 \begin{knitrout}
@@ -1921,9 +1929,10 @@ Nos interesa el elemento {\tt ci} de esta lista. Y podemos acceder a ese element
 \begin{alltt}
 \hlstd{intAsBio}\hlopt{$}\hlstd{ci}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'intAsBio' no encontrado}}\end{kframe}
+\begin{verbatim}
+## [1] 132.50 132.22 132.78
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Así se obtiene un vector con tres componentes. La primera es $\bar X$, y las dos últimas son los extremos del intervalo de confianza. Podemos usarlos, por tanto
 
@@ -1933,9 +1942,10 @@ para, por ejemplo, calcular la semianchura del intervalo, de esta manera:
 \begin{alltt}
 \hlstd{(semianchura} \hlkwb{=} \hlstd{(intAsBio}\hlopt{$}\hlstd{ci[}\hlnum{3}\hlstd{]} \hlopt{-} \hlstd{intAsBio}\hlopt{$}\hlstd{ci[}\hlnum{2}\hlstd{])} \hlopt{/} \hlnum{2}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'intAsBio' no encontrado}}\end{kframe}
+\begin{verbatim}
+## [1] 0.27928
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Ahora puedes comprobar que la semianchura es el elemento {\tt margin} de la lista {\tt intAsBio} que hemos obtenido como salida de {\tt ci.mu.z}:
 \begin{knitrout}
@@ -1943,9 +1953,10 @@ Ahora puedes comprobar que la semianchura es el elemento {\tt margin} de la list
 \begin{alltt}
 \hlstd{intAsBio}\hlopt{$}\hlstd{margin}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'intAsBio' no encontrado}}\end{kframe}
+\begin{verbatim}
+## [1] 0.27928
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 El resto de los elementos de {\tt intAsBio} son simplemente rótulos.
 
@@ -1953,12 +1964,16 @@ Vamos ahora a usar a calcular un intervalo de confianza a partir de datos {\em e
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-IntConf-Media-UsandoZ-datos.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-IntConf-Media-UsandoZ-datos.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 \hlstd{(intAsBio} \hlkwb{=} \hlkwd{ci.mu.z}\hlstd{(}\hlkwc{data}\hlstd{=muestra,} \hlkwc{conf}\hlstd{=}\hlnum{0.95}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{sigma} \hlstd{=} \hlkwd{sd}\hlstd{(muestra)))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.mu.z"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 95% z Confidence interval for population mean 
+## Estimate     2.5%    97.5% 
+##   7.2313   7.0932   7.3694
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Como ves, en el caso de datos {\em en bruto} hemos tenido que pedirle explícitamente a {\tt ci.mu.z} que use la cuasidesviación típica de la muestra, calculada con {\tt sd}. Si no haces esto, comprobarás que el resultado no es correcto.
 \begin{ejercicio}
@@ -1975,9 +1990,13 @@ Vamos a usar la función {\tt ci.mu.t} para hacer el apartado 2 del Ejercicio \r
 \begin{alltt}
 \hlkwd{ci.mu.t}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{,} \hlkwc{xbar}\hlstd{=}\hlnum{132.5}\hlstd{,} \hlkwc{sd}\hlstd{=}\hlnum{2.3}\hlstd{,} \hlkwc{conf}\hlstd{=}\hlnum{0.95}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{TRUE}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.mu.t"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 95% t Confidence interval for population mean 
+## Estimate     2.5%    97.5% 
+##   132.50   130.85   134.15
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Puedes comprobar que el resultado coincide con lo que obtuvimos en la solución del Ejercicio \ref{tut06:ejercicio14} (pág. \pageref{tut06:ejercicio14:sol}) usando {\tt t.test}.\\
 
@@ -1994,9 +2013,13 @@ del apartado 2 del Ejercicio \ref{tut06:ejercicio14}, entonces para calcular un 
     \hlnum{2.26}\hlstd{,} \hlnum{2.80}\hlstd{,} \hlnum{2.54}\hlstd{,} \hlnum{3.77}\hlstd{)}
 \hlstd{(intAsBio} \hlkwb{=} \hlkwd{ci.mu.t}\hlstd{(}\hlkwc{data}\hlstd{=muestra,} \hlkwc{conf}\hlstd{=}\hlnum{0.95}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{FALSE}\hlstd{))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.mu.t"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 95% t Confidence interval for population mean 
+## Estimate     2.5%    97.5% 
+##   3.1920   2.7316   3.6524
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Fíjate en que, en este caso, no ha sido necesario usar la opción {\tt sigma = sd(muestra)} para obtener el resultado correcto, a diferencia de lo que sucede con {\tt ci.mu.z}. Además, si la incluyes, desafortunadamente la función devuelve el error {\tt unused argument}.
 
@@ -2008,9 +2031,13 @@ Vamos a empezar usando la función {\tt ci.mu.sigma} para repetir el apartado 2 
 \begin{alltt}
 \hlkwd{ci.sigma}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{87}\hlstd{,} \hlkwc{S.sq} \hlstd{=} \hlnum{2.81}\hlopt{^}\hlnum{2}\hlstd{,} \hlkwc{conf}\hlstd{=}\hlnum{0.95}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{TRUE}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.sigma"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 95% Confidence interval for population variance 
+## Estimate     2.5%    97.5% 
+##   7.8961   5.9807  10.9107
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 {\bf Atención:} El argumento {\tt S.sq} es la cuasivarianza, no la cuasidesviación típica. Por eso hemos tenido que elevar {\tt 2.81} al cuadrado. Y el intervalo que se obtiene es para $\sigma^2$, no para $\sigma$ (a pesar del nombre de la función).
 
@@ -2097,7 +2124,7 @@ En R el código sería este:
 \hlstd{mediasRemuestras} \hlkwb{=} \hlkwd{numeric}\hlstd{(}\hlnum{10000}\hlstd{)} \hlcom{# este vector almacenara las medias de las remuestras}
 
 \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{numRemuestras)\{}
-  \hlcom{# muestras de tama<U+00F1>o tamannoRemuestra y con reemplazamiento}
+  \hlcom{# muestras de tamaño tamannoRemuestra y con reemplazamiento}
   \hlstd{remuestra} \hlkwb{=} \hlkwd{sample}\hlstd{(muestra,} \hlkwc{size} \hlstd{= tamannoRemuestra,} \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{)}
   \hlstd{mediasRemuestras[i]} \hlkwb{=} \hlkwd{mean}\hlstd{(remuestra)}
 \hlstd{\}}
@@ -2350,7 +2377,7 @@ del orden de $10^{31}$. Otro ejemplo de la {\em Explosión Combinatoria}, de la 
   \hlcom{# 2. Ahora introduce entre las comillas el nombre del fichero,}
   \hlcom{# y el tipo de separador, etc.}
   \hlcom{# SI NO SE USA, ESCRIBE # AL PRINCIPIO DE LA SIGUIENTE LINEA}
-  \hlcom{#muestra = scan(file="../datos/ ", sep=" ", dec=".")}
+  \hlcom{# muestra = read.table(file=" ", header = , sep=" ", dec=".")}
 
 
 
@@ -2390,7 +2417,8 @@ del orden de $10^{31}$. Otro ejemplo de la {\em Explosión Combinatoria}, de la 
 
   \hlcom{# 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.}
   \hlcom{# SI NO SE USA, ESCRIBE # AL PRINCIPIO DE LA SIGUIENTE LINEA.}
-  \hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-IntConf-Media-UsandoZ-datos.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+  \hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-IntConf-Media-UsandoZ-datos.csv"}\hlstd{,} \hlkwc{header}\hlstd{=}\hlnum{FALSE}\hlstd{,}
+                       \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 
 
   \hlcom{# LEE ESTAS INSTRUCCIONES ATENTAMENTE:}
@@ -2706,9 +2734,10 @@ En GeoGebra con:
   \[ 2.732  < \mu < 3.652\]
   El valor $\bar X = 3.192$ se obtiene como parte de la salida del programa.
 
-  \item Después de elegir el directorio de trabajo (el que contiene el fichero), en el paso 2 hemos usado la función {\tt scan} así:
+  \item Después de elegir el directorio de trabajo (el que contiene el fichero), en el paso 2 hemos usado la función {\tt read.table} así:
         \begin{verbatim}
-          muestra = scan(file="../datos/Tut06-DatosIntConfConStudent.csv",sep=" ",dec=",")
+          muestra = read.table(file="../datos/Tut06-DatosIntConfConStudent.csv",
+          header=FALSE, sep=" ",dec=",")[,1]
         \end{verbatim}
 
   El intervalo es $\mu = 3.5 \pm 0.5616$ o, de otro modo:
@@ -2777,7 +2806,7 @@ Asegúrate, usando por ejemplo {\tt setwd}, de que el directorio de trabajo (en 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-DatosIntConfConStudent.csv"}\hlstd{,}\hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,}\hlkwc{dec}\hlstd{=}\hlstr{","}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-DatosIntConfConStudent.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{","}\hlstd{)[,}\hlnum{1}\hlstd{]}
 \hlstd{T.testMuestra} \hlkwb{=} \hlkwd{t.test}\hlstd{(muestra,} \hlkwc{conf.level}\hlstd{=}\hlnum{0.95}\hlstd{)}
 \hlstd{(intervalo} \hlkwb{=} \hlstd{T.testMuestra}\hlopt{$}\hlstd{conf.int)}
 \end{alltt}
@@ -3095,7 +3124,7 @@ Para el segundo apartado, el código del fichero con los datos de ese apartado e
 \hlcom{# Introducimos el valor de la desviacion tipica muestral,}
 \hlstd{s} \hlkwb{=} \hlnum{2.81}
 
-\hlcom{# el tama<U+00F1>o de la muestra,}
+\hlcom{# el tamaño de la muestra,}
 \hlstd{n} \hlkwb{=} \hlnum{87}
 
 \hlcom{# y el nivel de confianza deseado.}
@@ -3171,7 +3200,7 @@ Para el tercer apartado, fijamos el directorio de trabajo (en mi caso el {\em Es
 \hlcom{# 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.}
 
 \hlcom{# SI NO SE USA, ESCRIBE # AL PRINCIPIO DE LA SIGUIENTE LINEA}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-datosIntConfDesvTipica.csv"}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-datosIntConfDesvTipica.csv"}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 
 
 \hlcom{# Introducimos el nivel de confianza deseado.}
@@ -3261,12 +3290,16 @@ Ejecutamos el código sin fijar el valor de {\tt sigma} (recuerda fijar el direc
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-IntConf-Media-UsandoZ-datos.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-IntConf-Media-UsandoZ-datos.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[,}\hlnum{1}\hlstd{]}
 \hlstd{(intAsBio} \hlkwb{=} \hlkwd{ci.mu.z}\hlstd{(}\hlkwc{data}\hlstd{=muestra,} \hlkwc{conf}\hlstd{=}\hlnum{0.95}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{FALSE}\hlstd{))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.mu.z"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 95% z Confidence interval for population mean 
+## Estimate     2.5%    97.5% 
+##   7.2313   7.1436   7.3190
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -3276,12 +3309,16 @@ Ejecutamos el código sin fijar el valor de {\tt sigma} (recuerda fijar el direc
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-datosIntConfDesvTipica.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut06-datosIntConfDesvTipica.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,} \hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[,}\hlnum{1}\hlstd{]}
 \hlstd{(intAsBio} \hlkwb{=} \hlkwd{ci.sigma}\hlstd{(}\hlkwc{data}\hlstd{=muestra,} \hlkwc{conf}\hlstd{=}\hlnum{0.95}\hlstd{,} \hlkwc{summarized}\hlstd{=}\hlnum{FALSE}\hlstd{))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}ci.sigma"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## 95% Confidence interval for population variance 
+## Estimate     2.5%    97.5% 
+##   51.838   47.108   57.322
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 El intervalo que hemos obtenido es para la varianza $\sigma^2$. Para obtener un intervalo para $\sigma$ hacemos:
 \begin{knitrout}
@@ -3289,9 +3326,10 @@ El intervalo que hemos obtenido es para la varianza $\sigma^2$. Para obtener un 
 \begin{alltt}
 \hlkwd{sqrt}\hlstd{(intAsBio}\hlopt{$}\hlstd{ci[}\hlnum{2}\hlopt{:}\hlnum{3}\hlstd{])}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'intAsBio' no encontrado}}\end{kframe}
+\begin{verbatim}
+## [1] 6.8635 7.5711
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Puedes compararlo con la solución del Ejercicio \ref{tut06:ejercicio22}, que está en la página \pageref{tut06:ejercicio22:sol}.
 

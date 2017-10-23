@@ -490,7 +490,7 @@ Tut07-Contraste-Media-Z-datos.csv}
 Si el punto de partida es un fichero como ese, el plan de trabajo es muy parecido, salvo por el hecho de que primero debes leer los datos (usando {\tt scan} o {\tt read.table}, cada una tiene sus ventajas e inconvenientes) y, una vez leídos, calcular a partir de esos datos los valores de $n$, $\bar X$  y $s$. Por ejemplo con este código:
 
 <<t06ch09>>=
-datos = scan(file = "../datos/Tut07-Contraste-Media-Z-datos.csv")
+datos = read.table(file = "../datos/Tut07-Contraste-Media-Z-datos.csv")[ ,1]
 (n = length(datos))
 (Xbar = mean(datos))
 (s = sd(datos))
@@ -767,7 +767,7 @@ Vamos a usar esa función {\tt z.test} para rehacer el apartado 2 del Ejercicio 
 Una vez hecho esto, vamos a mostrar el código que permite realizar el contraste (se muestra también la salida), y a continuación lo comentaremos:
 <<>>=
 library(TeachingDemos)
-muestra = scan(file="../datos/Tut07-Contraste-Media-UsandoZ-datos.csv",sep=" ",dec=".")
+muestra = read.table(file="../datos/Tut07-Contraste-Media-UsandoZ-datos.csv",sep=" ",dec=".")[,1]
 mean(muestra)
 (contraste = z.test(muestra, mu = 27, stdev = 1,
   alternative="greater", conf.level = 0.95))
@@ -805,7 +805,7 @@ Como hemos visto, la función {\tt z.test} trabaja a partir de un vector de dato
 Para terminar con esta visita a la librería {\tt TeachingDemos}, vamos a presentar la función {\tt sigma.test} que, como su nombre sugiere, sirve para realizar un contraste de hipótesis sobre la desviación típica $\sigma$ de una población normal. En el siguiente fragmento de código R hemos usado esta librería para obtener el contraste que se pedía en el apartado $6$ del Ejercicio \ref{tut07:ejercicio11}  (pág. \pageref{tut07:ejercicio11}).
 
 <<>>=
-muestra = scan(file="../datos/Tut07-Contraste-Varianza-datos.csv",sep=" ",dec=".")
+muestra = read.table(file="../datos/Tut07-Contraste-Varianza-datos.csv",sep=" ",dec=".")[ ,1]
 sigma.test(muestra,sigma=0.56,alternative="less",conf.level=0.95)
 @
 
@@ -1255,7 +1255,7 @@ La cola derecha, los valores positivos del estadístico, corresponde a medias mu
 
 El código para el cálculo del p-valor es:
 <<t07ej08sol>>=
-datos = scan(file = "../datos/Tut07-Ejercicio-ContrasteMedia.csv")
+datos = read.table(file = "../datos/Tut07-Ejercicio-ContrasteMedia.csv")[ ,1]
 (n = length(datos))
 (Xbar = mean(datos))
 (s = sd(datos))
@@ -1327,7 +1327,7 @@ Y la conclusión, como ves, depende del nivel de significación que se utilice.
 
 
 <<t07ej10sol>>=
-datos = scan(file = "../datos/Tut07-Ejercicio-ContrasteVarianza.csv")
+datos = read.table(file = "../datos/Tut07-Ejercicio-ContrasteVarianza.csv")[,1]
 (n = length(datos))
 (Xbar = mean(datos)) # Este dato no se usa en el contraste!!
 (s = sd(datos))

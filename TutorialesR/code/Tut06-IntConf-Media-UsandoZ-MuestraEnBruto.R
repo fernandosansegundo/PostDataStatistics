@@ -31,7 +31,7 @@ muestra =   # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE ESTA LINEA
 (setwd(dir=""))  # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE ESTA LINEA
   
 # 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.
-muestra = scan(file=" ",sep=" ",dec=".")  # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE ESTA LINEA
+muestra = read.table(file=" ", header = , sep=" ",dec=".")[ , 1]  # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE ESTA LINEA
 
 
 # LEE ESTAS INSTRUCCIONES ATENTAMENTE:

@@ -379,9 +379,9 @@ en el cuadro de diálogo que se abrirá escribe {\tt Notepad}. Tras pulsar en Ac
 \includegraphics[width=10cm]{../fig/Tut00-BlocDeNotas.png}
 \end{center}
 En un Mac te recomendamos usar el programa gratuito {\tt
-textwrangler}, que se descarga desde el enlace:
+BBEdit}, que se descarga desde el enlace:
       \begin{center}
-      \link{http://www.barebones.com/products/textwrangler/}{http://www.barebones.com/products/textwrangler/}
+      \link{http://www.barebones.com/products/bbedit/}{http://www.barebones.com/products/bbedit/}
       \end{center}
 TextEdit viene instalado en los Macs, pero no es exactamente un {\em editor de texto}, en el
 sentido que aquí le damos a esa expresión (ver más abajo). Y si eres usuario de Linux, a buen
@@ -560,7 +560,7 @@ hecho. Puedes cerrar ese cuadro de diálogo para verlo:
 Usando ese mismo fichero,
 \begin{enumerate}
   \item Reemplaza el separador de columnas (punto y coma) por el símbolo \verb|#|.
-  \item Guarda el fichero modificado con el nombre {\tt Tut00-Ejercicio01c.csv}, y ábrelo en {\em       Calc}. Cuidado con las opciones de importación de ficheros {\tt csv} en Calc, tendrás que
+  \item Guarda el fichero modificado con el nombre {\tt Tut00-Ejercicio01c.csv}, y ábrelo en {\em Calc}. Cuidado con las opciones de importación de ficheros {\tt csv} en Calc, tendrás que
       usar la opción {\tt Otros} para indicar el separador que estamos usando.
   \item Para practicar un poco más el tema de los separadores y la importación de ficheros {\tt
       csv}, aquí tienes el fichero adjunto:
@@ -580,6 +580,32 @@ Usando ese mismo fichero,
 \end{enumerate}
 \qed
 
+\subsubsection{Trasponer datos.}
+
+En bastantes ocasiones nos encontramos con tablas de datos en las que tenemos que intercambiar filas por columnas. Esa operación se denomina {\sf trasponer} la tabla. Por ejemplo, en la siguiente figura puedes ver una tabla de datos, abierta en Calc (en este caso es la versión Linux de LibreOffice Calc), que contiene alguna información sobre los satélites galileanos de Júpiter (nombre, diámetro en km, densidad en gr/cm$^3$). 
+  \begin{center}
+  \includegraphics[width=9cm]{../fig/Tut00-trasponerTabla-01.png}
+  \end{center}
+Como vermeos más adelante, para trabajar con tablas de datos es preferible que cada una de las variables ocupe una columna de la tabla, mientras que cada observación aparezca en una fila. Justo al revés de lo que tenemos en este ejemplo. Para remediarlo vamos a usar el ratón para seleccionar todos los datos de la tabla (incluida la primera columna, que contiene los nombres de las variables):
+  \begin{center}
+  \includegraphics[width=9cm]{../fig/Tut00-trasponerTabla-02.png}
+  \end{center}  
+A continuación copiamos los datos de la tabla (puedes usar el ratón o {\tt Ctrl+V}). Elegimos la posición de la hoja de cálculo donde vamos a pegar la tabla traspuesta (con filas y columnas intercambiadas). Ten cuidado al hacer esto para que los datos que vas a pegar no se solapen con otros datos ya presentes. Yo, por ejemplo, voy a pegar la tabla traspuesta tomando como origen la celda {\tt A6}. Para eso hago click en esa celda {\em con el botón derecho del ratón} y selecciono la opción {\tt Pegado Especial}, como se ve en la figura: 
+  \begin{center}
+  \includegraphics[width=9cm]{../fig/Tut00-trasponerTabla-03.png}
+  \end{center}    
+Al hacer esto aparece un cuadro de diálogo con muchas opciones que permiten controlar la forma en la que los datos de la tabla se transforman al pegarlos. En nuestro caso la única opción que nos interesa es {\tt Trasponer}, que hemos destacado con una flecha roja en la siguiente figura. 
+  \begin{center}
+  \includegraphics[width=7cm]{../fig/Tut00-trasponerTabla-04.png}
+  \end{center}    
+Asegúrate de que esa opción está seleccionada y pulsa {\tt Aceptar}. Verás aparecer una nueva tabla que contiene los mismos datos, pero {\sf traspuestos}, intercambiando filas y columnas.
+  \begin{center}
+  \includegraphics[width=12cm]{../fig/Tut00-trasponerTabla-05.png}
+  \end{center}    
+Naturalmente, en lugar de copiar los datos en la misma hoja de cálculo puedes abrir otra hoja en blanco y copiar allí la tabla traspuesta, para poder grabarla con otro nombre de fichero y preservar así la tabla original. Recuerda que es {\em muy importante} tratar de conservar siempre los datos originales sin modificarlos. Cada vez que hagamos una modificación debemos guardar el resultado en un fichero distinto y documentar de alguna manera lo que hicimos y cómo lo hicimos. De otra manera en el futuro será muy difícil, o imposible, que otras personas o nosotros mismos podamos repetir los pasos que conducen desde los datos de pártida al resultado de nuestro análisis.
+
+Te aconsejamos que practiques esta operación con varias tablas de datos, porque es uno de esos recursos que te pueden sacar de un apuro más adelante.   
+  
 \section{Instalación de R y RStudio.}
 
 En los tutoriales del curso vamos a utilizar, de forma prioritaria, el programa R. La hoja de
@@ -685,12 +711,12 @@ programa es:
 \link{http://www.geogebra.org}{www.geogebra.org}
 \end{center}
     \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga01-201605.png}
+    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga01-201709.png}
     \end{center}
 En esa página, pulsa sobre el enlace {\tt Descargas} que hemos destacado en la anterior
 figura.
     \begin{center}
-    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga02-201605.png}
+    \includegraphics[width=12cm]{../fig/Tut00-GeoGebraDescarga02-201709.png}
     \end{center}
 y elige tu sistema en la ventana que se abre. La descarga del instalado debería comenzar en ese
 momento. A partir de aquí, las instrucciones de instalación que incluimos son para el sistema

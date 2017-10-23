@@ -9,7 +9,7 @@
 # Es el caso de 
 # MUESTRAS PEQUEÑAS
 # bajo la hipotesis de 
-# VARIANZAS IGUALES. 
+# VARIANZAS DISTINTAS. 
 ############################################################## 
 
 # Introducimos los tamaños de las muestras:
@@ -29,16 +29,16 @@ nc =
 #NO CAMBIES NADA DE AQUI PARA ABAJO
 ################################################
 
-# Calculamos los grados de libertad:
-(k = n1 + n2 - 2)
+# Grados de libertad, aproximacion de Welch
+(k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
 
 # Calculamos el valor critico: 
 (alfa = 1 - nc)
 
-(t_alfa2 = qt(1 - alfa/2, df=k))
+(t_alfa2 = qt(1 - alfa / 2, df=k))
 
 # La semianchura del intervalo es
-(semianchura = t_alfa2 * sqrt((((n1 - 1) * s1^2 + (n2 - 1) * s2^2) /k) * (1/n1 + 1/n2)))
+(semianchura = t_alfa2 * sqrt((s1^2 / n1) + (s2^2 / n2)))
 
 
 # Intervalo de confianza

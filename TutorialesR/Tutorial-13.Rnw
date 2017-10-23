@@ -13,10 +13,12 @@ clasificador = FALSE
   logistica = TRUE
   clasificador = FALSE
   purl(input = "Tutorial-13.Rnw",
-       output = "../datos/Tut13-RegresionLogistica.R",
+       output = "./code/Tut13-RegresionLogistica.R",
        documentation=0)
+  logistica = FALSE
+  clasificador = TRUE
   purl(input = "Tutorial-13.Rnw",
-       output = "../datos/Tut13-ClasificadorLogistico.R",
+       output = "./code/Tut13-ClasificadorLogistico.R",
        documentation=0)
 @
 
@@ -642,7 +644,7 @@ exp(b0glm + b1glm * x0) / (1 + exp(b0glm + b1glm * x0))
 
 Y, finalmente, también podemos obtener ese valor usando la función {\tt plogis}, de la que aún no hemos hablado:
 
-<<>>=
+<<purl=FALSE>>=
 plogis(b0glm + b1glm * x0)
 @
 No vamos a entrar en muchos más detalles sobre {\tt plogis} (el lector interesado puede consultar la ayuda). Nos limitaremos a explicar que el valor de {\tt plogis(u)}, para un número $u$, es
@@ -936,7 +938,7 @@ head(datosFichero)
 head(datosFichero)
 @
 
-<<eval=TRUE, echo=TRUE, purl=FALSE>>=
+<<eval=TRUE, echo=FALSE, purl=FALSE>>=
 datosFichero = read.table("../datos/Cap13-ConstruccionModeloLogistico.csv",
                           header = TRUE, sep="\t")
 @
@@ -971,8 +973,8 @@ glmXY = glm(Y ~ X, family = binomial(link = "logit"), data = datos)
 
 (summGlmXY = summary(glmXY))
 
-
 datos$probs = glmXY$fitted.values
+
 @
 
 Como ves, hemos añadido a los datos el vector {\tt fitted.values} con las predicciones de las probabilidades correspondientes a los $n=\Sexpr{length(X)}$ puntos de la muestra. Veámoslas en forma de matriz, junto con el valor de la variable respuesta para cada punto de la muestra. Además, vamos a ordenar las observaciones según el valor de la variable $X$. Finalmente, hemos guardado en la primera columna el número de cada observación en la muestra original (es una información valiosa, que no conviene perder al crear una tabla como esta). Hemos usado la función {\tt row.names} para gestionar esa información de la tabla de la forma que nos ha parecido más conveniente. Fíjate también en que hemos aprovechado la creación de la tabla para poner nombre a dos de las columnas, {\tt nObs} y {\tt predicProb}.
@@ -1349,7 +1351,7 @@ En esta sección vamos a ver como usar R para calcular el estadístico de Hosmer
 \subsubsection*{Clases de riesgo.}
 
 El primer paso, como hemos visto en la página \pageref{curso-cap13:subsubsec:ConstruccionEstadisticoHosmerLemeshowPasoPaso}  del libro consiste en definir las clases de riesgo, o deciles de riesgo en el caso común en el que se usan $10$ clases. Llamaremos $g$ al número de clases y empezamos construyendo los puntos de corte que marcan la frontera entre clases:
-<<>>=
+<<purl=FALSE>>=
 g = 10
 (puntosCorte = quantile(fitted(glmXY), probs = seq(0, 1, 1/g)))
 @
@@ -1362,7 +1364,7 @@ xtable(t(data.frame(names(puntosCorte), puntosCorte)))
 
 A continuación usamos estos puntos de corte y la función {\tt cut} de R que ya conocemos para definir un factor, llamado {\tt claseRiesgo}, que identifica la clase de riesgo a la que pertenece cada valor $x_i$ de la muestra. Hemos elegido las opción {\tt  include.lowest = TRUE} de la función {\tt cut} para garantizar que el valor mínimo de la muestra se clasifica en alguna clase de riesgo. Añadimos el resultado al {\tt data.frame datos} porque así es como de hecho sabremos cuál es la clase para cada valor de $X$.
 
-<<>>=
+<<purl=FALSE>>=
 datos$claseRiesgo = cut(fitted(glmXY), breaks = puntosCorte,
                         include.lowest = TRUE)
 (n.i = table(datos$claseRiesgo))
@@ -1374,7 +1376,7 @@ La tabla de frecuencias del factor nos muestra los valores que en el libro hemos
 \subsubsection*{Valores observados y esperados.}
 
 Los valores observados $Obs1_i$ (recuerda que $Obs1_i$ es el número de observaciones de la clase $C_i$ para las que $Y=1$) se calculan así:
-<<>>=
+<<purl=FALSE>>=
 (Obs1 = with(datos, tapply(Y, INDEX = claseRiesgo, FUN = sum)) )
 @
 
@@ -1385,7 +1387,7 @@ xtable(data.frame(names(Obs1), Obs1), digits = 3)
 
 La misma operación, pero aplicada a las probabilidades estimadas por el modelo, nos proporciona los valores esperados $Esp1_i$:
 
-<<>>=
+<<purl=FALSE>>=
 (Esp1 = with(datos, tapply(probs, INDEX = claseRiesgo, FUN = sum)) )
 @
 
@@ -1397,7 +1399,7 @@ xtable(data.frame(names(Esp1), Esp1), digits = 3)
 
 Y puesto que sabemos el total de observaciones, los valores $Obs0$ y $Esp0$ se obtienen simplemente restando:
 
-<<>>=
+<<purl=FALSE>>=
 (Obs0 = n.i - Obs1)
 
 (Esp0 = n.i -Esp1)
@@ -1430,20 +1432,20 @@ Naturalmente, si el ajuste es bueno, lo que esperamos es que $Esp1 \sim Obs1$ y 
 
 Con los valores observados y esperados estamos listos para calcular el valor del estadístico de Hosmer-Lemeshow:
 
-<<>>=
+<<purl=FALSE>>=
 (HL.estadistico = sum((Obs1 - Esp1)^2/Esp1) + sum((Obs0 - Esp0)^2/Esp0))
 @
 
 Los grados de libertad del contraste son:
 
-<<>>=
+<<purl=FALSE>>=
 (HL.df = length(Obs1) - 2)
 @
 
 
 y el p-valor se calcula con la cola derecha de la correspondiente distribución $\chi^2_{g - 2}$:
 
-<<>>=
+<<purl=FALSE>>=
 (HL.pValor =  pchisq(HL.estadistico, df = HL.df, lower.tail = FALSE))
 @
 
@@ -1454,21 +1456,21 @@ Y, como sabemos, un p-valor cercano a uno nos dice que no debemos rechazar la hi
 
 La librería {\tt ResourceSelection} de R (recuerda instalarla antes de tratar de usarla) nos permite disponer de una función {\tt hoslem.test} que sirve para agilizar todo el proceso de contraste de la bondad del ajuste. En nuestro ejemplo basta con hacer:
 
-<<>>=
+<<purl=FALSE>>=
 library(ResourceSelection)
 (HL.test= hoslem.test(datos$Y, datos$probs, g = 10))
 @
 
 Para ver que el valor del estadístico es el mismo que hemos obtenido antes vamos a pedirle a R que nos lo muestre con más cifras:
 
-<<>>=
+<<purl=FALSE>>=
 HL.test$statistic
 @
 
 
 Además, aunque no aparezcan en la salida de la función que R nos muestra, la función {\tt hoslem.test} también calcula tablas de valores observados y esperados, a las que podemos acceder así:
 
-<<>>=
+<<purl=FALSE>>=
 HL.test$observed
 HL.test$expected
 @

@@ -25,6 +25,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -507,7 +508,7 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
 
 \hlcom{# 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.}
 
-\hlcom{#muestra = scan(file="",sep=" ",dec=".")}
+\hlcom{#muestra = read.table(file="", header="", sep=" ",dec=".")[ , 1]}
 
 
 \hlcom{# Valor a contrastar de la media (aparece en la hipotesis nula)}
@@ -1534,19 +1535,7 @@ Una vez instalada la librería, la cargamos mediante
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: e1071}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'e1071'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:gtools':\\\#\# \\\#\#\ \ \ \  permutations}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: lattice}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'BSDA'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:TeachingDemos':\\\#\# \\\#\#\ \ \ \  z.test}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:datasets':\\\#\# \\\#\#\ \ \ \  Orange}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(BSDA): there is no package called 'BSDA'}}\end{kframe}
 \end{knitrout}
 
 \subsubsection*{Un contraste de igualdad de medias con muestras pequeñas: las funciones {\tt t.test} y {\tt var.test}}
@@ -1557,7 +1546,9 @@ Como hemos dicho, esa librería incluye, además de la función {\tt z.test}, nu
 \begin{alltt}
 \hlkwd{data}\hlstd{(Statisti)}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data(Statisti): data set 'Statisti' not found}}\end{kframe}
 \end{knitrout}
 y para verlo, puedes usar este comando, que en RStudio abrirá un nuevo panel en el que puedes inspeccionar los datos:
 \begin{knitrout}
@@ -1575,11 +1566,9 @@ Recuerda también que para acceder a los datos de cada uno de los grupos por sep
 \begin{alltt}
 \hlstd{Statisti[ ,}\hlnum{1}\hlstd{]}
 \end{alltt}
-\begin{verbatim}
-##  [1] 81 73 86 90 75 80 75 81 85 87 83 75 70 65 80 76 64 74 86 80 83 67 82
-## [24] 78 76 83 71 90 77 81 82
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'Statisti' no encontrado}}\end{kframe}
 \end{knitrout}
 o también la notación \verb#$# combinada con el nombre de la variable (columna), como en:
 \begin{knitrout}
@@ -1587,11 +1576,9 @@ o también la notación \verb#$# combinada con el nombre de la variable (columna
 \begin{alltt}
 \hlstd{Statisti}\hlopt{$}\hlstd{Class1}
 \end{alltt}
-\begin{verbatim}
-##  [1] 81 73 86 90 75 80 75 81 85 87 83 75 70 65 80 76 64 74 86 80 83 67 82
-## [24] 78 76 83 71 90 77 81 82
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'Statisti' no encontrado}}\end{kframe}
 \end{knitrout}
 
 
@@ -1603,16 +1590,14 @@ Si tratas de usar {\tt length} para hallar los tamaños de ambas muestras
 \begin{alltt}
 \hlkwd{length}\hlstd{(Statisti}\hlopt{$}\hlstd{Class1)}
 \end{alltt}
-\begin{verbatim}
-## [1] 31
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'Statisti' no encontrado}}\begin{alltt}
 \hlkwd{length}\hlstd{(Statisti}\hlopt{$}\hlstd{Class2)}
 \end{alltt}
-\begin{verbatim}
-## [1] 31
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'Statisti' no encontrado}}\end{kframe}
 \end{knitrout}
 comprobarás que R incluye los valores {\tt NA} de {\tt Class2} en ese recuento de la longitud. Y es razonable que así sea, porque es la opción menos problemática en la mayoría de los casos. Cuando trabajamos con {\tt data.frames} y queremos saber si hay datos ausentes, una buena opción es usar la función {\tt complete.cases}, que devuelve un vector de valores lógicos, iguales a {\tt TRUE} cuando la fila correspondiente del {\tt data.frame} no contiene valores ausentes e igual a {\tt FALSE} en caso contrario.
 Para nuestro conjunto de datos:
@@ -1621,12 +1606,9 @@ Para nuestro conjunto de datos:
 \begin{alltt}
 \hlstd{(noAusentes} \hlkwb{=} \hlkwd{complete.cases}\hlstd{(Statisti))}
 \end{alltt}
-\begin{verbatim}
-##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [12]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [23]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in complete.cases(Statisti): objeto 'Statisti' no encontrado}}\end{kframe}
 \end{knitrout}
 Usando {\tt complete.cases} junto con {\tt which}  y otros métodos que hemos visto en tutoriales previos (por ejemplo, la suma de valores lógicos) se puede gestionar de forma my eficaz la presencia de valores {\tt NA} en un {\tt data.frame} de R.
 
@@ -1638,20 +1620,9 @@ Para hacer este contraste vamos a recurrir a la función {\tt var.test}. Simplem
 \begin{alltt}
 \hlkwd{var.test}\hlstd{(Statisti}\hlopt{$}\hlstd{Class1, Statisti}\hlopt{$}\hlstd{Class2,} \hlkwc{alternative} \hlstd{=} \hlstr{"two.sided"}\hlstd{,} \hlkwc{conf.level} \hlstd{=} \hlnum{0.95}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## 
-## 	F test to compare two variances
-## 
-## data:  Statisti$Class1 and Statisti$Class2
-## F = 0.551, num df = 30, denom df = 26, p-value = 0.12
-## alternative hypothesis: true ratio of variances is not equal to 1
-## 95 percent confidence interval:
-##  0.25541 1.16350
-## sample estimates:
-## ratio of variances 
-##             0.5508
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in var.test(Statisti\$Class1, Statisti\$Class2, alternative = "{}two.sided"{}, : objeto 'Statisti' no encontrado}}\end{kframe}
 \end{knitrout}
 Fíjate en que hemos usado {\tt two.sided} para obtener el contraste bilateral que buscábamos. Como  ves, el p-valor permite rechazar la hipótesis alternativa y, por tanto, seguir trabajando bajo la hipótesis de que las varianzas de ambos grupos son iguales. No queremos dejar pasar sin mencionarlo que además hemos obtenido un intervalo de confianza para el valor del cociente de varianzas.
 
@@ -1662,20 +1633,9 @@ Teniendo en cuenta este resultado, podemos volver al contraste de diferencia de 
 \hlkwd{t.test}\hlstd{(Statisti}\hlopt{$}\hlstd{Class1, Statisti}\hlopt{$}\hlstd{Class2,}
     \hlkwc{alternative} \hlstd{=} \hlstr{"two.sided"}\hlstd{,} \hlkwc{conf.level} \hlstd{=} \hlnum{0.95}\hlstd{,} \hlkwc{var.equal} \hlstd{=} \hlnum{TRUE}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## 
-## 	Two Sample t-test
-## 
-## data:  Statisti$Class1 and Statisti$Class2
-## t = -1.07, df = 56, p-value = 0.29
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -6.3993  1.9310
-## sample estimates:
-## mean of x mean of y 
-##    78.581    80.815
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in t.test(Statisti\$Class1, Statisti\$Class2, alternative = "{}two.sided"{}, : objeto 'Statisti' no encontrado}}\end{kframe}
 \end{knitrout}
 Fíjate en que la opción {\tt var.equal} nos permite ajustar el método que usa {\tt t.test} al resultado del contraste de igualdad de varianzas que hemos hecho antes. Y, como ves, el p-valor permite rechazar $H_a$, para concluir que no hay base empírica para creer que las medias de los dos grupos son distintas.
 
@@ -1683,7 +1643,18 @@ Como ves, el uso combinado de {\tt var.test} y {\tt t.test} hace que los contras
 
 \subsubsection*{Sobre el formato del {\tt data.frame} de este ejemplo. Datos con {\tt read.table}.}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'Statisti' no encontrado}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'Statisti' no encontrado}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in data.frame(scores = scores, group = group): objeto 'scores' no encontrado}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in is.data.frame(x): objeto 'statisti2' no encontrado}}\end{kframe}
+\end{knitrout}
 
 
 A pesar de la facilidad con la que hemos trabajado en el apartado anterior, no podemos tampoco dejar pasar el hecho de que el formato del conjunto de datos que hemos usado en este ejemplo no es el recomendable. En el Tutorial11 volveremos sobre esto, pero queremos avanzar la idea básica para que el lector se vaya acostumbrando a oírla. Una tabla de datos en el formato correcto debe tener {\bf una variable por columna y una observación por fila}.
@@ -1845,20 +1816,9 @@ Y ahora aplicamos así la función:
 \begin{alltt}
 \hlkwd{z.test}\hlstd{(}\hlkwc{x} \hlstd{= XA,} \hlkwc{y} \hlstd{= XB,} \hlkwc{alternative} \hlstd{=} \hlstr{"two.sided"}\hlstd{,} \hlkwc{sigma.x} \hlstd{=} \hlkwd{sd}\hlstd{(XA),} \hlkwc{sigma.y} \hlstd{=} \hlkwd{sd}\hlstd{(XB))}
 \end{alltt}
-\begin{verbatim}
-## 
-## 	Two-sample z-Test
-## 
-## data:  XA and XB
-## z = -3.22, p-value = 0.0013
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -4.8238 -1.1762
-## sample estimates:
-## mean of x mean of y 
-##        23        26
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la función "{}z.test"{}}}\end{kframe}
 \end{knitrout}
 Fíjate que además debemos incluir las cuasidesviaciones típicas (calculadas con {\tt sd}), porque de lo contrario se produce un error, ya que la función no las calcula por defecto.
 
@@ -1881,27 +1841,25 @@ Veamos un ejemplo. La librería {\tt BSDA}, que hemos usado antes, contiene un c
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(BSDA)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(BSDA): there is no package called 'BSDA'}}\begin{alltt}
 \hlkwd{data}\hlstd{(Fitness)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in data(Fitness): data set 'Fitness' not found}}\begin{alltt}
 \hlkwd{head}\hlstd{(Fitness)}
 \end{alltt}
-\begin{verbatim}
-##   Before After
-## 1     28    32
-## 2     31    33
-## 3     17    19
-## 4     22    26
-## 5     12    17
-## 6     32    30
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in head(Fitness): objeto 'Fitness' no encontrado}}\begin{alltt}
 \hlkwd{str}\hlstd{(Fitness)}
 \end{alltt}
-\begin{verbatim}
-## 'data.frame':	9 obs. of  2 variables:
-##  $ Before: int  28 31 17 22 12 32 24 18 25
-##  $ After : int  32 33 19 26 17 30 26 19 25
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in str(Fitness): objeto 'Fitness' no encontrado}}\end{kframe}
 \end{knitrout}
 
 Además de {\tt head} hemos usado la función {\tt str}, que puede ser de mucha utilidad en este tipo de exploraciones preliminares. Como ves, el conjunto de datos contiene $5$ observaciones, dos para cada individuo que se sometió al programa de entrenamiento. Por eso es un ejemplo típico de las situaciones que englobamos bajo esta etiqueta de {\em datos emparejados}. Llamando $\mu_a$ a la media antes del entrenamiento y $\mu_d$ a la media después del entrenamiento, queremos usar los datos para contrastar la hipótesis alternativa unilateral
@@ -1914,20 +1872,9 @@ Y para hacer esto basta con usar {\tt t.test} así:
 \hlkwd{t.test}\hlstd{(Fitness}\hlopt{$}\hlstd{Before, Fitness}\hlopt{$}\hlstd{After,}
     \hlkwc{alternative} \hlstd{=} \hlstr{"less"}\hlstd{,} \hlkwc{paired} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{conf.level} \hlstd{=} \hlnum{0.95}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## 
-## 	Paired t-test
-## 
-## data:  Fitness$Before and Fitness$After
-## t = -2.75, df = 8, p-value = 0.012
-## alternative hypothesis: true difference in means is less than 0
-## 95 percent confidence interval:
-##      -Inf -0.64907
-## sample estimates:
-## mean of the differences 
-##                      -2
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in t.test(Fitness\$Before, Fitness\$After, alternative = "{}less"{}, paired = TRUE, : objeto 'Fitness' no encontrado}}\end{kframe}
 \end{knitrout}
 La clave, por supuesto, es la opción {\tt paired=TRUE}. Fíjate, aparte de esto, en que el conjunto de datos no cumple el principio deseable de {\em una variable por columna, una observación por fila}. Por eso hemos usado la notación \verb#$# para acceder a las columnas {\tt Before} y {\tt After}.  La conclusión, es que al $95\%$ rechazamos $H_0$, pero no al $99\%$.
 Con una muestra tan pequeña, eso significaría en la práctica, casi siempre, que los datos no son concluyentes. Se necesitan más datos: más potencia en el contraste, en el sentido que hemos discutido en el Capítulo \ref{curso-cap:ContrasteHipotesis}.
@@ -2406,20 +2353,9 @@ Vamos a recordar primero el contraste con $Z$:
 \hlstd{XB} \hlkwb{=} \hlstd{datos}\hlopt{$}\hlstd{X[datos}\hlopt{$}\hlstd{T}\hlopt{==}\hlstr{"B"}\hlstd{]}
 \hlkwd{z.test}\hlstd{(}\hlkwc{x} \hlstd{= XA,} \hlkwc{y} \hlstd{= XB,} \hlkwc{alternative} \hlstd{=} \hlstr{"two.sided"}\hlstd{,} \hlkwc{sigma.x} \hlstd{=} \hlkwd{sd}\hlstd{(XA),} \hlkwc{sigma.y} \hlstd{=} \hlkwd{sd}\hlstd{(XB))}
 \end{alltt}
-\begin{verbatim}
-## 
-## 	Two-sample z-Test
-## 
-## data:  XA and XB
-## z = -3.22, p-value = 0.0013
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -4.8238 -1.1762
-## sample estimates:
-## mean of x mean of y 
-##        23        26
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la función "{}z.test"{}}}\end{kframe}
 \end{knitrout}
 Y ahora veamos las tres posibilidades con $t$:
 \begin{knitrout}

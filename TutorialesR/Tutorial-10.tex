@@ -220,7 +220,7 @@ Pero para trabajar cómodamente con ficheros de datos más complejos y, en gener
 \label{tut10:subsec:DiagramaDispersionEnR}
 
 Vamos a empezar con un ejemplo muy elemental de cómo se dibuja un diagrama de dispersión en R. Partimos de dos vectores de coordenadas:
-set.seed(2014)
+% set.seed(2014)
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1204,7 +1204,7 @@ Concretamente, usando lo que hemos aprendido en las secciones previas de este tu
 Como ves, los valores son
 \[
     b_0\approx 0.983,\qquad
-    b_1\approx \ensuremath{-0.481},
+    b_1\approx -0.481,
 \]
 que se parecen, a $\beta_0$ y $\beta_1$, pero ciertamente no coinciden, como queda de manifiesto en la Figura \ref{curso-cap10:fig:Anova02} (pág. \pageref{curso-cap10:fig:Anova02}) del libro.
 
@@ -1401,7 +1401,11 @@ Fíjate en que, en este ejemplo, aunque ese punto es influyente su residuo no es
 \end{alltt}
 
 
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'car' was built under R version 3.3.2}}
+
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'car'}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:BSDA':\\\#\# \\\#\#\ \ \ \  Vocab, Wool}}
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:gtools':\\\#\# \\\#\#\ \ \ \  logit}}\begin{alltt}
 \hlkwd{outlierTest}\hlstd{(lmXY)}

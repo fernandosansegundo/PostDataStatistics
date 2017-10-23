@@ -955,7 +955,7 @@ contiene las edades, en años, de un grupo de $500$ personas. Imagínate que que
 Vamos a ver como usar {\tt cut} para hacer eso en R. Primero leemos el fichero (recuerda que debe estar en la carpeta {\tt datos} del {\em Directorio de Trabajo}) y lo guardamos en un vector de datos, llamado {\tt edades}, al que aplicaremos la función {\tt cut}.
 
 <<>>=
-edades = scan(file="../datos/Tut08-Edades.csv")
+edades = read.table(file="../datos/Tut08-Edades.csv")[ ,1]
 @
 
 Pero antes de cortar, tenemos que pensar bien dónde vamos a dar los cortes. Los intervalos que R usa, en la función {\tt cut} son, por defecto, de la forma $(a,b]$. Es decir, incluyen el límite derecho pero no el izquierdo (esto se puede cambiar). Eso implica que so hacemos una elección poco cuidadosa de los puntos de corte, como en:

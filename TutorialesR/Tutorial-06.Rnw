@@ -878,7 +878,7 @@ El uso de estos ficheros es prácticamente idéntico al que vimos en el caso en 
       \end{center}
       Usa R para calcular un intervalo de confianza al $95\%$ para estos datos.
 
-      Yo, desde luego, prefiero leer este fichero usando {\tt scan} (y la opción \verb/dec=","/ para gestionar la coma como separador de decimales). De esa forma, los datos se leen en una sola línea de código en R, en lugar de hacer operaciones de {\em copia/pega}, reemplazar comas por puntos, etc.
+Yo, desde luego, prefiero leer este fichero usando {\tt read.table} (y la opción \verb/dec=","/ para gestionar la coma como separador de decimales). De esa forma, los datos se leen en una sola línea de código en R, en lugar de hacer operaciones de {\em copia/pega}, reemplazar comas por puntos, etc.
 
   \item {\bf IMPORTANTE:} la distribución $t$ de Student es muy útil para trabajar con muestras pequeñas. Pero eso no significa que no pueda usarse con muestras grandes. Para ver lo que sucede, repite el apartado 3 del Ejercicio \ref{tut06:ejercicio06} (en el que $n=450$).
 
@@ -1307,7 +1307,7 @@ El resto de los elementos de {\tt intAsBio} son simplemente rótulos.
 
 Vamos ahora a usar a calcular un intervalo de confianza a partir de datos {\em en bruto}, usando el fichero {\tt Tut06-IntConf-Media-UsandoZ-datos.csv} del apartado 5 del Ejercicio \ref{tut06:ejercicio06}. Esto nos va a servir para descubrir una peculiaridad {\bf muy importante} de esta función. Para ello nos aseguramos de que el fichero {\tt csv} está en el directorio de trabajo de R, y usamos de nuevo {\tt ci.mu.z}, pero ahora con {\tt summarized=FALSE}:
 <<t06ch47>>=
-muestra = scan(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", sep=" ", dec=".")
+muestra = read.table(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", sep=" ", dec=".")[ ,1]
 (intAsBio = ci.mu.z(data=muestra, conf=0.95, summarized=FALSE, sigma = sd(muestra)))
 @
 Como ves, en el caso de datos {\em en bruto} hemos tenido que pedirle explícitamente a {\tt ci.mu.z} que use la cuasidesviación típica de la muestra, calculada con {\tt sd}. Si no haces esto, comprobarás que el resultado no es correcto.
@@ -1588,7 +1588,7 @@ del orden de $10^{31}$. Otro ejemplo de la {\em Explosión Combinatoria}, de la 
         # 2. Ahora introduce entre las comillas el nombre del fichero,
         # y el tipo de separador, etc.
         # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE LA SIGUIENTE LINEA
-        #muestra = scan(file="../datos/ ", sep=" ", dec=".")
+        # muestra = read.table(file=" ", header = , sep=" ", dec=".")
 
 
 
@@ -1624,7 +1624,8 @@ del orden de $10^{31}$. Otro ejemplo de la {\em Explosión Combinatoria}, de la 
 
         # 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.
         # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE LA SIGUIENTE LINEA.
-        muestra = scan(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", sep=" ", dec=".")
+        muestra = read.table(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", header=FALSE,
+                             sep=" ", dec=".")[ ,1]
 
 
         # LEE ESTAS INSTRUCCIONES ATENTAMENTE:
@@ -1820,9 +1821,10 @@ En GeoGebra con:
   \[ 2.732  < \mu < 3.652\]
   El valor $\bar X = 3.192$ se obtiene como parte de la salida del programa.
 
-  \item Después de elegir el directorio de trabajo (el que contiene el fichero), en el paso 2 hemos usado la función {\tt scan} así:
+  \item Después de elegir el directorio de trabajo (el que contiene el fichero), en el paso 2 hemos usado la función {\tt read.table} así:
         \begin{verbatim}
-          muestra = scan(file="../datos/Tut06-DatosIntConfConStudent.csv",sep=" ",dec=",")
+          muestra = read.table(file="../datos/Tut06-DatosIntConfConStudent.csv",
+          header=FALSE, sep=" ",dec=",")[,1]
         \end{verbatim}
 
   El intervalo es $\mu = 3.5 \pm 0.5616$ o, de otro modo:
@@ -1873,7 +1875,7 @@ Asegúrate, usando por ejemplo {\tt setwd}, de que el directorio de trabajo (en 
 wd = getwd()
 @
 <<t06ej15solb>>=
-muestra = scan(file="../datos/Tut06-DatosIntConfConStudent.csv",sep=" ",dec=",")
+muestra = read.table(file="../datos/Tut06-DatosIntConfConStudent.csv", sep=" ", dec=",")[,1]
 T.testMuestra = t.test(muestra, conf.level=0.95)
 (intervalo = T.testMuestra$conf.int)
 @
@@ -2128,7 +2130,7 @@ wd = getwd()
 # 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.
 
 # SI NO SE USA, ESCRIBE # AL PRINCIPIO DE LA SIGUIENTE LINEA
-muestra = scan(file="../datos/Tut06-datosIntConfDesvTipica.csv", dec=".")
+muestra = read.table(file="../datos/Tut06-datosIntConfDesvTipica.csv", dec=".")[ ,1]
 
 
 # Introducimos el nivel de confianza deseado.
@@ -2188,7 +2190,7 @@ intervalo = s * {sqrt(k / chiAlfa2),   sqrt(k / chiUnoMenosAlfa2) }
 \label{tut06:ejercicio24:sol}\quad\\
 Ejecutamos el código sin fijar el valor de {\tt sigma} (recuerda fijar el directorio de trabajo), y el resultado es erróneo.
 <<t06ej24sol>>=
-muestra = scan(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", sep=" ", dec=".")
+muestra = read.table(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", sep=" ", dec=".")[,1]
 (intAsBio = ci.mu.z(data=muestra, conf=0.95, summarized=FALSE))
 @
 
@@ -2197,7 +2199,7 @@ muestra = scan(file="../datos/Tut06-IntConf-Media-UsandoZ-datos.csv", sep=" ", d
 \label{tut06:ejercicio25:sol}\quad\\
 
 <<t06ej25sola>>=
-muestra = scan(file="../datos/Tut06-datosIntConfDesvTipica.csv", sep=" ", dec=".")
+muestra = read.table(file="../datos/Tut06-datosIntConfDesvTipica.csv", sep=" ", dec=".")[,1]
 (intAsBio = ci.sigma(data=muestra, conf=0.95, summarized=FALSE))
 @
 El intervalo que hemos obtenido es para la varianza $\sigma^2$. Para obtener un intervalo para $\sigma$ hacemos:

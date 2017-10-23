@@ -25,6 +25,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -473,11 +474,11 @@ Como ves en este ejemplo, el nivel de significación puede utilizarse para fijar
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Ese valor del estadístico marca la frontera entre los valores que nos llevan a rechazar la hipótesis nula y los valores que no nos hacen rechazarla (recuerda que {\em nunca la aceptamos}).  Cualquier valor del estadístico menor que $\ensuremath{-2.326}$ nos llevaría a rechazar $H_0$ ¿Por qué menor? Si no ves claro por qué, vuelve a leer este ejemplo y la Sección \ref{curso-cap07:sec:ContrastesUnilateralesBilaterales} del libro hasta que lo entiendas.
+Ese valor del estadístico marca la frontera entre los valores que nos llevan a rechazar la hipótesis nula y los valores que no nos hacen rechazarla (recuerda que {\em nunca la aceptamos}).  Cualquier valor del estadístico menor que $-2.326$ nos llevaría a rechazar $H_0$ ¿Por qué menor? Si no ves claro por qué, vuelve a leer este ejemplo y la Sección \ref{curso-cap07:sec:ContrastesUnilateralesBilaterales} del libro hasta que lo entiendas.
 
 \begin{ejercicio}
 \label{tut07:ejercicio05}
-El valor $\ensuremath{-2.326}$ que hemos obtenido es un valor tipificado, en la escala $Z$ de la normal estándar.  ¿Cuál es el valor correspondiente en la escala original del problema? Es decir, ¿cuál es peso medio mínimo muestral, en gramos, a partir del cual el inspector rechaza $H_0$? Solución en la página \pageref{tut07:ejercicio05:sol}.
+El valor $-2.326$ que hemos obtenido es un valor tipificado, en la escala $Z$ de la normal estándar.  ¿Cuál es el valor correspondiente en la escala original del problema? Es decir, ¿cuál es peso medio mínimo muestral, en gramos, a partir del cual el inspector rechaza $H_0$? Solución en la página \pageref{tut07:ejercicio05:sol}.
 \qed
 \end{ejercicio}
 
@@ -632,7 +633,7 @@ Si el punto de partida es un fichero como ese, el plan de trabajo es muy parecid
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{datos} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"../datos/Tut07-Contraste-Media-Z-datos.csv"}\hlstd{)}
+\hlstd{datos} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"../datos/Tut07-Contraste-Media-Z-datos.csv"}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 \hlstd{(n} \hlkwb{=} \hlkwd{length}\hlstd{(datos))}
 \end{alltt}
 \begin{verbatim}
@@ -972,7 +973,7 @@ Una vez hecho esto, vamos a mostrar el código que permite realizar el contraste
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(TeachingDemos)}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut07-Contraste-Media-UsandoZ-datos.csv"}\hlstd{,}\hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,}\hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut07-Contraste-Media-UsandoZ-datos.csv"}\hlstd{,}\hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,}\hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[,}\hlnum{1}\hlstd{]}
 \hlkwd{mean}\hlstd{(muestra)}
 \end{alltt}
 \begin{verbatim}
@@ -1051,7 +1052,7 @@ Para terminar con esta visita a la librería {\tt TeachingDemos}, vamos a presen
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{muestra} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut07-Contraste-Varianza-datos.csv"}\hlstd{,}\hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,}\hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)}
+\hlstd{muestra} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Tut07-Contraste-Varianza-datos.csv"}\hlstd{,}\hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,}\hlkwc{dec}\hlstd{=}\hlstr{"."}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 \hlkwd{sigma.test}\hlstd{(muestra,}\hlkwc{sigma}\hlstd{=}\hlnum{0.56}\hlstd{,}\hlkwc{alternative}\hlstd{=}\hlstr{"less"}\hlstd{,}\hlkwc{conf.level}\hlstd{=}\hlnum{0.95}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
@@ -1194,7 +1195,7 @@ Cada uno de los siguientes ficheros contiene una muestra de una población norma
   \item
 
   Fichero \fichero{../datos/Tut07-EjAdicionales-Contrastes02.csv}{Tut07-EjAdicionales-Contrastes02.csv}\\
-  Hipótesis nula: $H_0=\{\mu < \ensuremath{-4.1}\}$.
+  Hipótesis nula: $H_0=\{\mu < -4.1\}$.
   Nivel de significación: $95\%$ y también $90\%$.
 
 
@@ -1655,7 +1656,7 @@ El código para el cálculo del p-valor es:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{datos} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"../datos/Tut07-Ejercicio-ContrasteMedia.csv"}\hlstd{)}
+\hlstd{datos} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"../datos/Tut07-Ejercicio-ContrasteMedia.csv"}\hlstd{)[ ,}\hlnum{1}\hlstd{]}
 \hlstd{(n} \hlkwb{=} \hlkwd{length}\hlstd{(datos))}
 \end{alltt}
 \begin{verbatim}
@@ -1830,7 +1831,7 @@ Y la conclusión, como ves, depende del nivel de significación que se utilice.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{datos} \hlkwb{=} \hlkwd{scan}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"../datos/Tut07-Ejercicio-ContrasteVarianza.csv"}\hlstd{)}
+\hlstd{datos} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"../datos/Tut07-Ejercicio-ContrasteVarianza.csv"}\hlstd{)[,}\hlnum{1}\hlstd{]}
 \hlstd{(n} \hlkwb{=} \hlkwd{length}\hlstd{(datos))}
 \end{alltt}
 \begin{verbatim}

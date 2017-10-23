@@ -14,7 +14,10 @@
       fichero = "Tutorial-01.Rnw"
       knit2pdf(input=fichero, encoding="UTF-8")
       
+      fichero = "Tutorial-02.Rnw"
+      knit2pdf(input=fichero, encoding="UTF-8")
       
+            
       for(i in 2:9){
         (numTutorial = paste("0",i,collapse="", sep=""))
         (fichero = paste("Tutorial-", numTutorial, ".Rnw", sep="",collapse=""))

@@ -445,7 +445,7 @@ despues = c(3.31, 2.33, 2.65, 2.16, 1.62, 3.15, 2.14, 4.01, 2.42, 2.91)
 
 # 2. Ahora introduce entre las comillas el nombre del fichero, y el tipo de separador, etc.
 
-#muestra = scan(file="",sep=" ",dec=".")
+#muestra = read.table(file="", header="", sep=" ",dec=".")[ , 1]
 
 
 # Valor a contrastar de la media (aparece en la hipotesis nula)

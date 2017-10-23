@@ -16,16 +16,16 @@
 
     rm(list=ls())
 # Numero de elementos en la muestra
-    (n= ) #SE SUPONE QUE LA MUESTRA ES GRANDE, n>30
+    (n= 400) #SE SUPONE QUE LA MUESTRA ES GRANDE, n>30
 # Proporcion muestral (¡es una fraccion! Numero de exitos/n)
-    (pMuestral= )
+    (pMuestral= 0.24)
 # Valor a contrastar de la proporcion (aparece en la hipotesis nula)
-    (p0= )    
+    (p0= 0.277)    
 # ¿Que tipo de contraste estamos haciendo?
     # Escribe 1 si la HIP. ALTERNATIVA es p > p0, 2 si es p < p0, 3 si es p distinto de p0    
-    TipoContraste = 
+    TipoContraste = 1
 #Nivel de significacion
-    (nSig= )
+    (nSig= 0.95)
   
 ###############################################
 # NO CAMBIES NADA DE AQUÍ PARA ABAJO

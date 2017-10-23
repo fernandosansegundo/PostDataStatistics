@@ -26,6 +26,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -345,7 +346,7 @@ Solución en la página \pageref{tut05:ejercicio03:sol}.
 \subsection{La función {\tt qbinom}}
 \label{tut05:subsec:FuncionQbinom}
 
-La función {\tt qnorm} nos permite calcular los cuantiles de una variable aleatoria binomial. Hemos hablado de los cuantiles en la Sección \ref{curso-cap04:sec:FuncionDistribucionVariableAleatoriaDiscreta} del libro, donde hemos dicho que eran  los análogos teóricos de los cuartiles y percentiles de la Estadística Descriptiva. Un ejemplo ayudará a entenderlo mejor. Dada una variable binomial, de tipo $B(10,0.3)$, ¿cuál es el primer valor (de 0 a 10) para el que la probabilidad acumulada es igual o mayor que 0.5? Es decir, cuál es el $k$ para el que se cumple la siguiente desigualdad:
+La función {\tt qbinom} nos permite calcular los cuantiles de una variable aleatoria binomial. Hemos hablado de los cuantiles en la Sección \ref{curso-cap04:sec:FuncionDistribucionVariableAleatoriaDiscreta} del libro, donde hemos dicho que eran  los análogos teóricos de los cuartiles y percentiles de la Estadística Descriptiva. Un ejemplo ayudará a entenderlo mejor. Dada una variable binomial, de tipo $B(10,0.3)$, ¿cuál es el primer valor (de 0 a 10) para el que la probabilidad acumulada es igual o mayor que 0.5? Es decir, cuál es el $k$ para el que se cumple la siguiente desigualdad:
 \[P(X \leq k)\geq 0.5\]
 
 Puesto que las probabilidades acumuladas se calculan, como acabamos de ver, con {\tt pbinom}, podríamos calcular los valores $P(X \leq k)$ para $k$ de 0 a 10, y buscar, en los resultados, el primero que iguale o supere $0.5$. Al contar hay que tener cuidado, y restar $1$ porque el primer valor del vector corresponde a $X=0$ (pero R numera los elementos empezando siempre desde $1$).
@@ -462,7 +463,7 @@ Solución en la página \pageref{tut05:ejercicio06:sol}.
 
 Esta breve sección tiene por objeto aclarar que no existen funciones específicas para calcular la media y varianza de una distribución binomial en R... porque no se necesitan, claro. Las fórmulas
 \[\mu=n\cdot p, \qquad\qquad\sigma = \sqrt{n\cdot p\cdot q}\]
-son tan sencillas que basta con calcular esos valores directamente cuando se necesiten. Vamos a aprovechar, eso sí, para comprobar numéricamente que esas fórmulas coinciden con lo que se obtienen aplicando las definiciones.
+son tan sencillas que basta con calcular esos valores directamente cuando se necesiten. Vamos a aprovechar, eso sí, para comprobar numéricamente que esas fórmulas coinciden con lo que se obtiene aplicando las definiciones.
 
 \begin{ejercicio}
 \label{tut05:ejercicio07}
@@ -494,7 +495,7 @@ Calc ofrece apenas la función {\tt DISTR.BINOM}. Esta función aúna la funcion
     \end{verbatim}
     \end{minipage}
     \end{center}
-El último argumento (que Calc llama {\tt C}) sirve para decidir si calculamos los valores de densidad (como en {\tt dbinom}) cuando vale $0$, o si calculamos la función de distribución (como en {\tt dbinom}) cuando vale $1$
+El último argumento (que Calc llama {\tt C}) sirve para decidir si calculamos los valores de densidad (como en {\tt dbinom}) cuando vale $0$, o si calculamos la función de distribución (como en {\tt pbinom}) cuando vale $1$
 \begin{center}
     \includegraphics[width=8cm]{../fig/Tut05-19.png}
 \end{center}
@@ -1812,7 +1813,7 @@ Como hemos dicho, si se trata de aplicar una estructura condicional {\tt if/else
 \end{alltt}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if (x > 4) \{: the condition has length > 1 and only the first element will be used}}\begin{verbatim}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if (x > 4) \{: la condición tiene longitud > 1 y sólo el primer elemento será usado}}\begin{verbatim}
 ## [1] 0
 \end{verbatim}
 \end{kframe}
@@ -4115,7 +4116,7 @@ Al tratar de evaluar {\tt f} sobre el vector {\tt 1:100} se obtiene una adverten
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if ((x > 0) \& (x < 1)) \{: the condition has length > 1 and only the first element will be used}}\begin{verbatim}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if ((x > 0) \& (x < 1)) \{: la condición tiene longitud > 1 y sólo el primer elemento será usado}}\begin{verbatim}
 ## [1] 0
 \end{verbatim}
 \end{kframe}

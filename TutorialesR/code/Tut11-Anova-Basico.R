@@ -27,7 +27,7 @@
 # LECTURA DE LOS DATOS
 #########################################
 #Leemos los datos del fichero
-datos = read.table(file="./datos/", sep=" ",header=T)
+datos = read.table(file="../datos/", sep=" ",header=T)
 
 # Descomenta esta línea si quieres comprobar que la lectura ha sido correcta.
 # View(datos)

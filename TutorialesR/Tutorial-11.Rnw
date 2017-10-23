@@ -13,10 +13,10 @@ avanzado=FALSE
   basico = TRUE
   avanzado = FALSE
   purl(input = "Tutorial-11.Rnw",
-       output = "../datos/Tut11-Anova-Basico.R",
+       output = "./code/Tut11-Anova-Basico.R",
        documentation=0)
   purl(input = "Tutorial-11.Rnw",
-       output = "../datos/Tut11-Anova-Avanzado.R",
+       output = "./code/Tut11-Anova-Avanzado.R",
        documentation=0)
 @
 
