@@ -190,7 +190,7 @@ de la la Tabla \ref{Tut09:tabla:FicherosContrastesDosPoblaciones}. Incluimos aqu
 ## [1] 0.35938
 \end{verbatim}
 \begin{alltt}
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
 \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es p1 > p2, 2 si es p1 < p2, 3 si es bilateral}
 \hlstd{TipoContraste} \hlkwb{=} \hlnum{3}
   \hlcom{#Nivel de significacion}
@@ -366,7 +366,7 @@ Incluimos los datos del problema en las primeras líneas de este fichero, como s
 \begin{alltt}
     \hlcom{#(sigma2 = )}
 
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
     \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2}
     \hlstd{TipoContraste} \hlkwb{=} \hlnum{2}
 \hlcom{#Nivel de significacion}
@@ -470,7 +470,7 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-07.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular}
@@ -479,14 +479,14 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
 \hlcom{# un fichero con una muestra de esa poblacion.}
 \hlcom{#}
 \hlcom{# El fichero no funcionara si no introduces todos los datos.}
-\hlcom{# Además tendrás que descomentar algunas lineas para elegir}
+\hlcom{# Adem<U+00E1>s tendr<U+00E1>s que descomentar algunas lineas para elegir}
 \hlcom{# la forma en la que lees los datos.}
 \hlcom{#}
 \hlcom{################################################################}
 
 
 \hlcom{#################################################################}
-\hlcom{# CASO:  sigma desconocida, muestra pequeña  n<30.}
+\hlcom{# CASO:  sigma desconocida, muestra peque<U+00F1>a  n<30.}
 \hlcom{#################################################################}
 
 \hlkwd{rm}\hlstd{(}\hlkwc{list} \hlstd{=} \hlkwd{ls}\hlstd{())}
@@ -519,7 +519,7 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
 ## [1] 0
 \end{verbatim}
 \begin{alltt}
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
 \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es mu > mu0, 2 si es mu < mu0, 3 si es mu distinto de mu0}
 
 \hlstd{(TipoContraste} \hlkwb{=} \hlnum{1}\hlstd{)}
@@ -537,7 +537,7 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
 \end{verbatim}
 \begin{alltt}
 \hlcom{###############################################}
-\hlcom{# NO CAMBIES NADA DE AQUÍ PARA ABAJO}
+\hlcom{# NO CAMBIES NADA DE AQU<U+00CD> PARA ABAJO}
 
 \hlcom{###############################################}
 
@@ -603,7 +603,7 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
       \hlkwd{return}\hlstd{(}\hlkwd{paste0}\hlstd{(}\hlstr{"El p-Valor es "}\hlstd{, pV,} \hlkwc{collapse}\hlstd{=}\hlstr{""}\hlstd{))}
     \hlstd{\}}
 
-\hlcom{# Funcion para el calculo del límite de la región de rechazo}
+\hlcom{# Funcion para el calculo del l<U+00ED>mite de la regi<U+00F3>n de rechazo}
 
     \hlstd{RegionRechazo} \hlkwb{=} \hlkwa{function}\hlstd{(}\hlkwc{alfa}\hlstd{,} \hlkwc{tipoCon}\hlstd{)\{}
       \hlkwa{if}\hlstd{(tipoCon} \hlopt{==} \hlnum{1}\hlstd{)\{}
@@ -631,10 +631,10 @@ En particular ten en cuenta que lo que en libro se denomina $\bar Y$, en el cód
 ## [1] "El p-Valor es 0.292078879999332"
 \end{verbatim}
 \begin{alltt}
-\hlkwd{paste0}\hlstd{(}\hlstr{"El valor del estadístico es "}\hlstd{, Estadistico,} \hlkwc{collapse} \hlstd{=} \hlstr{""}\hlstd{)}
+\hlkwd{paste0}\hlstd{(}\hlstr{"El valor del estad<U+00ED>stico es "}\hlstd{, Estadistico,} \hlkwc{collapse} \hlstd{=} \hlstr{""}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] "El valor del estadístico es 0.56764281922141"
+## [1] "El valor del estad<U+00ED>stico es 0.56764281922141"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{RegionRechazo}\hlstd{(alfa, TipoContraste)}
@@ -861,7 +861,7 @@ Análogamente, la forma más rápida de obtener elintervalo de confianza es usan
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-09.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular un}
@@ -877,7 +877,7 @@ Análogamente, la forma más rápida de obtener elintervalo de confianza es usan
 \hlstd{s2} \hlkwb{=} \hlnum{4.5}
 
 
-\hlcom{# los tamaños de las muestras,}
+\hlcom{# los tama<U+00F1>os de las muestras,}
 \hlstd{n1} \hlkwb{=} \hlnum{59}
 \hlstd{n2} \hlkwb{=} \hlnum{64}
 
@@ -1074,7 +1074,7 @@ Como puedes ver y salvo la pequeña discrepancia numérica, confirmamos  la conc
 ## [1] 2.111
 \end{verbatim}
 \begin{alltt}
- \hlcom{# ¿Que tipo de contraste estamos haciendo?}
+ \hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
  \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2}
      \hlstd{TipoContraste} \hlkwb{=} \hlnum{2}
  \hlcom{#Nivel de significacion}
@@ -1242,7 +1242,7 @@ Ten en cuenta además la notación $H_a = \{\mu_2 - \mu_3\}$ que se ha usado en 
 ## [1] 0.174
 \end{verbatim}
 \begin{alltt}
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
 \hlcom{# Escribe:    1 si la HIP. ALTERNATIVA es mu1 > mu2,}
 \hlcom{#             2 si es mu1 < mu2,}
 \hlcom{#             3 si es mu1 distinto de mu2}
@@ -1343,19 +1343,19 @@ Para el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasIguales}
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-09.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular}
 \hlcom{# un intervalo de confianza para la}
 \hlcom{# DIFERENCIA DE MEDIAS DE 2 POBLACIONES NORMALES}
 \hlcom{# Es el caso de}
-\hlcom{# MUESTRAS PEQUEÑAS}
+\hlcom{# MUESTRAS PEQUE<U+00D1>AS}
 \hlcom{# bajo la hipotesis de}
 \hlcom{# VARIANZAS IGUALES.}
 \hlcom{##############################################################}
 
-\hlcom{# Introducimos los tamaños de las muestras:}
+\hlcom{# Introducimos los tama<U+00F1>os de las muestras:}
 \hlstd{n1} \hlkwb{=} \hlnum{10}
 \hlstd{n2} \hlkwb{=} \hlnum{10}
 \hlcom{# Medias muestrales:}
@@ -1414,19 +1414,19 @@ Para el Ejemplo \ref{curso-cap09:ejem:ContrasteDiferenciaMediasVarianzasDistinta
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-09.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular}
 \hlcom{# un intervalo de confianza para la}
 \hlcom{# DIFERENCIA DE MEDIAS DE 2 POBLACIONES NORMALES}
 \hlcom{# Es el caso de}
-\hlcom{# MUESTRAS PEQUEÑAS}
+\hlcom{# MUESTRAS PEQUE<U+00D1>AS}
 \hlcom{# bajo la hipotesis de}
 \hlcom{# VARIANZAS IGUALES.}
 \hlcom{##############################################################}
 
-\hlcom{# Introducimos los tamaños de las muestras:}
+\hlcom{# Introducimos los tama<U+00F1>os de las muestras:}
 \hlstd{n1} \hlkwb{=} \hlnum{12}
 \hlstd{n2} \hlkwb{=} \hlnum{12}
 \hlcom{# Medias muestrales:}
@@ -1818,7 +1818,7 @@ Y ahora aplicamos así la función:
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la función "{}z.test"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in z.test(x = XA, y = XB, alternative = "{}two.sided"{}, sigma.x = sd(XA), : You must specify a Standard Deviation of the population}}\end{kframe}
 \end{knitrout}
 Fíjate que además debemos incluir las cuasidesviaciones típicas (calculadas con {\tt sd}), porque de lo contrario se produce un error, ya que la función no las calcula por defecto.
 
@@ -2014,13 +2014,13 @@ Solución en la página \pageref{tut09:ejercicio09:sol}.
 \begin{alltt}
     \hlcom{####################################################}
     \hlcom{# www.postdata-statistics.com}
-    \hlcom{# POSTDATA. Introducción a la Estadísitica}
+    \hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
     \hlcom{# Tutorial-09.}
     \hlcom{#}
     \hlcom{# Fichero de instrucciones R para calcular}
     \hlcom{# un intervalo de confianza para la}
     \hlcom{# DIFERENCIA DE MEDIAS DE 2 POBLACIONES NORMALES}
-    \hlcom{# usando la distribución Z}
+    \hlcom{# usando la distribuci<U+00F3>n Z}
     \hlcom{# Es el caso de MUESTRAS GRANDES o (poco frecuente)}
     \hlcom{# de varianzas poblacionales conocidas.}
     \hlcom{##############################################################}
@@ -2209,7 +2209,7 @@ Solución en la página \pageref{tut09:ejercicio09:sol}.
 \begin{alltt}
    \hlcom{#(sigma2 = )}
 
-  \hlcom{# ¿Que tipo de contraste estamos haciendo?}
+  \hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
   \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2,}
   \hlcom{#         2 si es mu1 < mu2,}
   \hlcom{#         3 si es mu1 distinto de mu2}
@@ -2355,7 +2355,7 @@ Vamos a recordar primero el contraste con $Z$:
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la función "{}z.test"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in z.test(x = XA, y = XB, alternative = "{}two.sided"{}, sigma.x = sd(XA), : You must specify a Standard Deviation of the population}}\end{kframe}
 \end{knitrout}
 Y ahora veamos las tres posibilidades con $t$:
 \begin{knitrout}
@@ -2500,7 +2500,7 @@ Este es el código de la plantilla de R con los datos del ejercicio:
 \begin{alltt}
       \hlcom{#(sigma2 = )}
 
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
 \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2,}
 \hlcom{#         2 si es mu1 < mu2,}
 \hlcom{#         3 si es mu1 distinto de mu2}
@@ -2619,7 +2619,7 @@ con los datos del ejercicio:
 ## [1] 3.9
 \end{verbatim}
 \begin{alltt}
- \hlcom{# ¿Que tipo de contraste estamos haciendo?}
+ \hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
  \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es mu1 > mu2, 2 si es mu1 < mu2, 3 si es mu1 distinto de mu2}
    \hlstd{TipoContraste} \hlkwb{=} \hlnum{1}
  \hlcom{#Nivel de significacion}

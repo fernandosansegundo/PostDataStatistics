@@ -1021,7 +1021,7 @@ Naturalmente, si intentas  realizar operaciones numéricas con ese vector, como 
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in pacientesPorGenero\textasciicircum{}2: argumento no-numérico para operador binario}}\begin{alltt}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in pacientesPorGenero\textasciicircum{}2: argumento no-num'erico para operador binario}}\begin{alltt}
 \hlkwd{mean}\hlstd{(pacientesPorGenero)}
 \end{alltt}
 
@@ -1393,7 +1393,7 @@ Personalmente, encuentro este último punto especialmente confuso y en su moment
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in labels(estadoCarreteras) = c("{}atasco"{}, "{}moderado"{}, "{}fluido"{}): no se pudo encontrar la función "{}labels<-"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in labels(estadoCarreteras) = c("{}atasco"{}, "{}moderado"{}, "{}fluido"{}): no se pudo encontrar la funci'on "{}labels<-"{}}}\end{kframe}
 \end{knitrout}
 Como hemos dicho, todo este pequeño lío de {\tt levels} y {\tt labels} te costará algo de trabajo al principio (y no es, desde luego, uno de los aspectos mejor resueltos de R) pero con la experiencia irás comprendiéndolo mejor.
 
@@ -1434,7 +1434,7 @@ Como se ve, se obtiene un resumen por separado para cada uno de los campos del {
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2.60    3.11    3.18    3.21    3.34    3.83
+##    2.60    3.11    3.18    3.21    3.33    3.83
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1454,7 +1454,7 @@ Esto funciona, pero como se puede apreciar, trabajar así es engorroso. Para obt
 ## 
 ## $T2
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2.60    3.11    3.18    3.21    3.34    3.83 
+##    2.60    3.11    3.18    3.21    3.33    3.83 
 ## 
 ## $T3
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1462,11 +1462,11 @@ Esto funciona, pero como se puede apreciar, trabajar así es engorroso. Para obt
 ## 
 ## $T4
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    4.40    4.60    4.97    5.06    5.40    6.06 
+##    4.40    4.61    4.97    5.06    5.40    6.06 
 ## 
 ## $T5
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    4.56    4.94    5.02    5.04    5.18    5.39
+##    4.56    4.93    5.01    5.04    5.18    5.39
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1638,7 +1638,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-08.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular}
@@ -1787,7 +1787,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-08.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular un contraste de}
@@ -1809,7 +1809,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 ## [1] 105
 \end{verbatim}
 \begin{alltt}
-\hlcom{# Proporcion muestral (¡es una fraccion! Numero de exitos/n)}
+\hlcom{# Proporcion muestral (<U+00A1>es una fraccion! Numero de exitos/n)}
     \hlstd{(pMuestral}\hlkwb{=} \hlnum{39} \hlopt{/} \hlnum{105}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
@@ -1823,7 +1823,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 ## [1] 0.35
 \end{verbatim}
 \begin{alltt}
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
     \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es p > p0, 2 si es p < p0, 3 si es p distinto de p0}
     \hlstd{TipoContraste} \hlkwb{=} \hlnum{1}
 \hlcom{#Nivel de significacion}
@@ -1834,7 +1834,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 \end{verbatim}
 \begin{alltt}
 \hlcom{###############################################}
-\hlcom{# NO CAMBIES NADA DE AQUÍ PARA ABAJO}
+\hlcom{# NO CAMBIES NADA DE AQU<U+00CD> PARA ABAJO}
 \hlcom{###############################################}
 
 \hlcom{# Calculo de alfa}
@@ -1870,7 +1870,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
       \hlstd{\}}
       \hlkwd{return}\hlstd{(}\hlkwd{paste}\hlstd{(}\hlstr{"El p-Valor es "}\hlstd{,pV,}\hlkwc{sep}\hlstd{=}\hlstr{""}\hlstd{,}\hlkwc{collapse}\hlstd{=}\hlstr{""}\hlstd{))}
     \hlstd{\}}
-\hlcom{# Funcion para el calculo del límite de la región de rechazo}
+\hlcom{# Funcion para el calculo del l<U+00ED>mite de la regi<U+00F3>n de rechazo}
     \hlstd{RegionRechazo}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{alfa}\hlstd{,}\hlkwc{tipoCon}\hlstd{)\{}
       \hlkwa{if}\hlstd{(tipoCon}\hlopt{==}\hlnum{1}\hlstd{)\{}
         \hlstd{(regionRech}\hlkwb{=}\hlkwd{paste}\hlstd{(}\hlstr{"valores del Estadistico mayores que "}\hlstd{,}\hlkwd{qnorm}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{alfa)) )}
@@ -1915,7 +1915,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 \begin{alltt}
 \hlcom{####################################################}
 \hlcom{# www.postdata-statistics.com}
-\hlcom{# POSTDATA. Introducción a la Estadísitica}
+\hlcom{# POSTDATA. Introducci<U+00F3>n a la Estad<U+00ED>sitica}
 \hlcom{# Tutorial-08.}
 \hlcom{#}
 \hlcom{# Fichero de instrucciones R para calcular un contraste de}
@@ -1937,7 +1937,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 ## [1] 2452
 \end{verbatim}
 \begin{alltt}
-\hlcom{# Proporcion muestral (¡es una fraccion! Numero de exitos/n)}
+\hlcom{# Proporcion muestral (<U+00A1>es una fraccion! Numero de exitos/n)}
     \hlstd{(pMuestral}\hlkwb{=} \hlnum{568} \hlopt{/} \hlnum{2452}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
@@ -1951,7 +1951,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 ## [1] 0.25
 \end{verbatim}
 \begin{alltt}
-\hlcom{# ¿Que tipo de contraste estamos haciendo?}
+\hlcom{# <U+00BF>Que tipo de contraste estamos haciendo?}
     \hlcom{# Escribe 1 si la HIP. ALTERNATIVA es p > p0, 2 si es p < p0, 3 si es p distinto de p0}
     \hlstd{TipoContraste} \hlkwb{=} \hlnum{2}
 \hlcom{#Nivel de significacion}
@@ -1962,7 +1962,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
 \end{verbatim}
 \begin{alltt}
 \hlcom{###############################################}
-\hlcom{# NO CAMBIES NADA DE AQUÍ PARA ABAJO}
+\hlcom{# NO CAMBIES NADA DE AQU<U+00CD> PARA ABAJO}
 \hlcom{###############################################}
 
 \hlcom{# Calculo de alfa}
@@ -1998,7 +1998,7 @@ Ahora, si pruebas a ejecutar de nuevo {\tt head(factorEdad)}, verás el efecto q
       \hlstd{\}}
       \hlkwd{return}\hlstd{(}\hlkwd{paste}\hlstd{(}\hlstr{"El p-Valor es "}\hlstd{,pV,}\hlkwc{sep}\hlstd{=}\hlstr{""}\hlstd{,}\hlkwc{collapse}\hlstd{=}\hlstr{""}\hlstd{))}
     \hlstd{\}}
-\hlcom{# Funcion para el calculo del límite de la región de rechazo}
+\hlcom{# Funcion para el calculo del l<U+00ED>mite de la regi<U+00F3>n de rechazo}
     \hlstd{RegionRechazo}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{alfa}\hlstd{,}\hlkwc{tipoCon}\hlstd{)\{}
       \hlkwa{if}\hlstd{(tipoCon}\hlopt{==}\hlnum{1}\hlstd{)\{}
         \hlstd{(regionRech}\hlkwb{=}\hlkwd{paste}\hlstd{(}\hlstr{"valores del Estadistico mayores que "}\hlstd{,}\hlkwd{qnorm}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{alfa)) )}

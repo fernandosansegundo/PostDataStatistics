@@ -236,10 +236,10 @@ En nuestro caso las líneas de lectura del fichero quedarían así:
 \hlcom{#Leemos los datos del fichero}
 \hlstd{datos} \hlkwb{=} \hlkwd{read.table}\hlstd{(}\hlkwc{file}\hlstd{=}\hlstr{"../datos/Cap11-frailecillos.csv"}\hlstd{,} \hlkwc{sep}\hlstd{=}\hlstr{" "}\hlstd{,}\hlkwc{header}\hlstd{=T)}
 
-\hlcom{# Descomenta esta l<U+00ED>nea si quieres comprobar que la lectura ha sido correcta.}
+\hlcom{# Descomenta esta línea si quieres comprobar que la lectura ha sido correcta.}
 \hlcom{# View(datos)}
 
-\hlcom{# IMPORTANTE: introduce el n<U+00FA>mero de columna ( 1 o 2 ) que contiene el factor (tratamiento).}
+\hlcom{# IMPORTANTE: introduce el número de columna ( 1 o 2 ) que contiene el factor (tratamiento).}
 \hlstd{colFactor} \hlkwb{=} \hlnum{1}
 \end{alltt}
 \end{kframe}
@@ -259,7 +259,7 @@ A continuación, guardamos en la variable {\tt niveles} los {\em nombres} o {\em
 \begin{alltt}
 \hlcom{#########################################}
 \hlcom{# ANALISIS DE LOS DATOS}
-\hlcom{# No es necesario cambiar nada de aqu<U+00ED> para abajo.}
+\hlcom{# No es necesario cambiar nada de aquí para abajo.}
 \hlcom{#########################################}
 
 \hlcom{# Renombramos las columnas del data.frame}
@@ -282,7 +282,7 @@ A continuación, guardamos en la variable {\tt niveles} los {\em nombres} o {\em
 ## [1] "Aliron"       "Elevantolin"  "Plumiprofeno" "Vuelagra"
 \end{verbatim}
 \begin{alltt}
-\hlcom{# El n<U+00FA>mero total de observaciones.}
+\hlcom{# El número total de observaciones.}
 
 \hlstd{(N}\hlkwb{=}\hlkwd{nrow}\hlstd{(datos))}
 \end{alltt}
@@ -290,7 +290,7 @@ A continuación, guardamos en la variable {\tt niveles} los {\em nombres} o {\em
 ## [1] 400
 \end{verbatim}
 \begin{alltt}
-\hlcom{# Calculamos el n<U+00FA>mero de niveles del factor}
+\hlcom{# Calculamos el número de niveles del factor}
 
 \hlstd{(k}\hlkwb{=}\hlkwd{length}\hlstd{(niveles))}
 \end{alltt}
@@ -416,7 +416,7 @@ En este caso, el nivel {\tt Plumiprofeno} es, en la ordenación que R ha hecho, 
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# Para calcular la suma residual vamos a crear un vector que nos dice,}
-\hlcom{# para cada fila, cual es el n<U+00FA>mero de nivel del factor que le corresponde.}
+\hlcom{# para cada fila, cual es el número de nivel del factor que le corresponde.}
 
 \hlstd{numeroNivel} \hlkwb{=} \hlkwd{as.numeric}\hlstd{(datos}\hlopt{$}\hlstd{Tratamiento)}
 \end{alltt}
@@ -761,8 +761,8 @@ Como sabemos por nuestra experiencia en el modelo de regresión lineal el análi
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{#########################################}
-\hlcom{# Gr<U+00E1>ficos para el an<U+00E1>lisis mediante}
-\hlcom{# residuos de las hip<U+00F3>tesis del modelo.}
+\hlcom{# Gráficos para el análisis mediante}
+\hlcom{# residuos de las hipótesis del modelo.}
 \hlcom{#########################################}
 
 \hlstd{datos.aov} \hlkwb{=} \hlkwd{aov}\hlstd{(datos}\hlopt{$}\hlstd{Respuesta} \hlopt{~} \hlstd{datos}\hlopt{$}\hlstd{Tratamiento, datos)}

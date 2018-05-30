@@ -2316,7 +2316,7 @@ La comprobación es:
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in A * B: arreglos de dimensón no compatibles}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in A * B: arreglos de dimens'on no compatibles}}\end{kframe}
 \end{knitrout}
 
 
@@ -2631,14 +2631,14 @@ Código R para comprobar experimentalmente el resultado:
 \hlcom{#set.seed(2014)}
 \hlstd{n} \hlkwb{=} \hlnum{10000}
 
-\hlcom{# Creo una matriz vacía de n filas y tres columnas}
+\hlcom{# Creo una matriz vac<U+00ED>a de n filas y tres columnas}
 \hlstd{ensayos} \hlkwb{=} \hlkwd{matrix}\hlstd{(}\hlkwc{nrow} \hlstd{= n,} \hlkwc{ncol} \hlstd{=} \hlnum{3}\hlstd{)}
 
-\hlcom{# Ahora para cada número i desde 1 hasta n,}
+\hlcom{# Ahora para cada n<U+00FA>mero i desde 1 hasta n,}
 \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
-\hlcom{# hago una elección al azar de tres lamparas ¡¡sin reemplazamiento!!:}
+\hlcom{# hago una elecci<U+00F3>n al azar de tres lamparas <U+00A1><U+00A1>sin reemplazamiento!!:}
 \hlstd{tresLamparas} \hlkwb{=} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{15}\hlstd{,} \hlnum{3}\hlstd{)}
-\hlcom{# y la guardo en la fila número i de la matriz}
+\hlcom{# y la guardo en la fila n<U+00FA>mero i de la matriz}
 \hlstd{ensayos[i, ]} \hlkwb{=} \hlstd{tresLamparas}
 \hlstd{\}}
 \hlcom{# La matriz ensayos contiene n repeticiones del experimento}
@@ -2815,7 +2815,7 @@ $$P(F_i|D) = \frac{P(F_i)P(D|F_i)}{P(F_1)P(D|F_1)+P(F_2)P(D|F_2)+P(F_3)P(D|F_3)}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{# usar notación vectorial para reaprovechar }
+\hlcom{# usar notaci<U+00F3>n vectorial para reaprovechar }
 \hlcom{# las expresiones}
 \hlstd{Prob_fabr} \hlkwb{=} \hlkwd{c}\hlstd{(}\hlnum{500}\hlopt{/}\hlnum{3500}\hlstd{,}\hlnum{1000}\hlopt{/}\hlnum{3500}\hlstd{,} \hlnum{2000}\hlopt{/}\hlnum{3500}\hlstd{)}
 \hlstd{Prob_defecto_x_fabr} \hlkwb{=} \hlkwd{c}\hlstd{(}\hlnum{0.005}\hlstd{,}\hlnum{0.008}\hlstd{,} \hlnum{0.01}\hlstd{)}
@@ -3072,18 +3072,18 @@ Hay que ir probando con con distintos valores de $n$ hasta dar con el primero pa
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{# probamos con, aproximadamente 366/2 días}
+\hlcom{# probamos con, aproximadamente 366/2 d<U+00ED>as}
 \hlstd{m} \hlkwb{=}\hlnum{180}
 \hlstd{n} \hlkwb{=} \hlnum{1}\hlopt{:}\hlstd{m}
-\hlcom{# si no sabes qué pace la función prod(), usa el tabulador!}
+\hlcom{# si no sabes qu<U+00E9> pace la funci<U+00F3>n prod(), usa el tabulador!}
 \hlkwd{prod}\hlstd{((}\hlnum{366}\hlopt{-}\hlstd{n)}\hlopt{/}\hlnum{366}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 2.28e-24
 \end{verbatim}
 \begin{alltt}
-\hlcom{# elnúmero debe ser menor. }
-\hlcom{# probamos con (apróx.) el punto medio del rango de días 2-180}
+\hlcom{# eln<U+00FA>mero debe ser menor. }
+\hlcom{# probamos con (apr<U+00F3>x.) el punto medio del rango de d<U+00ED>as 2-180}
 \hlstd{m} \hlkwb{=}\hlnum{90}
 \hlstd{n} \hlkwb{=} \hlnum{1}\hlopt{:}\hlstd{m}
 \hlkwd{prod}\hlstd{((}\hlnum{366}\hlopt{-}\hlstd{n)}\hlopt{/}\hlnum{366}\hlstd{)}
@@ -3092,7 +3092,7 @@ Hay que ir probando con con distintos valores de $n$ hasta dar con el primero pa
 ## [1] 0.00000481
 \end{verbatim}
 \begin{alltt}
-\hlcom{# y así sucesivamente, hasta aislar el valor deseado}
+\hlcom{# y as<U+00ED> sucesivamente, hasta aislar el valor deseado}
 \hlstd{m} \hlkwb{=}\hlnum{35}
 \hlstd{n} \hlkwb{=} \hlnum{1}\hlopt{:}\hlstd{m}
 \hlkwd{prod}\hlstd{((}\hlnum{366}\hlopt{-}\hlstd{n)}\hlopt{/}\hlnum{366}\hlstd{)}

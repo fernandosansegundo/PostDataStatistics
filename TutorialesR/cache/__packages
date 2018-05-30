@@ -1,3 +1,12 @@
 base
 knitr
 gtools
+MASS
+TeachingDemos
+pracma
+lattice
+ggplot2
+caret
+gplots
+ROCR
+ResourceSelection

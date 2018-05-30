@@ -1878,7 +1878,9 @@ Recuerda que antes de usar la librería {\tt asbio} debes instalarla (en la Secc
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: tcltk}}\end{kframe}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: tcltk}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: comando ejecutado ''/usr/bin/otool' -L '/Library/Frameworks/R.framework/Resources/library/tcltk/libs//tcltk.so'' tiene estatus 1}}\end{kframe}
 \end{knitrout}
 La librería {\tt asbio} incluye muchas funciones, pero las tres que más nos interesan en este momento son
 {\tt ci.mu.z},   {\tt ci.mu.t} y {\tt  ci.sigma}. Todas ellas permiten calcular intervalos de confianza ({\tt ci} proviene del inglés {\em confidence interval}). Concretamente:
@@ -2124,7 +2126,7 @@ En R el código sería este:
 \hlstd{mediasRemuestras} \hlkwb{=} \hlkwd{numeric}\hlstd{(}\hlnum{10000}\hlstd{)} \hlcom{# este vector almacenara las medias de las remuestras}
 
 \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{numRemuestras)\{}
-  \hlcom{# muestras de tamaño tamannoRemuestra y con reemplazamiento}
+  \hlcom{# muestras de tama<U+00F1>o tamannoRemuestra y con reemplazamiento}
   \hlstd{remuestra} \hlkwb{=} \hlkwd{sample}\hlstd{(muestra,} \hlkwc{size} \hlstd{= tamannoRemuestra,} \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{)}
   \hlstd{mediasRemuestras[i]} \hlkwb{=} \hlkwd{mean}\hlstd{(remuestra)}
 \hlstd{\}}
@@ -3124,7 +3126,7 @@ Para el segundo apartado, el código del fichero con los datos de ese apartado e
 \hlcom{# Introducimos el valor de la desviacion tipica muestral,}
 \hlstd{s} \hlkwb{=} \hlnum{2.81}
 
-\hlcom{# el tamaño de la muestra,}
+\hlcom{# el tama<U+00F1>o de la muestra,}
 \hlstd{n} \hlkwb{=} \hlnum{87}
 
 \hlcom{# y el nivel de confianza deseado.}

@@ -1031,40 +1031,15 @@ Y podemos usar la librería {\tt lmodel2} para obtener las rectas de regresión 
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(lmodel2)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(lmodel2): there is no package called 'lmodel2'}}\begin{alltt}
 \hlstd{(lm2XY} \hlkwb{=} \hlkwd{lmodel2}\hlstd{(y}\hlopt{~}\hlstd{x,}\hlkwc{range.y}\hlstd{=}\hlstr{"relative"}\hlstd{,} \hlkwc{range.x}\hlstd{=}\hlstr{"relative"} \hlstd{))}
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# No permutation test will be performed}}\begin{verbatim}
-## 
-## Model II regression
-## 
-## Call: lmodel2(formula = y ~ x, range.y = "relative", range.x =
-## "relative")
-## 
-## n = 10   r = 0.49461   r-square = 0.24464 
-## Parametric P-values:   2-tailed = 0.14614    1-tailed = 0.073069 
-## Angle between the two OLS regression lines = 37.249 degrees
-## 
-## Regression results
-##   Method Intercept   Slope Angle (degrees) P-perm (1-tailed)
-## 1    OLS   2.50782 0.45136          24.293                NA
-## 2     MA   0.20139 0.83175          39.752                NA
-## 3    SMA  -0.28854 0.91256          42.382                NA
-## 4    RMA  -0.72097 0.98387          44.534                NA
-## 
-## Confidence intervals
-##   Method 2.5%-Intercept 97.5%-Intercept 2.5%-Slope 97.5%-Slope
-## 1    OLS        -1.7726          6.7883  -0.195259       1.098
-## 2     MA       -58.0294          5.7774  -0.087878      10.436
-## 3    SMA        -5.4575          2.3839   0.471804       1.765
-## 4    RMA        72.5505          4.8711   0.061598     -11.101
-## 
-## Eigenvalues: 10.785 3.5859 
-## 
-## H statistic used for computing C.I. of MA: 0.49606
-\end{verbatim}
-\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}lmodel2"{}}}\end{kframe}
 \end{knitrout}
 
 Y una vez obtenidos los modelos vamos a compararlos gráficamente para constatar que, al menos en este ejemplo, los resultado son claramente distintos:
@@ -1074,28 +1049,34 @@ Y una vez obtenidos los modelos vamos a compararlos gráficamente para constatar
 \hlkwd{plot}\hlstd{(x,y,} \hlkwc{pch}\hlstd{=}\hlnum{20}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{1.5}\hlstd{)}
 \hlstd{(MinCuad} \hlkwb{=} \hlstd{lm2XY}\hlopt{$}\hlstd{regression.results[}\hlnum{1}\hlstd{, ])}
 \end{alltt}
-\begin{verbatim}
-##   Method Intercept   Slope Angle (degrees) P-perm (1-tailed)
-## 1    OLS    2.5078 0.45136          24.293                NA
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'lm2XY' no encontrado}}\begin{alltt}
 \hlkwd{abline}\hlstd{(MinCuad}\hlopt{$}\hlstd{Intercept, MinCuad}\hlopt{$}\hlstd{Slope,} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{2}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in abline(MinCuad\$Intercept, MinCuad\$Slope, col = "{}red"{}, lwd = 2, : objeto 'MinCuad' no encontrado}}\begin{alltt}
 \hlstd{(MAR} \hlkwb{=} \hlstd{lm2XY}\hlopt{$}\hlstd{regression.results[}\hlnum{2}\hlstd{, ])}
 \end{alltt}
-\begin{verbatim}
-##   Method Intercept   Slope Angle (degrees) P-perm (1-tailed)
-## 2     MA   0.20139 0.83175          39.752                NA
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'lm2XY' no encontrado}}\begin{alltt}
 \hlkwd{abline}\hlstd{(MAR}\hlopt{$}\hlstd{Intercept, MAR}\hlopt{$}\hlstd{Slope,} \hlkwc{col}\hlstd{=}\hlstr{"darkgreen"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{2}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{4}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in abline(MAR\$Intercept, MAR\$Slope, col = "{}darkgreen"{}, lwd = 2, : objeto 'MAR' no encontrado}}\begin{alltt}
 \hlstd{(SMA} \hlkwb{=} \hlstd{lm2XY}\hlopt{$}\hlstd{regression.results[}\hlnum{3}\hlstd{, ])}
 \end{alltt}
-\begin{verbatim}
-##   Method Intercept   Slope Angle (degrees) P-perm (1-tailed)
-## 3    SMA  -0.28854 0.91256          42.382                NA
-\end{verbatim}
-\begin{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'lm2XY' no encontrado}}\begin{alltt}
 \hlkwd{abline}\hlstd{(SMA}\hlopt{$}\hlstd{Intercept, SMA}\hlopt{$}\hlstd{Slope,} \hlkwc{col}\hlstd{=}\hlstr{"blue"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{2}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{2}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in abline(SMA\$Intercept, SMA\$Slope, col = "{}blue"{}, lwd = 2, lty = 2): objeto 'SMA' no encontrado}}\begin{alltt}
 \hlstd{(lmXY} \hlkwb{=} \hlkwd{lm}\hlstd{(x}\hlopt{~}\hlstd{y))}
 \end{alltt}
 \begin{verbatim}
@@ -1315,15 +1296,33 @@ Ya hemos dicho, en esa sección, que aunque estos análisis gráficos son muy ú
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(gvlma)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(gvlma): there is no package called 'gvlma'}}\begin{alltt}
 \hlkwd{gvlma}\hlstd{(lmXY)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}gvlma"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Coefficients:
+## (Intercept)            x  
+##       0.983       -0.481  
+## 
+## 
+## ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+## USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+## Level of Significance =  0.05 
+## 
+## Call:
+##  gvlma(x = lmXY) 
+## 
+##                    Value p-value                Decision
+## Global Stat        3.686   0.450 Assumptions acceptable.
+## Skewness           0.339   0.561 Assumptions acceptable.
+## Kurtosis           0.531   0.466 Assumptions acceptable.
+## Link Function      2.156   0.142 Assumptions acceptable.
+## Heteroscedasticity 0.661   0.416 Assumptions acceptable.
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Fíjate, en particular, en que también se ha comprobado la hipótesis de homocedasticidad (homogeneidad de las varianzas). Para comprobar esta condición, pero usando métodos gráficos, se acude a menudo a representar los residuos estudentizados frente a los valores que predice el modelo. Ese gráfico se obtiene simplemente haciendo:
 \begin{knitrout}
@@ -1398,16 +1397,6 @@ Fíjate en que, en este ejemplo, aunque ese punto es influyente su residuo no es
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(car)}
-\end{alltt}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'car' was built under R version 3.3.2}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# \\\#\# Attaching package: 'car'}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following objects are masked from 'package:BSDA':\\\#\# \\\#\#\ \ \ \  Vocab, Wool}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# The following object is masked from 'package:gtools':\\\#\# \\\#\#\ \ \ \  logit}}\begin{alltt}
 \hlkwd{outlierTest}\hlstd{(lmXY)}
 \end{alltt}
 \begin{verbatim}
@@ -1790,9 +1779,31 @@ Si lo que queremos es un diagnóstico sencillo de este modelo de regresión pode
 \begin{alltt}
 \hlkwd{gvlma}\hlstd{(lmA1)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): no se pudo encontrar la funci'on "{}gvlma"{}}}\end{kframe}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = anscombe[, 5] ~ anscombe[, 1])
+## 
+## Coefficients:
+##   (Intercept)  anscombe[, 1]  
+##           3.0            0.5  
+## 
+## 
+## ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+## USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+## Level of Significance =  0.05 
+## 
+## Call:
+##  gvlma(x = lmA1) 
+## 
+##                     Value p-value                Decision
+## Global Stat        1.2476   0.870 Assumptions acceptable.
+## Skewness           0.0274   0.869 Assumptions acceptable.
+## Kurtosis           0.2621   0.609 Assumptions acceptable.
+## Link Function      0.6856   0.408 Assumptions acceptable.
+## Heteroscedasticity 0.2725   0.602 Assumptions acceptable.
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 Te proponemos unos ejercicios adicionales para completar el estudio del {\em cuarteto de Anscombe}:
 \begin{ejercicio}

@@ -1813,7 +1813,7 @@ Como hemos dicho, si se trata de aplicar una estructura condicional {\tt if/else
 \end{alltt}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if (x > 4) \{: la condición tiene longitud > 1 y sólo el primer elemento será usado}}\begin{verbatim}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if (x > 4) \{: la condici'on tiene longitud > 1 y s'olo el primer elemento ser'a usado}}\begin{verbatim}
 ## [1] 0
 \end{verbatim}
 \end{kframe}
@@ -3008,9 +3008,9 @@ sigma2 := Suma[(k - mu)^2 * NúmeroCombinatorio[3, k]*(1/5)^k*(4/5)^(3-k), k, 0,
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{set.seed}\hlstd{(}\hlnum{2014}\hlstd{)}
-\hlcom{# n es el tamaño de la muestra}
+\hlcom{# n es el tama<U+00F1>o de la muestra}
 \hlstd{n} \hlkwb{=} \hlnum{50000}
-\hlcom{# Los parámetros de la binomial son}
+\hlcom{# Los par<U+00E1>metros de la binomial son}
 \hlstd{N} \hlkwb{=} \hlnum{3}
 \hlstd{p} \hlkwb{=} \hlnum{1}\hlopt{/}\hlnum{5}
 \hlcom{# usamos rbinom}
@@ -3492,7 +3492,7 @@ Y para comprobar el resultado puedes hacer:
 \begin{alltt}
 \hlkwd{set.seed}\hlstd{(}\hlnum{2014}\hlstd{)}
 
-\hlcom{# Empezamos dibujando un cuadrado de lado 2 y el círculo de radio 1}
+\hlcom{# Empezamos dibujando un cuadrado de lado 2 y el c<U+00ED>rculo de radio 1}
 \hlcom{# en su interior.}
 
 \hlkwd{plot}\hlstd{(}\hlkwd{c}\hlstd{(}\hlkwd{seq}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{,} \hlkwc{length.out} \hlstd{=} \hlnum{1000}\hlstd{),} \hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1000}\hlstd{),} \hlkwd{seq}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{,} \hlkwc{length.out} \hlstd{=} \hlnum{1000}\hlstd{),} \hlkwd{rep}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1000}\hlstd{))}
@@ -3534,14 +3534,14 @@ Y para comprobar el resultado puedes hacer:
 
 \hlkwd{points}\hlstd{(x,y,} \hlkwc{cex}\hlstd{=}\hlnum{1.8}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"blue"}\hlstd{,} \hlkwc{pch}\hlstd{=}\hlstr{"+"}\hlstd{)}
 
-\hlcom{# Y ahora me quedo sólo con los del círculo (cruces negras)}
+\hlcom{# Y ahora me quedo s<U+00F3>lo con los del c<U+00ED>rculo (cruces negras)}
 \hlstd{enCirculo} \hlkwb{=} \hlstd{( x}\hlopt{^}\hlnum{2} \hlopt{+} \hlstd{y}\hlopt{^}\hlnum{2} \hlopt{<} \hlnum{1}\hlstd{)}
 
 \hlstd{xC} \hlkwb{=} \hlstd{x[enCirculo]}
 \hlstd{yC} \hlkwb{=} \hlstd{y[enCirculo]}
 \hlkwd{points}\hlstd{(xC,yC,} \hlkwc{pch} \hlstd{=} \hlstr{"+"}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{3}\hlstd{)}
 
-\hlcom{# El suceso A lo forman los puntos cuya coordenada X está ente 0 y 1/2.}
+\hlcom{# El suceso A lo forman los puntos cuya coordenada X est<U+00E1> ente 0 y 1/2.}
 \hlstd{A} \hlkwb{=} \hlstd{(}\hlnum{0} \hlopt{<} \hlstd{xC)} \hlopt{&} \hlstd{(xC} \hlopt{<} \hlnum{1}\hlopt{/}\hlnum{2}\hlstd{)}
 \hlstd{xA} \hlkwb{=}\hlstd{xC[A]}
 \hlstd{yA} \hlkwb{=}\hlstd{yC[A]}
@@ -3551,20 +3551,20 @@ Y para comprobar el resultado puedes hacer:
 ## [1] 0.25 0.10 0.20 0.20 0.30 0.35
 \end{verbatim}
 \begin{alltt}
-\hlcom{# Señalamos esos puntos rodeándolos con un círculo rojo.}
+\hlcom{# Se<U+00F1>alamos esos puntos rode<U+00E1>ndolos con un c<U+00ED>rculo rojo.}
 \hlkwd{points}\hlstd{(xA, yA,} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{pch}\hlstd{=}\hlstr{"O"}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{4}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/5ej20sol_5a-1} 
 \begin{kframe}\begin{alltt}
-\hlcom{# Finalmente, la estimación de la probabilidad es:}
+\hlcom{# Finalmente, la estimaci<U+00F3>n de la probabilidad es:}
 \hlstd{(pA} \hlkwb{=} \hlkwd{sum}\hlstd{(A)} \hlopt{/} \hlkwd{sum}\hlstd{(enCirculo))}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.375
 \end{verbatim}
 \begin{alltt}
-\hlcom{# Y el área de esa parte del círculo es:}
+\hlcom{# Y el <U+00E1>rea de esa parte del c<U+00ED>rculo es:}
 \hlstd{pi} \hlopt{*} \hlstd{pA}
 \end{alltt}
 \begin{verbatim}
@@ -4116,7 +4116,7 @@ Al tratar de evaluar {\tt f} sobre el vector {\tt 1:100} se obtiene una adverten
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
 
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if ((x > 0) \& (x < 1)) \{: la condición tiene longitud > 1 y sólo el primer elemento será usado}}\begin{verbatim}
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in if ((x > 0) \& (x < 1)) \{: la condici'on tiene longitud > 1 y s'olo el primer elemento ser'a usado}}\begin{verbatim}
 ## [1] 0
 \end{verbatim}
 \end{kframe}
@@ -4249,7 +4249,7 @@ aunque las dos formas producen el mismo resultado.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{rm}\hlstd{(}\hlkwc{list}\hlstd{=}\hlkwd{ls}\hlstd{())}
-\hlcom{# n es el número de veces que vamos a repetir el proceso.}
+\hlcom{# n es el n<U+00FA>mero de veces que vamos a repetir el proceso.}
 \hlstd{n} \hlkwb{=} \hlnum{50000}
 \hlcom{# Creamos el vector en el que se guardaran los resultados.}
 \hlstd{resultados} \hlkwb{=} \hlkwd{integer}\hlstd{(n)}
@@ -4259,7 +4259,7 @@ aunque las dos formas producen el mismo resultado.
 
 \hlcom{# El bucle for se encarga de repetir el proceso.}
 \hlkwa{for}\hlstd{(k} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
-    \hlcom{# Se usa la urna que corresponde en esta iteración.}
+    \hlcom{# Se usa la urna que corresponde en esta iteraci<U+00F3>n.}
     \hlkwa{if}\hlstd{(urna} \hlopt{==} \hlstr{"b"}\hlstd{)\{}
         \hlcom{#Se usa la urna blanca.}
         \hlstd{bola} \hlkwb{=} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{6}\hlstd{,} \hlnum{1}\hlstd{)}
@@ -4269,7 +4269,7 @@ aunque las dos formas producen el mismo resultado.
     \hlstd{\}}
     \hlcom{# Se guarda el resultado en el vector.}
     \hlstd{resultados[k]} \hlkwb{=} \hlstd{bola}
-    \hlcom{# Y se elige, según el resultado, la}
+    \hlcom{# Y se elige, seg<U+00FA>n el resultado, la}
     \hlcom{# urna que usamos en el siguiente paso.}
     \hlkwa{if}\hlstd{(bola} \hlopt{==} \hlnum{6}\hlstd{)\{}
         \hlstd{urna} \hlkwb{=} \hlstr{"n"}

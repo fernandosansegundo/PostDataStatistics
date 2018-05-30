@@ -8,57 +8,7 @@
 
 
 
-\documentclass[10pt,a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
-%% maxwidth is the original width if it is less than linewidth
-%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
-\makeatletter
-\def\maxwidth{ %
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
-
-\usepackage{framed}
-\makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
-
-\definecolor{shadecolor}{rgb}{.97, .97, .97}
-\definecolor{messagecolor}{rgb}{0, 0, 0}
-\definecolor{warningcolor}{rgb}{1, 0, 1}
-\definecolor{errorcolor}{rgb}{1, 0, 0}
-\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
-
-\usepackage{alltt}
+\documentclass[10pt,a4paper]{article}
 \usepackage{etoolbox}
 \newtoggle{color}
 %\togglefalse{color}
@@ -113,7 +63,7 @@
 \externaldocument[tut08-]{Tutorial-10}
 \externaldocument[tut08-]{Tutorial-11}
 \externaldocument[tut08-]{Tutorial-12}
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
 \begin{document}
 \includecomment{pdf}
 %\excludecomment{pdf}
@@ -122,34 +72,34 @@
 %\includecomment{com}
 \excludecomment{com}
 
-\paragraph{\link{http://www.postdata-statistics.com/}{PostData}\hspace{6.3cm}Curso de Introducción a la Estadística\\[2mm]} \noindent\hrule
+\paragraph{\link{http://www.postdata-statistics.com/}{PostData}\hspace{6.3cm}Curso de Introducci<U+00F3>n a la Estad<U+00ED>stica\\[2mm]} \noindent\hrule
 
 \setcounter{section}{0}
 \section*{\hspace{-0.1cm}\fbox{\colorbox{Gris025}{
 \begin{minipage}{14.5cm}
-Tutorial 13: Regresión logística.
+Tutorial 13: Regresi<U+00F3>n log<U+00ED>stica.
 \end{minipage}
-}}} Atención:
+}}} Atenci<U+00F3>n:
 \begin{itemize}
-  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y está
-      pensado para trabajar con él directamente en tu ordenador. Al usarlo en la pantalla, si es
+  \item Este documento pdf lleva adjuntos algunos de los ficheros de datos necesarios. Y est<U+00E1>
+      pensado para trabajar con <U+00E9>l directamente en tu ordenador. Al usarlo en la pantalla, si es
       necesario, puedes aumentar alguna de las figuras para ver los detalles. Antes de
-      imprimirlo, piensa si es necesario. Los árboles y nosotros te lo agradeceremos.
-  \item Fecha: \today. Si este fichero tiene más de un año, puede resultar obsoleto. Busca si
-      existe una versión más reciente.
+      imprimirlo, piensa si es necesario. Los <U+00E1>rboles y nosotros te lo agradeceremos.
+  \item Fecha: \today. Si este fichero tiene m<U+00E1>s de un a<U+00F1>o, puede resultar obsoleto. Busca si
+      existe una versi<U+00F3>n m<U+00E1>s reciente.
 \end{itemize}
 \setcounter{tocdepth}{1}
 \tableofcontents
 
-\section{Construcción de un modelo de regresión logística con R.}
+\section{Construcci<U+00F3>n de un modelo de regresi<U+00F3>n log<U+00ED>stica con R.}
 
-En esta sección vamos a  ver cómo utilizar R para obtener un modelo de regresión logística, partiendo de datos como los del Ejemplo \ref{curso-cap13:ejem:RegresionLogistica00} (pág. \pageref{curso-cap13:ejem:RegresionLogistica00}) del libro. Así que empezaremos por leer esos datos a partir del fichero que los contiene:
-% Como en tutoriales anteriores, vamos a trabajar con un fichero plantilla que contiene  el código necesario para reproducir los resultados más importantes del análisis que vamos a realizar a continuación. El fichero es:
+En esta secci<U+00F3>n vamos a  ver c<U+00F3>mo utilizar R para obtener un modelo de regresi<U+00F3>n log<U+00ED>stica, partiendo de datos como los del Ejemplo \ref{curso-cap13:ejem:RegresionLogistica00} (p<U+00E1>g. \pageref{curso-cap13:ejem:RegresionLogistica00}) del libro. As<U+00ED> que empezaremos por leer esos datos a partir del fichero que los contiene:
+% Como en tutoriales anteriores, vamos a trabajar con un fichero plantilla que contiene  el c<U+00F3>digo necesario para reproducir los resultados m<U+00E1>s importantes del an<U+00E1>lisis que vamos a realizar a continuaci<U+00F3>n. El fichero es:
 % \begin{center}
 % \fichero{../datos/Tut13-RegresionLogistica.R}{Tut13-RegresionLogistica.R}
 % \end{center}
 % Te recomendamos
-%cuyo listado puedes ver en la Tabla \ref{Tut13:tabla:FicheroR-RegresionLogistica.R} de la pág. \pageref{Tut13:tabla:FicheroR-RegresionLogistica.R}.
+%cuyo listado puedes ver en la Tabla \ref{Tut13:tabla:FicheroR-RegresionLogistica.R} de la p<U+00E1>g. \pageref{Tut13:tabla:FicheroR-RegresionLogistica.R}.
 
 
 
@@ -194,7 +144,7 @@ El resultado de la lectura es un {\tt data.frame} de R en el que tenemos dos var
 \end{kframe}
 \end{knitrout}
 
-Ya tenemos los datos listos para el análisis. El diagrama de dispersión correspondiente se obtiene con:
+Ya tenemos los datos listos para el an<U+00E1>lisis. El diagrama de dispersi<U+00F3>n correspondiente se obtiene con:
 
 
 
@@ -208,7 +158,7 @@ Ya tenemos los datos listos para el análisis. El diagrama de dispersión corres
 \hlstd{colores[datos}\hlopt{$}\hlstd{Y} \hlopt{==} \hlnum{1}\hlstd{]} \hlkwb{=} \hlstr{"black"}
 \hlkwd{plot}\hlstd{(datos}\hlopt{$}\hlstd{X, datos}\hlopt{$}\hlstd{Y,} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{bg} \hlstd{= colores,} \hlkwc{cex}\hlstd{=}\hlnum{1.3}\hlstd{,}\hlkwc{font}\hlstd{=}\hlnum{2}\hlstd{,}
      \hlkwc{xlab} \hlstd{=} \hlstr{"Indice tobillo brazo"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{"Vasculopatia"}\hlstd{,} \hlkwc{font.lab}\hlstd{=}\hlnum{2}\hlstd{, )}
-\hlkwd{legend}\hlstd{(}\hlstr{"left"}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"No vasculopatía"}\hlstd{,} \hlstr{"Vasculopatía"}\hlstd{),} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,}
+\hlkwd{legend}\hlstd{(}\hlstr{"left"}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"No vasculopat<U+00ED>a"}\hlstd{,} \hlstr{"Vasculopat<U+00ED>a"}\hlstd{),} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,}
        \hlkwc{pt.bg} \hlstd{=}  \hlkwd{c}\hlstd{(}\hlstr{"grey"}\hlstd{,} \hlstr{"black"}\hlstd{))}
 \hlkwd{box}\hlstd{(}\hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{)}
 \end{alltt}
@@ -223,8 +173,8 @@ Ya tenemos los datos listos para el análisis. El diagrama de dispersión corres
 \end{knitrout}
 }
 
-En la Sección \ref{curso-cap13:sec:IntroduccionProblemaRegresionLogistica} del libro (pág. \pageref{curso-cap13:sec:IntroduccionProblemaRegresionLogistica})
-hemos visto también un modelo ficticio en el que existe un umbral claramente definido de valores de $X$ (por ejemplo, $X=0.96$) a partir del cual todos los valores de $Y$ son $0$, mientras que antes son $1$. Por si te interesa, esa situación se puede reproducir fácilmente en el código así:
+En la Secci<U+00F3>n \ref{curso-cap13:sec:IntroduccionProblemaRegresionLogistica} del libro (p<U+00E1>g. \pageref{curso-cap13:sec:IntroduccionProblemaRegresionLogistica})
+hemos visto tambi<U+00E9>n un modelo ficticio en el que existe un umbral claramente definido de valores de $X$ (por ejemplo, $X=0.96$) a partir del cual todos los valores de $Y$ son $0$, mientras que antes son $1$. Por si te interesa, esa situaci<U+00F3>n se puede reproducir f<U+00E1>cilmente en el c<U+00F3>digo as<U+00ED>:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -243,7 +193,7 @@ Y entonces su diagrama es:
 \hlstd{colores[datosSimul01}\hlopt{$}\hlstd{Y} \hlopt{==} \hlnum{1}\hlstd{]} \hlkwb{=} \hlstr{"black"}
 \hlkwd{plot}\hlstd{(datosSimul01}\hlopt{$}\hlstd{X, datosSimul01}\hlopt{$}\hlstd{Y,} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{bg} \hlstd{= colores,} \hlkwc{cex}\hlstd{=}\hlnum{1.3}\hlstd{,}\hlkwc{font}\hlstd{=}\hlnum{2}\hlstd{,}
      \hlkwc{xlab} \hlstd{=} \hlstr{"Indice tobillo brazo"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{"Vasculopatia"}\hlstd{,} \hlkwc{font.lab}\hlstd{=}\hlnum{2}\hlstd{, )}
-\hlkwd{legend}\hlstd{(}\hlstr{"left"}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"No vasculopatía"}\hlstd{,} \hlstr{"Vasculopatía"}\hlstd{),} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{pt.bg} \hlstd{=}  \hlkwd{c}\hlstd{(}\hlstr{"grey"}\hlstd{,} \hlstr{"black"}\hlstd{))}
+\hlkwd{legend}\hlstd{(}\hlstr{"left"}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"No vasculopat<U+00ED>a"}\hlstd{,} \hlstr{"Vasculopat<U+00ED>a"}\hlstd{),} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{pt.bg} \hlstd{=}  \hlkwd{c}\hlstd{(}\hlstr{"grey"}\hlstd{,} \hlstr{"black"}\hlstd{))}
 \hlkwd{box}\hlstd{(}\hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
@@ -255,9 +205,9 @@ Y entonces su diagrama es:
 
 
 \end{knitrout}
-La figura simétrica, cuando $Y=1$ corresponde a valores altos de $X$ se obtiene de forma similar.
+La figura sim<U+00E9>trica, cuando $Y=1$ corresponde a valores altos de $X$ se obtiene de forma similar.
 
-Por último, la figura correspondiente al caso ``todo ruido, nada de modelo'' se obtiene simplemente eligiendo al azar los valores de $Y$:
+Por <U+00FA>ltimo, la figura correspondiente al caso ``todo ruido, nada de modelo'' se obtiene simplemente eligiendo al azar los valores de $Y$:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -270,7 +220,7 @@ Por último, la figura correspondiente al caso ``todo ruido, nada de modelo'' se
 \hlstd{colores[datosSimul03}\hlopt{$}\hlstd{Y} \hlopt{==} \hlnum{1}\hlstd{]} \hlkwb{=} \hlstr{"black"}
 \hlkwd{plot}\hlstd{(datosSimul03}\hlopt{$}\hlstd{X, datosSimul03}\hlopt{$}\hlstd{Y,} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{bg} \hlstd{= colores,} \hlkwc{cex}\hlstd{=}\hlnum{1.3}\hlstd{,}\hlkwc{font}\hlstd{=}\hlnum{2}\hlstd{,}
      \hlkwc{xlab} \hlstd{=} \hlstr{"Indice tobillo brazo"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{"Vasculopatia"}\hlstd{,} \hlkwc{font.lab}\hlstd{=}\hlnum{2}\hlstd{, )}
-\hlkwd{legend}\hlstd{(}\hlstr{"left"}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"No vasculopatía"}\hlstd{,} \hlstr{"Vasculopatía"}\hlstd{),} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{pt.bg} \hlstd{=}  \hlkwd{c}\hlstd{(}\hlstr{"grey"}\hlstd{,} \hlstr{"black"}\hlstd{))}
+\hlkwd{legend}\hlstd{(}\hlstr{"left"}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"No vasculopat<U+00ED>a"}\hlstd{,} \hlstr{"Vasculopat<U+00ED>a"}\hlstd{),} \hlkwc{pch} \hlstd{=} \hlnum{21}\hlstd{,} \hlkwc{pt.bg} \hlstd{=}  \hlkwd{c}\hlstd{(}\hlstr{"grey"}\hlstd{,} \hlstr{"black"}\hlstd{))}
 \hlkwd{box}\hlstd{(}\hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
@@ -286,11 +236,11 @@ Por último, la figura correspondiente al caso ``todo ruido, nada de modelo'' se
 \subsection{Agrupando valores para estimar las probabilidades.}
 \label{tut13:subsec:ConstruccionDetalladaModelo}
 
- Vamos ahora a ver ahora detalladamente como usar R para dar los pasos 1 a 4 del Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}). El primer paso es la lectura de los datos desde el fichero, que incluimos aquí por comodidad:
+ Vamos ahora a ver ahora detalladamente como usar R para dar los pasos 1 a 4 del Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (p<U+00E1>g. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}). El primer paso es la lectura de los datos desde el fichero, que incluimos aqu<U+00ED> por comodidad:
 \begin{center}
 \fichero{../datos/Cap13-ConstruccionModeloLogistico.csv}{Cap13-ConstruccionModeloLogistico.csv}
 \end{center}
-Una vez descargado este fichero en nuestra carpeta {\tt datos},  usamos read.table para leerlo y luego procedemos como con el anterior ejemplo (ten en cuenta que los datos de este fichero están separados con tabuladores, por eso usamos \verb# sep = \t#)
+Una vez descargado este fichero en nuestra carpeta {\tt datos},  usamos read.table para leerlo y luego procedemos como con el anterior ejemplo (ten en cuenta que los datos de este fichero est<U+00E1>n separados con tabuladores, por eso usamos \verb# sep = \t#)
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -310,7 +260,7 @@ Una vez descargado este fichero en nuestra carpeta {\tt datos},  usamos read.tab
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Como antes, fijamos los nombres de las variables y pintamos el diagrama de dispersión:
+Como antes, fijamos los nombres de las variables y pintamos el diagrama de dispersi<U+00F3>n:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 
@@ -322,7 +272,7 @@ Como antes, fijamos los nombres de las variables y pintamos el diagrama de dispe
 
 \end{knitrout}
 
-Los valores de la variable $X$ están comprendidos completamente en el intervalo $[-10, 10]$:
+Los valores de la variable $X$ est<U+00E1>n comprendidos completamente en el intervalo $[-10, 10]$:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -337,7 +287,7 @@ Los valores de la variable $X$ están comprendidos completamente en el intervalo
 Vamos con los pasos del 1 al 4 del ejemplo:
 \begin{enumerate}
 
-\item Empezamos dividiendo el intervalo $[-10, 10]$ en $40$ clases de anchura $\frac{1}{2}$ y localizando los puntos de corte que marcan las fronteras entre clases, que son los valores $u_0, \ldots, u_{40}$ del ejemplo. Hay que prestar atención al número de valores que generamos: $41$ puntos definen $40$ clases.
+\item Empezamos dividiendo el intervalo $[-10, 10]$ en $40$ clases de anchura $\frac{1}{2}$ y localizando los puntos de corte que marcan las fronteras entre clases, que son los valores $u_0, \ldots, u_{40}$ del ejemplo. Hay que prestar atenci<U+00F3>n al n<U+00FA>mero de valores que generamos: $41$ puntos definen $40$ clases.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -356,7 +306,7 @@ Vamos con los pasos del 1 al 4 del ejemplo:
 \end{kframe}
 \end{knitrout}
 
-Las marcas de clase, que en el libro hemos llamado $w_i$, son los puntos medios de cada intervalo. Se obtienen fácilmente sumando a cada valor {\tt u} la semianchura de la clase. Hay que tener cuidado de nuevo con el número de marcas de clase que generamos:
+Las marcas de clase, que en el libro hemos llamado $w_i$, son los puntos medios de cada intervalo. Se obtienen f<U+00E1>cilmente sumando a cada valor {\tt u} la semianchura de la clase. Hay que tener cuidado de nuevo con el n<U+00FA>mero de marcas de clase que generamos:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -371,7 +321,7 @@ Las marcas de clase, que en el libro hemos llamado $w_i$, son los puntos medios 
 \end{kframe}
 \end{knitrout}
 
-\item Ahora vamos a hacer un recuento de cuántos de los valores $X$ caen en cada una de esas clases. Afortunadamente, ya sabemos que en R esto es muy fácil de hacer, usando la función {\tt cut} para definir un factor que clasifique los valores de $X$:
+\item Ahora vamos a hacer un recuento de cu<U+00E1>ntos de los valores $X$ caen en cada una de esas clases. Afortunadamente, ya sabemos que en R esto es muy f<U+00E1>cil de hacer, usando la funci<U+00F3>n {\tt cut} para definir un factor que clasifique los valores de $X$:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -380,7 +330,7 @@ Las marcas de clase, que en el libro hemos llamado $w_i$, son los puntos medios 
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-La opción {\tt include.lowest=TRUE} sirve para que el primer intervalo sea cerrado a la izquierda, cubriendo así los posibles valores de $X=-10$ (aunque nuestra muestra, en este ejemplo, no incluye ninguno de esos valores). Veamos los primeros valores del factor; puedes compararlos con los primeros valores de $X$ para ver qué la clasificación es correcta:
+La opci<U+00F3>n {\tt include.lowest=TRUE} sirve para que el primer intervalo sea cerrado a la izquierda, cubriendo as<U+00ED> los posibles valores de $X=-10$ (aunque nuestra muestra, en este ejemplo, no incluye ninguno de esos valores). Veamos los primeros valores del factor; puedes compararlos con los primeros valores de $X$ para ver qu<U+00E9> la clasificaci<U+00F3>n es correcta:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -399,7 +349,7 @@ La opción {\tt include.lowest=TRUE} sirve para que el primer intervalo sea cerr
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-El recuento que nos habíamos propuesto consiste simplemente en hacer una tabla de frecuencias del factor {\tt clases}
+El recuento que nos hab<U+00ED>amos propuesto consiste simplemente en hacer una tabla de frecuencias del factor {\tt clases}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -427,7 +377,7 @@ El recuento que nos habíamos propuesto consiste simplemente en hacer una tabla 
 Como se dice en el libro, puedes constatar en esta tabla que hay $27$ puntos de la muestra con
 \[-8<X\leq -7.5.\]
 
-La Tabla \ref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases} del libro (pág. \pageref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases}) contiene, a modo de ejemplo, los valores de $X$ que caen en la clase número 18 y los correspondientes valores de $Y$. Para obtener esos valores en R podemos hacer:
+La Tabla \ref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases} del libro (p<U+00E1>g. \pageref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases}) contiene, a modo de ejemplo, los valores de $X$ que caen en la clase n<U+00FA>mero 18 y los correspondientes valores de $Y$. Para obtener esos valores en R podemos hacer:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -467,16 +417,16 @@ La Tabla \ref{curso-cap13:tabla:Clase18EjemploModeloMedianteClases} del libro (p
 
 \begin{ejercicio}
 \label{tut13:ejercicio01}
-Comprueba que, como se dice en el libro, la clase número $5$ es el intervalo $(-8,-7.5]$. Comprueba también que esa clase contiene $27$ puntos y que los valores $Y$ de esos $27$ puntos muestrales son {\em todos} iguales a $0$. Haz un estudio similar con la clase número $35$.
-%Soluciones en la página \pageref{tut13:ejercicio01:sol}.
+Comprueba que, como se dice en el libro, la clase n<U+00FA>mero $5$ es el intervalo $(-8,-7.5]$. Comprueba tambi<U+00E9>n que esa clase contiene $27$ puntos y que los valores $Y$ de esos $27$ puntos muestrales son {\em todos} iguales a $0$. Haz un estudio similar con la clase n<U+00FA>mero $35$.
+%Soluciones en la p<U+00E1>gina \pageref{tut13:ejercicio01:sol}.
 \qed
 \end{ejercicio}
 
 
-\item A continuación, para estimar las probabilidades correspondientes a cada una de esas clases vamos a utilizar la función {\tt tapply}. Esta función nos permite aplicar una función (en este caso  la suma) a todos los elementos de un vector (o matriz, o array) agrupados mediante un cierto factor. En nuestro ejemplo eso se traduce en una frase como:
+\item A continuaci<U+00F3>n, para estimar las probabilidades correspondientes a cada una de esas clases vamos a utilizar la funci<U+00F3>n {\tt tapply}. Esta funci<U+00F3>n nos permite aplicar una funci<U+00F3>n (en este caso  la suma) a todos los elementos de un vector (o matriz, o array) agrupados mediante un cierto factor. En nuestro ejemplo eso se traduce en una frase como:
 
 {\em
-``Calcular la suma (aplicar la función {\tt sum}) de todos los valores del vector {\tt Y}, agrupándolos primero por clases (con la opción {\tt INDEX=clases})''.
+``Calcular la suma (aplicar la funci<U+00F3>n {\tt sum}) de todos los valores del vector {\tt Y}, agrup<U+00E1>ndolos primero por clases (con la opci<U+00F3>n {\tt INDEX=clases})''.
 }
 
 Guardaremos los resultados en un vector de R llamado {\tt sumaYporClases}:
@@ -504,7 +454,7 @@ Guardaremos los resultados en un vector de R llamado {\tt sumaYporClases}:
 \end{kframe}
 \end{knitrout}
 
-Y ahora nuestras estimaciones de las probabilidades se obtienen dividiendo estas sumas entre el número de elementos que contiene cada clase:
+Y ahora nuestras estimaciones de las probabilidades se obtienen dividiendo estas sumas entre el n<U+00FA>mero de elementos que contiene cada clase:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -528,17 +478,17 @@ Y ahora nuestras estimaciones de las probabilidades se obtienen dividiendo estas
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-El vector probabilidades contiene nuestras estimaciones $\hat p_i$ de las probabilidades correspondientes a cada una de las $40$ clases en las que hemos dividido el recorrido de $X$. Son probabilidades condicionadas, porque hemos agrupado por clases. Puedes comprobar que estas estimaciones coinciden con las que se mencionan en el libro. Además, estos números tienen el aspecto esperado: empiezan valiendo $0$ para las clases situadas muy a la izquierda, luego ascienden progresivamente en la zona de transición y, finalmente, se hacen iguales a $1$ para las clases a la derecha del recorrido de $X$.
+El vector probabilidades contiene nuestras estimaciones $\hat p_i$ de las probabilidades correspondientes a cada una de las $40$ clases en las que hemos dividido el recorrido de $X$. Son probabilidades condicionadas, porque hemos agrupado por clases. Puedes comprobar que estas estimaciones coinciden con las que se mencionan en el libro. Adem<U+00E1>s, estos n<U+00FA>meros tienen el aspecto esperado: empiezan valiendo $0$ para las clases situadas muy a la izquierda, luego ascienden progresivamente en la zona de transici<U+00F3>n y, finalmente, se hacen iguales a $1$ para las clases a la derecha del recorrido de $X$.
 
 \begin{ejercicio}
 \label{tut13:ejercicio02}
-Aunque en nuestra muestra no ha sucedido, hay un posible escenario sobre el que conviene que te preguntes: ¿qué haríamos si alguna de nuestras clases no contiene ninguna observación? Ten en cuenta que en ese caso el denominador que hemos usado para estimar la probabilidad sería igual a $0$.  Y eso no puede ser bueno.... ¿qué crees que deberíamos hacer para afrontar ese problema?
-%Soluciones en la página \pageref{tut13:ejercicio02:sol}.
+Aunque en nuestra muestra no ha sucedido, hay un posible escenario sobre el que conviene que te preguntes: <U+00BF>qu<U+00E9> har<U+00ED>amos si alguna de nuestras clases no contiene ninguna observaci<U+00F3>n? Ten en cuenta que en ese caso el denominador que hemos usado para estimar la probabilidad ser<U+00ED>a igual a $0$.  Y eso no puede ser bueno.... <U+00BF>qu<U+00E9> crees que deber<U+00ED>amos hacer para afrontar ese problema?
+%Soluciones en la p<U+00E1>gina \pageref{tut13:ejercicio02:sol}.
 \qed
 \end{ejercicio}
 
 
-\item Finalmente, vamos a incluir los puntos $(w_i, p_i)$ en el diagrama de dispersión que obtuvimos antes (recuerda que $w_i$ es las marcas de la clase número $i$). La figura resultante confirma lo que hemos apreciado en la tabla. Esos puntos se disponen aproximadamente a lo largo de una curva sigmoidea, que se intuye claramente. Esa intuición de una curva es la intuición del modelo logístico para estos datos, que ahora tendremos que construir de forma precisa.
+\item Finalmente, vamos a incluir los puntos $(w_i, p_i)$ en el diagrama de dispersi<U+00F3>n que obtuvimos antes (recuerda que $w_i$ es las marcas de la clase n<U+00FA>mero $i$). La figura resultante confirma lo que hemos apreciado en la tabla. Esos puntos se disponen aproximadamente a lo largo de una curva sigmoidea, que se intuye claramente. Esa intuici<U+00F3>n de una curva es la intuici<U+00F3>n del modelo log<U+00ED>stico para estos datos, que ahora tendremos que construir de forma precisa.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -560,45 +510,45 @@ Aunque en nuestra muestra no ha sucedido, hay un posible escenario sobre el que 
 
 \begin{ejercicio}
 \label{tut13:ejercicio03}
-Repite los pasos 1 a 4 del análisis anterior con los datos del fichero
+Repite los pasos 1 a 4 del an<U+00E1>lisis anterior con los datos del fichero
 \begin{center}
   \fichero{../datos/Cap13-ConstruccionModeloLogistico-Inflexiones.csv}{Cap13-ConstruccionModeloLogistico-Inflexiones.csv}
 \end{center}
-que aparece en el Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoVariasInflexiones} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoVariasInflexiones}) y comprueba todos los resultados de ese ejemplo.
-%Soluciones en la página \pageref{tut13:ejercicio03:sol}.
+que aparece en el Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoVariasInflexiones} del libro (p<U+00E1>g. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoVariasInflexiones}) y comprueba todos los resultados de ese ejemplo.
+%Soluciones en la p<U+00E1>gina \pageref{tut13:ejercicio03:sol}.
 \qed
 \end{ejercicio}
 
 
-\section{Las curvas logísticas.}
+\section{Las curvas log<U+00ED>sticas.}
 \label{tut13:subsec:CurvasLogisticas}
 
-En la Sección \ref{curso-cap13:sec:CurvaLogistica} del libro (pág. \pageref{curso-cap13:sec:CurvaLogistica}) hemos introducido la familia de curvas logísticas, definidas mediante:
+En la Secci<U+00F3>n \ref{curso-cap13:sec:CurvaLogistica} del libro (p<U+00E1>g. \pageref{curso-cap13:sec:CurvaLogistica}) hemos introducido la familia de curvas log<U+00ED>sticas, definidas mediante:
 \[
   w = \dfrac{e^{b_0+b_1 v}}{1+e^{b_0+b_1 v}}.
 \]
-Para empezar a familiarizarnos con las propiedades de esta familia de curvas hemos preparado un fichero con una construcción GeoGebra en el que puedes manipular los parámetros $b_0$ y $b_1$ y así desarrollar mejor tu intuición sobre el comportamiento de esas curvas. El fichero es este
+Para empezar a familiarizarnos con las propiedades de esta familia de curvas hemos preparado un fichero con una construcci<U+00F3>n GeoGebra en el que puedes manipular los par<U+00E1>metros $b_0$ y $b_1$ y as<U+00ED> desarrollar mejor tu intuici<U+00F3>n sobre el comportamiento de esas curvas. El fichero es este
 \begin{center}
 \fichero{../ggb/Tut13-CurvasLogisticas.ggb}{Tut13-CurvasLogisticas.ggb}
 \end{center}
-Y cuando lo abras te encontrarás con una gráfica similar a esta:
+Y cuando lo abras te encontrar<U+00E1>s con una gr<U+00E1>fica similar a esta:
 \begin{center}
     \includegraphics[width=14cm]{../fig/Tut13-CurvasLogisticasGeoGebra.png}
 \end{center}
 Usa un rato los deslizadores hasta convencerte de que has comprendido el significado de ambos coeficientes.
 
-\section{Estimando los parámetros.}
+\section{Estimando los par<U+00E1>metros.}
 \label{tut13:sec:EstimandoParametros}
 
-En esta sección vamos a aprender a usar el ordenador para obtener estimaciones de los parámetros $b_0$ y $b_1$, como hemos visto en la Sección \ref{curso-cap13:sec:EstimacionParametros} (pág. \pageref{curso-cap13:sec:EstimacionParametros}) del libro.
+En esta secci<U+00F3>n vamos a aprender a usar el ordenador para obtener estimaciones de los par<U+00E1>metros $b_0$ y $b_1$, como hemos visto en la Secci<U+00F3>n \ref{curso-cap13:sec:EstimacionParametros} (p<U+00E1>g. \pageref{curso-cap13:sec:EstimacionParametros}) del libro.
 
-\subsection{Valores de $b_0$ y $b_1$  mediante mínimos cuadrados.}
-\textcolor{red}{\bf\sc ADVERTENCIA:} Aunque lo hemos avisado en el libro, insistimos. El método que vamos a mostrar aquí {\bf NO} es el que se usa en regresión logística y sólo lo incluimos para que el lector tenga ocasión de darse cuenta de que la regresión logística usa un método distinto del que hemos visto en la regresión lineal simple.
+\subsection{Valores de $b_0$ y $b_1$  mediante m<U+00ED>nimos cuadrados.}
+\textcolor{red}{\bf\sc ADVERTENCIA:} Aunque lo hemos avisado en el libro, insistimos. El m<U+00E9>todo que vamos a mostrar aqu<U+00ED> {\bf NO} es el que se usa en regresi<U+00F3>n log<U+00ED>stica y s<U+00F3>lo lo incluimos para que el lector tenga ocasi<U+00F3>n de darse cuenta de que la regresi<U+00F3>n log<U+00ED>stica usa un m<U+00E9>todo distinto del que hemos visto en la regresi<U+00F3>n lineal simple.
 
-Vamos a ver paso a paso como usar el método de mínimos cuadrados para obtener una curva de la familia logística que aproxime a los datos. Los pasos son los mismos que hemos descrito en la Sección \ref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMinimosCuadrados} (pág. \pageref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMinimosCuadrados}) del libro.
+Vamos a ver paso a paso como usar el m<U+00E9>todo de m<U+00ED>nimos cuadrados para obtener una curva de la familia log<U+00ED>stica que aproxime a los datos. Los pasos son los mismos que hemos descrito en la Secci<U+00F3>n \ref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMinimosCuadrados} (p<U+00E1>g. \pageref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMinimosCuadrados}) del libro.
 
 \begin{enumerate}
-  \item Aplicar la transformación logit a los valores $\hat p_1,\ldots,\hat p_k$. Llamemos $l_1,\ldots,l_k$ a los valores resultantes. Para hacer esto tenemos qu empezar por asegurarnos de que los valores de las probabilidades están comprendidos entre $0$ y $1$, estrictamente. La razón para hacer esto es que la transformación logit causaría problemas con cualquier valor igual a $0$ o igual a $1$ (ver Ejercicio \ref{tut13:ejercicio02}). Lo conseguimos mediante una selección adecuada  de los elementos del vector {\tt probabilidades}:
+  \item Aplicar la transformaci<U+00F3>n logit a los valores $\hat p_1,\ldots,\hat p_k$. Llamemos $l_1,\ldots,l_k$ a los valores resultantes. Para hacer esto tenemos qu empezar por asegurarnos de que los valores de las probabilidades est<U+00E1>n comprendidos entre $0$ y $1$, estrictamente. La raz<U+00F3>n para hacer esto es que la transformaci<U+00F3>n logit causar<U+00ED>a problemas con cualquier valor igual a $0$ o igual a $1$ (ver Ejercicio \ref{tut13:ejercicio02}). Lo conseguimos mediante una selecci<U+00F3>n adecuada  de los elementos del vector {\tt probabilidades}:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -623,7 +573,7 @@ Vamos a ver paso a paso como usar el método de mínimos cuadrados para obtener 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Como ves, los valores de probabilidades entre 0 y 1, que se concentran en lo que hemos llamado la {\em zona de transición}, son los que reciben el valor lógico {\tt TRUE}. Ahora ya podemos aplicar la transformación {\tt logit}:
+Como ves, los valores de probabilidades entre 0 y 1, que se concentran en lo que hemos llamado la {\em zona de transici<U+00F3>n}, son los que reciben el valor l<U+00F3>gico {\tt TRUE}. Ahora ya podemos aplicar la transformaci<U+00F3>n {\tt logit}:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -633,7 +583,7 @@ Como ves, los valores de probabilidades entre 0 y 1, que se concentran en lo que
 \end{kframe}
 \end{knitrout}
 
-\item Lo que hacemos es obtener un modelo de regresión lineal simple, ajustado por mínimos cuadrados, del vector {\tt probab2Odds} frente a las marcas de clase correspondientes. En el Tutorial10 aprendimos a usar la función {\tt lm} de R para calcular los coeficientes $\widetilde b_0$ y $\widetilde b_1$ de la recta de regresión
+\item Lo que hacemos es obtener un modelo de regresi<U+00F3>n lineal simple, ajustado por m<U+00ED>nimos cuadrados, del vector {\tt probab2Odds} frente a las marcas de clase correspondientes. En el Tutorial10 aprendimos a usar la funci<U+00F3>n {\tt lm} de R para calcular los coeficientes $\widetilde b_0$ y $\widetilde b_1$ de la recta de regresi<U+00F3>n
 \[l = \widetilde b_0 +\widetilde b_1\cdot w\]
 
 \begin{knitrout}
@@ -655,13 +605,13 @@ Como ves, los valores de probabilidades entre 0 y 1, que se concentran en lo que
 
 para los puntos
 \[(w_1,l_1),\ldots,(w_k,l_k).\]
-Hemos llamado $\widetilde b_0$ y $\widetilde b_1$ a los coeficientes porque, insistimos, el método que estamos exponiendo {\bf no} es el método que aplicaremos en la regresión logística. Y queremos usar símbolos distintos para los valores obtenidos por casa método.
+Hemos llamado $\widetilde b_0$ y $\widetilde b_1$ a los coeficientes porque, insistimos, el m<U+00E9>todo que estamos exponiendo {\bf no} es el m<U+00E9>todo que aplicaremos en la regresi<U+00F3>n log<U+00ED>stica. Y queremos usar s<U+00ED>mbolos distintos para los valores obtenidos por casa m<U+00E9>todo.
 
-\item Construimos la curva logística correspondiente a esos valores $\widetilde b_0$ y $\widetilde b_1$. Esa curva es, desde luego,
+\item Construimos la curva log<U+00ED>stica correspondiente a esos valores $\widetilde b_0$ y $\widetilde b_1$. Esa curva es, desde luego,
 \[
   w = \dfrac{e^{\widetilde{b_0} + \widetilde{b_1} v}}{1 + e^{\widetilde{b_0} + \widetilde{b_1} v}}.
 \]
-Para obtenerla en R podemos definir una función así:
+Para obtenerla en R podemos definir una funci<U+00F3>n as<U+00ED>:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -675,7 +625,7 @@ Para obtenerla en R podemos definir una función así:
 \end{kframe}
 \end{knitrout}
 
-que añadimos al gráfico de dispersión con este comando (fíjate en las opciones {\tt add=TRUE} para añadir la curva al gráfico preexistentey \verb#lty="dotted"# para dibujar una curva discontinua):
+que a<U+00F1>adimos al gr<U+00E1>fico de dispersi<U+00F3>n con este comando (f<U+00ED>jate en las opciones {\tt add=TRUE} para a<U+00F1>adir la curva al gr<U+00E1>fico preexistentey \verb#lty="dotted"# para dibujar una curva discontinua):
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -696,25 +646,25 @@ que añadimos al gráfico de dispersión con este comando (fíjate en las opcion
 
 \end{enumerate}
 
-Con esto hemos concluido la construcción de este modelo para estimar las probabilidades que, insistimos una vez más, {\bf NO} es el que se usa en regresión logística. En la siguiente sección construiremos finalmente el modelo de regresión logística. Cerramos esta sección con un ejercicio para ayudarte a reflexionar sobre las características del método que hemos descrito.
+Con esto hemos concluido la construcci<U+00F3>n de este modelo para estimar las probabilidades que, insistimos una vez m<U+00E1>s, {\bf NO} es el que se usa en regresi<U+00F3>n log<U+00ED>stica. En la siguiente secci<U+00F3>n construiremos finalmente el modelo de regresi<U+00F3>n log<U+00ED>stica. Cerramos esta secci<U+00F3>n con un ejercicio para ayudarte a reflexionar sobre las caracter<U+00ED>sticas del m<U+00E9>todo que hemos descrito.
 
 \begin{ejercicio}
 \label{tut13:ejercicio04}
-¿Qué sucede  si agrupamos los valores de otra manaera? Cambia el número de clases y comprueba qué sucede con los valores estimados $\widetilde b_0$ y $\widetilde b_1$.
-%Soluciones en la página \pageref{tut13:ejercicio04:sol}.
+<U+00BF>Qu<U+00E9> sucede  si agrupamos los valores de otra manaera? Cambia el n<U+00FA>mero de clases y comprueba qu<U+00E9> sucede con los valores estimados $\widetilde b_0$ y $\widetilde b_1$.
+%Soluciones en la p<U+00E1>gina \pageref{tut13:ejercicio04:sol}.
 \qed
 \end{ejercicio}
 
 
-\section{Regresión logística:  $b_0$ y $b_1$  mediante maxima verosimilitud.}
+\section{Regresi<U+00F3>n log<U+00ED>stica:  $b_0$ y $b_1$  mediante maxima verosimilitud.}
 \label{tut13:section:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud}
 
-En esta sección vamos a ver cómo usar el ordenador para obtener las estimaciones de los coeficientesde la curva logística usando el método de máxima verosimilitud, tal como se describe en la Sección \ref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud} del libro (pág. \pageref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud}). Primero aprenderemos cómo usar la función {\tt glm} de R y luego, en un apartado opcional, veremos un método más detallado, que puede resultar interesante para quienes quieran adentrarse un poco más en las matemáticas subyacentes al método.
+En esta secci<U+00F3>n vamos a ver c<U+00F3>mo usar el ordenador para obtener las estimaciones de los coeficientesde la curva log<U+00ED>stica usando el m<U+00E9>todo de m<U+00E1>xima verosimilitud, tal como se describe en la Secci<U+00F3>n \ref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud} del libro (p<U+00E1>g. \pageref{curso-cap13:subsection:ParametrosCurvaSigmoideaMedianteMaximaVerosimilitud}). Primero aprenderemos c<U+00F3>mo usar la funci<U+00F3>n {\tt glm} de R y luego, en un apartado opcional, veremos un m<U+00E9>todo m<U+00E1>s detallado, que puede resultar interesante para quienes quieran adentrarse un poco m<U+00E1>s en las matem<U+00E1>ticas subyacentes al m<U+00E9>todo.
 
-\subsection{La función {\tt glm} de R.}
+\subsection{La funci<U+00F3>n {\tt glm} de R.}
 \label{tut13:subsec:funcionGlm}
 
-En el Tutorial10 conocimos la función {\tt lm} de R, que nos permitía obtener rápida y cómodamente la información relativa a  un modelo de regresión lineal simple. La función {\tt glm} (del inglés, {\em generalized linear model}) juega un papel parecido con respecto a los modelos lineales generalizados, de los que la regresión logística es un ejemplo. Por ejemplo, para obtener los coeficientes del modelo logístico para los datos del Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}), con el que hemos venido trabajando en los apartados anteriores, usaríamos la función {\tt glm} de esta manera:
+En el Tutorial10 conocimos la funci<U+00F3>n {\tt lm} de R, que nos permit<U+00ED>a obtener r<U+00E1>pida y c<U+00F3>modamente la informaci<U+00F3>n relativa a  un modelo de regresi<U+00F3>n lineal simple. La funci<U+00F3>n {\tt glm} (del ingl<U+00E9>s, {\em generalized linear model}) juega un papel parecido con respecto a los modelos lineales generalizados, de los que la regresi<U+00F3>n log<U+00ED>stica es un ejemplo. Por ejemplo, para obtener los coeficientes del modelo log<U+00ED>stico para los datos del Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (p<U+00E1>g. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}), con el que hemos venido trabajando en los apartados anteriores, usar<U+00ED>amos la funci<U+00F3>n {\tt glm} de esta manera:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -768,7 +718,7 @@ Como en los modelos lineales, hemos guardado el resultado de {\tt glm} en una va
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Vemos que, como también ocurría con {\tt lm}, al aplicar {\tt summary} al modelo se obtiene mucha más información que con la salida original de {\tt glm}.  La columna {\tt Estimate} de la tabla {\tt Coefficients} contiene los valores estimados de los coeficientes de la curva logística. Y puesto que, {\em ahora sí}, se han obtenido por el método de máxima verosimilitud, podemos llamar $\hat b_0$ y $\hat b_1$ a esas estimaciones.  Y los coeficientes estimados son:
+Vemos que, como tambi<U+00E9>n ocurr<U+00ED>a con {\tt lm}, al aplicar {\tt summary} al modelo se obtiene mucha m<U+00E1>s informaci<U+00F3>n que con la salida original de {\tt glm}.  La columna {\tt Estimate} de la tabla {\tt Coefficients} contiene los valores estimados de los coeficientes de la curva log<U+00ED>stica. Y puesto que, {\em ahora s<U+00ED>}, se han obtenido por el m<U+00E9>todo de m<U+00E1>xima verosimilitud, podemos llamar $\hat b_0$ y $\hat b_1$ a esas estimaciones.  Y los coeficientes estimados son:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -787,9 +737,9 @@ Vemos que, como también ocurría con {\tt lm}, al aplicar {\tt summary} al mode
 \end{kframe}
 \end{knitrout}
 
-como hemos dicho en el Ejemplo \ref{curso-cap13:ejem:CurvaLogisticaPorDosMetodos} (pág. \pageref{curso-cap13:ejem:CurvaLogisticaPorDosMetodos}).
+como hemos dicho en el Ejemplo \ref{curso-cap13:ejem:CurvaLogisticaPorDosMetodos} (p<U+00E1>g. \pageref{curso-cap13:ejem:CurvaLogisticaPorDosMetodos}).
 
-Vamos a añadir la curva logística correspondiente a estos coeficientes al diagrama de dispersión. Esa curva aparece en la siguiente figura en trazos (opción \verb#lty="dashed"#) rojos. El código es muy parecido al que hemos usado antes para la curva que obtuvimos usando mínimos cuadrados:
+Vamos a a<U+00F1>adir la curva log<U+00ED>stica correspondiente a estos coeficientes al diagrama de dispersi<U+00F3>n. Esa curva aparece en la siguiente figura en trazos (opci<U+00F3>n \verb#lty="dashed"#) rojos. El c<U+00F3>digo es muy parecido al que hemos usado antes para la curva que obtuvimos usando m<U+00ED>nimos cuadrados:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -801,7 +751,7 @@ Vamos a añadir la curva logística correspondiente a estos coeficientes al diag
 \hlstd{\}}
 \hlkwd{curve}\hlstd{(curvaLogisticaGLM,} \hlkwc{from} \hlstd{=} \hlopt{-}\hlnum{10}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{10}\hlstd{,}
       \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlstr{"2"}\hlstd{,} \hlkwc{add}\hlstd{=}\hlnum{TRUE}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlstr{"dashed"}\hlstd{)}
-\hlkwd{legend}\hlstd{(}\hlkwc{x}\hlstd{=}\hlstr{"right"}\hlstd{,} \hlkwc{legend}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Máxima verosimilitud"}\hlstd{,} \hlstr{"Mínimos cuadrados"}\hlstd{),}
+\hlkwd{legend}\hlstd{(}\hlkwc{x}\hlstd{=}\hlstr{"right"}\hlstd{,} \hlkwc{legend}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"M<U+00E1>xima verosimilitud"}\hlstd{,} \hlstr{"M<U+00ED>nimos cuadrados"}\hlstd{),}
        \hlkwc{col} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"red"}\hlstd{,} \hlstr{"blue"}\hlstd{),} \hlkwc{bty}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"dashed"}\hlstd{,}\hlstr{"dotted"}\hlstd{),}\hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{,}\hlkwc{cex}\hlstd{=}\hlnum{1.5}\hlstd{)}
 \end{alltt}
 \end{kframe}
@@ -817,11 +767,11 @@ Vamos a añadir la curva logística correspondiente a estos coeficientes al diag
 
 
 
-La figura que hemos obtenido es, esencialmente, la Figura \ref{curso-cap13:fig:CurvaLogisticaPorDosMetodos} del libro (pág. \pageref{curso-cap13:fig:CurvaLogisticaPorDosMetodos}).
+La figura que hemos obtenido es, esencialmente, la Figura \ref{curso-cap13:fig:CurvaLogisticaPorDosMetodos} del libro (p<U+00E1>g. \pageref{curso-cap13:fig:CurvaLogisticaPorDosMetodos}).
 
-Volviendo a los resultados de {\tt glm}, el lector habrá observado sin duda la gran cantidad de información que hemos obtenido. Hay una parte de esa información que va más allá de lo que nosotros vamos a aprender en este curso. Pero en el Capítulo \ref{curso-cap:RegresionLogistica} y en las siguientes seccione de este tutorial vamos a tratar de llegar tan lejos como nos sea posible en el análisis de esa información.
+Volviendo a los resultados de {\tt glm}, el lector habr<U+00E1> observado sin duda la gran cantidad de informaci<U+00F3>n que hemos obtenido. Hay una parte de esa informaci<U+00F3>n que va m<U+00E1>s all<U+00E1> de lo que nosotros vamos a aprender en este curso. Pero en el Cap<U+00ED>tulo \ref{curso-cap:RegresionLogistica} y en las siguientes seccione de este tutorial vamos a tratar de llegar tan lejos como nos sea posible en el an<U+00E1>lisis de esa informaci<U+00F3>n.
 
-Para cerrar este apartado, recuerda que los coeficientes $\hat b_0$ y $\hat b_1$ que hemos obtenido con {\tt glm} son, aproximadamente, los que producen un valor máximo de la función verosimilitud (no corresponden exactamente al máximo porque se han obtenido por un método numérico). ¿Y cuál es ese valor máximo de la verosimilitud? En R es muy fácil obtenerlo a partir del modelo. De hecho, lo que es inmediato es obtener el logaritmo de la verosimilitud:
+Para cerrar este apartado, recuerda que los coeficientes $\hat b_0$ y $\hat b_1$ que hemos obtenido con {\tt glm} son, aproximadamente, los que producen un valor m<U+00E1>ximo de la funci<U+00F3>n verosimilitud (no corresponden exactamente al m<U+00E1>ximo porque se han obtenido por un m<U+00E9>todo num<U+00E9>rico). <U+00BF>Y cu<U+00E1>l es ese valor m<U+00E1>ximo de la verosimilitud? En R es muy f<U+00E1>cil obtenerlo a partir del modelo. De hecho, lo que es inmediato es obtener el logaritmo de la verosimilitud:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -832,7 +782,7 @@ Para cerrar este apartado, recuerda que los coeficientes $\hat b_0$ y $\hat b_1$
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-El resultado incluye varias {\em decoraciones:} un nombre e información sobre los grados de libertad del modelo (hablaremos de esto más adelante). Para eliminar esa información extra y acceder simplemente al valor del logaritmo de la verosimilitud hacemos un pequeño cambio:
+El resultado incluye varias {\em decoraciones:} un nombre e informaci<U+00F3>n sobre los grados de libertad del modelo (hablaremos de esto m<U+00E1>s adelante). Para eliminar esa informaci<U+00F3>n extra y acceder simplemente al valor del logaritmo de la verosimilitud hacemos un peque<U+00F1>o cambio:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -856,7 +806,7 @@ Y ahora la versosimilitud es simplemente:
 \end{kframe}
 \end{knitrout}
 
-Por el momento este resultado no parece de mucha utilidad. Al fin y al cabo, lo que nos trajo aquí era el deseo de estimar los coeficientes de la curva logística, mientras que la verosimilitud parecía sólo una herramienta para hacer esa estimación. Pero cuando lleguemos a los apartados sobre inferencia en la regresión logística veremos que este valor de la verosimilitud juega un papel importante.
+Por el momento este resultado no parece de mucha utilidad. Al fin y al cabo, lo que nos trajo aqu<U+00ED> era el deseo de estimar los coeficientes de la curva log<U+00ED>stica, mientras que la verosimilitud parec<U+00ED>a s<U+00F3>lo una herramienta para hacer esa estimaci<U+00F3>n. Pero cuando lleguemos a los apartados sobre inferencia en la regresi<U+00F3>n log<U+00ED>stica veremos que este valor de la verosimilitud juega un papel importante.
 
 
 \begin{ejercicio}
@@ -865,25 +815,25 @@ Por el momento este resultado no parece de mucha utilidad. Al fin y al cabo, lo 
 \begin{enumerate}
 \item[]
 
-\item Comprueba los valores de $b_0$ y $b_1$ que aparecen en el Ejemplo \ref{curso-cap13:ejem:coeficientesLogisticaVasculopatia} del libro (pág. \pageref{curso-cap13:ejem:coeficientesLogisticaVasculopatia}) para el modelo que relaciona itb y vasculopatía.
+\item Comprueba los valores de $b_0$ y $b_1$ que aparecen en el Ejemplo \ref{curso-cap13:ejem:coeficientesLogisticaVasculopatia} del libro (p<U+00E1>g. \pageref{curso-cap13:ejem:coeficientesLogisticaVasculopatia}) para el modelo que relaciona itb y vasculopat<U+00ED>a.
 
-\item Añade la curva logística al diagrama  de dispersión de esos datos y compara con la Figura \ref{curso-cap13:fig:CurvaLogisticaVasculopatia} del libro (pág. \pageref{curso-cap13:fig:CurvaLogisticaVasculopatia}).
+\item A<U+00F1>ade la curva log<U+00ED>stica al diagrama  de dispersi<U+00F3>n de esos datos y compara con la Figura \ref{curso-cap13:fig:CurvaLogisticaVasculopatia} del libro (p<U+00E1>g. \pageref{curso-cap13:fig:CurvaLogisticaVasculopatia}).
 
-\item Calcula la verosimilitud de ese modelo logístico.
+\item Calcula la verosimilitud de ese modelo log<U+00ED>stico.
 
 \end{enumerate}
 
-%Soluciones en la página \pageref{tut13:ejercicio05:sol}.
+%Soluciones en la p<U+00E1>gina \pageref{tut13:ejercicio05:sol}.
 \qed
 \end{ejercicio}
 
 
-\subsection{Predicción con el modelo logístico.}
+\subsection{Predicci<U+00F3>n con el modelo log<U+00ED>stico.}
 \label{tut13:subsec:PrediccionConModeloLogistico}
 
-Desde que introdujimos la idea de modelo en esta parte del curso hemos insistido en varias ocasiones en que una de las finalidades básicas de los modelos son las predicciones. En el caso del modelo de regresión logística las primeras predicciones que podemos obtener del modelo son los {\em valores ajustados} correspondientes  a los datos de la variable explicativa $X$ que hemos usado para construir el modelo. Es decir, que para cada punto $(x_i, y_i)$ de la muestra obtenemos un valor predicho de la probabilidad:
+Desde que introdujimos la idea de modelo en esta parte del curso hemos insistido en varias ocasiones en que una de las finalidades b<U+00E1>sicas de los modelos son las predicciones. En el caso del modelo de regresi<U+00F3>n log<U+00ED>stica las primeras predicciones que podemos obtener del modelo son los {\em valores ajustados} correspondientes  a los datos de la variable explicativa $X$ que hemos usado para construir el modelo. Es decir, que para cada punto $(x_i, y_i)$ de la muestra obtenemos un valor predicho de la probabilidad:
 \[\hat\pi(x)=\dfrac{e^{b_0+b_1\cdot x}}{1+e^{b_0+b_1\cdot x}}.\]
-Después de usar {\tt glm}, esos valores ajustados de las probabilidades están almacenados en un vector de R que es la componente {\tt fitted.values} del modelo. En el ejemplo con el que estamos trabajando, podemos explorar esas predicciones así:
+Despu<U+00E9>s de usar {\tt glm}, esos valores ajustados de las probabilidades est<U+00E1>n almacenados en un vector de R que es la componente {\tt fitted.values} del modelo. En el ejemplo con el que estamos trabajando, podemos explorar esas predicciones as<U+00ED>:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -904,7 +854,7 @@ Después de usar {\tt glm}, esos valores ajustados de las probabilidades están 
 \end{kframe}
 \end{knitrout}
 
-En este ejemplo, con una muestra de $n = 1000$ puntos, al representar gráficamente esas predicciones el resultado cubre casi completamente la curva logística que produce el modelo. Para facilitar la visualización hemos pintado la curva logística con un trazo gris grueso, y en su interior puedes ver, en negro, las probabilidades que predice el modelo para cada valor de $X$:
+En este ejemplo, con una muestra de $n = 1000$ puntos, al representar gr<U+00E1>ficamente esas predicciones el resultado cubre casi completamente la curva log<U+00ED>stica que produce el modelo. Para facilitar la visualizaci<U+00F3>n hemos pintado la curva log<U+00ED>stica con un trazo gris grueso, y en su interior puedes ver, en negro, las probabilidades que predice el modelo para cada valor de $X$:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -922,8 +872,8 @@ En este ejemplo, con una muestra de $n = 1000$ puntos, al representar gráficame
 
 \end{knitrout}
 
-En el Tutorial10, al estudiar el modelo de regresión lineal, también vimos que se podía usar la función {\tt predict} para obtener predicciones del modelo para valores
-de $X$ fuera de la muestra. Por ejemplo, para $x=3$ haríamos:
+En el Tutorial10, al estudiar el modelo de regresi<U+00F3>n lineal, tambi<U+00E9>n vimos que se pod<U+00ED>a usar la funci<U+00F3>n {\tt predict} para obtener predicciones del modelo para valores
+de $X$ fuera de la muestra. Por ejemplo, para $x=3$ har<U+00ED>amos:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -938,7 +888,7 @@ de $X$ fuera de la muestra. Por ejemplo, para $x=3$ haríamos:
 \end{kframe}
 \end{knitrout}
 
-Pero el valor es mayor que 1... ¿no estábamos prediciendo probabilidades? La respuesta es que, por defecto, lo que devuelve {\tt predict} es el valor del término $b_0 + b_1 x$ para el modelo. Vamos a comprobarlo:
+Pero el valor es mayor que 1... <U+00BF>no est<U+00E1>bamos prediciendo probabilidades? La respuesta es que, por defecto, lo que devuelve {\tt predict} es el valor del t<U+00E9>rmino $b_0 + b_1 x$ para el modelo. Vamos a comprobarlo:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -951,7 +901,7 @@ Pero el valor es mayor que 1... ¿no estábamos prediciendo probabilidades? La r
 \end{kframe}
 \end{knitrout}
 
-¿Y si lo que queremos es la predicción de la probabilidad? En ese caso usamos el argumento opcional \verb#type = "response"# de {\tt predict}
+<U+00BF>Y si lo que queremos es la predicci<U+00F3>n de la probabilidad? En ese caso usamos el argumento opcional \verb#type = "response"# de {\tt predict}
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -965,7 +915,7 @@ Pero el valor es mayor que 1... ¿no estábamos prediciendo probabilidades? La r
 \end{kframe}
 \end{knitrout}
 
-El valor por defecto es \verb#type = "link"#  y ya hemos visto que produce como resultado predicciones en la escala del término lineal $b_0 + b_1 x$. El valor de la probabilidad que hemos obtenido es, desde luego, el mismo que obtendríamos sustituyendo el valor de $X$ en la curva logística del modelo:
+El valor por defecto es \verb#type = "link"#  y ya hemos visto que produce como resultado predicciones en la escala del t<U+00E9>rmino lineal $b_0 + b_1 x$. El valor de la probabilidad que hemos obtenido es, desde luego, el mismo que obtendr<U+00ED>amos sustituyendo el valor de $X$ en la curva log<U+00ED>stica del modelo:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -978,7 +928,7 @@ El valor por defecto es \verb#type = "link"#  y ya hemos visto que produce como 
 \end{kframe}
 \end{knitrout}
 
-Y, finalmente, también podemos obtener ese valor usando la función {\tt plogis}, de la que aún no hemos hablado:
+Y, finalmente, tambi<U+00E9>n podemos obtener ese valor usando la funci<U+00F3>n {\tt plogis}, de la que a<U+00FA>n no hemos hablado:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -990,15 +940,15 @@ Y, finalmente, también podemos obtener ese valor usando la función {\tt plogis
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-No vamos a entrar en muchos más detalles sobre {\tt plogis} (el lector interesado puede consultar la ayuda). Nos limitaremos a explicar que el valor de {\tt plogis(u)}, para un número $u$, es
+No vamos a entrar en muchos m<U+00E1>s detalles sobre {\tt plogis} (el lector interesado puede consultar la ayuda). Nos limitaremos a explicar que el valor de {\tt plogis(u)}, para un n<U+00FA>mero $u$, es
 \[\mbox{\tt plogis(u)} = \dfrac{e^u}{1 + e^u}\]
 
 
-\subsection{Cálculo directo del modelo a partir de la función verosimilitud.}
+\subsection{C<U+00E1>lculo directo del modelo a partir de la funci<U+00F3>n verosimilitud.}
 \label{tut13:subsec:calculoDirectoFuncionVerosimilitud}
-\noindent{\bf Opcional: esta sección puede omitirse en una primera lectura.}\\
+\noindent{\bf Opcional: esta secci<U+00F3>n puede omitirse en una primera lectura.}\\
 
-En este apartado, en lugar de recurrir a la función {\tt glm} de R, vamos a construir explícitamente la función verosimilitud y vamos a buscar su valor máximo de otra manera. Recuerda que en la Ecuación \ref{curso-cap13:ecu:FuncionVerosimilitudLogistica} del libro (pág. \ref{curso-cap13:ecu:FuncionVerosimilitudLogistica}) hemos visto que la función verosimilitud se puede expresar así:
+En este apartado, en lugar de recurrir a la funci<U+00F3>n {\tt glm} de R, vamos a construir expl<U+00ED>citamente la funci<U+00F3>n verosimilitud y vamos a buscar su valor m<U+00E1>ximo de otra manera. Recuerda que en la Ecuaci<U+00F3>n \ref{curso-cap13:ecu:FuncionVerosimilitudLogistica} del libro (p<U+00E1>g. \ref{curso-cap13:ecu:FuncionVerosimilitudLogistica}) hemos visto que la funci<U+00F3>n verosimilitud se puede expresar as<U+00ED>:
 
 \[
 {\cal L}(x_1,x_2,\ldots,x_n, y_1, y_2, \ldots, y_n;b_0, b_1) =\prod_{i:y_i=1}\hat{\pi}(x_i)  \cdot \prod_{i:y_i=0}(1 - \hat{\pi}(x_i))
@@ -1008,7 +958,7 @@ En este apartado, en lugar de recurrir a la función {\tt glm} de R, vamos a con
 \cdot \prod_{i:y_i=0}\dfrac{1}{1+e^{b_0+b_1\cdot x_i}}
 \]
 
-Vamos a empezar por traducir esta expresión a R. Recuerda que aquí pensamos en $b_0, b_1$ como variables, mientras que $X$ e $Y$ son parámetros.
+Vamos a empezar por traducir esta expresi<U+00F3>n a R. Recuerda que aqu<U+00ED> pensamos en $b_0, b_1$ como variables, mientras que $X$ e $Y$ son par<U+00E1>metros.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -1021,7 +971,7 @@ Vamos a empezar por traducir esta expresión a R. Recuerda que aquí pensamos en
 \end{kframe}
 \end{knitrout}
 
-A continuación vamos a representar gráficamente esta función verosimilitud. Puesto que es una función de dos variables, su gráfica es una superficie en el espacio tridimensional. Ya hemos encontrado alguna de estas gráficas en otros tutoriales. Y no nos vamos a extender mucho sobre los comandos de R que vamos a utilizar. Los mostraremos simplemente para que el lector interesado sepa por dónde empezar a buscar si en el futuro necesita profundizar en esto:
+A continuaci<U+00F3>n vamos a representar gr<U+00E1>ficamente esta funci<U+00F3>n verosimilitud. Puesto que es una funci<U+00F3>n de dos variables, su gr<U+00E1>fica es una superficie en el espacio tridimensional. Ya hemos encontrado alguna de estas gr<U+00E1>ficas en otros tutoriales. Y no nos vamos a extender mucho sobre los comandos de R que vamos a utilizar. Los mostraremos simplemente para que el lector interesado sepa por d<U+00F3>nde empezar a buscar si en el futuro necesita profundizar en esto:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -1054,25 +1004,28 @@ A continuación vamos a representar gráficamente esta función verosimilitud. P
 
 \end{knitrout}
 
-La figura que hemos obtenido deja claro que la verosimilitud es máxima para los valores de $b_0$ y $b_1$ que proporciona el método. En el anterior apartado hemos obtenido esos valores usando {\tt glm}. Pero el problema de encontrar valores mínimos (o máximos) de una función es un problema muy general y que se presenta muy a menudo en una colección muy variada de situaciones. No es de extrañar, por tanto, que exista una parte de las matemáticas dedicada precisamente a eso. La {\sf Optimización} estudia los métodos para localizar esos valores extremos (máximos o mínimos) de una función bajo una serie de condiciones. En R disponemos de varias herramientas de optimización que en muchas ocasiones son suficientes. Una de esas herramientas es la función {\tt optim}. No podemos extendernos demasiado sobre esta herramienta, porque las posibilidades de configurarla son muy amplias. Nosotros vamos a usar uno de los métodos de optimización disponibles, concretamente el método llamado {\sf BFGS} por sus autores, (Broyden, Fletcher, Goldfarb, Shanno). El lector interesado puede encontrar más información en la ayuda de la función {\tt optim} o en el libro (más información usando el enlace)
+La figura que hemos obtenido deja claro que la verosimilitud es m<U+00E1>xima para los valores de $b_0$ y $b_1$ que proporciona el m<U+00E9>todo. En el anterior apartado hemos obtenido esos valores usando {\tt glm}. Pero el problema de encontrar valores m<U+00ED>nimos (o m<U+00E1>ximos) de una funci<U+00F3>n es un problema muy general y que se presenta muy a menudo en una colecci<U+00F3>n muy variada de situaciones. No es de extra<U+00F1>ar, por tanto, que exista una parte de las matem<U+00E1>ticas dedicada precisamente a eso. La {\sf Optimizaci<U+00F3>n} estudia los m<U+00E9>todos para localizar esos valores extremos (m<U+00E1>ximos o m<U+00ED>nimos) de una funci<U+00F3>n bajo una serie de condiciones. En R disponemos de varias herramientas de optimizaci<U+00F3>n que en muchas ocasiones son suficientes. Una de esas herramientas es la funci<U+00F3>n {\tt optim}. No podemos extendernos demasiado sobre esta herramienta, porque las posibilidades de configurarla son muy amplias. Nosotros vamos a usar uno de los m<U+00E9>todos de optimizaci<U+00F3>n disponibles, concretamente el m<U+00E9>todo llamado {\sf BFGS} por sus autores, (Broyden, Fletcher, Goldfarb, Shanno). El lector interesado puede encontrar m<U+00E1>s informaci<U+00F3>n en la ayuda de la funci<U+00F3>n {\tt optim} o en el libro (m<U+00E1>s informaci<U+00F3>n usando el enlace)
 \begin{center}
 \link{https://www.crcpress.com/product/isbn/9781439884485}{{\em Using R for Numerical Analysis in Science and Engineering} de V. Bloomfield}
 \end{center}
 
-Para usar ese método debemos proporcionarle a la función {\tt optim} un método para calcular los valores del {\sf gradiente} de la verosimilitud. El gradiente es el vector formado por las dos derivadas parciales:
+Para usar ese m<U+00E9>todo debemos proporcionarle a la funci<U+00F3>n {\tt optim} un m<U+00E9>todo para calcular los valores del {\sf gradiente} de la verosimilitud. El gradiente es el vector formado por las dos derivadas parciales:
 \[
 \operatorname{grad}({\cal L}) = \left(
 \dfrac{\partial {\cal L}}{\partial b_0}, \dfrac{\partial {\cal L}}{\partial b_1}
 \right)
 \]
 
-La función verosimilitud es, como hemos visto, muy complicada. Vamos a simplificar las cosas un poco considerando el logaritmo con signo negativo de la verosimilitud El signo se debe a que {\tt optim}, como la mayoría de las funciones de optimización, localiza siempre los valores {\em mínimos} de la función. Además, en lugar de tratar de encontrar una fórmula para el gradiente, la librería {\tt pracma} de R contiene una función {\tt grad} que permite estimar los valores del gradiente de una función. Así que usaremos esa función para proporcionarle a {\tt optim} los valores del gradiente que requiere el método {\sf BFGS}. Recuerda instalar la llibrería {\tt pracma} antes de usarla:
+La funci<U+00F3>n verosimilitud es, como hemos visto, muy complicada. Vamos a simplificar las cosas un poco considerando el logaritmo con signo negativo de la verosimilitud El signo se debe a que {\tt optim}, como la mayor<U+00ED>a de las funciones de optimizaci<U+00F3>n, localiza siempre los valores {\em m<U+00ED>nimos} de la funci<U+00F3>n. Adem<U+00E1>s, en lugar de tratar de encontrar una f<U+00F3>rmula para el gradiente, la librer<U+00ED>a {\tt pracma} de R contiene una funci<U+00F3>n {\tt grad} que permite estimar los valores del gradiente de una funci<U+00F3>n. As<U+00ED> que usaremos esa funci<U+00F3>n para proporcionarle a {\tt optim} los valores del gradiente que requiere el m<U+00E9>todo {\sf BFGS}. Recuerda instalar la llibrer<U+00ED>a {\tt pracma} antes de usarla:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(pracma)}
+\end{alltt}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in library(pracma): there is no package called 'pracma'}}\begin{alltt}
 \hlcom{# Definimos el logaritmo con signo negativo de la funcion verosimilitud}
 \hlstd{logVerosmltd} \hlkwb{=} \hlkwa{function}\hlstd{(}\hlkwc{b}\hlstd{)\{}
   \hlopt{-} \hlkwd{log}\hlstd{(}\hlkwd{verosimilitud}\hlstd{(b))}
@@ -1084,7 +1037,7 @@ La función verosimilitud es, como hemos visto, muy complicada. Vamos a simplifi
 \end{kframe}
 \end{knitrout}
 
-Ahora ya estamos listos para usar la función {\tt optim}. Para hacerlo debemos darle un valor inicial aproximado de $b_0$ y $b_1$. Como, en principio, no tenemos ninguna estimación, simplemente tomaremos ambos iguales a $1$. Al tratarse de un método aproximado, otros valores iniciales producirían resultados ligeramente distintos. Puedes experimentar con otros valores. El resultado de {\tt optim} contiene bastante información sobre el proceso de optimización asociado al método {\sf BFGS}:
+Ahora ya estamos listos para usar la funci<U+00F3>n {\tt optim}. Para hacerlo debemos darle un valor inicial aproximado de $b_0$ y $b_1$. Como, en principio, no tenemos ninguna estimaci<U+00F3>n, simplemente tomaremos ambos iguales a $1$. Al tratarse de un m<U+00E9>todo aproximado, otros valores iniciales producir<U+00ED>an resultados ligeramente distintos. Puedes experimentar con otros valores. El resultado de {\tt optim} contiene bastante informaci<U+00F3>n sobre el proceso de optimizaci<U+00F3>n asociado al m<U+00E9>todo {\sf BFGS}:
 
 {\small
 \begin{knitrout}
@@ -1093,72 +1046,23 @@ Ahora ya estamos listos para usar la función {\tt optim}. Para hacerlo debemos 
 \hlstd{(optimizacion} \hlkwb{=}
    \hlkwd{optim}\hlstd{(}\hlkwc{par} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{),} \hlkwc{fn} \hlstd{= logVerosmltd,} \hlkwc{gr} \hlstd{= grad_logVerosmltd,} \hlkwc{method}\hlstd{=}\hlstr{"BFGS"}\hlstd{))}
 \end{alltt}
-\begin{verbatim}
-## $par
-## [1] 0.095265 1.070099
-## 
-## $value
-## [1] 153.11
-## 
-## $counts
-## function gradient 
-##       30        9 
-## 
-## $convergence
-## [1] 0
-## 
-## $message
-## NULL
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gr(par, ...): no se pudo encontrar la funci'on "{}grad"{}}}\end{kframe}
 \end{knitrout}
 }
 
-La componente {\tt par} del resultado contiene la estimación de los valores $b_0$ y $b_1$ que producen el resultado óptimo:
+La componente {\tt par} del resultado contiene la estimaci<U+00F3>n de los valores $b_0$ y $b_1$ que producen el resultado <U+00F3>ptimo:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{optimizacion}\hlopt{$}\hlstd{par}
 \end{alltt}
-\begin{verbatim}
-## [1] 0.095265 1.070099
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): objeto 'optimizacion' no encontrado}}\end{kframe}
 \end{knitrout}
-y si comparas con lo que obtuvimos en la sección previa usando {\tt glm} verás que son los mismos valores:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients}
-\end{alltt}
-\begin{verbatim}
-##             Estimate Std. Error  z value   Pr(>|z|)
-## (Intercept) 0.095265    0.14684  0.64877 5.1649e-01
-## X           1.070099    0.08567 12.49100 8.3591e-36
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-Insistimos, en cualquier caso, en que los resultados dependen de los valores iniciales de $b_i$ que hemos usado en {\tt optim}. Otros valores podrían producir unas estimaciones menos parecidas a las de {\tt glm}.
-
-\begin{ejercicio}
-\label{tut13:ejercicio06}
-La componente {\tt value} del resultado de {\tt optim}, que es 153.11, también tiene una interpretación relacionada con los resultados que obtuvimos con {\tt glm}. ¿Cuál es esa interpretación?
-%Soluciones en la página \pageref{tut13:ejercicio06:sol}.
-\qed
-\end{ejercicio}
-
-
-\section{Inferencia en regresi\'on log\'istica.}
-\label{tut13:sec:inferencia}
-
-\subsection{El estadístico de Wald.}
-
-En la Ecuación \ref{curso-cap13:ecu:EstadisticoWaldRegresionLogistica} del libro (pág. \pageref{curso-cap13:ecu:EstadisticoWaldRegresionLogistica}) hemos visto el {\sf Estadístico de Wald} para el coeficiente $\beta_1$ del modelo de regresión logística:
-\[
-\Xi = \dfrac{b_1}{SE(b_1)}
-\]
-Dijimos entonces que no íbamos a dar una expresión explícita del error estándar $SE(b_1)$, porque usaríamos el ordenador para obtener el valor de ese error. Vamos a empezar esta sección señalando que la función {\tt glm} de R ya nos ha proporcionado ese resultado. En efecto, si recordamos la tabla de coeficientes
-
+y si comparas con lo que obtuvimos en la secci<U+00F3>n previa usando {\tt glm} ver<U+00E1>s que son los mismos valores:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1172,1377 +1076,144 @@ Dijimos entonces que no íbamos a dar una expresión explícita del error están
 \end{kframe}
 \end{knitrout}
 
-vemos que el título de la segunda columna es precisamente {\tt Std. Error}, ya que los elementos de esa clumna son los errores estándar de los estadísticos de Wald correspondientes, respectivamente, a $\beta_0$ (en la fila {\tt Intercept}) y $\beta_1$ (en la fila con el nombre {\tt X} de la variable predictora). En particular el valor de $SE(b_1)$ es, entonces:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{2}\hlstd{,} \hlnum{2}\hlstd{]}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.08567
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Por lo tanto el estadístico de Wald es:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(WaldBeta1} \hlkwb{=} \hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{2}\hlstd{,} \hlnum{1}\hlstd{]} \hlopt{/} \hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{2}\hlstd{,} \hlnum{2}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 12.491
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Puedes comprobar que el valor del estadístico es precisamente el que aparece en la tercera columna de la tabla, titulada {\tt z value}. Y la razón de ese título es que, como hemos visto en el libro, $\Xi$ se distribuye como una normal estándar $Z$. También hemos dicho que actualmente no se considera adecuado usar este estadístico de Wald $\Xi$ para hacer contrastes de hipótesis sobre $\beta_1$, por las razones que hemos expuesto en el libro. Pero por si alguna vez necesitras hacerlo, el p-valor se calcularía como en un contraste bilateral con $Z$ (fíjate en que usamos la cola derecha):
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(pValorWald} \hlkwb{=} \hlnum{2} \hlopt{*} \hlstd{(}\hlkwd{pnorm}\hlstd{(WaldBeta1,} \hlkwc{lower.tail} \hlstd{=} \hlnum{FALSE}\hlstd{)))}
-\end{alltt}
-\begin{verbatim}
-## [1] 8.3591e-36
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-Y ahora ya está claro que la última columna de la tabla contiene los p-valores de los contrastes para $\beta_0$ y $\beta_1$, usando los correspondientes estadísticos de Wald.
-
-\subsubsection{Selección de modelos y devianza.}
-\label{cap13:subsubsec:SeleccionModelosDevianza}
-
-En la Ecuación \ref{curso-cap13:ecu:EcuacionGlm} del libro (pág. \pageref{curso-cap13:ecu:EcuacionGlm}) hemos definido la devianza mediante
-\[
-D(modelo) = - 2\ln({\cal L}(modelo)).
-\]
-Y sin duda, el lector atento habrá reparado en que uno de los resultados de {\tt glm} es
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{summGlmXY}\hlopt{$}\hlstd{deviance}
-\end{alltt}
-\begin{verbatim}
-## [1] 306.23
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Vamos a confirmar que este resultado coincide con la anterior definición. Antes hemos aprendido a calcular el logaritmo de la verosimilitud con {\tt logLik}, así que hacemos:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlopt{-} \hlnum{2} \hlopt{*} \hlkwd{logLik}\hlstd{(glmXY)}
-\end{alltt}
-\begin{verbatim}
-## 'log Lik.' 306.23 (df=2)
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-e, ignorando las {\em decoraciones} que R añade, vemos que el valor de la devianza que proporciona {\tt glm} es el esperado.
-
-Pero además, {\tt glm} también nos proporciona la devianza del llamado {\em modelo nulo}, el que se obtiene suponiendo que la hipótesis nula $H_0=\{\beta_1= 0\}$ es cierta:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{summGlmXY}\hlopt{$}\hlstd{null.deviance}
-\end{alltt}
-\begin{verbatim}
-## [1] 1385.6
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Y, por lo tanto, el estadístico $G$ de la Ecuación \ref{curso-cap13:ecu:EstadisticoG} del libro (pág. \pageref{curso-cap13:ecu:EstadisticoG}) es muy fácil de obtener:
-
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(G} \hlkwb{=} \hlstd{summGlmXY}\hlopt{$}\hlstd{null.deviance} \hlopt{-} \hlstd{summGlmXY}\hlopt{$}\hlstd{deviance)}
-\end{alltt}
-\begin{verbatim}
-## [1] 1079.4
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Y, puesto que sabemos que $G$ tiene una distribución muestral $\chi^2_1$, obtenemos el p-valor del contraste de $H_0$ así:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(pValor} \hlkwb{=} \hlkwd{pchisq}\hlstd{(G,} \hlkwc{lower.tail} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{df}\hlstd{=}\hlnum{1}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-## [1] 9.9536e-237
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Con un p-valor tan (ridículamente) pequeño, es evidente que la hipótesis nula se rechaza. Eso se interpreta como una evidencia significativa de que el modelo con $\beta_1\neq 0$ explica mejor la relación entre las variables $X$ e $Y$ que el modelo nulo con $\beta_1 = 0$.
-
-\begin{ejercicio}
-\label{tut13:ejercicio07}
-Comprueba los resultados del Ejemplo \ref{curso-cap13:ejem:contrasteBeta1vasculopatia} del libro (pág. \pageref{curso-cap13:ejem:contrasteBeta1vasculopatia}).
-%Soluciones en la página \pageref{tut13:ejercicio07:sol}.
-\qed
-\end{ejercicio}
-
-
-
-\subsubsection{Intervalos de confianza para $\beta_0$ y $\beta_1$}
-
-En la Ecuación \ref{curso-cap13:ecu:IntconfBetaRegresionLogistica} del libro (pág. \pageref{curso-cap13:ecu:IntconfBetaRegresionLogistica}) hemos visto que podemos usar los valores de los errores estándar que intervienen en el Estadístico de Wald para construir intervalos de confianza para $\beta_0$ y $\beta_1$. Y una vez que sabemos que esos errores estándar aparecen en la tabla que hemos obtenido de {\tt glm}, la construcción de dichos intervalos es muy sencilla:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{nc} \hlkwb{=} \hlnum{0.95}
-\hlstd{alfa} \hlkwb{=} \hlnum{1} \hlopt{-} \hlstd{nc}
-\hlstd{alfaMedios} \hlkwb{=} \hlstd{alfa}\hlopt{/}\hlnum{2}
-\hlstd{zAlfaMedios} \hlkwb{=} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlstd{alfaMedios)}
-
-\hlstd{(b0} \hlkwb{=} \hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.095265
-\end{verbatim}
-\begin{alltt}
-\hlstd{(b1} \hlkwb{=} \hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{2}\hlstd{,} \hlnum{1}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 1.0701
-\end{verbatim}
-\begin{alltt}
-\hlstd{(SE_b0} \hlkwb{=} \hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.14684
-\end{verbatim}
-\begin{alltt}
-\hlstd{(SE_b1} \hlkwb{=} \hlstd{summGlmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{2}\hlstd{,} \hlnum{2}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.08567
-\end{verbatim}
-\begin{alltt}
-\hlstd{(intervaloBeta0} \hlkwb{=} \hlstd{b0} \hlopt{+} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{zAlfaMedios} \hlopt{*} \hlstd{SE_b0)}
-\end{alltt}
-\begin{verbatim}
-## [1] -0.19253  0.38306
-\end{verbatim}
-\begin{alltt}
-\hlstd{(intervaloBeta1} \hlkwb{=} \hlstd{b1} \hlopt{+} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{zAlfaMedios} \hlopt{*} \hlstd{SE_b1)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.90219 1.23801
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Aunque siempre es bueno aprender la procedencia de los resultados que obtenemos, si queremos obtener cómodamente estos intervalos lo más fácil es usar la función {\tt confint.default} que nos los proporciona directamente:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{confint.default}\hlstd{(glmXY,} \hlkwc{level} \hlstd{= nc)}
-\end{alltt}
-\begin{verbatim}
-##                2.5 %  97.5 %
-## (Intercept) -0.19253 0.38306
-## X            0.90219 1.23801
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-{\em Una advertencia:} existe otra función, llamada {\tt confint}, que también proporciona intervalos de confianza, pero que en el caso de la regresión logística son de un tipo distinto a los que hemos construido utilizando el estadístico de Wald.
-
-\begin{ejercicio}
-\label{tut13:ejercicio08}
-Comprueba los resultados del Ejemplo \ref{curso-cap13:ejem:intConfCoeficientesGlmVasculopatia} del libro (pág. \pageref{curso-cap13:ejem:intConfCoeficientesGlmVasculopatia}).
-%Soluciones en la página \pageref{tut13:ejercicio08:sol}.
-\qed
-\end{ejercicio}
-
-
-\section{Problemas de clasificación.}
-\label{tut13:sec:ProblemasClasificacion}
-
-En esta sección vamos a usar el modelo de regresión logística que hemos aprendido a construir para implementar un método clasificador, en el caso en el que $Y$ es una variable dicotómica (un factor con dos niveles) y $X$ es una variable continua. Como ejemplo, vamos a usar los datos sobre la relación entre la vasculopatía (variable $Y$) y el índice itb (variable $X$). Así que de nuevo empezamos por leer los datos:
-
-
-
-
-
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{#datosFichero = read.table("../datos/Cap13-DatosVasculopatia.csv", header = TRUE, sep=",")}
-\hlkwd{head}\hlstd{(datosFichero)}
-\end{alltt}
-\begin{verbatim}
-##       X Y
-## 1 -3.83 0
-## 2 -2.85 0
-## 3 -6.23 0
-## 4  8.57 1
-## 5 -8.14 0
-## 6 -4.93 0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-Fijamos los nombres de las variables y creamos un data.frame.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{colX} \hlkwb{=} \hlnum{1}
-\hlkwa{if}\hlstd{(colX} \hlopt{==} \hlnum{1}\hlstd{)\{}
-  \hlstd{X} \hlkwb{=} \hlstd{datosFichero[ ,} \hlnum{1}\hlstd{]}
-  \hlstd{Y} \hlkwb{=} \hlstd{datosFichero[ ,} \hlnum{2}\hlstd{]}
-\hlstd{\}} \hlkwa{else} \hlstd{\{}
-  \hlstd{X} \hlkwb{=} \hlstd{datosFichero[ ,} \hlnum{2}\hlstd{]}
-  \hlstd{Y} \hlkwb{=} \hlstd{datosFichero[ ,} \hlnum{1}\hlstd{]}
-\hlstd{\}}
-\hlstd{datos} \hlkwb{=} \hlkwd{data.frame}\hlstd{(X, Y)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-A continuación, construimos el modelo logístico correspondiente usando {\tt glm}.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{glmXY} \hlkwb{=} \hlkwd{glm}\hlstd{(Y} \hlopt{~} \hlstd{X,} \hlkwc{family} \hlstd{=} \hlkwd{binomial}\hlstd{(}\hlkwc{link} \hlstd{=} \hlstr{"logit"}\hlstd{),} \hlkwc{data} \hlstd{= datos)}
-
-\hlstd{(summGlmXY} \hlkwb{=} \hlkwd{summary}\hlstd{(glmXY))}
-\end{alltt}
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = Y ~ X, family = binomial(link = "logit"), data = datos)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.4259  -0.0891   0.0073   0.1124   2.7190  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)    
-## (Intercept)   0.0953     0.1468    0.65     0.52    
-## X             1.0701     0.0857   12.49   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 1385.62  on 999  degrees of freedom
-## Residual deviance:  306.23  on 998  degrees of freedom
-## AIC: 310.2
-## 
-## Number of Fisher Scoring iterations: 8
-\end{verbatim}
-\begin{alltt}
-\hlstd{datos}\hlopt{$}\hlstd{probs} \hlkwb{=} \hlstd{glmXY}\hlopt{$}\hlstd{fitted.values}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Como ves, hemos añadido a los datos el vector {\tt fitted.values} con las predicciones de las probabilidades correspondientes a los $n=1000$ puntos de la muestra. Veámoslas en forma de matriz, junto con el valor de la variable respuesta para cada punto de la muestra. Además, vamos a ordenar las observaciones según el valor de la variable $X$. Finalmente, hemos guardado en la primera columna el número de cada observación en la muestra original (es una información valiosa, que no conviene perder al crear una tabla como esta). Hemos usado la función {\tt row.names} para gestionar esa información de la tabla de la forma que nos ha parecido más conveniente. Fíjate también en que hemos aprovechado la creación de la tabla para poner nombre a dos de las columnas, {\tt nObs} y {\tt predicProb}.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{orden} \hlkwb{=} \hlkwd{order}\hlstd{(X,} \hlkwc{decreasing} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\hlstd{tabla} \hlkwb{=} \hlkwd{cbind}\hlstd{(}\hlkwc{nObs} \hlstd{=} \hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(X), X,} \hlkwc{predicProb} \hlstd{= glmXY}\hlopt{$}\hlstd{fitted.values, Y)[orden, ]}
-\hlkwd{row.names}\hlstd{(tabla)} \hlkwb{=} \hlnum{1}\hlopt{:}\hlkwd{length}\hlstd{(X)}
-\hlkwd{head}\hlstd{(tabla)}
-\end{alltt}
-\begin{verbatim}
-##   nObs     X predicProb Y
-## 1  175 10.00    0.99998 1
-## 2  740  9.99    0.99998 1
-## 3   14  9.98    0.99998 1
-## 4  496  9.97    0.99998 1
-## 5    8  9.92    0.99998 1
-## 6  458  9.92    0.99998 1
-\end{verbatim}
-\begin{alltt}
-\hlkwd{tail}\hlstd{(tabla)}
-\end{alltt}
-\begin{verbatim}
-##      nObs     X  predicProb Y
-## 995   253 -9.88 0.000028168 0
-## 996   304 -9.93 0.000026700 0
-## 997   469 -9.95 0.000026135 0
-## 998   119 -9.97 0.000025581 0
-## 999   135 -9.98 0.000025309 0
-## 1000  540 -9.98 0.000025309 0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Ahora, para clasificar, debemos elegir un punto o umbral de corte. Inicialmente podemos tomar el valor del que hemos llamado el {\em clasificador ingenuo}:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{cp} \hlkwb{=} \hlnum{0.5}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Y con ese umbral la clasificación se obtiene así:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{clasificacion} \hlkwb{=} \hlkwd{ifelse}\hlstd{(glmXY}\hlopt{$}\hlstd{fitted.values} \hlopt{>} \hlstd{cp,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Añadimos el resultado de la clasificación a la tabla.
-
-El resultado es la información que aparece en la parte (a) de la Tabla \ref{curso-cap13:tabla:ejemploClasificadorVasculopatia1} del libro (pág. \pageref{curso-cap13:tabla:ejemploClasificadorVasculopatia1}):
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{tabla} \hlkwb{=} \hlkwd{cbind}\hlstd{(tabla,} \hlkwc{clasificacion} \hlstd{= clasificacion[orden])}
-\end{alltt}
-\begin{verbatim}
-##   nObs     X predicProb Y clasificacion
-## 1  175 10.00    0.99998 1             1
-## 2  740  9.99    0.99998 1             1
-## 3   14  9.98    0.99998 1             1
-## 4  496  9.97    0.99998 1             1
-## 5    8  9.92    0.99998 1             1
-## 6  458  9.92    0.99998 1             1
-##      nObs     X  predicProb Y clasificacion
-## 995   253 -9.88 0.000028168 0             0
-## 996   304 -9.93 0.000026700 0             0
-## 997   469 -9.95 0.000026135 0             0
-## 998   119 -9.97 0.000025581 0             0
-## 999   135 -9.98 0.000025309 0             0
-## 1000  540 -9.98 0.000025309 0             0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-Para localizar las posiciones de los valores mal clasificados en la tabla usamos la función {\tt which}:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{errores} \hlkwb{=} \hlkwd{which}\hlstd{(tabla[ ,} \hlnum{4}\hlstd{]} \hlopt{!=} \hlstd{tabla[ ,} \hlnum{5}\hlstd{] )}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Así que la tasa de aciertos de la clasificación es:
-
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(tasaAciertos} \hlkwb{=} \hlnum{1} \hlopt{-} \hlkwd{length}\hlstd{(errores)} \hlopt{/} \hlkwd{length}\hlstd{(X))}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.926
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-En el próximo apartado vamos a calcular este y otros valores de otra manera.
-
-\subsection{Tabla de contingencia. Sensibilidad y especificidad. Precisión.}
-\label{tut13:subsec:TablaContingenciaSensibilidadEspecificidad}
-
-¿Cuál es la tabla de contingencia de los valores de $Y$ frente a los resultados de la clasificación? En R la podemos obtener fácilmente usando {\tt table}. Sólo hay un pequeño problema,  y es que el orden de los valores no coincide con el que deseamos: {\tt table} coloca en la primera fila (y columna) el valor $0$. Así que tenemos que invertir el orden.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(tablaContingencia} \hlkwb{=} \hlkwd{table}\hlstd{(}\hlkwc{clasif} \hlstd{= clasificacion,} \hlkwc{Y} \hlstd{= Y)[}\hlnum{2}\hlopt{:}\hlnum{1}\hlstd{,} \hlnum{2}\hlopt{:}\hlnum{1}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-##       Y
-## clasif   1   0
-##      1 478  39
-##      0  35 448
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-A partir de esa tabla es inmediato calcular la sensibilidad y especificidad. Primero usamos {\tt prop.table} como vimos en el Tutorial12 para dividir cada columna por el total de esa columna:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(tablaProporciones} \hlkwb{=} \hlkwd{prop.table}\hlstd{(tablaContingencia,} \hlkwc{margin} \hlstd{=} \hlnum{2}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-##       Y
-## clasif        1        0
-##      1 0.931774 0.080082
-##      0 0.068226 0.919918
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Y ahora podemos leer directamente los valores que buscábamos:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(sensibilidad} \hlkwb{=} \hlstd{tablaProporciones[}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.93177
-\end{verbatim}
-\begin{alltt}
-\hlstd{(especificidad} \hlkwb{=} \hlstd{tablaProporciones[}\hlnum{2}\hlstd{,} \hlnum{2}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.91992
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-La tasa de acierto del método clasificador es, como vimos antes:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(tasaAcierto} \hlkwb{=} \hlkwd{sum}\hlstd{(}\hlkwd{diag}\hlstd{(tablaContingencia))} \hlopt{/} \hlkwd{sum}\hlstd{(tablaContingencia))}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.926
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-\subsubsection*{Punto de indiferencia.}
-
-Antes de seguir adelante, el {\em punto de indiferencia} es:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(indiferencia} \hlkwb{=} \hlopt{-}\hlstd{glmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{1}\hlstd{]}\hlopt{/}\hlstd{glmXY}\hlopt{$}\hlstd{coefficients[}\hlnum{2}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## (Intercept) 
-##   -0.089024
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-\begin{ejercicio}
-\label{tut13:ejercicio09}
-Comprueba los resultados del Ejemplo \ref{curso-cap13:ejem:EjemploPuntoIndiferencia} del libro (pág. \pageref{curso-cap13:ejem:EjemploPuntoIndiferencia}).
-%Soluciones en la página \pageref{tut13:ejercicio09:sol}.
-\qed
-\end{ejercicio}
-
-
-\subsection{La librería {\tt caret}.}
-\label{tut13:subsec:LibreriaCaret}
-
-Como hemos visto muchas veces a lo largo de los tutoriales previos, también hay una forma más sencilla, menos {\em ``manual''},  de obtener esta información. De hecho, ontendremos mucha más información. Para conseguirlo, tenemos que instalar la librería {\tt caret} de R. Esta librería, que aquí vamos a usar de forma muy elemental, pone a nuestra disposición una gran colección de recursos propios del campo del {\em Aprendizaje Automático} (en inglés, {\em Machine Learning}). En R existen, literalmente, cientos de librerías para ese tipo de tareas y {\tt caret} tiene, entre otras, la virtud de proporcionar una interfaz de uso común para muchas de esas librerías, ahorrándonos la necesidad de conocer los detalles específicos de cada caso. No te extrañes, por tanto, si la instalación de {\tt caret} es más larga que la de otras librerías más básicas que hemos visto: se trata de una herramienta avanzada.
-
-Pero no temas, para el problema que nos ocupa las cosas son muy fáciles. Después de instalar la librería, la cargamos como de costumbre  (puede que veas algunos mensajes de advertencia; mientras no haya errores no te preocupes)
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{library}\hlstd{(caret)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Ahora vamos a usar una de las funciones que {\tt caret} nos proporciona: la función {\tt confusionMatrix}. Si le proporcionamos a esta función un vector con los resultados de una clasificación dicotómica y  un segundo vector con los valores correctos (en nuestro caso, el vector $Y$) la función nos devuelve tanto la tabla de contingencia que hemos creado antes como los valores de la especificidad y sensibilidad del clasificador. Pero cuidado: como dice el refrán, el diablo está en los detalles. Al igual que nos ha sucedido antes, tenemos que vigilar el orden que se utiliza al clasificar. Aunque hemos clasificado usando $1$ y $0$ para representar las clases, la mejor manera de pensar en una clasificación es en términos de un factor con dos niveles. Y es muy importante ordenar esos niveles correctamente, si esperamos obtener valores correctos de la sensibilidad y la especificidad. En una prueba diagnóstica ese trabajo {\em ``nos lo dan hecho''}, porque normalmente asignamos el $1$ a enfermo, el $0$ a sano y, a su vez, $1$ a prueba positiva, $0$ a prueba negativa. Pero en otros casos, como una clasificación en {\em nacional o extranjero}, los niveles no están tan claramente predefinidos. Sirvan estas advertencias para justificar que, en el ejemplo que nos ocupa, vamos a empezar por construir dos factores, en los que además vamos a indicar que queremos que R utilice el valor $1$ como primer nivel de los dos factores y que, por tanto, lo coloque en la primera fila y columna de la tabla de contingencia.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{clasificacion_f} \hlkwb{=} \hlkwd{factor}\hlstd{(clasificacion,} \hlkwc{levels} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{0}\hlstd{)}
-\hlstd{Y_f} \hlkwb{=}  \hlkwd{factor}\hlstd{(Y,} \hlkwc{levels} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{0}\hlstd{)}
-\hlstd{(confMat} \hlkwb{=} \hlkwd{confusionMatrix}\hlstd{(clasificacion_f, Y_f))}
-\end{alltt}
-\begin{verbatim}
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   1   0
-##          1 478  39
-##          0  35 448
-##                                         
-##                Accuracy : 0.926         
-##                  95% CI : (0.908, 0.941)
-##     No Information Rate : 0.513         
-##     P-Value [Acc > NIR] : <2e-16        
-##                                         
-##                   Kappa : 0.852         
-##  Mcnemar's Test P-Value : 0.727         
-##                                         
-##             Sensitivity : 0.932         
-##             Specificity : 0.920         
-##          Pos Pred Value : 0.925         
-##          Neg Pred Value : 0.928         
-##              Prevalence : 0.513         
-##          Detection Rate : 0.478         
-##    Detection Prevalence : 0.517         
-##       Balanced Accuracy : 0.926         
-##                                         
-##        'Positive' Class : 1             
-## 
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Como ves, la salida de la función incluye mucha información. En primer lugar, la tabla de contingencia, a la que podemos acceder así:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{confMat}\hlopt{$}\hlstd{table}
-\end{alltt}
-\begin{verbatim}
-##           Reference
-## Prediction   1   0
-##          1 478  39
-##          0  35 448
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Pero también nos proporciona otras dos componentes, ambas vectores con nombre:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{confMat}\hlopt{$}\hlstd{byClass}
-\end{alltt}
-\begin{verbatim}
-##          Sensitivity          Specificity       Pos Pred Value 
-##              0.93177              0.91992              0.92456 
-##       Neg Pred Value            Precision               Recall 
-##              0.92754              0.92456              0.93177 
-##                   F1           Prevalence       Detection Rate 
-##              0.92816              0.51300              0.47800 
-## Detection Prevalence    Balanced Accuracy 
-##              0.51700              0.92585
-\end{verbatim}
-\begin{alltt}
-\hlstd{confMat}\hlopt{$}\hlstd{overall}
-\end{alltt}
-\begin{verbatim}
-##       Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull 
-##     9.2600e-01     8.5187e-01     9.0799e-01     9.4145e-01     5.1300e-01 
-## AccuracyPValue  McnemarPValue 
-##    5.7742e-179     7.2728e-01
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-de las que resulta muy fácil extraer la sensibilidad, especificidad y precisión.
-
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(sensibilidad} \hlkwb{=} \hlstd{confMat}\hlopt{$}\hlstd{byClass[}\hlnum{1}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## Sensitivity 
-##     0.93177
-\end{verbatim}
-\begin{alltt}
-\hlstd{(especificidad} \hlkwb{=} \hlstd{confMat}\hlopt{$}\hlstd{byClass[}\hlnum{2}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## Specificity 
-##     0.91992
-\end{verbatim}
-\begin{alltt}
-\hlstd{(tasaAcierto} \hlkwb{=} \hlstd{confMat}\hlopt{$}\hlstd{overall[}\hlnum{1}\hlstd{])}
-\end{alltt}
-\begin{verbatim}
-## Accuracy 
-##    0.926
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Naturalmente, estos valores coinciden con los que hemos obtenido antes.
-
-\subsubsection{Clasificación logística con umbral arbitrario.}
-
-Para facilitar nuestro trabajo vamos a crear una función en R para medir la calidad de la clasificación dicotómica por umbral basada en la regresión logística. Los argumentos de la función serán el modelo logístico y el umbral o punto de corte. Y la salida de la función será una lista con la sensibilidad, especificidad y  precisión:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{clasifUmbral} \hlkwb{=} \hlkwa{function}\hlstd{(}\hlkwc{glmXY}\hlstd{,} \hlkwc{cp}\hlstd{)\{}
-  \hlstd{Y} \hlkwb{=} \hlstd{glmXY}\hlopt{$}\hlstd{y}
-  \hlstd{clasificacion} \hlkwb{=} \hlkwd{ifelse}\hlstd{(glmXY}\hlopt{$}\hlstd{fitted.values} \hlopt{>} \hlstd{cp,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{)}
-  \hlstd{clasificacion_f} \hlkwb{=} \hlkwd{factor}\hlstd{(clasificacion,} \hlkwc{levels} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{0}\hlstd{)}
-  \hlstd{Y_f} \hlkwb{=}  \hlkwd{factor}\hlstd{(Y,} \hlkwc{levels} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{0}\hlstd{)}
-  \hlstd{confMat} \hlkwb{=} \hlkwd{confusionMatrix}\hlstd{(clasificacion_f, Y_f)}
-  \hlkwd{return}\hlstd{(}\hlkwd{c}\hlstd{(confMat}\hlopt{$}\hlstd{byClass[}\hlnum{1}\hlstd{], confMat}\hlopt{$}\hlstd{byClass[}\hlnum{2}\hlstd{], confMat}\hlopt{$}\hlstd{overall[}\hlnum{1}\hlstd{]))}
-\hlstd{\}}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Veamos como funciona. Para el clasificador ingenuo hacemos:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{clasifUmbral}\hlstd{(glmXY,} \hlkwc{cp} \hlstd{=} \hlnum{0.5}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## Sensitivity Specificity    Accuracy 
-##     0.93177     0.91992     0.92600
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Pero si se elige otro punto de corte, la sensibilidad, especificidad y tasa de aciertos cambian:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{clasifUmbral}\hlstd{(glmXY,} \hlkwc{cp} \hlstd{=} \hlnum{0.35}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## Sensitivity Specificity    Accuracy 
-##     0.95712     0.89528     0.92700
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Pronto analizaremos cómo dependen estos valores de la elección del punto de corte. Pero antes, veamos otros clasificadores.
-
-\subsection{Otros clasificadores dicotómicos.}
-
-\subsubsection{El método knn.}
-
-Otra de las ventajas de instalar la librería {\tt caret} es que junto con ella se instalan implementaciones de algunos de los algoritmos básicos del Aprendizaje Automático. Por ejemplo, la función {\tt knn3} nos va a permitir aplicar de forma muy sencilla el algoritmo de clasificación knn que hemos descrito en la Sección
-\ref{curso-cap13:subsec:OtrosEjemplosMetodosClasificadores} del libro (pág. \pageref{curso-cap13:subsec:OtrosEjemplosMetodosClasificadores}).Usaremos $k=5$ para empezar e identificaremos con la letra $A$ el modelo que construimos, porque después vamos a usar otro valor de $k$. Para construir el primer clasificador basta con hacer:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{knnModeloA} \hlkwb{=} \hlkwd{knn3}\hlstd{(Y_f} \hlopt{~} \hlstd{X,} \hlkwc{data} \hlstd{= datos,} \hlkwc{k}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{prob}\hlstd{=}\hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Para hacer predicciones, como en casos anteriores, usamos {\tt predict}. En este caso predecimos sobre los propios valores de $X$ en la muestra, porque aquí no tenemos la opción {\tt fitted} de los modelos de regresión. La respuesta es una matriz de probabilidades de los dos posibles valores de  $Y$, para cada valor de $X$ en la muestra.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{probsKnnA} \hlkwb{=} \hlkwd{predict}\hlstd{(knnModeloA,} \hlkwc{newdata} \hlstd{=} \hlkwd{data.frame}\hlstd{(X))}
-\hlkwd{head}\hlstd{(probsKnnA)}
-\end{alltt}
-\begin{verbatim}
-##            1       0
-## [1,] 0.00000 1.00000
-## [2,] 0.16667 0.83333
-## [3,] 0.00000 1.00000
-## [4,] 1.00000 0.00000
-## [5,] 0.00000 1.00000
-## [6,] 0.00000 1.00000
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-La forma más sencilla de  visualizar el resultado es añadiendo esas probabilidades al diagrama de dispersión.  El resultado es la parte (a) de la Figura \ref{curso-cap13:fig:ClasificadorKnn} del libro (pág. \pageref{curso-cap13:fig:ClasificadorKnn}). Una vez dibujado el diagrama, podemos usar {\tt points} para añadir las probabilidades.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{points}\hlstd{(X, probsKnnA[ ,} \hlnum{1}\hlstd{],} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{pch}\hlstd{=}\hlstr{"·"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{2}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-57-1} 
-
-}
-
-
-
-\end{knitrout}
-
-Si lo que queremos es una predicción en valores de $Y$ en lugar de probabilidades, hacemos
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{YknnA} \hlkwb{=} \hlkwd{predict}\hlstd{(knnModeloA,} \hlkwc{newdata} \hlstd{=} \hlkwd{data.frame}\hlstd{(X),} \hlkwc{type}\hlstd{=}\hlstr{"class"}\hlstd{)}
-\hlkwd{head}\hlstd{(YknnA)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0 0 0 1 0 0
-## Levels: 1 0
-\end{verbatim}
-\begin{alltt}
-\hlkwd{tail}\hlstd{(YknnA)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0 1 1 1 0 0
-## Levels: 1 0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Y ahora podemos analizar estas predicciones mediante {\tt confusionMatrix}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{confusionMatrix}\hlstd{(YknnA,} \hlkwc{reference} \hlstd{= Y_f)}
-\end{alltt}
-\begin{verbatim}
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   1   0
-##          1 482  22
-##          0  31 465
-##                                        
-##                Accuracy : 0.947        
-##                  95% CI : (0.931, 0.96)
-##     No Information Rate : 0.513        
-##     P-Value [Acc > NIR] : <2e-16       
-##                                        
-##                   Kappa : 0.894        
-##  Mcnemar's Test P-Value : 0.272        
-##                                        
-##             Sensitivity : 0.940        
-##             Specificity : 0.955        
-##          Pos Pred Value : 0.956        
-##          Neg Pred Value : 0.937        
-##              Prevalence : 0.513        
-##          Detection Rate : 0.482        
-##    Detection Prevalence : 0.504        
-##       Balanced Accuracy : 0.947        
-##                                        
-##        'Positive' Class : 1            
-## 
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Para obtener la parte (b) de la Figura \ref{curso-cap13:fig:ClasificadorKnn} repetimos estos pasos con $k=100$:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{knnModeloB} \hlkwb{=} \hlkwd{knn3}\hlstd{(Y_f} \hlopt{~} \hlstd{X,} \hlkwc{data} \hlstd{= datos,} \hlkwc{k}\hlstd{=}\hlnum{100}\hlstd{,} \hlkwc{prob}\hlstd{=}\hlnum{TRUE}\hlstd{)}
-\hlstd{probsKnnB} \hlkwb{=} \hlkwd{predict}\hlstd{(knnModeloB,} \hlkwc{newdata} \hlstd{=} \hlkwd{data.frame}\hlstd{(X))}
-\hlstd{YknnB} \hlkwb{=} \hlkwd{predict}\hlstd{(knnModeloB,} \hlkwc{newdata} \hlstd{=} \hlkwd{data.frame}\hlstd{(X),} \hlkwc{type}\hlstd{=}\hlstr{"class"}\hlstd{)}
-\hlkwd{confusionMatrix}\hlstd{(YknnB,} \hlkwc{reference} \hlstd{= Y_f)}
-\end{alltt}
-\begin{verbatim}
-## Confusion Matrix and Statistics
-## 
-##           Reference
-## Prediction   1   0
-##          1 476  31
-##          0  37 456
-##                                         
-##                Accuracy : 0.932         
-##                  95% CI : (0.915, 0.947)
-##     No Information Rate : 0.513         
-##     P-Value [Acc > NIR] : <2e-16        
-##                                         
-##                   Kappa : 0.864         
-##  Mcnemar's Test P-Value : 0.544         
-##                                         
-##             Sensitivity : 0.928         
-##             Specificity : 0.936         
-##          Pos Pred Value : 0.939         
-##          Neg Pred Value : 0.925         
-##              Prevalence : 0.513         
-##          Detection Rate : 0.476         
-##    Detection Prevalence : 0.507         
-##       Balanced Accuracy : 0.932         
-##                                         
-##        'Positive' Class : 1             
-## 
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-y la figura que se obtiene es:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{points}\hlstd{(X, probsKnnB[ ,} \hlnum{1}\hlstd{],} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{pch}\hlstd{=}\hlstr{"·"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{cex}\hlstd{=}\hlnum{2}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-61-1} 
-
-}
-
-
-
-\end{knitrout}
-
-Fíjate en que, a pesar de lo que pudieras haber pensado al ver las figuras, la sensibilidad, especificidas y tasa de errores parecen apuntar a que el clasificador con $k=5$ hace su trabajo mejor que el que usa $k=100$.
-
-\subsection{Comparación de clasificadores. Curvas ROC.}
-\label{tut13:subsection:ComaracionClasificadoresCurvasROC}
-
-En este apartado vamos a ver cómo podemos comparar el rendimiento de los algoritmos clasificadores. Como hemos visto en la Sección \ref{curso-cap13:subsection:seleccionPuntoCorte} del libro (pág. \pageref{curso-cap13:subsection:seleccionPuntoCorte}), el primer paso en esa dirección puede ser el análisis de la forma en que cambian la sensibilidad y especificidad de un clasificador definido mediante un punto de corte $c_p$, cuando se consideran distintos valores de $c_p$. Este análisis, además, es importante por sí mismo cuando de lo que se trata es de seleccionar un valor de $c_p$ con alguna propiedad interesante.
-
-
-En realidad, las herramientas que necesitamos ya están preparadas. Antes hemos definido una función {\tt clasifUmbral} que nos va a permitir representar gráficamente los valores de la sensibilidad y especificidad en función del punto de corte. Para ello creamos un vector de valores del punto de corte y con {\tt sapply} evaluamos la función {\tt clasifUmbral} en cada elemento del vector. Representamos gráficamente la sensibilidad y especificidad en un mismo gráfico:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{cp_v} \hlkwb{=} \hlkwd{seq}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{0}\hlstd{,} \hlkwc{by} \hlstd{=} \hlopt{-}\hlnum{0.001}\hlstd{)}
-
-\hlstd{sens} \hlkwb{=} \hlkwd{sapply}\hlstd{(cp_v,} \hlkwc{FUN} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{cp}\hlstd{)\{}\hlkwd{clasifUmbral}\hlstd{(glmXY, cp)[}\hlnum{1}\hlstd{]\})}
-
-\hlstd{espec} \hlkwb{=} \hlkwd{sapply}\hlstd{(cp_v,} \hlkwc{FUN} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{cp}\hlstd{)\{}\hlkwd{clasifUmbral}\hlstd{(glmXY, cp)[}\hlnum{2}\hlstd{]\})}
-
-\hlkwd{plot}\hlstd{(cp_v, sens,} \hlkwc{type}\hlstd{=}\hlstr{"l"}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{xlab}\hlstd{=}\hlstr{"punto de corte"}\hlstd{,} \hlkwc{ylab}\hlstd{=}\hlstr{""}\hlstd{)}
-
-\hlkwd{points}\hlstd{(cp_v, espec,} \hlkwc{type}\hlstd{=}\hlstr{"l"}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"blue"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{2}\hlstd{)}
-
-\hlkwd{legend}\hlstd{(}\hlkwc{x}\hlstd{=}\hlstr{"bottom"}\hlstd{,} \hlkwc{legend}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"sensibilidad"}\hlstd{,} \hlstr{"especificidad"}\hlstd{),}
-       \hlkwc{col} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"red"}\hlstd{,} \hlstr{"blue"}\hlstd{),} \hlkwc{bty}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{),}\hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-62-1} 
-
-}
-
-
-
-\end{knitrout}
-
-Para la tasa de errores hacemos algo parecido:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{accur} \hlkwb{=} \hlkwd{sapply}\hlstd{(cp_v,} \hlkwc{FUN} \hlstd{=} \hlkwa{function}\hlstd{(}\hlkwc{cp}\hlstd{)\{}\hlkwd{clasifUmbral}\hlstd{(glmXY, cp)[}\hlnum{3}\hlstd{]\})}
-
-\hlkwd{plot}\hlstd{(cp_v, accur,} \hlkwc{type}\hlstd{=}\hlstr{"l"}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"black"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{3}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{1}\hlstd{,}
-     \hlkwc{xlab}\hlstd{=}\hlstr{"punto de corte"}\hlstd{,} \hlkwc{ylab}\hlstd{=}\hlstr{"Tasa de aciertos"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-63-1} 
-
-}
-
-
-
-\end{knitrout}
-
-Como estamos trabajando con una muestra grande, las curvas son relativamente suaves, comparadas con las que aparecen en las Figuras \ref{curso-cap13:fig:CurvasSensibilidadEspecificidad} (pág. \pageref{curso-cap13:fig:CurvasSensibilidadEspecificidad}) y \ref{curso-cap13:fig:TasaAciertosVsPuntoCorte} (pág. \pageref{curso-cap13:fig:TasaAciertosVsPuntoCorte}) del libro.
-
-\subsubsection*{Curvas ROC en R. La librería ROCR.}
-
-En la Sección \ref{curso-cap13:subsection:ROC} del libro (pág. \pageref{curso-cap13:subsection:ROC}) hemos visto que las curvas ROC son una herramienta que puede resultar muy útil para comparar el rendimiento de dos clasificadores. En esta sección vamos a aprender a dibujarlas con R. Para empezar, vamos a aprovecharnos de  que antes hemos generado dos vectores de valores de la sensibilidad y especificidad del clasificador logístico para distintos valores del punto de corte $c_p$. A partir de esos valores es muy fácil dibujar la curva ROC.  Hemos usado la opción gráfica {\tt asp=1}  para garantizar que R usa la misma escala en ambos ejes y conseguir así que la región de las curvas ROC sea realmente un cuadrado. Por cierto, {\tt asp} viene del inglés {\em aspect}, ya que se suele llamar {\sf relación de aspecto} al cociente de las escalas que se usan en los ejes de un gráfico. Además, hemos usado {\tt polygon} para dibujar el cuadrado unidad que define la región de las curvas ROC y también hemos usado {\tt segments} para dibujar la diagonal del cuadrado que representa los clasificadores aleatorios.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{plot}\hlstd{(}\hlnum{1}\hlopt{-} \hlstd{espec, sens,} \hlkwc{type} \hlstd{=} \hlstr{"l"}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"blue"}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{4}\hlstd{,}
-     \hlkwc{xlab}\hlstd{=}\hlstr{"1 - especificidad"}\hlstd{,} \hlkwc{ylab}\hlstd{=}\hlstr{"sensibilidad"}\hlstd{,}
-     \hlkwc{xlim}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{),} \hlkwc{ylim}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{),} \hlkwc{asp}\hlstd{=}\hlnum{1}\hlstd{)}
-
-\hlkwd{polygon}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{1}\hlstd{),} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0}\hlstd{),} \hlkwc{lwd}\hlstd{=}\hlnum{2}\hlstd{)}
-
-\hlkwd{segments}\hlstd{(}\hlkwc{x0} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{y0} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{x1} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{y1} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"black"}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{2}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{4}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/curvaROClogistica1-1} 
-
-}
-
-
-
-\end{knitrout}
-
-
-
-Y ahora vamos a ver una segunda manera, en general más cómoda y potente, de dibujar esas mismas curvas. Para ello tendremos que usar la librería {\tt ROCR}, que habrás de instalar si aún no lo has hecho. Cargamos la librería
-
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{library}\hlstd{(ROCR)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-y usamos la función {\tt predicition} de la propia librería {\tt ROCR} para construir el tipo de objeto que {\tt ROCR} usa para hacer cálculos. He usado {\tt class} para que veas que {\tt pred} es de tipo {\tt prediction}. Si sigues avanzando en R, o en cualquier otro lenguaje de programamción, tendrás que aprender un poco más sobre los objetos y clases de R.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{predLogistica} \hlkwb{=} \hlkwd{prediction}\hlstd{(}\hlkwc{predictions} \hlstd{= glmXY}\hlopt{$}\hlstd{fitted.values,} \hlkwc{labels} \hlstd{= Y)}
-\hlkwd{class}\hlstd{(predLogistica)}
-\end{alltt}
-\begin{verbatim}
-## [1] "prediction"
-## attr(,"package")
-## [1] "ROCR"
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-A partir del objeto {\tt predLogistica} podemos pedirle a {\tt ROCR} que calcule toda una serie de medidas de rendimiento (en inglés, {\em performance}) asociadas con ese clasificador. Para ello usamos la función llamada, precisamente, {\tt performance}. Esa función se puede usar, por ejemplo, para obtener un vector con valores de la sensibilidad o la especificidad para disintos valores del punto de corte. Pero si le damos a la vez dos de esos indicadores (por ejemplo, sensibilidad y (1 - especificidad)), entonces el resultado de {\tt performance} puede usarse para dibujar el gráfico de como se relacionan entre sí ambos indicadores Por ejemplo, para obtener el dibujo de la curva ROC hacemos:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{ROClogistica} \hlkwb{=} \hlkwd{performance}\hlstd{(predLogistica,} \hlkwc{measure}\hlstd{=}\hlstr{"sens"}\hlstd{,} \hlkwc{x.measure}\hlstd{=}\hlstr{"fpr"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-Aquí {\tt sens} es una abreviatura de sensibilidad (en inglés, {\em sensitivity}), mientras que {\tt fpr} viene del inglés, {\em false positive rate}, o tasa de falsos positivos, que es otra manera de referirse a la cantidad que corresponde a (1 - especificidad).  En la ayuda de {\tt performance} tienes una (amplia) lista de todas las medidas de rendimiento del clasificador que se pueden utilizar y de las correspondientes abreviaturas.
-
-Ahora ya podemos dibujar esa curva ROC, que vamos a superponer al dibujo que hicimos antes, para que veas que coinciden. Esto se consigue con la opción {\tt add =TRUE} de {\tt plot}. Además hemos pintado la curva ROC que obtuvimos antes {\em ``a mano''} con un trazo grueso de color naranja, para que veas como coincide con la que obtenemos de {\tt ROCR}, que aparece con un trazo azul más fino.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-66-1} 
-
-}
-
-
-
-\end{knitrout}
-
-¿Cómo se calcula el área bajo la curva ROC, el valor que hemos llamado AUC? Muy fácilmente, usando de nuevo {\tt performance}:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{AUClogistica} \hlkwb{=} \hlkwd{performance}\hlstd{(predLogistica,}\hlstr{"auc"}\hlstd{)}
-\hlstd{AUClogistica}\hlopt{@}\hlkwc{y.values}
-\end{alltt}
-\begin{verbatim}
-## [[1]]
-## [1] 0.98591
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-{\em Observación técnica:}  Si eres un observador muy atento te habrás fijado en que hemos usado el símbolo \verb#@# para acceder al valor del área, en lugar de usar \verb#$#, como hemos hecho en tantas otras ocasiones anteriores. La razón es, de nuevo, una cuestión técnica de R, que puedes ignorar si no te interesa demasiado: simplificando, R maneja dos grandes sistemas de objetos o clases, llamados S3 y S4. Los objeto de tipo S4 tienen componentes llamados {\tt slots} y para acceder a un {\tt slot} se usa el símbolo \verb#@# que hemos encontrado aquí.
-
-Para practicar un poco más el uso de ROCR vamos a aplicárselo a los clasificadores de tipo knn que hemos usado antes (con $k=5$ y $k=100$). Primero hacemos la representación conjunta de sus curvas ROC, de forma similar a lo que hemos hecho en la Figura \ref{curso-cap13:fig:curvaROCdosmodelos} del libro (pág. \pageref{curso-cap13:fig:curvaROCdosmodelos}), en aquel caso para la relación entre el itb y las vasculopatía.
-
-Fíjate en que la primera vez usamos {\tt plot} con la opción {\tt add=FALSE}, y la segunda con {\tt add=TRUE} para que las dos curvas aparezcan en la misma figura. Por esa razón sólo hemos necesitado fijar algunos parámetros gráficos en la primera llamada a {\tt plot}.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{predKnnA} \hlkwb{=} \hlkwd{prediction}\hlstd{(}\hlkwc{predictions} \hlstd{= probsKnnA[,} \hlnum{1}\hlstd{],} \hlkwc{labels} \hlstd{= Y)}
-\hlstd{predKnnB} \hlkwb{=} \hlkwd{prediction}\hlstd{(}\hlkwc{predictions} \hlstd{= probsKnnB[,} \hlnum{1}\hlstd{],} \hlkwc{labels} \hlstd{= Y)}
-
-\hlstd{perfKnnA} \hlkwb{=} \hlkwd{performance}\hlstd{(predKnnA,} \hlkwc{measure}\hlstd{=}\hlstr{"tpr"}\hlstd{,} \hlkwc{x.measure}\hlstd{=}\hlstr{"fpr"}\hlstd{)}
-\hlstd{perfKnnB} \hlkwb{=} \hlkwd{performance}\hlstd{(predKnnB,} \hlkwc{measure}\hlstd{=}\hlstr{"tpr"}\hlstd{,} \hlkwc{x.measure}\hlstd{=}\hlstr{"fpr"}\hlstd{)}
-
-\hlkwd{plot}\hlstd{(perfKnnA,} \hlkwc{add} \hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{4}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"blue"}\hlstd{,}
-      \hlkwc{xlab} \hlstd{=} \hlstr{"1 - especificidad (tasa de falsos positivos)"}\hlstd{,}
-      \hlkwc{ylab} \hlstd{=} \hlstr{"sensibilidad (tasa verdaderos positivos)"}\hlstd{,}
-      \hlkwc{asp}\hlstd{=}\hlnum{1}\hlstd{,} \hlkwc{axes}\hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{bty}\hlstd{=}\hlstr{"n"}\hlstd{)}
-\hlkwd{plot}\hlstd{(perfKnnB,} \hlkwc{add} \hlstd{=}\hlnum{TRUE}\hlstd{,} \hlkwc{lwd}\hlstd{=}\hlnum{4}\hlstd{,} \hlkwc{lty}\hlstd{=}\hlnum{3}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{"red"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/ROCknn-1} 
-
-}
-
-
-
-\end{knitrout}
-
-Las dos curvas están muy próximas y son ambas muy buenos clasificadores, pero parece que el clasificador A (con $k=5$) tiene mejor comportamiento.  Una forma simple de comparar ambos clasificadores es calculando sus valores de AUC
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(AUCKnnA} \hlkwb{=} \hlkwd{performance}\hlstd{(predKnnA,}\hlstr{"auc"}\hlstd{)}\hlopt{@}\hlkwc{y.values}\hlstd{[[}\hlnum{1}\hlstd{]])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.991
-\end{verbatim}
-\begin{alltt}
-\hlstd{(AUCKnnB} \hlkwb{=} \hlkwd{performance}\hlstd{(predKnnB,}\hlstr{"auc"}\hlstd{)}\hlopt{@}\hlkwc{y.values}\hlstd{[[}\hlnum{1}\hlstd{]])}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.9859
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Estos valores confirman lo que sospechábamos en la página \pageref{tut13:subsection:ComaracionClasificadoresCurvasROC}, que el calsificador con $k=5$ es ligeramente superior al otro (y es computacionalmente menos costoso).
-
-\section{Bondad del ajuste en la regresión logística.}
-\label{tut13:sec:BondadDelAjuste}
-
-En esta sección vamos a ver como usar R para calcular el estadístico de Hosmer-Lemeshow y usarlo para analizar la bondad del ajuste del modelo de regresión logística. Vamos a empezar  usando los datos del fichero
-{\tt Cap13-ConstruccionModeloLogistico.csv} correspondientes al Ejemplo \ref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases} del libro (pág. \pageref{curso-cap13:ejem:EstimacionModeloLogisticoMedianteClases}).
-
-
-\subsubsection*{Clases de riesgo.}
-
-El primer paso, como hemos visto en la página \pageref{curso-cap13:subsubsec:ConstruccionEstadisticoHosmerLemeshowPasoPaso}  del libro consiste en definir las clases de riesgo, o deciles de riesgo en el caso común en el que se usan $10$ clases. Llamaremos $g$ al número de clases y empezamos construyendo los puntos de corte que marcan la frontera entre clases:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{g} \hlkwb{=} \hlnum{10}
-\hlstd{(puntosCorte} \hlkwb{=} \hlkwd{quantile}\hlstd{(}\hlkwd{fitted}\hlstd{(glmXY),} \hlkwc{probs} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{1}\hlopt{/}\hlstd{g)))}
-\end{alltt}
-\begin{verbatim}
-##          0%         10%         20%         30%         40%         50% 
-## 0.000025309 0.000254736 0.001877251 0.015795153 0.131242142 0.581014602 
-##         60%         70%         80%         90%        100% 
-## 0.923599268 0.986236130 0.998193706 0.999793686 0.999979524
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-A continuación usamos estos puntos de corte y la función {\tt cut} de R que ya conocemos para definir un factor, llamado {\tt claseRiesgo}, que identifica la clase de riesgo a la que pertenece cada valor $x_i$ de la muestra. Hemos elegido las opción {\tt  include.lowest = TRUE} de la función {\tt cut} para garantizar que el valor mínimo de la muestra se clasifica en alguna clase de riesgo. Añadimos el resultado al {\tt data.frame datos} porque así es como de hecho sabremos cuál es la clase para cada valor de $X$.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{datos}\hlopt{$}\hlstd{claseRiesgo} \hlkwb{=} \hlkwd{cut}\hlstd{(}\hlkwd{fitted}\hlstd{(glmXY),} \hlkwc{breaks} \hlstd{= puntosCorte,}
-                        \hlkwc{include.lowest} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\hlstd{(n.i} \hlkwb{=} \hlkwd{table}\hlstd{(datos}\hlopt{$}\hlstd{claseRiesgo))}
-\end{alltt}
-\begin{verbatim}
-## 
-## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
-##                   100                   100                   100 
-##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##                   100                   100                    99 
-##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##                   101                   100                   100 
-##            (0.9998,1] 
-##                   100
-\end{verbatim}
-\begin{alltt}
-\hlkwd{min}\hlstd{(n.i)}
-\end{alltt}
-\begin{verbatim}
-## [1] 99
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-La tabla de frecuencias del factor nos muestra los valores que en el libro hemos llamado $n_i$. Y como puede verse, una de las virtudes de esta clasificación es que el número de puntos en cada clase es necesariamente muy parecido (aproximadamente el 10\% en cada clase, si usamos deciles). En este punto es importante comprobar que ninguna de las clases contiene un número demasiado bajo de observaciones. Si alguna de las clases contuviera menos de $10$ observaciones, eso debería ponernos en alerta sobre la conveniencia de usar este método para medir la bondad del ajuste. Por eso hemos calculado el mínimo de la tabla, que en este caso muestra que podemos seguir adelante con tranquilidad.
-
-\subsubsection*{Valores observados y esperados.}
-
-Los valores observados $Obs1_i$ (recuerda que $Obs1_i$ es el número de observaciones de la clase $C_i$ para las que $Y=1$) se calculan así:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(Obs1} \hlkwb{=} \hlkwd{with}\hlstd{(datos,} \hlkwd{tapply}\hlstd{(Y,} \hlkwc{INDEX} \hlstd{= claseRiesgo,} \hlkwc{FUN} \hlstd{= sum)) )}
-\end{alltt}
-\begin{verbatim}
-## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
-##                     0                     0                     0 
-##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##                     6                    35                    74 
-##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##                    98                   100                   100 
-##            (0.9998,1] 
-##                   100
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-La misma operación, pero aplicada a las probabilidades estimadas por el modelo, nos proporciona los valores esperados $Esp1_i$:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(Esp1} \hlkwb{=} \hlkwd{with}\hlstd{(datos,} \hlkwd{tapply}\hlstd{(probs,} \hlkwc{INDEX} \hlstd{= claseRiesgo,} \hlkwc{FUN} \hlstd{= sum)) )}
-\end{alltt}
-\begin{verbatim}
-## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
-##             0.0085367             0.0772353             0.6655094 
-##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##             5.3109641            33.2236573            77.2846428 
-##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##            97.0953750            99.4203071            99.9221955 
-##            (0.9998,1] 
-##            99.9915768
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-
-Y puesto que sabemos el total de observaciones, los valores $Obs0$ y $Esp0$ se obtienen simplemente restando:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(Obs0} \hlkwb{=} \hlstd{n.i} \hlopt{-} \hlstd{Obs1)}
-\end{alltt}
-\begin{verbatim}
-## 
-## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
-##                   100                   100                   100 
-##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##                    94                    65                    25 
-##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##                     3                     0                     0 
-##            (0.9998,1] 
-##                     0
-\end{verbatim}
-\begin{alltt}
-\hlstd{(Esp0} \hlkwb{=} \hlstd{n.i} \hlopt{-}\hlstd{Esp1)}
-\end{alltt}
-\begin{verbatim}
-## 
-## [2.531e-05,0.0002547]  (0.0002547,0.001877]     (0.001877,0.0158] 
-##            99.9914633            99.9227647            99.3344906 
-##       (0.0158,0.1312]        (0.1312,0.581]        (0.581,0.9236] 
-##            94.6890359            66.7763427            21.7153572 
-##       (0.9236,0.9862]       (0.9862,0.9982]       (0.9982,0.9998] 
-##             3.9046250             0.5796929             0.0778045 
-##            (0.9998,1] 
-##             0.0084232
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-
-
-Naturalmente, si el ajuste es bueno, lo que esperamos es que $Esp1 \sim Obs1$ y que $Esp0\sim Obs0$. Puedes usar las tablas anteriores para tratar de estimar ``a ojo'' la calidad del ajuste.
-
-\subsubsection*{Estadístico de Hosmer-Lemeshow y contraste de la bondad del ajuste.}
-
-Con los valores observados y esperados estamos listos para calcular el valor del estadístico de Hosmer-Lemeshow:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(HL.estadistico} \hlkwb{=} \hlkwd{sum}\hlstd{((Obs1} \hlopt{-} \hlstd{Esp1)}\hlopt{^}\hlnum{2}\hlopt{/}\hlstd{Esp1)} \hlopt{+} \hlkwd{sum}\hlstd{((Obs0} \hlopt{-} \hlstd{Esp0)}\hlopt{^}\hlnum{2}\hlopt{/}\hlstd{Esp0))}
-\end{alltt}
-\begin{verbatim}
-## [1] 2.5162
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Los grados de libertad del contraste son:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(HL.df} \hlkwb{=} \hlkwd{length}\hlstd{(Obs1)} \hlopt{-} \hlnum{2}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 8
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-y el p-valor se calcula con la cola derecha de la correspondiente distribución $\chi^2_{g - 2}$:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{(HL.pValor} \hlkwb{=}  \hlkwd{pchisq}\hlstd{(HL.estadistico,} \hlkwc{df} \hlstd{= HL.df,} \hlkwc{lower.tail} \hlstd{=} \hlnum{FALSE}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.96097
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Y, como sabemos, un p-valor cercano a uno nos dice que no debemos rechazar la hipótesis nula $H_0$. Y en el contexto del contraste sobre la bondad del ajuste, significa que las predicciones del modelo se ajustan bien a los datos observado.
-
-
-\subsubsection*{Usando la librería {\tt ResourceSelection}.}
-
-La librería {\tt ResourceSelection} de R (recuerda instalarla antes de tratar de usarla) nos permite disponer de una función {\tt hoslem.test} que sirve para agilizar todo el proceso de contraste de la bondad del ajuste. En nuestro ejemplo basta con hacer:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{library}\hlstd{(ResourceSelection)}
-\end{alltt}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: package 'ResourceSelection' was built under R version 3.3.2}}
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# ResourceSelection 0.3-2 	 2017-02-28}}\begin{alltt}
-\hlstd{(HL.test}\hlkwb{=} \hlkwd{hoslem.test}\hlstd{(datos}\hlopt{$}\hlstd{Y, datos}\hlopt{$}\hlstd{probs,} \hlkwc{g} \hlstd{=} \hlnum{10}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-## 
-## 	Hosmer and Lemeshow goodness of fit (GOF) test
-## 
-## data:  datos$Y, datos$probs
-## X-squared = 2.52, df = 8, p-value = 0.96
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-Para ver que el valor del estadístico es el mismo que hemos obtenido antes vamos a pedirle a R que nos lo muestre con más cifras:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{HL.test}\hlopt{$}\hlstd{statistic}
-\end{alltt}
-\begin{verbatim}
-## X-squared 
-##    2.5162
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-
-Además, aunque no aparezcan en la salida de la función que R nos muestra, la función {\tt hoslem.test} también calcula tablas de valores observados y esperados, a las que podemos acceder así:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{HL.test}\hlopt{$}\hlstd{observed}
-\end{alltt}
-\begin{verbatim}
-##                        
-## cutyhat                  y0  y1
-##   [2.531e-05,0.0002547] 100   0
-##   (0.0002547,0.001877]  100   0
-##   (0.001877,0.0158]     100   0
-##   (0.0158,0.1312]        94   6
-##   (0.1312,0.581]         65  35
-##   (0.581,0.9236]         25  74
-##   (0.9236,0.9862]         3  98
-##   (0.9862,0.9982]         0 100
-##   (0.9982,0.9998]         0 100
-##   (0.9998,1]              0 100
-\end{verbatim}
-\begin{alltt}
-\hlstd{HL.test}\hlopt{$}\hlstd{expected}
-\end{alltt}
-\begin{verbatim}
-##                        
-## cutyhat                      yhat0      yhat1
-##   [2.531e-05,0.0002547] 99.9914633  0.0085367
-##   (0.0002547,0.001877]  99.9227647  0.0772353
-##   (0.001877,0.0158]     99.3344906  0.6655094
-##   (0.0158,0.1312]       94.6890359  5.3109641
-##   (0.1312,0.581]        66.7763427 33.2236573
-##   (0.581,0.9236]        21.7153572 77.2846428
-##   (0.9236,0.9862]        3.9046250 97.0953750
-##   (0.9862,0.9982]        0.5796929 99.4203071
-##   (0.9982,0.9998]        0.0778045 99.9221955
-##   (0.9998,1]             0.0084232 99.9915768
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-que, como se ve, coinciden con los valores que hemos obtenido antes. La función {\tt hoslem.test} nos permite elegir el número de clases con el argumento opcional {\tt g} (por defecto su valor es $10$ para usar deciles). Y una posible ventaja de la construcción manual que hemos hecho antes, frente a la comodidad de usar {\tt hoslem.test}, es que podemos seleccionar el método que queramos para definir los cuantiles de la probabilidad. Recuerda que desde el comienzo del libro sabemos que la definición de los percentiles es un tema delicado. El uso de una definición distinta hace que los cálculos arrojen valores ligeramente distintos. Nunca debería ser una diferencia tan grande como para cambiar el sentido de nuestra conclusión sobre la bondad del ajuste. Pero a veces querremos, por ejemplo, comparar los cálculos de R con los de otro programa estadístico que use una definición distina de cuantiles. En casos como esos (y se dan con más frecuencia de la que cabría esperar) se agradece especialmente la naturaleza fácilmente programable de R.
-
-
-% \pendiente{\Huge AQUI}
-%
-
-
-% \section{Ejercicios adicionales y soluciones.}
-% \label{tut13:sec:EjerciciosAdicionalesYSoluciones}
-%
-% \subsection*{Ejercicios adicionales.}
-% \label{tut13:subsec:EjerciciosAdicionales}
-%
-% \begin{ejercicio}
-% \label{tut13:ejercicio100}
-% aaa
-% \qed
-% \end{ejercicio}
-
-
-%##########################################
-%##########################################
-
-% \subsection*{Soluciones de algunos ejercicios.}
-% \label{tut13:subsec:SolucionesAlgunosEjercicios}
-%
-
-
-% \paragraph{\bf $\bullet$ Ejercicio \ref{tut13:ejercicio01} (pág. \pageref{tut13:ejercicio01}).
-% \label{tut13:ejercicio01:sol}\quad\\
-
-
-
-%#########################################################################################
-%#########################################################################################
-\vspace{2cm} \hrule
-\quad\\
-Fin del Tutorial13. ¡Gracias por la atención!
-
-\newpage
-
-
-%\newpage
-%\addcontentsline{toc}{section}{Guía de trabajo.}
-%\includepdf[pages={1-}, scale=0.90]{13-GuiaDeTrabajo.pdf}
-
-
-
-
-
-\end{document}
-
-Referencias: http://stats.stackexchange.com/questions/105501/understanding-roc-curve/105577#comment268841_105577 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

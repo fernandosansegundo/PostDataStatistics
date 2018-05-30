@@ -66,12 +66,7 @@ rm(list=ls())
 
 # Cuasidesviacion tipica muestral (o sigma, si fuera conocida)
 # Se usa un if-else y exists() para utilizar el que corresponda.
-(s = if(exists("sigma")){
-    sigma
-  } else {
-    sd(muestra)
-  }
- )
+(s = sd(muestra))
 
 # A partir de aqui el codigo es comun a las dos formas
 # de introduccion de datos.
